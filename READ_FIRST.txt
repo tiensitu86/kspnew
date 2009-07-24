@@ -1,0 +1,35 @@
+REQUIREMENTS:
+
+Windows XP/Vista/7
+BASS audio library (http://un4seen.com)
+MySQL 5.0 or 5.1 (tested with 5.1 server, requires libmysqlclient version 5.0)
+
+INSTALLATION
+1. Install and configure MySQL server. Create one database
+2. Create file <user home folder>\.KSP\db\ksp.kspdb with content like this:
+
+[MySQLConnection]
+DriverName=MySQL
+HostName=<host>
+Port=<port>
+Database=<database>
+User_Name=<uname>
+Password=<upassword>
+BlobSize=1
+ErrorResourceFile=
+LocaleCode=0000
+Compressed=False
+Encrypted=False
+ServerCharSet=utf8
+
+where:
+
+<host> is address of server without port (i.e. 127.0.0.1)
+<port> is server port (by default 3306)
+<database> is database created in previous step
+<uname> is username that has ful rights to <database> (create table, insert, delete, alter, select)
+<upassword> is <uname>'s password.
+
+IMPORTANT:
+
+defalt server character encoding should be UTF-8 

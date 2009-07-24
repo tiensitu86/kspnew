@@ -1,0 +1,6 @@
+-interfejs
+-przyciski
+-tlumaczenia
+-forcedirectories revision
+-ksp.kspdb file paths
+

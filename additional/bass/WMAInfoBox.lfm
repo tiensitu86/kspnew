@@ -1,0 +1,390 @@
+object WMAInfoForm: TWMAInfoForm
+  Left = 306
+  Height = 409
+  Top = 274
+  Width = 616
+  BorderStyle = bsDialog
+  Caption = 'WMA info + tag editor'
+  ClientHeight = 409
+  ClientWidth = 616
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '0.9.26.2'
+  object Label9: TLabel
+    Left = 15
+    Height = 14
+    Top = 214
+    Width = 27
+    Caption = 'Artist:'
+    ParentColor = False
+  end
+  object Label11: TLabel
+    Left = 15
+    Height = 14
+    Top = 257
+    Width = 24
+    Caption = 'Title:'
+    ParentColor = False
+  end
+  object Label13: TLabel
+    Left = 15
+    Height = 14
+    Top = 278
+    Width = 33
+    Caption = 'Album:'
+    ParentColor = False
+  end
+  object Label10: TLabel
+    Left = 15
+    Height = 14
+    Top = 300
+    Width = 26
+    Caption = 'Year:'
+    ParentColor = False
+  end
+  object Label14: TLabel
+    Left = 177
+    Height = 14
+    Top = 300
+    Width = 32
+    Caption = 'Track:'
+    ParentColor = False
+  end
+  object Label16: TLabel
+    Left = 326
+    Height = 14
+    Top = 29
+    Width = 53
+    Caption = 'Comments:'
+    ParentColor = False
+  end
+  object Label1: TLabel
+    Left = 15
+    Height = 14
+    Top = 192
+    Width = 33
+    Caption = 'Genre:'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 326
+    Height = 14
+    Top = 166
+    Width = 31
+    Caption = 'Lyrics:'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 15
+    Height = 14
+    Top = 169
+    Width = 44
+    Caption = 'Encoder:'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 15
+    Height = 14
+    Top = 235
+    Width = 51
+    Caption = 'Composer:'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 15
+    Height = 14
+    Top = 321
+    Width = 17
+    Caption = 'Url:'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 15
+    Height = 14
+    Top = 343
+    Width = 48
+    Caption = 'Copyright:'
+    ParentColor = False
+  end
+  object Label18: TLabel
+    Left = 18
+    Height = 14
+    Top = 369
+    Width = 339
+    Caption = 'The original author : Philip Hadar - Israel  (modifications by Chris Tr?ken)'
+    ParentColor = False
+  end
+  object Label20: TLabel
+    Left = 19
+    Height = 14
+    Top = 386
+    Width = 270
+    Caption = 'Additional modification for TBASSPlayer by Silhwan Hyun'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 12
+    Height = 16
+    Top = 13
+    Width = 55
+    Caption = 'File/URL :'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
+  end
+  object fFileName: TLabel
+    Left = 72
+    Height = 15
+    Top = 13
+    Width = 529
+    AutoSize = False
+    Caption = 'fFileName'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
+  end
+  object fArtist: TEdit
+    Left = 67
+    Height = 20
+    Top = 210
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 1
+  end
+  object fTitle: TEdit
+    Left = 67
+    Height = 20
+    Top = 253
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 2
+  end
+  object fAlbum: TEdit
+    Left = 67
+    Height = 20
+    Top = 275
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 3
+  end
+  object fYear: TEdit
+    Left = 67
+    Height = 20
+    Top = 297
+    Width = 42
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 4
+  end
+  object fTrack: TEdit
+    Left = 216
+    Height = 20
+    Top = 297
+    Width = 30
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 5
+  end
+  object fComments: TMemo
+    Left = 324
+    Height = 112
+    Top = 45
+    Width = 281
+    Color = clWhite
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 6
+    WordWrap = False
+  end
+  object fGenre: TEdit
+    Left = 67
+    Height = 20
+    Top = 188
+    Width = 148
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 7
+  end
+  object btnUpdate: TButton
+    Left = 386
+    Height = 25
+    Top = 370
+    Width = 75
+    Caption = 'Update'
+    Enabled = False
+    OnClick = btnUpdateClick
+    TabOrder = 8
+  end
+  object btnCancel: TButton
+    Left = 482
+    Height = 25
+    Top = 370
+    Width = 75
+    Caption = 'Cancel'
+    OnClick = btnCancelClick
+    TabOrder = 9
+  end
+  object fLyrics: TMemo
+    Left = 324
+    Height = 177
+    Top = 183
+    Width = 281
+    Color = clWhite
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 10
+    WordWrap = False
+  end
+  object fEncoder: TEdit
+    Left = 67
+    Height = 20
+    Top = 166
+    Width = 148
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 0
+  end
+  object fComposer: TEdit
+    Left = 67
+    Height = 20
+    Top = 231
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 11
+  end
+  object fUrl: TEdit
+    Left = 67
+    Height = 20
+    Top = 318
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 12
+  end
+  object fCopyright: TEdit
+    Left = 67
+    Height = 20
+    Top = 340
+    Width = 234
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 13
+  end
+  object GroupBox3: TGroupBox
+    Left = 22
+    Height = 125
+    Top = 33
+    Width = 248
+    Caption = ' WMA info '
+    ClientHeight = 107
+    ClientWidth = 244
+    TabOrder = 14
+    object lbSize: TLabel
+      Left = 16
+      Height = 13
+      Top = 15
+      Width = 28
+      Caption = 'lbSize'
+      ParentColor = False
+    end
+    object lbLength: TLabel
+      Left = 16
+      Height = 13
+      Top = 30
+      Width = 41
+      Caption = 'lbLength'
+      ParentColor = False
+    end
+    object lbBitrate: TLabel
+      Left = 16
+      Height = 13
+      Top = 46
+      Width = 38
+      Caption = 'lbBitrate'
+      ParentColor = False
+    end
+    object lbChannels: TLabel
+      Left = 16
+      Height = 13
+      Top = 76
+      Width = 52
+      Caption = 'lbChannels'
+      ParentColor = False
+    end
+    object lbVBR: TLabel
+      Left = 16
+      Height = 13
+      Top = 92
+      Width = 30
+      Caption = 'lbVBR'
+      ParentColor = False
+    end
+    object lbSamplingrate: TLabel
+      Left = 16
+      Height = 13
+      Top = 61
+      Width = 69
+      Caption = 'lbSamplingrate'
+      ParentColor = False
+    end
+    object lbVersion: TLabel
+      Left = 16
+      Height = 13
+      Top = 107
+      Width = 43
+      Caption = 'lbVersion'
+      ParentColor = False
+    end
+  end
+end

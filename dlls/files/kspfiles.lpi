@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="7"/>
+    <General>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <Icon Value="0"/>
+      <UseXPManifest Value="True"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <VersionInfo>
+      <ProjectVersion Value=""/>
+      <Language Value=""/>
+      <CharSet Value=""/>
+    </VersionInfo>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="7">
+      <Unit0>
+        <Filename Value="kspfiles.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="31" Y="190"/>
+        <TopLine Value="167"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\itools\filesupportlst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FileSupportLst"/>
+        <CursorPos X="15" Y="3"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="21"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="FileUtils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FileUtils"/>
+        <CursorPos X="22" Y="9"/>
+        <TopLine Value="76"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\itools\kspmessages.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="21"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="kspfiles.dpr"/>
+        <UnitName Value="kspfiles"/>
+        <CursorPos X="1" Y="260"/>
+        <TopLine Value="252"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\itools\medialib\MediaItems.pas"/>
+        <UnitName Value="MediaItems"/>
+        <CursorPos X="7" Y="943"/>
+        <TopLine Value="927"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\..\itools\dlldefs\kspfiles.pas"/>
+        <UnitName Value="kspfiles"/>
+        <CursorPos X="3" Y="16"/>
+        <TopLine Value="2"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit6>
+    </Units>
+    <JumpHistory Count="19" HistoryIndex="18">
+      <Position1>
+        <Filename Value="FileUtils.pas"/>
+        <Caret Line="3" Column="15" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="36" Column="1" TopLine="19"/>
+      </Position2>
+      <Position3>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="31" Column="11" TopLine="8"/>
+      </Position3>
+      <Position4>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="27" Column="11" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="296" Column="17" TopLine="286"/>
+      </Position5>
+      <Position6>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="317" Column="1" TopLine="291"/>
+      </Position6>
+      <Position7>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="27" Column="3" TopLine="10"/>
+      </Position7>
+      <Position8>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="191" Column="21" TopLine="174"/>
+      </Position8>
+      <Position9>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="293" Column="3" TopLine="268"/>
+      </Position9>
+      <Position10>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="29" Column="3" TopLine="7"/>
+      </Position10>
+      <Position11>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="28" Column="3" TopLine="19"/>
+      </Position11>
+      <Position12>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="31" Column="3" TopLine="13"/>
+      </Position12>
+      <Position13>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="165" Column="35" TopLine="129"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\itools\medialib\MediaItems.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="163" Column="13" TopLine="149"/>
+      </Position15>
+      <Position16>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="165" Column="35" TopLine="188"/>
+      </Position16>
+      <Position17>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="163" Column="1" TopLine="149"/>
+      </Position17>
+      <Position18>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="33" Column="9" TopLine="13"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\..\itools\dlldefs\kspfiles.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position19>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="E:\ksp\KSP2009\src\itools\"/>
+      <OtherUnitFiles Value="E:\ksp\KSP2009\src\itools\"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
+        <CStyleOperator Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <SmallerCode Value="True"/>
+      <Optimizations>
+        <UncertainOptimizations Value="True"/>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseLineInfoUnit Value="False"/>
+        <StripSymbols Value="True"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <CustomOptions Value="-uDEBUG -dRELEASE
+"/>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
