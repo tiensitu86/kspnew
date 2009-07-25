@@ -1,35 +1,43 @@
-REQUIREMENTS:
+KSP README
+
+BE SURE TO READ THIS FILE BEFORE USING KSP. THIS DOCUMENT CONTAINS USEFUL INFORMATION HOWTOPROCEED IN CASE OF FAULTY KSP BEHAVIOUR OR HOW TO CONFIGURE KSP
+
+TABLE O CONTENTS
+
+REQUIREMENTS
+INSTALLATION (default)
+INSTALLATION (MySQL)
+LOGS
+IMPORTANT
+
+REQUIREMENTS
 
 Windows XP/Vista/7
 BASS audio library (http://un4seen.com)
-MySQL 5.0 or 5.1 (tested with 5.1 server, requires libmysqlclient version 5.0)
+Sqlite3.dll from http://sqlite.org
+(optional) MySQL 5.0 or 5.1 (tested with 5.1 server, requires libmysqlclient version 5.0)
 
-INSTALLATION
-1. Install and configure MySQL server. Create one database
-2. Create file <user home folder>\.KSP\db\ksp.kspdb with content like this:
+INSTALLATION (default)
 
-[MySQLConnection]
-DriverName=MySQL
-HostName=<host>
-Port=<port>
-Database=<database>
-User_Name=<uname>
-Password=<upassword>
-BlobSize=1
-ErrorResourceFile=
-LocaleCode=0000
-Compressed=False
-Encrypted=False
-ServerCharSet=utf8
+By default KSP uses Sqlite3 database. That database doesn't require extra configuration which means that KSP will configure database automatically.
+Note that even if you have set configuration for MySQL but libmysql.dll can'tbe loaded then KSP will automatically switch to Sqlite3 database WITHOUT notification.
 
-where:
+INSTALLATION (MySQL)
 
-<host> is address of server without port (i.e. 127.0.0.1)
-<port> is server port (by default 3306)
-<database> is database created in previous step
-<uname> is username that has ful rights to <database> (create table, insert, delete, alter, select)
-<upassword> is <uname>'s password.
+1. Install or compile KSP
+2. Install and configure MySQL server. Create one database
+3. Ensure that in KSP folder (with ksp.exe) there is libmysql.dll file. If the file ismissing download it from http://mysql.com
+4. Run KSP
+5. Go to Library->Setup->Setup Database
+6. UNCHECK Use Sqlite and fill all other fields with proper information
+7. Click Ok. KSP will try to use provided parameters to connect to database server and configure database. If connection is estabished configuration window will close.
 
-IMPORTANT:
+LOGS
 
-defalt server character encoding should be UTF-8 
+To make debugging process easier KSP uses logging system. All logs are in folder: <profile>\.KSP\logs\<log date> where <profile> is the name of user folder (usually C:\Users\<user name>) and <log date> is folder containing KSP startup date and time in it's name. Last folder in <profile>\.KSP\logs\<profile>\.KSP\logs\ contains the most recent logs.
+
+Logs are created per thread to make it easier for developers to establish which thread is causing troubles and when. To help us with debugging process always remember to attach all recent logs to your bug report.
+
+IMPORTANT
+
+1. Defalt server character encoding should be UTF-8
