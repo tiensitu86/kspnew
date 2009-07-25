@@ -8,9 +8,21 @@ uses
   LResources, DefaultTranslator, Windows, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, ButtonPanel, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons;
+  FoldersScan, process, Buttons, Qt4, qtwidgets;
 
-type
+
+  { TWebView }
+
+type  TWebView = class(TObject)
+  public
+
+    Handle : QWebViewH;
+    Settings : QWebSettingsH;
+    fUrl : QUrlH;
+    pURL: string;
+    procedure SetDimensions(x, y: integer);
+    constructor Create(Parent : TWinControl; URL: string);
+  end;
 
   { TKSPMainWindow }
 
@@ -22,6 +34,8 @@ type
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    Panel6: TPanel;
+    Panel7: TPanel;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
     AppVersion: TLabel;
@@ -99,6 +113,7 @@ type
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure Panel7Resize(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure AudioOut1Done(Sender: TObject);
@@ -127,6 +142,7 @@ type
     procedure MGViewClick(Sender: TObject);
     procedure MsortTypeClick(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
+    procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
     procedure PosBarChange(Sender: TObject);
     procedure PosBarMouseDown(Sender: TObject; Button: TMouseButton;
@@ -162,6 +178,7 @@ type
     LastOpenDir: string;
     EQGains : TEQGains;
     ShowSplash: boolean;
+    HandleIC       : QWidgetH;
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
@@ -178,6 +195,7 @@ type
     procedure SortByFileNamePLS;
     procedure LoadToLB;
     procedure DatabaseSetupDialog;
+    procedure SetupWebBrowserIC;
   protected
     procedure WndProc(var m: TLMessage); override;
   public
@@ -193,6 +211,8 @@ type
     PlayListMove: boolean;
     Seeking: boolean;
     MediaSongs: TPlayList;
+    WebView: TWebView;
+    MainWebView: TWebView;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
@@ -208,10 +228,70 @@ var
 
 implementation
 
-{ TKSPMainWindow }
-
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
   KSPCrossList, MultiLog, OptionsFrm2, splash, complib;
+
+//QT
+
+function Slot(Name:String):PAnsiChar;
+begin
+Result:=StrNew(PChar('1'+Name));
+end;
+
+
+function Signal(Name:String):PAnsiChar;
+begin
+Result:=StrNew(PChar('2'+Name));
+end;
+
+function L2Qt(C: TWinControl) : QWidgetH;
+begin
+  Result:=TQtWidget(C.Handle).Widget;
+end;
+
+{ TWebView }
+
+procedure TWebView.SetDimensions(x, y: integer);
+begin
+  QWidget_resize(Handle, x, y);
+end;
+
+constructor TWebView.Create(Parent : TWinControl; URL: string);
+var
+  Page: QWebPageH;
+  NetworkAccessManager : QNetworkAccessManagerH;
+  NetworkProxy : QNetworkProxyH;
+  W : WideString;
+
+begin
+  Handle := QWebView_create(L2Qt(Parent));
+
+  Settings:=QWebView_settings(Handle);
+
+  QWebSettings_setAttribute(Settings,QWebSettingsJavascriptEnabled,true);
+  QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
+
+  Page:=QWebView_page(Handle);
+  NetworkAccessManager:=QWebPage_networkAccessManager(Page);
+
+  // proxy :adapt host/port and remove comment of setProxy
+  w:='150.10.10.111';
+  NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy,@w,3128);
+  //QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
+  QNetworkProxy_destroy(NetworkProxy);
+
+  w:=URL;
+  fUrl:=QUrl_create(@w);
+  QWebView_load(Handle,fUrl);
+  QWidget_resize(Handle, 500, 500);
+  QUrl_Destroy(fUrl);
+
+  QWidget_Show(Handle);
+  pURL:=URL;
+end;
+
+
+{ TKSPMainWindow }
 
 procedure TKSPMainWindow.LoadPls(FileName: string);
 var
@@ -523,6 +603,8 @@ begin
 
   ApplyOptions;
 
+  Self.SetupWebBrowserIC;
+
   SplashForm.Free;
 
   TCompactlibThread.Create(false);
@@ -598,6 +680,11 @@ begin
   if (MIView.ItemIndex<0) or (MIView.ItemIndex>=MIView.Count) then Exit;
   if MediaSongs.Count=0 then Exit;
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
+end;
+
+procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
+begin
+  WebView.SetDimensions(Panel7.Width, Panel7.Height);
 end;
 
 procedure TKSPMainWindow.RepeatButtonClick(Sender: TObject);
@@ -1240,6 +1327,11 @@ end;
 procedure TKSPMainWindow.ShuffleButtonChange(Sender: TObject);
 begin
   Shuffled:=ShuffleButton.Checked;
+end;
+
+procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);
+begin
+  MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
 end;
 
 
@@ -1990,6 +2082,102 @@ begin
   OptForm.ShowModal;
   OptForm.Free;
 //  hLog.Add('Aplication options window closed');
+end;
+
+procedure TKSPMainWindow.SetupWebBrowserIC;
+var
+  HBox            : QHBoxLayoutH;
+  VBox            : QVBoxLayoutH;
+  w               : WideString;
+
+  UrlEditHook     : QLineEdit_hookH;
+  WebViewHook     : QWebView_hookH;
+  Method          : TMethod;
+
+begin
+//  HandleIC:=QWidget_Create(nil, 0);
+
+  // VBox
+//  VBox:=QVBoxLayout_create(HandleIC);
+
+  // WebView
+  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php');
+  WebView.SetDimensions(Panel7.Width, Panel7.Height);
+  MainWebView:=TWebView.Create(Self.TabSheet3, KSPHost);
+  MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
+
+  // HBox
+//  HBox:=QHBoxLayout_create();
+
+  // Button <-
+{  w:='previous.png';
+
+  QBoxLayout_addWidget(HBox,BtnPrev,0);
+  QObject_connect(BtnPrev,Signal('pressed()'),WebView.Handle,Slot('back()'));
+
+  // Button ->
+  w:='next.png';
+  Icon := QIcon_create(@w);
+  w:='Next';
+  BtnNext:=QPushButton_create(Icon,@w);
+  QIcon_destroy(Icon);
+  QBoxLayout_addWidget(HBox,BtnNext,0);
+  QObject_connect(BtnNext,Signal('pressed()'),WebView.Handle,Slot('forward()'));
+
+  // Button @
+  w:='reload.png';
+  Icon := QIcon_create(@w);
+  w:='Reload';
+  BtnReload:=QPushButton_create(Icon,@w);
+  QIcon_destroy(Icon);
+  QBoxLayout_addWidget(HBox,BtnReload,0);
+  QObject_connect(BtnNext,Signal('pressed()'),WebView.Handle,Slot('reload()'));
+
+
+  // UrlEdit
+  UrlEdit:=QLineEdit_create();
+  QBoxLayout_addWidget(HBox,UrlEdit,2,0);
+  UrlEditHook:=QLineEdit_hook_create(UrlEdit);
+  QLineEdit_editingFinished_Event(Method):=UrlEntered;
+  QLineEdit_hook_hook_editingFinished(UrlEditHook,QHookH(Method));
+
+  QObject_connect(WebView.Handle,Signal('titleChanged ( const QString & ) '),Handle,Slot('setWindowTitle ( const QString & )'));
+
+  QWebView_urlChanged_Event(Method):=UrlChanged;
+  WebViewHook:=QWebView_hook_create(Webview.Handle);
+  QWebView_hook_hook_urlChanged(WebViewHook,Method);
+
+  QWebView_linkClicked_Event(Method):=LinkClicked;
+  WebViewHook:=QWebView_hook_create(Webview.Handle);
+  QWebView_hook_hook_linkClicked(WebViewHook,Method);
+
+  QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
+
+  // ProgressBar
+  ProgressBar:=QProgressBar_create();
+  QProgressBar_setTextVisible(ProgressBar,False);
+  QBoxLayout_addWidget(HBox,ProgressBar,0);
+  QObject_connect(WebView.Handle,Signal('loadStarted()'),ProgressBar,Slot('reset()'));
+  QObject_connect(WebView.Handle,Signal('loadProgress(int)'),ProgressBar,Slot('setValue(int)'));
+
+  // Button #
+  w:='quit.png';
+  Icon := QIcon_create(@w);
+  w:='Quit';
+  BtnQuit:=QPushButton_create(Icon,@w);
+  QIcon_destroy(Icon);
+  QBoxLayout_addWidget(HBox,BtnQuit,0);
+  QObject_connect(BtnQuit,Signal('pressed()'),QCoreApplication_instance(),Slot('quit()'));
+
+
+  // VBox Content
+  QBoxlayout_addLayout(VBox,HBox);
+  QBoxlayout_addWidget(VBox,WebView.Handle);
+
+  // MainWindow
+  QWidget_resize(Handle,1000,680);
+  QWidget_Show(Handle); }
+
 end;
 
 initialization

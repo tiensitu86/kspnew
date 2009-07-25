@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 275
+  Left = 263
   Height = 707
-  Top = 185
+  Top = 161
   Width = 1244
   Caption = 'KSP'
   ClientHeight = 707
@@ -238,13 +238,14 @@ object KSPMainWindow: TKSPMainWindow
         object PagesWelcome: TPageControl
           Height = 513
           Width = 945
-          ActivePage = TabSheet4
+          ActivePage = TabSheet3
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
+            OnResize = TabSheet3Resize
           end
           object TabSheet4: TTabSheet
             Caption = 'About...'
@@ -400,14 +401,32 @@ object KSPMainWindow: TKSPMainWindow
             Caption = 'Internet Media'
             ClientHeight = 487
             ClientWidth = 937
-            object Button7: TButton
-              Left = 15
-              Height = 25
-              Top = 7
-              Width = 75
-              Caption = 'Refresh'
-              OnClick = Button7Click
+            object Panel6: TPanel
+              Height = 50
+              Width = 937
+              Align = alTop
+              Caption = 'Panel6'
+              ClientHeight = 50
+              ClientWidth = 937
               TabOrder = 0
+              object Button7: TButton
+                Left = 15
+                Height = 25
+                Top = 7
+                Width = 75
+                Caption = 'Refresh'
+                OnClick = Button7Click
+                TabOrder = 0
+              end
+            end
+            object Panel7: TPanel
+              Height = 437
+              Top = 50
+              Width = 937
+              Align = alClient
+              Caption = 'Panel7'
+              TabOrder = 1
+              OnResize = Panel7Resize
             end
           end
           object TabSheet2: TTabSheet

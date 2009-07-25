@@ -677,6 +677,7 @@ type
   // Followings are for Play List handling.
 
     procedure SetPlayEnd;
+    procedure SetPlayEndA(Data: PtrInt);
 
     property MixerReady : boolean read FMixerReady;        // * New at Ver 2.00
       //  Indicates whether BASSmix is ready to operation.
@@ -1029,11 +1030,16 @@ end;
 procedure PlayEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
 var
    Msg_Handle : QWORD;
+   f: PtrInt;
 begin
 //   Msg_Handle := TBassPlayer(user);
    //Msg_Handle.SetPlayEnd;
+{$IFDEF USEQT}
+  Application.QueueAsyncCall(Player.SetPlayEndA, f);
+{$ELSE}
    Msg_Handle:=KSPMainWindow.Handle;
    PostMessage(Msg_Handle, WM_GetToEnd, 0, 0);
+{$ENDIF}
 end;
 
 // This procedure is called when downloading of an URL stream is done.
@@ -3938,6 +3944,11 @@ begin
                             SetPlayerMode(plmStopped);
                             if Assigned(FOnPlayEnd) then
                                FOnPlayEnd(Self);
+end;
+
+procedure TBASSPlayer.SetPlayEndA(Data: PtrInt);
+begin
+  SetPlayEnd;
 end;
 
 procedure TBassPlayer.SetPan(Pan: float);

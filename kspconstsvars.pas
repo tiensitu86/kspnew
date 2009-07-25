@@ -7,7 +7,7 @@ uses Windows, Messages, FileSupportLst, SysUtils, BASSPlayer,
   Playlists, app_db_utils;
 
 const
-  KSPHost = 'ksplayer.boo.pl';
+  KSPHost = 'http://ksplayer.boo.pl';
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
   KSPCopyrightNote = 'Copyright ® 2006 KSP Developer Team';
