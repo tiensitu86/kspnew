@@ -47,6 +47,7 @@ var
   PlayList2: TPlayList;
 begin
 //  LoadPlsSem := CreateSemaphore(nil, 0,1,'KSPLoadPls');
+
   KSPMainWindow.LoadingPlaylist:=true;
   Self.Priority:=tpHigher;
   Pls:=TXMLPlayList.create;

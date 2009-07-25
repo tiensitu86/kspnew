@@ -101,8 +101,9 @@ var
   //d: TDateTime;
   Result: Cardinal;
 begin
-  Self.Priority:=tpNormal;
+//  while not Application.Terminated do begin
 //  WaitForSingleObject(GetCountSem, 0);
+  KSPMainWindow.WaitForB:=1;
   hLog.Send('Scanning folders for media files');
   ItemsNo:=0;
 
@@ -117,17 +118,21 @@ begin
 
   SearchForNews;
 
+  KSPMainWindow.WaitForB:=2;
+
   hLog.Send('MEDIA LIBRARY: Scanning done');
 
   KSPMainWindow.MediaFoldersList.SaveToFile(KSPDataFolder+'data\MediaLib.xml');
 
   KSPMainWindow.SongsInLib:=ItemsNo;
 
+  KSPMainWindow.WaitForB:=0;
+
   if not ForceRescan then begin
       
     end else ShowMessage(SScanningDone);
 
-  Self.Priority:=tpNormal;
+//  end;
 
 end;
 

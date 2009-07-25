@@ -137,6 +137,8 @@ var
   InsertingDataInThread: boolean;
   KSPAssociatedFiles: TStringList;
   AlreadyEncoding: boolean;
+  KSPStartupTime: TDateTime;
+  KSPLogFilename: string;
 
 var
   Player: TBassPlayer;

@@ -23,7 +23,7 @@ unit filechannel;
 interface
 
 uses
-  {$ifndef fpc}fpccompat,{$endif} Classes, SysUtils, multilog;
+  {$ifndef fpc}fpccompat,{$endif} Classes, SysUtils, multilog, KSPThreadUtils;//{$IFDEF KSPDEBUG}{$ENDIF};
 
 type
 
@@ -150,9 +150,21 @@ begin
 end;
 
 procedure TFileChannel.Deliver(const AMsg: TLogMessage);
+{$IFDEF KSPDEBUG}
 var
   Text: string;
+{$ENDIF}
 begin
+{$IFDEF KSPDEBUG}
+  if FShowTime then
+    Text:=FormatDateTime('hh:nn:ss:zzz',AMsg.MsgTime)+' ';
+  Text:=Text+Space(FRelativeIdent);
+  if FShowPrefix then
+    Text:=Text+LogPrefixes[AMsg.MsgType]+': ';
+
+  Text:=Text+AMsg.MsgText;
+  DebuglnThreadLog([Text]);
+{$ENDIF}
 //  Append(FFileHandle);
   //Exit method identation must be set before
 {  EnterCriticalSection(FCritical);

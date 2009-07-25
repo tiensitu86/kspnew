@@ -16,7 +16,7 @@ uses
   MediaItemsInfo, KSPCrossList,
   KSPStartup, MainWindowStartupThreads, MediaFolders, FoldersScan,
   StartupThread, BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog,
-  OptionsFrm2, splash, complib;
+  OptionsFrm2, splash, complib, KSPThreadUtils;
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 

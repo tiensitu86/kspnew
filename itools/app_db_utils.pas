@@ -74,7 +74,7 @@ var
 
 implementation
 
-uses Main, Dialogs, KSPConstsVars, IniFiles, KSPMessages, KSPFiles, MultiLog;
+uses Main, Dialogs, KSPConstsVars, IniFiles, KSPMessages, KSPFiles, MultiLog, KSPStrings;
 
 
 function FindNoCase(Text: string; List: TStringList): integer;
@@ -398,6 +398,8 @@ begin
       0: SetupSqlite;
       1: SetupMySQL;
     end;
+
+  hLog.Send('Database set');
 //  end;
 end;
 
@@ -611,7 +613,7 @@ var
 
     if Result and NotShown then begin
         NotShown:=false;
-        MessageDlg(('sDuplicatedItems'), mtInformation, [mbOk], 0);
+        MessageDlg(sDuplicatedItems, mtInformation, [mbOk], 0);
         {WizardProgressForm:=TWizardProgressForm.Create(nil);
         WizardProgressForm.Show;
         WizardProgressForm.Progress.Value:=0;
@@ -630,11 +632,12 @@ var
     //WizardProgressForm.Progress.Value:=WizardProgressForm.Progress.Value+1;
     Application.ProcessMessages;
     Sleep(100);
+    ShowMessage(s);
 
     repeat
       Pls.Clear;
       StrPCopy(Pc, s);
-      OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+      OpenQuery(Format(SelectGetItem, [PrepareString(s)]));
       Cnt:=ReturnRecordsCount;
       for i:=0 to ReturnRecordsCount-1 do begin
           pls.Add(ReadEntry);

@@ -180,6 +180,7 @@ type
   public
     { public declarations }
     LoadingPlaylist: boolean;
+    WaitForB: integer;
     MediaFoldersList: TMediaFoldersList;
     SongsInLib: integer;
     BookmarksList: TBookmarksList;
@@ -374,6 +375,7 @@ var
     LastMediaLibTag:=-1;
     ApplicationVisible:=true;
     Notebook1.ActivePage:='Page1';
+    WaitForB:=0;
 
     KSPMainWindow.TB.Position:=Player.Volume;
 
@@ -937,9 +939,9 @@ end;
 procedure TKSPMainWindow.FormWindowStateChange(Sender: TObject);
 begin
      if WindowState = wsMinimized then begin
-      WindowState := wsNormal;
-      Hide;
-      ShowInTaskBar := stNever;
+      //WindowState := wsNormal;
+      //Hide;
+      //ShowInTaskBar := stNever;
      end;
 end;
 
@@ -1380,11 +1382,13 @@ var
 begin
   if not IgnoreLoadPls then
     if LoadingPlaylist then Exit;
+
+  hLog.Send('Adding item: '+fname);
           StrPCopy(Pc, fname);
           lack:=0;
           if (not FileExists(fname))and (not IsStream(Pc)) and
             (not IsCD(Pc))or(IsPlaylist(fname)) then Exit;
-
+          hLog.Send('('+fname+'): Reading info');
           if not IsStream(Pc) then begin
               p.Stream:=GetStreamInfoSimple(fname, GetIsTag);
               if not IsCD(Pc) then
@@ -1392,10 +1396,13 @@ begin
               p.Tag.IsTag:=GetIsTag;
             end;
           p.FileName:=fname;
+          hLog.Send('('+fname+'): Info read');
           PlayList.Add(p);
+          hLog.Send('('+fname+'): Adding to playlist');
 
           s:=ProduceFormatedString(FormatedPlayListInfo, PlayList.GetItem(PlayList.Count-1)^.Tag, p.Stream.Duration,
             lbPlayList.Items.Count+1);
+          hLog.Send('('+fname+'): String produced');
 
           lbPlayList.Items.Add(s);
 //{$IFDEF USECHECKED}
@@ -1403,6 +1410,7 @@ begin
 //{$ENDIF}
 
           PlayListTotalTime;
+          hLog.Send('('+fname+'): Item added');
 end;
 
 procedure TKSPMainWindow.PlayListTotalTime;
@@ -1450,6 +1458,17 @@ procedure TKSPMainWindow.ScanFolders(Force: boolean);
 var
   Result: DWORD;
 begin
+  if Force then
+  while Self.WaitForB>1 do begin
+    // wait infinitely (until B wakes A)
+
+//    writeln('A: ThreadB.Counter='+IntToStr(Form1.ThreadB.Counter));
+  end else while Self.WaitForB>0 do begin
+    // wait infinitely (until B wakes A)
+
+//    writeln('A: ThreadB.Counter='+IntToStr(Form1.ThreadB.Counter));
+  end;
+
   SongsInLib:=0;
   GetCountSem := CreateSemaphore(nil, 0,1,'MediaLibGetCount');
   FoldersScan:=TFoldersScanThread.Create(true);

@@ -19,7 +19,7 @@ uses KSPConstsVars;
 
 procedure TCompactlibThread.Execute;
 begin
-  AllSongs.CompactLib;
+//  AllSongs.CompactLib;
 end;
 
 end.

@@ -13,11 +13,22 @@ uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles, KSPMessages;
 procedure SetupStage1;
 var
   Pc: TPathChar;
+  i: integer;
 begin
   Application.Title := 'KSP';
+  KSPStartupTime:=Now;
 
   KSPDataFolder:=GetUserDataFolder+'.KSP/';
+
   FixFolderNames(KSPDataFolder);
+
+  for i:=0 to MaxInt do
+    begin
+      KSPLogFilename:=KSPDataFolder+'logs\'+FormatDateTime('DD_MM_YYYY_hh_mm', KSPStartupTime)+'_'+IntToStr(i);
+      if not DirectoryExists(KSPLogFilename) then Break;
+    end;
+
+  ForceDirectories(KSPLogFilename);
 
   hLog:=TLogger.Create;
   hLog.Channels.Add(TFileChannel.Create(KSPDataFolder+'ksp.log'));
