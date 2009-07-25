@@ -25,7 +25,7 @@ uses
 //  FastCodePosHook,
 //  FastcodeFillCharHook,
   SysUtils,
-  LCLIntf,
+//  LCLIntf,
   Classes,
   WinInet;
 

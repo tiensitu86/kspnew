@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 290
+  Left = 275
   Height = 707
-  Top = 176
+  Top = 185
   Width = 1244
   Caption = 'KSP'
   ClientHeight = 707
@@ -228,7 +228,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 953
       Align = alClient
-      PageIndex = 0
+      PageIndex = 1
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -322,7 +322,7 @@ object KSPMainWindow: TKSPMainWindow
         object LibPages: TPageControl
           Height = 513
           Width = 945
-          ActivePage = TabSheet2
+          ActivePage = TabSheet5
           Align = alClient
           TabIndex = 1
           TabOrder = 0
@@ -394,6 +394,20 @@ object KSPMainWindow: TKSPMainWindow
                 PopupMenu = SongListMenu
                 TabOrder = 3
               end
+            end
+          end
+          object TabSheet5: TTabSheet
+            Caption = 'Internet Media'
+            ClientHeight = 487
+            ClientWidth = 937
+            object Button7: TButton
+              Left = 15
+              Height = 25
+              Top = 7
+              Width = 75
+              Caption = 'Refresh'
+              OnClick = Button7Click
+              TabOrder = 0
             end
           end
           object TabSheet2: TTabSheet

@@ -21,6 +21,7 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    Button7: TButton;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
     AppVersion: TLabel;
@@ -70,6 +71,7 @@ type
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
     TB: TTrackBar;
     ShuffleButton: TToggleBox;
     ToolButton2: TToolButton;
@@ -95,6 +97,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -576,6 +579,18 @@ end;
 procedure TKSPMainWindow.Button6Click(Sender: TObject);
 begin
   Self.DatabaseSetupDialog;
+end;
+
+procedure TKSPMainWindow.Button7Click(Sender: TObject);
+var
+  s: TStringList;
+begin
+  s:=TStringList.Create;
+  DownloadURL(NetworkStreams, s);
+
+  s.SaveToFile(KSPDataFolder+'icecast.xml');
+
+  s.Free;
 end;
 
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);
@@ -1400,7 +1415,7 @@ begin
           PlayList.Add(p);
           hLog.Send('('+fname+'): Adding to playlist');
 
-          s:=ProduceFormatedString(FormatedPlayListInfo, PlayList.GetItem(PlayList.Count-1)^.Tag, p.Stream.Duration,
+          s:=ProduceFormatedString(FormatedPlayListInfo, p.Tag, p.Stream.Duration,
             lbPlayList.Items.Count+1);
           hLog.Send('('+fname+'): String produced');
 

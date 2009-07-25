@@ -7,41 +7,11 @@ uses Windows, Messages, FileSupportLst, SysUtils, BASSPlayer,
   Playlists, app_db_utils;
 
 const
-  SupportURL = 'http://ksp.kalliope-soft.eu/support/';
-  LangInfoURL = 'http://ksp.kalliope-soft.eu/putlanginfo.php';
-  InfoNewVersion = 'http://ksp.kalliope-soft.eu/ksp/info';
-  DownloadHost = 'http://ksp.kalliope-soft.eu';
-  DownloadDir = '/ksp/';
-  KSPHost = 'ksp.kalliope-soft.eu';
+  KSPHost = 'ksplayer.boo.pl';
+  NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
-  KSPCopyrightNote = 'Copyright ® 2006 Kalliope';
-  AdsURL = 'http://ads.kalliope-soft.eu/showbanner.php?wyd=%s&id=%s';
-  AdsGoogle = '<html><head></head><body leftmargin=0 topmargin=0 rightmargin=0 bottommargin=0 marginwidth=0 marginheight=0>'+
-    #13+'<div style="width:468px;height:60px;float:;">'+
-    #13+'<script typr="text/javascript">'+
-    #13+'<!--'+
-    #13+'google_ad_client = "pub-5084050747083521";'+
-    #13+'google_alternate_ad_url = "";'+
-    #13+'google_alternate_color = "FFFFFF";'+
-    #13+'google_ad_width = 468;'+
-    #13+'google_ad_height = 60;'+
-    #13+'google_ad_format = "468x60_as";'+
-    #13+'google_ad_type = "text_image";'+
-    #13+'google_ad_channel = "";'+
-    #13+'google_color_border = ["FFFFFF","FFFFFF","FFFFFF","FFFFFF"];'+
-    #13+'google_color_bg = ["FFFFFF","FFFFFF","FFFFFF","FFFFFF"];'+
-    #13+'google_color_link = ["0033FF","0033FF","0033FF","0033FF"];'+
-    #13+'google_color_url = ["008000","008000","008000","008000"];'+
-    #13+'google_color_text = ["333333","333333","333333","333333"];'+
-    #13+'//-->'+
-    #13+'</script>'+
-    #13+'<script type="text/javascript"  src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>'+
-    #13+'</div></body></html>';
+  KSPCopyrightNote = 'Copyright ® 2006 KSP Developer Team';
   KSPMsgDefaultServerPort = 12007;
-  KSPPortalURLConst = 'http://ksp.kalliope-soft.eu/index.php?fromksp=1&kspversion=%s&newversion=%s';
-  KSPPortalURLConst2 = 'http://ksp.kalliope-soft.eu/index.php?fromksp=1&kspversion=%s';
-  KSPPortalURLConstP = 'fromksp=1&kspversion=%s&newversion=%s';
-  KSPPortalURLConstP2 = 'fromksp=1&kspversion=%s';
   KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
   KSPSupportAutomatedSubject = 'KSP automated bug report';
 
