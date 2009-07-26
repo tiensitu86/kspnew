@@ -33,11 +33,11 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="4">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="33" Y="24"/>
+        <CursorPos X="45" Y="33"/>
         <TopLine Value="11"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="20"/>
@@ -47,12 +47,24 @@
         <Filename Value="..\..\itools\kspmessages.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPMessages"/>
-        <CursorPos X="15" Y="3"/>
-        <TopLine Value="1"/>
+        <CursorPos X="1" Y="44"/>
+        <TopLine Value="15"/>
         <UsageCount Value="20"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="C:\lazarus32\fpc\2.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
+        <CursorPos X="15" Y="107"/>
+        <TopLine Value="87"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\lazarus32\fpc\2.2.2\source\rtl\objpas\sysutils\sysstr.inc"/>
+        <CursorPos X="41" Y="743"/>
+        <TopLine Value="740"/>
+        <UsageCount Value="10"/>
+      </Unit3>
     </Units>
-    <JumpHistory Count="8" HistoryIndex="7">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="ksp.lpr"/>
         <Caret Line="24" Column="37" TopLine="13"/>
@@ -85,6 +97,18 @@
         <Filename Value="ksp.lpr"/>
         <Caret Line="15" Column="3" TopLine="11"/>
       </Position8>
+      <Position9>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="19" Column="3" TopLine="3"/>
+      </Position9>
+      <Position10>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="45" Column="9" TopLine="17"/>
+      </Position10>
+      <Position11>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="19" Column="12" TopLine="17"/>
+      </Position11>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

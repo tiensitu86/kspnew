@@ -33,8 +33,6 @@ type  TWebView = class(TObject)
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
-    Panel6: TPanel;
     Panel7: TPanel;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -318,7 +316,7 @@ var
 begin
   s:=UpperCase(ExtractFileExt(AFileName));
 
-  if (s='.KPL') or (s='.M3U') or (s='.PLS') then
+  if (s='.KPL') or (s='.M3U') or (s='.PLS') or (s='.XSPF') then
     LoadPls(AFileName) else
   if FileSupportList.FindExtension(s, false)>-1 then
     AddToPlayList(AFileName);
@@ -459,6 +457,8 @@ var
     LastMediaLibTag:=-1;
     ApplicationVisible:=true;
     Notebook1.ActivePage:='Page1';
+    LibPages.ActivePage:=TabSheet1;
+    PagesWelcome.ActivePage:=TabSheet3;
     WaitForB:=0;
 
     KSPMainWindow.TB.Position:=Player.Volume;
@@ -1498,12 +1498,16 @@ begin
           if (not FileExists(fname))and (not IsStream(Pc)) and
             (not IsCD(Pc))or(IsPlaylist(fname)) then Exit;
           hLog.Send('('+fname+'): Reading info');
+          p.Stream:=GetStreamInfoSimple(fname, GetIsTag);
+
+{If local file and not cd track then get tag}
+
           if not IsStream(Pc) then begin
-              p.Stream:=GetStreamInfoSimple(fname, GetIsTag);
               if not IsCD(Pc) then
                 p.Tag:=GetFromInfo(p.Stream, lack);
               p.Tag.IsTag:=GetIsTag;
             end;
+
           p.FileName:=fname;
           hLog.Send('('+fname+'): Info read');
           PlayList.Add(p);

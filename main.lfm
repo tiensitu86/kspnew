@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 263
+  Left = 373
   Height = 707
-  Top = 161
+  Top = 145
   Width = 1244
   Caption = 'KSP'
   ClientHeight = 707
@@ -257,6 +257,13 @@ object KSPMainWindow: TKSPMainWindow
               Width = 937
               Align = alClient
               Lines.Strings = (
+                '26 July 2009'
+                '- Switched to QT. Required version is QT 4.5 (tested with'
+                '4.5.2)'
+                '- WebKit is being used for Icecast browsing '
+                '- Icecast support(no XSPF'
+                'playlists support yet)'
+                ''
                 '24 July 2009'
                 '- MySQL support is only optional'
                 '- support for Sqlite3 added'
@@ -323,9 +330,9 @@ object KSPMainWindow: TKSPMainWindow
         object LibPages: TPageControl
           Height = 513
           Width = 945
-          ActivePage = TabSheet5
+          ActivePage = TabSheet1
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
@@ -401,31 +408,12 @@ object KSPMainWindow: TKSPMainWindow
             Caption = 'Internet Media'
             ClientHeight = 487
             ClientWidth = 937
-            object Panel6: TPanel
-              Height = 50
-              Width = 937
-              Align = alTop
-              Caption = 'Panel6'
-              ClientHeight = 50
-              ClientWidth = 937
-              TabOrder = 0
-              object Button7: TButton
-                Left = 15
-                Height = 25
-                Top = 7
-                Width = 75
-                Caption = 'Refresh'
-                OnClick = Button7Click
-                TabOrder = 0
-              end
-            end
             object Panel7: TPanel
-              Height = 437
-              Top = 50
+              Height = 487
               Width = 937
               Align = alClient
               Caption = 'Panel7'
-              TabOrder = 1
+              TabOrder = 0
               OnClick = Panel7Click
               OnResize = Panel7Resize
             end

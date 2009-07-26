@@ -15,20 +15,22 @@ library ksp;
 uses
 //  LCLIntf,
 //  Windows,
-  SysUtils,
-  KSPMessages in '..\..\itools\kspmessages.pas';
+  SysUtils;
+//  KSPMessages in '..\..\itools\kspmessages.pas';
 
 {$DEFINE KSP_SPECIAL_BUILD}
 
 {$IFDEF KSP_SPECIAL_BUILD}
-const KSPSpecialInfo = 'R1.2 pre';
+const KSPSpecialInfo = 'R2 pre';
 {$ENDIF}
 const KSPMajorVersion = '2009';
 
 const Version = 0;
-  Major = 1;
-  Minor = 10;
+  Major = 2;
+  Minor = 8;
   Build = 0;
+
+type TPathChar = array[0..MAX_PATH] of Char;
 
 
 function GetKSPVersion(AppPath: TPathChar): ShortString;

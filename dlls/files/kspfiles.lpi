@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <VersionInfo>
       <ProjectVersion Value=""/>
@@ -32,12 +32,12 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="9">
       <Unit0>
         <Filename Value="kspfiles.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="31" Y="190"/>
-        <TopLine Value="167"/>
+        <CursorPos X="46" Y="35"/>
+        <TopLine Value="4"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
@@ -45,11 +45,12 @@
       </Unit0>
       <Unit1>
         <Filename Value="..\..\itools\filesupportlst.pas"/>
-        <IsPartOfProject Value="True"/>
         <UnitName Value="FileSupportLst"/>
-        <CursorPos X="15" Y="3"/>
+        <CursorPos X="10" Y="7"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="21"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -57,8 +58,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="FileUtils"/>
         <CursorPos X="22" Y="9"/>
-        <TopLine Value="76"/>
-        <EditorIndex Value="3"/>
+        <TopLine Value="68"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -82,21 +83,40 @@
         <UnitName Value="MediaItems"/>
         <CursorPos X="7" Y="943"/>
         <TopLine Value="927"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\itools\dlldefs\kspfiles.pas"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="3" Y="16"/>
+        <CursorPos X="40" Y="17"/>
         <TopLine Value="2"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="..\..\main.pas"/>
+        <ComponentName Value="KSPMainWindow"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="main"/>
+        <CursorPos X="3" Y="1484"/>
+        <TopLine Value="1477"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\additional\bass\Dynamic_Bass.pas"/>
+        <UnitName Value="Dynamic_Bass"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit8>
     </Units>
-    <JumpHistory Count="19" HistoryIndex="18">
+    <JumpHistory Count="22" HistoryIndex="21">
       <Position1>
         <Filename Value="FileUtils.pas"/>
         <Caret Line="3" Column="15" TopLine="1"/>
@@ -159,20 +179,32 @@
       </Position15>
       <Position16>
         <Filename Value="kspfiles.lpr"/>
-        <Caret Line="165" Column="35" TopLine="188"/>
+        <Caret Line="163" Column="1" TopLine="149"/>
       </Position16>
       <Position17>
         <Filename Value="kspfiles.lpr"/>
-        <Caret Line="163" Column="1" TopLine="149"/>
+        <Caret Line="33" Column="9" TopLine="13"/>
       </Position17>
       <Position18>
-        <Filename Value="kspfiles.lpr"/>
-        <Caret Line="33" Column="9" TopLine="13"/>
-      </Position18>
-      <Position19>
         <Filename Value="..\..\itools\dlldefs\kspfiles.pas"/>
         <Caret Line="1" Column="1" TopLine="1"/>
+      </Position18>
+      <Position19>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="189" Column="7" TopLine="159"/>
       </Position19>
+      <Position20>
+        <Filename Value="..\..\itools\filesupportlst.pas"/>
+        <Caret Line="3" Column="15" TopLine="1"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\..\additional\bass\Dynamic_Bass.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="kspfiles.lpr"/>
+        <Caret Line="32" Column="3" TopLine="3"/>
+      </Position22>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -180,7 +212,7 @@
     <PathDelim Value="\"/>
     <SearchPaths>
       <IncludeFiles Value="E:\ksp\KSP2009\src\itools\"/>
-      <OtherUnitFiles Value="E:\ksp\KSP2009\src\itools\"/>
+      <OtherUnitFiles Value="E:\ksp\KSP2009\src\itools\;E:\ksp\KSP2009\kspplayer\additional\bass\"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

@@ -763,7 +763,7 @@ type
 
 implementation
 
-uses Main, KSPConstsVars;
+uses Main, KSPConstsVars, MultiLog;
 
 
 const
@@ -2135,10 +2135,13 @@ begin
    if (ExtCode = '') or (ExtCode = '.') or (length(ExtCode) > 5) or
       (length(ExtCode) < 3) then
       exit;
-
+//   hLog.Send(StreamName);
+   hLog.Send(copy(StreamName, 1, 5));
    if (copy(StreamName, 1, 5) = 'http:') or (copy(StreamName, 1, 4) = 'mms:')
-      or (copy(StreamName, 1, 4) = 'ftp:') then
-      exit;
+      or (copy(StreamName, 1, 4) = 'ftp:') then begin
+        StreamInfo.Duration:=0;
+        exit;
+      end;
 
  // Check if native file types
    if ExtCode = '.WAV' then

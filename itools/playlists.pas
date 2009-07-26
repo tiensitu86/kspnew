@@ -67,6 +67,7 @@ type TXMLPlayList = class (TObject)
       procedure LoadKPLPls(FileName: string; var Pls: TPlayList);
       procedure LoadM3UPls(FileName: string; var Pls: TPlayList);
       procedure LoadPlsPls(FileName: string; var Pls: TPlayList);
+      procedure LoadPlsXSPF(FileName: string; var Pls: TPlayList);
     public
       property PLSType: TPlsType read GetPlsType write SetPlsType;
       constructor Create;
@@ -746,35 +747,27 @@ begin
 
   XMLPls.Free;
   SetCurrentDir(Dir);
+end;
 
+procedure TXMLPlaylist.LoadPlsXSPF(FileName: string; var Pls: TPlayList);
+var
+  XMLPls: TSpkXMLParser;
+  Node, Main: TSpkXMLNode;
+  i: integer;
+  fname: string;
+begin
+  XMLPls:=TSpkXMLParser.create;
+  XMLPls.LoadFromFile(FileName);
 
-  {XML:=TXMLIniFile.Create(FileName);
-  s:=TStringList.Create;
-  XML.ReadSections(s);
-  //SetLength(Pls, s.Count);
+  Main:=XMLPls.NodeByName['playlist', true].SubNodeByName['tracklist', true];
 
-  //Delete previous entries;
+  for i:=0 to Main.Count-1 do begin
+    Node:=Main.SubNodeByIndex[i].SubNodeByName['location', true];
+    fname:=Node.Parameters.ParamByName['', false].Attribute;
+    ShowMessage(fname);
+  end;
 
-  for i:=Pls.Count-1 downto 0 do Pls.Remove(i);
-
-  for i:=0 to s.Count-1 do begin
-      p.FileName:=XML.ReadString(IntToStr(i),'File','');
-      if p.FileName<>'' then begin
-          StrPCopy(Pc, p.FileName);
-          if FileExists(p.FileName) or IsStream(Pc)
-          or IsCD(Pc) then begin
-//              lack:=0;
-//              p.Tag:=ReadID3(p.FileName, t, lack);
-//              if not t or (lack>2) then begin
-//                  p.Tag.IsTag:=false;
-//                end;
-              Pls.Add(p);
-            end;
-        end;
-    end;
-
-  XML.UpdateFile;
-  XML.Free;  }
+  XMLPls.Free;
 end;
 
 procedure TXMLPlaylist.LoadPls(FileName: string; var Pls: TPlayList);
@@ -783,7 +776,9 @@ begin
   //ShowMessage(ExtractFileExt(FileName));
   if UpperCase(ExtractFileExt(FileName))='.KPL' then LoadKPLPls(FileName, Pls)
   else if UpperCase(ExtractFileExt(FileName))='.M3U' then
-    LoadM3UPls(FileName, Pls) else
+    LoadM3UPls(FileName, Pls)
+  else if UpperCase(ExtractFileExt(FileName))='.XSPF' then
+    LoadPlsXSPF(FileName, Pls) else
     LoadPLSPls(FileName, Pls);
 end;
 

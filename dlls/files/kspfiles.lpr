@@ -29,7 +29,7 @@ uses
 //  Classes,
 //  Dialogs,
 //  DateUtils,
-  FileSupportLst in '..\..\itools\filesupportlst.pas',
+//  FileSupportLst in '..\..\itools\filesupportlst.pas',
   FileUtils in 'FileUtils.pas',
   KSPMessages in '..\..\itools\kspmessages.pas'{,
   AdditFiles in 'C:\medialib\AdditFiles.pas'};
@@ -60,8 +60,13 @@ TID3Tag = packed record
 end;
 
 function IsStream(str: string): boolean;
+var
+  NameHeader1, NameHeader2: string;
 begin
-    Result:=(Pos('HTTP://', UpperCase(str))=1);
+  NameHeader1 := copy(str, 1, 7);
+  NameHeader2 := copy(str, 1, 6);
+  Result:=(NameHeader1 = 'http://') or (NameHeader2 = 'ftp://') or
+      (NameHeader2 = 'mms://');
 end;
 
 function IsCD(str: string): boolean;
