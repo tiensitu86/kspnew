@@ -33,6 +33,7 @@ type  TWebView = class(TObject)
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    MenuItem15: TMenuItem;
     Panel7: TPanel;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -86,6 +87,7 @@ type  TWebView = class(TObject)
     TabSheet5: TTabSheet;
     TB: TTrackBar;
     ShuffleButton: TToggleBox;
+    NotificationTimer: TTimer;
     ToolButton2: TToolButton;
     TotalTimeLabel: TLabel;
     OpenDialog1: TOpenDialog;
@@ -110,9 +112,12 @@ type  TWebView = class(TObject)
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure MenuItem15Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure NotificationTimerTimer(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
+    procedure PopupMenu1Popup(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure AudioOut1Done(Sender: TObject);
@@ -177,6 +182,7 @@ type  TWebView = class(TObject)
     LastOpenDir: string;
     EQGains : TEQGains;
     ShowSplash: boolean;
+    KSPNotification: QWidgetH;
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
@@ -211,6 +217,7 @@ type  TWebView = class(TObject)
     MediaSongs: TPlayList;
     WebView: TWebView;
     MainWebView: TWebView;
+    ShowAlertOnNewSongPlayed: boolean;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
@@ -220,6 +227,7 @@ type  TWebView = class(TObject)
     function GetFormatedPlayListInfo: string;
     procedure DoThingOnMediaLib(Par, Chi: Integer);
     procedure ICLinkClicked(Value: QUrlH); cdecl;
+    procedure ShowAlert(NotTitle, NotText: widestring);
   end; 
 
 var
@@ -246,6 +254,50 @@ end;
 function L2Qt(C: TWinControl) : QWidgetH;
 begin
   Result:=TQtWidget(C.Handle).Widget;
+end;
+
+function ShowNotification(NotTitle, NotText: widestring): QWidgetH;
+var
+  tLabel: QLabelH;
+  HBox : QHBoxLayoutH;
+  VBox : QVBoxLayoutH;
+begin
+  Result:=QWidget_create(nil);
+
+  //
+  //QWidget_resize(Result, 100, 100);
+
+  QWidget_setWindowTitle(Result, @NotTitle);
+  tLabel:=QLabel_create();
+  QLabel_setText(tLabel, @NotText);
+
+  HBox:=QHBoxLayout_create();
+  QBoxLayout_addWidget(HBox,tLabel);
+  VBox:=QVBoxLayout_create(Result);
+  QBoxLayout_addLayout(VBox,HBox);
+
+  QWidget_Show(Result);
+
+  QWidget_AdjustSize(Result);
+
+  QWidget_move(Result, 0, 0);
+end;
+
+function NotificationVisible(Notification: QWidgetH): boolean;
+begin
+  try
+    if Notification<>nil then
+      Result:=QWidget_isVisible(Notification) else
+      Result:=false;
+  except
+    Result:=false;
+  end;
+end;
+
+procedure CloseNotification(Notification: QWidgetH);
+begin
+  if Notification<>nil then
+    QWidget_Close(Notification);
 end;
 
 { TWebView }
@@ -609,6 +661,8 @@ begin
   SplashForm.Free;
 
   TCompactlibThread.Create(false);
+
+//  ShowNotification;
 end;
 
 procedure TKSPMainWindow.Button1Click(Sender: TObject);
@@ -676,11 +730,50 @@ begin
   s.Free;
 end;
 
+procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
+var
+  s: string;
+  p2: TPLEntry;
+  p: PPLEntry;
+  Index: integer;
+  Pc, pc2: TPathChar;
+begin
+  Index:=lbPlaylist.ItemIndex;
+  P:=Playlist.GetItem(Index);
+  s:=P^.FileName;
+
+  StrPCopy(Pc, s);
+  if not IsStream(Pc) then begin
+      FileInfoBox(s);
+      P2.Tag:=ReadID3(s);
+      if AllSongs.FileInLib(s) then begin
+          StrPCopy(Pc2, s);
+          AllSongs.OpenQuery(Format(SelectGetItem,[PrepareString(Pc2)]));
+          P2:=AllSongs.ReadEntry;
+          //P2.Tag:=P^.Tag;
+          AllSongs.CloseQuery;
+          AllSongs.Add(P2, false);
+        end;
+      PlayList.ChangeEntry(Index, P2);
+
+      lbPlaylist.Items.Strings[Index]:=
+        ProduceFormatedString(FormatedPlaylistInfo, ReadID3(s), GetDuration(P^.Stream), Index);
+    end else begin
+      //ThemedMessages.MessageDlg(Format(GetResConst('SInfoShoutcast'), [))
+    end;
+end;
+
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);
 begin
   if (MIView.ItemIndex<0) or (MIView.ItemIndex>=MIView.Count) then Exit;
   if MediaSongs.Count=0 then Exit;
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
+end;
+
+procedure TKSPMainWindow.NotificationTimerTimer(Sender: TObject);
+begin
+  CloseNotification(Self.KSPNotification);
+  NotificationTimer.Enabled:=false;
 end;
 
 procedure TKSPMainWindow.Panel7Click(Sender: TObject);
@@ -691,6 +784,21 @@ end;
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
+end;
+
+procedure TKSPMainWindow.PopupMenu1Popup(Sender: TObject);
+var
+  Index: integer;
+  P: PPLEntry;
+  s: string;
+  pc: TPathChar;
+begin
+  Index:=lbPlaylist.ItemIndex;
+  P:=Playlist.GetItem(Index);
+  s:=P^.FileName;
+
+  StrPCopy(Pc, s);
+  MenuItem15.Enabled:=not IsStream(pc);
 end;
 
 procedure TKSPMainWindow.RepeatButtonClick(Sender: TObject);
@@ -825,9 +933,9 @@ begin
       //PlayerBase.RenderFile(CurrentFile);
       FStopped := False;
 
-      //if ShowAlertOnNewSongPlayed then
-      //  ShowAlert(GetResConst('SPlayingNewFile'), ProduceFormatedString(FormatedHintInfo, p.Tag, GetDuration(p.Stream),
-      //    CurrentIndex), true, atNewSong);
+      if ShowAlertOnNewSongPlayed then
+        ShowAlert(SPlayingNewFile, ProduceFormatedString(FormatedHintInfo, p^.Tag, GetDuration(p^.Stream),
+          CurrentIndex));
 
 
       s:=lbPlayList.Items.Strings[CurrentIndex];
@@ -955,6 +1063,10 @@ begin  //btPlay.Enabled := True;
           lFilename.Caption:='';
           CurrentIndex:=-1;
           lbPlayList.Refresh;
+
+          if ShowAlertOnNewSongPlayed then
+            ShowAlert(SLastSongPlayed, SLastSongPlayed2);
+
           Exit;
         end;
 
@@ -1004,6 +1116,10 @@ song. It works as if RepeatType=rtOne}
           lFilename.Caption:='';
           CurrentIndex:=-1;
           lbPlayList.Refresh;
+
+          if ShowAlertOnNewSongPlayed then
+            ShowAlert(SLastSongPlayed, SLastSongPlayed2);
+
           Exit;
         end;
 
@@ -1481,16 +1597,9 @@ var
   s: string;
   Pc: TPathChar;
   GetIsTag: boolean;
-  NameHeader1, NameHeader2: string;
-  FromNet: boolean;
 begin
   if not IgnoreLoadPls then
     if LoadingPlaylist then Exit;
-
-  NameHeader1 := copy(fname, 1, 7);
-  NameHeader2 := copy(fname, 1, 6);
-  FromNet:=(NameHeader1 = 'http://') or (NameHeader2 = 'ftp://') or
-      (NameHeader2 = 'mms://');
 
   hLog.Send('Adding item: '+fname);
           StrPCopy(Pc, fname);
@@ -1519,7 +1628,7 @@ begin
 
           lbPlayList.Items.Add(s);
 //{$IFDEF USECHECKED}
-          lbPlayList.State[lbPlayList.Items.Count-1]:=cbUnchecked;
+//          lbPlayList.State[lbPlayList.Items.Count-1]:=cbUnchecked;
 //{$ENDIF}
 
           PlayListTotalTime;
@@ -1807,6 +1916,8 @@ var
       1: KSPMainWindow.TimeFormat:=tfElapsed;
     end;
 
+    ShowAlertOnNewSongPlayed:=XMLFile.ReadBool('Alerts', 'OnNewSongPlayed', true);
+
     Application.ProcessMessages;
 {     }
   end;
@@ -1953,6 +2064,9 @@ var
 
     XMLFile.EraseSection('KSP');
     XMLFile.WriteString('KSP', 'Version', KSPVersion2);
+
+    XMLFile.EraseSection('Alerts');
+    XMLFile.WriteBool('Alerts', 'OnNewSongPlayed', Self.ShowAlertOnNewSongPlayed);
   end;
 
 {  procedure SaveDocked;
@@ -2137,6 +2251,14 @@ begin
 //  ShowMessage(URL);
 //  Self.PerformFileOpen();
 
+end;
+
+procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: widestring);
+begin
+  if not NotificationVisible(Self.KSPNotification) then begin
+    Self.KSPNotification:=ShowNotification(NotTitle, NotText);
+    NotificationTimer.Enabled:=true;
+  end;
 end;
 
 initialization

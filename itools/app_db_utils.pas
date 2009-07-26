@@ -67,6 +67,7 @@ type
     function ReturnFromArtist(FileName: string; Artist: string): TPlayList;
     function ReturnFromGID(FileName: string; GID: integer): TPlayList;
     procedure FindSongs(var Songs: TPlayList; Artist, Album: string);
+    function FileInLib(FileName: string): boolean;
   end;
 
 var
@@ -963,6 +964,22 @@ begin
   CloseQuery;
 
   Songs.SortPlaylist(pstArtist);
+end;
+
+function TAppDBConnection.FileInLib(FileName: string): boolean;
+var
+  Pc: TPathChar;
+begin
+  Result:=false;
+  StrPCopy(Pc, FileName);
+  try
+  OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+  if Self.ReturnRecordsCount>0 then
+    Result:=true;//RetFields.InternalNumberName;
+  CloseQuery;
+  except
+    //CloseQuery;
+  end;
 end;
 
 initialization

@@ -11,7 +11,9 @@ resourcestring
   SScanning = 'Scanning folders...';
 
   SFile='File:';
-SPlayingNewFile='New file:';
+SPlayingNewFile='New File - KSP';
+SLastSongPlayed='Last Song - KSP';
+SLastSongPlayed2='Last song played';
 SElapsed='Elapsed:';
 SRemaining='Remaining:';
 SNewestRelease='The newest release is:';

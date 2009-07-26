@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 373
+  Left = 259
   Height = 707
-  Top = 145
+  Top = 118
   Width = 1244
   Caption = 'KSP'
   ClientHeight = 707
@@ -42,7 +42,7 @@ object KSPMainWindow: TKSPMainWindow
     ClientWidth = 1244
     TabOrder = 2
     object lLeft: TLabel
-      Left = 480
+      Left = 672
       Height = 16
       Top = 8
       Width = 1
@@ -50,7 +50,7 @@ object KSPMainWindow: TKSPMainWindow
       OnClick = lLeftClick
     end
     object lTime2: TLabel
-      Left = 392
+      Left = 584
       Height = 16
       Top = 8
       Width = 1
@@ -64,7 +64,7 @@ object KSPMainWindow: TKSPMainWindow
       ParentColor = False
     end
     object PosBar: TTrackBar
-      Left = 160
+      Left = 384
       Height = 22
       Top = 2
       Width = 184
@@ -91,35 +91,35 @@ object KSPMainWindow: TKSPMainWindow
       Left = 8
       Height = 24
       Top = 8
-      Width = 152
+      Width = 328
       Align = alNone
-      DisabledImages = ImageList1
-      HotImages = ImageList1
-      Images = ImageList1
       ShowCaptions = True
       TabOrder = 2
       object ToolButton1: TToolButton
         Left = 52
         Top = 2
-        ImageIndex = 0
+        AutoSize = True
+        Caption = 'Prev'
         OnClick = ToolButton1Click
       end
       object btStop: TToolButton
-        Left = 75
+        Left = 91
         Top = 2
-        ImageIndex = 8
+        AutoSize = True
+        Caption = 'Stop'
         OnClick = btStopClick
       end
       object btPlay: TToolButton
-        Left = 98
+        Left = 136
         Top = 2
-        ImageIndex = 5
+        AutoSize = True
+        Caption = 'Play/Pause'
         OnClick = btPlayClick
       end
       object ToolButton4: TToolButton
-        Left = 121
+        Left = 207
         Top = 2
-        ImageIndex = 2
+        Caption = 'Next'
         OnClick = ToolButton4Click
       end
       object ToolButton2: TToolButton
@@ -132,7 +132,7 @@ object KSPMainWindow: TKSPMainWindow
       end
     end
     object Balance: TTrackBar
-      Left = 160
+      Left = 384
       Height = 25
       Top = 32
       Width = 184
@@ -143,7 +143,7 @@ object KSPMainWindow: TKSPMainWindow
       TabOrder = 3
     end
     object RepeatButton: TButton
-      Left = 384
+      Left = 128
       Height = 25
       Top = 32
       Width = 104
@@ -152,7 +152,7 @@ object KSPMainWindow: TKSPMainWindow
       TabOrder = 4
     end
     object ShuffleButton: TToggleBox
-      Left = 496
+      Left = 240
       Height = 25
       Top = 32
       Width = 104
@@ -228,7 +228,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 953
       Align = alClient
-      PageIndex = 1
+      PageIndex = 0
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -238,9 +238,9 @@ object KSPMainWindow: TKSPMainWindow
         object PagesWelcome: TPageControl
           Height = 513
           Width = 945
-          ActivePage = TabSheet3
+          ActivePage = TabSheet4
           Align = alClient
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
@@ -261,8 +261,8 @@ object KSPMainWindow: TKSPMainWindow
                 '- Switched to QT. Required version is QT 4.5 (tested with'
                 '4.5.2)'
                 '- WebKit is being used for Icecast browsing '
-                '- Icecast support(no XSPF'
-                'playlists support yet)'
+                '- Icecast support(no XSPF playlists support yet)'
+                '- Simple notifications on playlist end and playfile'
                 ''
                 '24 July 2009'
                 '- MySQL support is only optional'
@@ -270,27 +270,17 @@ object KSPMainWindow: TKSPMainWindow
                 '- Manual folders scan and database setup dialog '
                 'buttons added'
                 ''
-                '22 July 2009'
-                '- basic database wizard is available. KSP can create'
+                'KSP 2009 R1.1'
+                '23 July 2009 '
+                '- Basic database wizard is available. KSP can create'
                 'database if database is missing'
-                '- repeat and shuffle playlist'
-                ''
-                '21 July 2009'
+                '- Repeat and shuffle playlist'
                 '- Media library support'
                 '- Tray icon (so application can be minimised to tray)'
                 '- Playlist popup'
                 '- Playlist sorting'
                 '- Some splitters'
-                '- some minor changes to application window'
-                ''
-                '20 July 2009'
-                'INITIAL RELEASE'
-                ''
-                'Bugs'
-                'playlist loading'
-                'MP3, WMA and AAC support'
-                'M3U, PLS and KPL playlists support'
-                'Partial media library support (folder scan on start)'
+                '- Some minor changes to application window'
               )
               ReadOnly = True
               TabOrder = 0
@@ -1639,6 +1629,7 @@ object KSPMainWindow: TKSPMainWindow
     top = 488
   end
   object PopupMenu1: TPopupMenu
+    OnPopup = PopupMenu1Popup
     left = 8
     top = 488
     object MenuItem1: TMenuItem
@@ -1658,11 +1649,13 @@ object KSPMainWindow: TKSPMainWindow
       object MenuItem9: TMenuItem
         Tag = 1
         Caption = 'By Artist'
+        ImageIndex = 0
         OnClick = MenuItem9Click
       end
       object MenuItem10: TMenuItem
         Tag = 2
         Caption = 'By Track'
+        ImageIndex = 1
         OnClick = MenuItem9Click
       end
       object MenuItem11: TMenuItem
@@ -1685,6 +1678,10 @@ object KSPMainWindow: TKSPMainWindow
         Caption = 'By File Name'
         OnClick = MenuItem9Click
       end
+    end
+    object MenuItem15: TMenuItem
+      Caption = 'File Information'
+      OnClick = MenuItem15Click
     end
   end
   object SDD: TSelectDirectoryDialog
@@ -1720,5 +1717,12 @@ object KSPMainWindow: TKSPMainWindow
     ShowWindow = swoShowNormal
     left = 664
     top = 137
+  end
+  object NotificationTimer: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = NotificationTimerTimer
+    left = 16
+    top = 528
   end
 end

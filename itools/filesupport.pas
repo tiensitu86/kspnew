@@ -92,12 +92,8 @@ end;
 
 {$IFNDEF KSP_PLUGINS}
 function FileInfoBox(StreamName : string): Boolean;
-var
-   p: TBassPlayer;
 begin
-  p:=TBassPlayer.Create(nil);
-  Result:=p.FileInfoBox(StreamName);
-  p.Free;
+  Result:=Player.FileInfoBox(StreamName);
 end;
 {$ENDIF}
 
