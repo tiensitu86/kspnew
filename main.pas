@@ -6,7 +6,7 @@ interface
 
 uses
   LResources, DefaultTranslator, Windows, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
-  StdCtrls, ComCtrls, ButtonPanel, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
+  StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
   FoldersScan, process, Buttons, Qt4, qtwidgets;
 
@@ -113,6 +113,7 @@ type  TWebView = class(TObject)
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure Panel7Click(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -178,7 +179,6 @@ type  TWebView = class(TObject)
     LastOpenDir: string;
     EQGains : TEQGains;
     ShowSplash: boolean;
-    HandleIC       : QWidgetH;
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
@@ -221,6 +221,7 @@ type  TWebView = class(TObject)
     procedure PlayListTotalTime;
     function GetFormatedPlayListInfo: string;
     procedure DoThingOnMediaLib(Par, Chi: Integer);
+    procedure ICLinkClicked(Value: QUrlH); cdecl;
   end; 
 
 var
@@ -302,7 +303,7 @@ begin
   if LoadPlsThr<>nil then
     if GetExitCodeThread(LoadPlsThr.Handle, e) then
       TerminateThread(LoadPlsThr.Handle, e);
-  PlayList.Clear;
+//  PlayList.Clear;
   LoadPlsThr:=TLoadPlsThread.Create(false, FileName);
  { with LoadPlsThr do
     begin
@@ -680,6 +681,11 @@ begin
   if (MIView.ItemIndex<0) or (MIView.ItemIndex>=MIView.Count) then Exit;
   if MediaSongs.Count=0 then Exit;
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
+end;
+
+procedure TKSPMainWindow.Panel7Click(Sender: TObject);
+begin
+
 end;
 
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
@@ -1221,7 +1227,7 @@ procedure TKSPMainWindow.MenuItem1Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then
     begin
-      Self.AddToPlayList(OpenDialog1.FileName);
+      Self.PerformFileOpen(OpenDialog1.FileName);
     end;
 end;
 
@@ -1459,8 +1465,6 @@ begin
 end;
 
 procedure TKSPMainWindow.ResetDisplay;
-var
-  i: integer;
 begin
   lFilename.Caption := MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentFile)]), lFilename.Canvas, lFilename.Width);
 
@@ -1477,18 +1481,16 @@ var
   s: string;
   Pc: TPathChar;
   GetIsTag: boolean;
-
-  function IsPlaylist(FileName: string): boolean;
-  begin
-    Result:=(UpperCase(ExtractFileExt(FileName))='.KPL') or
-      (UpperCase(ExtractFileExt(FileName))='.M3U') or
-      (UpperCase(ExtractFileExt(FileName))='.PLS');
-
-  end;
-
+  NameHeader1, NameHeader2: string;
+  FromNet: boolean;
 begin
   if not IgnoreLoadPls then
     if LoadingPlaylist then Exit;
+
+  NameHeader1 := copy(fname, 1, 7);
+  NameHeader2 := copy(fname, 1, 6);
+  FromNet:=(NameHeader1 = 'http://') or (NameHeader2 = 'ftp://') or
+      (NameHeader2 = 'mms://');
 
   hLog.Send('Adding item: '+fname);
           StrPCopy(Pc, fname);
@@ -2086,11 +2088,6 @@ end;
 
 procedure TKSPMainWindow.SetupWebBrowserIC;
 var
-  HBox            : QHBoxLayoutH;
-  VBox            : QVBoxLayoutH;
-  w               : WideString;
-
-  UrlEditHook     : QLineEdit_hookH;
   WebViewHook     : QWebView_hookH;
   Method          : TMethod;
 
@@ -2106,77 +2103,35 @@ begin
   MainWebView:=TWebView.Create(Self.TabSheet3, KSPHost);
   MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
 
-  // HBox
-//  HBox:=QHBoxLayout_create();
-
-  // Button <-
-{  w:='previous.png';
-
-  QBoxLayout_addWidget(HBox,BtnPrev,0);
-  QObject_connect(BtnPrev,Signal('pressed()'),WebView.Handle,Slot('back()'));
-
-  // Button ->
-  w:='next.png';
-  Icon := QIcon_create(@w);
-  w:='Next';
-  BtnNext:=QPushButton_create(Icon,@w);
-  QIcon_destroy(Icon);
-  QBoxLayout_addWidget(HBox,BtnNext,0);
-  QObject_connect(BtnNext,Signal('pressed()'),WebView.Handle,Slot('forward()'));
-
-  // Button @
-  w:='reload.png';
-  Icon := QIcon_create(@w);
-  w:='Reload';
-  BtnReload:=QPushButton_create(Icon,@w);
-  QIcon_destroy(Icon);
-  QBoxLayout_addWidget(HBox,BtnReload,0);
-  QObject_connect(BtnNext,Signal('pressed()'),WebView.Handle,Slot('reload()'));
-
-
-  // UrlEdit
-  UrlEdit:=QLineEdit_create();
-  QBoxLayout_addWidget(HBox,UrlEdit,2,0);
-  UrlEditHook:=QLineEdit_hook_create(UrlEdit);
-  QLineEdit_editingFinished_Event(Method):=UrlEntered;
-  QLineEdit_hook_hook_editingFinished(UrlEditHook,QHookH(Method));
-
-  QObject_connect(WebView.Handle,Signal('titleChanged ( const QString & ) '),Handle,Slot('setWindowTitle ( const QString & )'));
-
-  QWebView_urlChanged_Event(Method):=UrlChanged;
-  WebViewHook:=QWebView_hook_create(Webview.Handle);
-  QWebView_hook_hook_urlChanged(WebViewHook,Method);
-
-  QWebView_linkClicked_Event(Method):=LinkClicked;
+  QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,Method);
-
   QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
 
-  // ProgressBar
-  ProgressBar:=QProgressBar_create();
-  QProgressBar_setTextVisible(ProgressBar,False);
-  QBoxLayout_addWidget(HBox,ProgressBar,0);
-  QObject_connect(WebView.Handle,Signal('loadStarted()'),ProgressBar,Slot('reset()'));
-  QObject_connect(WebView.Handle,Signal('loadProgress(int)'),ProgressBar,Slot('setValue(int)'));
+end;
 
-  // Button #
-  w:='quit.png';
-  Icon := QIcon_create(@w);
-  w:='Quit';
-  BtnQuit:=QPushButton_create(Icon,@w);
-  QIcon_destroy(Icon);
-  QBoxLayout_addWidget(HBox,BtnQuit,0);
-  QObject_connect(BtnQuit,Signal('pressed()'),QCoreApplication_instance(),Slot('quit()'));
+procedure TKSPMainWindow.ICLinkClicked(Value: QUrlH); cdecl;
+var
+  URL,URL2: widestring;
+  sl: TStringList;
+  s: string;
+begin
+  QUrl_toString(Value, @URL2);
+  ShowMessage(URL2);
+  URL:=URl2;
+  if IsPlaylist(URL) then begin
+    s:=ExtractFileName(URL);
+    sl:=TStringList.Create;
+    kspfiles.DownloadURLi(URL, sl);
+    ForceDirectories(KSPDataFolder+'temp');
+    sl.SaveToFile(KSPDataFolder+'temp\'+s);
+    Self.ClearPlayList;
+    LoadPls(KSPDataFolder+'temp\'+s);
+    sl.Free;
+  end else QWebView_load(WebView.Handle,Value);
 
-
-  // VBox Content
-  QBoxlayout_addLayout(VBox,HBox);
-  QBoxlayout_addWidget(VBox,WebView.Handle);
-
-  // MainWindow
-  QWidget_resize(Handle,1000,680);
-  QWidget_Show(Handle); }
+//  ShowMessage(URL);
+//  Self.PerformFileOpen();
 
 end;
 

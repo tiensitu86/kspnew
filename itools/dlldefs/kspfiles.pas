@@ -25,6 +25,7 @@ function IsCD(str: string): boolean; external 'kspfiles.dll';
 function PrepareString(str: string): string;// external 'kspfiles.dll';
 
 function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet.dll';
+function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 
 function ReadChangeFile: TFileRenamed; external 'kspfiles.dll';
 procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles.dll';
@@ -37,11 +38,20 @@ function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp.dll';
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
 
+function IsPlaylist(FileName: string): boolean;
+
 
 
 implementation
 
 uses SysUtils;
+
+function IsPlaylist(FileName: string): boolean;
+begin
+  Result:=(UpperCase(ExtractFileExt(FileName))='.KPL') or
+    (UpperCase(ExtractFileExt(FileName))='.M3U') or
+    (UpperCase(ExtractFileExt(FileName))='.PLS');
+end;
 
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
 var
@@ -136,7 +146,7 @@ begin
 end;
 
 
-{function DownloadURL(const aUrl: string; var Output: TStringList): Boolean;
+function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 var
   hSession: HINTERNET;
   hService: HINTERNET;
@@ -168,6 +178,6 @@ begin
   finally
     InternetCloseHandle(hSession);
   end;
-end;  }
+end;
 
 end.

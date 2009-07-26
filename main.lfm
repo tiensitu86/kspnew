@@ -426,6 +426,7 @@ object KSPMainWindow: TKSPMainWindow
               Align = alClient
               Caption = 'Panel7'
               TabOrder = 1
+              OnClick = Panel7Click
               OnResize = Panel7Resize
             end
           end
