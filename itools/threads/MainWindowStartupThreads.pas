@@ -129,7 +129,6 @@ begin
 //    KSPMainWindow.MaxiHeight:=KSPMainWindow.ClientHeight;
     //KSPMainWindow.ForceRescan:=false;
     KSPMainWindow.PlayedPrevious:=false;
-    Ads3BeingLoaded:=false;
 
     KSPMainWindow.TimeFormat:=tfElapsed;
 

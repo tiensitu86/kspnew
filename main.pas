@@ -33,13 +33,18 @@ type  TWebView = class(TObject)
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    History: TPanel;
     MenuItem15: TMenuItem;
+    BookmarksMenu: TMenuItem;
+    Bookmarks1: TMenuItem;
+    AddSelectedFromPlaylist1: TMenuItem;
+    N2: TMenuItem;
     Panel7: TPanel;
+    TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
     AppVersion: TLabel;
     LibPages: TPageControl;
-    History: TMemo;
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
@@ -112,7 +117,9 @@ type  TWebView = class(TObject)
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure HistoryResize(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
+    procedure MenuItem16Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
@@ -158,6 +165,7 @@ type  TWebView = class(TObject)
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
+    procedure BookmarkClick(Sender: TObject);
   private
     { private declarations }
     CurrentFile: string;
@@ -200,6 +208,8 @@ type  TWebView = class(TObject)
     procedure LoadToLB;
     procedure DatabaseSetupDialog;
     procedure SetupWebBrowserIC;
+    procedure RefreshBookmarks;
+    procedure CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
   protected
     procedure WndProc(var m: TLMessage); override;
   public
@@ -217,6 +227,7 @@ type  TWebView = class(TObject)
     MediaSongs: TPlayList;
     WebView: TWebView;
     MainWebView: TWebView;
+    HistoryWebView: TWebView;
     ShowAlertOnNewSongPlayed: boolean;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
@@ -262,7 +273,8 @@ var
   HBox : QHBoxLayoutH;
   VBox : QVBoxLayoutH;
 begin
-  Result:=QWidget_create(nil);
+  Result:=QWidget_create(nil, QtToolTip);
+  QFrame_create(Result);
 
   //
   //QWidget_resize(Result, 100, 100);
@@ -513,7 +525,7 @@ var
     PagesWelcome.ActivePage:=TabSheet3;
     WaitForB:=0;
 
-    KSPMainWindow.TB.Position:=Player.Volume;
+    //KSPMainWindow.TB.Position:=Player.Volume;
 
     //KSPMainWindow.RemDevSheet.TabVisible:=false;
   end;
@@ -705,7 +717,7 @@ end;
 
 procedure TKSPMainWindow.Button4Click(Sender: TObject);
 begin
-  ShellExecute(KSPMainWindow.Handle,'Open','http://kspplayer.sourceforge.net/index.php?option=com_content&view=article&id=2&Itemid=7',nil,nil,SW_NORMAL);
+  ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
 end;
 
 procedure TKSPMainWindow.Button5Click(Sender: TObject);
@@ -728,6 +740,11 @@ begin
   s.SaveToFile(KSPDataFolder+'icecast.xml');
 
   s.Free;
+end;
+
+procedure TKSPMainWindow.HistoryResize(Sender: TObject);
+begin
+  Self.HistoryWebView.SetDimensions(Self.History.Width, Self.History.Height);
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -761,6 +778,19 @@ begin
     end else begin
       //ThemedMessages.MessageDlg(Format(GetResConst('SInfoShoutcast'), [))
     end;
+end;
+
+procedure TKSPMainWindow.MenuItem16Click(Sender: TObject);
+var
+  p: TBookmarkItem;
+begin
+  p.Name:=InputBox(SInputBookmarkCaption,
+    SInputBookmarkPrompt, Playlist.GetItem(CurrentIndex)^.Tag.Title);
+
+  if p.Name='' then Exit;
+  p.URL:=Playlist.GetItem(CurrentIndex)^.FileName;
+  BookmarksList.Add(p);
+  RefreshBookmarks;
 end;
 
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);
@@ -1144,6 +1174,9 @@ var
 begin
   AllSongs.Free;
   MediaSongs.Free;
+
+  BookmarksList.SaveToFile(KSPDataFolder+'data\bookmarks.xml');
+
   SaveOptions;
 
 
@@ -1459,7 +1492,7 @@ end;
 
 procedure TKSPMainWindow.TBChange(Sender: TObject);
 begin
-  Player.Volume:=MaxVolume-TB.Position;// else
+  Player.Volume:=TB.Position;// else
 end;
 
 procedure TKSPMainWindow.PosBarChange(Sender: TObject);
@@ -2221,6 +2254,9 @@ begin
   MainWebView:=TWebView.Create(Self.TabSheet3, KSPHost);
   MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
 
+  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
+  HistoryWebView.SetDimensions(History.Width, History.Height);
+
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,Method);
@@ -2252,6 +2288,70 @@ begin
 //  Self.PerformFileOpen();
 
 end;
+
+procedure TKSPMainWindow.RefreshBookmarks;
+var
+  i: integer;
+  t:TMenuItem;
+begin
+  for i := BookmarksMenu.Count - 1 downto 0 do
+    begin
+      if //(BookmarksMenu.Items[i]=Savewholeplaylistasbookmark1)or
+        (BookmarksMenu.Items[i]=AddSelectedFromPlaylist1)or
+        //(BookmarksMenu.Items[i]=AddCurrentFromPlaylist1)or
+        (BookmarksMenu.Items[i]=N2) then
+          Continue;
+      BookmarksMenu.Items[i].Free;
+    end;
+
+  for i := Bookmarks1.Count - 1 downto 0 do
+    begin
+      Bookmarks1.Items[i].Free;
+    end;
+
+//    Frame11.BookmarksList.Clear;
+
+    for i := 0 to BookMarksList.Count - 1 do
+      begin
+        t:=TMenuItem.Create(Self);
+        t.Caption:=BookmarksList.GetItem(i).Name;
+        t.Tag:=i;
+        t.OnClick:=@BookmarkClick;
+        //AllSongs.QueryFindNext;
+        BookmarksMenu.Add(t);
+        //Frame11.BookmarksList.Items.Add(t.Caption);
+      end;
+
+  //AllSongs.CloseQuery;
+  CopyMenu(BookmarksMenu, Bookmarks1);
+end;
+
+procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
+  var
+    i: integer;
+    m: TMenuItem;
+  begin
+    if Src.Count=0 then Exit;
+    for i:=0 to Src.Count-1 do begin
+        if (not Assigned(Src.Items[i].OnClick)) and
+          (Src.Items[i].Action=nil)and
+          (Src.Items[i].Count=0) then Continue;
+        m:=TMenuItem.Create(Self);
+        m.Caption:=Src.Items[i].Caption;
+        m.OnClick:=Src.Items[i].OnClick;
+        m.Action:=Src.Items[i].Action;
+        if m.Action<>nil then
+          m.Action.Update;
+        CopyMenu(Src.Items[i], m);
+        Dest.Add(m);
+      end;
+  end;
+
+procedure TKSPMainWindow.BookmarkClick(Sender: TObject);
+begin
+  Self.PerformFileOpen(BookmarksList.GetItem(TMenuItem(Sender).Tag).URL);
+end;
+
 
 procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: widestring);
 begin

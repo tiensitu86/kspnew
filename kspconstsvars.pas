@@ -8,9 +8,10 @@ uses Windows, Messages, FileSupportLst, SysUtils, BASSPlayer,
 
 const
   KSPHost = 'http://ksplayer.boo.pl';
+  KSPHowHelp = 'http://www.ksplayer.boo.pl/help-wanted';
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
-  KSPCopyrightNote = 'Copyright ® 2006 KSP Developer Team';
+  KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
   KSPMsgDefaultServerPort = 12007;
   KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
   KSPSupportAutomatedSubject = 'KSP automated bug report';
@@ -103,7 +104,6 @@ var
   SuggestionList: TPlayList;
   SuggFindHelpPlaylist: TPlaylist;
   FindApproxVals: TPlayList;
-  Ads3BeingLoaded: boolean;
   InsertingDataInThread: boolean;
   KSPAssociatedFiles: TStringList;
   AlreadyEncoding: boolean;

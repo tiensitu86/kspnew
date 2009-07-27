@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 259
+  Left = 301
   Height = 707
-  Top = 118
+  Top = 133
   Width = 1244
   Caption = 'KSP'
   ClientHeight = 707
@@ -103,21 +103,21 @@ object KSPMainWindow: TKSPMainWindow
         OnClick = ToolButton1Click
       end
       object btStop: TToolButton
-        Left = 91
+        Left = 75
         Top = 2
         AutoSize = True
         Caption = 'Stop'
         OnClick = btStopClick
       end
       object btPlay: TToolButton
-        Left = 136
+        Left = 98
         Top = 2
         AutoSize = True
         Caption = 'Play/Pause'
         OnClick = btPlayClick
       end
       object ToolButton4: TToolButton
-        Left = 207
+        Left = 121
         Top = 2
         Caption = 'Next'
         OnClick = ToolButton4Click
@@ -251,56 +251,22 @@ object KSPMainWindow: TKSPMainWindow
             Caption = 'About...'
             ClientHeight = 487
             ClientWidth = 937
-            object History: TMemo
-              Height = 437
-              Top = 50
-              Width = 937
-              Align = alClient
-              Lines.Strings = (
-                '26 July 2009'
-                '- Switched to QT. Required version is QT 4.5 (tested with'
-                '4.5.2)'
-                '- WebKit is being used for Icecast browsing '
-                '- Icecast support(no XSPF playlists support yet)'
-                '- Simple notifications on playlist end and playfile'
-                ''
-                '24 July 2009'
-                '- MySQL support is only optional'
-                '- support for Sqlite3 added'
-                '- Manual folders scan and database setup dialog '
-                'buttons added'
-                ''
-                'KSP 2009 R1.1'
-                '23 July 2009 '
-                '- Basic database wizard is available. KSP can create'
-                'database if database is missing'
-                '- Repeat and shuffle playlist'
-                '- Media library support'
-                '- Tray icon (so application can be minimised to tray)'
-                '- Playlist popup'
-                '- Playlist sorting'
-                '- Some splitters'
-                '- Some minor changes to application window'
-              )
-              ReadOnly = True
-              TabOrder = 0
-            end
             object Panel4: TPanel
               Height = 50
               Width = 937
               Align = alTop
               ClientHeight = 50
               ClientWidth = 937
-              TabOrder = 1
+              TabOrder = 0
               object AppVersion: TLabel
-                Left = 11
+                Left = 143
                 Height = 16
                 Top = 11
                 Width = 1
                 ParentColor = False
               end
               object Button4: TButton
-                Left = 799
+                Left = 7
                 Height = 23
                 Top = 11
                 Width = 121
@@ -309,6 +275,14 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = Button4Click
                 TabOrder = 0
               end
+            end
+            object History: TPanel
+              Height = 437
+              Top = 50
+              Width = 937
+              Align = alClient
+              TabOrder = 1
+              OnResize = HistoryResize
             end
           end
         end
@@ -882,6 +856,7 @@ object KSPMainWindow: TKSPMainWindow
     top = 488
   end
   object TrayIcon1: TTrayIcon
+    PopUpMenu = TrayMenu
     Icon.Data = {
       525C000000000100010044530000010020003C5C000016000000280000004400
       0000A60000000100200000000000305800006400000064000000000000000000
@@ -1679,6 +1654,16 @@ object KSPMainWindow: TKSPMainWindow
         OnClick = MenuItem9Click
       end
     end
+    object BookmarksMenu: TMenuItem
+      Caption = 'Bookmarks'
+      object AddSelectedFromPlaylist1: TMenuItem
+        Caption = 'Add To Bookmark'
+        OnClick = MenuItem16Click
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+    end
     object MenuItem15: TMenuItem
       Caption = 'File Information'
       OnClick = MenuItem15Click
@@ -1724,5 +1709,12 @@ object KSPMainWindow: TKSPMainWindow
     OnTimer = NotificationTimerTimer
     left = 16
     top = 528
+  end
+  object TrayMenu: TPopupMenu
+    left = 48
+    top = 528
+    object Bookmarks1: TMenuItem
+      Caption = 'Bookmarks'
+    end
   end
 end
