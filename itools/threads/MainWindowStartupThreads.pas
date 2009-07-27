@@ -3,7 +3,7 @@ unit MainWindowStartupThreads;
 interface
 
 uses
-  Classes, SysUtils, KSPTypes, DateUtils, Forms, StrUtils, Windows, Graphics,
+  Classes, SysUtils, KSPTypes, DateUtils, Forms, StrUtils, Graphics, LCLIntf,
   BookmarksU;
 
 type
@@ -46,13 +46,6 @@ uses Main, IniFiles, Dynamic_BASS, KSPConstsVars, BASSPlayer,
     end; }
 
 { TLoadOptionsThread }
-
-function CheckIfNewVersion: boolean;
-  begin
-    Result:=CompareText(KSPVersion2, Version)<0;
-//    ShowMessage(BoolToStr(Result, true));
-  end;
-
 
 procedure TLoadOptionsThread.Execute;
 var
@@ -106,14 +99,14 @@ begin
 
     KSPMP3SettingsList:=TStringList.Create;
     
-
+    hLog.Send('Creating objects done');
 
     //ForceDirectories(ExtractFilePath(Application.ExeName)+'temp\update');
     //WebUpdate1.TempDirectory:=ExtractFilePath(Application.ExeName)+'temp\update';
 
 //    Cddb.LocalCDDBPath := ExtractFilePath(Application.ExeName)+'data\cddb\';
 
-    ReleaseSemaphore(CreateObjectsSem, 1, nil);
+    CreateObjectsSem2:=0;//ReleaseSemaphore(CreateObjectsSem, 1, nil);
 end;
 
 procedure TSetVarsThread.Execute;
@@ -155,7 +148,7 @@ begin
 //    FixURL(KSPPortalURL);
 //    FixURL(KSPPortalParams);
 //    KSPMainWindow.MsgID_QueryCancelAutoPlay := RegisterWindowMessage('QueryCancelAutoPlay');
-    ReleaseSemaphore(LoadVarsSem, 1, nil);
+    LoadVarsSem2:=0;//ReleaseSemaphore(LoadVarsSem, 1, nil);
 end;
 
 end.

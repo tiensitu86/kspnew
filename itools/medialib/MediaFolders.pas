@@ -2,7 +2,7 @@ unit MediaFolders;
 
 interface
 
-uses Windows, Classes, SysUtils, MediaItems, Dialogs, Playlists, ID3Mgmnt, app_db_utils;
+uses Classes, SysUtils, MediaItems, Dialogs, Playlists, ID3Mgmnt, app_db_utils;
 
 type TMediaFolder = record
   Folder: string;

@@ -3,7 +3,7 @@ unit StartupThread;
 interface
 
 uses
-  Windows, Classes, SysUtils, Forms;
+  Classes, SysUtils, Forms;
 
 type
   TStartupThread = class(TThread)
@@ -36,7 +36,7 @@ begin
   { Place thread code here }
   hLog.Send('Running startup thread');
   hLog.Send('Releasing startup thread sems');
-  ReleaseSemaphore(StartupThreadSem, 1, nil);
+  StartupThreadSem2:=0;//ReleaseSemaphore(StartupThreadSem, 1, nil);
   //SetupExtensions;
   hLog.Send('Startup thread finished');
 end;

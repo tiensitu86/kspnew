@@ -2,7 +2,7 @@ unit FileSupport;
 
 interface
 
-uses Windows, BASSPlayer, MPEGAudio, OggVorbis, WMAFile, WAVFile, Classes,
+uses BASSPlayer, MPEGAudio, OggVorbis, WMAFile, WAVFile, Classes,
     SysUtils, RT_basscd, Dialogs, AACfile, KSPStrings,
 {$IFNDEF KSP_PLUGINS}
     MPEGInfoBox, OGGInfoBox, WMAInfoBox,

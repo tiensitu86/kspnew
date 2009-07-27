@@ -3,7 +3,7 @@ unit LoadPlsThread;
 interface
 
 uses
-  Windows, Classes;
+  Classes;
 
 type
   TLoadPlsThread = class(TThread)
@@ -61,7 +61,7 @@ begin
 
   if PlayList2.Count=0 then begin
     KSPMainWindow.LoadingPlaylist:=false;
-    ReleaseSemaphore(LoadPlsSem, 1, nil);
+    LoadPlsSem2:=0;//ReleaseSemaphore(LoadPlsSem, 1, nil);
     Exit;
   end;
 
@@ -76,7 +76,7 @@ begin
   KSPMainWindow.LoadingPlaylist:=false;
   hLog.Send('PLAYLIST LOADING: Playlist loading done');
 
-  ReleaseSemaphore(LoadPlsSem, 1, nil);
+  LoadPlsSem2:=0;//ReleaseSemaphore(LoadPlsSem, 1, nil);
 end;
 
 end.

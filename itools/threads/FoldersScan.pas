@@ -3,7 +3,7 @@ unit FoldersScan;
 interface
 
 uses
-  Forms, Windows, Classes, ComCtrls, MediaItems, Dialogs, SysUtils,
+  Forms, Classes, ComCtrls, MediaItems, Dialogs, SysUtils,
   Graphics, MediaFolders, DateUtils, Playlists, KSPFiles, ID3Mgmnt;
 
 type
@@ -109,7 +109,7 @@ begin
 
 //  AllSongs.CompactLib;//Delete non-existing entries
 
-  ReleaseSemaphore(GetCountSem, 1, nil);
+  GetCountSem2:=0;//ReleaseSemaphore(GetCountSem, 1, nil);
 //  LoadPlsSem := CreateSemaphore(nil, 0,1,'KSPLoadPls');
   Self.Priority:=tpHigher;
 //  repeat

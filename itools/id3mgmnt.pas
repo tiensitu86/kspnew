@@ -4,7 +4,7 @@ unit ID3Mgmnt;
 
 interface
 
-uses Windows, Classes, SysUtils, FileSupport, ID3v2, Dialogs, BassPlayer;
+uses Classes, SysUtils, FileSupport, ID3v2, Dialogs, BassPlayer;
 
 type
 {ID3Tag is the current structure for getting tags from MP3 and MP3-like files}

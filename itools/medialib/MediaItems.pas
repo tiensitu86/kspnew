@@ -2,7 +2,7 @@ unit MediaItems;
 
 interface
 
-uses Forms, Types, Windows, Classes, ID3Mgmnt, PlayLists, Dialogs, SysUtils, FileSupport,
+uses Forms, Types, Classes, ID3Mgmnt, PlayLists, Dialogs, SysUtils, FileSupport,
     IniFiles, FileSupportLst, kspfiles, DateUtils, MediaItemsInfo, Math,
     StdCtrls, KSPCrossList, ExtCtrls, KSPMessages, app_db_utils, DB, DOM;
 
@@ -472,29 +472,6 @@ begin
   //while KSPDatabaseThreads>0 do
   //  Sleep(100);
   Result:=mItems.ReturnRecordsCount;
-end;
-
-function KSPGetFileSize(sFileToExamine: string): integer;
-{
- for some reason both methods of finding file size return
- a filesize that is slightly larger than what Windows File
- Explorer reports
-}
-var
-  FileHandle: THandle;
-//  FileSize: LongWord;
-begin
-  //a- Get file size
-  FileHandle := CreateFile(PChar(sFileToExamine),
-    GENERIC_READ,
-    0, {exclusive}
-    nil, {security}
-    OPEN_EXISTING,
-    FILE_ATTRIBUTE_NORMAL,
-    0);
-  Result   := GetFileSize(FileHandle, nil);
-  CloseHandle(FileHandle);
-  //a- optionally report back in Kbytes
 end;
 
 {function TMediaItemsList.SetupDatabase: TAppDBConnection;

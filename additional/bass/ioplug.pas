@@ -60,8 +60,7 @@ unit ioplug;
 interface
 
 uses
-  Windows, Forms,
-  SysUtils;
+  Windows, Forms, SysUtils;
 
 
 (*

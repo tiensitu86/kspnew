@@ -2,7 +2,7 @@ unit FileUtils;
 
 interface
 
-uses Windows, SysUtils, Graphics;
+uses SysUtils, Graphics;
 
 const
   faReadOnly  = $00000001;
@@ -24,86 +24,10 @@ function MinimizeName(const Filename: TFileName; TextWidth: Integer;
 function FileSetAttr(const FileName: string; Attr: Integer): Integer; external 'kspfiles.dll';
 function TrimRight(const S: string): string; external 'kspfiles.dll';
 function TrimRightA(const S: WideString): WideString; external 'kspfiles.dll';
-function FindVolumeCSerial: string;
-function IsAdmin: Boolean;
 
 implementation
 
 uses KSPConstsVars;
-
-function IsAdmin: Boolean;
-var
-  hAccessToken: THandle;
-  ptgGroups: PTokenGroups;
-  dwInfoBufferSize: DWORD;
-  psidAdministrators: PSID;
-  x: Integer;
-  bSuccess: BOOL;
-begin
-  Result   := False;
-  bSuccess := OpenThreadToken(GetCurrentThread, TOKEN_QUERY, True,
-    hAccessToken);
-  if not bSuccess then
-  begin
-    if GetLastError = ERROR_NO_TOKEN then
-      bSuccess := OpenProcessToken(GetCurrentProcess, TOKEN_QUERY,
-        hAccessToken);
-  end;
-  if bSuccess then
-  begin
-    GetMem(ptgGroups, 1024);
-    bSuccess := GetTokenInformation(hAccessToken, TokenGroups,
-      ptgGroups, 1024, dwInfoBufferSize);
-    CloseHandle(hAccessToken);
-    if bSuccess then
-    begin
-      AllocateAndInitializeSid(SECURITY_NT_AUTHORITY, 2,
-        SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
-        0, 0, 0, 0, 0, 0, psidAdministrators);
-      {$R-}
-      for x := 0 to ptgGroups.GroupCount - 1 do
-        if EqualSid(psidAdministrators, ptgGroups.Groups[x].Sid) then
-        begin
-          Result := True;
-          Break;
-        end;
-      {$R+}
-      FreeSid(psidAdministrators);
-    end;
-    FreeMem(ptgGroups);
-  end;
-end;
-
-function FindVolumeSerial(const Drive : PChar) : string;
-var
-   VolumeSerialNumber : DWORD;
-   MaximumComponentLength : DWORD;
-   FileSystemFlags : DWORD;
-   SerialNumber : string;
-begin
-   Result:='';
-
-   GetVolumeInformation(
-        Drive,
-        nil,
-        0,
-        @VolumeSerialNumber,
-        MaximumComponentLength,
-        FileSystemFlags,
-        nil,
-        0) ;
-   SerialNumber :=
-         IntToHex(HiWord(VolumeSerialNumber), 4) +
-         ' - ' +
-         IntToHex(LoWord(VolumeSerialNumber), 4) ;
-
-   Result := SerialNumber;
-end; (*FindVolumeSerial*)
-
-function FindVolumeCSerial: string;
-begin
-  Result:=FindVolumeSerial('C');
-end;
 
 procedure CutFirstDirectory(var S: TFileName);
 var

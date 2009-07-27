@@ -2,7 +2,7 @@ unit KSPConstsVars;
 
 interface
 
-uses Windows, Messages, FileSupportLst, SysUtils, BASSPlayer,
+uses Messages, FileSupportLst, SysUtils, BASSPlayer,
   Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems,
   Playlists, app_db_utils;
 
@@ -56,13 +56,6 @@ const
   year = '[%year]';
   comment = '[%comment]';
   track = '[%track]';
-
-//System
-const
-  SECURITY_NT_AUTHORITY: TSIDIdentifierAuthority =
-    (Value: (0, 0, 0, 0, 0, 5));
-  SECURITY_BUILTIN_DOMAIN_RID = $00000020;
-  DOMAIN_ALIAS_RID_ADMINS = $00000220;
 
 //database
 const
@@ -122,12 +115,19 @@ var
   PassedCounter : array[1..NumFFTBands] of integer;
 
 //Semaphores
-  GetCountSem: THandle;
+  {GetCountSem: THandle;
   LoadPlsSem: THandle;
   StartupThreadSem: THandle;
   LoadOptionsSem: THandle;
   LoadVarsSem: THandle;
-  CreateObjectsSem: THandle;
+  CreateObjectsSem: THandle;}
+  GetCountSem2: integer;
+  LoadPlsSem2: integer;
+  StartupThreadSem2: integer;
+  LoadOptionsSem2: integer;
+  LoadVarsSem2: integer;
+  CreateObjectsSem2: integer;
+
   KSPDatabaseThreads: integer;
   KSPDatabaseThreadsInternal: integer;
   KSPCPUID: string;

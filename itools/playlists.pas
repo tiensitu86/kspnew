@@ -2,7 +2,7 @@ unit PlayLists;
 
 interface
 
-uses Windows, Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
+uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
   DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles;
 
 {This unit includes all playlist management clases and structures}

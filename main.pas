@@ -34,10 +34,13 @@ type  TWebView = class(TObject)
     Button5: TButton;
     Button6: TButton;
     History: TPanel;
+    ImageList2: TImageList;
     MenuItem15: TMenuItem;
     BookmarksMenu: TMenuItem;
     Bookmarks1: TMenuItem;
+    AddCurrentFromPlaylist1: TMenuItem;
     AddSelectedFromPlaylist1: TMenuItem;
+    Savewholeplaylistasbookmark1: TMenuItem;
     N2: TMenuItem;
     Panel7: TPanel;
     TrayMenu: TPopupMenu;
@@ -74,7 +77,6 @@ type  TWebView = class(TObject)
     lTime2: TLabel;
     lLeft: TLabel;
     lbPlaylist: TCheckListBox;
-    ImageList1: TImageList;
     lFileName: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -108,6 +110,7 @@ type  TWebView = class(TObject)
     TrayIcon1: TTrayIcon;
     MsortType: TTreeView;
     MGView: TTreeView;
+    procedure AddSelectedFromPlaylist1Click(Sender: TObject);
     procedure btPlayClick(Sender: TObject);
     procedure btStopClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -152,6 +155,7 @@ type  TWebView = class(TObject)
     procedure MenuItem9Click(Sender: TObject);
     procedure MGViewClick(Sender: TObject);
     procedure MsortTypeClick(Sender: TObject);
+    procedure Savewholeplaylistasbookmark1Click(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
@@ -558,6 +562,8 @@ var
 
   procedure ApplyOptions;
   begin
+    Self.RefreshBookmarks;
+
     case KSPMainWindow.TimeFormat of
       tfRemain: begin
           KSPMainWindow.lTime2.Caption:=Sremaining;
@@ -618,19 +624,19 @@ begin
   Player.OnPlayEnd:=@AudioOut1Done;
 {$mode Delphi}
 
-  CreateObjectsSem := CreateSemaphore(nil, 0,1,'CreateObjectsSem');
-  LoadVarsSem := CreateSemaphore(nil, 0,1,'LoadVarsSem');
+  CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
+  LoadVarsSem2 := 1;//CreateSemaphore(nil, 0,1,'LoadVarsSem');
   CreateObjectsAndVars;
   //SetVars;
   repeat
-    Result := WaitForSingleObject(CreateObjectsSem, INFINITE);
-  until Result=WAIT_OBJECT_0;
+    Sleep(500);//)Result := CreateObjectsSem, INFINITE);
+  until CreateObjectsSem2=0;
   repeat
-    Result := WaitForSingleObject(LoadVarsSem, INFINITE);
-  until Result=WAIT_OBJECT_0;
+    Sleep(500);//Result := WaitForSingleObject(LoadVarsSem, INFINITE);
+  until LoadVarsSem2=0;
   repeat
-      Result := WaitForSingleObject(StartupThreadSem, INFINITE);
-  until Result=WAIT_OBJECT_0;
+    Sleep(500);//  Result := WaitForSingleObject(StartupThreadSem, INFINITE);
+  until StartupThreadSem2=0;
 
   SetSplashProg(10);
 
@@ -755,6 +761,7 @@ var
   Index: integer;
   Pc, pc2: TPathChar;
 begin
+  if (lbPlaylist.ItemIndex>lbPlaylist.Count) or (lbPlaylist.ItemIndex<0) then Exit;
   Index:=lbPlaylist.ItemIndex;
   P:=Playlist.GetItem(Index);
   s:=P^.FileName;
@@ -823,6 +830,7 @@ var
   s: string;
   pc: TPathChar;
 begin
+  if (lbPlaylist.ItemIndex>lbPlaylist.Count) or (lbPlaylist.ItemIndex<0) then Exit;
   Index:=lbPlaylist.ItemIndex;
   P:=Playlist.GetItem(Index);
   s:=P^.FileName;
@@ -855,19 +863,35 @@ begin
     begin
       Player.Pause(true);
       FPaused := True;
-      btPlay.ImageIndex:=5;
+      btPlay.ImageIndex:=3;
     end
   else if FPaused then begin
       Player.Pause(false);
-      btPlay.ImageIndex:=7;
+      btPlay.ImageIndex:=4;
       FPaused:=false;
   end else begin
     PlayFile;
   end;
 
 
-  btStop.ImageIndex := 9;
+  btStop.ImageIndex := 2;
   lbPlaylist.Repaint;
+end;
+
+procedure TKSPMainWindow.AddSelectedFromPlaylist1Click(Sender: TObject);
+var
+  p: TBookmarkItem;
+  Index: integer;
+begin
+  if (lbPlaylist.ItemIndex>lbPlaylist.Count) or (lbPlaylist.ItemIndex<0) then Exit;
+  Index:=lbPlaylist.ItemIndex;
+  p.Name:=InputBox(SInputBookmarkCaption,
+    SInputBookmarkPrompt, Playlist.GetItem(Index)^.Tag.Title);
+
+  if p.Name='' then Exit;
+  p.URL:=Playlist.GetItem(Index)^.FileName;
+  BookmarksList.Add(p);
+  RefreshBookmarks;
 end;
 
 procedure TKSPMainWindow.btStopClick(Sender: TObject);
@@ -881,12 +905,12 @@ begin
   ResetDisplay;
   FStopped := True;
   //btPlay.Enabled := True;
-  btStop.ImageIndex:=8;
+  btStop.ImageIndex:=1;
   Player.Stop;
   Player.Close;
 
   for i:=0 to PlayList.Count-1 do PlayList.UnSetPlayed(i);
-  btPlay.ImageIndex:=5;
+  btPlay.ImageIndex:=3;
   //lbPlayList.Items.Item[CurrentIndex].ImageIndex:=-1;
 
   s:=lbPlaylist.Items.Strings[CurrentIndex];
@@ -976,7 +1000,7 @@ begin
       lbPlaylist.Invalidate;
 
       lbPlayList.Refresh;
-      btPlay.ImageIndex:=7;
+      btPlay.ImageIndex:=4;
 end;
 
 procedure TKSPMainWindow.AudioOut1Done(Sender: TObject);
@@ -1089,7 +1113,7 @@ begin  //btPlay.Enabled := True;
       if not Shuffled and (RepeatType=rtNone) and (lbPlaylist.Items.Count-1 <= CurrentIndex) then begin
           hLog.Send('Last song played');
           FStopped:=true;
-          btPlay.ImageIndex:=5;
+          btPlay.ImageIndex:=3;
           lFilename.Caption:='';
           CurrentIndex:=-1;
           lbPlayList.Refresh;
@@ -1123,7 +1147,7 @@ song. It works as if RepeatType=rtOne}
       if (CurrentIndex>=lbPlayList.Items.Count) and (RepeatType<>rtAll) then begin
           hLog.Send('Last song played');
           FStopped:=true;
-          btPlay.ImageIndex:=5;
+          btPlay.ImageIndex:=3;
           lFilename.Caption:='';
           CurrentIndex:=-1;
           lbPlayList.Refresh;
@@ -1142,7 +1166,7 @@ song. It works as if RepeatType=rtOne}
     begin
           hLog.Send('Last song played');
           FStopped:=true;
-          btPlay.ImageIndex:=5;
+          btPlay.ImageIndex:=3;
           lFilename.Caption:='';
           CurrentIndex:=-1;
           lbPlayList.Refresh;
@@ -1160,7 +1184,7 @@ var
   Pls:TXMLPlayList;
   PlsFile: string;
 
-  procedure FreeHandles;
+  {procedure FreeHandles;
   begin
     CloseHandle(GetCountSem);
     CloseHandle(LoadPlsSem);
@@ -1169,7 +1193,7 @@ var
     CloseHandle(LoadVarsSem);
     CloseHandle(CreateObjectsSem);
     CloseHandle(KSPDatabaseThreads);
-  end;
+  end;  }
 
 begin
   AllSongs.Free;
@@ -1229,7 +1253,7 @@ begin
   PlayListMove:=false;
   Player.Stop;
   Player.Close;
-  btStop.ImageIndex := 9;
+  btStop.ImageIndex := 2;
   PlayFile;
 end;
 
@@ -1479,6 +1503,35 @@ begin
   DoThingOnMediaLib(MSortType.Selected.Parent.Index, MSortType.Selected.Index);
 end;
 
+procedure TKSPMainWindow.Savewholeplaylistasbookmark1Click(Sender: TObject);
+var
+  p: TBookmarkItem;
+  Pls:TXMLPlayList;
+  bName: string;
+  i: integer;
+begin
+  ForceDirectories(KSPDataFolder+'bookmarks');
+
+  for i:=0 to MaxInt do
+    if not FileExists(KSPDataFolder+'bookmarks\bookmark'+IntToStr(i)+'.kpl') then
+      begin
+        bName:=KSPDataFolder+'bookmarks\bookmark'+IntToStr(i)+'.kpl';
+        Break;
+      end;
+
+  p.Name:=InputBox(SInputBookmarkCaption, SInputBookmarkPrompt, ExtractFileName(bName));
+
+  if p.Name='' then Exit;
+
+  Pls:=TXMLPlayList.create;
+  Pls.SavePls(PlayList, bName);
+  Pls.Free;
+
+  p.URL:=bName;
+  BookmarksList.Add(p);
+  RefreshBookmarks;
+end;
+
 procedure TKSPMainWindow.ShuffleButtonChange(Sender: TObject);
 begin
   Shuffled:=ShuffleButton.Checked;
@@ -1710,8 +1763,6 @@ begin
 end;
 
 procedure TKSPMainWindow.ScanFolders(Force: boolean);
-var
-  Result: DWORD;
 begin
   if Force then
   while Self.WaitForB>1 do begin
@@ -1725,14 +1776,14 @@ begin
   end;
 
   SongsInLib:=0;
-  GetCountSem := CreateSemaphore(nil, 0,1,'MediaLibGetCount');
+  GetCountSem2 := 1;//CreateSemaphore(nil, 0,1,'MediaLibGetCount');
   FoldersScan:=TFoldersScanThread.Create(true);
   FoldersScan.ForceRescan:=Force;
   FoldersScan.Resume;
 //  ReleaseSemaphore(GetCountSem, 1, nil);
   repeat
-    Result := WaitForSingleObject(GetCountSem, 2000);
-  until Result=WAIT_OBJECT_0;
+    Sleep(500);//Result := WaitForSingleObject(GetCountSem, 2000);
+  until GetCountSem2=0;
 end;
 
 procedure TKSPMainWindow.DoThingOnMediaLib(Par, Chi: Integer);
@@ -2296,9 +2347,9 @@ var
 begin
   for i := BookmarksMenu.Count - 1 downto 0 do
     begin
-      if //(BookmarksMenu.Items[i]=Savewholeplaylistasbookmark1)or
+      if (BookmarksMenu.Items[i]=Savewholeplaylistasbookmark1)or
+        (BookmarksMenu.Items[i]=AddCurrentFromPlaylist1)or
         (BookmarksMenu.Items[i]=AddSelectedFromPlaylist1)or
-        //(BookmarksMenu.Items[i]=AddCurrentFromPlaylist1)or
         (BookmarksMenu.Items[i]=N2) then
           Continue;
       BookmarksMenu.Items[i].Free;

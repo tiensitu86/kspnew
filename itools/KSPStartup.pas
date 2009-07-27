@@ -2,7 +2,7 @@ unit KSPStartup;
 
 interface
 
-uses Forms, Windows, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst;
+uses Forms, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst;
 
 procedure SetupKSP;
 
@@ -50,6 +50,13 @@ begin
 
   SetupFileName:=KSPDataFolder+DefSetupFileName;
 
+  GetCountSem2:=0;
+  LoadPlsSem2:=0;
+  StartupThreadSem2:=0;
+  LoadOptionsSem2:=0;
+  LoadVarsSem2:=0;
+  CreateObjectsSem2:=0;
+
   Application.ShowMainForm := True;
 end;
 
@@ -64,7 +71,7 @@ begin
   KSPDatabaseThreads:=0; KSPDatabaseThreadsInternal:=0;
   FileSupportList:=TFileSupportList.Create;
 
-  StartupThreadSem := CreateSemaphore(nil, 0,1,'MediaLibGetCount');
+  StartupThreadSem2:=1;// := CreateSemaphore(nil, 0,1,'MediaLibGetCount');
   TStartupThread.Create(False);
 end;
 
