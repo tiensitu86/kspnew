@@ -22,6 +22,9 @@ type  TWebView = class(TObject)
     pURL: string;
     procedure SetDimensions(x, y: integer);
     constructor Create(Parent : TWinControl; URL: string);
+    procedure LoadURL(URL: string);
+    procedure GoBack;
+    procedure GoForward;
   end;
 
   { TKSPMainWindow }
@@ -33,16 +36,28 @@ type  TWebView = class(TObject)
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    IMAddress: TEdit;
     History: TPanel;
     ImageList2: TImageList;
+    ListBox1: TListBox;
+    MainMenu1: TMainMenu;
     MenuItem15: TMenuItem;
     BookmarksMenu: TMenuItem;
     Bookmarks1: TMenuItem;
     AddCurrentFromPlaylist1: TMenuItem;
     AddSelectedFromPlaylist1: TMenuItem;
+    MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
+    Panel6: TPanel;
+    IMProgress: TProgressBar;
     Savewholeplaylistasbookmark1: TMenuItem;
     N2: TMenuItem;
     Panel7: TPanel;
+    SpeedButton1: TSpeedButton;
+    TabSheet6: TTabSheet;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -121,6 +136,7 @@ type  TWebView = class(TObject)
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
+    procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
@@ -157,6 +173,7 @@ type  TWebView = class(TObject)
     procedure MsortTypeClick(Sender: TObject);
     procedure Savewholeplaylistasbookmark1Click(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
     procedure PosBarChange(Sender: TObject);
@@ -242,6 +259,7 @@ type  TWebView = class(TObject)
     function GetFormatedPlayListInfo: string;
     procedure DoThingOnMediaLib(Par, Chi: Integer);
     procedure ICLinkClicked(Value: QUrlH); cdecl;
+    procedure IMProgressChange(progress: Integer); cdecl;
     procedure ShowAlert(NotTitle, NotText: widestring);
   end; 
 
@@ -355,6 +373,25 @@ begin
 
   QWidget_Show(Handle);
   pURL:=URL;
+end;
+
+procedure TWebView.LoadURL(URL: string);
+var
+  W : WideString;
+begin
+  w:=URL;
+  fUrl:=QUrl_create(@w);
+  QWebView_load(Handle,fUrl);
+end;
+
+procedure TWebView.GoBack;
+begin
+  QWebView_back(Handle);
+end;
+
+procedure TWebView.GoForward;
+begin
+  QWebView_forward(Handle);
 end;
 
 
@@ -751,6 +788,12 @@ end;
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
 begin
   Self.HistoryWebView.SetDimensions(Self.History.Width, Self.History.Height);
+end;
+
+procedure TKSPMainWindow.IMAddressKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key=#13 then
+    WebView.LoadURL(IMAddress.Text);
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -1537,6 +1580,11 @@ begin
   Shuffled:=ShuffleButton.Checked;
 end;
 
+procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);
+begin
+  WebView.LoadURL(IMAddress.Text);
+end;
+
 procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);
 begin
   MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
@@ -1701,7 +1749,7 @@ begin
               if not IsCD(Pc) then
                 p.Tag:=GetFromInfo(p.Stream, lack);
               p.Tag.IsTag:=GetIsTag;
-            end;
+            end else p.Tag.Title:=ExtractFileName(fname);
 
           p.FileName:=fname;
           hLog.Send('('+fname+'): Info read');
@@ -2311,6 +2359,11 @@ begin
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,Method);
+
+  QWebView_loadProgress_Event(Method):=@IMProgressChange;
+  WebViewHook:=QWebView_hook_create(Webview.Handle);
+  QWebView_hook_hook_loadProgress(WebViewHook,Method);
+
   QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
 
 end;
@@ -2322,7 +2375,7 @@ var
   s: string;
 begin
   QUrl_toString(Value, @URL2);
-  ShowMessage(URL2);
+
   URL:=URl2;
   if IsPlaylist(URL) then begin
     s:=ExtractFileName(URL);
@@ -2333,11 +2386,16 @@ begin
     Self.ClearPlayList;
     LoadPls(KSPDataFolder+'temp\'+s);
     sl.Free;
-  end else QWebView_load(WebView.Handle,Value);
+  end else WebView.LoadURL(URL);
 
 //  ShowMessage(URL);
 //  Self.PerformFileOpen();
 
+end;
+
+procedure TKSPMainWindow.IMProgressChange(progress: Integer); cdecl;
+begin
+  IMProgress.Position:=Progress;
 end;
 
 procedure TKSPMainWindow.RefreshBookmarks;
@@ -2375,6 +2433,7 @@ begin
 
   //AllSongs.CloseQuery;
   CopyMenu(BookmarksMenu, Bookmarks1);
+  CopyMenu(BookmarksMenu, MenuItem17);
 end;
 
 procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <title>KSP History</title>
+</head>
+<body>
+<table width="100%">
+  <tbody>
+    <tr>
+      <td>
+      <h2>KSP 2009R2 pre<br>
+      </h2>
+      <h3>27 July 2009</h3>
+      <span style="font-weight: bold;">Bookmarks</span><br>
+Bookmarks are supported. You can bookmark following items: currently
+played track, selected track, whole current playlist.<br>
+      <h3>26 July 2009</h3>
+      <span style="font-weight: bold;">Switched to QT. Required version
+is QT 4.5 (tested with 4.5.2)</span><br>
+To obtain the newest QT version go to http://www.qtsoftware.com/.
+Remember that KSP requires QT 4.5.x. All other QT versions ARE NOT
+supported. Note than each build contains proper libraries so you don't
+have to download over 300 mb archive from http://www.qtsoftware.com/.
+All you require is installed with KSP. If you are building KSP from
+source then you may want to download latest SVN build as well.<br>
+      <span style="font-weight: bold;">WebKit is being used for Icecast
+browsing, Icecast support (no XSPF playlists support yet)</span><br>
+Go to Library-&gt;Internet Media to use builtin web browser based on QT
+Webkit. Whenever link you click leads to PLS or M3U playlist KSP will
+handle it and load replacing currently loaded playlist.<br>
+      <span style="font-weight: bold;">Simple notifications on playlist
+end and playfile</span><br>
+When new file is played or playlist end is reached simple notification
+is displayed. At the moment it is in development so all configuration
+can be made only byediting setup.opt file. Find section [Alerts] in
+setup.opt file and put there:<br>
+      <span style="font-style: italic;">OnNewSongPlayed=1</span><br>
+to enable alerts<br>
+      <span style="font-style: italic;">OnNewSongPlayed=0</span> <br>
+to disable them<br>
+      <br>
+      <h3>24 July 2009</h3>
+      <span style="font-weight: bold;">MySQL support is only optional,
+support for Sqlite3 added</span><br>
+Sqlite3 is now the default database format.<br>
+      <span style="font-weight: bold;">Manual folders scan and database
+setup dialog buttons added</span><br>
+Go to Library-&gt;Setup and press Force Rescan button to scan folders
+again. Note that scanning proces might take a while. In
+Library-&gt;Setup there is also Setup Database button. KSP now supports
+both Sqlite3 and MySQL databases. By default KSP uses Sqlite3 database
+that doesn't require configuration. Although if you want to use MySQL
+then use that button to configure connection to database server.<br>
+      <br>
+      <h2>KSP 2009 R1.1</h2>
+23 July 2009 <br>
+- Basic database wizard is available. KSP can create<br>
+database if database is missing<br>
+- Repeat and shuffle playlist<br>
+- Media library support<br>
+- Tray icon (so application can be minimised to tray)<br>
+- Playlist popup<br>
+- Playlist sorting<br>
+- Some splitters<br>
+- Some minor changes to application window<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
