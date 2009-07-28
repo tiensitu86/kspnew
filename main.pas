@@ -40,6 +40,8 @@ type  TWebView = class(TObject)
     Button8: TButton;
     IMAddress: TEdit;
     History: TPanel;
+    Image1: TImage;
+    Image2: TImage;
     ImageList2: TImageList;
     ListBox1: TListBox;
     MainMenu1: TMainMenu;
@@ -137,6 +139,7 @@ type  TWebView = class(TObject)
     procedure Button7Click(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
+    procedure Image1Click(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
@@ -657,9 +660,7 @@ begin
   //TranslateUnitResourceStrings('LCLStrConsts', PODirectory + 'lclstrconsts.%s.po', Lang, FallbackLang);
 
 //  Player:=TBassPlayer.Create(Self);
-{$mode ObjFPC}
   Player.OnPlayEnd:=@AudioOut1Done;
-{$mode Delphi}
 
   CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
   LoadVarsSem2 := 1;//CreateSemaphore(nil, 0,1,'LoadVarsSem');
@@ -794,6 +795,11 @@ procedure TKSPMainWindow.IMAddressKeyPress(Sender: TObject; var Key: char);
 begin
   if Key=#13 then
     WebView.LoadURL(IMAddress.Text);
+end;
+
+procedure TKSPMainWindow.Image1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -1030,9 +1036,13 @@ begin
       //PlayerBase.RenderFile(CurrentFile);
       FStopped := False;
 
-      if ShowAlertOnNewSongPlayed then
-        ShowAlert(SPlayingNewFile, ProduceFormatedString(FormatedHintInfo, p^.Tag, GetDuration(p^.Stream),
-          CurrentIndex));
+      if ShowAlertOnNewSongPlayed then begin
+        if IsStream(Pc) then
+          ShowAlert(SPlayingNewFile, lFileName.Caption)
+        else
+          ShowAlert(SPlayingNewFile, ProduceFormatedString(FormatedHintInfo, p^.Tag, GetDuration(p^.Stream),
+            CurrentIndex));
+        end;
 
 
       s:=lbPlayList.Items.Strings[CurrentIndex];
@@ -1331,7 +1341,7 @@ try
             Self.Playlist.GetItem(Index)^.Tag,
             GetDuration(Self.Playlist.GetItem(Index)^.Stream),
             Index+1) else begin
-      if KSPMainWindow.CurrentIndex=Index then
+      if (KSPMainWindow.CurrentIndex=Index) and (Player.StreamInfo.Title<>'') then
       s:=Format(SShoutcastEntry, [Player.StreamInfo.Title]) else
       s:=Format(SShoutcastEntry, [Self.Playlist.GetItem(Index)^.FileName]);
     end;

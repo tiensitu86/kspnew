@@ -1029,17 +1029,9 @@ end;
 // This procedure is called when a stream reaches the end.
 procedure PlayEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
 var
-   Msg_Handle : QWORD;
    f: PtrInt;
 begin
-//   Msg_Handle := TBassPlayer(user);
-   //Msg_Handle.SetPlayEnd;
-{$IFDEF USEQT}
   Application.QueueAsyncCall(Player.SetPlayEndA, f);
-{$ELSE}
-   Msg_Handle:=KSPMainWindow.Handle;
-   PostMessage(Msg_Handle, WM_GetToEnd, 0, 0);
-{$ENDIF}
 end;
 
 // This procedure is called when downloading of an URL stream is done.

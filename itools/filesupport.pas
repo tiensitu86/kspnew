@@ -3,11 +3,11 @@ unit FileSupport;
 interface
 
 uses BASSPlayer, MPEGAudio, OggVorbis, WMAFile, WAVFile, Classes,
-    SysUtils, RT_basscd, Dialogs, AACfile, KSPStrings,
+    SysUtils, Dialogs, AACfile,
 {$IFNDEF KSP_PLUGINS}
     MPEGInfoBox, OGGInfoBox, WMAInfoBox,
 {$ENDIF}
-    Dynamic_BASS, ID3v1, ID3v2, KSPMessages, Musepack;
+    ID3v1, ID3v2, KSPMessages, Musepack;
 
 const MAXCDDRIVES = 10;
 
@@ -76,13 +76,8 @@ function GetDuration(FileName: WideString): integer;
 var
   Sup: TSupportedBy;
   StreamInfo2 : TStreamInfo;
-  NumCDDriveList:integer;
-  CDDriveList:TCDDriveList;
-  PNum: Integer;
-  PName: string;
   Pc: TPathChar;
 begin
-  NumCDDriveList:=0;
   Result:=0;
   StrPCopy(Pc, FileName);
   if not FileExists(FileName) and (not IsCD(Pc)) then Exit;
