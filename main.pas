@@ -8,7 +8,7 @@ uses
   LResources, DefaultTranslator, Windows, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList;
 
 
   { TWebView }
@@ -25,11 +25,15 @@ type  TWebView = class(TObject)
     procedure LoadURL(URL: string);
     procedure GoBack;
     procedure GoForward;
+    procedure Reload;
   end;
 
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    MenuItem19: TMenuItem;
+    OpenFileAction: TAction;
+    ActionList1: TActionList;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
@@ -42,6 +46,7 @@ type  TWebView = class(TObject)
     History: TPanel;
     Image1: TImage;
     Image2: TImage;
+    MenuImages: TImageList;
     ImageList2: TImageList;
     ListBox1: TListBox;
     MainMenu1: TMainMenu;
@@ -59,6 +64,9 @@ type  TWebView = class(TObject)
     N2: TMenuItem;
     Panel7: TPanel;
     SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
     TabSheet6: TTabSheet;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
@@ -177,6 +185,9 @@ type  TWebView = class(TObject)
     procedure Savewholeplaylistasbookmark1Click(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
     procedure PosBarChange(Sender: TObject);
@@ -390,6 +401,11 @@ end;
 procedure TWebView.GoBack;
 begin
   QWebView_back(Handle);
+end;
+
+procedure TWebView.Reload;
+begin
+  QWebView_reload(Handle);
 end;
 
 procedure TWebView.GoForward;
@@ -1595,6 +1611,21 @@ begin
   WebView.LoadURL(IMAddress.Text);
 end;
 
+procedure TKSPMainWindow.SpeedButton2Click(Sender: TObject);
+begin
+  WebView.GoBack;
+end;
+
+procedure TKSPMainWindow.SpeedButton3Click(Sender: TObject);
+begin
+  WebView.GoForward;
+end;
+
+procedure TKSPMainWindow.SpeedButton4Click(Sender: TObject);
+begin
+  webView.Reload;
+end;
+
 procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);
 begin
   MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height);
@@ -2453,9 +2484,9 @@ procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
   begin
     if Src.Count=0 then Exit;
     for i:=0 to Src.Count-1 do begin
-        if (not Assigned(Src.Items[i].OnClick)) and
-          (Src.Items[i].Action=nil)and
-          (Src.Items[i].Count=0) then Continue;
+        //if //(not Assigned(Src.Items[i].OnClick)) and
+        //  (Src.Items[i].Action=nil)and
+        //  (Src.Items[i].Count=0) then Continue;
         m:=TMenuItem.Create(Self);
         m.Caption:=Src.Items[i].Caption;
         m.OnClick:=Src.Items[i].OnClick;
