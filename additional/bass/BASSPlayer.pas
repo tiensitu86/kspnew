@@ -1192,9 +1192,6 @@ end;
 procedure TBASSPlayer.SetPosition(Value : DWORD); // set playback position in mili seconds
 var
    SongPos : int64;
-   wCycle : integer;
-   PlayerStat : DWORD;
-   tmpMuted : boolean;
 begin
    if not IsSeekable then
       exit;
@@ -1205,7 +1202,6 @@ begin
    if NowStarting then
       exit;
 
-   PlayerStat := BASS_ACTIVE_STOPPED;   // Pre-assume
    if not FMute then
    begin
      //SetMuteState(true, 500);   // Mute
@@ -1213,10 +1209,7 @@ begin
         Sleep(20);
         WinProcessMessages;
      until (not AttribSliding);
-
-     tmpMuted := true;
-   end else
-     tmpMuted := false;
+   end;
 
    case ChannelType of
       Channel_NotOpened : exit;

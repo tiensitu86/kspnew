@@ -1398,6 +1398,7 @@ begin
   Player.Close;
 //  Player.Free;
   hLog.Free;
+  TrayIcon1.Visible:=false;
   ExitProcess(0);
 end;
 
