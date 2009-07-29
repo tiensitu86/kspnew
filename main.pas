@@ -50,6 +50,7 @@ type  TWebView = class(TObject)
     MenuItem19: TMenuItem;
     MenuItem20: TMenuItem;
     MenuItem21: TMenuItem;
+    MenuItem22: TMenuItem;
     MFolders: TListBox;
     NotChecked: TCheckBox;
     NotSetupPage: TPage;
@@ -853,7 +854,10 @@ end;
 
 procedure TKSPMainWindow.Button4Click(Sender: TObject);
 begin
-  ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
+  //ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
+  Self.Notebook1.ActivePage:='Page1';
+  PagesWelcome.ActivePage:=TabSheet3;
+  Self.MainWebView.LoadURL(KSPHowHelp);
 end;
 
 procedure TKSPMainWindow.Button5Click(Sender: TObject);
