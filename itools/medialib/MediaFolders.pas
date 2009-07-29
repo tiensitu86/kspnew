@@ -22,7 +22,7 @@ type TMediaFolder = record
     constructor Create;
     destructor Destroy; override;
     function Add(Entry: TMediaFolder): boolean;
-    procedure Remove(Index: Integer; var mItems: TAppDBConnection);
+    procedure Remove(Index: Integer);
     function GetItem(Index: Integer): TMediaFolder;
     procedure ReplaceEntry(Index: Integer; new: TMediaFolder);
     procedure SaveToFile(FileName: string);
@@ -32,7 +32,7 @@ type TMediaFolder = record
 
 implementation
 
-uses IniFiles, FoldersScan;
+uses IniFiles, FoldersScan, KSPConstsVars;
 
 constructor TMediaFoldersList.Create;
 begin
@@ -92,27 +92,33 @@ begin
   TMediaFolderItem(Items[Index]).Entry:=new;
 end;
 
-procedure TMediaFoldersList.Remove(Index: Integer; var mItems: TAppDBConnection);
+procedure TMediaFoldersList.Remove(Index: Integer);
 var
   s: string;
   i: integer;
   p: TPLEntry;
   RecCo: integer;
+  s2: TStringList;
 begin
   s:=TMediaFolderItem(Items[Index]).Entry.Folder;
+  s2:=TStringList.Create;
 
-  mItems.OpenQuery('SELECT * FROM meta');
-  RecCo:=mItems.ReturnRecordsCount;
+  AllSongs.OpenQuery('SELECT * FROM meta');
+  RecCo:=AllSongs.ReturnRecordsCount;
   if RecCo>0 then for i:=RecCo-1 downto 0 do
     begin
-      mItems.GoToNext;
-      p:=mItems.ReadEntry;
-      if Pos(s, p.FileName)>-1 then
-       mItems.Remove(p.FileName);
+      AllSongs.GoToNext;
+      p:=AllSongs.ReadEntry;
+      s2.Add(p.FileName);
     end;
 
-  mItems.CloseQuery;
+  AllSongs.CloseQuery;
 
+  for i:=0 to s2.Count-1 do;
+    if Pos(s, s2.Strings[i])>-1 then
+      AllSongs.Remove(s2.Strings[i]);
+
+  s2.Free;
   TMediaFolderItem(Items[Index]).Free;
 
   Delete(Index);

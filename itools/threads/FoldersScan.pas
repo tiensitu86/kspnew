@@ -54,6 +54,7 @@ begin
   ToDate:=(Entry.ScannedEver) and (not ForceRescan);
 
   STEmp:=TStringList.Create;
+  hLog.Send('MEDIA LIBRARY: Scanning folder '+Entry.Folder);
   if ToDate then
   SearchForFiles(Entry.Folder, true, STemp, Entry.LastScanned) else
   SearchForFilesFS(Entry.Folder, true, STemp);

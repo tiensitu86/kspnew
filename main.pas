@@ -160,6 +160,7 @@ type  TWebView = class(TObject)
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
     procedure DeleteBookmarkClick(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
@@ -263,6 +264,7 @@ type  TWebView = class(TObject)
     procedure DatabaseSetupDialog;
     procedure SetupWebBrowserIC;
     procedure RefreshBookmarks;
+    procedure RefreshMediaFolders;
     procedure CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
   protected
     procedure WndProc(var m: TLMessage); override;
@@ -669,7 +671,6 @@ var
   begin
     TCreateObjectsThread.Create(false);
     TSetVarsThread.Create(false);
-    TLoadOptionsThread.Create(false);
 
     SetVars;
   end;
@@ -787,9 +788,7 @@ begin
   SetupDatabase;   SetSplashProg(50);
   ScanFolders(false);
 
-  if MediaFoldersList.Count>0 then
-    for i := 0 to MediaFoldersList.Count - 1 do
-      MFolders.Items.Add(MediaFoldersList.GetItem(i).Folder);
+  RefreshMediaFolders;
 
   PlsName:=KSPDataFolder+'data/pls.kpl';
 
@@ -809,8 +808,14 @@ begin
 end;
 
 procedure TKSPMainWindow.Button1Click(Sender: TObject);
+var
+  i: integer;
 begin
-  Log.SaveToFile(KSPDataFolder+'sqllog.txt');
+  i:=MFolders.ItemIndex;
+  if (i<0) or (i>=MFolders.Count) then Exit;
+
+  MediaFoldersList.Remove(i);
+  RefreshMediaFolders;
 end;
 
 procedure TKSPMainWindow.Button2Click(Sender: TObject);
@@ -864,6 +869,11 @@ end;
 procedure TKSPMainWindow.Button7Click(Sender: TObject);
 begin
   Self.ShowAlert(SSampleAlertCaption, SSampleAlert, true);
+end;
+
+procedure TKSPMainWindow.Button8Click(Sender: TObject);
+begin
+
 end;
 
 procedure TKSPMainWindow.DeleteBookmarkClick(Sender: TObject);
@@ -2617,6 +2627,17 @@ begin
   //AllSongs.CloseQuery;
   CopyMenu(BookmarksMenu, Bookmarks1);
   CopyMenu(BookmarksMenu, MenuItem17);
+end;
+
+procedure TKSPMainwindow.RefreshMediaFolders;
+var
+  i: integer;
+begin
+  MFolders.Clear;
+
+  if MediaFoldersList.Count>0 then
+    for i := 0 to MediaFoldersList.Count - 1 do
+      MFolders.Items.Add(MediaFoldersList.GetItem(i).Folder);
 end;
 
 procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);

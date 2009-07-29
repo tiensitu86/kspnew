@@ -7,13 +7,6 @@ uses
   BookmarksU;
 
 type
-  TLoadOptionsThread = class(TThread)
-  private
-    { Private declarations }
-  protected
-    procedure Execute; override;
-  end;
-
   TCreateObjectsThread = class(TThread)
   private
     { Private declarations }
@@ -32,50 +25,6 @@ implementation
 
 uses Main, IniFiles, Dynamic_BASS, KSPConstsVars, BASSPlayer,
   Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog;
-
-{ Important: Methods and properties of objects in visual components can only be
-  used in a method called using Synchronize, for example,
-
-      Synchronize(UpdateCaption);
-
-  and UpdateCaption could look like,
-
-    procedure TLoadOptionsThread.UpdateCaption;
-    begin
-      Form1.Caption := 'Updated in a thread';
-    end; }
-
-{ TLoadOptionsThread }
-
-procedure TLoadOptionsThread.Execute;
-var
-  I: TIniFile;
-  version:string;
-  s2: TStringList;
-begin
-{  try
-    s2:=TStringList.Create;
-
-    KSPFiles.DownloadURL(InfoNewVersion, s2);
-    s2.SaveToFile(KSPDataFolder+'data\info');
-    s2.Free;
-
-    if FileExists(KSPDataFolder+'data\info') then begin
-      I:=TIniFile.Create(KSPDataFolder+'data\info');
-      version:=I.ReadString('Version','Number','0');
-
-      KSPDownloadURL:=I.ReadString('URLS','Download','');
-      if (KSPDownloadURL<>'')and CheckIfNewVersion then begin
-        TheNewestKSP:=Version;
-        PostMessage(KSPMainWindow.Handle, WM_NEWVERSIONTHREADDONE, 0, 0);
-      end else TheNewestKSP:='';
-      I.Free;
-    end;
-
-  finally
-
-  end;   }
-end;
 
 procedure TCreateObjectsThread.Execute;
 begin

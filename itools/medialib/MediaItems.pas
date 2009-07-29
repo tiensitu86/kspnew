@@ -431,10 +431,10 @@ begin
   stemp.SaveToFile(KSPdataFolder+'new_files.txt');
   if stemp.Count>0 then
     KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
-  while stemp.Count> 0 do begin
+  for i:=0 to stemp.Count-1 do begin
 
    hLog.Send('X:='+IntToStr(x)+'; Count:='+IntToStr(stemp.Count));
-        id3tag.Tag:=ReadID32(stemp.Strings[0], tag, x);
+        id3tag.Tag:=ReadID32(stemp.Strings[i], tag, x);
           id3tag.PlayCount:=0;
           id3tag.PlayedEver:=false;
           id3tag.Fav:=0;
@@ -451,12 +451,12 @@ begin
               id3tag.Tag.GID:=0;
               id3tag.Tag.Track:=0;
             end;
-            id3Tag.FileName:=stemp.Strings[0];
+            id3Tag.FileName:=stemp.Strings[i];
             //if (id3tag.Tag.Track>127)or(id3tag.Tag.Track<0) then id3tag.Tag.Track:=0;
             //if (id3tag.Tag.GID>65000)or(id3tag.Tag.GID<0) then id3tag.Tag.GID:=0;
-
+        hLog.Send('MEDIA LIBRARY: Adding item ', id3tag.FileName);
         mItems.Add(id3tag, false);
-        stemp.Delete(0);
+//        stemp.Delete(0);
     //while Thr.Preparing do
     //  Sleep(100);
 //    KSPMainWindow.MediaLibProgress.ShowProgressText:=true;

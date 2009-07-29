@@ -229,7 +229,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 686
       Align = alClient
-      PageIndex = 1
+      PageIndex = 2
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -840,22 +840,22 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 396
-            ClientWidth = 674
+            ClientHeight = 422
+            ClientWidth = 680
             object Panel7: TPanel
-              Height = 333
+              Height = 359
               Top = 43
-              Width = 674
+              Width = 680
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
             end
             object Panel6: TPanel
               Height = 43
-              Width = 674
+              Width = 680
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 674
+              ClientWidth = 680
               TabOrder = 1
               object SpeedButton1: TSpeedButton
                 Left = 339
@@ -1770,8 +1770,8 @@ object KSPMainWindow: TKSPMainWindow
             end
             object IMProgress: TProgressBar
               Height = 20
-              Top = 376
-              Width = 674
+              Top = 402
+              Width = 680
               Align = alBottom
               Smooth = True
               TabOrder = 2
@@ -1817,55 +1817,55 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
-            ClientWidth = 437
-            ClientHeight = 422
+            ClientWidth = 431
+            ClientHeight = 416
             object MFolders: TListBox
-              Height = 422
+              Height = 416
               Width = 208
               Align = alLeft
               TabOrder = 0
             end
             object Button5: TButton
-              Left = 219
+              Left = 220
               Height = 25
               Top = 1
-              Width = 104
+              Width = 120
               Caption = 'Force Rescan'
               OnClick = Button5Click
               TabOrder = 1
             end
             object Button1: TButton
-              Left = 219
+              Left = 220
               Height = 25
               Top = 113
-              Width = 99
+              Width = 120
               Caption = 'Delete'
               OnClick = Button1Click
               TabOrder = 2
             end
             object Button2: TButton
-              Left = 219
+              Left = 220
               Height = 25
               Top = 145
-              Width = 75
+              Width = 120
               Caption = 'Save'
               OnClick = Button2Click
               TabOrder = 3
             end
             object Button3: TButton
-              Left = 219
+              Left = 220
               Height = 25
               Top = 84
-              Width = 102
+              Width = 120
               Caption = 'Add'
               OnClick = Button3Click
               TabOrder = 4
             end
             object Button6: TButton
-              Left = 217
+              Left = 220
               Height = 25
               Top = 33
-              Width = 104
+              Width = 120
               Caption = 'Setup Database'
               OnClick = Button6Click
               TabOrder = 5

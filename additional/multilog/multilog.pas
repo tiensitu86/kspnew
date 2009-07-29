@@ -1054,7 +1054,7 @@ end;
 procedure TLogger.AppException(Sender: TObject; E: Exception);
 begin
   //hLog.Add('!!!EXCEPTION HANDLED: '+E.Message);
-  Self.SendException('EXCEPTION:', E);
+  Self.SendException('EXCEPTION:'+E.Message, E);
 end;
 
 { TChannelList }

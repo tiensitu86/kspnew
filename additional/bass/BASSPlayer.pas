@@ -309,9 +309,6 @@ type
                             var SupportedBy : TSupportedBy;
                             var PluginNum : integer;
                             var PluginName : string) : boolean;
-    procedure SetVersionStr(Value : string);
-    procedure SetDLLVersionStr(Value : string);
-    procedure SetDX8EffectReady(Value : boolean);
     procedure SetVolume(Value : DWORD);
     procedure SetEchoLevel(Value : word);
     procedure SetReverbLevel(Value : word);
@@ -694,17 +691,17 @@ type
 
   published
     { Published declarations }
-    property Version : string read FVersionStr write SetVersionStr;
+    property Version : string read FVersionStr;
       //  Indicates the version of TBASSPlayer in string.
       //  note) Altering Version, which causes to perform SetVersionStr, takes no effects.
       //        SetVersionStr is needed only to show FVersionStr at form design.
 
-    property BASSDLLVer : string read FDLLVersionStr write SetDLLVersionStr;
+    property BASSDLLVer : string read FDLLVersionStr;
       //  Indicates the version of BASS.DLL in string.
       //  note) Altering BASSDLLVer, which causes to perform SetDLLVersionStr, takes no effects.
       //        SetDLLVersionStr is needed only to show FDLLVersionStr at form design.
 
-    property DX8EffectReady : boolean read FDX8EffectReady write SetDX8EffectReady;
+    property DX8EffectReady : boolean read FDX8EffectReady;
       //  Indicates whether TBASSPlayer is ready to use sound effects which are supported
       //  by Direct-X.
       //  It is set True if the DirectX version 8 or higher is properly installed in your system.
@@ -1279,21 +1276,6 @@ begin
 end;
 
 
-procedure TBASSPlayer.SetVersionStr(Value : string);
-begin
-   // nothing to do : only to show FVersionStr at form design
-end;
-
-procedure TBASSPlayer.SetDLLVersionStr(Value : string);
-begin
-   // nothing to do : only to show FDLLVersionStr at form design
-end;
-
-procedure TBASSPlayer.SetDX8EffectReady(Value : boolean);
-begin
-   // nothing to do : only to show FDX8EffectReady at form design
-end;
-
 procedure TBASSPlayer.SetVolume(Value : DWORD);
 var
    tmpValue : DWORD;
@@ -1647,8 +1629,6 @@ end;
 
 procedure TBASSPlayer.SetPlayerMode(Mode : TPlayerMode);
 var
-   p1 : PDWORD;
-   ModeId : DWORD;
    OldMode : TPlayerMode;
 begin
    OldMode := FPlayerMode;
@@ -2086,11 +2066,6 @@ var
    tmpChannel : DWORD;
    ChannelInfo : BASS_CHANNELINFO;
    ByteLen : int64;
-
-   {$IFDEF DELPHI_2007_BELOW}
-   _file : array[0..255] of ansichar;
-   {$ENDIF}
-
 begin
    result := false;
 
