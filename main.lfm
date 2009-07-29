@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 395
+  Left = 380
   Height = 632
-  Top = 209
+  Top = 206
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610
@@ -848,7 +848,6 @@ object KSPMainWindow: TKSPMainWindow
               Width = 674
               Align = alClient
               TabOrder = 0
-              OnClick = Panel7Click
               OnResize = Panel7Resize
             end
             object Panel6: TPanel

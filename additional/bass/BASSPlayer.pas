@@ -1960,7 +1960,7 @@ var
    i : integer;
    tmpChannel : DWORD;
    ByteLen : int64;
-   s, ExtCode : string;
+   ExtCode : string;
    {$IFDEF DELPHI_2007_BELOW}
    _file : array[0..255] of ansichar;
    {$ENDIF}
@@ -2090,8 +2090,6 @@ var
    {$IFDEF DELPHI_2007_BELOW}
    _file : array[0..255] of ansichar;
    {$ENDIF}
-   _title : array[0..255] of ansichar;
-   _length_in_ms : integer;
 
 begin
    result := false;
@@ -2499,27 +2497,12 @@ end;
 
 procedure TBASSPlayer.ProcMessage(var Msg: TLMessage);
 var
-   PChannelInfo : ^TChannelInfo;
    PTitle : PAnsiChar;
    ExtCode : string;
    TagP : pAnsiChar;
    TagVer : word;
    MP3Tag : MP3TagRec;
    PlaybackSec : float;
-   tmpChannels : Word;
- //  PBandOut : ^WORD;
- //  i : integer;
-
-   _title : array[0..255] of ansichar;
-   _length_in_ms : integer;
-
-   FileP : pChar;
-
- //  pRect : TRect;
-
- //  ElapsedByte : int64;
- //  ElapsedTime : double;
-
 begin
    if Msg.Msg = DataReadyMsg then
    begin
@@ -2643,10 +2626,6 @@ begin
     //  WM_BASS_StreamFree   : PlayChannel := 0;        // Message from output plug-in emulator
 
     //  WM_GetChannelData : omodWrite2;                // message requesting sample data for BASS playing channel
-      WM_GetToEnd      : begin                       // BASS reached the end of stream
-                          //  WaitCycle := 0;
-                           SetPlayEnd;
-                         end;
       WM_ChannelUnavailable : begin   // Message from PlayThread (DecodeChannel is not available)
                             ShowErrorMsgBox('Decoding Channel is unavailable by any reasons.'
                                               + chr(10) + 'Opened stream is beging closed.');
@@ -3327,7 +3306,6 @@ procedure TBASSPlayer.Play;
 var
    StartOK : boolean;
    i : integer;
-   tmpChannels : Word;
 
   function WaitBuffering(Channel : DWORD) : boolean;   // * Added at Ver 2.00
   var
@@ -3404,11 +3382,6 @@ begin
       if PlayChannel <> 0 then
          BASS_StreamFree(PlayChannel);
       ClearEffectHandle;
-
-      if FMixerPlugged then
-         tmpChannels := 2
-      else
-         tmpChannels := FStreamInfo.Channels;
 
       PlayChannel := DecodeChannel;
 
@@ -3619,7 +3592,6 @@ end;
 
 function TBASSPlayer.BASSAddonLoad(FilePath : string) : TFileDesc;
 var
-   i : integer;
    FoundPreloaded : boolean;
    FileName : string;
    AddonHandle : HPLUGIN;

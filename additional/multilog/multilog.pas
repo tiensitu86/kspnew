@@ -91,7 +91,7 @@ type
   private
     FActive: Boolean;
   public
-    procedure Clear; virtual; abstract;
+    //procedure Clear; virtual; abstract;
     procedure Deliver(const AMsg: TLogMessage);virtual;abstract;
     procedure Init; virtual;
     property Active: Boolean read FActive write FActive;
@@ -138,7 +138,6 @@ type
     constructor Create;
     destructor Destroy; override;
     function CalledBy(const AMethodName: String): Boolean;
-    procedure Clear;
     //Helper functions
     function RectToStr(const ARect: TRect): String; //inline
     function PointToStr(const APoint: TPoint): String; //inline
@@ -410,15 +409,6 @@ end;
 function TLogger.CalledBy(const AMethodName: String): Boolean;
 begin
   Result:=FLogStack.IndexOf(UpperCase(AMethodName)) <> -1;
-end;
-
-procedure TLogger.Clear;
-var
-  i: Integer;
-begin
-  for i:= 0 to Channels.Count - 1 do
-    if Channels[i].Active then
-      Channels[i].Clear;
 end;
 
 function TLogger.RectToStr(const ARect: TRect): String;

@@ -170,7 +170,6 @@ type  TWebView = class(TObject)
     procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
-    procedure Panel7Click(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure RenameBookmarkClick(Sender: TObject);
@@ -297,7 +296,7 @@ type  TWebView = class(TObject)
     procedure ICLinkClicked(Value: QUrlH); cdecl;
     procedure IMProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
-    procedure ShowAlert(NotTitle, NotText: widestring; Preview: boolean = false);
+    procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
   end; 
 
 var
@@ -326,13 +325,14 @@ begin
   Result:=TQtWidget(C.Handle).Widget;
 end;
 
-function ShowNotification(NotTitle, NotText: widestring; OSDPosition: integer): QWidgetH;
+function ShowNotification(NotTitle, NotText: UTF8String; OSDPosition: integer): QWidgetH;
 var
   tLabel, tLabel2: QLabelH;
   HBox : QHBoxLayoutH;
   VBox : QVBoxLayoutH;
   lFont: QFontH;
   Style: widestring;
+  NotTitle2, NotText2: widestring;
   clb: QPushButtonH;
   m: TMethod;
   clb_h: QPushButton_hookH;
@@ -347,10 +347,12 @@ begin
   Style:='background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 127, 255), stop:1 rgba(255, 255, 255, 255));';
   QWidget_setStyleSheet(Result, @Style);
 
+  NotTitle2:=UTF8Decode(NotTitle);
+  NotText2:=UTF8Decode(NotText);
 
-  QWidget_setWindowTitle(Result, @NotTitle);
+  QWidget_setWindowTitle(Result, @NotTitle2);
   tLabel:=QLabel_create();
-  QLabel_setText(tLabel, @NotTitle);
+  QLabel_setText(tLabel, @NotTitle2);
 
   QWidget_setGeometry(tLabel, 10, 0, 74, 19);
 
@@ -361,7 +363,7 @@ begin
   QWidget_setFont(tLabel, lFont);
 
   tLabel2:=QLabel_create();
-  QLabel_setText(tLabel2, @NotText);
+  QLabel_setText(tLabel2, @NotText2);
   QWidget_setGeometry(tLabel2, 10, 20, 46, 14);
 
   clb:=QPushButton_create();
@@ -965,10 +967,6 @@ begin
   OSDPosition:=OSDPosBox.ItemIndex;
 end;
 
-procedure TKSPMainWindow.Panel7Click(Sender: TObject);
-begin
-
-end;
 
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
@@ -2661,7 +2659,7 @@ begin
 end;
 
 
-procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: widestring; Preview: boolean = false);
+procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
 begin
   if not NotificationVisible(Self.KSPNotification) then begin
     Self.KSPNotification:=ShowNotification(NotTitle, NotText, Self.OSDPosition);

@@ -14,7 +14,7 @@ interface
 
 {$DEFINE VER185}
 
-uses Windows, classes, SysUtils, UniCodeUtils;
+uses Windows, classes, SysUtils;
 
 {$INCLUDE Delphi_Ver.inc}
 
@@ -69,8 +69,6 @@ var
   Win32PlatformIsUnicode: Boolean;
 
 implementation
-
-uses {$IFDEF DELPHI_6_BELOW}consts {$ELSE}RTLConsts {$ENDIF};
 
 {$IFDEF DELPHI_6_BELOW}
 const
