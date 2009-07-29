@@ -31,31 +31,39 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    BListBox: TListBox;
+    BookmarksSetupPage: TPage;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
     ClearPlaylistAction: TAction;
+    DefaultSetupPage: TPage;
+    DeleteBookmark: TButton;
     DeleteSelectedAction: TAction;
     Action3: TAction;
     Action4: TAction;
     Action5: TAction;
+    MediaLibSetupPage: TPage;
     MenuItem19: TMenuItem;
     MenuItem20: TMenuItem;
     MenuItem21: TMenuItem;
+    MFolders: TListBox;
+    NotChecked: TCheckBox;
+    NotSetupPage: TPage;
+    OSDPosBox: TComboBox;
+    Page3: TPage;
     OpenFileAction: TAction;
     ActionList1: TActionList;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
     Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button7: TButton;
-    Button8: TButton;
     IMAddress: TEdit;
     History: TPanel;
     Image1: TImage;
     Image2: TImage;
     MenuImages: TImageList;
     ImageList2: TImageList;
-    ListBox1: TListBox;
     MainMenu1: TMainMenu;
     MenuItem15: TMenuItem;
     BookmarksMenu: TMenuItem;
@@ -67,14 +75,17 @@ type  TWebView = class(TObject)
     MenuItem18: TMenuItem;
     Panel6: TPanel;
     IMProgress: TProgressBar;
+    RenameBookmark: TButton;
     Savewholeplaylistasbookmark1: TMenuItem;
     N2: TMenuItem;
     Panel7: TPanel;
+    SetupBook: TNotebook;
+    SetupTreeView: TTreeView;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
-    TabSheet6: TTabSheet;
+    Splitter4: TSplitter;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -92,7 +103,6 @@ type  TWebView = class(TObject)
     MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
-    MFolders: TListBox;
     MIView: TCheckListBox;
     Notebook1: TNotebook;
     Page1: TPage;
@@ -120,7 +130,6 @@ type  TWebView = class(TObject)
     Splitter2: TSplitter;
     Splitter3: TSplitter;
     TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
@@ -151,16 +160,20 @@ type  TWebView = class(TObject)
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure DeleteBookmarkClick(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure Image1Click(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
+    procedure OSDPosBoxChange(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
+    procedure RenameBookmarkClick(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure AudioOut1Done(Sender: TObject);
@@ -207,6 +220,7 @@ type  TWebView = class(TObject)
     procedure ToolButton4Click(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
     procedure BookmarkClick(Sender: TObject);
+    procedure SetupTreeViewClick(Sender: TObject);
   private
     { private declarations }
     CurrentFile: string;
@@ -269,7 +283,8 @@ type  TWebView = class(TObject)
     WebView: TWebView;
     MainWebView: TWebView;
     HistoryWebView: TWebView;
-    ShowAlertOnNewSongPlayed: boolean;
+    ShowOSD: boolean;
+    OSDPosition: integer;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
@@ -278,10 +293,11 @@ type  TWebView = class(TObject)
     procedure PlayListTotalTime;
     function GetFormatedPlayListInfo: string;
     procedure DoThingOnMediaLib(Par, Chi: Integer);
+    procedure DoSetupThing(Par: integer; Sel: integer = -1);
     procedure ICLinkClicked(Value: QUrlH); cdecl;
     procedure IMProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
-    procedure ShowAlert(NotTitle, NotText: widestring);
+    procedure ShowAlert(NotTitle, NotText: widestring; Preview: boolean = false);
   end; 
 
 var
@@ -310,7 +326,7 @@ begin
   Result:=TQtWidget(C.Handle).Widget;
 end;
 
-function ShowNotification(NotTitle, NotText: widestring): QWidgetH;
+function ShowNotification(NotTitle, NotText: widestring; OSDPosition: integer): QWidgetH;
 var
   tLabel, tLabel2: QLabelH;
   HBox : QHBoxLayoutH;
@@ -320,6 +336,7 @@ var
   clb: QPushButtonH;
   m: TMethod;
   clb_h: QPushButton_hookH;
+  x, y, w, h: integer;
 begin
 //  Form1:=Tform1.Create(nil);
   Result:=QWidget_create(nil, QtToolTip);
@@ -372,7 +389,17 @@ begin
 
   QWidget_AdjustSize(Result);
 
-  QWidget_move(Result, 0, 0);
+  w:=QWidget_width(Result);
+  h:=QWidget_height(Result);
+
+  case OSDPosition of
+    0: begin x:=10; y:=10; end;
+    1: begin x:=Screen.DesktopWidth-w-10; y:=0 end;
+    2: begin x:=10; y:=Screen.DesktopHeight-h-10; end;
+    3: begin x:=Screen.DesktopWidth-w-10; y:=Screen.DesktopHeight-h-10; end;
+  end;
+
+  QWidget_move(Result, x, y);
 end;
 
 function NotificationVisible(Notification: QWidgetH): boolean;
@@ -627,6 +654,7 @@ var
     Notebook1.ActivePage:='Page1';
     LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
+    SetupBook.ActivePage:='DefaultSetupPage';
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;
@@ -715,11 +743,7 @@ begin
   LoadOptions;
 
   if Self.ShowSplash then SplashForm.Show;
-  //PODirectory := '/path/to/lazarus/lcl/languages/';
-  //GetLanguageIDs(Lang, FallbackLang); // in unit gettext
-  //TranslateUnitResourceStrings('LCLStrConsts', PODirectory + 'lclstrconsts.%s.po', Lang, FallbackLang);
 
-//  Player:=TBassPlayer.Create(Self);
   Player.OnPlayEnd:=@AudioOut1Done;
 
   CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
@@ -835,15 +859,23 @@ begin
 end;
 
 procedure TKSPMainWindow.Button7Click(Sender: TObject);
-var
-  s: TStringList;
 begin
-  s:=TStringList.Create;
-  DownloadURL(NetworkStreams, s);
+  Self.ShowAlert(SSampleAlertCaption, SSampleAlert, true);
+end;
 
-  s.SaveToFile(KSPDataFolder+'icecast.xml');
+procedure TKSPMainWindow.DeleteBookmarkClick(Sender: TObject);
+var
+  i:integer;
+begin
+  i:=BListBox.ItemIndex;
 
-  s.Free;
+  if (i>BookmarksList.Count) or (i<0) then Exit;
+
+  if MessageDlg(SBookmarkDeleteCaption, Format(SBookmarkDelete, [BookmarksList.GetItem(i).Name]), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    BookmarksList.RemoveEntry(BListBox.ItemIndex);
+    RefreshBookmarks;
+  end;
 end;
 
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
@@ -916,10 +948,20 @@ begin
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
 end;
 
+procedure TKSPMainWindow.NotCheckedChange(Sender: TObject);
+begin
+  ShowOSD:=NotChecked.Checked;
+end;
+
 procedure TKSPMainWindow.NotificationTimerTimer(Sender: TObject);
 begin
   CloseNotification(Self.KSPNotification);
   NotificationTimer.Enabled:=false;
+end;
+
+procedure TKSPMainWindow.OSDPosBoxChange(Sender: TObject);
+begin
+  OSDPosition:=OSDPosBox.ItemIndex;
 end;
 
 procedure TKSPMainWindow.Panel7Click(Sender: TObject);
@@ -946,6 +988,22 @@ begin
 
   StrPCopy(Pc, s);
   MenuItem15.Enabled:=not IsStream(pc);
+end;
+
+procedure TKSPMainWindow.RenameBookmarkClick(Sender: TObject);
+var
+  i:integer;
+  p: TBookmarkItem;
+begin
+  i:=BListBox.ItemIndex;
+
+  if (i>BookmarksList.Count) or (i<0) then Exit;
+  p:=BookmarksList.GetItem(i);
+
+  p.Name:=InputBox(SInputBookmarkCaption, SInputBookmarkPrompt, p.Name);
+  BookmarksList.ReplaceEntry(p, i);
+
+  RefreshBookmarks;
 end;
 
 procedure TKSPMainWindow.RepeatButtonClick(Sender: TObject);
@@ -1023,7 +1081,7 @@ begin
   //lbPlayList.Items.Item[CurrentIndex].ImageIndex:=-1;
 
   s:=lbPlaylist.Items.Strings[CurrentIndex];
-//  Delete(s, 1, Length(SPlaying)+1);
+//  DeleteBookmark(s, 1, Length(SPlaying)+1);
   PlayedPrevious:=false;
   lbPlaylist.Items.Strings[CurrentIndex]:=s;
 
@@ -1096,7 +1154,7 @@ begin
       //PlayerBase.RenderFile(CurrentFile);
       FStopped := False;
 
-      if ShowAlertOnNewSongPlayed then begin
+      if ShowOSD then begin
         if IsStream(Pc) then
           ShowAlert(SPlayingNewFile, lFileName.Caption)
         else
@@ -1182,7 +1240,7 @@ begin  //btPlay.Enabled := True;
   Ind:=CurrentIndex;//FindSong(CurrentFile, AllSongs);
 
 //  s:=PlsForm.lbPlaylist.Items.Strings[CurrentIndex];
-//  Delete(s, 1, Length(SPlaying)+1);
+//  DeleteBookmark(s, 1, Length(SPlaying)+1);
 //  PlsForm.lbPlaylist.Items.Strings[CurrentIndex]:=s;
 
   //lbPlayList.Items.Item[CurrentIndex].ImageIndex:=-1;
@@ -1231,7 +1289,7 @@ begin  //btPlay.Enabled := True;
           CurrentIndex:=-1;
           lbPlayList.Refresh;
 
-          if ShowAlertOnNewSongPlayed then
+          if ShowOSD then
             ShowAlert(SLastSongPlayed, SLastSongPlayed2);
 
           Exit;
@@ -1284,7 +1342,7 @@ song. It works as if RepeatType=rtOne}
           CurrentIndex:=-1;
           lbPlayList.Refresh;
 
-          if ShowAlertOnNewSongPlayed then
+          if ShowOSD then
             ShowAlert(SLastSongPlayed, SLastSongPlayed2);
 
           Exit;
@@ -1345,6 +1403,7 @@ begin
   case Section.Index of
     0: Notebook1.ActivePage:='Page1';
     1: Notebook1.ActivePage:='Page2';
+    2: Notebook1.ActivePage:='Page3';
   end;
 end;
 
@@ -1357,7 +1416,7 @@ begin
   if (CurrentIndex>-1) and PlayedPrevious then begin
       ResetDisplay;
       s:=lbPlaylist.Items.Strings[CurrentIndex];
-//      Delete(s, 1, Length(SPlaying)+1);
+//      DeleteBookmark(s, 1, Length(SPlaying)+1);
       lbPlaylist.Items.Strings[CurrentIndex]:=s;
     end;
   CurrentIndex:=-1;
@@ -1760,7 +1819,7 @@ var
   s: string;
 begin
   s:=lbPlaylist.Items.Strings[CurrentIndex];
-//  Delete(s, 1, Length(SPlaying)+1);
+//  DeleteBookmark(s, 1, Length(SPlaying)+1);
   lbPlaylist.Items.Strings[CurrentIndex]:=s;
 
   if CurrentIndex >= 1 then
@@ -1775,7 +1834,7 @@ var
   s: string;
 begin
   s:=lbPlaylist.Items.Strings[CurrentIndex];
-//  Delete(s, 1, Length(SPlaying)+1);
+//  DeleteBookmark(s, 1, Length(SPlaying)+1);
   lbPlaylist.Items.Strings[CurrentIndex]:=s;
 
   if lbPlaylist.Items.Count-1 > CurrentIndex then
@@ -2067,6 +2126,35 @@ begin
 
 end;
 
+procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
+
+  procedure SetupKSP;
+  begin
+    case Sel of
+      0: SetupBook.ActivePage:='BookmarksSetupPage';
+      2: SetupBook.ActivePage:='NotSetupPage';
+    end;
+  end;
+
+  procedure SetupMedia;
+  begin
+    SetupBook.ActivePage:='MediaLibSetupPage'
+  end;
+
+begin
+  if Sel=-1 then begin
+      case Par of
+        0: SetupBook.ActivePage:='DefaultSetupPage';
+        1: SetupBook.ActivePage:='MediaLibSetupPage';
+      end
+    end else begin
+      case Par of
+        0: SetupKSP;
+        1: SetupMedia;
+      end;
+  end;
+end;
+
 procedure TKSPMainWindow.AssignMedia;
 var
   i: integer;
@@ -2133,7 +2221,10 @@ var
       1: KSPMainWindow.TimeFormat:=tfElapsed;
     end;
 
-    ShowAlertOnNewSongPlayed:=XMLFile.ReadBool('Alerts', 'OnNewSongPlayed', true);
+    ShowOSD:=XMLFile.ReadBool('Alerts', 'OSD', true);
+    OSDPosition:=XMLFile.ReadInteger('Alerts', 'OSDPosition', 0);
+    NotChecked.Checked:=ShowOSD;
+    OSDPosBox.ItemIndex:=OSDPosition;
 
     Application.ProcessMessages;
 {     }
@@ -2283,7 +2374,8 @@ var
     XMLFile.WriteString('KSP', 'Version', KSPVersion2);
 
     XMLFile.EraseSection('Alerts');
-    XMLFile.WriteBool('Alerts', 'OnNewSongPlayed', Self.ShowAlertOnNewSongPlayed);
+    XMLFile.WriteBool('Alerts', 'OSD', Self.ShowOSD);
+    XMLFile.WriteInteger('Alerts', 'OSDPosition', OSDPosition);
   end;
 
 {  procedure SaveDocked;
@@ -2509,6 +2601,7 @@ begin
     end;
 
 //    Frame11.BookmarksList.Clear;
+  BListBox.Clear;
 
     for i := 0 to BookMarksList.Count - 1 do
       begin
@@ -2518,6 +2611,7 @@ begin
         t.OnClick:=@BookmarkClick;
         //AllSongs.QueryFindNext;
         BookmarksMenu.Add(t);
+        BListBox.Items.Add(t.Caption);
         //Frame11.BookmarksList.Items.Add(t.Caption);
       end;
 
@@ -2553,12 +2647,25 @@ begin
   Self.PerformFileOpen(BookmarksList.GetItem(TMenuItem(Sender).Tag).URL);
 end;
 
+procedure TKSPMainWindow.SetupTreeViewClick(Sender: TObject);
+var
+  Sel: integer;
+begin
+  if SetupTreeView.Selected=nil then Exit;
 
-procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: widestring);
+  Sel:=SetupTreeView.Selected.Index;
+  if SetupTreeView.Selected.Parent = nil then begin
+      DoSetupThing(Sel)
+    end else DoSetupThing(SetupTreeView.Selected.Parent.Index, Sel);
+end;
+
+
+procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: widestring; Preview: boolean = false);
 begin
   if not NotificationVisible(Self.KSPNotification) then begin
-    Self.KSPNotification:=ShowNotification(NotTitle, NotText);
-    NotificationTimer.Enabled:=true;
+    Self.KSPNotification:=ShowNotification(NotTitle, NotText, Self.OSDPosition);
+    if not Preview then
+      NotificationTimer.Enabled:=true;
   end;
 end;
 

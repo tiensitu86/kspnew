@@ -31,7 +31,7 @@ type
 
   TFileChannel = class (TLogChannel)
   private
-    FFileHandle: Text;
+//    FFileHandle: Text;
     FCritical: TRTLCriticalSection;
     FFileName: String;
     FRelativeIdent: Integer;
@@ -43,12 +43,9 @@ type
     FQueueStr: string;
     procedure SetShowTime(const AValue: Boolean);
     procedure UpdateIdentation;
-    procedure WriteStrings(AStream: TStream);
-    procedure WriteComponent(AStream: TStream);
   public
     constructor Create (const AFileName: String);
     destructor Destroy; override;
-    procedure Clear; override;
     procedure Deliver(const AMsg: TLogMessage);override;
     procedure Init; override;
     property ShowHeader: Boolean read FShowHeader write FShowHeader;
@@ -97,36 +94,6 @@ begin
   UpdateIdentation;
 end;
 
-procedure TFileChannel.WriteStrings(AStream: TStream);
-var
-  i: Integer;
-begin
-  if AStream.Size = 0 then Exit;
-  with TStringList.Create do
-  try
-    AStream.Position:=0;
-    LoadFromStream(AStream);
-    for i:= 0 to Count - 1 do
-      WriteLn(FFileHandle,Space(FRelativeIdent+FBaseIdent)+Strings[i]);
-  finally
-    Destroy;
-  end;
-end;
-
-procedure TFileChannel.WriteComponent(AStream: TStream);
-var
-  TextStream: TStringStream;
-  S:String;
-begin
-  s:='';
-  TextStream:=TStringStream.Create(S);
-  AStream.Seek(0,soFromBeginning);
-  ObjectBinaryToText(AStream,TextStream);
-  //todo: better handling of format
-  Write(FFileHandle,TextStream.DataString);
-  TextStream.Destroy;
-end;
-
 constructor TFileChannel.Create(const AFileName: String);
 begin
   FShowPrefix := True;
@@ -140,13 +107,7 @@ end;
 destructor TFileChannel.Destroy;
 begin
   //remove it?
-  Close(FFileHandle);
   DoneCriticalsection(FCritical);
-end;
-
-procedure TFileChannel.Clear;
-begin
-  Rewrite(FFileHandle);
 end;
 
 procedure TFileChannel.Deliver(const AMsg: TLogMessage);
@@ -204,14 +165,6 @@ end;
 procedure TFileChannel.Init;
 begin
   FQueueStr:='';
-  Assign(FFileHandle,FFileName);
-  if FileExists(FFileName) then
-    Append(FFileHandle)
-  else
-    Rewrite(FFileHandle);
-  if FShowHeader then
-    WriteLn(FFileHandle,'=== Log Session Started at ',DateTimeToStr(Now),' by ',ApplicationName,' ===');
-  //Close(FFileHandle);
   UpdateIdentation;
 end;
 

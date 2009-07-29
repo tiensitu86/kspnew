@@ -33,12 +33,12 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="9">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="45" Y="33"/>
-        <TopLine Value="11"/>
+        <CursorPos X="1" Y="5"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
@@ -63,8 +63,50 @@
         <TopLine Value="740"/>
         <UsageCount Value="10"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win\sysutils.pp"/>
+        <UnitName Value="sysutils"/>
+        <CursorPos X="14" Y="181"/>
+        <TopLine Value="161"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
+        <CursorPos X="14" Y="107"/>
+        <TopLine Value="87"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysstr.inc"/>
+        <CursorPos X="1" Y="729"/>
+        <TopLine Value="719"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <CursorPos X="12" Y="203"/>
+        <TopLine Value="186"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win32\system.pp"/>
+        <UnitName Value="System"/>
+        <CursorPos X="2" Y="46"/>
+        <TopLine Value="26"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit8>
     </Units>
-    <JumpHistory Count="11" HistoryIndex="10">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
         <Filename Value="ksp.lpr"/>
         <Caret Line="24" Column="37" TopLine="13"/>
@@ -109,6 +151,34 @@
         <Filename Value="ksp.lpr"/>
         <Caret Line="19" Column="12" TopLine="17"/>
       </Position11>
+      <Position12>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="18" Column="9" TopLine="1"/>
+      </Position12>
+      <Position13>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="46" Column="14" TopLine="20"/>
+      </Position13>
+      <Position14>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="15" Column="3" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="33" Column="33" TopLine="13"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win\sysutils.pp"/>
+        <Caret Line="14" Column="32" TopLine="1"/>
+      </Position16>
+      <Position17>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win\sysutils.pp"/>
+        <Caret Line="181" Column="14" TopLine="161"/>
+      </Position17>
+      <Position18>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <Caret Line="206" Column="26" TopLine="186"/>
+      </Position18>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

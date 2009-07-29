@@ -100,6 +100,10 @@ sRestartNeeded = 'This feature will be changed/enabled after restart';
 //SRenameFileFolder = 'Rename selected item to:';
 SInputBookmarkCaption = 'Bookmark name:';
 SInputBookmarkPrompt = 'Bookmark name:';
+SBookmarkDelete = 'Are you sure you want to remove bookmark %s?';
+SBookmarkDeleteCaption = 'Delete bookmark';
+SSampleAlert = 'Sample alert text';
+SSampleAlertCaption = 'Sample alert caption';
 
 implementation
 
