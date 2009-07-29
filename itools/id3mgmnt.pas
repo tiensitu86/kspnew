@@ -216,6 +216,17 @@ begin
 
 
   NumCDDriveList:=0;
+
+  id3tag.Album:='';
+  id3tag.Artist:='';
+  id3tag.Comment:='';
+  id3tag.Genre:='';
+  id3tag.GID:=0;
+  id3tag.Title:='';
+  id3tag.Track:=0;
+  id3tag.Year:='';
+
+
   tag:=GetStreamInfo2(FileName, StreamInfo2, Sup);
   id3tag.IsTag:=tag;
   

@@ -62,6 +62,7 @@ SToRightOutput = '%s%% to right speaker';
 SToCenterOutput = 'Set to center';
 //SRegisteredNewAccount = 'New account is registered, Your number is: %s\nYou may now login to your new account';
 SOnMinimizeToTrayAlert = 'You have minimized KSP to system tray, To restore it just right click on KSP icon. You can disable this alert in KSP options';
+SClose = 'Close';
 //SCloseThisAlert = 'This alert is only informational so there is no need to display it.\nDo you want to disable it?\nDisabled alert can be restored in KSP options';
 SMetaContent = 'ICECAST: Playing %s';
 SShoutcastAddressCaption = 'Add URL:';

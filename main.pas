@@ -31,7 +31,14 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    ClearPlaylistAction: TAction;
+    DeleteSelectedAction: TAction;
+    Action3: TAction;
+    Action4: TAction;
+    Action5: TAction;
     MenuItem19: TMenuItem;
+    MenuItem20: TMenuItem;
+    MenuItem21: TMenuItem;
     OpenFileAction: TAction;
     ActionList1: TActionList;
     Button1: TButton;
@@ -120,7 +127,6 @@ type  TWebView = class(TObject)
     TB: TTrackBar;
     ShuffleButton: TToggleBox;
     NotificationTimer: TTimer;
-    ToolButton2: TToolButton;
     TotalTimeLabel: TLabel;
     OpenDialog1: TOpenDialog;
     StatusBar1: TStatusBar;
@@ -274,6 +280,7 @@ type  TWebView = class(TObject)
     procedure DoThingOnMediaLib(Par, Chi: Integer);
     procedure ICLinkClicked(Value: QUrlH); cdecl;
     procedure IMProgressChange(progress: Integer); cdecl;
+    procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: widestring);
   end; 
 
@@ -305,26 +312,63 @@ end;
 
 function ShowNotification(NotTitle, NotText: widestring): QWidgetH;
 var
-  tLabel: QLabelH;
+  tLabel, tLabel2: QLabelH;
   HBox : QHBoxLayoutH;
   VBox : QVBoxLayoutH;
+  lFont: QFontH;
+  Style: widestring;
+  clb: QPushButtonH;
+  m: TMethod;
+  clb_h: QPushButton_hookH;
 begin
+//  Form1:=Tform1.Create(nil);
   Result:=QWidget_create(nil, QtToolTip);
   QFrame_create(Result);
 
   //
-  //QWidget_resize(Result, 100, 100);
+//  QWidget_resize(Result, 100, 100);
+  Style:='background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 127, 255), stop:1 rgba(255, 255, 255, 255));';
+  QWidget_setStyleSheet(Result, @Style);
 
   QWidget_setWindowTitle(Result, @NotTitle);
   tLabel:=QLabel_create();
-  QLabel_setText(tLabel, @NotText);
+  QLabel_setText(tLabel, @NotTitle);
+
+  QWidget_setGeometry(tLabel, 10, 0, 74, 19);
+
+  lFont:=QFont_create;
+  QFont_setPointSize(lFont, 11);
+  QFont_setWeight(lFont, 75);
+  QFont_setBold(lFont, true);
+  QWidget_setFont(tLabel, lFont);
+
+  tLabel2:=QLabel_create();
+  QLabel_setText(tLabel2, @NotText);
+  QWidget_setGeometry(tLabel2, 10, 20, 46, 14);
+
+  clb:=QPushButton_create();
+  Style:=SClose;
+  QAbstractButton_setText(clb, @Style);
+  QWidget_setGeometry(clb, 10, 40, 185, 41);
+  QAbstractButton_clicked2_Event(m):=@KSPMainWindow.btnCloseNotification;
+  clb_h:=QPushButton_hook_create(clb);
+  QAbstractButton_hook_hook_clicked2(clb_h, m);
 
   HBox:=QHBoxLayout_create();
-  QBoxLayout_addWidget(HBox,tLabel);
   VBox:=QVBoxLayout_create(Result);
-  QBoxLayout_addLayout(VBox,HBox);
+  QBoxLayout_addWidget(VBox,tLabel);
+  QBoxLayout_addWidget(VBox,tLabel2);
+  QBoxLayout_addWidget(VBox,clb);
+//  QBoxLayout_addWidget(HBox,clb);
+
+//  QBoxLayout_addLayout(VBox,HBox);
 
   QWidget_Show(Result);
+
+  QWidget_AdjustSize(tLabel);
+  QWidget_AdjustSize(tLabel2);
+//  QWidget_AdjustSize(HBox);
+//  QWidget_AdjustSize(VBox);
 
   QWidget_AdjustSize(Result);
 
@@ -2439,6 +2483,11 @@ begin
   IMProgress.Position:=Progress;
 end;
 
+procedure TKSPMainWindow.btnCloseNotification; cdecl;
+begin
+  Self.NotificationTimerTimer(Self.NotificationTimer);
+end;
+
 procedure TKSPMainWindow.RefreshBookmarks;
 var
   i: integer;
@@ -2491,6 +2540,7 @@ procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
         m.Caption:=Src.Items[i].Caption;
         m.OnClick:=Src.Items[i].OnClick;
         m.Action:=Src.Items[i].Action;
+        m.Tag:=Src.Items[i].Tag;
         if m.Action<>nil then
           m.Action.Update;
         CopyMenu(Src.Items[i], m);
