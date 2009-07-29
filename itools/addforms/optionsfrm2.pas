@@ -38,7 +38,7 @@ resourcestring
 
 implementation
 
-uses app_db_utils, IniFiles, KSPConstsVars;
+uses app_db_utils, IniFiles, KSPConstsVars, KSPStrings;
 
 { TKSPOptions }
 
@@ -92,6 +92,7 @@ var
   ConfFileName: string;
 begin
   ConfFileName:=KSPDataFolder+'db\ksp.kspdb';
+  Memo1.Lines.Text:=SDBMemo;
 
   if not FileExists(ConfFileName) then CheckBox1.Checked:=true else begin
 

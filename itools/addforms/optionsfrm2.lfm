@@ -1,7 +1,7 @@
 object KSPOptions: TKSPOptions
-  Left = 557
+  Left = 545
   Height = 246
-  Top = 478
+  Top = 394
   Width = 499
   Caption = 'Database Options:'
   ClientHeight = 246
@@ -17,9 +17,9 @@ object KSPOptions: TKSPOptions
     EditLabel.AnchorSideLeft.Control = ServerAddress
     EditLabel.AnchorSideBottom.Control = ServerAddress
     EditLabel.Left = 16
-    EditLabel.Height = 16
-    EditLabel.Top = 13
-    EditLabel.Width = 129
+    EditLabel.Height = 15
+    EditLabel.Top = 14
+    EditLabel.Width = 126
     EditLabel.Caption = 'Database server address:'
     EditLabel.ParentColor = False
     TabOrder = 0
@@ -32,10 +32,10 @@ object KSPOptions: TKSPOptions
     EditLabel.AnchorSideLeft.Control = ServerPort
     EditLabel.AnchorSideBottom.Control = ServerPort
     EditLabel.Left = 16
-    EditLabel.Height = 16
-    EditLabel.Top = 53
-    EditLabel.Width = 55
-    EditLabel.Caption = 'ServerPort'
+    EditLabel.Height = 15
+    EditLabel.Top = 54
+    EditLabel.Width = 60
+    EditLabel.Caption = 'Server port:'
     EditLabel.ParentColor = False
     TabOrder = 1
   end
@@ -47,10 +47,10 @@ object KSPOptions: TKSPOptions
     EditLabel.AnchorSideLeft.Control = DBUsername
     EditLabel.AnchorSideBottom.Control = DBUsername
     EditLabel.Left = 16
-    EditLabel.Height = 16
-    EditLabel.Top = 93
-    EditLabel.Width = 69
-    EditLabel.Caption = 'DBUsername'
+    EditLabel.Height = 15
+    EditLabel.Top = 94
+    EditLabel.Width = 53
+    EditLabel.Caption = 'Username:'
     EditLabel.ParentColor = False
     TabOrder = 2
   end
@@ -62,10 +62,10 @@ object KSPOptions: TKSPOptions
     EditLabel.AnchorSideLeft.Control = DBPassword
     EditLabel.AnchorSideBottom.Control = DBPassword
     EditLabel.Left = 16
-    EditLabel.Height = 16
-    EditLabel.Top = 133
-    EditLabel.Width = 66
-    EditLabel.Caption = 'DBPassword'
+    EditLabel.Height = 15
+    EditLabel.Top = 134
+    EditLabel.Width = 51
+    EditLabel.Caption = 'Password:'
     EditLabel.ParentColor = False
     TabOrder = 3
   end
@@ -77,9 +77,9 @@ object KSPOptions: TKSPOptions
     EditLabel.AnchorSideLeft.Control = DBName
     EditLabel.AnchorSideBottom.Control = DBName
     EditLabel.Left = 16
-    EditLabel.Height = 16
-    EditLabel.Top = 189
-    EditLabel.Width = 85
+    EditLabel.Height = 15
+    EditLabel.Top = 190
+    EditLabel.Width = 80
     EditLabel.Caption = 'Database name:'
     EditLabel.ParentColor = False
     TabOrder = 4
@@ -127,9 +127,9 @@ object KSPOptions: TKSPOptions
   end
   object CheckBox1: TCheckBox
     Left = 168
-    Height = 19
+    Height = 18
     Top = 200
-    Width = 68
+    Width = 72
     Caption = 'Use Sqlite'
     TabOrder = 8
   end

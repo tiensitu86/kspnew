@@ -347,6 +347,7 @@ begin
   Style:='background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 127, 255), stop:1 rgba(255, 255, 255, 255));';
   QWidget_setStyleSheet(Result, @Style);
 
+
   QWidget_setWindowTitle(Result, @NotTitle);
   tLabel:=QLabel_create();
   QLabel_setText(tLabel, @NotTitle);

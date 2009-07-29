@@ -1818,11 +1818,10 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
-            ClientWidth = 425
-            ClientHeight = 369
+            ClientWidth = 437
+            ClientHeight = 422
             object MFolders: TListBox
-              Left = 2
-              Height = 369
+              Height = 422
               Width = 208
               Align = alLeft
               TabOrder = 0

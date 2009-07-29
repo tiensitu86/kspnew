@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -49,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="133">
+    <Units Count="136">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -65,13 +65,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="26" Y="132"/>
-        <TopLine Value="132"/>
+        <CursorPos X="46" Y="339"/>
+        <TopLine Value="332"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="18" Y="2225" ID="0"/>
-          <Item1 X="7" Y="2119" ID="1"/>
+          <Item0 X="18" Y="2226" ID="0"/>
+          <Item1 X="7" Y="2120" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -277,7 +277,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="31" Y="332"/>
         <TopLine Value="317"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -306,7 +306,7 @@
         <UnitName Value="FileSupport"/>
         <CursorPos X="21" Y="91"/>
         <TopLine Value="67"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -350,8 +350,8 @@
         <Filename Value="itools\dlldefs\kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="18" Y="23"/>
-        <TopLine Value="5"/>
+        <CursorPos X="10" Y="11"/>
+        <TopLine Value="1"/>
         <UsageCount Value="209"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit32>
@@ -489,9 +489,9 @@
         <Filename Value="itools\kspstrings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPStrings"/>
-        <CursorPos X="25" Y="98"/>
-        <TopLine Value="75"/>
-        <EditorIndex Value="2"/>
+        <CursorPos X="8" Y="38"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -644,16 +644,18 @@
       </Unit68>
       <Unit69>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
-        <CursorPos X="1" Y="362"/>
-        <TopLine Value="342"/>
+        <CursorPos X="1" Y="360"/>
+        <TopLine Value="341"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit69>
       <Unit70>
         <Filename Value="DOCS\TODO.TXT"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="1" Y="6"/>
         <TopLine Value="1"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="199"/>
         <SyntaxHighlighter Value="None"/>
       </Unit70>
       <Unit71>
@@ -713,7 +715,7 @@
         <UnitName Value="MultiLog"/>
         <CursorPos X="15" Y="146"/>
         <TopLine Value="235"/>
-        <UsageCount Value="170"/>
+        <UsageCount Value="172"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit78>
       <Unit79>
@@ -744,7 +746,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="32" Y="10"/>
         <TopLine Value="1"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="165"/>
         <SyntaxHighlighter Value="None"/>
       </Unit82>
       <Unit83>
@@ -774,9 +776,11 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="OptionsFrm2"/>
-        <CursorPos X="29" Y="94"/>
-        <TopLine Value="78"/>
-        <UsageCount Value="158"/>
+        <CursorPos X="7" Y="27"/>
+        <TopLine Value="22"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="160"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit85>
       <Unit86>
@@ -826,7 +830,7 @@
         <UnitName Value="splash"/>
         <CursorPos X="11" Y="15"/>
         <TopLine Value="1"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="140"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit92>
       <Unit93>
@@ -860,7 +864,7 @@
         <UnitName Value="complib"/>
         <CursorPos X="148" Y="4"/>
         <TopLine Value="1"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="129"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit97>
       <Unit98>
@@ -901,7 +905,7 @@
         <UnitName Value="KSPThreadUtils"/>
         <CursorPos X="1" Y="124"/>
         <TopLine Value="111"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="121"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit103>
       <Unit104>
@@ -1067,28 +1071,24 @@
       <Unit128>
         <Filename Value="C:\lazarus\lcl\interfaces\qt\qt4.pas"/>
         <UnitName Value="qt4"/>
-        <CursorPos X="23" Y="4216"/>
-        <TopLine Value="4199"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="24"/>
+        <CursorPos X="27" Y="2435"/>
+        <TopLine Value="2416"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit128>
       <Unit129>
         <Filename Value="..\not.h"/>
-        <CursorPos X="44" Y="23"/>
-        <TopLine Value="17"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="13"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="C++"/>
       </Unit129>
       <Unit130>
-        <Filename Value="itools\addforms\unotif.pas"/>
-        <ComponentName Value="Form1"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uNotif"/>
-        <CursorPos X="11" Y="5"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="19"/>
-        <SyntaxHighlighter Value="Delphi"/>
+        <Filename Value=""/>
+        <UsageCount Value="10"/>
       </Unit130>
       <Unit131>
         <Filename Value="additional\bass\RT_bassmix.pas"/>
@@ -1105,127 +1105,149 @@
         <TopLine Value="487"/>
         <UsageCount Value="10"/>
       </Unit132>
+      <Unit133>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\inc\wstringh.inc"/>
+        <CursorPos X="35" Y="83"/>
+        <TopLine Value="64"/>
+        <UsageCount Value="10"/>
+      </Unit133>
+      <Unit134>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\inc\wustrings.inc"/>
+        <CursorPos X="50" Y="1795"/>
+        <TopLine Value="1786"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit134>
+      <Unit135>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\inc\systemh.inc"/>
+        <CursorPos X="3" Y="280"/>
+        <TopLine Value="261"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit135>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="169" Column="49" TopLine="168"/>
+        <Caret Line="349" Column="1" TopLine="330"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="389" Column="15" TopLine="374"/>
+        <Caret Line="350" Column="1" TopLine="331"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="391" Column="36" TopLine="374"/>
+        <Caret Line="352" Column="1" TopLine="333"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="2668" Column="29" TopLine="2646"/>
+        <Caret Line="353" Column="1" TopLine="334"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="299" Column="19" TopLine="282"/>
+        <Caret Line="354" Column="1" TopLine="335"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="2661" Column="75" TopLine="2646"/>
+        <Caret Line="355" Column="1" TopLine="336"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="40" Column="22" TopLine="39"/>
+        <Caret Line="350" Column="33" TopLine="338"/>
       </Position7>
       <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="863" Column="13" TopLine="861"/>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="360" Column="1" TopLine="341"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="2654" Column="40" TopLine="2640"/>
+        <Caret Line="344" Column="1" TopLine="325"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="54" Column="18" TopLine="53"/>
+        <Caret Line="345" Column="1" TopLine="326"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="39" Column="22" TopLine="39"/>
+        <Caret Line="349" Column="1" TopLine="330"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="49" Column="24" TopLine="39"/>
+        <Caret Line="350" Column="1" TopLine="331"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="71" Column="27" TopLine="39"/>
+        <Caret Line="352" Column="1" TopLine="333"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="40" Column="34" TopLine="39"/>
+        <Caret Line="353" Column="1" TopLine="334"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="72" Column="30" TopLine="39"/>
+        <Caret Line="354" Column="1" TopLine="335"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="33" Column="32" TopLine="33"/>
+        <Caret Line="355" Column="32" TopLine="338"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="53" Column="30" TopLine="33"/>
+        <Caret Line="352" Column="36" TopLine="336"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="37" Column="22" TopLine="33"/>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="360" Column="1" TopLine="341"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="35" Column="22" TopLine="33"/>
+        <Caret Line="344" Column="1" TopLine="325"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="34" Column="22" TopLine="33"/>
+        <Caret Line="345" Column="1" TopLine="326"/>
       </Position20>
       <Position21>
         <Filename Value="main.pas"/>
-        <Caret Line="33" Column="32" TopLine="33"/>
+        <Caret Line="349" Column="1" TopLine="330"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="41" Column="27" TopLine="33"/>
+        <Caret Line="350" Column="1" TopLine="331"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="46" Column="22" TopLine="33"/>
+        <Caret Line="352" Column="1" TopLine="333"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="42" Column="18" TopLine="33"/>
+        <Caret Line="353" Column="1" TopLine="334"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="69" Column="32" TopLine="35"/>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\inc\wustrings.inc"/>
+        <Caret Line="1795" Column="50" TopLine="1786"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="134" Column="23" TopLine="100"/>
+        <Caret Line="340" Column="20" TopLine="335"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="66" Column="30" TopLine="65"/>
+        <Caret Line="354" Column="51" TopLine="336"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="71" Column="26" TopLine="65"/>
+        <Caret Line="345" Column="17" TopLine="334"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="41" Column="22" TopLine="33"/>
+        <Filename Value="itools\addforms\optionsfrm2.pas"/>
+        <Caret Line="27" Column="44" TopLine="26"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="1407" Column="36" TopLine="1401"/>
+        <Filename Value="itools\addforms\optionsfrm2.pas"/>
+        <Caret Line="78" Column="15" TopLine="78"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -1283,7 +1305,7 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="2">
+    <BreakPoints Count="3">
       <Item1>
         <Source Value="C:\lazarus32\lcl\include\application.inc"/>
         <Line Value="360"/>
@@ -1292,6 +1314,10 @@
         <Source Value="main.pas"/>
         <Line Value="2488"/>
       </Item2>
+      <Item3>
+        <Source Value="main.pas"/>
+        <Line Value="344"/>
+      </Item3>
     </BreakPoints>
     <Exceptions Count="3">
       <Item1>

@@ -104,6 +104,10 @@ SBookmarkDelete = 'Are you sure you want to remove bookmark %s?';
 SBookmarkDeleteCaption = 'Delete bookmark';
 SSampleAlert = 'Sample alert text';
 SSampleAlertCaption = 'Sample alert caption';
+SDBMemo = 'KSP requires connection to database.\nCurrently MySQL and Sqlite3 database is supported.\nProvide valid database information in order to\n'+
+  'configure application.\n\nIMPORTANT:\n\nKSP requires MySQL username that has FULL rights\nto chosen database (create table, insert, delete, alter,\n'+
+  'select). Additionally if that user has create database\nright it is possible thatKSP will create database if chosen\n'+
+  'database is missing. Otherwise you have to create it manually';
 
 implementation
 
