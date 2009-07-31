@@ -1,8 +1,8 @@
 { To jest automatycznie wygenerowany plik zasobów lazarusa }
 
 LazarusResources.Add('TKSPMainWindow','FORMDATA',[
-  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3'j'#1#6'Height'#3'x'#2#3
-  +'Top'#3#203#0#5'Width'#3#209#3#7'Caption'#6#3'KSP'#12'ClientHeight'#3'b'#2#11
+  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3#157#1#6'Height'#3'x'#2#3
+  +'Top'#3#149#0#5'Width'#3#209#3#7'Caption'#6#3'KSP'#12'ClientHeight'#3'b'#2#11
   +'ClientWidth'#3#209#3#4'Menu'#7#9'MainMenu1'#8'OnCreate'#7#10'FormCreate'#9
   +'OnDestroy'#7#11'FormDestroy'#19'OnWindowStateChange'#7#21'FormWindowStateCh'
   +'ange'#8'Position'#7#9'poDefault'#10'LCLVersion'#6#8'0.9.26.2'#0#10'TStatusB'
@@ -1924,8 +1924,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   ,'Height'#3#166#1#5'Width'#2#5#0#0#9'TNotebook'#9'SetupBook'#4'Left'#3#243#0#6
   +'Height'#3#166#1#5'Width'#3#181#1#5'Align'#7#8'alClient'#9'PageIndex'#2#0#8
   +'ShowTabs'#8#8'TabOrder'#2#2#0#5'TPage'#17'MediaLibSetupPage'#7'Caption'#6#17
-  +'MediaLibSetupPage'#11'ClientWidth'#3#175#1#12'ClientHeight'#3#160#1#0#8'TLi'
-  +'stBox'#8'MFolders'#6'Height'#3#160#1#5'Width'#3#208#0#5'Align'#7#6'alLeft'#8
+  +'MediaLibSetupPage'#11'ClientWidth'#3#181#1#12'ClientHeight'#3#166#1#0#8'TLi'
+  +'stBox'#8'MFolders'#6'Height'#3#166#1#5'Width'#3#208#0#5'Align'#7#6'alLeft'#8
   +'TabOrder'#2#0#0#0#7'TButton'#7'Button5'#4'Left'#3#220#0#6'Height'#2#25#3'To'
   +'p'#2#1#5'Width'#2'x'#7'Caption'#6#12'Force Rescan'#7'OnClick'#7#12'Button5C'
   +'lick'#8'TabOrder'#2#1#0#0#7'TButton'#7'Button1'#4'Left'#3#220#0#6'Height'#2

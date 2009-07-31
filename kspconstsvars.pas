@@ -9,6 +9,7 @@ uses Messages, FileSupportLst, SysUtils, BASSPlayer,
 const
   KSPHost = 'http://ksplayer.boo.pl';
   KSPHowHelp = 'http://www.ksplayer.boo.pl/help-wanted';
+  KSPSupportURL = 'http://code.google.com/p/kspnew/issues/list';
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
   KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';

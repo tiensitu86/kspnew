@@ -36,7 +36,7 @@ TFileSupportList = class(TList)
     constructor Create;
     destructor Destroy; override;
     procedure Add(Entry: TFileDesc);
-    procedure Remove(Index: Integer; IsHandle: boolean = false);
+    procedure Remove(Index: DWORD; IsHandle: boolean = false);
     function GetItem(Index: Integer): TFileDesc;
     function FindExtension(Ext: string; CharSize: boolean): integer;
     function FindName(eName: string): integer;
@@ -73,7 +73,7 @@ begin
   inherited Add(T);
 end;
 
-procedure TFileSupportList.Remove(Index: Integer; IsHandle: boolean = false);
+procedure TFileSupportList.Remove(Index: DWORD; IsHandle: boolean = false);
 var
   i: integer;
 begin

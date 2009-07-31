@@ -308,7 +308,8 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, OptionsFrm2, splash, complib;
+  KSPCrossList, MultiLog, OptionsFrm2, splash, complib
+  {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
 
@@ -1125,6 +1126,9 @@ var
     Player.Open(CurrentFile);
     PosBar.Position:=0;
     Player.Play;
+{$IFDEF WINDOWS}
+    SHAddToRecentDocs(SHARD_PATH, pchar(CurrentFile));
+{$ENDIF}
     //SuggThread:=TFindSugg.Create(false);
   end;
 
@@ -1789,6 +1793,7 @@ begin
   Seeking:=false;
 end;
 
+
 procedure TKSPMainWindow.Timer_statTimer(Sender: TObject);
 var
   s: string;
@@ -1864,9 +1869,9 @@ begin
             //Self.Hide;:=;//.MinimizeToTray;
             Hide;
             ApplicationVisible:=false;
-            Self.ShowInTaskBar:=stNever;
+            //Self.ShowInTaskBar:=stNever;
          end else begin
-            Self.ShowInTaskBar:=stAlways;
+            //Self.ShowInTaskBar:=stAlways;
             ApplicationVisible:=true;
             Show;
          end;
@@ -2650,6 +2655,7 @@ procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
     i: integer;
     m: TMenuItem;
   begin
+  Dest.Clear;
     if Src.Count=0 then Exit;
     for i:=0 to Src.Count-1 do begin
         //if //(not Assigned(Src.Items[i].OnClick)) and

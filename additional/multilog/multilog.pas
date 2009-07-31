@@ -39,7 +39,7 @@ unit MultiLog;
 interface
 
 uses
-  {$ifndef fpc}Types, fpccompat,{$endif} Forms, Classes, SysUtils;
+  {$ifndef fpc}Types, fpccompat,{$endif} Forms, Classes, SysUtils, Support, KSPFiles;
 
 const
   //MessageTypes
@@ -243,6 +243,8 @@ var
   hLog: TLogger;
 
 implementation
+
+uses KSPConstsVars;
 
 const
   DefaultCheckName = 'CheckPoint';
@@ -1052,9 +1054,33 @@ begin
 end;
 
 procedure TLogger.AppException(Sender: TObject; E: Exception);
+var
+  f: TSupportForm;
+  s, s2: TStringList;
+  i: integer;
 begin
   //hLog.Add('!!!EXCEPTION HANDLED: '+E.Message);
   Self.SendException('EXCEPTION:'+E.Message, E);
+
+  s:= TStringList.Create;
+  s2:=TStringList.Create;
+  f:=TSupportForm.Create(nil);
+  f.Memo1.Lines.Clear;
+
+  SearchForFilesFS(KSPLogFilename, false, s);
+  for i:=0 to s.Count-1 do begin
+    s2.LoadFromFile(s.Strings[i]);
+    f.Memo1.Lines.Add(s.Strings[i]);
+    f.Memo1.Lines.Add('');
+    f.Memo1.Lines.AddStrings(s2);
+    f.Memo1.Lines.Add('');
+  end;
+
+  f.ShowModal;
+
+  s.Free;
+  s2.Free;
+  f.Free;
 end;
 
 { TChannelList }

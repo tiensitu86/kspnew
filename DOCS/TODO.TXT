@@ -1,19 +1,22 @@
 1. MAIN WINDOW
 
 1.1. NOTIFICATIONS
-- Notification window (based on QT Designer project)
 
 1.2. SETUP
-- Basic setup window
+- Plugins configuration
 
 1.3. MINI BROWSER
 - Basis buttons (reload, back, forward)
-- Basis buttons in internet media browser (reload, back, forward, enter address)
 
 2. BOOKMARKS
-- Bookmark delete and rename
-DATABASE
+- Unused bookmarks playlists cleaning
+
+3. DATABASE
 - Multiple queries support
-PLAYLISTS
+4. PLAYLISTS
 - XMPF playlists support (read and write)
+
+5. LOGs
+- Old logs cleaning
+- Send Report button (crash window)
 
