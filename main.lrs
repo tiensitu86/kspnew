@@ -60,7 +60,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'lign'#7#8'alClient'#9'PageIndex'#2#0#8'ShowTabs'#8#8'TabOrder'#2#1#0#5'TPag'
   +'e'#5'Page1'#7'Caption'#6#5'Page1'#11'ClientWidth'#3#168#2#12'ClientHeight'#3
   +#166#1#0#12'TPageControl'#12'PagesWelcome'#6'Height'#3#166#1#5'Width'#3#168#2
-  +#10'ActivePage'#7#9'TabSheet4'#5'Align'#7#8'alClient'#8'TabIndex'#2#1#8'TabO'
+  +#10'ActivePage'#7#9'TabSheet3'#5'Align'#7#8'alClient'#8'TabIndex'#2#0#8'TabO'
   +'rder'#2#0#11'TabPosition'#7#8'tpBottom'#0#9'TTabSheet'#9'TabSheet3'#7'Capti'
   +'on'#6#7'Welcome'#8'OnResize'#7#15'TabSheet3Resize'#0#0#9'TTabSheet'#9'TabSh'
   +'eet4'#7'Caption'#6#8'About...'#12'ClientHeight'#3#140#1#11'ClientWidth'#3

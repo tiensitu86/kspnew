@@ -2592,6 +2592,7 @@ end;
 procedure TKSPMainWindow.IMProgressChange(progress: Integer); cdecl;
 begin
   IMProgress.Position:=Progress;
+  IMprogress.Visible:=Progress<>100;
 end;
 
 procedure TKSPMainWindow.btnCloseNotification; cdecl;
