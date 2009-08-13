@@ -51,7 +51,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Classes, Windows, SysUtils, UniCodeUtils, TntCollection
+  Classes, SysUtils, UniCodeUtils, TntCollection
   {$IFNDEF DELPHI_2007_BELOW}, Types, AnsiStrings{$ENDIF}, CommonATL;
 
 

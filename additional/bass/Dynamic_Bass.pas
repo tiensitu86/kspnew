@@ -19,8 +19,7 @@ unit Dynamic_Bass;
 interface
 
 uses
-  Windows,
-  SysUtils;
+  {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, SysUtils;
 
 const
   BASSVERSION = $204;             // API version
@@ -392,6 +391,7 @@ type
   BOOL = LongBool;
   FLOAT = Single;
   QWORD = int64;        // 64-bit (replace "int64" with "comp" if using Delphi 3)
+  HWND = DWORD;
 
   HMUSIC = DWORD;       // MOD music handle
   HSAMPLE = DWORD;      // sample handle
@@ -795,14 +795,22 @@ begin
     s := dllfilename;
     if Length(s) = 0 then begin
       P := nil;
+{$IFDEF WINDOWS}
       if SearchPath(nil, PChar(szBassDll), nil, MAX_PATH, dllfile, P) > 0 then
         s := StrPas(dllfile)
       else exit;
+{$ELSE}
+      s:=szBassDll;
+{$ENDIF}
     end;
+{$IFDEF WINDOWS}
     oldmode:=SetErrorMode($8001);
+{$ENDIF}
    // s := s + #0;
     BASS_Handle:=LoadLibrary(pChar(s)); // obtain the handle we want
+{$IFDEF WINDOWS}
     SetErrorMode(oldmode);
+{$ENDIF}
     if BASS_Handle<>0 then
        begin {now we tie the functions to the VARs from above}
 

@@ -11,7 +11,7 @@ unit RT_bassmidi;
 
 interface
 
-uses Windows, Dynamic_Bass;
+uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_Bass;
 
 const
   // Additional config options
@@ -160,9 +160,13 @@ begin
    if BASSMIDI_Handle <> 0 then // is it already there ?
       result := true
    else begin {go & load the dll}
+{$IFDEF WINDOWS}
    oldmode := SetErrorMode($8001);
+{$ENDIF}
    BASSMIDI_Handle := LoadLibrary(pchar(dllfilename));  // obtain the handle we want
+{$IFDEF WINDOWS}
    SetErrorMode(oldmode);
+{$ENDIF}
 
    if BASSMIDI_Handle <> 0 then
        begin {now we tie the functions to the VARs from above}

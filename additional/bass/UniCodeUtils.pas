@@ -13,7 +13,6 @@ interface
 
  {$INCLUDE Delphi_Ver.inc}
 
-uses Windows;
 
 {$IFDEF DELPHI_6_BELOW}
 

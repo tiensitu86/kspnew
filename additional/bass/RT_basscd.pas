@@ -11,7 +11,7 @@ Unit RT_basscd;
 
 interface
 
-uses windows, Dynamic_bass;
+uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_bass;
 
 const
   // Additional error codes returned by BASS_ErrorGetCode
@@ -137,9 +137,13 @@ begin
    if BASSCD_Handle <> 0 then // is it already there ?
       result := true
    else begin {go & load the dll}
+{$IFDEF WINDOWS}
    oldmode := SetErrorMode($8001);
+{$ENDIF}
    BASSCD_Handle := LoadLibrary(pchar(dllfilename));  // obtain the handle we want
+{$IFDEF WINDOWS}
    SetErrorMode(oldmode);
+{$ENDIF}
    if BASSCD_Handle <> 0 then
        begin {now we tie the functions to the VARs from above}
 

@@ -5,7 +5,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Windows, Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
+  Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
   Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix, ioplug,
   MPEGAudio, OggVorbis, AACfile, WMAFile, WAVFile,
   MPEGInfoBox, OGGInfoBox, WMAInfoBox, Dialogs, FileSupportLst,

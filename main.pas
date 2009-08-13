@@ -5,7 +5,7 @@ unit main;
 interface
 
 uses
-  LResources, DefaultTranslator, Windows, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
+  LResources, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
   FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList;

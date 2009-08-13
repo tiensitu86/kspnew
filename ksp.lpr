@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { you can add units after this }, main, LResources, BASSPlayer, Dynamic_Bass,
-  RT_basscd, MPEGaudio, OggVorbis, ID3v1, APETag, ID3v2, CommonATL, WAVfile,
+  RT_basscd, OggVorbis, ID3v1, APETag, ID3v2, CommonATL, WAVfile,
   WMAfile, ioplug, PlayLists, SpkXMLParser, ID3Mgmnt, FileSupport,
   KSPMessages, KSPConstsVars, FileSupportLst, kspfiles, LoadPlsThread,
   FileUtils, MRNG, profilefunc, KSPStrings, SQLDBLaz, MediaItems,
