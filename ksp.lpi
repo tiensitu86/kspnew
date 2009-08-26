@@ -9,11 +9,11 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="..\po"/>
+      <OutDir Value="po"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -50,7 +50,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="151">
+    <Units Count="150">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -66,7 +66,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="8" Y="460"/>
+        <CursorPos X="25" Y="472"/>
         <TopLine Value="450"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
@@ -82,7 +82,7 @@
         <UnitName Value="BASSPlayer"/>
         <CursorPos X="6" Y="9"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -219,7 +219,7 @@
         <UnitName Value="ioplug"/>
         <CursorPos X="28" Y="24"/>
         <TopLine Value="12"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -327,7 +327,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="17" Y="105"/>
         <TopLine Value="85"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -355,7 +355,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="27" Y="96"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -496,7 +496,7 @@
         <UnitName Value="KSPStrings"/>
         <CursorPos X="45" Y="83"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -590,7 +590,7 @@
         <UnitName Value="MediaFolders"/>
         <CursorPos X="36" Y="144"/>
         <TopLine Value="125"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -720,7 +720,7 @@
         <UnitName Value="MultiLog"/>
         <CursorPos X="1" Y="1063"/>
         <TopLine Value="1061"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="196"/>
         <Bookmarks Count="1">
           <Item0 X="38" Y="1063" ID="0"/>
@@ -838,9 +838,7 @@
         <UnitName Value="splash"/>
         <CursorPos X="12" Y="33"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
         <UsageCount Value="164"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit92>
       <Unit93>
@@ -1102,7 +1100,7 @@
         <UnitName Value="RT_bassmix"/>
         <CursorPos X="9" Y="99"/>
         <TopLine Value="66"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1206,7 +1204,7 @@
         <UnitName Value="RT_bassmidi"/>
         <CursorPos X="1" Y="165"/>
         <TopLine Value="139"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1216,7 +1214,7 @@
         <UnitName Value="ID3v1"/>
         <CursorPos X="32" Y="46"/>
         <TopLine Value="14"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1226,7 +1224,7 @@
         <UnitName Value="UniCodeUtils"/>
         <CursorPos X="6" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1244,17 +1242,8 @@
         <TopLine Value="297"/>
         <UsageCount Value="10"/>
       </Unit149>
-      <Unit150>
-        <Filename Value="C:\lazarus\lcl\interfaces\qt\qt4.pas"/>
-        <UnitName Value="qt4"/>
-        <CursorPos X="46" Y="12716"/>
-        <TopLine Value="12701"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit150>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="additional\bass\RT_basscd.pas"/>
         <Caret Line="10" Column="15" TopLine="1"/>
@@ -1360,21 +1349,17 @@
         <Caret Line="166" Column="53" TopLine="153"/>
       </Position26>
       <Position27>
-        <Filename Value="itools\addforms\splash.pas"/>
-        <Caret Line="33" Column="12" TopLine="1"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="752" Column="1" TopLine="732"/>
       </Position27>
       <Position28>
         <Filename Value="additional\bass\BASSPlayer.pas"/>
-        <Caret Line="752" Column="1" TopLine="732"/>
+        <Caret Line="8" Column="15" TopLine="1"/>
       </Position28>
       <Position29>
-        <Filename Value="additional\bass\BASSPlayer.pas"/>
-        <Caret Line="8" Column="15" TopLine="1"/>
-      </Position29>
-      <Position30>
         <Filename Value="main.pas"/>
         <Caret Line="460" Column="8" TopLine="450"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -1433,28 +1418,6 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="5">
-      <Item1>
-        <Source Value="C:\lazarus32\lcl\include\application.inc"/>
-        <Line Value="360"/>
-      </Item1>
-      <Item2>
-        <Source Value="main.pas"/>
-        <Line Value="2488"/>
-      </Item2>
-      <Item3>
-        <Source Value="main.pas"/>
-        <Line Value="1867"/>
-      </Item3>
-      <Item4>
-        <Source Value="main.pas"/>
-        <Line Value="482"/>
-      </Item4>
-      <Item5>
-        <Source Value="main.pas"/>
-        <Line Value="915"/>
-      </Item5>
-    </BreakPoints>
     <Exceptions Count="3">
       <Item1>
         <Name Value="EAbort"/>
