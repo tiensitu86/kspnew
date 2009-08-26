@@ -10,6 +10,29 @@ implementation
 
 uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles, KSPMessages;
 
+//Clear old logs
+procedure ClearLogs;
+var
+  LogsFolder: string;
+  s: TStringList;
+  i: integer;
+begin
+  hLog.Send('Clearing old logs');
+
+  LogsFolder:=KSPDataFolder+'logs';
+  s:= TStringList.Create;
+
+  ListFolders(LogsFolder, s, 7);
+
+  for i:=0 to s.Count-1 do
+    begin
+      hLog.Send('Deleting log: '+s.Strings[i]);
+      KSPDeleteFolder(s.Strings[i]);
+    end;
+
+  s.Free;
+end;
+
 procedure SetupStage1;
 var
   Pc: TPathChar;
@@ -33,6 +56,8 @@ begin
   hLog:=TLogger.Create;
   hLog.Channels.Add(TFileChannel.Create(KSPDataFolder+'ksp.log'));
   hLog.ActiveClasses:=lcAll;
+
+  ClearLogs;
 
     hLog.Send('Loading version info...');
 

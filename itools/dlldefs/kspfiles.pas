@@ -2,11 +2,7 @@ unit kspfiles;
 
 interface
 
-uses ID3Mgmnt, Classes,
-{$IFNDEF KSP_PLUGINS}
-  FileSupportLst,
-{$ENDIF}
-  KSPMessages, WinInet;
+uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, WinInet, DateUtils, Dialogs;
 
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
   PlsIndex: integer): ShortString; external 'kspfiles.dll';
@@ -37,6 +33,8 @@ function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp.dll';
 
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
+procedure KSPDeleteFolder(Path: string);
+procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 
 function IsPlaylist(FileName: string): boolean;
 
@@ -45,6 +43,55 @@ function IsPlaylist(FileName: string): boolean;
 implementation
 
 uses SysUtils;
+
+procedure KSPDeleteFolder(Path: string);
+var
+  i: integer;
+  sr: TSearchRec;
+  FileAttrs: Integer;
+begin
+  FileAttrs := faAnyFile;//+faDirectory;
+
+  if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+  begin
+    repeat
+      if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
+        if (sr.Attr and faDirectory) = sr.Attr then
+          KSPDeleteFolder(Path+'\'+sr.Name) else
+        if FileExists(Path+'\'+sr.Name) then DeleteFile(Path+'\'+sr.Name);
+      end;
+    until FindNext(sr) <> 0;
+      FindClose(sr);
+  end;
+
+  if DirectoryExists(Path) then
+    try
+      RmDir(Path)
+    except
+      ShowMessage(Path);
+    end;
+
+
+end;
+
+procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
+var
+  i: integer;
+  sr: TSearchRec;
+  FileAttrs: Integer;
+begin
+  FileAttrs := faDirectory;
+  if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+  begin
+    repeat
+      if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
+        if ((sr.Attr and faDirectory) = sr.Attr) and (DaysBetween(Now, FileDateToDateTime(sr.Time))>OlderThan) then
+          s.Add(Path+'\'+sr.Name);
+      end;
+    until FindNext(sr) <> 0;
+      FindClose(sr);
+  end;
+end;
 
 function IsPlaylist(FileName: string): boolean;
 begin
