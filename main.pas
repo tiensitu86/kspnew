@@ -1,5 +1,4 @@
-<<<<<<< .mine
-unit main; 
+unit main;
 
 {$mode objfpc}{$H+}
 
@@ -5426,5 +5425,3 @@ initialization
   {$I main.lrs}
 
 end.
-
->>>>>>> .r32
