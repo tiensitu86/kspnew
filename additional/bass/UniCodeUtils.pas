@@ -11,6 +11,10 @@ unit UniCodeUtils;
 
 interface
 
+{$IFDEF WINDOWS}
+uses Windows;
+{$ENDIF}
+
  {$INCLUDE Delphi_Ver.inc}
 
 

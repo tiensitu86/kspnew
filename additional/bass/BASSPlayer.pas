@@ -5,7 +5,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
+{$IFDEF WINDOWS}Windows,{$ENDIF} Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
   Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix, ioplug,
   MPEGAudio, OggVorbis, AACfile, WMAFile, WAVFile,
   MPEGInfoBox, OGGInfoBox, WMAInfoBox, Dialogs, FileSupportLst,
@@ -170,7 +170,6 @@ type
      TrackText : array[0..255] of string;
   end;
 
-  TWinampGPPInfo = TGPPInfo;
  { TSubClass_Proc = function(lng_hWnd: HWND; uMsg: Integer;
                             var Msg: TMessage; var bHandled: Boolean) : boolean; }
 
@@ -750,10 +749,6 @@ type
  // Because one of it's parameters is incorrectly declared in Delphi RTL.
  // ("lpDueTime" is declared as const instead of var)
  // So, I decided to use an alternate wrapper function to avoid this RTL bug.
-  function MySetWaitableTimer(hTimer: THandle; var lpDueTime: TLargeInteger;
-                              lPeriod: Longint; pfnCompletionRoutine: TFNTimerAPCRoutine;
-                              lpArgToCompletionRoutine: Pointer; fResume: BOOL): BOOL;
-                              stdcall; external 'kernel32.dll' name 'SetWaitableTimer';
 
   procedure Register;
 
