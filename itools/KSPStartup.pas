@@ -2,7 +2,8 @@ unit KSPStartup;
 
 interface
 
-uses Forms, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst;
+uses Forms, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst,
+  Qt4;
 
 procedure SetupKSP;
 
@@ -37,6 +38,8 @@ procedure SetupStage1;
 var
   Pc: TPathChar;
   i: integer;
+  W : WideString;
+  s: string;
 begin
   Application.Title := 'KSP';
   KSPStartupTime:=Now;
@@ -81,6 +84,10 @@ begin
   LoadOptionsSem2:=0;
   LoadVarsSem2:=0;
   CreateObjectsSem2:=0;
+
+  s:=ExtractFilePath(Application.ExeName)+'plugins_qt\';
+  W:=s;
+  QCoreApplication_addLibraryPath(@W);
 
   Application.ShowMainForm := True;
 end;

@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "generated report"
-msgstr ""
-
 #: kspstrings.sautosupportemail
 msgid "Give your e-mail address:"
 msgstr ""
