@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 404
+  Left = 560
   Height = 632
-  Top = 191
+  Top = 176
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610
@@ -1758,22 +1758,22 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 396
-            ClientWidth = 674
+            ClientHeight = 422
+            ClientWidth = 680
             object Panel7: TPanel
-              Height = 333
+              Height = 359
               Top = 43
-              Width = 674
+              Width = 680
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
             end
             object Panel6: TPanel
               Height = 43
-              Width = 674
+              Width = 680
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 674
+              ClientWidth = 680
               TabOrder = 1
               object SpeedButton1: TSpeedButton
                 Left = 339
@@ -2687,8 +2687,8 @@ object KSPMainWindow: TKSPMainWindow
             end
             object IMProgress: TProgressBar
               Height = 20
-              Top = 376
-              Width = 674
+              Top = 402
+              Width = 680
               Align = alBottom
               Smooth = True
               TabOrder = 2

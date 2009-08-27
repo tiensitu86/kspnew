@@ -9,7 +9,8 @@ procedure SetupKSP;
 
 implementation
 
-uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles, KSPMessages;
+uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles, KSPMessages,
+  qtproc;
 
 //Clear old logs
 procedure ClearLogs;
@@ -86,7 +87,7 @@ begin
   CreateObjectsSem2:=0;
 
   s:=ExtractFilePath(Application.ExeName)+'plugins_qt\';
-  W:=s;
+  W:=GetUtf8String(s);
   QCoreApplication_addLibraryPath(@W);
 
   Application.ShowMainForm := True;
