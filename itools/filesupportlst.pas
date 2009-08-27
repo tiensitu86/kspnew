@@ -39,7 +39,8 @@ TFileSupportList = class(TList)
     procedure Remove(Index: DWORD; IsHandle: boolean = false);
     function GetItem(Index: Integer): TFileDesc;
     function FindExtension(Ext: string; CharSize: boolean): integer;
-    function FindName(eName: string): integer;
+    function FindName(eName: string; ForbiddenCheck: boolean = false): integer;
+    function PluginsForbidden(eName: string): boolean;
   end;
 
 implementation
@@ -96,7 +97,7 @@ begin
   Result:=TFileInfo(Items[Index]).Entry;
 end;
 
-function TFileSupportList.FindName(eName: string): integer;
+function TFileSupportList.FindName(eName: string; ForbiddenCheck: boolean = false): integer;
 var
   i: integer;
 begin
@@ -108,6 +109,22 @@ begin
             begin Result:=i; Break; end;
         end;
     end;
+  if ForbiddenCheck and PluginsForbidden(eName) then Result:=-2;
+end;
+
+function TFileSupportList.PluginsForbidden(eName: string): boolean;
+var
+  i: integer;
+  s: TStringList;
+begin
+  Result:=false;
+  s:=TStringList.Create;
+  s.LoadFromFile(KSPPluginsBlacklist);
+
+  for i:=0 to s.Count-1 do
+    if s.Strings[i]=eName then Result:=true;
+
+  s.Free;
 end;
 
 function TFileSupportList.FindExtension(Ext: string; CharSize: boolean): integer;

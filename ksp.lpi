@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="5"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -66,7 +66,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="26" Y="50"/>
+        <CursorPos X="137" Y="58"/>
         <TopLine Value="50"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
@@ -81,8 +81,8 @@
         <Filename Value="additional\bass\BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="11" Y="3593"/>
-        <TopLine Value="3577"/>
+        <CursorPos X="54" Y="3582"/>
+        <TopLine Value="3566"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -333,8 +333,8 @@
         <Filename Value="itools\filesupportlst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FileSupportLst"/>
-        <CursorPos X="3" Y="103"/>
-        <TopLine Value="99"/>
+        <CursorPos X="24" Y="116"/>
+        <TopLine Value="107"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -576,7 +576,7 @@
         <Filename Value="itools\threads\MainWindowStartupThreads.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MainWindowStartupThreads"/>
-        <CursorPos X="24" Y="66"/>
+        <CursorPos X="28" Y="73"/>
         <TopLine Value="51"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="202"/>
@@ -1257,7 +1257,7 @@
         <UsageCount Value="11"/>
       </Unit153>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="491" Column="28" TopLine="475"/>
@@ -1366,6 +1366,18 @@
         <Filename Value="main.pas"/>
         <Caret Line="2185" Column="91" TopLine="2170"/>
       </Position27>
+      <Position28>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="3556" Column="28" TopLine="3541"/>
+      </Position28>
+      <Position29>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="3572" Column="23" TopLine="3556"/>
+      </Position29>
+      <Position30>
+        <Filename Value="itools\filesupportlst.pas"/>
+        <Caret Line="112" Column="24" TopLine="92"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

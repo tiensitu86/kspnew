@@ -457,7 +457,7 @@ type
 
     procedure SetPan(Pan: float);
 
-    function BASSAddonLoad(FilePath : string) : TFileDesc;
+    function BASSAddonLoad(FilePath : string; ForceLoad: boolean = false) : TFileDesc;
       //  Plugs a BASS add-on into the standard stream and sample creation functions.
       //  Support for additional file formats are available via BASS add-ons, which can be downloaded
       //  from the BASS website: http://www.un4seen.com/
@@ -3553,7 +3553,7 @@ begin
    result := MessageHandle;
 end;
 
-function TBASSPlayer.BASSAddonLoad(FilePath : string) : TFileDesc;
+function TBASSPlayer.BASSAddonLoad(FilePath : string; ForceLoad: boolean = false) : TFileDesc;
 var
    FoundPreloaded : boolean;
    FileName : string;
@@ -3579,7 +3579,8 @@ begin
             FoundPreloaded := true;
             break;
          end;}
-   FoundPreloaded:=FileSupportList.FindName(FileName)>-1;
+//Plugins is either loaded or forbidden
+   FoundPreloaded:=FileSupportList.FindName(FileName, not ForceLoad)>-1;
 
    if FoundPreloaded then
       exit;
