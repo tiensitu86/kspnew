@@ -35,11 +35,20 @@ type  TWebView = class(TObject)
     BListBox: TListBox;
     BookmarksSetupPage: TPage;
     Button1: TButton;
+    Button10: TButton;
+    Button11: TButton;
+    Button12: TButton;
+    Button13: TButton;
+    Button14: TButton;
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    Button8: TButton;
+    Button9: TButton;
+    CheckBox1: TCheckBox;
+    PageControl1: TPageControl;
     ClearPlaylistAction: TAction;
     DefaultSetupPage: TPage;
     DeleteBookmark: TButton;
@@ -77,6 +86,8 @@ type  TWebView = class(TObject)
     MenuItem16: TMenuItem;
     MenuItem17: TMenuItem;
     MenuItem18: TMenuItem;
+    PluginsList: TCheckListBox;
+    PluginsSetupPage: TPage;
     Panel6: TPanel;
     IMProgress: TProgressBar;
     Panel8: TPanel;
@@ -95,6 +106,7 @@ type  TWebView = class(TObject)
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     Splitter4: TSplitter;
+    TabSheet2: TTabSheet;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -2157,10 +2169,33 @@ end;
 
 procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
 
+  procedure LoadPluginSetup;
+  var
+    s: TStringList;
+    i: integer;
+  begin
+    PluginsList.Items.Clear;
+    s:=TStringList.Create;
+
+    SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+
+    s.Sort;
+    for i:=0 to s.Count-1 do begin
+      if not FileExists(s.Strings[i]) then Continue;
+      PluginsList.Items.Add(ExtractFileName(s.Strings[i]));
+      PluginsList.Checked[i]:=FileSupportList.FindName(ExtractFileName(s.Strings[i]))>-1;
+    end;
+
+    s.Free;
+
+    SetupBook.ActivePage:='PluginsSetupPage';
+  end;
+
   procedure SetupKSP;
   begin
     case Sel of
       0: SetupBook.ActivePage:='BookmarksSetupPage';
+      1: LoadPluginSetup;
       2: SetupBook.ActivePage:='NotSetupPage';
     end;
   end;

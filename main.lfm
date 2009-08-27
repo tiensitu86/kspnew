@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 560
+  Left = 410
   Height = 632
-  Top = 176
+  Top = 191
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610
@@ -229,7 +229,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 686
       Align = alClient
-      PageIndex = 0
+      PageIndex = 2
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -246,15 +246,15 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
-            ClientHeight = 396
-            ClientWidth = 674
+            ClientHeight = 422
+            ClientWidth = 680
             OnResize = TabSheet3Resize
             object Panel8: TPanel
               Height = 43
-              Width = 674
+              Width = 680
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 674
+              ClientWidth = 680
               TabOrder = 0
               object SpeedButton5: TSpeedButton
                 Left = 339
@@ -2698,10 +2698,10 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page3: TPage
         Caption = 'Page3'
-        ClientWidth = 686
-        ClientHeight = 428
+        ClientWidth = 680
+        ClientHeight = 422
         object SetupTreeView: TTreeView
-          Height = 428
+          Height = 422
           Width = 238
           Align = alLeft
           DefaultItemHeight = 16
@@ -2721,23 +2721,23 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Splitter4: TSplitter
           Left = 238
-          Height = 428
+          Height = 422
           Width = 5
         end
         object SetupBook: TNotebook
           Left = 243
-          Height = 428
-          Width = 443
+          Height = 422
+          Width = 437
           Align = alClient
-          PageIndex = 0
+          PageIndex = 4
           ShowTabs = False
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
-            ClientWidth = 443
-            ClientHeight = 428
+            ClientWidth = 431
+            ClientHeight = 416
             object MFolders: TListBox
-              Height = 428
+              Height = 416
               Width = 208
               Align = alLeft
               TabOrder = 0
@@ -2790,8 +2790,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
-            ClientWidth = 437
-            ClientHeight = 422
+            ClientWidth = 431
+            ClientHeight = 416
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -2859,6 +2859,94 @@ object KSPMainWindow: TKSPMainWindow
               Caption = 'Preview'
               OnClick = Button7Click
               TabOrder = 2
+            end
+          end
+          object PluginsSetupPage: TPage
+            Caption = 'PluginsSetupPage'
+            ClientWidth = 431
+            ClientHeight = 416
+            object PageControl1: TPageControl
+              Height = 416
+              Width = 431
+              ActivePage = TabSheet2
+              Align = alClient
+              TabIndex = 0
+              TabOrder = 0
+              object TabSheet2: TTabSheet
+                Caption = 'Global Plugins'
+                ClientHeight = 389
+                ClientWidth = 425
+                object PluginsList: TCheckListBox
+                  Height = 389
+                  Width = 232
+                  Align = alLeft
+                  TabOrder = 0
+                end
+                object Button8: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 356
+                  Width = 179
+                  Caption = 'Save Changes'
+                  TabOrder = 1
+                end
+                object CheckBox1: TCheckBox
+                  Left = 238
+                  Height = 18
+                  Top = 12
+                  Width = 104
+                  Caption = 'Load On Startup'
+                  TabOrder = 2
+                end
+                object Button9: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 44
+                  Width = 179
+                  Caption = 'Load'
+                  TabOrder = 3
+                end
+                object Button10: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 72
+                  Width = 179
+                  Caption = 'Unload'
+                  TabOrder = 4
+                end
+                object Button11: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 108
+                  Width = 179
+                  Caption = 'Load ALL'
+                  TabOrder = 5
+                end
+                object Button12: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 140
+                  Width = 179
+                  Caption = 'Unload ALL'
+                  TabOrder = 6
+                end
+                object Button13: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 324
+                  Width = 179
+                  Caption = 'Disable ALL Plugins'
+                  TabOrder = 7
+                end
+                object Button14: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 292
+                  Width = 179
+                  Caption = 'Enable ALL Plugins'
+                  TabOrder = 8
+                end
+              end
             end
           end
         end

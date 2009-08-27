@@ -345,6 +345,26 @@ msgctxt "TKSPMAINWINDOW.BUTTON1.CAPTION"
 msgid "Delete"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON10.CAPTION
+msgid "Unload"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON11.CAPTION
+msgid "Load ALL"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON12.CAPTION
+msgid "Unload ALL"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON13.CAPTION
+msgid "Disable ALL Plugins"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON14.CAPTION
+msgid "Enable ALL Plugins"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON2.CAPTION
 msgid "Save"
 msgstr ""
@@ -369,9 +389,21 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON8.CAPTION
+msgid "Save Changes"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON9.CAPTION
+msgid "Load"
+msgstr ""
+
 #: TKSPMAINWINDOW.CAPTION
 msgctxt "TKSPMAINWINDOW.CAPTION"
 msgid "KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.CHECKBOX1.CAPTION
+msgid "Load On Startup"
 msgstr ""
 
 #: TKSPMAINWINDOW.CLEARPLAYLISTACTION.CAPTION
@@ -506,6 +538,10 @@ msgstr ""
 msgid "Panel5"
 msgstr ""
 
+#: TKSPMAINWINDOW.PLUGINSSETUPPAGE.CAPTION
+msgid "PluginsSetupPage"
+msgstr ""
+
 #: TKSPMAINWINDOW.RENAMEBOOKMARK.CAPTION
 msgid "Rename"
 msgstr ""
@@ -534,6 +570,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET1.CAPTION
 msgid "Media"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET2.CAPTION
+msgid "Global Plugins"
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET3.CAPTION

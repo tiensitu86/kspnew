@@ -63,6 +63,7 @@ begin
   { Place thread code here }
     hLog.Send('Setting vars');
     //KSPMainWindow.DSPPlay:=false;
+    KSPPluginsBlacklist:=KSPDataFolder+'plgdisabled.lst';
     KSPMainWindow.LoadingPlaylist:=false;
     Application.ShowHint:=true;
 //    KSPMainWindow.AlertVisible:=false;

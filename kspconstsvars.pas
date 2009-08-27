@@ -103,6 +103,7 @@ var
   AlreadyEncoding: boolean;
   KSPStartupTime: TDateTime;
   KSPLogFilename: string;
+  KSPPluginsBlacklist: string;
 
 var
   Player: TBassPlayer;
