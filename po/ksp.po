@@ -402,10 +402,6 @@ msgctxt "TKSPMAINWINDOW.CAPTION"
 msgid "KSP"
 msgstr ""
 
-#: TKSPMAINWINDOW.CHECKBOX1.CAPTION
-msgid "Load On Startup"
-msgstr ""
-
 #: TKSPMAINWINDOW.CLEARPLAYLISTACTION.CAPTION
 msgid "Clear Playlist"
 msgstr ""
@@ -536,6 +532,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.PANEL5.CAPTION
 msgid "Panel5"
+msgstr ""
+
+#: TKSPMAINWINDOW.PLGONSTARTUP.CAPTION
+msgid "Load On Startup"
 msgstr ""
 
 #: TKSPMAINWINDOW.PLUGINSSETUPPAGE.CAPTION

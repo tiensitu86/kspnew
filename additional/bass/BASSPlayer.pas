@@ -3555,8 +3555,9 @@ end;
 
 function TBASSPlayer.BASSAddonLoad(FilePath : string; ForceLoad: boolean = false) : TFileDesc;
 var
-   FoundPreloaded : boolean;
+//   FoundPreloaded : boolean;
    FileName : string;
+   FindNameRes: integer;
    AddonHandle : HPLUGIN;
    AddonInfoP : PBASS_PLUGININFO;
    fd: TFileDesc;
@@ -3569,7 +3570,6 @@ begin
    if not FileExists(FilePath) then
       exit;
 
-   FoundPreloaded := false;
    FileName := Lowercase(ExtractFileName(FilePath));
 
    {for i := 1 to FileSupportList.Count-1 do
@@ -3580,10 +3580,11 @@ begin
             break;
          end;}
 //Plugins is either loaded or forbidden
-   FoundPreloaded:=FileSupportList.FindName(FileName, not ForceLoad)>-1;
+   FindNameRes:=FileSupportList.FindName(FileName, not ForceLoad);
 
-   if FoundPreloaded then
+   if FindNameRes<>-1 then begin
       exit;
+    end;
 
   {$IFDEF DELPHI_2007_BELOW}
    AddonHandle := BASS_PluginLoad(pChar(FilePath), 0);

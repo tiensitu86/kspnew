@@ -47,7 +47,7 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
-    CheckBox1: TCheckBox;
+    PlgOnStartup: TCheckBox;
     PageControl1: TPageControl;
     ClearPlaylistAction: TAction;
     DefaultSetupPage: TPage;
@@ -192,6 +192,8 @@ type  TWebView = class(TObject)
     procedure NotificationTimerTimer(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
+    procedure PlgOnStartupClick(Sender: TObject);
+    procedure PluginsListClick(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure RenameBookmarkClick(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
@@ -1007,6 +1009,25 @@ end;
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
+end;
+
+procedure TKSPMainWindow.PlgOnStartupClick(Sender: TObject);
+var
+  i: integer;
+begin
+  if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
+
+  FileSupportList.SetEnableStatus(PluginsList.Items.Strings[PluginsList.ItemIndex], PlgOnStartup.Checked);
+  i:=FileSupportList.FindName(PluginsList.Items.Strings[PluginsList.ItemIndex]);
+  //if i>-1 then begin end else
+  //  Player.BASSAddonLoad('');
+end;
+
+procedure TKSPMainWindow.PluginsListClick(Sender: TObject);
+begin
+  if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
+
+  PlgOnStartup.Checked:=not FileSupportList.PluginsForbidden(PluginsList.Items.Strings[PluginsList.ItemIndex]);
 end;
 
 procedure TKSPMainWindow.PopupMenu1Popup(Sender: TObject);

@@ -40,7 +40,8 @@ TFileSupportList = class(TList)
     function GetItem(Index: Integer): TFileDesc;
     function FindExtension(Ext: string; CharSize: boolean): integer;
     function FindName(eName: string; ForbiddenCheck: boolean = false): integer;
-    function PluginsForbidden(eName: string): boolean;
+    procedure SetEnableStatus(eName: string; Enable: boolean);
+    function PluginsForbidden(eName: string): boolean; overload;
   end;
 
 implementation
@@ -102,14 +103,18 @@ var
   i: integer;
 begin
   Result:=-1;
-  eName:=UpperCase(eName);
-  if (Count>0) and (eName<>'') then begin
-      for i:=0 to Count-1 do begin
-          if UpperCase(TFileInfo(Items[i]).Entry.Name)=eName then
-            begin Result:=i; Break; end;
-        end;
-    end;
-  if ForbiddenCheck and PluginsForbidden(eName) then Result:=-2;
+  if ForbiddenCheck then begin
+    if PluginsForbidden(eName) then
+      Result:=-2;
+  end else begin
+    eName:=UpperCase(eName);
+    if (Count>0) and (eName<>'') then begin
+        for i:=0 to Count-1 do begin
+            if UpperCase(TFileInfo(Items[i]).Entry.Name)=eName then
+              begin Result:=i; Break; end;
+          end;
+      end;
+  end;
 end;
 
 function TFileSupportList.PluginsForbidden(eName: string): boolean;
@@ -124,6 +129,37 @@ begin
   for i:=0 to s.Count-1 do
     if s.Strings[i]=eName then Result:=true;
 
+  s.Free;
+end;
+
+procedure TFileSupportList.SetEnableStatus(eName: string; Enable: boolean);
+var
+  s: TStringlist;
+
+  procedure DisablePlugin;
+  begin
+    s.Add(eName);
+  end;
+
+  procedure EnablePlugin;
+  var
+    i: integer;
+  begin
+    for i:=s.Count-1 downto 0 do
+    begin
+      if s.Strings[i]=eName then s.Delete(i);
+    end;
+  end;
+
+begin
+  s:=TStringList.Create;
+  s.LoadFromFile(KSPPluginsBlacklist);
+  if Enable then begin
+    EnablePlugin;
+  end else begin
+    if not PluginsForbidden(eName) then DisablePlugin;
+  end;
+  s.SaveToFile(KSPPluginsBlacklist);
   s.Free;
 end;
 

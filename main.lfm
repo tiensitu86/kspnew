@@ -2880,6 +2880,7 @@ object KSPMainWindow: TKSPMainWindow
                   Height = 389
                   Width = 232
                   Align = alLeft
+                  OnClick = PluginsListClick
                   TabOrder = 0
                 end
                 object Button8: TButton
@@ -2890,12 +2891,13 @@ object KSPMainWindow: TKSPMainWindow
                   Caption = 'Save Changes'
                   TabOrder = 1
                 end
-                object CheckBox1: TCheckBox
+                object PlgOnStartup: TCheckBox
                   Left = 238
                   Height = 18
                   Top = 12
                   Width = 104
                   Caption = 'Load On Startup'
+                  OnClick = PlgOnStartupClick
                   TabOrder = 2
                 end
                 object Button9: TButton
