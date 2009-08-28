@@ -1,12 +1,25 @@
 1. MAIN WINDOW
 
-1.1. NOTIFICATIONS
+1.1.
+- Balance trackbar should have popupmenu with following items: Left, Right, Center
+- Balance trackbar should have hint displaying current position (for instance -50% meaning 50% to the
+left or +50% meaning 50% to the right)
+- There should be equalizer
+- Equalizer should support 8-32 bands
+- Equalizer should always use 32 bands. In case that user decides to use for instance only 10 bands proper
+values should be calculated automatically
+- User should be able to use custom plugins stored in user folder and available only to that user
 
-1.2. SETUP
-- Plugins configuration
+1.2. NOTIFICATIONS
 
-1.3. MINI BROWSER
-- Basis buttons (reload, back, forward) (done)
+1.3. SETUP
+- KSP should check if plugins was loaded/unloaded properly and display proper message in case it wasn't
+- User should be able to define formatting in playlist editor and notifications not by manually editing
+options file but by using proper configuration panel
+
+1.4. MINI BROWSER
+- browser should send custom agent string
+- user should be able to define proxy
 
 2. BOOKMARKS
 - Unused bookmarks playlists cleaning
@@ -17,6 +30,5 @@
 - XMPF playlists support (read and write)
 
 5. LOGs
-- Old logs cleaning  (done)
-- Send Report button (crash window) (done)
+- User should be able to send log automatically on crash
 

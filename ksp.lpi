@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -66,7 +66,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="14" Y="1216"/>
+        <CursorPos X="18" Y="1213"/>
         <TopLine Value="1205"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
@@ -92,7 +92,7 @@
         <UnitName Value="Dynamic_Bass"/>
         <CursorPos X="3" Y="404"/>
         <TopLine Value="388"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -324,7 +324,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="22" Y="106"/>
         <TopLine Value="81"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -335,7 +335,7 @@
         <UnitName Value="FileSupportLst"/>
         <CursorPos X="20" Y="125"/>
         <TopLine Value="106"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -354,9 +354,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="29" Y="84"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
         <UsageCount Value="209"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -495,9 +493,7 @@
         <UnitName Value="KSPStrings"/>
         <CursorPos X="16" Y="114"/>
         <TopLine Value="80"/>
-        <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -571,7 +567,7 @@
         <UnitName Value="KSPStartup"/>
         <CursorPos X="28" Y="41"/>
         <TopLine Value="72"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -582,7 +578,7 @@
         <UnitName Value="MainWindowStartupThreads"/>
         <CursorPos X="28" Y="73"/>
         <TopLine Value="51"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -659,9 +655,11 @@
       <Unit70>
         <Filename Value="DOCS\TODO.TXT"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="1" Y="6"/>
+        <CursorPos X="57" Y="33"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
       </Unit70>
       <Unit71>
@@ -755,7 +753,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="32" Y="10"/>
         <TopLine Value="1"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
         <SyntaxHighlighter Value="None"/>
       </Unit82>
       <Unit83>
@@ -787,7 +785,7 @@
         <UnitName Value="OptionsFrm2"/>
         <CursorPos X="58" Y="35"/>
         <TopLine Value="22"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="192"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit85>
       <Unit86>
@@ -837,7 +835,7 @@
         <UnitName Value="splash"/>
         <CursorPos X="12" Y="33"/>
         <TopLine Value="1"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="172"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit92>
       <Unit93>
@@ -871,7 +869,7 @@
         <UnitName Value="complib"/>
         <CursorPos X="148" Y="4"/>
         <TopLine Value="1"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit97>
       <Unit98>
@@ -912,7 +910,7 @@
         <UnitName Value="KSPThreadUtils"/>
         <CursorPos X="1" Y="124"/>
         <TopLine Value="111"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="153"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit103>
       <Unit104>
@@ -1193,7 +1191,7 @@
         <UnitName Value="Support"/>
         <CursorPos X="37" Y="33"/>
         <TopLine Value="12"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit144>
       <Unit145>
