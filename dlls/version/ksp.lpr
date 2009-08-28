@@ -17,7 +17,7 @@ const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 38;
+  Minor = 45;
   Build = 0;
 
 

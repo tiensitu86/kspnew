@@ -126,6 +126,22 @@ msgstr ""
 msgid "Playlists"
 msgstr ""
 
+#: kspstrings.spluginsdisabled
+msgid "All currently installed plugins are disabled"
+msgstr ""
+
+#: kspstrings.spluginsenabled
+msgid "All currently installed plugins are enabled"
+msgstr ""
+
+#: kspstrings.spluginsloaded
+msgid "All enabled plugins are loaded"
+msgstr ""
+
+#: kspstrings.spluginsunloaded
+msgid "All enabled plugins are unloaded"
+msgstr ""
+
 #: kspstrings.sremaining
 msgid "Remaining:"
 msgstr ""

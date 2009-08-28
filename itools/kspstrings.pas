@@ -108,6 +108,10 @@ SDBMemo = 'KSP requires connection to database.\nCurrently MySQL and Sqlite3 dat
   'configure application.\n\nIMPORTANT:\n\nKSP requires MySQL username that has FULL rights\nto chosen database (create table, insert, delete, alter,\n'+
   'select). Additionally if that user has create database\nright it is possible thatKSP will create database if chosen\n'+
   'database is missing. Otherwise you have to create it manually';
+SPluginsLoaded = 'All enabled plugins are loaded';
+SPluginsUnloaded = 'All enabled plugins are unloaded';
+SPluginsDisabled = 'All currently installed plugins are disabled';
+SPluginsEnabled = 'All currently installed plugins are enabled';
 
 implementation
 

@@ -176,6 +176,8 @@ type  TWebView = class(TObject)
     procedure Button10Click(Sender: TObject);
     procedure Button11Click(Sender: TObject);
     procedure Button12Click(Sender: TObject);
+    procedure Button13Click(Sender: TObject);
+    procedure Button14Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -294,6 +296,7 @@ type  TWebView = class(TObject)
     procedure CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
     procedure SetupOpenDialog;
     procedure LoadPlugins;
+    procedure UnloadPlugins;
   protected
     procedure WndProc(var m: TLMessage); override;
   public
@@ -683,6 +686,15 @@ begin
     Player.BASSAddonLoad(s.Strings[i]);
 
   s.Free;
+end;
+
+procedure TKSPMainWindow.UnloadPlugins;
+var
+  i: integer;
+begin
+  for i:=FileSupportList.Count-1 downto 0 do begin
+    Player.BASSAddonFree(FileSupportList.GetItem(i).Handle);
+  end;
 end;
 
 procedure TKSPMainWindow.SetupOpenDialog;
@@ -1181,11 +1193,42 @@ procedure TKSPMainWindow.Button11Click(Sender: TObject);
 begin
   Self.LoadPlugins;
   Self.SetupOpenDialog;
+  ShowMessage(SPluginsLoaded);
 end;
 
 procedure TKSPMainWindow.Button12Click(Sender: TObject);
 begin
+  Self.UnloadPlugins;
+  ShowMessage(SPluginsUnLoaded);
+end;
 
+procedure TKSPMainWindow.Button13Click(Sender: TObject);
+var
+  s, s2: TStringList;
+  i: integer;
+begin
+  s:=TStringList.Create;
+  s2:=TStringList.Create;
+
+  SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+
+  for i:=0 to s.Count-1 do
+    s2.Add(ExtractFileName(s.Strings[i]));
+
+  s2.SaveToFile(KSPPluginsBlacklist);
+
+  s.Free;
+  s2.Free;
+
+  Self.UnloadPlugins;
+  ShowMessage(SPluginsDisabled);
+end;
+
+procedure TKSPMainWindow.Button14Click(Sender: TObject);
+begin
+  DeleteFile(KSPPluginsBlacklist);
+  Self.LoadPlugins;
+  ShowMessage(SPluginsEnabled);
 end;
 
 function TKSPMainWindow.GetCurrentFile: string;
@@ -2339,7 +2382,7 @@ var
       1:  KSPMainWindow.RepeatType:=rtOne;
       2:  KSPMainWindow.RepeatType:=rtAll;
     end;
-    self.ShowSplash:=XMLFile.ReadBool('Vars', 'Splash', true);
+    self.ShowSplash:=XMLFile.ReadBool('Vars', 'Splash', false);
 
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));

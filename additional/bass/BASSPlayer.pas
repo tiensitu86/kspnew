@@ -3584,6 +3584,7 @@ begin
    FindNameRes:=FileSupportList.FindName(FileName, not ForceLoad);
 
    if FindNameRes<>-1 then begin
+      hLog.Send('Plugin already loaded ('+FileName+')');
       exit;
     end;
 
@@ -3596,6 +3597,7 @@ begin
    begin
       fd.Handle := AddonHandle;
       fd.Name := FileName;
+      hLog.Send('New plugin loaded: '+FileName);
       AddonInfoP := BASS_PluginGetInfo(AddonHandle);
       if AddonInfoP <> nil then
       begin
@@ -3628,6 +3630,8 @@ begin
       begin
          if FileSupportList.GetItem(i).Name = 'bass_aac.dll' then
             FBASSAACReady := false;
+
+         hLog.Send('Unloading plugin: '+FileSupportList.GetItem(i).Name);
          inc(result);
          FileSupportList.Remove(i);
          Result:=1

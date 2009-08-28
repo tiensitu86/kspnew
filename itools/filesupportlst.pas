@@ -124,10 +124,12 @@ var
 begin
   Result:=false;
   s:=TStringList.Create;
-  s.LoadFromFile(KSPPluginsBlacklist);
+  if FileExists(KSPPluginsBlacklist) then begin
+    s.LoadFromFile(KSPPluginsBlacklist);
 
-  for i:=0 to s.Count-1 do
-    if s.Strings[i]=eName then Result:=true;
+    for i:=0 to s.Count-1 do
+      if s.Strings[i]=eName then Result:=true;
+  end;
 
   s.Free;
 end;
@@ -153,7 +155,8 @@ var
 
 begin
   s:=TStringList.Create;
-  s.LoadFromFile(KSPPluginsBlacklist);
+  if FileExists(KSPPluginsBlacklist) then
+    s.LoadFromFile(KSPPluginsBlacklist);
   if Enable then begin
     EnablePlugin;
   end else begin

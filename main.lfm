@@ -2935,6 +2935,7 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 356
                   Width = 179
                   Caption = 'Disable ALL Plugins'
+                  OnClick = Button13Click
                   TabOrder = 6
                 end
                 object Button14: TButton
@@ -2943,6 +2944,7 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 324
                   Width = 179
                   Caption = 'Enable ALL Plugins'
+                  OnClick = Button14Click
                   TabOrder = 7
                 end
               end
