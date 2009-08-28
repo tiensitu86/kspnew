@@ -466,7 +466,8 @@ type
       //  Return value : The elements of TBASSAddOnInfo is filled with the information on the BASS add-on
       //                 loaded on success, the Handle element of TBASSAddOnInfo is 0 on failure.
 
-    function BASSAddonFree(AddonHandle : HPLUGIN) : integer;
+    function BASSAddonFree(AddonHandle : HPLUGIN) : integer; overload;
+    function BASSAddonFree(Addon : string) : integer; overload;
       //  Unplugs a BASS add-on or all BASS add-ons.
       //  Parameters :
       //   - AddonHandle : The handle to the BASS add-on to be unloaded or 0 for all BASS add-ons.
@@ -3631,6 +3632,19 @@ begin
          FileSupportList.Remove(i);
       end;
   end;
+end;
+
+function TBASSPlayer.BASSAddonFree(Addon : string) : integer;
+var
+  i: integer;
+  f: TFileDesc;
+begin
+  i:=FileSupportList.FindName(Addon);
+  if i<0 then Exit;
+
+  f:=FileSupportList.GetItem(i);
+  hLog.Send('Unloading plugin:'+f.Name);
+  Self.BASSAddonFree(f.Handle);
 end;
 
 function TBASSPlayer.GetBASSAddonExts : string;

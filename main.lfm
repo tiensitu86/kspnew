@@ -2906,6 +2906,7 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 44
                   Width = 179
                   Caption = 'Load'
+                  OnClick = Button9Click
                   TabOrder = 3
                 end
                 object Button10: TButton
@@ -2914,6 +2915,7 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 72
                   Width = 179
                   Caption = 'Unload'
+                  OnClick = Button10Click
                   TabOrder = 4
                 end
                 object Button11: TButton
