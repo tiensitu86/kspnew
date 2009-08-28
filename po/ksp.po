@@ -389,10 +389,6 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: TKSPMAINWINDOW.BUTTON8.CAPTION
-msgid "Save Changes"
-msgstr ""
-
 #: TKSPMAINWINDOW.BUTTON9.CAPTION
 msgid "Load"
 msgstr ""

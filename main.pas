@@ -45,7 +45,6 @@ type  TWebView = class(TObject)
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
-    Button8: TButton;
     Button9: TButton;
     PlgOnStartup: TCheckBox;
     PageControl1: TPageControl;
@@ -175,6 +174,8 @@ type  TWebView = class(TObject)
     procedure btPlayClick(Sender: TObject);
     procedure btStopClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
+    procedure Button12Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -196,6 +197,7 @@ type  TWebView = class(TObject)
     procedure Panel7Resize(Sender: TObject);
     procedure PlgOnStartupClick(Sender: TObject);
     procedure PluginsListClick(Sender: TObject);
+    procedure PluginsListClickCheck(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure RenameBookmarkClick(Sender: TObject);
     procedure RepeatButtonClick(Sender: TObject);
@@ -290,6 +292,8 @@ type  TWebView = class(TObject)
     procedure RefreshBookmarks;
     procedure RefreshMediaFolders;
     procedure CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
+    procedure SetupOpenDialog;
+    procedure LoadPlugins;
   protected
     procedure WndProc(var m: TLMessage); override;
   public
@@ -666,6 +670,35 @@ begin
     end;
 end;
 
+procedure TKSPMainWindow.LoadPlugins;
+var
+  s: TStringList;
+  i: integer;
+begin
+  s:=TStringList.Create;
+
+  SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+
+  for i:=0 to s.Count-1 do
+    Player.BASSAddonLoad(s.Strings[i]);
+
+  s.Free;
+end;
+
+procedure TKSPMainWindow.SetupOpenDialog;
+var
+  i: integer;
+begin
+  OpenDialog1.Filter:=SPlaylists+' (*.pls;*.m3u;*.kpl)|*.pls;*.m3u;*.kpl|'+
+    SNativeFiles+'('+Player.NativeFileExts+')|'+Player.NativeFileExts;
+
+  for i:=0 to FileSupportList.Count-1 do begin
+        OpenDialog1.Filter:=OpenDialog1.Filter+'|'+FileSupportList.GetItem(i).Name+' ('+
+          Player.GetBASSAddonExts(i)+')|'+Player.GetBASSAddonExts(i);
+    end;
+  OpenDialog1.Filter:=OpenDialog1.Filter+'|All Files (*.*)|*.*';
+end;
+
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
@@ -734,35 +767,6 @@ var
           KSPMainWindow.lTime2.Caption:=SElapsed;
         end;
     end;
-  end;
-
-  procedure LoadPlugins;
-  var
-    s: TStringList;
-    i: integer;
-  begin
-    s:=TStringList.Create;
-
-    SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
-
-    for i:=0 to s.Count-1 do
-      Player.BASSAddonLoad(s.Strings[i]);
-
-    s.Free;
-  end;
-
-  procedure SetupOpenDialog;
-  var
-    i: integer;
-  begin
-    OpenDialog1.Filter:=SPlaylists+' (*.pls;*.m3u;*.kpl)|*.pls;*.m3u;*.kpl|'+
-      SNativeFiles+'('+Player.NativeFileExts+')|'+Player.NativeFileExts;
-
-    for i:=0 to FileSupportList.Count-1 do begin
-          OpenDialog1.Filter:=OpenDialog1.Filter+'|'+FileSupportList.GetItem(i).Name+' ('+
-            Player.GetBASSAddonExts(i)+')|'+Player.GetBASSAddonExts(i);
-      end;
-    OpenDialog1.Filter:=OpenDialog1.Filter+'|All Files (*.*)|*.*';
   end;
 
   procedure SetSplashProg(prg: integer);
@@ -913,7 +917,9 @@ procedure TKSPMainWindow.Button9Click(Sender: TObject);
 begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
   if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-    Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]);
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+
+  Self.SetupOpenDialog;
 end;
 
 procedure TKSPMainWindow.DeleteBookmarkClick(Sender: TObject);
@@ -1029,9 +1035,11 @@ begin
   FileSupportList.SetEnableStatus(PluginsList.Items.Strings[PluginsList.ItemIndex], PlgOnStartup.Checked);
   i:=FileSupportList.FindName(PluginsList.Items.Strings[PluginsList.ItemIndex]);
   if i>-1 then begin
-    Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex]); end else
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1; end else
     if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-      Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]);
+      PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+
+  Self.SetupOpenDialog;
 end;
 
 procedure TKSPMainWindow.PluginsListClick(Sender: TObject);
@@ -1039,6 +1047,12 @@ begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
 
   PlgOnStartup.Checked:=not FileSupportList.PluginsForbidden(PluginsList.Items.Strings[PluginsList.ItemIndex]);
+end;
+
+procedure TKSPMainWindow.PluginsListClickCheck(Sender: TObject);
+begin
+  if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
+  if PluginsList.Checked[PluginsList.ItemIndex] then Self.Button9Click(Sender) else Self.Button10Click(Sender);
 end;
 
 procedure TKSPMainWindow.PopupMenu1Popup(Sender: TObject);
@@ -1158,7 +1172,20 @@ end;
 procedure TKSPMainWindow.Button10Click(Sender: TObject);
 begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
-  Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex]);
+  PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1;
+
+  Self.SetupOpenDialog;
+end;
+
+procedure TKSPMainWindow.Button11Click(Sender: TObject);
+begin
+  Self.LoadPlugins;
+  Self.SetupOpenDialog;
+end;
+
+procedure TKSPMainWindow.Button12Click(Sender: TObject);
+begin
+
 end;
 
 function TKSPMainWindow.GetCurrentFile: string;

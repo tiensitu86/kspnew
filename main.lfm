@@ -2881,15 +2881,8 @@ object KSPMainWindow: TKSPMainWindow
                   Width = 232
                   Align = alLeft
                   OnClick = PluginsListClick
+                  OnClickCheck = PluginsListClickCheck
                   TabOrder = 0
-                end
-                object Button8: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 356
-                  Width = 179
-                  Caption = 'Save Changes'
-                  TabOrder = 1
                 end
                 object PlgOnStartup: TCheckBox
                   Left = 238
@@ -2898,7 +2891,7 @@ object KSPMainWindow: TKSPMainWindow
                   Width = 104
                   Caption = 'Load On Startup'
                   OnClick = PlgOnStartupClick
-                  TabOrder = 2
+                  TabOrder = 1
                 end
                 object Button9: TButton
                   Left = 238
@@ -2907,7 +2900,7 @@ object KSPMainWindow: TKSPMainWindow
                   Width = 179
                   Caption = 'Load'
                   OnClick = Button9Click
-                  TabOrder = 3
+                  TabOrder = 2
                 end
                 object Button10: TButton
                   Left = 238
@@ -2916,7 +2909,7 @@ object KSPMainWindow: TKSPMainWindow
                   Width = 179
                   Caption = 'Unload'
                   OnClick = Button10Click
-                  TabOrder = 4
+                  TabOrder = 3
                 end
                 object Button11: TButton
                   Left = 238
@@ -2924,7 +2917,8 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 108
                   Width = 179
                   Caption = 'Load ALL'
-                  TabOrder = 5
+                  OnClick = Button11Click
+                  TabOrder = 4
                 end
                 object Button12: TButton
                   Left = 238
@@ -2932,23 +2926,24 @@ object KSPMainWindow: TKSPMainWindow
                   Top = 140
                   Width = 179
                   Caption = 'Unload ALL'
-                  TabOrder = 6
+                  OnClick = Button12Click
+                  TabOrder = 5
                 end
                 object Button13: TButton
                   Left = 238
                   Height = 25
-                  Top = 324
+                  Top = 356
                   Width = 179
                   Caption = 'Disable ALL Plugins'
-                  TabOrder = 7
+                  TabOrder = 6
                 end
                 object Button14: TButton
                   Left = 238
                   Height = 25
-                  Top = 292
+                  Top = 324
                   Width = 179
                   Caption = 'Enable ALL Plugins'
-                  TabOrder = 8
+                  TabOrder = 7
                 end
               end
             end

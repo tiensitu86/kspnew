@@ -3630,6 +3630,7 @@ begin
             FBASSAACReady := false;
          inc(result);
          FileSupportList.Remove(i);
+         Result:=1
       end;
   end;
 end;
@@ -3644,7 +3645,7 @@ begin
 
   f:=FileSupportList.GetItem(i);
   hLog.Send('Unloading plugin:'+f.Name);
-  Self.BASSAddonFree(f.Handle);
+  Result:=Self.BASSAddonFree(f.Handle);
 end;
 
 function TBASSPlayer.GetBASSAddonExts : string;
