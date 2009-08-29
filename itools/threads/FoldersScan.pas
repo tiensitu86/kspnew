@@ -101,6 +101,7 @@ procedure TFoldersScanThread.Execute;
 var
   //d: TDateTime;
   Result: Cardinal;
+  s: TStringList;
 begin
 //  while not Application.Terminated do begin
 //  WaitForSingleObject(GetCountSem, 0);
@@ -108,7 +109,7 @@ begin
   hLog.Send('Scanning folders for media files');
   ItemsNo:=0;
 
-//  AllSongs.CompactLib;//Delete non-existing entries
+  AllSongs.CompactLib;//Delete non-existing entries
 
   GetCountSem2:=0;//ReleaseSemaphore(GetCountSem, 1, nil);
 //  LoadPlsSem := CreateSemaphore(nil, 0,1,'KSPLoadPls');
@@ -127,7 +128,11 @@ begin
 
   KSPMainWindow.SongsInLib:=ItemsNo;
 
+  s:=AllSongs.CompactLib;
   KSPMainWindow.WaitForB:=0;
+  AllSongs.CompactLib(2, s);
+
+  KSPMainWindow.TabSheet1.Visible:=ItemsNo>0;
 
   if not ForceRescan then begin
       

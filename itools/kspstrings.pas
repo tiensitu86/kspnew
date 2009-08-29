@@ -68,10 +68,6 @@ SMetaContent = 'ICECAST: Playing %s';
 SShoutcastAddressCaption = 'Add URL:';
 SShoutcastAddressDesc = 'Enter the URL to be played';
 SShoutcastEntry = 'ICECAST: %s';
-SAutoSupportName = 'Give your name:';
-SAutoSupportNameText = 'Give your name:';
-SAutoSupportEMail = 'Give your e-mail address:';
-SAutoSupportEMailText = 'Give your e-mail address';
 SCustomHintPlaylist = 'KSP Playlist Editor Quick Hint';
 sXMLIncorrectIndex = 'XML Parser: Incorrect Index: %s';
 sXMLIncorrectCharLower = 'XML Parser: Char < is expected';
@@ -94,7 +90,6 @@ sXMLError = 'XML Parser: An error occured while parsing, line: %s, char: %s, mes
 SCannotDeleteRenameDefaulEq = 'Any default setting of Equalizer cannot be renamed or deleted.\nYou can only rename or delete settings created by you';
 SEQNameInputCaption = 'Preset Name:';
 SEQNameInput = 'Preset name:';
-//SAutoSupportText2 = 'You have chosen not to use Automatic Support feature. To enable this feature next time go to Options->Other->Automatic Support';
 sRestartNeeded = 'This feature will be changed/enabled after restart';
 //SRenameFileFolderCaption = 'Rename item...';
 //SRenameFileFolder = 'Rename selected item to:';
@@ -112,6 +107,22 @@ SPluginsLoaded = 'All enabled plugins are loaded';
 SPluginsUnloaded = 'All enabled plugins are unloaded';
 SPluginsDisabled = 'All currently installed plugins are disabled';
 SPluginsEnabled = 'All currently installed plugins are enabled';
+//Main header control captions
+SWelcome = 'Welcome';
+SLibrary = 'Library';
+SSetup = 'Setup';
+//Setup TreeView
+SBookmarks = 'Bookmarks';
+SPlugins = 'Plugins';
+SNotifications = 'Notifications';
+SMediaLibrary = 'Media Library';
+SInternetMedia = 'Internet Media';
+//MSortType
+SSortBy = 'Sort by';
+SArtist = 'Artist';
+SYear = 'Year';
+SAlbum = 'Album';
+SGenre = 'Genre';
 
 implementation
 

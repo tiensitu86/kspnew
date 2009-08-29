@@ -1,22 +1,20 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: kspstrings.sautosupportemail
-msgid "Give your e-mail address:"
+#: kspstrings.salbum
+msgid "Album"
 msgstr ""
 
-#: kspstrings.sautosupportemailtext
-msgid "Give your e-mail address"
-msgstr ""
-
-#: kspstrings.sautosupportname
-msgctxt "kspstrings.sautosupportname"
-msgid "Give your name:"
-msgstr ""
-
-#: kspstrings.sautosupportnametext
-msgctxt "kspstrings.sautosupportnametext"
-msgid "Give your name:"
+#: kspstrings.sartist
+msgid "Artist"
 msgstr ""
 
 #: kspstrings.sbookmarkdelete
@@ -25,6 +23,11 @@ msgstr ""
 
 #: kspstrings.sbookmarkdeletecaption
 msgid "Delete bookmark"
+msgstr ""
+
+#: kspstrings.sbookmarks
+msgctxt "kspstrings.sbookmarks"
+msgid "Bookmarks"
 msgstr ""
 
 #: kspstrings.scannotdeleterenamedefauleq
@@ -68,6 +71,10 @@ msgstr ""
 msgid "File:"
 msgstr ""
 
+#: kspstrings.sgenre
+msgid "Genre"
+msgstr ""
+
 #: kspstrings.sinputbookmarkcaption
 msgctxt "kspstrings.sinputbookmarkcaption"
 msgid "Bookmark name:"
@@ -76,6 +83,11 @@ msgstr ""
 #: kspstrings.sinputbookmarkprompt
 msgctxt "kspstrings.sinputbookmarkprompt"
 msgid "Bookmark name:"
+msgstr ""
+
+#: kspstrings.sinternetmedia
+msgctxt "kspstrings.sinternetmedia"
+msgid "Internet Media"
 msgstr ""
 
 #: kspstrings.slastsongplayed
@@ -88,6 +100,14 @@ msgstr ""
 
 #: kspstrings.slength
 msgid "Length:"
+msgstr ""
+
+#: kspstrings.slibrary
+msgid "Library"
+msgstr ""
+
+#: kspstrings.smedialibrary
+msgid "Media Library"
 msgstr ""
 
 #: kspstrings.smetacontent
@@ -110,6 +130,10 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: kspstrings.snotifications
+msgid "Notifications"
+msgstr ""
+
 #: kspstrings.sonminimizetotrayalert
 msgid "You have minimized KSP to system tray, To restore it just right click on KSP icon. You can disable this alert in KSP options"
 msgstr ""
@@ -124,6 +148,10 @@ msgstr ""
 
 #: kspstrings.splaylists
 msgid "Playlists"
+msgstr ""
+
+#: kspstrings.splugins
+msgid "Plugins"
 msgstr ""
 
 #: kspstrings.spluginsdisabled
@@ -178,6 +206,10 @@ msgstr ""
 msgid "Media library has been rescaned sucessfully. Now you can continue your work"
 msgstr ""
 
+#: kspstrings.ssetup
+msgid "Setup"
+msgstr ""
+
 #: kspstrings.sshoutcastaddresscaption
 msgid "Add URL:"
 msgstr ""
@@ -188,6 +220,10 @@ msgstr ""
 
 #: kspstrings.sshoutcastentry
 msgid "ICECAST: %s"
+msgstr ""
+
+#: kspstrings.ssortby
+msgid "Sort by"
 msgstr ""
 
 #: kspstrings.stagalbum
@@ -248,6 +284,11 @@ msgstr ""
 
 #: kspstrings.sunknownyear
 msgid "Unknown Year"
+msgstr ""
+
+#: kspstrings.swelcome
+msgctxt "kspstrings.swelcome"
+msgid "Welcome"
 msgstr ""
 
 #: kspstrings.sxmlerror
@@ -312,6 +353,10 @@ msgstr ""
 
 #: kspstrings.sxmlunexpectedclosetag
 msgid "XML Parser: Unexpected closing tag"
+msgstr ""
+
+#: kspstrings.syear
+msgid "Year"
 msgstr ""
 
 #: kspstrings.syes
@@ -589,6 +634,7 @@ msgid "Global Plugins"
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET3.CAPTION
+msgctxt "TKSPMAINWINDOW.TABSHEET3.CAPTION"
 msgid "Welcome"
 msgstr ""
 
@@ -597,6 +643,7 @@ msgid "About..."
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET5.CAPTION
+msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
 msgid "Internet Media"
 msgstr ""
 

@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 410
+  Left = 386
   Height = 632
-  Top = 191
+  Top = 167
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610
@@ -229,7 +229,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 686
       Align = alClient
-      PageIndex = 2
+      PageIndex = 1
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -1682,22 +1682,22 @@ object KSPMainWindow: TKSPMainWindow
         object LibPages: TPageControl
           Height = 422
           Width = 680
-          ActivePage = TabSheet5
+          ActivePage = TabSheet1
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 422
-            ClientWidth = 680
+            ClientHeight = 396
+            ClientWidth = 674
             object Splitter1: TSplitter
               Left = 186
-              Height = 422
+              Height = 396
               Width = 5
             end
             object MsortType: TTreeView
-              Height = 422
+              Height = 396
               Width = 186
               Align = alLeft
               DefaultItemHeight = 16
@@ -1714,32 +1714,32 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 422
-              Width = 489
+              Height = 396
+              Width = 483
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 422
-              ClientWidth = 489
+              ClientHeight = 396
+              ClientWidth = 483
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Height = 5
-                Top = 245
-                Width = 489
+                Top = 219
+                Width = 483
                 Align = alBottom
                 ResizeAnchor = akBottom
               end
               object MediaBuild: TProgressBar
                 Height = 20
-                Top = 402
-                Width = 489
+                Top = 376
+                Width = 483
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
-                Height = 245
-                Width = 489
+                Height = 219
+                Width = 483
                 Align = alClient
                 DefaultItemHeight = 16
                 TabOrder = 2
@@ -1747,8 +1747,8 @@ object KSPMainWindow: TKSPMainWindow
               end
               object MIView: TCheckListBox
                 Height = 152
-                Top = 250
-                Width = 489
+                Top = 224
+                Width = 483
                 Align = alBottom
                 OnDblClick = MIViewDblClick
                 PopupMenu = SongListMenu
@@ -1758,22 +1758,22 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 422
-            ClientWidth = 680
+            ClientHeight = 396
+            ClientWidth = 674
             object Panel7: TPanel
-              Height = 359
+              Height = 333
               Top = 43
-              Width = 680
+              Width = 674
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
             end
             object Panel6: TPanel
               Height = 43
-              Width = 680
+              Width = 674
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 680
+              ClientWidth = 674
               TabOrder = 1
               object SpeedButton1: TSpeedButton
                 Left = 339
@@ -2687,8 +2687,8 @@ object KSPMainWindow: TKSPMainWindow
             end
             object IMProgress: TProgressBar
               Height = 20
-              Top = 402
-              Width = 680
+              Top = 376
+              Width = 674
               Align = alBottom
               Smooth = True
               TabOrder = 2

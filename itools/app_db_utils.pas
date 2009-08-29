@@ -61,7 +61,7 @@ type
     function MultipleTransactionsSupported: boolean;
 
     function ReadEntry: TPLEntry;
-    procedure CompactLib;
+    function CompactLib(Step: integer = 1; s: TStringList = nil): TStringList;
     procedure Remove(FileName: string);
     function IsPlaylist(FileName: string): boolean;
     function ReturnFromArtist(FileName: string; Artist: string): TPlayList;
@@ -595,108 +595,30 @@ begin
 //      p.InternalNumberName:=f.FieldByName('IM').AsInteger;
 end;
 
-procedure TAppDBConnection.CompactLib;
+function TAppDBConnection.CompactLib(Step: integer = 1; s: TStringList = nil): TStringList;
 var
-  i, x: integer;
-  s: TStringList;
-  NotShown: boolean;
   Pc: TPathChar;
-  Data: TAppDBConnection;
 
-  function IsDuplicated(str: string; Start: integer): boolean;
+  procedure Step1;
   var
-    i: integer;
+    x: integer;
   begin
-    Result:=false;
-    if Start<s.Count-1 then
-      for i:=start+1 to s.Count-1 do
-        if UpperCase(str)=UpperCase(s.Strings[i]) then Result:=true;
-
-    if Result and NotShown then begin
-        NotShown:=false;
-        MessageDlg(sDuplicatedItems, mtInformation, [mbOk], 0);
-        {WizardProgressForm:=TWizardProgressForm.Create(nil);
-        WizardProgressForm.Show;
-        WizardProgressForm.Progress.Value:=0;
-        WizardProgressForm.Progress.MaxValue:=s.Count;}
-      end;
-  end;
-
-  procedure RemoveDuplicates(s: string);
-  var
-    pls: TPlaylist;
-    p: PPLEntry;
-    i, Cnt: integer;
-    Pc: TPathChar;
-  begin
-    pls:=TPlayList.Create;
-    //WizardProgressForm.Progress.Value:=WizardProgressForm.Progress.Value+1;
-    Application.ProcessMessages;
-    Sleep(100);
-    ShowMessage(s);
-
-    repeat
-      Pls.Clear;
-      StrPCopy(Pc, s);
-      OpenQuery(Format(SelectGetItem, [PrepareString(s)]));
-      Cnt:=ReturnRecordsCount;
-      for i:=0 to ReturnRecordsCount-1 do begin
-          pls.Add(ReadEntry);
-          GoToNext;
-        end;
-      CloseQuery;
-      Pls.SortPlaylist(pstPlayCount);
-      if Pls.Count>0 then
-        p:=Pls.GetItem(0);
-      if Pls.Count>1 then begin
-        StrPCopy(Pc, Pls.GetItem(1).FileName);
-        ExecuteSQL(Format(RemoveItemDupl, [PrepareString(Pc), IntToStr(Pls.GetItem(1).PlayCount)]));
-      end;
-    until Cnt<=1;
-      StrPCopy(Pc, s);
-      OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
-      Cnt:=ReturnRecordsCount;
-      CloseQuery;
-      if (Cnt=0) then AddToDatabase(p^);
-
-    pls.Free;
-  end;
-
-  procedure FindDuplicates;
-  var
-    i: integer;
-  begin
-    NotShown:=true;
-    for i:=0 to s.Count-1 do begin
-      if IsDuplicated(s.Strings[i], i) then begin
-          hLog.Send('MEDIA LIBRARY: Removing duplicates for '+s.Strings[i]+
-            ' ('+IntToStr(i)+')');
-          RemoveDuplicates(s.Strings[i]);
-        end;
-    end;
-    if not NotShown then begin
-        //Self.fDataBase.aDatabase.PackTable('meta', '');
-        //WizardProgressForm.Free;
-      end;
-  end;
-
-
-begin
-  OpenQuery('SELECT * FROM meta');
-  s:=TStringList.Create;
-
-  hLog.Send('MEDIA LIBRARY: Compact part 1');
-
-  if ReturnRecordsCount>0 then for x:=0 to ReturnRecordsCount-1 do begin
-      s.Add(ReadEntry.FileName);
+    Result:=TStringList.Create;
+    OpenQuery('SELECT * FROM meta');
+    if ReturnRecordsCount>0 then for x:=0 to ReturnRecordsCount-1 do begin
+      Result.Add(ReadEntry.FileName);
       GoToNext;
     end;
+    CloseQuery;
+  end;
 
-  CloseQuery;
 
-  hLog.Send('MEDIA LIBRARY: Compact part 2');
-
-  if s.Count>0 then begin
+  procedure Step2;
+  var
+    i: integer;
+  begin
+    if s = nil then Exit;
+    if s.Count>0 then begin
     for i:=0 to s.Count-1 do
       if (not FileExists(s.Strings[i])) or
       (not (KSPMainWindow.MediaFoldersList.FileInFolders(s.Strings[i])))
@@ -705,14 +627,23 @@ begin
       begin
         StrPCopy(Pc, s.Strings[i]);
         ExecuteSQL(Format(RemoveItem, [PrepareString(Pc)]));
-        //fDataBase.aQuery.ExecSQL;
       end;
-    FindDuplicates;
+    end;
+    s.Free;
+
+    hLog.Send('MEDIA LIBRARY: Compact done');
   end;
-  s.Free;
-//  fDatabase.Database.PackTable('meta', '');
-//  fDatabase.Database
-  hLog.Send('MEDIA LIBRARY: Compact done');
+
+begin
+
+  s:=TStringList.Create;
+
+  hLog.Send('MEDIA LIBRARY: Compact part '+IntToStr(Step));
+
+  case Step of
+    1: Step1;
+    2: Step2;
+  end;
 end;
 
 procedure TAppDBConnection.AddToDataBase(p: TPlaylist);

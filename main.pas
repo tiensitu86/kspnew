@@ -787,6 +787,15 @@ var
     Application.ProcessMessages;
   end;
 
+  procedure SetupCaptions;
+  begin
+    HeaderControl1.Sections.Items[0].Text:=SWelcome;
+    HeaderControl1.Sections.Items[1].Text:=SLibrary;
+    HeaderControl1.Sections.Items[2].Text:=SSetup;
+
+    MSortType.Items.Item[0].Text:=SSortBy;
+  end;
+
 begin
   SplashForm:=TSplashForm.Create(nil);
 
@@ -845,6 +854,7 @@ begin
   ApplyOptions;
 
   Self.SetupWebBrowserIC;
+  SetupCaptions;
 
   SplashForm.Free;
 
