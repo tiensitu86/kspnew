@@ -582,18 +582,20 @@ var
       '(If you have it) to fill new database with media entries';
   begin
      v:=0;
-     if FileExists(KSPDataFolder+'data\db\version') then
+     Result:=false;
+     if FileExists(KSPDataFolder+'data\db\version') then begin
        begin
           I:=TIniFile.Create(KSPDataFolder+'data\db\version');
           v:=i.ReadInteger('Version', 'Number', 0);
           I.Free;
         end;
-     Result:=v<DB_VERSION;
-     if V<5 then begin
+      Result:=v<DB_VERSION;
+      if V<5 then begin
         ShowMessage(ConstMsg);
         Result:=false;
         SaveVersion;
       end;
+     end;
 
   end;
 
@@ -660,7 +662,8 @@ var
   end;
 
 begin
-  if ShouldMigrate then begin
+//TO BE WRITTEN
+{  if ShouldMigrate then begin
       //CreateDatabase('meta_new');
       RenameFile(KSPDataFolder+'db\meta.kspdb', KSPDataFolder+'db\meta_old.kspdb');
       RenameFile(KSPDataFolder+'db\meta_new.kspdb', KSPDataFolder+'db\meta.kspdb');
@@ -670,7 +673,7 @@ begin
       PrepareSQL;
       SaveVersion;
       ShowMessage(SMigratedToNew);
-    end;
+    end;}
 end;
 
 procedure TKSPMainWindow.LoadPlugins;

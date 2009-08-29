@@ -2863,21 +2863,21 @@ object KSPMainWindow: TKSPMainWindow
           end
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
-            ClientWidth = 431
-            ClientHeight = 416
+            ClientWidth = 437
+            ClientHeight = 422
             object PageControl1: TPageControl
-              Height = 416
-              Width = 431
+              Height = 422
+              Width = 437
               ActivePage = TabSheet2
               Align = alClient
               TabIndex = 0
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 389
-                ClientWidth = 425
+                ClientHeight = 36
+                ClientWidth = 106
                 object PluginsList: TCheckListBox
-                  Height = 389
+                  Height = 36
                   Width = 232
                   Align = alLeft
                   OnClick = PluginsListClick
