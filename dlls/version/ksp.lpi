@@ -37,8 +37,8 @@
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="24" Y="17"/>
-        <TopLine Value="1"/>
+        <CursorPos X="20" Y="30"/>
+        <TopLine Value="11"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>

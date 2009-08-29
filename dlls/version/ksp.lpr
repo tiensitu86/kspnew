@@ -11,13 +11,13 @@ uses
 {$DEFINE KSP_SPECIAL_BUILD}
 
 {$IFDEF KSP_SPECIAL_BUILD}
-const KSPSpecialInfo = 'R2 pre';
+const KSPSpecialInfo = 'R2';
 {$ENDIF}
 const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 45;
+  Minor = 50;
   Build = 0;
 
 
