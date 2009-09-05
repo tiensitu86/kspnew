@@ -682,7 +682,11 @@ var
 begin
   s:=TStringList.Create;
 
+{$IFDEF WINDOWS}
   SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+{$ELSE}
+  SearchForFilesFS(KSP_APP_FOLDER+'plugins', true, s);
+{$ENDIF}
 
   for i:=0 to s.Count-1 do
     Player.BASSAddonLoad(s.Strings[i]);
@@ -940,8 +944,15 @@ end;
 procedure TKSPMainWindow.Button9Click(Sender: TObject);
 begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
+{$IFDEF WINDOWS}
   if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
     PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+{$ELSE}
+  ShowMessage(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]);
+  if FileExistsUTF8(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0 else
+    ShowMessage('Ok');
+{$ENDIF}
 
   Self.SetupOpenDialog;
 end;
@@ -1065,8 +1076,13 @@ begin
   i:=FileSupportList.FindName(PluginsList.Items.Strings[PluginsList.ItemIndex]);
   if i>-1 then begin
     PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1; end else
+{$IFDEF WINDOWS}
     if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
       PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+{$ELSE}
+    if FileExists(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
+      PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+{$ENDIF}
 
   Self.SetupOpenDialog;
 end;
@@ -1227,7 +1243,11 @@ begin
   s:=TStringList.Create;
   s2:=TStringList.Create;
 
+{$IFDEF WINDOWS}
   SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+{$ELSE}
+  SearchForFilesFS(KSP_APP_FOLDER+'plugins', true, s);
+{$ENDIF}
 
   for i:=0 to s.Count-1 do
     s2.Add(ExtractFileName(s.Strings[i]));
@@ -2291,7 +2311,11 @@ procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
     PluginsList.Items.Clear;
     s:=TStringList.Create;
 
+{$IFDEF WINDOWS}
     SearchForFilesFS(ExtractFilePath(Application.ExeName)+'plugins', true, s);
+{$ELSE}
+    SearchForFilesFS(KSP_APP_FOLDER+'plugins', true, s);
+{$ENDIF}
 
     s.Sort;
     for i:=0 to s.Count-1 do begin

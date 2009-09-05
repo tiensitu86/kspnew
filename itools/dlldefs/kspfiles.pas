@@ -12,16 +12,20 @@ const
   LIB_SUFFIX = '.so';
 {$ENDIF}
 
-{$DEFINE KSP_SPECIAL_BUILD}
+{$IFNDEF WINDOWS}
+  {$DEFINE KSP_SPECIAL_BUILD}
+{$ENDIF}
 
 {$IFDEF KSP_SPECIAL_BUILD}
+const KSPSpecialInfo = 'R3 alpha';
+{$ELSE}
 const KSPSpecialInfo = 'R2';
 {$ENDIF}
 const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 50;
+  Minor = 76;
   Build = 0;
 
 {$IFNDEF KSP_STATIC}
@@ -150,7 +154,11 @@ begin
   FileAttrs := faAnyFile;//+faDirectory;
   s2:=TStringList.Create;
 
+{$IFDEF WINDOWS}
     if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+{$ELSE}
+    if FindFirst(Path+'/*.*', FileAttrs, sr) = 0 then
+{$ENDIF}
 
     begin
       repeat
@@ -161,10 +169,18 @@ begin
 
             if ((sr.Attr and faDirectory) <> sr.Attr)and
               (FileDateToDateTime(sr.Time)>DateM) then
+{$IFDEF WINDOWS}
                 s.Add(Path+'\'+sr.Name);
+{$ELSE}
+                s.Add(Path+'/'+sr.Name);
+{$ENDIF}
 
             if Rec and ((sr.Attr and faDirectory) = sr.Attr) then
-              s2.Add(Path+'\'+sr.Name);
+{$IFDEF WINDOWS}
+                s2.Add(Path+'\'+sr.Name);
+{$ELSE}
+                s2.Add(Path+'/'+sr.Name);
+{$ENDIF}
           end;
 
         end;
@@ -189,8 +205,11 @@ var
 begin
   FileAttrs := faAnyFile;//+faDirectory;
   s2:=TStringList.Create;
-
+{$IFDEF WINDOWS}
     if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+{$ELSE}
+    if FindFirst(Path+'/*.*', FileAttrs, sr) = 0 then
+{$ENDIF}
 
     begin
       repeat
@@ -200,10 +219,18 @@ begin
             //ShowMessage(ExtractFileExt(sr.Name));
 
             if ((sr.Attr and faDirectory) <> sr.Attr) then
+{$IFDEF WINDOWS}
                 s.Add(Path+'\'+sr.Name);
+{$ELSE}
+                s.Add(Path+'/'+sr.Name);
+{$ENDIF}
 
             if Rec and ((sr.Attr and faDirectory) = sr.Attr) then
+{$IFDEF WINDOWS}
               s2.Add(Path+'\'+sr.Name);
+{$ELSE}
+              s2.Add(Path+'/'+sr.Name);
+{$ENDIF}
           end;
 
         end;
@@ -276,10 +303,8 @@ end;
 
 function GetKSPVersion(AppPath: TPathChar): ShortString;
 begin
-  result := KSPMajorVersion;
-{$IFDEF KSP_SPECIAL_BUILD}
+  Result := KSPMajorVersion;
   Result:=Result+' '+KSPSpecialInfo;
-{$ENDIF}
 end;
 
 function GetKSPVersion2(AppPath: TPathChar): ShortString;

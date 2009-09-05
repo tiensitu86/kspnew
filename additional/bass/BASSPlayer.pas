@@ -3058,11 +3058,15 @@ var
 begin
    result.Handle := 0;
 
-   if not BASSDLLLoaded then   
+   if not BASSDLLLoaded then begin
+      hLog.Send('BASS not loaded ('+FileName+')');
       exit;
+   end;
 
-   if not FileExists(FilePath) then
+   if not FileExists(FilePath) then begin
+      hLog.Send('Plugin does not exist ('+FileName+')');
       exit;
+   end;
 
    FileName := Lowercase(ExtractFileName(FilePath));
 
@@ -3099,7 +3103,7 @@ begin
          FBASSAACReady := true;
       FileSupportList.Add(fd);
       result := fd;
-   end;
+   end else hLog.Send('Plugin cannot be loaded ('+FileName+')');
 
 end;
 

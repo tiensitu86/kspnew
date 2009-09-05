@@ -87,6 +87,10 @@ const
 
   DB_VERSION = 5;
 
+{$IFNDEF WINDOWS}
+  KSP_APP_FOLDER = '/usr/share/KSP/';
+{$ENDIF}
+
 var
   SaveRemFolder: string;
   SetupFileName: string;// = 'data\setup.opt';
