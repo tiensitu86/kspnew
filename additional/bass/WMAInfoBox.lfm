@@ -16,63 +16,63 @@ object WMAInfoForm: TWMAInfoForm
   LCLVersion = '0.9.26.2'
   object Label9: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 214
-    Width = 27
+    Width = 30
     Caption = 'Artist:'
     ParentColor = False
   end
   object Label11: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 257
-    Width = 24
+    Width = 22
     Caption = 'Title:'
     ParentColor = False
   end
   object Label13: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 278
-    Width = 33
+    Width = 32
     Caption = 'Album:'
     ParentColor = False
   end
   object Label10: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 300
-    Width = 26
+    Width = 25
     Caption = 'Year:'
     ParentColor = False
   end
   object Label14: TLabel
     Left = 177
-    Height = 14
+    Height = 11
     Top = 300
-    Width = 32
+    Width = 28
     Caption = 'Track:'
     ParentColor = False
   end
   object Label16: TLabel
     Left = 326
-    Height = 14
+    Height = 11
     Top = 29
-    Width = 53
+    Width = 54
     Caption = 'Comments:'
     ParentColor = False
   end
   object Label1: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 192
-    Width = 33
+    Width = 32
     Caption = 'Genre:'
     ParentColor = False
   end
   object Label2: TLabel
     Left = 326
-    Height = 14
+    Height = 11
     Top = 166
     Width = 31
     Caption = 'Lyrics:'
@@ -80,55 +80,55 @@ object WMAInfoForm: TWMAInfoForm
   end
   object Label3: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 169
-    Width = 44
+    Width = 43
     Caption = 'Encoder:'
     ParentColor = False
   end
   object Label5: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 235
-    Width = 51
+    Width = 52
     Caption = 'Composer:'
     ParentColor = False
   end
   object Label6: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 321
-    Width = 17
+    Width = 18
     Caption = 'Url:'
     ParentColor = False
   end
   object Label7: TLabel
     Left = 15
-    Height = 14
+    Height = 11
     Top = 343
-    Width = 48
+    Width = 51
     Caption = 'Copyright:'
     ParentColor = False
   end
   object Label18: TLabel
     Left = 18
-    Height = 14
+    Height = 11
     Top = 369
-    Width = 339
+    Width = 336
     Caption = 'The original author : Philip Hadar - Israel  (modifications by Chris Tr?ken)'
     ParentColor = False
   end
   object Label20: TLabel
     Left = 19
-    Height = 14
+    Height = 11
     Top = 386
-    Width = 270
+    Width = 267
     Caption = 'Additional modification for TBASSPlayer by Silhwan Hyun'
     ParentColor = False
   end
   object Label4: TLabel
     Left = 12
-    Height = 16
+    Height = 12
     Top = 13
     Width = 55
     Caption = 'File/URL :'
@@ -329,6 +329,7 @@ object WMAInfoForm: TWMAInfoForm
     Caption = ' WMA info '
     ClientHeight = 107
     ClientWidth = 244
+    Ctl3D = False
     TabOrder = 14
     object lbSize: TLabel
       Left = 16

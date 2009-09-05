@@ -63,7 +63,7 @@ unit Musepack;
 interface
 
 uses
-  Classes, SysUtils, ID3v1, ID3v2, APEtag, TntCollection;
+  Classes, SysUtils, ID3v1, ID3v2, APEtag;
 
 const
   { Used with ChannelModeID property }
@@ -162,13 +162,13 @@ type
 
 function ReadHeader(const FileName: WideString; var Header: HeaderRecord): Boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Transferred: Integer;
 begin
   try
     Result := true;
     { Set read-access and open file }
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(Header.ID3v2Size, soFromBeginning);
     { Read header and get file size }
     Transferred := SourceFile.Read(Header, 32);

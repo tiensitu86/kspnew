@@ -5,7 +5,7 @@ unit profilefunc;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, FileUtil;
 
 function GetUserDataFolder: string;
 procedure FixFolderNames(var FolderName: string);

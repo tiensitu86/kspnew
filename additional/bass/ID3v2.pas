@@ -82,8 +82,8 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Windows, Classes, SysUtils, UniCodeUtils, TntCollection,
-  {$IFNDEF DELPHI_2007_BELOW}AnsiStringStream,{$ENDIF} ID3v1;
+  {$IFDEF WINDOWS}Windows, {$ENDIF}Classes, SysUtils, FileUtil, UniCodeUtils,
+  {$IFNDEF DELPHI_2007_BELOW}AnsiStringStream,{$ENDIF} ID3v1, Dialogs;
 
 const
   TAG_VERSION_2_2 = 2;                               { Code for ID3v2.2.x tag }
@@ -221,13 +221,13 @@ type
 
 function ReadHeader(const FileName: WideString; var Tag: TagInfo): Boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Transferred: Integer;
 begin
   try
     Result := true;
     { Set read-access and open file }
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
 
     { Read header and get file size }
     Transferred := SourceFile.Read(Tag, 10);
@@ -297,7 +297,7 @@ end;
 
 procedure ReadFramesNew(const FileName: WideString; var Tag: TagInfo);
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Frame: FrameHeaderNew;
   Data: array [1..5000] of AnsiChar;
   Data2 : ansistring;
@@ -307,7 +307,7 @@ begin
   { Get information from frames (ID3v2.3.x & ID3v2.4.x) }
   try
     { Set read-access, open file }
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(10, soFromBeginning);
     while (SourceFile.Position < GetTagSize(Tag)) and (SourceFile.Position < SourceFile.Size) do
     begin
@@ -350,7 +350,7 @@ end;
 
 procedure ReadFramesOld(const FileName: WideString; var Tag: TagInfo);
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Frame: FrameHeaderOld;
   Data: array [1..5000] of AnsiChar;
   DataPosition, FrameSize, DataSize: Integer;
@@ -358,7 +358,7 @@ begin
   { Get information from frames (ID3v2.2.x) }
   try
     { Set read-access, open file }
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(10, soFromBeginning);
     while (SourceFile.Position < GetTagSize(Tag)) and (SourceFile.Position < SourceFile.Size) do
     begin
@@ -587,14 +587,14 @@ end;
 
 function ReplaceTag(const FileName: WideString; TagData: TStream): Boolean;
 var
-  Destination: TTntFileStream;
+  Destination: TFileStream;
 begin
   { Replace old tag with new tag data }
   Result := false;
-  if (not WideFileExists(FileName)) or (WideFileSetAttr(FileName, 0) <> True) then exit;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
   try
     TagData.Position := 0;
-    Destination := TTntFileStream.Create(FileName, fmOpenReadWrite);
+    Destination := TFileStream.Create(FileName, fmOpenReadWrite);
     Destination.CopyFrom(TagData, TagData.Size);
     Destination.Free;
     Result := true;
@@ -608,19 +608,19 @@ end;
 function RebuildFile(const FileName: WideString; TagData: TStream): Boolean;
 var
   Tag: TagInfo;
-  Source, Destination: TTntFileStream;
+  Source, Destination: TFileStream;
   BufferName: string;
 begin
   { Rebuild file with old file data and new tag data (optional) }
   Result := false;
-  if (not WideFileExists(FileName)) or (WideFileSetAttr(FileName, 0) <> True) then exit;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
   if not ReadHeader(FileName, Tag) then exit;
   if (TagData = nil) and (Tag.ID <> ID3V2_ID) then exit;
   try
     { Create file streams }
     BufferName := FileName + '~';
-    Source := TTntFileStream.Create(FileName, fmOpenRead);
-    Destination := TTntFileStream.Create(BufferName, fmCreate);
+    Source := TFileStream.Create(FileName, fmOpenRead);
+    Destination := TFileStream.Create(BufferName, fmCreate);
     { Copy data blocks }
     if Tag.ID = ID3V2_ID then Source.Seek(GetTagSize(Tag), soFromBeginning);
     if TagData <> nil then Destination.CopyFrom(TagData, 0);
@@ -629,13 +629,13 @@ begin
     Source.Free;
     Destination.Free;
     { Replace old file and delete temporary file }
-    if (WideDeleteFile(FileName)) and (WideRenameFile(BufferName, FileName)) then
+    if (DeleteFileUTF8(FileName)) and (RenameFileUTF8(BufferName, FileName)) then
       Result := true;
     //else
       //raise Exception.Create('');
   except
     { Access error }
-    if WideFileExists(BufferName) then WideDeleteFile(BufferName);
+    if FileExistsUTF8(BufferName) then DeleteFileUTF8(BufferName);
   end;
 end;
 

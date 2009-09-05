@@ -7,31 +7,31 @@ LazarusResources.Add('TWMAInfoForm','FORMDATA',[
   +'.Height'#2#245#9'Font.Name'#6#13'MS Sans Serif'#8'OnCreate'#7#10'FormCreate'
   +#9'OnDestroy'#7#11'FormDestroy'#6'OnShow'#7#8'FormShow'#8'Position'#7#15'poD'
   +'esktopCenter'#10'LCLVersion'#6#8'0.9.26.2'#0#6'TLabel'#6'Label9'#4'Left'#2
-  +#15#6'Height'#2#14#3'Top'#3#214#0#5'Width'#2#27#7'Caption'#6#7'Artist:'#11'P'
-  +'arentColor'#8#0#0#6'TLabel'#7'Label11'#4'Left'#2#15#6'Height'#2#14#3'Top'#3
-  +#1#1#5'Width'#2#24#7'Caption'#6#6'Title:'#11'ParentColor'#8#0#0#6'TLabel'#7
-  +'Label13'#4'Left'#2#15#6'Height'#2#14#3'Top'#3#22#1#5'Width'#2'!'#7'Caption'
+  +#15#6'Height'#2#11#3'Top'#3#214#0#5'Width'#2#30#7'Caption'#6#7'Artist:'#11'P'
+  +'arentColor'#8#0#0#6'TLabel'#7'Label11'#4'Left'#2#15#6'Height'#2#11#3'Top'#3
+  +#1#1#5'Width'#2#22#7'Caption'#6#6'Title:'#11'ParentColor'#8#0#0#6'TLabel'#7
+  +'Label13'#4'Left'#2#15#6'Height'#2#11#3'Top'#3#22#1#5'Width'#2' '#7'Caption'
   +#6#6'Album:'#11'ParentColor'#8#0#0#6'TLabel'#7'Label10'#4'Left'#2#15#6'Heigh'
-  +'t'#2#14#3'Top'#3','#1#5'Width'#2#26#7'Caption'#6#5'Year:'#11'ParentColor'#8
-  +#0#0#6'TLabel'#7'Label14'#4'Left'#3#177#0#6'Height'#2#14#3'Top'#3','#1#5'Wid'
-  +'th'#2' '#7'Caption'#6#6'Track:'#11'ParentColor'#8#0#0#6'TLabel'#7'Label16'#4
-  +'Left'#3'F'#1#6'Height'#2#14#3'Top'#2#29#5'Width'#2'5'#7'Caption'#6#9'Commen'
-  +'ts:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label1'#4'Left'#2#15#6'Height'#2#14#3
-  +'Top'#3#192#0#5'Width'#2'!'#7'Caption'#6#6'Genre:'#11'ParentColor'#8#0#0#6'T'
-  +'Label'#6'Label2'#4'Left'#3'F'#1#6'Height'#2#14#3'Top'#3#166#0#5'Width'#2#31
+  +'t'#2#11#3'Top'#3','#1#5'Width'#2#25#7'Caption'#6#5'Year:'#11'ParentColor'#8
+  +#0#0#6'TLabel'#7'Label14'#4'Left'#3#177#0#6'Height'#2#11#3'Top'#3','#1#5'Wid'
+  +'th'#2#28#7'Caption'#6#6'Track:'#11'ParentColor'#8#0#0#6'TLabel'#7'Label16'#4
+  +'Left'#3'F'#1#6'Height'#2#11#3'Top'#2#29#5'Width'#2'6'#7'Caption'#6#9'Commen'
+  +'ts:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label1'#4'Left'#2#15#6'Height'#2#11#3
+  +'Top'#3#192#0#5'Width'#2' '#7'Caption'#6#6'Genre:'#11'ParentColor'#8#0#0#6'T'
+  +'Label'#6'Label2'#4'Left'#3'F'#1#6'Height'#2#11#3'Top'#3#166#0#5'Width'#2#31
   +#7'Caption'#6#7'Lyrics:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'Left'#2
-  +#15#6'Height'#2#14#3'Top'#3#169#0#5'Width'#2','#7'Caption'#6#8'Encoder:'#11
-  +'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#15#6'Height'#2#14#3'Top'#3
-  +#235#0#5'Width'#2'3'#7'Caption'#6#9'Composer:'#11'ParentColor'#8#0#0#6'TLabe'
-  +'l'#6'Label6'#4'Left'#2#15#6'Height'#2#14#3'Top'#3'A'#1#5'Width'#2#17#7'Capt'
+  +#15#6'Height'#2#11#3'Top'#3#169#0#5'Width'#2'+'#7'Caption'#6#8'Encoder:'#11
+  +'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#15#6'Height'#2#11#3'Top'#3
+  +#235#0#5'Width'#2'4'#7'Caption'#6#9'Composer:'#11'ParentColor'#8#0#0#6'TLabe'
+  +'l'#6'Label6'#4'Left'#2#15#6'Height'#2#11#3'Top'#3'A'#1#5'Width'#2#18#7'Capt'
   +'ion'#6#4'Url:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label7'#4'Left'#2#15#6'Hei'
-  +'ght'#2#14#3'Top'#3'W'#1#5'Width'#2'0'#7'Caption'#6#10'Copyright:'#11'Parent'
-  +'Color'#8#0#0#6'TLabel'#7'Label18'#4'Left'#2#18#6'Height'#2#14#3'Top'#3'q'#1
-  +#5'Width'#3'S'#1#7'Caption'#6'LThe original author : Philip Hadar - Israel  '
+  +'ght'#2#11#3'Top'#3'W'#1#5'Width'#2'3'#7'Caption'#6#10'Copyright:'#11'Parent'
+  +'Color'#8#0#0#6'TLabel'#7'Label18'#4'Left'#2#18#6'Height'#2#11#3'Top'#3'q'#1
+  +#5'Width'#3'P'#1#7'Caption'#6'LThe original author : Philip Hadar - Israel  '
   +'(modifications by Chris Tr?ken)'#11'ParentColor'#8#0#0#6'TLabel'#7'Label20'
-  +#4'Left'#2#19#6'Height'#2#14#3'Top'#3#130#1#5'Width'#3#14#1#7'Caption'#6'7Ad'
+  +#4'Left'#2#19#6'Height'#2#11#3'Top'#3#130#1#5'Width'#3#11#1#7'Caption'#6'7Ad'
   +'ditional modification for TBASSPlayer by Silhwan Hyun'#11'ParentColor'#8#0#0
-  +#6'TLabel'#6'Label4'#4'Left'#2#12#6'Height'#2#16#3'Top'#2#13#5'Width'#2'7'#7
+  +#6'TLabel'#6'Label4'#4'Left'#2#12#6'Height'#2#12#3'Top'#2#13#5'Width'#2'7'#7
   +'Caption'#6#10'File/URL :'#12'Font.CharSet'#7#12'ANSI_CHARSET'#11'Font.Heigh'
   +'t'#2#244#9'Font.Name'#6#5'Arial'#11'ParentColor'#8#10'ParentFont'#8#0#0#6'T'
   +'Label'#9'fFileName'#4'Left'#2'H'#6'Height'#2#15#3'Top'#2#13#5'Width'#3#17#2
@@ -81,17 +81,17 @@ LazarusResources.Add('TWMAInfoForm','FORMDATA',[
   +'_CHARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5
   +'Arial'#10'ParentFont'#8#8'TabOrder'#2#13#0#0#9'TGroupBox'#9'GroupBox3'#4'Le'
   +'ft'#2#22#6'Height'#2'}'#3'Top'#2'!'#5'Width'#3#248#0#7'Caption'#6#10' WMA i'
-  +'nfo '#12'ClientHeight'#2'k'#11'ClientWidth'#3#244#0#8'TabOrder'#2#14#0#6'TL'
-  +'abel'#6'lbSize'#4'Left'#2#16#6'Height'#2#13#3'Top'#2#15#5'Width'#2#28#7'Cap'
-  +'tion'#6#6'lbSize'#11'ParentColor'#8#0#0#6'TLabel'#8'lbLength'#4'Left'#2#16#6
-  +'Height'#2#13#3'Top'#2#30#5'Width'#2')'#7'Caption'#6#8'lbLength'#11'ParentCo'
-  +'lor'#8#0#0#6'TLabel'#9'lbBitrate'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'.'#5
-  +'Width'#2'&'#7'Caption'#6#9'lbBitrate'#11'ParentColor'#8#0#0#6'TLabel'#10'lb'
-  +'Channels'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'L'#5'Width'#2'4'#7'Caption'#6
-  +#10'lbChannels'#11'ParentColor'#8#0#0#6'TLabel'#5'lbVBR'#4'Left'#2#16#6'Heig'
-  +'ht'#2#13#3'Top'#2'\'#5'Width'#2#30#7'Caption'#6#5'lbVBR'#11'ParentColor'#8#0
-  +#0#6'TLabel'#14'lbSamplingrate'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'='#5'Wi'
-  +'dth'#2'E'#7'Caption'#6#14'lbSamplingrate'#11'ParentColor'#8#0#0#6'TLabel'#9
-  +'lbVersion'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'k'#5'Width'#2'+'#7'Caption'
-  +#6#9'lbVersion'#11'ParentColor'#8#0#0#0#0
+  +'nfo '#12'ClientHeight'#2'k'#11'ClientWidth'#3#244#0#5'Ctl3D'#8#8'TabOrder'#2
+  +#14#0#6'TLabel'#6'lbSize'#4'Left'#2#16#6'Height'#2#13#3'Top'#2#15#5'Width'#2
+  +#28#7'Caption'#6#6'lbSize'#11'ParentColor'#8#0#0#6'TLabel'#8'lbLength'#4'Lef'
+  +'t'#2#16#6'Height'#2#13#3'Top'#2#30#5'Width'#2')'#7'Caption'#6#8'lbLength'#11
+  +'ParentColor'#8#0#0#6'TLabel'#9'lbBitrate'#4'Left'#2#16#6'Height'#2#13#3'Top'
+  +#2'.'#5'Width'#2'&'#7'Caption'#6#9'lbBitrate'#11'ParentColor'#8#0#0#6'TLabel'
+  +#10'lbChannels'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'L'#5'Width'#2'4'#7'Capt'
+  +'ion'#6#10'lbChannels'#11'ParentColor'#8#0#0#6'TLabel'#5'lbVBR'#4'Left'#2#16
+  +#6'Height'#2#13#3'Top'#2'\'#5'Width'#2#30#7'Caption'#6#5'lbVBR'#11'ParentCol'
+  +'or'#8#0#0#6'TLabel'#14'lbSamplingrate'#4'Left'#2#16#6'Height'#2#13#3'Top'#2
+  +'='#5'Width'#2'E'#7'Caption'#6#14'lbSamplingrate'#11'ParentColor'#8#0#0#6'TL'
+  +'abel'#9'lbVersion'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'k'#5'Width'#2'+'#7
+  +'Caption'#6#9'lbVersion'#11'ParentColor'#8#0#0#0#0
 ]);

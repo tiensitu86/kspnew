@@ -17,7 +17,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
   LCLVersion = '0.9.26.2'
   object Label1: TLabel
     Left = 12
-    Height = 16
+    Height = 12
     Top = 13
     Width = 55
     Caption = 'File/URL :'
@@ -29,7 +29,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
   end
   object Label8: TLabel
     Left = 341
-    Height = 16
+    Height = 12
     Top = 268
     Width = 144
     Caption = '''Can''t update tag of the file'
@@ -41,9 +41,9 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
   end
   object Label10: TLabel
     Left = 344
-    Height = 16
+    Height = 12
     Top = 285
-    Width = 131
+    Width = 132
     Caption = 'which is opened to play.'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -12
@@ -53,7 +53,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
   end
   object Label11: TLabel
     Left = 341
-    Height = 16
+    Height = 12
     Top = 250
     Width = 31
     Caption = 'Note)'
@@ -85,6 +85,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
     Caption = ' Standard tags '
     ClientHeight = 171
     ClientWidth = 321
+    Ctl3D = False
     TabOrder = 0
     object Label2: TLabel
       Left = 254
@@ -182,7 +183,10 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
       Height = 21
       Top = 96
       Width = 118
-      ItemHeight = 13
+      AutoComplete = False
+      Ctl3D = False
+      ItemHeight = 0
+      ItemWidth = 0
       Sorted = True
       TabOrder = 5
     end
@@ -202,6 +206,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
     Caption = ' File / Stream info '
     ClientHeight = 171
     ClientWidth = 146
+    Ctl3D = False
     TabOrder = 1
     object lbFileSize: TLabel
       Left = 15
@@ -300,6 +305,7 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
     Caption = ' Other '
     ClientHeight = 126
     ClientWidth = 321
+    Ctl3D = False
     TabOrder = 2
     object Label9: TLabel
       Left = 10
@@ -314,7 +320,9 @@ object OggVorbisInfoForm: TOggVorbisInfoForm
       Height = 103
       Top = 35
       Width = 313
+      ItemHeight = 0
       TabOrder = 0
+      TopIndex = -1
     end
     object btnAddNew: TButton
       Left = 167

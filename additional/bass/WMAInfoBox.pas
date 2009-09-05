@@ -29,7 +29,7 @@ unit WMAInfoBox;
 interface
 
 uses
-  LResources, Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LResources, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, filectrl, WMAReader, WMAfile;
 
 

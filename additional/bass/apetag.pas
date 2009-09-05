@@ -55,7 +55,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Dialogs, Classes, SysUtils, UniCodeUtils, TntCollection
+  Dialogs, Classes, SysUtils
  {$IFNDEF DELPHI_2007_BELOW}, AnsiStringStream, AnsiStrings{$ENDIF};
 
 const
@@ -138,7 +138,7 @@ end;
 
 function TAPETag.ReadFooter(sFile: WideString; var footer: RTagHeader): boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   TagID: array [1..3] of AnsiChar;
   Transferred: Integer;
 begin
@@ -146,7 +146,7 @@ begin
   try
     Result := true;
     { Set read-access and open file }
-    SourceFile := TTntFileStream.Create(sFile, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(sFile, fmOpenRead or fmShareDenyWrite);
     Footer.FileSize := SourceFile.Size;
     if (IOResult <> 0) then
     begin
@@ -190,7 +190,7 @@ end;
 
 procedure TAPETag.ReadFields(sFile: WideString; footer: RTagHeader);
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   FieldName: AnsiString;
   FieldValue: array [1..250] of AnsiChar;
   NextChar: AnsiChar;
@@ -198,7 +198,7 @@ var
 begin
   try
   { Set read-access, open file }
-    SourceFile := TTntFileStream.Create(sFile, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(sFile, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(footer.FileSize - footer.DataShift - footer.Size, soFromBeginning);
 
   { Read all stored fields }
@@ -269,7 +269,7 @@ end;
 
 function TAPETag.RemoveTagFromFile(sFile: WideString): Boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Footer: RTagHeader;
   ID3: pointer;
 begin
@@ -278,7 +278,7 @@ begin
   { Process data if loaded and footer valid }
   if (Result) and (Footer.ID = APE_ID) then
   begin
-    SourceFile := TTntFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
   { If there is an ID3v1 tag roaming around behind the APE tag, we have to buffer it }
     if Footer.DataShift = ID3V1_TAG_SIZE then
     begin
@@ -312,7 +312,7 @@ function TAPETag.WriteTagInFile(sFile: WideString): Boolean;
 const
   APEPreample: array [0..7] of Ansichar = ('A','P','E','T','A','G','E','X');
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Header, Footer, RefFooter: RTagHeader;
   ID3: PAnsiChar;
   i, len, TagSize, Flags: integer;
@@ -331,7 +331,7 @@ begin
 { Process data if loaded and footer valid }
   if (Result) and (RefFooter.ID = APE_ID) then
   begin
-    SourceFile := TTntFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
   { If there is an ID3v1 tag roaming around behind the APE tag, we have to buffer it }
     if RefFooter.DataShift = ID3V1_TAG_SIZE then
     begin
@@ -406,7 +406,7 @@ begin
     FreeMem(ID3);
   end;
 
-  SourceFile := TTntFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
+  SourceFile := TFileStream.Create(sFile, fmOpenReadWrite or fmShareDenyWrite);
   SourceFile.Seek(0, soFromEnd);
   TagData.Seek(0, soFromBeginning);
   SourceFile.CopyFrom(TagData, TagData.Size);

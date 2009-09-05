@@ -4,41 +4,12 @@ unit FileUtils;
 
 interface
 
-uses Windows, SysUtils, Graphics;
+uses SysUtils, Graphics;
 
 function MinimizeName(const Filename: PChar; Canvas: TCanvas;
   MaxLen: Integer): TFileName;
-function FileSetAttr(const FileName: string; Attr: Integer): Integer;
-
-function TrimRight(const S: string): string;
-function TrimRightA(const S: WideString): WideString; 
 
 implementation
-
-function TrimRight(const S: string): string;
-var
-  I: Integer;
-begin
-  I := Length(S);
-  while (I > 0) and (S[I] <= ' ') do Dec(I);
-  Result := Copy(S, 1, I);
-end;
-
-function TrimRightA(const S: WideString): WideString;
-var
-  I: Integer;
-begin
-  I := Length(S);
-  while (I > 0) and (S[I] <= ' ') do Dec(I);
-  Result := Copy(S, 1, I);
-end;
-
-function FileSetAttr(const FileName: string; Attr: Integer): Integer;
-begin
-  Result := 0;
-  if not SetFileAttributes(PChar(FileName), Attr) then
-    Result := GetLastError;
-end;
 
 procedure CutFirstDirectory(var S: TFileName);
 var

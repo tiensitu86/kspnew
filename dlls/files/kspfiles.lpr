@@ -1,6 +1,6 @@
 library kspfiles;
 
-{$MODE Delphi}
+{$MODE objfpc}{$H+}
 
 { Important note about DLL memory management: ShareMem must be the
   first unit in your library's USES clause AND your project's (select
@@ -23,16 +23,19 @@ library kspfiles;
 {%TogetherDiagram 'ModelSupport_kspfiles\default.txvpck'}
 
 uses
+{$IFNDEF WINDOWS}
+  cmem,
+{$ENDIF}
 //  LCLIntf,
 //  Windows,
-  SysUtils,
+  SysUtils;//,
 //  Classes,
 //  Dialogs,
 //  DateUtils,
 //  FileSupportLst in '..\..\itools\filesupportlst.pas',
-  FileUtils in 'FileUtils.pas',
-  KSPMessages in '..\..\itools\kspmessages.pas'{,
-  AdditFiles in 'C:\medialib\AdditFiles.pas'};
+//  FileUtils in 'FileUtils.pas',
+//  KSPMessages in '..\..\itools\kspmessages.pas'{,
+//  AdditFiles in 'C:\medialib\AdditFiles.pas'};
 
 const
   art='[%artist]';
@@ -155,49 +158,14 @@ begin
     end;
 end;
 
-procedure WriteChangeFile(P: TFileRenamed);
-var
-  f: file of TFileRenamed;
-begin
-  AssignFile(f, ExtractFilePath(ParamStr(0))+'changes.fil');
-  if FileExists(ExtractFilePath(ParamStr(0))+'changes.fil') then
-    DeleteFile(ExtractFilePath(ParamStr(0))+'changes.fil');
-  Rewrite(f);
-  Write(f, p);
-  CloseFile(f);
-end;
-
-function ReadChangeFile: TFileRenamed;
-var
-  f: file of TFileRenamed;
-begin
-  AssignFile(f, ExtractFilePath(ParamStr(0))+'changes.fil');
-  if not FileExists(ExtractFilePath(ParamStr(0))+'changes.fil') then Exit;
-
-  Reset(f);
-  Read(f, Result);
-  CloseFile(f);
-
-  DeleteFile(ExtractFilePath(ParamStr(0))+'changes.fil');
-end;
-
 exports
   //SearchFiles,
-  MinimizeName,
-  FileSetAttr,
-  TrimRight,
-  TrimRightA,
   RemoveForbiddenChars,
   ProduceFormatedString,
 //  GetFav2,
 //  GetFav,
   IsStream,
-  IsCD,
-//  GetFileVersion,
-//  GetFileVersion2,
-  //PrepareString,
-  ReadChangeFile,
-  WriteChangeFile;
+  IsCD;
 
 begin
 end.

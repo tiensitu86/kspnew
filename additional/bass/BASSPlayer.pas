@@ -5,13 +5,10 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-{$IFDEF WINDOWS}Windows,{$ENDIF} Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
-  Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix, ioplug,
-  MPEGAudio, OggVorbis, AACfile, WMAFile, WAVFile,
-  MPEGInfoBox, OGGInfoBox, WMAInfoBox, Dialogs, FileSupportLst,
-  TntCollection, UniCodeUtils, LMessages
-  {$IFNDEF DELPHI_2007_BELOW}, AnsiStrings{$ENDIF}
-  {, EmbededBrowser, TestMB};
+  {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
+  Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
+  MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
+  MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages;
 
 
 const
@@ -32,7 +29,6 @@ const
    WM_RequestFromVis = WM_USER + 115; // message to notify that a request from Vis plug-in received
  //  WM_PlayListConfig = WM_USER + 116;  // defined in unit PlayListConfig.pas
    WM_ChannelUnavailable = WM_USER + 120;  // message from the PlayThread (Decode channel is not available)
-   WM_GetLyric = WM_USER + 121;       // message to notify that a lyric event is encountered
    WM_GetHTTPHeaders = WM_USER + 122; // message to notify that BASS got the HTTP header
    WM_SlideEnded  = WM_USER + 123;    // message to notify that an attribute slide has ended   // * Added at Ver 1.44.4
 
@@ -134,16 +130,13 @@ type
   end;
 
   TMetaSyncParam = record
-     MsgHandle : HWND;
      ChannelType : TChannelType;  // * Added at Ver 2.00
      TitleP : array[0..255] of ansichar;
   end;
   TLyricSyncParam = record
-     MsgHandle : HWND;
      Channel : DWORD;
   end;
   TSlideSyncParam = record
-     MsgHandle : HWND;
      NextAction : DWORD;
   end;
   TBASSAddOnInfo = record
@@ -173,7 +166,7 @@ type
  { TSubClass_Proc = function(lng_hWnd: HWND; uMsg: Integer;
                             var Msg: TMessage; var bHandled: Boolean) : boolean; }
 
-  TNotifyEvent = procedure(Sender: TObject) of object;
+//  TNotifyEvent = procedure(Sender: TObject) of object;
   TNotifyEvent2 = procedure(Sender: TObject; GenParam : DWORD) of object;
   TNotifyNetEvent = procedure(Sender: TObject; Content : ansistring) of object;
   TNotifyMIDIEvent = procedure(Sender: TObject; TextP : pAnsiChar) of object;
@@ -182,8 +175,6 @@ type
   TBASSPlayer = class(TComponent)
   private
     { Private declarations }
-    AppHWND     : THandle;
-    ParentHWND  : HWND;
   //  TimerTitleBar : TTimer;  // * Added at Ver 2.00
 
     ChannelType   : TChannelType;
@@ -192,7 +183,6 @@ type
     NeedFlush     : boolean;
 
     BassChannelInfo : BASS_CHANNELINFO;
-    MessageHandle : hwnd;
 
     NowStarting : boolean;
  // Some input plug-ins do not need output plug-in. i.e., some input plug-ins
@@ -235,7 +225,9 @@ type
     MPEG        : TMPEGaudio;
     Vorbis      : TOggVorbis;
     AAC         : TAACfile;
+{$IFDEF WINDOWS}
     WMA         : TWMAfile;
+{$ENDIF}
     WAV         : TWAVFile;
 
   //  MusicStartTime : DWORD;
@@ -249,7 +241,9 @@ type
 
     MPEGFileInfoForm: TMPEGFileInfoForm;
     OggVorbisInfoForm : TOggVorbisInfoForm;
+{$IFDEF WINDOWS}
     WMAInfoForm : TWMAInfoForm;
+{$ENDIF}
 
     FBASSReady      : boolean;
     FBASSWMAReady   : boolean;
@@ -267,7 +261,6 @@ type
     CDDriveList     : array[0..MAXCDDRIVES-1] of string;
 
     FVersionStr     : string;
-    FDLLVersionStr  : string;
     FStreamName     : string;
     FDecodingByPlugin : boolean;
   //  FUsing_BASS_AAC : boolean;
@@ -277,8 +270,6 @@ type
     FStreamInfo     : TStreamInfo;
     FSupportedBy    : TSupportedBy;    // * Added at Ver 2.00
 //    BASSAddOnList   : TBASSAddOnList;
-
-    FOrgWndProc     : pointer;
 
     defaultFontHandle : HSOUNDFONT;
     defaultMIDI_FONTINFO : TMIDI_FONTINFO;
@@ -297,7 +288,6 @@ type
     FOnGetMeta         : TNotifyNetEvent;
     FOnDownloaded      : TNotifyEvent2;
     FOnModeChange      : TNotifyModeChangeEvent;
-    FOnGetLyric        : TNotifyMIDIEvent;
     FOnPluginRequest   : TNotifyEvent2;
     FOnUpdatePlayList  : TNotifyEvent2;
     FOnGenWindowShow   : TNotifyEvent2;
@@ -317,7 +307,6 @@ type
     procedure SetEQBands(Value : TEQBands);
   //  procedure SetSyncVisWindow(Value : boolean);
     procedure SetPlayerMode(Mode : TPlayerMode);
-    function  GetDLLVersionStr : string;
     function  GetNativeFileExts : string;
     function  IsSeekable : boolean;
     function  GetDownloadProgress : DWORD;
@@ -341,8 +330,6 @@ type
     function  MutedTemporary : boolean;             // * Added at Ver 2.01
     procedure RestoreFromMutedState;                // * Added at Ver 2.01
   //  function  GetGenWinHandles : TGenHandles;        // * Added at Ver 2.00.1
-    function  GetBuildDate : string;
-    procedure WinProcessMessages;   // * Added at Ver 2.00
   public
     { Public declarations }
     constructor Create(AOwner: TComponent; NoInit: boolean = false);
@@ -357,10 +344,6 @@ type
      // freed, and only then calls Destroy.
 
     function  GetBASSAddonExts(i: integer) : string; overload;
-
-    procedure ProcMessage(var Msg: TLMessage);
-     // Gets the handle of vis window.
-     // Gets 0 if vis plug-in is not running.
 
     function GetStreamInfo(StreamName: string; var StreamInfo: TStreamInfo; var SupportedBy: TSupportedBy)
                            : boolean;
@@ -667,14 +650,14 @@ type
       //  Return value : True on success, False on failure.
       //  note) This function is valid only for local stream files.
 
-    function GetMessageHandle : HWND;   // debug purpose (to debug VisOut program)
-      //  Gets the message handle of TBASSPlayer.
-
 
   // Followings are for Play List handling.
 
     procedure SetPlayEnd;
     procedure SetPlayEndA(Data: PtrInt);
+    procedure DownloadedA(Data: PtrInt);
+    procedure DownProcA(Data: PtrInt);
+    procedure GetMetaA(Data: PtrInt);
 
     property MixerReady : boolean read FMixerReady;        // * New at Ver 2.00
       //  Indicates whether BASSmix is ready to operation.
@@ -686,20 +669,12 @@ type
       //   Winamp input plug-in), BASSmix is ready to operational(MixerReady = true) and
       //   BASS is operating in Dual channel mode(SingleChannel = false).
 
-    property BuildDateStr : string read GetBuildDate;          // * New at Ver 2.01
-      //  Indicates the Build date of BASS.DLL in string.
-
   published
     { Published declarations }
     property Version : string read FVersionStr;
       //  Indicates the version of TBASSPlayer in string.
       //  note) Altering Version, which causes to perform SetVersionStr, takes no effects.
       //        SetVersionStr is needed only to show FVersionStr at form design.
-
-    property BASSDLLVer : string read FDLLVersionStr;
-      //  Indicates the version of BASS.DLL in string.
-      //  note) Altering BASSDLLVer, which causes to perform SetDLLVersionStr, takes no effects.
-      //        SetDLLVersionStr is needed only to show FDLLVersionStr at form design.
 
     property DX8EffectReady : boolean read FDX8EffectReady;
       //  Indicates whether TBASSPlayer is ready to use sound effects which are supported
@@ -722,9 +697,6 @@ type
 
     property OnModeChange : TNotifyModeChangeEvent read FOnModeChange write FOnModeChange;
       //  Occurs when player's state is changed.
-
-    property OnGetLyric : TNotifyMIDIEvent read FOnGetLyric write FOnGetLyric;
-      //  Occurs when a lyric event is encountered.
 
     property OnPluginRequest : TNotifyEvent2 read FOnPluginRequest write FOnPluginRequest;
       //  Occurs at receiving a request from Winamp plug-in such as volume up/down, seek forward/backward.
@@ -763,7 +735,6 @@ const
    MajorVer = '2';
    MinorVer = '10';
    RevVer = '0';
-   BuildDate = '14 May 2009';
 
    NoDX8Msg : pchar = 'DirectX Ver 8 or higher is not installed.' + #13#10 +
                       'Sound effects except rotate are disabled.';
@@ -775,9 +746,6 @@ var
    msgs_org : array of string;
    msgs_local : array of String;
    msgCount : integer = 0;
-   typeStr : pchar;
-   Entries_Msg_Str : integer;
-   CheckedLocalString : boolean = false;
 
 function GetProgDir : string;
 begin
@@ -785,146 +753,8 @@ begin
 end;
 
 procedure ShowErrorMsgBox(ErrorStr : string);  // * Modified at Ver 2.00
-var
-   F: TextFile;
-   SearchRec: TSearchRec;
-   MyEntry : boolean;
-   CommonEntry : boolean;
-   S : string;
-   tmpStr : string;
-   localStr : string;
-   i : integer;
-   SepPos : integer;
-   ErrorStr_ : string;
-
 begin
-  if not CheckedLocalString then
-  begin
-    CheckedLocalString := true;
-    if FindFirst(ExtractFilePath(ParamStr(0)) + 'lang_*.txt', faAnyFile, SearchRec) = 0 then
-    begin
-
-      SetLength(msgs_org, 16);
-      SetLength(msgs_local, 16);
-      Entries_Msg_Str := 16;
-      MyEntry := false;
-      CommonEntry := false;
-
-      AssignFile(F, ExtractFilePath(ParamStr(0)) + SearchRec.Name);
-      Reset(F);
-      FindClose(SearchRec);
-
-      while not Eof(F) do
-      begin
-        Readln(F, S);
-        S := trim(S);
-
-        if S = '' then
-           continue;
-        if copy(S, 1, 2) = '//' then
-           continue;
-
-        if (S[1] = '[') and (S[length(S)] = ']') then
-        begin
-           tmpStr := copy(S, 2, length(S) - 2);
-           if uppercase(tmpStr) = 'TBASSPLAYER' then
-           begin
-              MyEntry := true;
-              CommonEntry := false;
-              continue;
-           end else if uppercase(tmpStr) = 'COMMON' then
-           begin
-              MyEntry := false;
-              CommonEntry := true;
-              continue;
-           end else if MyEntry then
-              break
-           else begin
-              MyEntry := false;
-              CommonEntry := false;
-              continue;
-           end
-        end
-        else if (not MyEntry) and (not CommonEntry) then
-           continue;
-
-        if ((S[1] = '&') or (S[1] = '$') or (S[1] = '*') or (S[1] = '^')) then
-           continue;
-
-      // Store message strings (format : Original=Local)
-        SepPos := pos('=', S);
-        if SepPos = 0 then
-           continue;
-
-        localStr := trim(copy(S, SepPos + 1, length(S) - SepPos));
-        if localStr = '' then
-           continue;
-        if localStr[1] = '"' then
-           localStr := copy(localStr, 2, length(localStr) - 1);
-        if localStr[length(localStr)] = '"' then
-           localStr := copy(localStr, 1, length(localStr) - 1);
-        if localStr = '' then
-           continue;
-
-        msgs_org[msgCount] := trim(copy(S, 1, SepPos - 1));  // original message string
-        msgs_local[msgCount] := localStr;
-        inc(msgCount);
-        if msgCount = Entries_Msg_Str then
-        begin
-           Entries_Msg_Str := Entries_Msg_Str + 16;
-           SetLength(msgs_org, Entries_Msg_Str);
-           SetLength(msgs_local, Entries_Msg_Str);
-        end;
-      end;
-
-      CloseFile(F);
-      SetLength(msgs_org, msgCount);
-      SetLength(msgs_local, msgCount);
-
-    end else
-      FindClose(SearchRec);
-
-  // following sentences are to get the local text for the title of messagebox
-    typeStr := 'Error';
-    tmpStr := string(typeStr);
-    if msgCount > 0 then
-    begin
-       for i := 1 to msgCount do
-       begin
-         if msgs_org[i - 1] = tmpStr then
-         begin
-            typeStr := pChar(msgs_local[i - 1]);
-            break;
-         end;
-       end;
-    end;
-  end;
-
-   localStr := ErrorStr;
-
-   if msgCount > 0 then
-   begin
-   // I programmed to apply the localization for only the 1st line of message string.
-   // (=> message string may include variable contents in it, ex : file name to open )
-      SepPos := pos(chr(10), ErrorStr);
-      if SepPos > 0 then
-         ErrorStr_ := copy(ErrorStr, 1, SepPos - 1)
-      else
-         ErrorStr_ := ErrorStr;
-
-      for i := 1 to msgCount do
-      begin
-         if ErrorStr_ = msgs_org[i - 1] then
-         begin
-            localStr := msgs_local[i - 1];
-            if SepPos > 0 then
-               localStr := localStr + chr(10) + copy(ErrorStr, SepPos + 1, length(ErrorStr) - Seppos);
-            break;
-         end;
-      end;
-   end;
-
-   Application.MessageBox(pChar(localStr), typeStr, MB_OK + MB_ICONERROR);
+  MessageDlg(ErrorStr, mtError,[mbOk], 0);
 end;
 
 // -------------------------------- Event Handlers ------------------------------
@@ -936,7 +766,7 @@ var
    tmpStr, StreamTitle : ansistring;
    TitlePos, DelimeterPos : integer;
    PMetaSyncParam : ^TMetaSyncParam;
-   tmpPChar : pAnsiChar;
+   //tmpPChar : pAnsiChar;
    tmpStr2 : WideString;
 begin
    PMetaSyncParam := user;
@@ -950,17 +780,9 @@ begin
    begin
       tmpStr := ansistring(TagP);
       if PMetaSyncParam^.ChannelType = Channel_WMA then
-        {$IFDEF DELPHI_2007_BELOW}
          TitlePos := Pos('Title=', tmpStr)
-        {$Else}
-         TitlePos := PosEx('Title=', tmpStr, 1)
-        {$ENDIF}
       else
-        {$IFDEF DELPHI_2007_BELOW}
          TitlePos := Pos('StreamTitle=', tmpStr);
-        {$Else}
-         TitlePos := PosEx('StreamTitle=', tmpStr, 1);
-        {$ENDIF}
    end else
    begin
       tmpStr := '';
@@ -969,24 +791,14 @@ begin
 
    if TitlePos <> 0 then
    begin
-     {$IFDEF DELPHI_2007_BELOW}
       DelimeterPos := Pos(';', tmpStr);
-     {$Else}
-      DelimeterPos := PosEx(';', tmpStr);
-     {$ENDIF}
       if PMetaSyncParam^.ChannelType = Channel_WMA then
       begin
          if DelimeterPos = 0 then
             StreamTitle := copy(tmpStr, TitlePos + 7, length(tmpStr) - TitlePos - 7)
          else
             StreamTitle := copy(tmpStr, TitlePos + 7, DelimeterPos - TitlePos - 8);
-        {$IFDEF DELPHI_2007_BELOW}
-         tmpStr2 := UTF8Decode(StreamTitle);
-        {$ELSE}
-         tmpStr2 := UTF8ToWideString(StreamTitle);
-        {$ENDIF}
-         tmpPChar := ToPMultiByte(PWideChar(tmpStr2));
-         StreamTitle := ansistring(tmpPChar);
+         StreamTitle := UTF8Decode(StreamTitle);
       end else
          if DelimeterPos = 0 then
             StreamTitle := copy(tmpStr, TitlePos + 13, length(tmpStr) - TitlePos - 13)
@@ -996,11 +808,7 @@ begin
    begin   // May be a chained OGG stream
       while StrLen(TagP) > 0 do
       begin
-        {$IFNDEF DELPHI_2007_BELOW}
-         if PosEX('TITLE=', Ansistrings.upperCase(ansistring(TagP)), 1) <> 0 then
-        {$ELSE}
          if pos('TITLE=', upperCase(ansistring(TagP))) <> 0 then
-        {$ENDIF}
          begin
             inc(TagP, 6);
             StreamTitle := ansistring(TagP);
@@ -1015,7 +823,8 @@ begin
       StreamTitle := tmpStr;  }
 
    StrPLCopy(PMetaSyncParam^.TitleP, StreamTitle, MaxTitleLen);
-   PostMessage(PMetaSyncParam^.MsgHandle, WM_GetMeta, 0, longint(@PMetaSyncParam^.TitleP));
+   Application.QueueAsyncCall(Player.GetMetaA, longint(@PMetaSyncParam^.TitleP));
+   //PostMessage(PMetaSyncParam^.MsgHandle, WM_GetMeta, 0, longint(@PMetaSyncParam^.TitleP));
 end;
 
 
@@ -1030,31 +839,22 @@ end;
 // This procedure is called when downloading of an URL stream is done.
 procedure DownloadSync(SyncHandle : HSYNC; Channel, data: DWORD; user : pointer); stdcall;
 var
-   Msg_Handle : DWORD;
+   f: PtrInt;
 begin
-   Msg_Handle := PDWORD(user)^;
-   PostMessage(Msg_Handle, WM_DownLoaded, 0, 0);
+  Application.QueueAsyncCall(Player.DownloadedA, f);
 end;
 
 // This procedure is called when a lyric event is encountered.
 procedure LyricSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
-var
-   PLyricSyncParam : ^TLyricSyncParam;
-   MarkP : BASS_MIDI_MARK;
 begin
-   PLyricSyncParam := user;
-   if BASS_MIDI_StreamGetMark(PLyricSyncParam^.Channel, BASS_MIDI_MARK_LYRIC, data, MarkP) then
-      PostMessage(PLyricSyncParam^.MsgHandle, WM_GetLyric, longint(MarkP.text), 0);
+
 end;
 
 // This procedure is called when an attribute slide has ended
 // * Added at Ver 2.01
 procedure SlideEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
-var
-   PSlideSyncParam : ^TSlideSyncParam;
 begin
-   PSlideSyncParam := user;
-   PostMessage(PSlideSyncParam^.MsgHandle, WM_SlideEnded, PSlideSyncParam^.NextAction, 0);
+
 end;
 
 // This procedure is called before the BASS_MIDI_StreamCreateURL call returns.
@@ -1073,16 +873,16 @@ begin
       if copy(bufferStr, 1, 4) = 'HTTP' then
       begin
          p := buffer + 4;
-         PostMessage(Msg_Handle, WM_GetHTTPHeaders, DWORD(p), 0);
+         Application.QueueAsyncCall(Player.DownProcA, DWORD(p));
       end else
       if copy(bufferStr, 1, 3) = 'ICY' then
       begin
          p := buffer + 3;
-         PostMessage(Msg_Handle, WM_GetHTTPHeaders, DWORD(p), 0);
+         Application.QueueAsyncCall(Player.DownProcA, DWORD(p));
       end
    end else
    if buffer = nil then
-      PostMessage(Msg_Handle, WM_GetHTTPHeaders, 0, 0);  // no HTTP or ICY tags from the server
+      Application.QueueAsyncCall(Player.DownProcA, 0); // no HTTP or ICY tags from the server
                                                          // but finished downloading process.
 end;
 
@@ -1097,28 +897,6 @@ begin
   s := msg + #13#10 + '(error code: ' + IntToStr(BASS_ErrorGetCode) + ')';
   ShowErrorMsgBox(s);
 end;
-
-procedure TBASSPlayer.WinProcessMessages;  // * Added at Ver 2.00
-// Allow Windows to process other system messages
-var
-    ProcMsg  :  TMsg;
-begin
-    while PeekMessage(ProcMsg, 0, 0, 0, PM_REMOVE) do begin
-      if (ProcMsg.Message = WM_QUIT) then Exit;
-      TranslateMessage(ProcMsg);
-      DispatchMessage(ProcMsg);
-    end;  
-end;
-
-{ function TBASSPlayer.CDDescription(DriveNum : integer) : string;
-begin
-   if not FBASSCDReady then
-      result := ''
-   else if DriveNum >= FNumCDDrives then
-      result := ''
-   else
-      result := CDDriveList[DriveNum];
-end; }
 
 procedure TBASSPlayer.ClearEffectHandle;
 var
@@ -1203,7 +981,6 @@ begin
      //SetMuteState(true, 500);   // Mute
      repeat
         Sleep(20);
-        WinProcessMessages;
      until (not AttribSliding);
    end;
 
@@ -1677,40 +1454,21 @@ begin
    FPlayerMode := plmStandby;
    FPan:=0;
 
-   if not (csDesigning in ComponentState) then
-   begin
-     if AOwner<>nil then
-       ParentHWND := (AOwner as TWinControl).Handle else ParentHWND:=FindWindow('KSPMainWindow',nil);;
-     AppHWND := ParentHWND;
-
-     MessageHandle := 0;//AllocateHWnd(ProcMessage);
-     //MessageHandle := MakeObjectInstance(ProcMessage);
-
-     FOrgWndProc := Pointer(GetWindowLong(MessageHandle, GWL_WNDPROC));
-     MetaSyncParam.MsgHandle := MessageHandle;
-     LyricSyncParam.MsgHandle := MessageHandle;
-     SlideSyncParam.MsgHandle := MessageHandle;
-     DataReadyMsg := registerWindowMessage('WM_BASSSendingData');
-
-   end;
-
    BASSDLLLoaded := Load_BASSDLL(GetProgDir + 'bass.dll');
    if not BASSDLLLoaded then
    begin
-      if (csDesigning in ComponentState) then
-         FDLLVersionStr := 'N.A.(Copy bass.dll in <directory Delphi installed>\Bin to get version)'
-      else
-         FDLLVersionStr := '';
       exit;
    end;
 
  //  BASSVERSION & BASSVERSIONTEXT are defined in Dynamic_Bass.pas
+{$IFDEF WINDOWS}
    if (HIWORD(BASS_GetVersion)<> BASSVERSION) or (LOWORD(BASS_GetVersion) < 1) then
    begin
      if not (csDesigning in ComponentState) then
         ShowErrorMsgBox('BASS version is not ' + BASSVERSIONTEXT + ' !');
      exit;
    end;
+{$ENDIF}
 
    if not NoInit then begin
 
@@ -1722,7 +1480,7 @@ begin
    BASS_SetConfig(BASS_CONFIG_WMA_PREBUF, 1);     // * Added at Ver 2.00
 
  // setup output - default device, 44100hz, stereo, 16 bits
-   if not BASS_Init(1, 44100, 0, AppHWND, nil) then
+   if not BASS_Init(1, 44100, 0, 0, nil) then
    begin
       if not (csDesigning in ComponentState) then
          Error('Can''t initialize device');
@@ -1739,7 +1497,7 @@ begin
       FDX8EffectReady := true;
    end else begin
       if not (csDesigning in ComponentState) then
-         MessageBox(AppHWND, NoDX8Msg, 'Warning', MB_ICONWARNING or MB_OK);
+         ShowMessage(NoDX8Msg);//, 'Warning', MB_ICONWARNING or MB_OK);
       FDX8EffectReady := false;
    end;
 
@@ -1758,8 +1516,6 @@ begin
    BASS_SetConfig(BASS_CONFIG_GVOL_MUSIC, FOutputVolume * 39);
    BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, FOutputVolume * 39); 
 
-   FDLLVersionStr := GetDLLVersionStr;
-
    end else FBASSReady:=true;
 
    if not (csDesigning in ComponentState) then
@@ -1767,21 +1523,21 @@ begin
       fn := GetProgDir + 'basswma.dll';
       if FileExists(fn) then  // * Changed at Ver 2.00
       begin
-        {$IFDEF DELPHI_2007_BELOW}
          HBASSWMA := BASS_PluginLoad(pChar(fn), 0);
-        {$ELSE}
-         HBASSWMA := BASS_PluginLoad(pChar(fn), BASS_UNICODE);
-        {$ENDIF}
          if HBASSWMA <> 0 then
             FBASSWMAReady := true;
       end;
       if FileExists(GetProgDir + 'bassmix.dll') then
       begin
          if Load_BASSMIXDLL(GetProgDir + 'bassmix.dll') then
+{$IFDEF WINDOWS}
             if (HIWORD(BASS_Mixer_GetVersion) = BASSVERSION) then
+{$ENDIF}
                FMixerReady := true
+{$IFDEF WINDOWS}
             else
                ShowErrorMsgBox('BASS Mixer version is not ' + BASSVERSIONTEXT + ' !');
+{$ENDIF}
       end;
 
       if Load_BASSCDDLL(GetProgDir + 'basscd.dll') then
@@ -1809,13 +1565,17 @@ begin
       MPEG := TMPEGaudio.Create;
       Vorbis := TOggVorbis.Create;
       AAC := TAACfile.Create;
+{$IFDEF WINDOWS}
       WMA := TWMAfile.Create;
+{$ENDIF}
       WAV := TWAVFile.Create;
 
    // * Changed at Ver 2.00 ( the owner of the forms : Self -> AOwner )
       MPEGFileInfoForm := TMPEGFileInfoForm.Create(AOwner);
       OggVorbisInfoForm := TOggVorbisInfoForm.Create(AOwner);
+{$IFDEF WINDOWS}
       WMAInfoForm := TWMAInfoForm.Create(AOwner);
+{$ENDIF}
 
      { for i := 1 to MaxLoadableAddons do
          BASSAddonList[i].Handle := 0; }
@@ -1838,12 +1598,16 @@ begin
      MPEG.Free;
      Vorbis.Free;
      AAC.Free;
+{$IFDEF WINDOWS}
      WMA.Free;
+{$ENDIF}
      WAV.Free;
    //  QuitPluginCtrl;
      MPEGFileInfoForm.Free;
      OggVorbisInfoForm.Free;
+{$IFDEF WINDOWS}
      WMAInfoForm.Free;
+{$ENDIF}
 
     { if MessageHandle <> 0 then
         DeallocateHWnd(MessageHandle);   }
@@ -1876,35 +1640,7 @@ begin
       SetLength(msgs_local, 0);
    end;
 
- // Release subclassed window procedure before deallocating MessageHandle.
-   if MessageHandle <> 0 then      // * Added at Ver 2.00.1
-   begin
-      if GetWindowLong(MessageHandle, GWL_WNDPROC) <> LongInt(FOrgWndProc) then
-         SetWindowLong(MessageHandle, GWL_WNDPROC, LongInt(FOrgWndProc));
-      DeallocateHWnd(MessageHandle);
-    //  FreeObjectInstance(MessageHandle);
-   end;
-
    inherited Destroy;
-end;
-
-// Get the version information as string
-function TBASSPlayer.GetDLLVersionStr : string;
-var
-   VersionNum : DWORD;
-begin
-   if not BASSDLLLoaded then
-   begin
-      result := '';
-      exit;
-   end;
-
-   VersionNum := BASS_GetVersion;
-   result := intToStr(HIBYTE(HiWord(VersionNum))) + '.' +
-             intToStr(LOBYTE(HiWord(VersionNum))) + '.' +
-             intToStr(HIBYTE(LoWord(VersionNum))) + '.' +
-             intToStr(LOBYTE(LoWord(VersionNum)));
-   // intToStr(LoWord(VersionNum)) + '.' + intToStr(HiWord(VersionNum));
 end;
 
 function TBASSPlayer.GetNativeFileExts : string;
@@ -1930,9 +1666,7 @@ var
    tmpChannel : DWORD;
    ByteLen : int64;
    ExtCode : string;
-   {$IFDEF DELPHI_2007_BELOW}
    _file : array[0..255] of ansichar;
-   {$ENDIF}
    Duration, BitRate : DWORD;
    UseGivenData : boolean;
 
@@ -1985,11 +1719,7 @@ begin
          // AACfile.pas Version 1.2 reports wrong BitRate & Duration for MPEG-4 files.
             if AAC.MPEGVersionID = AAC_MPEG_VERSION_4 then
             begin
-             {$IFDEF DELPHI_2007_BELOW}
                tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, 0);
-             {$ELSE}
-               tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, BASS_UNICODE);
-             {$ENDIF}
                if tmpChannel <> 0 then
                begin
                   ByteLen := BASS_ChannelGetLength(tmpChannel, BASS_POS_BYTE);
@@ -2017,6 +1747,7 @@ begin
          ShowMessage('Not a valid OGG Vorbis file - ' + StreamName)};
    end else if (ExtCode = '.WMA') or (ExtCode = '.ASF') then
    begin
+{$IFDEF WINDOWS}
       WMA.ReadFromFile(StreamName);
       if WMA.Valid then
       begin
@@ -2025,6 +1756,9 @@ begin
          result := true;
       end {else
          ShowMessage('Not a valid WMA file - ' + StreamName)};
+{$ELSE}
+      ShowMessage('WMA files supported only by Windows version');
+{$ENDIF}
    end;
 
    if StreamName = FStreamName then
@@ -2111,11 +1845,7 @@ begin
             BitRate := (SampleRate * BitsPerSample) div 1000;  // Why not 1024 ?
             Duration := round(WAV.Duration * 1000);
             Channels := WAV.ChannelModeID;
-           {$IFDEF DELPHI_2007_BELOW}
             tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, 0);
-           {$ELSE}
-            tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, BASS_UNICODE);
-           {$ENDIF}
             if tmpChannel <> 0 then
             begin
                BASS_ChannelGetInfo(tmpChannel, ChannelInfo);
@@ -2241,11 +1971,7 @@ begin
         // AACfile.pas Version 1.2 reports wrong BitRate & Duration for MPEG-4 files.
             if AAC.MPEGVersionID = AAC_MPEG_VERSION_4 then
             begin
-              {$IFDEF DELPHI_2007_BELOW}
                tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, 0);
-              {$ELSE}
-               tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, BASS_UNICODE);
-              {$ENDIF}
                if tmpChannel <> 0 then
                begin
                   ByteLen := BASS_ChannelGetLength(tmpChannel, BASS_POS_BYTE);
@@ -2260,7 +1986,8 @@ begin
          result := true;
       end;
    end else if (ExtCode = '.WMA') or (ExtCode = '.ASF') then  // * Changed at Ver 2.00
-   begin                                                      //   (add for 'ASF' files)
+   begin
+{$IFDEF WINDOWS}                                                    //   (add for 'ASF' files)
       WMA.ReadFromFile(StreamName);
       if WMA.Valid then
       begin
@@ -2284,6 +2011,7 @@ begin
             SupportedBy := BASSNative;
          result := true;
       end;
+{$ENDIF}
    end else if ExtCode = '.CDA' then
    begin
       if FBASSCDReady then
@@ -2343,11 +2071,7 @@ begin
             Title := ExtractFileName(StreamName);  // Not the title given to music file
 
          CloseFile(f);
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_MusicLoad(FALSE, PChar(StreamName), 0, 0, BASS_MUSIC_PRESCAN, 0);
-        {$ELSE}
-         tmpChannel := BASS_MusicLoad(FALSE, PChar(StreamName), 0, 0, BASS_MUSIC_PRESCAN or BASS_UNICODE, 0);
-        {$ENDIF}
          if tmpChannel <> 0 then
          begin
             ByteLen := BASS_ChannelGetLength(tmpChannel, BASS_POS_BYTE);
@@ -2378,11 +2102,7 @@ begin
          StreamInfo.FileName := StreamName;
 
          if FMIDISoundReady then
-          {$IFDEF DELPHI_2007_BELOW}
             tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, pChar(StreamName), 0, 0, 0, 44100);
-          {$ELSE}
-            tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, pChar(StreamName), 0, 0, BASS_UNICODE, 44100);
-          {$ENDIF}
          if tmpChannel <> 0 then
          begin
             ByteLen := BASS_ChannelGetLength(tmpChannel, BASS_POS_BYTE);
@@ -2410,11 +2130,7 @@ begin
       s2 := s2 + ';';
       if pos(s2, s) > 0 then
       begin
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, 0);
-        {$ELSE}
-         tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName), 0, 0, BASS_UNICODE);    egeg
-        {$ENDIF}
          if tmpChannel <> 0 then
          begin
             ByteLen := BASS_ChannelGetLength(tmpChannel, BASS_POS_BYTE);
@@ -2458,150 +2174,6 @@ begin
       result := GetStreamInfo2(StreamName, StreamInfo, SupportedBy, dumNum, dumStr);
 end;
 
-
-procedure TBASSPlayer.ProcMessage(var Msg: TLMessage);
-var
-   PTitle : PAnsiChar;
-   ExtCode : string;
-   TagP : pAnsiChar;
-   TagVer : word;
-   MP3Tag : MP3TagRec;
-   PlaybackSec : float;
-begin
-   if Msg.Msg = DataReadyMsg then
-   begin
-      if Msg.wParam = PlayListChange then  // * Added at Ver 2.00
-      begin
-         if Assigned(FOnUpdatePlayList) then
-            FOnUpdatePlayList(Self, Msg.lParam);
-      end else
-         exit;
-   end else if Msg.Msg = WM_RequestFromVis then
-   begin
-      if Assigned(FOnPluginRequest) then
-         FOnPluginRequest(Self, Msg.WParam);
-   end;
-
-   case Msg.Msg of
-      WM_GetMeta       : begin     // BASS received Metadata in a Shoutcast stream
-                            PTitle := pointer(Msg.lParam);
-                            FStreamInfo.Title := ansistring(PTitle);
-                            if Assigned(FOnGetMeta) then
-                               FOnGetMeta(Self, ansistring(PTitle));
-                         end;
-      WM_GetLyric      : if Assigned(FOnGetLyric) then  // BASS encountered lyric event
-                            FOnGetLyric(Self, pointer(Msg.WParam));
-
-      WM_SlideEnded    : begin
-                           if Msg.WParam = 0 then    // Mute
-                           begin
-                             BASS_SetConfig(BASS_CONFIG_GVOL_MUSIC, 0);
-                             BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, 0);
-                           end;
-
-                           AttribSliding := false;
-                           if HSlideSync <> 0 then
-                           begin
-                             BASS_ChannelRemoveSync(PlayChannel, HSlideSync);
-                             HSlideSync := 0;
-                           end;
-                         end;
-
-      WM_GetHTTPHeaders : begin
-                             tmpHTTPTag := pAnsiChar(Msg.WParam);
-                             FGetHTTPHeader := true;
-                          end;
-      WM_DownLoaded    : begin     // BASS finished download of an URL stream
-                            FDownloaded := true;
-                            ExtCode := UpperCase(ExtractFileExt(FStreamName));
-                            if (ExtCode = '.MP3') or (ExtCode = '.MP2') or (ExtCode = '.MP1') or
-                               (FBASSAACReady and (ExtCode = '.AAC')) then
-                            begin
-                               TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_ID3);
-                               if TagP = nil then
-                               begin
-                                  TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_ID3V2);
-                                  if TagP = nil then
-                                     TagVer := 0
-                                  else
-                                     TagVer := 2;
-                               end else
-                                  TagVer := 1;
-                            end else
-                          {  if (ExtCode = '.WMA') then  // ** Tag info is obtained at opening
-                            begin
-                               TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_WMA);
-                               if TagP = nil then
-                                  TagVer := 0
-                                else
-                                   TagVer := 3;
-                            end else }
-                            begin
-                               TagP := nil;
-                               TagVer := 0;
-                            end;
-
-                            FStreamInfo.FileSize := BASS_StreamGetFilePosition(DecodeChannel, BASS_FILEPOS_END);
-
-                            if (TagVer = 1) or (TagVer = 2) then
-                              if ReadFromTagStream(TagP, FStreamInfo.FileSize, TagVer, MP3Tag) then
-                                 with FStreamInfo do
-                                 begin
-                                    Title := MP3Tag.Title;
-                                    Artist := MP3Tag.Artist;
-                                    Album := MP3Tag.Album;
-                                    Year := MP3Tag.Year;
-                                    Genre := MP3Tag.Genre;
-                                    Track := MP3Tag.Track;
-                                    Comment := MP3Tag.Comment;
-                                 end;
-
-                         // Reestimate playback length of an URL stream after finishing download.
-                         // ** Following method also shows inaccurate result.
-                          {  if (ExtCode = '.AAC') then
-                            begin
-                            // The returned value of BASS_ChannelGetLength is not accurate for AAC files.
-                            // So, I used BASS_ChannelGetPosition instead of BASS_ChannelGetLength.
-                              ElapsedByte := BASS_StreamGetFilePosition(DecodeChannel, BASS_FILEPOS_CURRENT);
-                              ElapsedTime := BASS_ChannelBytes2Seconds(DecodeChannel,
-                                                        BASS_ChannelGetPosition(DecodeChannel, BASS_POS_BYTE));
-                            // I assumed that about 60% of buffer is filled with data which are accounted in
-                            //  ElapsedByte, and not accounted in ElapsedTime.
-                              ElapsedTime := ElapsedTime + (BASS_GetConfig(BASS_CONFIG_BUFFER) / 1000) * 0.60;
-                              if (ElapsedByte > 0) and (ElapsedTime > 0) then
-                              begin
-                                 FStreamInfo.Duration := round(ElapsedTime * FStreamInfo.FileSize * 1000 / ElapsedByte);
-                                 FStreamInfo.BitRate := round(ElapsedByte / (125 * ElapsedTime));
-                              end;
-                            end else
-                            begin   }
-                              PlaybackSec := BASS_ChannelBytes2Seconds(DecodeChannel,
-                                                           BASS_ChannelGetLength(DecodeChannel, BASS_POS_BYTE));
-                              FStreamInfo.Duration := round(1000 * PlaybackSec);  // in mili seconds
-                           // end;
-
-                            if Assigned(FOnDownloaded) then
-                               FOnDownloaded(Self, FStreamInfo.Duration);
-                         end;
-
-      WM_BASS_StreamCreate : PlayChannel := DWORD(Msg.WParam);  // Message from output plug-in emulator
-
-    //  Use of WM_BASS_StreamFree may cause problem because of reset PlayChannel after set by opening playing channel
-    //  WM_BASS_StreamFree   : PlayChannel := 0;        // Message from output plug-in emulator
-
-    //  WM_GetChannelData : omodWrite2;                // message requesting sample data for BASS playing channel
-      WM_ChannelUnavailable : begin   // Message from PlayThread (DecodeChannel is not available)
-                            ShowErrorMsgBox('Decoding Channel is unavailable by any reasons.'
-                                              + chr(10) + 'Opened stream is beging closed.');
-                            Close;
-                          end;
-
-      WM_QueryEndSession : begin
-                              Msg.Result := 1;    // Allow system termination
-                           end;
-   end;
-end;
-
 function TBASSPlayer.OpenURL(URL : string;
                              var StreamInfo : TStreamInfo;
                              var SupportedBy : TSupportedBy;
@@ -2615,8 +2187,6 @@ var
   tmpChannelType : TChannelType;
   tmpStr : string;
   tmpStr1 : ansistring;
-  tmpStr2 : wideString;
-  tmpPChar : pAnsiChar;
   RepeatCounter : integer;
   PlaybackSec : float;
   FileLen : integer;
@@ -2672,11 +2242,7 @@ begin
 
       if pos(ExtCode, MIDIFileExt) = 0 then  // not a MIDI file ?
       begin
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_StreamCreateURL(pChar(URL), 0, OpenFlag, nil, nil);
-        {$ELSE}
-         tmpChannel := BASS_StreamCreateURL(ToPMultiByte(pWideChar(URL)), 0, OpenFlag, nil, nil);
-        {$ENDIF}
          if tmpChannel <> 0 then
          begin
             BASS_ChannelGetInfo(tmpChannel, BassChannelInfo);
@@ -2694,15 +2260,9 @@ begin
       end else if FMIDISoundReady then
       begin
          FGetHTTPHeader := false;
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_MIDI_StreamCreateURL(pChar(URL), 0,
                                                  OpenFlag + BASS_STREAM_STATUS,
-                                                 @DownProc, @MessageHandle, 44100);
-        {$ELSE}
-         tmpChannel := BASS_MIDI_StreamCreateURL(ToPMultiByte(pWideChar(URL)), 0,
-                                                 OpenFlag + BASS_STREAM_STATUS,
-                                                 @DownProc, @MessageHandle, 44100);
-        {$ENDIF}
+                                                 @DownProc, nil, 44100);
          if tmpChannel <> 0 then
             tmpChannelType := Channel_MIDI;
       end else if FBASSMIDIReady then
@@ -2762,11 +2322,7 @@ begin
          if TagP <> nil then
          while StrLen(TagP) > 0 do
          begin
-          {$IFDEF DELPHI_2007_BELOW}
             tmpStr := ansistring(TagP);
-          {$ELSE}
-            tmpStr := ToWideString(ansistring(TagP));
-          {$ENDIF}
             if pos('TITLE=', tmpStr) <> 0 then
             begin
                StreamInfo.Title := copy(tmpStr, 7, length(tmpStr) - 6);
@@ -2790,46 +2346,22 @@ begin
          while StrLen(TagP) > 0 do
          begin
             tmpStr1 := ansistring(TagP);
-           {$IFDEF DELPHI_2007_BELOW}
             if pos('FileSize=', tmpStr1) <> 0 then
-           {$ELSE}
-            if posEX('FileSize=', tmpStr1, 1) <> 0 then
-           {$ENDIF}
                StreamInfo.FileSize := strToInt(copy(tmpStr1, 10, length(tmpStr1) - 9));
             if copy(tmpStr1, 1, 8) = 'Bitrate=' then   // to exclude 'CurrentBitrate=', 'OptimalBitrate='
             begin
              //  SepPos := pos('=', tmpStr1);
                StreamInfo.Bitrate := strToInt(copy(tmpStr1, 9, length(tmpStr1) - 8)) div 1000;
             end;
-           {$IFDEF DELPHI_2007_BELOW}
             if pos('Title=', tmpStr1) <> 0 then
-           {$ELSE}
-            if posEX('Title=', tmpStr1, 1) <> 0 then
-           {$ENDIF}
-            begin
-              {$IFDEF DELPHI_2007_BELOW}
-               tmpStr2 := UTF8Decode(tmpStr1);
-              {$ELSE}
-               tmpStr2 := UTF8ToWideString(tmpStr1);
-              {$ENDIF}
-               tmpPChar := ToPMultiByte(PWideChar(tmpStr2));
-               tmpStr1 := ansistring(tmpPChar);
+             begin
+               tmpStr1 := UTF8Decode(tmpStr1);
+
                StreamInfo.Title := copy(tmpStr1, 7, length(tmpStr1) - 6);
             end;
-           {$IFDEF DELPHI_2007_BELOW}
             if pos('Author=', tmpStr1) <> 0 then
-           {$ELSE}
-            if posEX('Author=', tmpStr1, 1) <> 0 then
-           {$ENDIF}
             begin
-              {$IFDEF DELPHI_2007_BELOW}
-               tmpStr2 := UTF8Decode(tmpStr1);
-              {$ELSE}
-               tmpStr2 := UTF8ToWideString(tmpStr1);
-              {$ENDIF}
-
-               tmpPChar := ToPMultiByte(PWideChar(tmpStr2));
-               tmpStr1 := ansistring(tmpPChar);
+               tmpStr1 := UTF8Decode(tmpStr1);
                StreamInfo.Artist := copy(tmpStr1, 8, length(tmpStr1) - 7);
             end;
             inc(TagP, StrLen(TagP) + 1);
@@ -2854,7 +2386,6 @@ begin
             repeat
                sleep(30);
                inc(RepeatCounter);
-               WinProcessMessages;
             until FGetHTTPHeader or (RepeatCounter = 100);
 
             if FGetHTTPHeader then
@@ -2887,7 +2418,7 @@ begin
          end;
 
          if not FDownloaded then
-            BASS_ChannelSetSync(DecodeChannel, BASS_SYNC_DOWNLOAD, 0, @DownloadSync, @MessageHandle);
+            BASS_ChannelSetSync(DecodeChannel, BASS_SYNC_DOWNLOAD, 0, @DownloadSync, nil);
       end;
    end else   // = Shoutcast/Icecast server
    begin
@@ -2914,11 +2445,7 @@ begin
          if TagP <> nil then
          begin
             tmpStr1 := ansistring(TagP);
-           {$IFDEF DELPHI_2007_BELOW}
             if pos('Title=', tmpStr1) <> 0 then
-           {$ELSE}
-            if posEX('Title=', tmpStr1, 1) <> 0 then
-           {$ENDIF}
                StreamInfo.Title := copy(tmpStr1, 7, length(tmpStr1) - 6);
          end;
       end else
@@ -2930,21 +2457,13 @@ begin
         if TagP <> nil then
            while StrLen(TagP) > 0 do
            begin
-            {$IFDEF DELPHI_2007_BELOW}
              if pos('icy-br:', ansistring(TagP)) <> 0 then
-            {$ELSE}
-             if posEX('icy-br:', ansistring(TagP), 1) <> 0 then
-            {$ENDIF}
              begin
                inc(TagP, 7);
                StreamInfo.BitRate := strToInt(ansistring(TagP));
                break;
              end else
-            {$IFDEF DELPHI_2007_BELOW}
              if pos('ice-bitrate:', ansistring(TagP)) <> 0 then
-            {$ELSE}
-             if posEX('ice-bitrate:', ansistring(TagP), 1) <> 0 then
-            {$ENDIF}
              begin
                inc(TagP, 12);
                StreamInfo.BitRate := strToInt(ansistring(TagP));
@@ -2958,21 +2477,13 @@ begin
         if TagP <> nil then
         begin
           tmpStr1 := ansistring(TagP);
-         {$IFDEF DELPHI_2007_BELOW}
           TitlePos := Pos('StreamTitle=', tmpStr1);
-         {$ELSE}
-          TitlePos := PosEX('StreamTitle=', tmpStr1, 1);
-         {$ENDIF}
         end else
           TitlePos := 0;
 
         if TitlePos <> 0 then
         begin
-          {$IFDEF DELPHI_2007_BELOW}
           DelimeterPos := Pos(';', tmpStr1);
-          {$ELSE}
-          DelimeterPos := PosEx(';', tmpStr1);
-          {$ENDIF}
           if DelimeterPos = 0 then
              StreamInfo.Title := copy(tmpStr1, TitlePos + 13, length(tmpStr1) - TitlePos - 13)
           else
@@ -3140,11 +2651,7 @@ begin
       if (ExtCode = '.CDA') then
       begin   // (ExtCode = '.CDA')
          if FBASSCDReady then
-             {$IFDEF DELPHI_2007_BELOW}
                tmpChannel := BASS_CD_StreamCreateFile(PChar(StreamName_), 0)
-             {$ELSE}
-               tmpChannel := BASS_CD_StreamCreateFile(PChar(StreamName_), BASS_UNICODE)
-             {$ENDIF}
          else
             tmpChannel := 0;
          if (tmpChannel <> 0) then
@@ -3154,11 +2661,7 @@ begin
          if IsMusicFile then
          begin
             OpenFlag := BASS_MUSIC_PRESCAN + BASS_MUSIC_POSRESET + BASS_MUSIC_RAMPS;
-          {$IFDEF DELPHI_2007_BELOW}
             tmpChannel := BASS_MusicLoad(FALSE, PChar(StreamName_), 0, 0, OpenFlag, 0);
-          {$ELSE}
-            tmpChannel := BASS_MusicLoad(FALSE, PChar(StreamName_), 0, 0, OpenFlag or BASS_UNICODE, 0);
-          {$ENDIF}
             if (tmpChannel <> 0) then
             begin
                tmpChannelType := Channel_Music;
@@ -3168,11 +2671,7 @@ begin
          end else if pos(ExtCode, MIDIFileExt) <> 0 then  // is a MIDI file ?
          begin
             if FMIDISoundReady then
-                 {$IFDEF DELPHI_2007_BELOW}
                   tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, pChar(StreamName_), 0, 0, 0, 44100)
-                 {$ELSE}
-                  tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, pChar(StreamName_), 0, 0, BASS_UNICODE, 44100)
-                 {$ENDIF}
             else begin
                tmpChannel := 0;
                if FBASSMIDIReady then
@@ -3186,11 +2685,7 @@ begin
             end;
          end else
          begin
-              {$IFDEF DELPHI_2007_BELOW}
                tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName_), 0, 0, 0);
-              {$ELSE}
-               tmpChannel := BASS_StreamCreateFile(FALSE, PChar(StreamName_), 0, 0, BASS_UNICODE);
-              {$ENDIF}
             if (tmpChannel <> 0) then
             begin
                BASS_ChannelGetInfo(tmpChannel, BassChannelInfo);
@@ -3286,7 +2781,6 @@ var
            ExitBuffering := true; // something's gone wrong! (eg. BASS_Free called)
         if (progress = 100) then
            break; // full
-        WinProcessMessages;
         Sleep(20);
       until ExitBuffering
     else  // Shoutcast/Icecast stream
@@ -3299,7 +2793,6 @@ var
                           BASS_StreamGetFilePosition(Channel, BASS_FILEPOS_CURRENT)) * 100 / len);
         if (progress > 75) then
            break; // over 75% full, enough
-        WinProcessMessages;
         Sleep(20);
       until ExitBuffering;
 
@@ -3384,7 +2877,6 @@ begin
      SetMuteState(true, 500);   // Mute
      repeat
         Sleep(20);
-        WinProcessMessages;
      until (not AttribSliding);
 
      result := true;
@@ -3549,11 +3041,6 @@ begin
 end;
 
 
-function TBASSPlayer.GetMessageHandle : HWND;
-begin
-   result := MessageHandle;
-end;
-
 function TBASSPlayer.BASSAddonLoad(FilePath : string; ForceLoad: boolean = false) : TFileDesc;
 var
 //   FoundPreloaded : boolean;
@@ -3588,11 +3075,7 @@ begin
       exit;
     end;
 
-  {$IFDEF DELPHI_2007_BELOW}
    AddonHandle := BASS_PluginLoad(pChar(FilePath), 0);
-  {$ELSE}
-   AddonHandle := BASS_PluginLoad(pChar(FilePath), BASS_UNICODE);
-  {$ENDIF}
    if AddonHandle <> 0 then
    begin
       fd.Handle := AddonHandle;
@@ -3662,11 +3145,7 @@ begin
    for i := 0 to FileSupportList.Count-1 do begin
       fd:=FileSupportList.GetItem(i);
          for j := 1 to fd.NumFormat do
-            {$IFDEF DELPHI_2007_BELOW}
              result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
-            {$ELSE}
-             result := result + AnsiStrings.LowerCase(fd.FormatP[j-1].exts) + ';';
-            {$ENDIF}
    end;
 
 end;
@@ -3680,11 +3159,7 @@ begin
 
       fd:=FileSupportList.GetItem(i);
          for j := 1 to fd.NumFormat do
-            {$IFDEF DELPHI_2007_BELOW}
              result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
-            {$ELSE}
-             result := result + AnsiStrings.LowerCase(fd.FormatP[j-1].exts) + ';';
-            {$ENDIF}
 end;
 
 function TBASSPlayer.GetDecoderName(ExtCode : string) : string;
@@ -3699,11 +3174,7 @@ begin
       begin
          s := '';
          for j := 1 to FileSupportList.GetItem(i).NumFormat do
-           {$IFDEF DELPHI_2007_BELOW}
             s := s + LowerCase(FileSupportList.GetItem(i).FormatP[j-1].exts);
-           {$ELSE}
-            s := s + AnsiStrings.LowerCase(FileSupportList.GetItem(i).FormatP[j-1].exts);
-           {$ENDIF}
 
          if pos(ExtCode, s) > 0 then
          begin
@@ -3726,11 +3197,7 @@ begin
       exit;
 
    if FileExists(FontFilePath) then
-    {$IFDEF DELPHI_2007_BELOW}
       aFontHandle := BASS_MIDI_FontInit(pChar(FontFilePath), 0)
-    {$ELSE}
-      aFontHandle := BASS_MIDI_FontInit(pChar(FontFilePath), BASS_UNICODE)
-    {$ENDIF}
    else
       exit;
 
@@ -3813,23 +3280,12 @@ begin
       NameHeader1 := copy(FStreamName, 1, 7);
       NameHeader2 := copy(FStreamName, 1, 6);
       if (NameHeader1 = 'http://') or (NameHeader2 = 'mms://') then
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_MIDI_StreamCreateURL(pChar(FStreamName), 0,
                                                     BASS_STREAM_DECODE,
                                                     nil, nil, 44100)
-        {$ELSE}
-         tmpChannel := BASS_MIDI_StreamCreateURL(ToPMultiByte(pWideChar(FStreamName)), 0,
-                                                    BASS_STREAM_DECODE,
-                                                    nil, nil, 44100)
-        {$ENDIF}
       else
-        {$IFDEF DELPHI_2007_BELOW}
          tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, pChar(FStreamName), 0, 0,
                                                   BASS_STREAM_DECODE, 44100);
-        {$ELSE}
-         tmpChannel := BASS_MIDI_StreamCreateFile(FALSE, ToPMultiByte(pWideChar(FStreamName)), 0, 0,
-                                                  BASS_STREAM_DECODE or BASS_UNICODE, 44100);
-        {$ENDIF}
    end;
 
    if tmpChannel <> 0 then
@@ -3871,11 +3327,6 @@ begin
 
 end;
 
-function TBASSPlayer.GetBuildDate : string;       // * New at Ver 2.00
-begin
-   Result := BuildDate;
-end;
-
 procedure TBASSPlayer.SetPlayEnd;
 var
   pStat: integer;
@@ -3885,7 +3336,6 @@ begin
                             while pStat = BASS_ACTIVE_PLAYING do
                             begin
                                pStat:=BASS_ChannelIsActive(PlayChannel);
-                               WinProcessMessages;
                                sleep(50);
                               { inc(WaitCycle);
                                if WaitCycle = 100 then
@@ -3900,6 +3350,102 @@ end;
 procedure TBASSPlayer.SetPlayEndA(Data: PtrInt);
 begin
   SetPlayEnd;
+end;
+
+procedure TBASSPlayer.GetMetaA(Data: PtrInt);
+var
+  PTitle: PAnsiChar;
+begin
+  PTitle := pointer(Data);
+  FStreamInfo.Title := ansistring(PTitle);
+  if Assigned(FOnGetMeta) then
+    FOnGetMeta(Self, ansistring(PTitle));
+end;
+
+procedure TBASSPlayer.DownProcA(Data: PtrInt);
+begin
+//  tmpHTTPTag := pAnsiChar(PtrInt);
+  FGetHTTPHeader := true;
+end;
+
+procedure TBassPlayer.DownloadedA(Data: PtrInt);
+var
+  ExtCode : string;
+  TagP : pAnsiChar;
+  TagVer : word;
+  MP3Tag : MP3TagRec;
+  PlaybackSec : float;
+begin
+  FDownloaded := true;
+                            ExtCode := UpperCase(ExtractFileExt(FStreamName));
+                            if (ExtCode = '.MP3') or (ExtCode = '.MP2') or (ExtCode = '.MP1') or
+                               (FBASSAACReady and (ExtCode = '.AAC')) then
+                            begin
+                               TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_ID3);
+                               if TagP = nil then
+                               begin
+                                  TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_ID3V2);
+                                  if TagP = nil then
+                                     TagVer := 0
+                                  else
+                                     TagVer := 2;
+                               end else
+                                  TagVer := 1;
+                            end else
+                          {  if (ExtCode = '.WMA') then  // ** Tag info is obtained at opening
+                            begin
+                               TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_WMA);
+                               if TagP = nil then
+                                  TagVer := 0
+                                else
+                                   TagVer := 3;
+                            end else }
+                            begin
+                               TagP := nil;
+                               TagVer := 0;
+                            end;
+
+                            FStreamInfo.FileSize := BASS_StreamGetFilePosition(DecodeChannel, BASS_FILEPOS_END);
+
+                            if (TagVer = 1) or (TagVer = 2) then
+                              if ReadFromTagStream(TagP, FStreamInfo.FileSize, TagVer, MP3Tag) then
+                                 with FStreamInfo do
+                                 begin
+                                    Title := MP3Tag.Title;
+                                    Artist := MP3Tag.Artist;
+                                    Album := MP3Tag.Album;
+                                    Year := MP3Tag.Year;
+                                    Genre := MP3Tag.Genre;
+                                    Track := MP3Tag.Track;
+                                    Comment := MP3Tag.Comment;
+                                 end;
+
+                         // Reestimate playback length of an URL stream after finishing download.
+                         // ** Following method also shows inaccurate result.
+                          {  if (ExtCode = '.AAC') then
+                            begin
+                            // The returned value of BASS_ChannelGetLength is not accurate for AAC files.
+                            // So, I used BASS_ChannelGetPosition instead of BASS_ChannelGetLength.
+                              ElapsedByte := BASS_StreamGetFilePosition(DecodeChannel, BASS_FILEPOS_CURRENT);
+                              ElapsedTime := BASS_ChannelBytes2Seconds(DecodeChannel,
+                                                        BASS_ChannelGetPosition(DecodeChannel, BASS_POS_BYTE));
+                            // I assumed that about 60% of buffer is filled with data which are accounted in
+                            //  ElapsedByte, and not accounted in ElapsedTime.
+                              ElapsedTime := ElapsedTime + (BASS_GetConfig(BASS_CONFIG_BUFFER) / 1000) * 0.60;
+                              if (ElapsedByte > 0) and (ElapsedTime > 0) then
+                              begin
+                                 FStreamInfo.Duration := round(ElapsedTime * FStreamInfo.FileSize * 1000 / ElapsedByte);
+                                 FStreamInfo.BitRate := round(ElapsedByte / (125 * ElapsedTime));
+                              end;
+                            end else
+                            begin   }
+                              PlaybackSec := BASS_ChannelBytes2Seconds(DecodeChannel,
+                                                           BASS_ChannelGetLength(DecodeChannel, BASS_POS_BYTE));
+                              FStreamInfo.Duration := round(1000 * PlaybackSec);  // in mili seconds
+                           // end;
+
+                            if Assigned(FOnDownloaded) then
+                               FOnDownloaded(Self, FStreamInfo.Duration);
 end;
 
 procedure TBassPlayer.SetPan(Pan: float);

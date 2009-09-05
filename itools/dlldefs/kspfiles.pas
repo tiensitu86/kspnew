@@ -2,32 +2,38 @@ unit kspfiles;
 
 interface
 
-uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, WinInet, DateUtils, Dialogs;
+uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs;
+
+const
+{$IFDEF WINDOWS}
+  LIB_SUFFIX = '.dll';
+{$ELSE}
+  LIB_SUFFIX = '.so';
+{$ENDIF}
 
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
-  PlsIndex: integer): ShortString; external 'kspfiles.dll';
-{$IFNDEF KSP_PLUGINS}
-procedure SearchFiles(var FilesNo: integer; Path: PChar; Rec: boolean; var s: TStringList; FileSL: TFileSupportList); external 'kspfiles.dll';
-{$ENDIF}
+  PlsIndex: integer): ShortString; external 'kspfiles'+LIB_SUFFIX;
 //function GetFileVersion(Filename: TPathChar): ShortString; external 'kspfiles.dll';
 //function GetFileVersion2(Filename: TPathChar): ShortString; external 'kspfiles.dll';
-procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char); external 'kspfiles.dll';
+procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char); external 'kspfiles'+LIB_SUFFIX;
 
 //function GetFav(FirstPlay, LastPlay: TDateTime; PlayCount: integer): double; external 'kspfiles.dll';
 //function GetFav2(FirstPlay, LastPlay: TDateTime; PlayCount: integer;
 //  TotalPlays: Cardinal): double; external 'kspfiles.dll';
-function IsStream(str: string): boolean; external 'kspfiles.dll';
-function IsCD(str: string): boolean; external 'kspfiles.dll';
+function IsStream(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
+function IsCD(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
 function PrepareString(str: string): string;// external 'kspfiles.dll';
 
-function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet.dll';
+{$IFDEF WINDOWS}
+function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet'+LIB_SUFFIX;
+{$ENDIF}
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 
-function ReadChangeFile: TFileRenamed; external 'kspfiles.dll';
-procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles.dll';
+function ReadChangeFile: TFileRenamed; external 'kspfiles'+LIB_SUFFIX;
+procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles'+LIB_SUFFIX;
 
-function GetKSPVersion(AppPath: TPathChar): ShortString; external 'ksp.dll';
-function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp.dll';
+function GetKSPVersion(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
+function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
 
 //FileUtils
 
@@ -194,6 +200,7 @@ end;
 
 
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
+{$IFDEF WINDOWS}
 var
   hSession: HINTERNET;
   hService: HINTERNET;
@@ -226,5 +233,10 @@ begin
     InternetCloseHandle(hSession);
   end;
 end;
+{$ELSE}
+begin
+
+end;
+{$ENDIF}
 
 end.

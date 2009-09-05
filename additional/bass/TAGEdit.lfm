@@ -12,17 +12,17 @@ object TAGEditForm: TTAGEditForm
   LCLVersion = '0.9.26.2'
   object Label1: TLabel
     Left = 11
-    Height = 14
+    Height = 11
     Top = 15
-    Width = 35
+    Width = 33
     Caption = 'Name :'
     ParentColor = False
   end
   object Label2: TLabel
     Left = 11
-    Height = 14
+    Height = 11
     Top = 41
-    Width = 37
+    Width = 34
     Caption = 'Value : '
     ParentColor = False
   end

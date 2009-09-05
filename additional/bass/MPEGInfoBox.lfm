@@ -16,7 +16,7 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
   LCLVersion = '0.9.26.2'
   object Label19: TLabel
     Left = 12
-    Height = 16
+    Height = 12
     Top = 13
     Width = 55
     Caption = 'File/URL :'
@@ -46,70 +46,71 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
     Top = 35
     Width = 248
     Caption = ' ID3v1 '
-    ClientHeight = 144
+    ClientHeight = 147
     ClientWidth = 244
+    Ctl3D = False
     TabOrder = 0
     object Label1: TLabel
       Left = 169
-      Height = 14
+      Height = 11
       Top = 15
-      Width = 39
+      Width = 34
       Caption = 'Track #'
       ParentColor = False
     end
     object Label2: TLabel
       Left = 34
-      Height = 14
+      Height = 11
       Top = 41
-      Width = 21
+      Width = 19
       Caption = 'Title'
       ParentColor = False
     end
     object Label3: TLabel
       Left = 29
-      Height = 14
+      Height = 11
       Top = 64
-      Width = 24
+      Width = 27
       Caption = 'Artist'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 26
-      Height = 14
+      Height = 11
       Top = 87
-      Width = 30
+      Width = 29
       Caption = 'Album'
       ParentColor = False
     end
     object Label5: TLabel
       Left = 29
-      Height = 14
+      Height = 11
       Top = 110
-      Width = 23
+      Width = 22
       Caption = 'Year'
       ParentColor = False
     end
     object Label6: TLabel
       Left = 10
-      Height = 14
+      Height = 11
       Top = 137
-      Width = 45
+      Width = 46
       Caption = 'Comment'
       ParentColor = False
     end
     object Genre: TLabel
       Left = 112
-      Height = 14
+      Height = 11
       Top = 110
-      Width = 30
+      Width = 29
       Caption = 'Genre'
       ParentColor = False
     end
     object cbID3v1Tag: TCheckBox
       Left = 60
-      Height = 19
+      Height = 20
       Top = 14
-      Width = 71
+      Width = 72
       Caption = 'ID3v&1 Tag'
       OnClick = cbID3v1TagClick
       TabOrder = 0
@@ -154,7 +155,10 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
       Height = 21
       Top = 107
       Width = 95
-      ItemHeight = 13
+      AutoComplete = False
+      Ctl3D = False
+      ItemHeight = 0
+      ItemWidth = 0
       OnKeyPress = Tag1_GenreKeyPress
       Sorted = True
       TabOrder = 6
@@ -173,110 +177,111 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
     Top = 35
     Width = 303
     Caption = ' ID3v2 '
-    ClientHeight = 339
+    ClientHeight = 342
     ClientWidth = 299
+    Ctl3D = False
     TabOrder = 1
     object Label7: TLabel
       Left = 224
-      Height = 14
+      Height = 11
       Top = 15
-      Width = 39
+      Width = 34
       Caption = 'Track #'
       ParentColor = False
     end
     object Label8: TLabel
       Left = 44
-      Height = 14
+      Height = 11
       Top = 41
-      Width = 21
+      Width = 19
       Caption = 'Title'
       ParentColor = False
     end
     object Label9: TLabel
       Left = 39
-      Height = 14
+      Height = 11
       Top = 64
-      Width = 24
+      Width = 27
       Caption = 'Artist'
       ParentColor = False
     end
     object Label10: TLabel
       Left = 36
-      Height = 14
+      Height = 11
       Top = 87
-      Width = 30
+      Width = 29
       Caption = 'Album'
       ParentColor = False
     end
     object Label11: TLabel
       Left = 41
-      Height = 14
+      Height = 11
       Top = 110
-      Width = 23
+      Width = 22
       Caption = 'Year'
       ParentColor = False
     end
     object Label12: TLabel
       Left = 125
-      Height = 14
+      Height = 11
       Top = 110
-      Width = 30
+      Width = 29
       Caption = 'Genre'
       ParentColor = False
     end
     object Label13: TLabel
       Left = 20
-      Height = 14
+      Height = 11
       Top = 137
-      Width = 45
+      Width = 46
       Caption = 'Comment'
       ParentColor = False
     end
     object Label14: TLabel
       Left = 18
-      Height = 14
+      Height = 11
       Top = 194
-      Width = 48
+      Width = 49
       Caption = 'Composer'
       ParentColor = False
     end
     object Label15: TLabel
       Left = 18
-      Height = 14
+      Height = 11
       Top = 217
-      Width = 49
+      Width = 53
       Caption = 'Orig. Artist'
       ParentColor = False
     end
     object Label16: TLabel
       Left = 21
-      Height = 14
+      Height = 11
       Top = 240
-      Width = 45
+      Width = 48
       Caption = 'Copyright'
       ParentColor = False
     end
     object Label17: TLabel
       Left = 39
-      Height = 14
+      Height = 11
       Top = 266
-      Width = 23
+      Width = 22
       Caption = 'URL'
       ParentColor = False
     end
     object Label18: TLabel
       Left = 8
-      Height = 14
+      Height = 11
       Top = 287
-      Width = 58
+      Width = 56
       Caption = 'Encoded by'
       ParentColor = False
     end
     object cbID3v2Tag: TCheckBox
       Left = 69
-      Height = 19
+      Height = 20
       Top = 14
-      Width = 71
+      Width = 72
       Caption = 'ID3v&2 Tag'
       OnClick = cbID3v2TagClick
       TabOrder = 0
@@ -321,7 +326,10 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
       Height = 21
       Top = 107
       Width = 138
-      ItemHeight = 13
+      AutoComplete = False
+      Ctl3D = False
+      ItemHeight = 0
+      ItemWidth = 0
       Sorted = True
       TabOrder = 6
     end
@@ -392,12 +400,13 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
     Top = 201
     Width = 248
     Caption = ' MPEG info '
-    ClientHeight = 139
+    ClientHeight = 142
     ClientWidth = 244
+    Ctl3D = False
     TabOrder = 2
     object lbSize: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 15
       Width = 28
       Caption = 'lbSize'
@@ -405,39 +414,39 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
     end
     object lbHeaderPos: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 29
-      Width = 61
+      Width = 60
       Caption = 'lbHeaderPos'
       ParentColor = False
     end
     object lbLength: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 42
-      Width = 41
+      Width = 42
       Caption = 'lbLength'
       ParentColor = False
     end
     object lbType: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 56
-      Width = 32
+      Width = 30
       Caption = 'lbType'
       ParentColor = False
     end
     object lbBitFrame: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 70
-      Width = 49
+      Width = 50
       Caption = 'lbBitFrame'
       ParentColor = False
     end
     object lbFreq_Channels: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 83
       Width = 79
       Caption = 'lbFreq_Channels'
@@ -445,31 +454,31 @@ object MPEGFileInfoForm: TMPEGFileInfoForm
     end
     object lbCRC: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 97
-      Width = 30
+      Width = 32
       Caption = 'lbCRC'
       ParentColor = False
     end
     object lbCopyrighted: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 111
-      Width = 64
+      Width = 67
       Caption = 'lbCopyrighted'
       ParentColor = False
     end
     object lbOriginal: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 124
-      Width = 43
+      Width = 44
       Caption = 'lbOriginal'
       ParentColor = False
     end
     object lbEmphasis: TLabel
       Left = 18
-      Height = 13
+      Height = 11
       Top = 138
       Width = 53
       Caption = 'lbEmphasis'

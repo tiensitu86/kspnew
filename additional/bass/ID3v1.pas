@@ -51,7 +51,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Classes, SysUtils, UniCodeUtils, TntCollection
+  Classes, SysUtils, FileUtil
   {$IFNDEF DELPHI_2007_BELOW}, Types, AnsiStrings{$ENDIF}, CommonATL;
 
 
@@ -370,7 +370,7 @@ end;
 function TID3v1.ReadTag(const FileName: WideString; bSetFields: boolean=true): Boolean;
 var
   TagData: TagRecord;
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   Mark: Lyr2Mark;
   Field: Lyr2Field;
   iOffSet, iFieldSize: integer;
@@ -380,7 +380,7 @@ begin
   try
     Result := true;
     // Set read-access and open file
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
 
     // Read id3v1 tag
     SourceFile.Seek(SourceFile.Size - 128, soFromBeginning);
@@ -522,7 +522,7 @@ function TID3v1.SaveTag(const FileName: WideString; bUseLYR2: boolean = true): B
 var
   Tag: TagRecord;
   iFileAge: integer;
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
   iFilePos: integer;
   sTmp: ansistring;
   sTmp30: string[30];
@@ -553,11 +553,11 @@ begin
   iFileAge := 0;
   try
 
-    if bTAG_PreserveDate then iFileAge := WideFileAge(FileName);
+    if bTAG_PreserveDate then iFileAge := FileAgeUTF8(FileName);
 
     // Allow write-access and open file
-    WideFileSetAttr(FileName, 0);
-    SourceFile := TTntFileStream.Create(FileName, fmOpenReadWrite or fmShareDenyWrite);
+    FileSetAttrUTF8(FileName, 0);
+    SourceFile := TFileStream.Create(FileName, fmOpenReadWrite or fmShareDenyWrite);
 
     // Write lyrics2
     if bUseLYR2 and ( bTAG_UseLYRICS3 or ( (Lyrics <> '') or (Writer <> '') or ( FIMG <> '' ) ) ) then begin
@@ -694,7 +694,7 @@ end;
 function TID3v1.RemoveFromFile(const FileName: WideString; bLyr2Only: boolean = false): Boolean;
 var
   iFileAge: integer;
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
 begin
 
   result := true;
@@ -704,12 +704,12 @@ begin
     if FExists or FExists2 then begin
 
        iFileAge := 0;
-       if bTAG_PreserveDate then iFileAge := WideFileAge(FileName);
+       if bTAG_PreserveDate then iFileAge := FileAgeUTF8(FileName);
 
        Result := true;
        // Allow write-access and open file
-       WideFileSetAttr(FileName, 0);
-       SourceFile := TTntFileStream.Create(FileName, fmOpenReadWrite or fmShareDenyWrite);
+       FileSetAttrUTF8(FileName, 0);
+       SourceFile := TFileStream.Create(FileName, fmOpenReadWrite or fmShareDenyWrite);
 
        // Delete id3v1
        if FExists then begin

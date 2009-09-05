@@ -14,7 +14,7 @@ unit OGGInfoBox;
 interface
 
 uses
-  LResources, Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LResources, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, OGGVorbis, TAGEdit, filectrl;
 
 type
@@ -247,8 +247,8 @@ begin
       for i := 1 to PREDEFINED_NUM do
          if TAGID = PREDEFINED_FIELD[i] then
          begin
-            Application.MessageBox('Can''t add predefined TAG ID.', 'Error',
-                                            MB_OK + MB_ICONERROR);
+            MessageDlg('Can''t add predefined TAG ID.', mtError,
+                                            [mbOK], 0);
             exit;
          end;
 
@@ -258,8 +258,8 @@ begin
          tmpStr := copy(ExtraTagList.Items[i], 1, EqualPos - 1);
          if TAGID = tmpStr then
          begin
-            Application.MessageBox('Duplicate TAG ID.', 'Error',
-                                                        MB_OK + MB_ICONERROR);
+            MessageDlg('Duplicate TAG ID.', mtError,
+                                            [mbOK], 0);
             exit;
          end;
       end;

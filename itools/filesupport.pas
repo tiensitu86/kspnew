@@ -2,12 +2,8 @@ unit FileSupport;
 
 interface
 
-uses BASSPlayer, MPEGAudio, OggVorbis, WMAFile, WAVFile, Classes,
-    SysUtils, Dialogs, AACfile,
-{$IFNDEF KSP_PLUGINS}
-    MPEGInfoBox, OGGInfoBox, WMAInfoBox,
-{$ENDIF}
-    ID3v1, ID3v2, KSPMessages, Musepack;
+uses BASSPlayer, MPEGAudio, OggVorbis, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile, Classes,
+    SysUtils, Dialogs, AACfile, ID3v1, ID3v2, KSPMessages, Musepack;
 
 const MAXCDDRIVES = 10;
 

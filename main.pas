@@ -5,7 +5,7 @@ unit main;
 interface
 
 uses
-  LResources, DefaultTranslator, Windows, Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
+  LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
   FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList;
@@ -297,8 +297,6 @@ type  TWebView = class(TObject)
     procedure SetupOpenDialog;
     procedure LoadPlugins;
     procedure UnloadPlugins;
-  protected
-    procedure WndProc(var m: TLMessage); override;
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -536,8 +534,7 @@ begin
 
   if LoadingPlaylist then Exit;
   if LoadPlsThr<>nil then
-    if GetExitCodeThread(LoadPlsThr.Handle, e) then
-      TerminateThread(LoadPlsThr.Handle, e);
+    LoadPlsThr.Terminate;
 //  PlayList.Clear;
   LoadPlsThr:=TLoadPlsThread.Create(false, FileName);
  { with LoadPlsThr do
@@ -1545,7 +1542,6 @@ begin
 //  Player.Free;
   hLog.Free;
   TrayIcon1.Visible:=false;
-  ExitProcess(0);
 end;
 
 procedure TKSPMainWindow.FormWindowStateChange(Sender: TObject);
@@ -2104,16 +2100,6 @@ begin
   else
     TotalTimeLabel.Caption:=FormatDateTime ('nn:ss', Total / (1000 * 24 * 60 * 60));
 
-end;
-
-procedure TKSPMainWindow.WndProc(var m: TLMessage);
-begin
-  try
-    if Player<>nil then
-      Player.ProcMessage(m);
-  except
-  end;
-  inherited WndProc(m);
 end;
 
 procedure TKSPMainWindow.ScanFolders(Force: boolean);

@@ -32,3 +32,11 @@ options file but by using proper configuration panel
 5. LOGs
 - User should be able to send log automatically on crash
 
+6. BASS
+
+6.1 BASSPLAYER UNIT
+
+6.2 OTHER UNITES
+- function TMPEGaudio.ReadFromFile(const FileName: WideString): Boolean; in MpegAudio needs testing and rewriting
+  (multiplatform, non windows code)
+

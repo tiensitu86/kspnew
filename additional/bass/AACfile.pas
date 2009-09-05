@@ -51,7 +51,7 @@ interface
 
 
 uses
-  Classes, SysUtils, ID3v1, ID3v2, APEtag, TntCollection;
+  Classes, SysUtils, ID3v1, ID3v2, APEtag;
 
 const
   { Header type codes }
@@ -116,9 +116,9 @@ type
       function FGetBitRateType: string;
       function FGetDuration: Double;
       function FIsValid: Boolean;
-      function FRecognizeHeaderType(const Source: TTntFileStream): Byte;
-      procedure FReadADIF(const Source: TTntFileStream);
-      procedure FReadADTS(const Source: TTntFileStream);
+      function FRecognizeHeaderType(const Source: TFileStream): Byte;
+      procedure FReadADIF(const Source: TFileStream);
+      procedure FReadADTS(const Source: TFileStream);
       function FGetRatio: Double;
     public
       { Public declarations }
@@ -156,7 +156,7 @@ const
 
 { ********************* Auxiliary functions & procedures ******************** }
 
-function ReadBits(Source: TTntFileStream; Position, Count: Integer): Integer;
+function ReadBits(Source: TFileStream; Position, Count: Integer): Integer;
 var
   Buffer: array [1..4] of Byte;
 begin
@@ -242,7 +242,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TAACfile.FRecognizeHeaderType(const Source: TTntFileStream): Byte;
+function TAACfile.FRecognizeHeaderType(const Source: TFileStream): Byte;
 var
   Header: array [1..4] of AnsiChar;
 begin
@@ -258,7 +258,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure TAACfile.FReadADIF(const Source: TTntFileStream);
+procedure TAACfile.FReadADIF(const Source: TFileStream);
 var
   Position: Integer;
 begin
@@ -290,7 +290,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure TAACfile.FReadADTS(const Source: TTntFileStream);
+procedure TAACfile.FReadADTS(const Source: TFileStream);
 var
   Frames, TotalSize, Position: Integer;
 begin
@@ -355,7 +355,7 @@ end;
 
 function TAACfile.ReadFromFile(const FileName: WideString): Boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
 begin
   { Read data from file }
   Result := false;
@@ -364,7 +364,7 @@ begin
   if (FID3v2.ReadFromFile(FileName)) and (FID3v1.ReadFromFile(FileName))
                                        and (FAPEtag.ReadFromFile(FileName)) then
     try
-      SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+      SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
       FFileSize := SourceFile.Size;
       FHeaderTypeID := FRecognizeHeaderType(SourceFile);
       { Read header data }

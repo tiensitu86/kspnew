@@ -81,9 +81,8 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  Classes, SysUtils, UniCodeUtils,
-  {$IFNDEF DELPHI_2007_BELOW}AnsiStrings, AnsiStringStream,{$ENDIF}
-  TntCollection;
+  Classes, SysUtils, FileUtil
+  {$IFNDEF DELPHI_2007_BELOW}, AnsiStrings, AnsiStringStream{$ENDIF};
 
 const
   { Used with ChannelModeID property }
@@ -287,7 +286,7 @@ type
 
 { ********************* Auxiliary functions & procedures ******************** }
 
-function GetID3v2Size(const Source: TTntFileStream): Integer;
+function GetID3v2Size(const Source: TFileStream): Integer;
 type
   ID3v2Header = record
     ID: array [1..3] of AnsiChar;
@@ -365,7 +364,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure ReadTag(const Source: TTntFileStream; var Info: FileInfo);
+procedure ReadTag(const Source: TFileStream; var Info: FileInfo);
 var
   Index, Size, Position: Integer;
   Data: array [1..5000] of AnsiChar;
@@ -393,7 +392,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function GetSamples(const Source: TTntFileStream): Integer;
+function GetSamples(const Source: TFileStream): Integer;
 var
   Index, DataIndex, Iterator: Integer;
   Data: array [0..5000] of AnsiChar;
@@ -425,13 +424,13 @@ end;
 
 function GetInfo(const FileName: WideString; var Info: FileInfo): Boolean;
 var
-  SourceFile: TTntFileStream;
+  SourceFile: TFileStream;
 begin
   { Get info from file }
   Result := false;
   SourceFile := nil;
   try
-    SourceFile := TTntFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     Info.FileSize := SourceFile.Size;
     Info.ID3v2Size := GetID3v2Size(SourceFile);
     SourceFile.Seek(Info.ID3v2Size, soFromBeginning);
@@ -628,7 +627,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure SetCRC(const Destination: TTntFileStream; Info: FileInfo);
+procedure SetCRC(const Destination: TFileStream; Info: FileInfo);
 var
   Index: Integer;
   Value: Cardinal;
@@ -652,17 +651,17 @@ end;
 
 function RebuildFile(FileName: WideString; Tag: TStream; Info: FileInfo): Boolean;
 var
-  Source, Destination: TTntFileStream;
+  Source, Destination: TFileStream;
   BufferName: WideString;
 begin
   { Rebuild the file with the new Vorbis tag }
   Result := false;
-  if (not WideFileExists(FileName)) or (WideFileSetAttr(FileName, 0) <> True) then exit;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
   try
     { Create file streams }
     BufferName := FileName + '~';
-    Source := TTntFileStream.Create(FileName, fmOpenRead);
-    Destination := TTntFileStream.Create(BufferName, fmCreate);
+    Source := TFileStream.Create(FileName, fmOpenRead);
+    Destination := TFileStream.Create(BufferName, fmCreate);
     { Copy data blocks }
     Destination.CopyFrom(Source, Info.SPagePos);
     Destination.Write(Info.SPage, Info.SPage.Segments + 27);
@@ -673,13 +672,13 @@ begin
     Source.Free;
     Destination.Free;
     { Replace old file and delete temporary file }
-    if (WideDeleteFile(FileName)) and (WideRenameFile(BufferName, FileName)) then
+    if (DeleteFileUTF8(FileName)) and (RenameFileUTF8(BufferName, FileName)) then
       Result := true;
     //else
     //  raise Exception.Create('');
   except
     { Access error }
-    if WideFileExists(BufferName) then WideDeleteFile(BufferName);
+    if FileExistsUTF8(BufferName) then DeleteFileUTF8(BufferName);
   end;
 end;
 
