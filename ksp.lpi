@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="5"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -76,8 +76,8 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="54" Y="3084"/>
-        <TopLine Value="3062"/>
+        <CursorPos X="33" Y="1490"/>
+        <TopLine Value="1481"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -345,8 +345,8 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="26" Y="178"/>
-        <TopLine Value="162"/>
+        <CursorPos X="22" Y="25"/>
+        <TopLine Value="10"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -1493,7 +1493,7 @@
         <Loaded Value="True"/>
       </Unit188>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="additional/multilog/filechannel.pas"/>
         <Caret Line="127" Column="14" TopLine="96"/>
@@ -1594,6 +1594,18 @@
         <Filename Value="../dynamic_bass.pas"/>
         <Caret Line="9" Column="31" TopLine="1"/>
       </Position25>
+      <Position26>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="9" Column="48" TopLine="1"/>
+      </Position26>
+      <Position27>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="484" Column="39" TopLine="475"/>
+      </Position27>
+      <Position28>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="739" Column="8" TopLine="715"/>
+      </Position28>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

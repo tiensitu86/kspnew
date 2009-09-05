@@ -1497,6 +1497,7 @@ begin
    BASS_GetInfo(BassInfoParam);
 
  // BASS_ChannelSetFX requires DirectX version 8 or higher
+{$IFDEF WINDOWS}
    if BassInfoParam.dsver >= 8 then
    begin
       FDX8EffectReady := true;
@@ -1505,6 +1506,9 @@ begin
          ShowMessage(NoDX8Msg);//, 'Warning', MB_ICONWARNING or MB_OK);
       FDX8EffectReady := false;
    end;
+{$ELSE}
+  FDX8EffectReady := false;
+{$ENDIF}
 
 
    FEQBands.Bands := NumEQBands;
