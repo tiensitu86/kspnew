@@ -2,7 +2,8 @@ unit kspfiles;
 
 interface
 
-uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs;
+uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
+  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF};
 
 const
 {$IFDEF WINDOWS}
@@ -11,32 +12,42 @@ const
   LIB_SUFFIX = '.so';
 {$ENDIF}
 
+{$DEFINE KSP_SPECIAL_BUILD}
+
+{$IFDEF KSP_SPECIAL_BUILD}
+const KSPSpecialInfo = 'R2';
+{$ENDIF}
+const KSPMajorVersion = '2009';
+
+const Version = 0;
+  Major = 2;
+  Minor = 50;
+  Build = 0;
+
+{$IFNDEF KSP_STATIC}
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
   PlsIndex: integer): ShortString; external 'kspfiles'+LIB_SUFFIX;
-//function GetFileVersion(Filename: TPathChar): ShortString; external 'kspfiles.dll';
-//function GetFileVersion2(Filename: TPathChar): ShortString; external 'kspfiles.dll';
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char); external 'kspfiles'+LIB_SUFFIX;
 
-//function GetFav(FirstPlay, LastPlay: TDateTime; PlayCount: integer): double; external 'kspfiles.dll';
-//function GetFav2(FirstPlay, LastPlay: TDateTime; PlayCount: integer;
-//  TotalPlays: Cardinal): double; external 'kspfiles.dll';
 function IsStream(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
 function IsCD(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
-function PrepareString(str: string): string;// external 'kspfiles.dll';
 
-{$IFDEF WINDOWS}
-//function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet'+LIB_SUFFIX;
+{$ELSE}
+procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
+function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
+  PlsIndex: integer): ShortString;
+function IsCD(str: string): boolean;
+function IsStream(str: string): boolean;
 {$ENDIF}
-function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 
-//function ReadChangeFile: TFileRenamed; external 'kspfiles'+LIB_SUFFIX;
-//procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles'+LIB_SUFFIX;
-
-function GetKSPVersion(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
-function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
+function GetKSPVersion(AppPath: TPathChar): ShortString;
+function GetKSPVersion2(AppPath: TPathChar): ShortString;
 
 //FileUtils
 
+function PrepareString(str: string): string;// external 'kspfiles.dll';
+
+function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
 procedure KSPDeleteFolder(Path: string);
@@ -49,6 +60,29 @@ function IsPlaylist(FileName: string): boolean;
 implementation
 
 uses SysUtils;
+
+{$IFDEF KSP_STATIC}
+procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
+begin
+  KSPDLLFileUtils.RemoveForbiddenChars(Str, ReplaceWith);
+end;
+
+function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
+  PlsIndex: integer): ShortString;
+begin
+  Result:=KSPDLLFileUtils.ProduceFormatedString(Input, Tag, LengthVal, PlsIndex);
+end;
+
+function IsCD(str: string): boolean;
+begin
+  Result:=KSPDLLFileUtils.IsCD(str);
+end;
+
+function IsStream(str: string): boolean;
+begin
+ Result:=KSPDLLFileUtils.IsStream(str);
+end;
+{$ENDIF}
 
 procedure KSPDeleteFolder(Path: string);
 var
@@ -238,5 +272,22 @@ begin
 
 end;
 {$ENDIF}
+
+
+function GetKSPVersion(AppPath: TPathChar): ShortString;
+begin
+  result := KSPMajorVersion;
+{$IFDEF KSP_SPECIAL_BUILD}
+  Result:=Result+' '+KSPSpecialInfo;
+{$ENDIF}
+end;
+
+function GetKSPVersion2(AppPath: TPathChar): ShortString;
+begin
+  Result:=IntToStr(Version)+'.'+
+    IntToStr(Major)+'.'+
+    IntToStr(Minor)+'.'+
+    IntToStr(Build);//GetKSPVersion(AppPath);
+end;
 
 end.

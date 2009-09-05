@@ -3,9 +3,10 @@ program ksp;
 {$mode objfpc}{$H+}
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  {$IFDEF UNIX}//{$IFDEF UseCThreads}
   cthreads,
-  {$ENDIF}{$ENDIF}
+  //{$ENDIF}
+  {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
   { you can add units after this }, main, LResources, BASSPlayer, Dynamic_Bass,
@@ -16,7 +17,9 @@ uses
   KSPStartup, MainWindowStartupThreads, MediaFolders, FoldersScan,
   StartupThread, BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog,
   OptionsFrm2, splash, complib, KSPThreadUtils, TurboPowerIPro, Support,
-  WAVfile, APETag, OggVorbis;
+  WAVfile, APETag, OggVorbis
+  {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
+  , MPEGaudio;
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 

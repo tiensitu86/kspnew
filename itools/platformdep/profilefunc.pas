@@ -42,6 +42,8 @@ procedure FixFolderNames(var FolderName: string);
 begin
 {$ifdef mswindows}
   FolderName:=ReplaceStr(FolderName, '/', '\');
+{$ELSE}
+  FolderName:=ReplaceStr(FolderName, '\', '/');
 {$endif}
 end;
 
@@ -62,7 +64,7 @@ begin
 //   SHGetFolderPathW(0,CSIDL_PERSONAL+CSIDL_FLAG_CREATE,0,0,PATH);
    Result:=GetUserDir;
 {$else}
-   Result:=GetEnvironmentVariableUTF8('HOME');
+   Result:=GetEnvironmentVariableUTF8('HOME')+'/';
 {$endif}
 end;
 

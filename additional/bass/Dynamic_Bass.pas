@@ -19,7 +19,7 @@ unit Dynamic_Bass;
 interface
 
 uses
-  {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, SysUtils;
+  {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, SysUtils, Dialogs;
 
 const
   BASSVERSION = $204;             // API version
@@ -779,10 +779,17 @@ function BASS_SetEAXPreset(env: Integer): BOOL;
   env    : a EAX_ENVIRONMENT_xxx constant
 }
 
+const
+{$IFDEF WINDOWS}
+  BASS_DLL = 'bass.dll';
+{$ELSE}
+  BASS_DLL = 'libbass.so';
+{$ENDIF}
+
 implementation
 
 Function Load_BASSDLL (const dllfilename:string) :boolean;
-const szBassDll = 'bass.dll' + #0;
+const szBassDll = BASS_DLL + #0;
 var
   oldmode:integer;
   P: PChar;
@@ -807,13 +814,17 @@ begin
     oldmode:=SetErrorMode($8001);
 {$ENDIF}
    // s := s + #0;
+//{$IFDEF WINDOWS}
     BASS_Handle:=LoadLibrary(pChar(s)); // obtain the handle we want
+//{$ELSE}
+//    BASS_Handle:=LoadLibrary(s);
+//{$ENDIF}
+    ShowMessage(IntToStr(Bass_Handle));
 {$IFDEF WINDOWS}
     SetErrorMode(oldmode);
 {$ENDIF}
     if BASS_Handle<>0 then
        begin {now we tie the functions to the VARs from above}
-
 @BASS_SetConfig:= GetProcAddress(BASS_Handle, 'BASS_SetConfig');
 @BASS_GetConfig:= GetProcAddress(BASS_Handle, 'BASS_GetConfig');
 @BASS_SetConfigPtr:= GetProcAddress(BASS_Handle, 'BASS_SetConfigPtr');
@@ -1032,9 +1043,14 @@ begin
           begin {if something went wrong during linking, free library & reset handle}
             FreeLibrary(BASS_Handle);
            BASS_Handle:=0;
+           ShowMessage('Bass not linked properly');
          end;
        end;
+//{$IFDEF WINDOWS}
     result:=(BASS_Handle<>0);
+//{$ELSE}
+    //Result:=true;
+//{$ENDIF}
   end;
 end;
 

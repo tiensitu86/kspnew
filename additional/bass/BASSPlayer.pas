@@ -1453,10 +1453,14 @@ begin
    FSoundEffects := [];
    FPlayerMode := plmStandby;
    FPan:=0;
-
-   BASSDLLLoaded := Load_BASSDLL(GetProgDir + 'bass.dll');
+{$IFDEF WINDOWS}
+   BASSDLLLoaded := Load_BASSDLL(GetProgDir+BASS_DLL);
+{$ELSE}
+   BASSDLLLoaded := Load_BASSDLL(BASS_DLL);
+{$ENDIF}
    if not BASSDLLLoaded then
    begin
+      ShowMessage('Bass not loaded');
       exit;
    end;
 
@@ -1478,6 +1482,7 @@ begin
    BASS_SetConfig(BASS_CONFIG_NET_PLAYLIST, 1);   // * Added at Ver 2.00
    BASS_SetConfig(BASS_CONFIG_WMA_BASSFILE, 1);   // * Added at Ver 2.00
    BASS_SetConfig(BASS_CONFIG_WMA_PREBUF, 1);     // * Added at Ver 2.00
+
 
  // setup output - default device, 44100hz, stereo, 16 bits
    if not BASS_Init(1, 44100, 0, 0, nil) then
@@ -1501,6 +1506,7 @@ begin
       FDX8EffectReady := false;
    end;
 
+
    FEQBands.Bands := NumEQBands;
    for i := 0 to (NumEQBands-1) do
    begin
@@ -1514,7 +1520,7 @@ begin
 
    FOutputVolume := MaxVolume;
    BASS_SetConfig(BASS_CONFIG_GVOL_MUSIC, FOutputVolume * 39);
-   BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, FOutputVolume * 39); 
+   BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, FOutputVolume * 39);
 
    end else FBASSReady:=true;
 
@@ -2520,7 +2526,7 @@ begin
              if Using_BASS_AAC then
                 FDecoderName := 'bass_aac.dll'
               else
-                FDecoderName := 'bass.dll';
+                FDecoderName := BASS_DLL;
            end;
       end else
          FDecoderName := GetDecoderName(lowercase(ExtCode));
@@ -2746,7 +2752,7 @@ begin
              if Using_BASS_AAC then
                 FDecoderName := 'bass_aac.dll'
               else
-                FDecoderName := 'bass.dll';
+                FDecoderName := BASS_DLL;
            end;
       end else
          FDecoderName := GetDecoderName(lowercase(ExtCode));

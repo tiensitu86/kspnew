@@ -46,6 +46,7 @@ type  TWebView = class(TObject)
     Button6: TButton;
     Button7: TButton;
     Button9: TButton;
+    MenuItem23: TMenuItem;
     PlgOnStartup: TCheckBox;
     PageControl1: TPageControl;
     ClearPlaylistAction: TAction;
@@ -192,6 +193,7 @@ type  TWebView = class(TObject)
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
+    procedure MenuItem23Click(Sender: TObject);
     procedure MIViewDblClick(Sender: TObject);
     procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
@@ -1017,6 +1019,11 @@ begin
   p.URL:=Playlist.GetItem(CurrentIndex)^.FileName;
   BookmarksList.Add(p);
   RefreshBookmarks;
+end;
+
+procedure TKSPMainWindow.MenuItem23Click(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);

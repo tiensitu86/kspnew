@@ -18,12 +18,13 @@ const
 const
   bassaacdll = 'bass_aac.dll';
 
-
+{$IFDEF WINDOWS}
 function BASS_AAC_StreamCreateFile(mem:BOOL; f:Pointer; offset,length:QWORD; flags:DWORD): HSTREAM; stdcall; external bassaacdll;
 function BASS_AAC_StreamCreateURL(URL:PChar; offset:DWORD; flags:DWORD; proc:DOWNLOADPROC; user:Pointer): HSTREAM; stdcall; external bassaacdll;
 function BASS_AAC_StreamCreateFileUser(system,flags:DWORD; var procs:BASS_FILEPROCS; user:Pointer): HSTREAM; stdcall; external bassaacdll;
 function BASS_MP4_StreamCreateFile(mem:BOOL; f:Pointer; offset,length:QWORD; flags:DWORD): HSTREAM; stdcall; external bassaacdll;
 function BASS_MP4_StreamCreateFileUser(system,flags:DWORD; var procs:BASS_FILEPROCS; user:Pointer): HSTREAM; stdcall; external bassaacdll;
+{$ENDIF}
 
 implementation
 

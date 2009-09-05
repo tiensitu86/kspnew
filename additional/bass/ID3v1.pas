@@ -184,8 +184,6 @@ type
   function ReadID3v1TagFromStream(TagStream : pAnsiChar;
                                   var MP3TagInfo : TMP3TagInfo): Boolean; { Load tag from tag stream }
 
-  function AnsiCharUpperBuff(lpsz : PAnsiChar; cchLength : DWORD) : DWORD;
-            stdcall; external 'user32.dll' name 'CharUpperBuff';
 
 implementation
 

@@ -52,6 +52,7 @@ begin
   for i:=0 to MaxInt do
     begin
       KSPLogFilename:=KSPDataFolder+'logs\'+FormatDateTime('DD_MM_YYYY_hh_mm', KSPStartupTime)+'_'+IntToStr(i);
+      FixFolderNames(KSPLogFilename);
       if not DirectoryExists(KSPLogFilename) then Break;
     end;
 
