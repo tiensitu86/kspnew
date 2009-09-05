@@ -1546,7 +1546,7 @@ begin
 
   Player.Stop;
   Player.Close;
-//  Player.Free;
+  Player.Free;
   hLog.Free;
   TrayIcon1.Visible:=false;
 end;

@@ -79,6 +79,7 @@ begin
   ForceDirectoriesKSP(KSPDataFolder+'data');
 
   SetupFileName:=KSPDataFolder+DefSetupFileName;
+  FixFolderNames(SetupFileName);
 
   GetCountSem2:=0;
   LoadPlsSem2:=0;

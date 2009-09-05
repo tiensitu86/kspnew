@@ -2,7 +2,7 @@ unit BookmarksU;
 
 interface
 
-uses Classes, SysUtils, SpkXMLParser;
+uses Classes, SysUtils, SpkXMLParser, profilefunc;
 
 type TBookmarkItem = record
     URL: string;
@@ -73,6 +73,7 @@ var
   p: TBookmarkItem;
   i: integer;
 begin
+  FixFolderNames(FileName);
   if not FileExists(FileName) then Exit;
   XML:=TSpkXMLParser.create;
   XML.LoadFromFile(FileName);
@@ -101,6 +102,7 @@ var
   p: TBookmarkItem;
   i: integer;
 begin
+  FixFolderNames(FileName);
   XML:=TSpkXMLParser.create;
   Main:=TSpkXMLNode.create('bookmarks');
   for i := 0 to Count - 1 do

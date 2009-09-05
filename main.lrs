@@ -16,11 +16,11 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'nu'#7#10'PopupMenu1'#5'Style'#7#19'lbOwnerDrawVariable'#8'TabOrder'#2#1#8'T'
   +'opIndex'#2#255#0#0#6'TPanel'#6'Panel1'#4'Left'#2#0#6'Height'#2'B'#3'Top'#2#0
   +#5'Width'#3#209#3#5'Align'#7#5'alTop'#12'ClientHeight'#2'B'#11'ClientWidth'#3
-  +#209#3#8'TabOrder'#2#2#0#6'TLabel'#5'lLeft'#4'Left'#3#160#2#6'Height'#2#19#3
-  +'Top'#2#8#5'Width'#2#5#11'ParentColor'#8#7'OnClick'#7#10'lLeftClick'#0#0#6'T'
-  +'Label'#6'lTime2'#4'Left'#3'H'#2#6'Height'#2#19#3'Top'#2#8#5'Width'#2#5#11'P'
-  +'arentColor'#8#0#0#6'TLabel'#14'TotalTimeLabel'#4'Left'#2#8#6'Height'#2#19#3
-  +'Top'#2')'#5'Width'#2#5#11'ParentColor'#8#0#0#9'TTrackBar'#6'PosBar'#4'Left'
+  +#209#3#8'TabOrder'#2#2#0#6'TLabel'#5'lLeft'#4'Left'#3#160#2#6'Height'#2#20#3
+  +'Top'#2#8#5'Width'#2#6#11'ParentColor'#8#7'OnClick'#7#10'lLeftClick'#0#0#6'T'
+  +'Label'#6'lTime2'#4'Left'#3'H'#2#6'Height'#2#20#3'Top'#2#8#5'Width'#2#6#11'P'
+  +'arentColor'#8#0#0#6'TLabel'#14'TotalTimeLabel'#4'Left'#2#8#6'Height'#2#20#3
+  +'Top'#2')'#5'Width'#2#6#11'ParentColor'#8#0#0#9'TTrackBar'#6'PosBar'#4'Left'
   +#3#128#1#6'Height'#2#22#3'Top'#2#2#5'Width'#3#184#0#3'Max'#3#200#0#8'OnChang'
   +'e'#7#12'PosBarChange'#8'Position'#2#0#9'TickStyle'#7#6'tsNone'#5'Ctl3D'#8#11
   +'OnMouseDown'#7#15'PosBarMouseDown'#9'OnMouseUp'#7#13'PosBarMouseUp'#8'TabOr'
@@ -49,8 +49,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'rder'#2#3#11'BarShowText'#9#0#0#6'TPanel'#6'Panel2'#4'Left'#2#0#6'Height'#2
   +'-'#3'Top'#3#9#2#5'Width'#3#209#3#5'Align'#7#8'alBottom'#12'ClientHeight'#2
   +'-'#11'ClientWidth'#3#209#3#8'TabOrder'#2#4#0#6'TLabel'#9'lFileName'#4'Left'
-  +#2'x'#6'Height'#2#19#3'Top'#2#8#5'Width'#2#5#11'ParentColor'#8#0#0#6'TLabel'
-  +#10'ScanFolder'#4'Left'#2#8#6'Height'#2#19#3'Top'#2#8#5'Width'#2#5#11'Parent'
+  +#2'x'#6'Height'#2#20#3'Top'#2#8#5'Width'#2#6#11'ParentColor'#8#0#0#6'TLabel'
+  +#10'ScanFolder'#4'Left'#2#8#6'Height'#2#20#3'Top'#2#8#5'Width'#2#6#11'Parent'
   +'Color'#8#0#0#0#6'TPanel'#6'Panel3'#4'Left'#2#0#6'Height'#3#199#1#3'Top'#2'B'
   +#5'Width'#3#176#2#5'Align'#7#8'alClient'#7'Caption'#6#6'Panel3'#12'ClientHei'
   +'ght'#3#199#1#11'ClientWidth'#3#176#2#8'TabOrder'#2#5#0#14'THeaderControl'#14
@@ -66,10 +66,10 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#0#12'TPageControl'#12'PagesWelcome'#4'Left'#2#0#6'Height'#3#167#1#3'Top'#2#0
   +#5'Width'#3#174#2#10'ActivePage'#7#9'TabSheet3'#5'Align'#7#8'alClient'#8'Tab'
   ,'Index'#2#0#8'TabOrder'#2#0#11'TabPosition'#7#8'tpBottom'#0#9'TTabSheet'#9'T'
-  +'abSheet3'#7'Caption'#6#7'Welcome'#12'ClientHeight'#3#163#1#11'ClientWidth'#3
-  +#170#2#8'OnResize'#7#15'TabSheet3Resize'#0#6'TPanel'#6'Panel8'#4'Left'#2#0#6
-  +'Height'#2'+'#3'Top'#2#0#5'Width'#3#170#2#5'Align'#7#5'alTop'#12'ClientHeigh'
-  +'t'#2'+'#11'ClientWidth'#3#170#2#8'TabOrder'#2#0#0#12'TSpeedButton'#12'Speed'
+  +'abSheet3'#7'Caption'#6#7'Welcome'#12'ClientHeight'#3#167#1#11'ClientWidth'#3
+  +#174#2#8'OnResize'#7#15'TabSheet3Resize'#0#6'TPanel'#6'Panel8'#4'Left'#2#0#6
+  +'Height'#2'+'#3'Top'#2#0#5'Width'#3#174#2#5'Align'#7#5'alTop'#12'ClientHeigh'
+  +'t'#2'+'#11'ClientWidth'#3#174#2#8'TabOrder'#2#0#0#12'TSpeedButton'#12'Speed'
   +'Button5'#4'Left'#3'S'#1#6'Height'#2'$'#3'Top'#2#3#5'Width'#2'3'#7'Caption'#6
   +#2'GO'#5'Color'#7#9'clBtnFace'#9'NumGlyphs'#2#0#7'OnClick'#7#17'SpeedButton1'
   +'Click'#0#0#6'TImage'#6'Image3'#4'Left'#3'#'#2#6'Height'#2'"'#3'Top'#2#3#5'W'
@@ -1253,7 +1253,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#0#255#255#255#0#9'NumGlyphs'#2#0#7'OnClick'#7#17'SpeedButton4Click'#0#0#5'T'
   +'Edit'#10'IMAddress1'#4'Left'#2#11#6'Height'#2#22#3'Top'#2#10#5'Width'#3'@'#1
   +#10'OnKeyPress'#7#17'IMAddressKeyPress'#8'TabOrder'#2#0#0#0#0#0#9'TTabSheet'
-  +#9'TabSheet4'#7'Caption'#6#8'About...'#12'ClientHeight'#3#172#1#11'ClientWid'
+  +#9'TabSheet4'#7'Caption'#6#8'About...'#12'ClientHeight'#3#167#1#11'ClientWid'
   +'th'#3#174#2#0#6'TPanel'#6'Panel4'#4'Left'#2#0#6'Height'#2'2'#3'Top'#2#0#5'W'
   +'idth'#3#174#2#5'Align'#7#5'alTop'#12'ClientHeight'#2'2'#11'ClientWidth'#3
   +#174#2#8'TabOrder'#2#0#0#6'TLabel'#10'AppVersion'#4'Left'#3#243#0#6'Height'#2
@@ -1877,7 +1877,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#253'&'#4'OR'#244#254#231#0#0#0#0'IEND'#174'B`'#130#7'Stretch'#9#0#0#7'TButt'
   +'on'#7'Button4'#4'Left'#2'k'#6'Height'#2#24#3'Top'#2#11#5'Width'#2'h'#8'Auto'
   +'Size'#9#7'Caption'#6#15'HOW CAN I HELP?'#7'OnClick'#7#12'Button4Click'#8'Ta'
-  +'bOrder'#2#0#0#0#0#6'TPanel'#7'History'#4'Left'#2#0#6'Height'#3'z'#1#3'Top'#2
+  +'bOrder'#2#0#0#0#0#6'TPanel'#7'History'#4'Left'#2#0#6'Height'#3'u'#1#3'Top'#2
   +'2'#5'Width'#3#174#2#5'Align'#7#8'alClient'#8'TabOrder'#2#1#8'OnResize'#7#13
   +'HistoryResize'#0#0#0#0#0#5'TPage'#5'Page2'#7'Caption'#6#5'Page2'#11'ClientW'
   +'idth'#3#170#2#12'ClientHeight'#3#163#1#0#12'TPageControl'#8'LibPages'#4'Lef'
@@ -3117,8 +3117,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#2#5#0#0#9'TNotebook'#9'SetupBook'#4'Left'#3#243#0#6'Height'#3#167#1#3'Top'#2
   +#0#5'Width'#3#187#1#5'Align'#7#8'alClient'#9'PageIndex'#2#4#8'ShowTabs'#8#8
   +'TabOrder'#2#2#0#5'TPage'#17'MediaLibSetupPage'#7'Caption'#6#17'MediaLibSetu'
-  +'pPage'#11'ClientWidth'#3#187#1#12'ClientHeight'#3#172#1#0#8'TListBox'#8'MFo'
-  +'lders'#4'Left'#2#0#6'Height'#3#172#1#3'Top'#2#0#5'Width'#3#208#0#5'Align'#7
+  +'pPage'#11'ClientWidth'#3#187#1#12'ClientHeight'#3#167#1#0#8'TListBox'#8'MFo'
+  +'lders'#4'Left'#2#0#6'Height'#3#167#1#3'Top'#2#0#5'Width'#3#208#0#5'Align'#7
   +#6'alLeft'#10'ItemHeight'#2#0#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0#7'TButto'
   +'n'#7'Button5'#4'Left'#3#220#0#6'Height'#2#25#3'Top'#2#1#5'Width'#2'x'#7'Cap'
   +'tion'#6#12'Force Rescan'#7'OnClick'#7#12'Button5Click'#8'TabOrder'#2#1#0#0#7
@@ -3131,7 +3131,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'tton'#7'Button6'#4'Left'#3#220#0#6'Height'#2#25#3'Top'#2'!'#5'Width'#2'x'#7
   +'Caption'#6#14'Setup Database'#7'OnClick'#7#12'Button6Click'#8'TabOrder'#2#5
   +#0#0#0#5'TPage'#18'BookmarksSetupPage'#7'Caption'#6#18'BookmarksSetupPage'#11
-  +'ClientWidth'#3#187#1#12'ClientHeight'#3#172#1#0#8'TListBox'#8'BListBox'#4'L'
+  +'ClientWidth'#3#187#1#12'ClientHeight'#3#167#1#0#8'TListBox'#8'BListBox'#4'L'
   +'eft'#2#11#6'Height'#3'p'#1#3'Top'#2#1#5'Width'#3#220#0#10'ItemHeight'#2#0#8
   +'TabOrder'#2#0#8'TopIndex'#2#255#0#0#7'TButton'#14'RenameBookmark'#4'Left'#3
   +#251#0#6'Height'#2#25#3'Top'#2#19#5'Width'#3#139#0#7'Caption'#6#6'Rename'#7
@@ -3140,7 +3140,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   ,'tion'#6#6'Delete'#7'OnClick'#7#19'DeleteBookmarkClick'#8'TabOrder'#2#2#0#0#0
   +#5'TPage'#16'DefaultSetupPage'#7'Caption'#6#16'DefaultSetupPage'#0#0#5'TPage'
   +#12'NotSetupPage'#7'Caption'#6#12'NotSetupPage'#11'ClientWidth'#3#187#1#12'C'
-  +'lientHeight'#3#172#1#0#9'TCheckBox'#10'NotChecked'#4'Left'#2#14#6'Height'#2
+  +'lientHeight'#3#167#1#0#9'TCheckBox'#10'NotChecked'#4'Left'#2#14#6'Height'#2
   +#23#3'Top'#2#12#5'Width'#2'Z'#7'Caption'#6#10'Enable OSD'#8'OnChange'#7#16'N'
   +'otCheckedChange'#8'TabOrder'#2#0#0#0#9'TComboBox'#9'OSDPosBox'#4'Left'#2#14
   +#6'Height'#2#25#3'Top'#2'4'#5'Width'#2'd'#12'AutoComplete'#8#5'Ctl3D'#8#10'I'
@@ -3150,12 +3150,12 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'st'#8'TabOrder'#2#1#4'Text'#6#15'Left Top Corner'#0#0#7'TButton'#7'Button7'
   +#4'Left'#2#14#6'Height'#2#25#3'Top'#3#129#0#5'Width'#2'K'#7'Caption'#6#7'Pre'
   +'view'#7'OnClick'#7#12'Button7Click'#8'TabOrder'#2#2#0#0#0#5'TPage'#16'Plugi'
-  +'nsSetupPage'#7'Caption'#6#16'PluginsSetupPage'#11'ClientWidth'#3#183#1#12'C'
-  +'lientHeight'#3#163#1#0#12'TPageControl'#12'PageControl1'#4'Left'#2#0#6'Heig'
-  +'ht'#3#163#1#3'Top'#2#0#5'Width'#3#183#1#10'ActivePage'#7#9'TabSheet2'#5'Ali'
+  +'nsSetupPage'#7'Caption'#6#16'PluginsSetupPage'#11'ClientWidth'#3#187#1#12'C'
+  +'lientHeight'#3#167#1#0#12'TPageControl'#12'PageControl1'#4'Left'#2#0#6'Heig'
+  +'ht'#3#167#1#3'Top'#2#0#5'Width'#3#187#1#10'ActivePage'#7#9'TabSheet2'#5'Ali'
   +'gn'#7#8'alClient'#8'TabIndex'#2#0#8'TabOrder'#2#0#0#9'TTabSheet'#9'TabSheet'
-  +'2'#7'Caption'#6#14'Global Plugins'#12'ClientHeight'#3#159#1#11'ClientWidth'
-  +#3#179#1#0#13'TCheckListBox'#11'PluginsList'#4'Left'#2#0#6'Height'#3#159#1#3
+  +'2'#7'Caption'#6#14'Global Plugins'#12'ClientHeight'#3#163#1#11'ClientWidth'
+  +#3#183#1#0#13'TCheckListBox'#11'PluginsList'#4'Left'#2#0#6'Height'#3#163#1#3
   +'Top'#2#0#5'Width'#3#232#0#5'Align'#7#6'alLeft'#10'ItemHeight'#2#0#7'OnClick'
   +#7#16'PluginsListClick'#12'OnClickCheck'#7#21'PluginsListClickCheck'#8'TabOr'
   +'der'#2#0#8'TopIndex'#2#255#0#0#9'TCheckBox'#12'PlgOnStartup'#4'Left'#3#238#0

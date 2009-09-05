@@ -228,6 +228,8 @@ var
   end;
 
   procedure SetupSQLite;
+  var
+    FileName: string;
   begin
     Result:=0;
     Database.DBInUse:=dbSqlite;
@@ -237,7 +239,9 @@ var
 //  Database.SQLMonitor:=TSQLmonitor.Create(nil);
     Database.SQLQuery.Database:=Database.SQLiteConnection;
 
-    Database.SQLiteConnection.DatabaseName:=KSPDataFolder+'db\db.sqlite';
+    FileName:=KSPDataFolder+'db\db.sqlite';
+    FixFolderNames(FileName);
+    Database.SQLiteConnection.DatabaseName:=FileName;
     try
       Database.SQLiteConnection.Open;
     except
@@ -427,6 +431,8 @@ begin
 end;
 
 function TAppDBConnection.OpenQuery(Sql: string): integer;
+var
+  s: string;
 begin
   while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do
     Sleep(2000);
@@ -435,7 +441,9 @@ begin
     FixFileNameDB(sql);
     Database.SQLQuery.SQL.Text:=Sql;
     Log.Add('Opening query for: '+sql);
-    Log.SaveToFile(KSPDataFolder+'\sql.log');
+    s:=KSPDataFolder+'\sql.log';
+    FixFolderNames(s);
+    Log.SaveToFile(s);
     Database.SQLQuery.Open;
     Result:=0;
   end;

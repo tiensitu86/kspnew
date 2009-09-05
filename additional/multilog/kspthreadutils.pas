@@ -5,7 +5,7 @@ unit KSPThreadUtils;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, DateUtils;
+  Classes, SysUtils, FileUtil, DateUtils, profilefunc;
 
 function DbgS(const c: cardinal): string; overload;
 function DbgS(const i: longint): string; overload;
@@ -123,6 +123,7 @@ var
 begin
   PID:=PtrInt(GetThreadID);
   Filename:=KSPLogFilename+'\Log'+IntToStr(PID);
+  FixFolderNames(FileName);
   if FileExistsUTF8(Filename) then
     fs:=TFileStream.Create(UTF8ToSys(Filename),fmOpenWrite)
   else
