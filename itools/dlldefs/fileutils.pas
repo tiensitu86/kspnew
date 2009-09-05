@@ -21,9 +21,9 @@ function MinimizeName(const Filename: TFileName; Canvas: TCanvas;
   MaxLen: Integer): TFileName; overload;
 function MinimizeName(const Filename: TFileName; TextWidth: Integer;
   MaxLen: Integer): TFileName; overload;
-function FileSetAttr(const FileName: string; Attr: Integer): Integer; external 'kspfiles.dll';
-function TrimRight(const S: string): string; external 'kspfiles.dll';
-function TrimRightA(const S: WideString): WideString; external 'kspfiles.dll';
+//function FileSetAttr(const FileName: string; Attr: Integer): Integer; external 'kspfiles.dll';
+//function TrimRight(const S: string): string; external 'kspfiles.dll';
+//function TrimRightA(const S: WideString): WideString; external 'kspfiles.dll';
 
 implementation
 

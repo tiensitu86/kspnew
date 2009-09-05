@@ -25,12 +25,12 @@ function IsCD(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
 function PrepareString(str: string): string;// external 'kspfiles.dll';
 
 {$IFDEF WINDOWS}
-function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet'+LIB_SUFFIX;
+//function DownloadURL(const aUrl: PChar; var Output: TStringList): Boolean; external 'kspinet'+LIB_SUFFIX;
 {$ENDIF}
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 
-function ReadChangeFile: TFileRenamed; external 'kspfiles'+LIB_SUFFIX;
-procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles'+LIB_SUFFIX;
+//function ReadChangeFile: TFileRenamed; external 'kspfiles'+LIB_SUFFIX;
+//procedure WriteChangeFile(P: TFileRenamed); external 'kspfiles'+LIB_SUFFIX;
 
 function GetKSPVersion(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
 function GetKSPVersion2(AppPath: TPathChar): ShortString; external 'ksp'+LIB_SUFFIX;
