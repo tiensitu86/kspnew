@@ -46,6 +46,7 @@ type
 
   TKSPOptions = packed record
     Equalizer: TKSPEqualizer;
+    DevBuffer: DWORD;
   end;
 
   TKSPSetup = packed record

@@ -450,6 +450,10 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON8.CAPTION
+msgid "Apply"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON9.CAPTION
 msgid "Load"
 msgstr ""
@@ -474,6 +478,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.DELETESELECTEDACTION.CAPTION
 msgid "Delete Selected"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL1.CAPTION
+msgid "Device buffer (in ms):"
 msgstr ""
 
 #: TKSPMAINWINDOW.MEDIALIBSETUPPAGE.CAPTION
@@ -581,6 +589,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.PAGE2.CAPTION
 msgid "Page2"
+msgstr ""
+
+#: TKSPMAINWINDOW.PAGE3.CAPTION
+msgid "Page3"
 msgstr ""
 
 #: TKSPMAINWINDOW.PANEL3.CAPTION

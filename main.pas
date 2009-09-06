@@ -8,7 +8,7 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin;
 
 
   { TWebView }
@@ -45,8 +45,11 @@ type  TWebView = class(TObject)
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    Button8: TButton;
     Button9: TButton;
+    Label1: TLabel;
     MenuItem23: TMenuItem;
+    BufferEdit: TSpinEdit;
     SystemSetupPage: TPage;
     PlgOnStartup: TCheckBox;
     PageControl1: TPageControl;
@@ -939,7 +942,10 @@ end;
 
 procedure TKSPMainWindow.Button8Click(Sender: TObject);
 begin
-
+{$IFNDEF WINDOWS}
+  Self.KSPSetupStates.KSPOptions.DevBuffer:=BufferEdit.Value;
+  Player.SetupDeviceBuffer(Self.KSPSetupStates.KSPOptions.DevBuffer);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.Button9Click(Sender: TObject);
@@ -2332,6 +2338,10 @@ procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
 
   procedure LoadSystemSetup;
   begin
+{$IFDEF WINDOWS}
+    BufferEdit.Visible:=false;
+    Label1.Visible:=false;
+{$ENDIF}
     SetupBook.ActivePage:='SystemSetupPage';
   end;
 
@@ -2409,6 +2419,8 @@ var
   procedure LoadAudioSettings;
   begin
     KSPMainWindow.Balance.Position:=XMLFile.ReadInteger('Audio', 'Pan', 0);
+    KSPMainWindow.BufferEdit.Value:=XMLFile.ReadInteger('Audio', 'Buffer', Player.GetDeviceBuffer);
+    Button8Click(Self);
   end;
 
   procedure LoadVars;
@@ -2558,6 +2570,7 @@ var
     XMLFile.EraseSection('Audio');
 
     XMLFile.WriteInteger('Audio', 'Pan', Balance.Position);
+    XMLFile.WriteInteger('Audio', 'Buffer', Self.KSPSetupStates.KSPOptions.DevBuffer);
   end;
 
   procedure SaveVars;

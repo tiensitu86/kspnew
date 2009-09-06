@@ -2697,6 +2697,7 @@ object KSPMainWindow: TKSPMainWindow
         end
       end
       object Page3: TPage
+        Caption = 'Page3'
         ClientWidth = 680
         ClientHeight = 422
         object SetupTreeView: TTreeView
@@ -2874,10 +2875,10 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 389
-                ClientWidth = 425
+                ClientHeight = 416
+                ClientWidth = 431
                 object PluginsList: TCheckListBox
-                  Height = 389
+                  Height = 416
                   Width = 232
                   Align = alLeft
                   OnClick = PluginsListClick
@@ -2952,6 +2953,34 @@ object KSPMainWindow: TKSPMainWindow
           end
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
+            ClientWidth = 431
+            ClientHeight = 416
+            object Label1: TLabel
+              Left = 9
+              Height = 15
+              Top = 15
+              Width = 105
+              Caption = 'Device buffer (in ms):'
+              ParentColor = False
+            end
+            object Button8: TButton
+              Left = 168
+              Height = 25
+              Top = 15
+              Width = 75
+              Caption = 'Apply'
+              OnClick = Button8Click
+              TabOrder = 0
+            end
+            object BufferEdit: TSpinEdit
+              Left = 8
+              Height = 23
+              Top = 35
+              Width = 114
+              MaxValue = 100000
+              TabOrder = 1
+              Value = 1
+            end
           end
         end
       end
