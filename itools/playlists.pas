@@ -59,11 +59,9 @@ type TXMLPlayList = class (TObject)
       fPLSType: TPLSType;
       procedure SetPLSType(Pls: TPlsType);
       function GetPLSType: TPlsType;
-{$IFNDEF KSP_PLUGINS}
       procedure SaveKPLPls(Pls: TPlayList; FileName: string);
       procedure SaveM3UPls(Pls: TPlayList; FileName: string);
       procedure SavePLSPls(Pls: TPlayList; FileName: string);
-{$ENDIF}
       procedure LoadKPLPls(FileName: string; var Pls: TPlayList);
       procedure LoadM3UPls(FileName: string; var Pls: TPlayList);
       procedure LoadPlsPls(FileName: string; var Pls: TPlayList);
@@ -72,9 +70,7 @@ type TXMLPlayList = class (TObject)
       property PLSType: TPlsType read GetPlsType write SetPlsType;
       constructor Create;
       destructor  Destroy; override;
-{$IFNDEF KSP_PLUGINS}
       procedure SavePls(Pls: TPlayList; FileName: string);
-{$ENDIF}
       procedure LoadPls(FileName: string; var Pls: TPlayList);
   end;
 
@@ -82,10 +78,7 @@ procedure SearchForKPL(Path: string; Rec: boolean; var s: TStringList);
 
 implementation
 
-uses Math {$IFNDEF KSP_PLUGINS}
-  , KSPConstsVars, Main
-{$ENDIF}
-  ;
+uses Math , KSPConstsVars, Main;
 
 function CompareTracks(Item1, Item2: Pointer): Integer;
 begin
@@ -232,10 +225,8 @@ var
   T: TPLEntryInfo;
 begin
   T:=TPLEntryInfo.Create;
-{$IFNDEF KSP_PLUGINS}
   if Entry.Tag.Artist = '' then Entry.Tag.Artist:='Unknown Artist';
   if Entry.Tag.Album = '' then Entry.Tag.Album:='Unknown Album';
-{$ENDIF}
   T.Entry:=Entry;
   T.Entry.Played:=false;
 
@@ -461,7 +452,6 @@ begin
   inherited Destroy;
 end;
 
-{$IFNDEF KSP_PLUGINS}
 procedure TXMLPlaylist.SaveKPLPls(Pls: TPlayList; FileName: string);
 var
   i: integer;
@@ -470,6 +460,7 @@ var
   Entry: TSpkXMLParameter;
   InfoParams: TSpkXMLParameter;
   P: PPLEntry;
+  Pc: TPathChar;
   //CurrentD: string;
 begin
   //if Pls.Count=0 then Exit;
@@ -501,6 +492,17 @@ begin
       Tag:=TSpkXMLNode.create('tag');
       Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(ExtractFilePath(FileName), p.FileName));
       Node.Parameters.Add(Entry);
+      StrPCopy(Pc, p.FileName);
+      if IsStream(PC) then begin
+        p.Tag.Album:='';
+        p.Tag.Artist:='';
+        p.Tag.Comment:='';
+        p.Tag.Title:='';
+        p.Tag.Year:='';
+        p.Tag.Genre:='';
+        p.Tag.Track:=0;
+        p.Tag.GID:=0;
+      end;
       //saving tag info
       Entry:=TSpkXMLParameter.create('artist', p.Tag.Artist);
       Tag.Parameters.Add(Entry);
@@ -596,7 +598,6 @@ begin
   SetCurrentDir(Dir);
   f.Free;
 end;
-{$ENDIF}
 
 procedure TXMLPlaylist.LoadPlsPls(FileName: string; var Pls: TPlayList);
 var
@@ -683,7 +684,6 @@ begin
   SetCurrentDir(Dir);
 end;
 
-{$IFNDEF KSP_PLUGINS}
 procedure TXMLPlaylist.SavePls(Pls: TPlayList; FileName: string);
 begin
   //if Pls.Count=0 then Exit;
@@ -693,7 +693,6 @@ begin
     SaveM3UPls(Pls, FileName) else
     SavePLSPls(Pls, FileName);
 end;
-{$ENDIF}
 
 procedure TXMLPlaylist.LoadKPLPls(FileName: string; var Pls: TPlayList);
 var

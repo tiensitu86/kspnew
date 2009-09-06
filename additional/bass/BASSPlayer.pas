@@ -725,7 +725,7 @@ type
 
 implementation
 
-uses Main, KSPConstsVars, MultiLog;
+uses Main, KSPConstsVars, MultiLog, KSPMessages, KSPFiles;
 
 
 const
@@ -2181,7 +2181,15 @@ function TBASSPlayer.GetStreamInfo(StreamName : string;
 var
    dumNum : integer;
    dumStr : string;
+   PC: TPathChar;
 begin
+  StrPCopy(Pc, StreamName);
+  if IsStream(PC) then begin
+    StreamInfo.Album:='';
+    StreamInfo.Artist:='';
+    StreamInfo.Comment:='';
+    StreamInfo.Title:='';
+  end else
    if StreamName = FStreamName then
    begin
       StreamInfo := FStreamInfo;
