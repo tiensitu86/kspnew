@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 386
+  Left = 391
   Height = 632
-  Top = 167
+  Top = 139
   Width = 977
   Caption = 'KSP'
   ClientHeight = 607
@@ -3022,15 +3022,15 @@ object KSPMainWindow: TKSPMainWindow
             object Label1: TLabel
               Left = 9
               Height = 13
-              Top = 15
+              Top = 51
               Width = 120
               Caption = 'Device buffer (in ms):'
               ParentColor = False
             end
             object Button8: TButton
-              Left = 168
+              Left = 344
               Height = 25
-              Top = 15
+              Top = 11
               Width = 75
               Caption = 'Apply'
               OnClick = Button8Click
@@ -3039,11 +3039,19 @@ object KSPMainWindow: TKSPMainWindow
             object BufferEdit: TSpinEdit
               Left = 8
               Height = 23
-              Top = 35
+              Top = 75
               Width = 114
               MaxValue = 100000
               TabOrder = 1
               Value = 1
+            end
+            object RelativePaths: TCheckBox
+              Left = 8
+              Height = 21
+              Top = 3
+              Width = 226
+              Caption = 'Use relative paths for playlist saving'
+              TabOrder = 2
             end
           end
         end

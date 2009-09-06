@@ -59,9 +59,9 @@ type TXMLPlayList = class (TObject)
       fPLSType: TPLSType;
       procedure SetPLSType(Pls: TPlsType);
       function GetPLSType: TPlsType;
-      procedure SaveKPLPls(Pls: TPlayList; FileName: string);
-      procedure SaveM3UPls(Pls: TPlayList; FileName: string);
-      procedure SavePLSPls(Pls: TPlayList; FileName: string);
+      procedure SaveKPLPls(Pls: TPlayList; FileName: string; Relative: boolean);
+      procedure SaveM3UPls(Pls: TPlayList; FileName: string; Relative: boolean);
+      procedure SavePLSPls(Pls: TPlayList; FileName: string; Relative: boolean);
       procedure LoadKPLPls(FileName: string; var Pls: TPlayList);
       procedure LoadM3UPls(FileName: string; var Pls: TPlayList);
       procedure LoadPlsPls(FileName: string; var Pls: TPlayList);
@@ -70,7 +70,7 @@ type TXMLPlayList = class (TObject)
       property PLSType: TPlsType read GetPlsType write SetPlsType;
       constructor Create;
       destructor  Destroy; override;
-      procedure SavePls(Pls: TPlayList; FileName: string);
+      procedure SavePls(Pls: TPlayList; FileName: string; Relative: boolean);
       procedure LoadPls(FileName: string; var Pls: TPlayList);
   end;
 
@@ -452,7 +452,7 @@ begin
   inherited Destroy;
 end;
 
-procedure TXMLPlaylist.SaveKPLPls(Pls: TPlayList; FileName: string);
+procedure TXMLPlaylist.SaveKPLPls(Pls: TPlayList; FileName: string; Relative: boolean);
 var
   i: integer;
   XMLPls: TSpkXMLParser;
@@ -490,7 +490,9 @@ begin
       P:=Pls.GetItem(i);
       Node:=TSpkXMLNode.create(IntToStr(i));
       Tag:=TSpkXMLNode.create('tag');
-      Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(FileName, p.FileName));
+      if Relative then
+        Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(FileName, p.FileName)) else
+        Entry:=TSpkXMLParameter.create('filename', p.FileName);
       Node.Parameters.Add(Entry);
       StrPCopy(Pc, p.FileName);
       if (IsStream(PC)) or (not p.Tag.IsTag) then begin
@@ -546,7 +548,7 @@ begin
   Self.XMLFile.Free;   }
 end;
 
-procedure TXMLPlaylist.SaveM3UPls(Pls: TPlayList; FileName: string);
+procedure TXMLPlaylist.SaveM3UPls(Pls: TPlayList; FileName: string; Relative: boolean);
 var
   i: integer;
   f: textFile;
@@ -561,7 +563,9 @@ begin
   Writeln(f, '#EXTM3U');
 
   for i:=0 to Pls.Count-1 do begin
-      s:=ExtractRelativePath(FileName, Pls.GetItem(i).FileName);
+      if Relative then
+        s:=ExtractRelativePath(FileName, Pls.GetItem(i).FileName) else
+        s:=Pls.GetItem(i).FileName;
       Writeln(f, s);
       //ShowMessage(s);
     end;
@@ -570,7 +574,7 @@ begin
   SetCurrentDir(Dir);
 end;
 
-procedure TXMLPlaylist.SavePLSPls(Pls: TPlayList; FileName: string);
+procedure TXMLPlaylist.SavePLSPls(Pls: TPlayList; FileName: string; Relative: boolean);
 var
   i: integer;
   f: TIniFile;
@@ -685,14 +689,14 @@ begin
   SetCurrentDir(Dir);
 end;
 
-procedure TXMLPlaylist.SavePls(Pls: TPlayList; FileName: string);
+procedure TXMLPlaylist.SavePls(Pls: TPlayList; FileName: string; Relative: boolean);
 begin
   //if Pls.Count=0 then Exit;
   //ShowMessage(ExtractFileExt(FileName));
-  if UpperCase(ExtractFileExt(FileName))='.KPL' then SaveKPLPls(Pls, FileName)
+  if UpperCase(ExtractFileExt(FileName))='.KPL' then SaveKPLPls(Pls, FileName, Relative)
   else if UpperCase(ExtractFileExt(FileName))='.M3U' then
-    SaveM3UPls(Pls, FileName) else
-    SavePLSPls(Pls, FileName);
+    SaveM3UPls(Pls, FileName, Relative) else
+    SavePLSPls(Pls, FileName, Relative);
 end;
 
 procedure TXMLPlaylist.LoadKPLPls(FileName: string; var Pls: TPlayList);

@@ -10,10 +10,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: kspstrings.salbum
+msgctxt "kspstrings.salbum"
 msgid "Album"
 msgstr ""
 
 #: kspstrings.sartist
+msgctxt "kspstrings.sartist"
 msgid "Artist"
 msgstr ""
 
@@ -72,6 +74,7 @@ msgid "File:"
 msgstr ""
 
 #: kspstrings.sgenre
+msgctxt "kspstrings.sgenre"
 msgid "Genre"
 msgstr ""
 
@@ -356,6 +359,7 @@ msgid "XML Parser: Unexpected closing tag"
 msgstr ""
 
 #: kspstrings.syear
+msgctxt "kspstrings.syear"
 msgid "Year"
 msgstr ""
 
@@ -607,6 +611,10 @@ msgstr ""
 msgid "PluginsSetupPage"
 msgstr ""
 
+#: TKSPMAINWINDOW.RELATIVEPATHS.CAPTION
+msgid "Use relative paths for playlist saving"
+msgstr ""
+
 #: TKSPMAINWINDOW.RENAMEBOOKMARK.CAPTION
 msgid "Rename"
 msgstr ""
@@ -693,6 +701,188 @@ msgstr ""
 
 #: TKSPOPTIONS.SERVERPORT.EDITLABEL.CAPTION
 msgid "Server port:"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCANCEL.CAPTION
+msgid "&Cancel"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCOPYFROM.CAPTION
+msgid "Copy &from ID3v1"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCOPYTO.CAPTION
+msgid "Copy &to ID3v1"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNUNDO.CAPTION
+msgid "Undo Changes"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNUPDATE.CAPTION
+msgid "&Update"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CAPTION
+msgid "MPEG file info box + ID3 tag editor"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CBID3V1TAG.CAPTION
+msgid "ID3v&1 Tag"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CBID3V2TAG.CAPTION
+msgid "ID3v&2 Tag"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.FFILENAME.CAPTION
+msgid "fFileName"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GENRE.CAPTION
+msgctxt "TMPEGFILEINFOFORM.GENRE.CAPTION"
+msgid "Genre"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX1.CAPTION
+msgid " ID3v1 "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX2.CAPTION
+msgid " ID3v2 "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX3.CAPTION
+msgid " MPEG info "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL1.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL1.CAPTION"
+msgid "Track #"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL10.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL10.CAPTION"
+msgid "Album"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL11.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL11.CAPTION"
+msgid "Year"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL12.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL12.CAPTION"
+msgid "Genre"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL13.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL13.CAPTION"
+msgid "Comment"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL14.CAPTION
+msgid "Composer"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL15.CAPTION
+msgid "Orig. Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL16.CAPTION
+msgid "Copyright"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL17.CAPTION
+msgid "URL"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL18.CAPTION
+msgid "Encoded by"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL19.CAPTION
+msgid "File/URL :"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL2.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL2.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL3.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL3.CAPTION"
+msgid "Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL4.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL4.CAPTION"
+msgid "Album"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL5.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL5.CAPTION"
+msgid "Year"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL6.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL6.CAPTION"
+msgid "Comment"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL7.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL7.CAPTION"
+msgid "Track #"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL8.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL8.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL9.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL9.CAPTION"
+msgid "Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBBITFRAME.CAPTION
+msgid "lbBitFrame"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBCOPYRIGHTED.CAPTION
+msgid "lbCopyrighted"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBCRC.CAPTION
+msgid "lbCRC"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBEMPHASIS.CAPTION
+msgid "lbEmphasis"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBFREQ_CHANNELS.CAPTION
+msgid "lbFreq_Channels"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBHEADERPOS.CAPTION
+msgid "lbHeaderPos"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBLENGTH.CAPTION
+msgid "lbLength"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBORIGINAL.CAPTION
+msgid "lbOriginal"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBSIZE.CAPTION
+msgid "lbSize"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBTYPE.CAPTION
+msgid "lbType"
 msgstr ""
 
 #: TSPLASHFORM.CAPTION

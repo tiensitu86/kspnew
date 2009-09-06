@@ -47,6 +47,7 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    RelativePaths: TCheckBox;
     Label1: TLabel;
     MenuItem23: TMenuItem;
     BufferEdit: TSpinEdit;
@@ -1568,7 +1569,7 @@ begin
   Pls:=TXMLPlayList.create;
   PlsFile:= KSPDataFolder+'data/pls.kpl';
   FixFolderNames(PlsFile);
-  Pls.SavePls(PlayList, PlsFile);
+  Pls.SavePls(PlayList, PlsFile, Self.RelativePaths.Checked);
   Pls.Free;
 
   Player.Stop;
@@ -1886,7 +1887,7 @@ begin
   if p.Name='' then Exit;
 
   Pls:=TXMLPlayList.create;
-  Pls.SavePls(PlayList, bName);
+  Pls.SavePls(PlayList, bName, false);
   Pls.Free;
 
   p.URL:=bName;
@@ -2436,6 +2437,7 @@ var
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.OpenDialog1.InitialDir:=LastOpenDir;//SaveDialog.InitialDir;
+    RelativePaths.Checked:=XMLFile.ReadBool('General', 'UseRelativePaths', true);
 
     case XMLFile.ReadInteger('General', 'TimeFormat', 1) of
       0: KSPMainWindow.TimeFormat:=tfRemain;
@@ -2586,6 +2588,7 @@ var
 
     XMLFile.EraseSection('General');
     XMLFile.WriteString('General', 'LastFolder', LastOpenDir);
+    XMLFile.WriteBool('General', 'UseRelativePaths', RelativePaths.Checked);
 
     case TimeFormat of
       tfRemain: XMLFile.WriteInteger('General', 'TimeFormat', 0);
