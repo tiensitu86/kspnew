@@ -2,7 +2,7 @@ unit MediaFolders;
 
 interface
 
-uses Classes, SysUtils, MediaItems, Dialogs, Playlists, ID3Mgmnt, app_db_utils;
+uses Classes, SysUtils, MediaItems, Dialogs, Playlists, ID3Mgmnt, app_db_utils, profilefunc;
 
 type TMediaFolder = record
   Folder: string;
@@ -135,6 +135,7 @@ var
   i: integer;
   mf: TMediaFolder;
 begin
+  FixFolderNames(FileName);
   if FileExists(FileName) then DeleteFile(FileName);
   if Self.Count=0 then Exit;
   XMLFile:=TIniFile.Create(FileName);
@@ -160,6 +161,7 @@ var
   mf: TMediaFolder;
   s: TStringList;
 begin
+  FixFolderNames(FileName);
   XMLFile:=TIniFile.Create(FileName);
   s:=TStringList.Create;
   XMLFile.ReadSections(s);
