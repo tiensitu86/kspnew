@@ -39,7 +39,8 @@ unit MultiLog;
 interface
 
 uses
-  {$ifndef fpc}Types, fpccompat,{$endif} Forms, Classes, SysUtils, Support, KSPFiles;
+  {$ifndef fpc}Types, fpccompat,{$endif} Forms, Classes, SysUtils, Support, KSPFiles,
+  Dialogs;
 
 const
   //MessageTypes
@@ -1067,9 +1068,12 @@ begin
   f:=TSupportForm.Create(nil);
   f.Memo1.Lines.Clear;
 
+  f.Memo1.Lines.Add('Log folder: '+KSPLogFilename);
+
   SearchForFilesFS(KSPLogFilename, false, s);
   for i:=0 to s.Count-1 do begin
     s2.LoadFromFile(s.Strings[i]);
+;
     f.Memo1.Lines.Add(s.Strings[i]);
     f.Memo1.Lines.Add('');
     f.Memo1.Lines.AddStrings(s2);

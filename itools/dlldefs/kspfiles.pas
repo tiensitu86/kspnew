@@ -3,7 +3,7 @@ unit kspfiles;
 interface
 
 uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
-  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF};
+  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
 
 const
 {$IFDEF WINDOWS}
@@ -151,13 +151,15 @@ var
   s2: TStringList;
   i: integer;
 begin
-  FileAttrs := faAnyFile;//+faDirectory;
   s2:=TStringList.Create;
 
 {$IFDEF WINDOWS}
+    FileAttrs:=faAnyFile;
     if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
 {$ELSE}
-    if FindFirst(Path+'/*.*', FileAttrs, sr) = 0 then
+    FileAttrs := faReadOnly+faHidden+faSysFile+faVolumeId+faDirectory+faArchive+
+    faSymLink+faAnyFile;//+faDirectory;
+    if FindFirst(Path+'/*', FileAttrs, sr) = 0 then
 {$ENDIF}
 
     begin
@@ -167,12 +169,15 @@ begin
         if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
             //ShowMessage(ExtractFileExt(sr.Name));
 
+{$IFDEF WINDOWS}
             if ((sr.Attr and faDirectory) <> sr.Attr)and
               (FileDateToDateTime(sr.Time)>DateM) then
-{$IFDEF WINDOWS}
                 s.Add(Path+'\'+sr.Name);
 {$ELSE}
-                s.Add(Path+'/'+sr.Name);
+            if not DirectoryExists(Path+'/'+sr.Name) then begin
+              if FileDateToDateTime(sr.Time)>DateM then
+                s.Add(Path+'/'+sr.Name) end else
+              s2.Add(Path+'/'+sr.Name);
 {$ENDIF}
 
             if Rec and ((sr.Attr and faDirectory) = sr.Attr) then
@@ -203,26 +208,30 @@ var
   s2: TStringList;
   i: integer;
 begin
-  FileAttrs := faAnyFile;//+faDirectory;
   s2:=TStringList.Create;
 {$IFDEF WINDOWS}
+    FileAttrs:=faAnyFile;
     if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
 {$ELSE}
-    if FindFirst(Path+'/*.*', FileAttrs, sr) = 0 then
+    FileAttrs := faReadOnly+faHidden+faSysFile+faVolumeId+faDirectory+faArchive+
+    faSymLink+faAnyFile;//+faDirectory;
+    if FindFirst(Path+'/*', FileAttrs, sr) = 0 then
 {$ENDIF}
 
     begin
       repeat
         //if (sr.Attr and FileAttrs) = sr.Attr then
         begin
-        if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
+         if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
             //ShowMessage(ExtractFileExt(sr.Name));
 
-            if ((sr.Attr and faDirectory) <> sr.Attr) then
 {$IFDEF WINDOWS}
+            if ((sr.Attr and faDirectory) <> sr.Attr) then
                 s.Add(Path+'\'+sr.Name);
 {$ELSE}
-                s.Add(Path+'/'+sr.Name);
+            if not DirectoryExists(Path+'/'+sr.Name) then
+                s.Add(Path+'/'+sr.Name) else
+                s2.Add(Path+'/'+sr.Name);
 {$ENDIF}
 
             if Rec and ((sr.Attr and faDirectory) = sr.Attr) then
