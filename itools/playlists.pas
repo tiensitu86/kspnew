@@ -490,7 +490,7 @@ begin
       P:=Pls.GetItem(i);
       Node:=TSpkXMLNode.create(IntToStr(i));
       Tag:=TSpkXMLNode.create('tag');
-      Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(ExtractFilePath(FileName), p.FileName));
+      Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(FileName, p.FileName));
       Node.Parameters.Add(Entry);
       StrPCopy(Pc, p.FileName);
       if IsStream(PC) then begin
@@ -560,7 +560,7 @@ begin
   Writeln(f, '#EXTM3U');
 
   for i:=0 to Pls.Count-1 do begin
-      s:=ExtractRelativePath(ExtractFilePath(FileName), Pls.GetItem(i).FileName);
+      s:=ExtractRelativePath(FileName, Pls.GetItem(i).FileName);
       Writeln(f, s);
       //ShowMessage(s);
     end;

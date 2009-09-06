@@ -595,10 +595,6 @@ msgstr ""
 msgid "Page3"
 msgstr ""
 
-#: TKSPMAINWINDOW.PANEL3.CAPTION
-msgid "Panel3"
-msgstr ""
-
 #: TKSPMAINWINDOW.PANEL5.CAPTION
 msgid "Panel5"
 msgstr ""
