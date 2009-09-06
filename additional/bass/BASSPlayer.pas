@@ -1841,6 +1841,8 @@ begin
         exit;
       end;
 
+  hLog.Send(StreamName);
+
  // Check if native file types
    if ExtCode = '.WAV' then
    begin
@@ -2055,9 +2057,7 @@ begin
    begin
   // I do not have full technical information on MOD music, so only basic information
   // is given to StreamInfo record.
-      AssignFile(f, StreamName);
-      Reset(f, 1);
-      StreamInfo.FileSize := FileSize(f);
+      StreamInfo.FileSize := KSPGetFileSize(StreamName);
 
       with StreamInfo do
       begin
@@ -2080,7 +2080,6 @@ begin
          end else    // for MO3 and UMX file ( I cannot get any documentation on these files )
             Title := ExtractFileName(StreamName);  // Not the title given to music file
 
-         CloseFile(f);
          tmpChannel := BASS_MusicLoad(FALSE, PChar(StreamName), 0, 0, BASS_MUSIC_PRESCAN, 0);
          if tmpChannel <> 0 then
          begin
@@ -2104,10 +2103,7 @@ begin
    begin
       if FMIDISoundReady then
       begin
-         AssignFile(f, StreamName);
-         Reset(f, 1);
-         StreamInfo.FileSize := FileSize(f);
-         CloseFile(f);
+         StreamInfo.FileSize := KSPGetFileSize(StreamName);
 
          StreamInfo.FileName := StreamName;
 
@@ -2128,10 +2124,9 @@ begin
       end;
    end else
    begin   // Check if the opening stream is playable by an add-on.
-      AssignFile(f, StreamName);
-      Reset(f, 1);
-      StreamInfo.FileSize := FileSize(f);
-      CloseFile(f);
+      try
+        StreamInfo.FileSize := KSPGetFileSize(StreamName);
+      finally end;
 
       S := UpperCase('.AIFF;' + GetBASSAddonExts);
       if FBASSAACReady then
@@ -2174,15 +2169,7 @@ function TBASSPlayer.GetStreamInfo(StreamName : string;
 var
    dumNum : integer;
    dumStr : string;
-   PC: TPathChar;
 begin
-  StrPCopy(Pc, StreamName);
-  if IsStream(PC) then begin
-    StreamInfo.Album:='';
-    StreamInfo.Artist:='';
-    StreamInfo.Comment:='';
-    StreamInfo.Title:='';
-  end else
    if StreamName = FStreamName then
    begin
       StreamInfo := FStreamInfo;

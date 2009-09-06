@@ -58,6 +58,7 @@ procedure KSPDeleteFolder(Path: string);
 procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 
 function IsPlaylist(FileName: string): boolean;
+function KSPGetFileSize(const FileName: WideString): Int64;
 
 
 
@@ -322,6 +323,21 @@ begin
     IntToStr(Major)+'.'+
     IntToStr(Minor)+'.'+
     IntToStr(Build);//GetKSPVersion(AppPath);
+end;
+
+function KSPGetFileSize(const FileName: WideString): Int64;
+var
+  SourceFile: TFileStream;
+begin
+  { Get info from file }
+  Result := 0;
+  SourceFile := nil;
+  try
+    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    Result := SourceFile.Size;
+  finally
+    SourceFile.Free;
+  end;
 end;
 
 end.

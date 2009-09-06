@@ -429,12 +429,14 @@ begin
 //  onestep:=stemp.Count div 100;
 //  curstep:=0;
   stemp.SaveToFile(KSPdataFolder+'new_files.txt');
-  if stemp.Count>0 then
+  hLog.Send('Starting reading tags...');
+   if stemp.Count>0 then
     KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
   for i:=0 to stemp.Count-1 do begin
 
    hLog.Send('X:='+IntToStr(x)+'; Count:='+IntToStr(stemp.Count));
-        id3tag.Tag:=ReadID32(stemp.Strings[i], tag, x);
+   if not FileExists(stemp.Strings[i]) then Continue;
+        id3tag.Tag:=ReadID3(stemp.Strings[i], tag, x);
           id3tag.PlayCount:=0;
           id3tag.PlayedEver:=false;
           id3tag.Fav:=0;
@@ -462,7 +464,7 @@ begin
 //    KSPMainWindow.MediaLibProgress.ShowProgressText:=true;
 
 
-    KSPMainWindow.MediaLibProgress.Position:=KSPMainWindow.MediaLibProgress.Max-stemp.Count;
+    KSPMainWindow.MediaLibProgress.Position:=i;//KSPMainWindow.MediaLibProgress.Max-stemp.Count;
 //    KSPMainWindow.MediaLibProgress.ProgressText:=IntToStr(KSPMainWindow.MediaLibProgress.Value)+'/'+
 
     end;
