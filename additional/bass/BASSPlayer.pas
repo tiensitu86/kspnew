@@ -861,12 +861,9 @@ end;
 // This procedure is used to get HTTP or ICY tags from the server.
 procedure DownProc(buffer : pchar; length : DWORD; user : pointer); stdcall;
 var
-   Msg_Handle : DWORD;
    bufferStr : string;
    p : pointer;
 begin
-   Msg_Handle := PDWORD(user)^;
-
    if length = 0 then
    begin
       bufferStr := string(buffer);
@@ -1419,13 +1416,9 @@ end;
 constructor TBASSPlayer.Create(AOwner: TComponent; NoInit: boolean = false);
 var
    i : integer;
- //  BASSVersion : DWORD;
- //  d: PChar;
    t : string;
    n: Integer;
    CD_Info : BASS_CD_INFO;
-   fn : string;
-
 begin
    inherited Create(AOwner);
 
@@ -1604,8 +1597,6 @@ end;
 
 
 destructor  TBASSPlayer.Destroy;
-var
-   i : integer;
 begin
    if ChannelType <> Channel_NotOpened then
    begin
@@ -3400,21 +3391,26 @@ begin
                                FOnPlayEnd(Self);
 end;
 
+{$HINTS OFF}
 procedure TBASSPlayer.SetPlayEndA(Data: PtrInt);
 begin
   SetPlayEnd;
 end;
+{$HINTS ON}
 
 procedure TBASSPlayer.GetMetaA(Data: PtrInt);
 var
   PTitle: PAnsiChar;
 begin
+{$HINTS OFF}
   PTitle := pointer(Data);
+{$HINTS ON}
   FStreamInfo.Title := ansistring(PTitle);
   if Assigned(FOnGetMeta) then
     FOnGetMeta(Self, ansistring(PTitle));
 end;
 
+{$HINTS OFF}
 procedure TBASSPlayer.DownProcA(Data: PtrInt);
 begin
 //  tmpHTTPTag := pAnsiChar(PtrInt);
@@ -3473,25 +3469,7 @@ begin
                                     Comment := MP3Tag.Comment;
                                  end;
 
-                         // Reestimate playback length of an URL stream after finishing download.
-                         // ** Following method also shows inaccurate result.
-                          {  if (ExtCode = '.AAC') then
-                            begin
-                            // The returned value of BASS_ChannelGetLength is not accurate for AAC files.
-                            // So, I used BASS_ChannelGetPosition instead of BASS_ChannelGetLength.
-                              ElapsedByte := BASS_StreamGetFilePosition(DecodeChannel, BASS_FILEPOS_CURRENT);
-                              ElapsedTime := BASS_ChannelBytes2Seconds(DecodeChannel,
-                                                        BASS_ChannelGetPosition(DecodeChannel, BASS_POS_BYTE));
-                            // I assumed that about 60% of buffer is filled with data which are accounted in
-                            //  ElapsedByte, and not accounted in ElapsedTime.
-                              ElapsedTime := ElapsedTime + (BASS_GetConfig(BASS_CONFIG_BUFFER) / 1000) * 0.60;
-                              if (ElapsedByte > 0) and (ElapsedTime > 0) then
-                              begin
-                                 FStreamInfo.Duration := round(ElapsedTime * FStreamInfo.FileSize * 1000 / ElapsedByte);
-                                 FStreamInfo.BitRate := round(ElapsedByte / (125 * ElapsedTime));
-                              end;
-                            end else
-                            begin   }
+
                               PlaybackSec := BASS_ChannelBytes2Seconds(DecodeChannel,
                                                            BASS_ChannelGetLength(DecodeChannel, BASS_POS_BYTE));
                               FStreamInfo.Duration := round(1000 * PlaybackSec);  // in mili seconds
@@ -3500,6 +3478,7 @@ begin
                             if Assigned(FOnDownloaded) then
                                FOnDownloaded(Self, FStreamInfo.Duration);
 end;
+{$HINTS ON}
 
 procedure TBassPlayer.SetPan(Pan: float);
 begin

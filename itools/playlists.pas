@@ -493,7 +493,7 @@ begin
       Entry:=TSpkXMLParameter.create('filename', ExtractRelativePath(FileName, p.FileName));
       Node.Parameters.Add(Entry);
       StrPCopy(Pc, p.FileName);
-      if IsStream(PC) then begin
+      if (IsStream(PC)) or (not p.Tag.IsTag) then begin
         p.Tag.Album:='';
         p.Tag.Artist:='';
         p.Tag.Comment:='';
@@ -503,6 +503,7 @@ begin
         p.Tag.Track:=0;
         p.Tag.GID:=0;
       end;
+
       //saving tag info
       Entry:=TSpkXMLParameter.create('artist', p.Tag.Artist);
       Tag.Parameters.Add(Entry);

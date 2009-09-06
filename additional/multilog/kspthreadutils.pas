@@ -26,6 +26,8 @@ implementation
 
 uses KSPConstsVars;
 
+{$HINTS OFF}
+
 function DbgS(const c: cardinal): string;
 begin
   Result:=IntToStr(c);
@@ -178,6 +180,8 @@ begin
   end;
   DebuglnThreadLogS(s);
 end;
+
+{$HINTS ON}
 
 end.
 
