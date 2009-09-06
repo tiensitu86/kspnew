@@ -136,7 +136,7 @@ begin
 
   if not ForceRescan then begin
       
-    end else ShowMessage(SScanningDone);
+    end else KSPShowMessage(SScanningDone);
 
 //  end;
 

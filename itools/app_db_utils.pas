@@ -75,7 +75,7 @@ var
 
 implementation
 
-uses Main, Dialogs, KSPConstsVars, IniFiles, KSPMessages, KSPFiles, MultiLog, KSPStrings;
+uses Main, Dialogs, KSPConstsVars, IniFiles, KSPMessages, KSPFiles, MultiLog;
 
 
 function FindNoCase(Text: string; List: TStringList): integer;

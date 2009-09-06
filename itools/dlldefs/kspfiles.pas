@@ -2,7 +2,7 @@ unit kspfiles;
 
 interface
 
-uses LResources, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
+uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
   {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
 
 const
@@ -60,11 +60,13 @@ procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 function IsPlaylist(FileName: string): boolean;
 function KSPGetFileSize(const FileName: WideString): Int64;
 
+procedure KSPShowMessage(msg: string);
+
 
 
 implementation
 
-uses SysUtils;
+uses SysUtils, main, multilog;
 
 {$IFDEF KSP_STATIC}
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
@@ -337,6 +339,20 @@ begin
     Result := SourceFile.Size;
   finally
     SourceFile.Free;
+  end;
+end;
+
+procedure KSPShowMessage(msg: string);
+var
+  p : pointer;
+  pc: pChar;
+begin
+  pc:=pChar(msg);
+//  p:=pc;
+  if KSPMainWindow<>nil then try
+    Application.QueueAsyncCall(KSPMainWindow.KSPShowMessage, DWORD(pc));
+  except
+    hLog.Send('KSP MAIN WINDOWS MESSAGE: '+msg)
   end;
 end;
 

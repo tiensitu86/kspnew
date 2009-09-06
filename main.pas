@@ -335,6 +335,8 @@ type  TWebView = class(TObject)
     procedure IMProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
+
+    procedure KSPShowMessage(Data: PtrInt);
   end; 
 
 var
@@ -2910,6 +2912,11 @@ begin
     if not Preview then
       NotificationTimer.Enabled:=true;
   end;
+end;
+
+procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
+begin
+  ShowMessage(string(Data));
 end;
 
 initialization
