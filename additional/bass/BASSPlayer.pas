@@ -3211,7 +3211,7 @@ begin
 {$IFDEF WINDOWS}
   Result:=0;
 {$ELSE}
-  Result:=BASS_SetConfig(BASS_CONFIG_DEV_BUFFER);
+  Result:=BASS_GetConfig(BASS_CONFIG_DEV_BUFFER);
 {$ENDIF}
 end;
 
