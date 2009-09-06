@@ -47,6 +47,7 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button9: TButton;
     MenuItem23: TMenuItem;
+    SystemSetupPage: TPage;
     PlgOnStartup: TCheckBox;
     PageControl1: TPageControl;
     ClearPlaylistAction: TAction;
@@ -2329,12 +2330,18 @@ procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
     SetupBook.ActivePage:='PluginsSetupPage';
   end;
 
+  procedure LoadSystemSetup;
+  begin
+    SetupBook.ActivePage:='SystemSetupPage';
+  end;
+
   procedure SetupKSP;
   begin
     case Sel of
       0: SetupBook.ActivePage:='BookmarksSetupPage';
       1: LoadPluginSetup;
       2: SetupBook.ActivePage:='NotSetupPage';
+      3: LoadSystemSetup;
     end;
   end;
 

@@ -329,6 +329,8 @@ type
   //  function  GetGenWinHandles : TGenHandles;        // * Added at Ver 2.00.1
   public
     { Public declarations }
+    procedure SetupDeviceBuffer(Buffer: DWORD);
+    function GetDeviceBuffer: DWORD;
     constructor Create(AOwner: TComponent; NoInit: boolean = false);
       // Allocates memory and constructs an instance of TBASSPlayer.
       // This Create method should be executed first to use TBASSPlayer.
@@ -3192,6 +3194,25 @@ begin
       fd:=FileSupportList.GetItem(i);
          for j := 1 to fd.NumFormat do
              result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
+end;
+
+procedure TBASSPlayer.SetupDeviceBuffer(Buffer: DWORD);
+begin
+{$IFNDEF WINDOWS}
+  BASS_SetConfig(BASS_CONFIG_DEV_BUFFER, Buffer);
+  if BASS_ErrorGetCode=BASS_OK then
+    hLog.Send('New Device buffer: '+IntToStr(Buffer)+' ms') else
+{$ENDIF}
+    hLog.Send('SetupDeviceBuffer not supported');
+end;
+
+function TBASSPlayer.GetDeviceBuffer: DWORD;
+begin
+{$IFDEF WINDOWS}
+  Result:=0;
+{$ELSE}
+  Result:=BASS_SetConfig(BASS_CONFIG_DEV_BUFFER);
+{$ENDIF}
 end;
 
 function TBASSPlayer.GetDecoderName(ExtCode : string) : string;

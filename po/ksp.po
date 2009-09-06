@@ -583,10 +583,6 @@ msgstr ""
 msgid "Page2"
 msgstr ""
 
-#: TKSPMAINWINDOW.PAGE3.CAPTION
-msgid "Page3"
-msgstr ""
-
 #: TKSPMAINWINDOW.PANEL3.CAPTION
 msgid "Panel3"
 msgstr ""
@@ -627,6 +623,10 @@ msgstr ""
 #: TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION
 msgctxt "TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION"
 msgid "GO"
+msgstr ""
+
+#: TKSPMAINWINDOW.SYSTEMSETUPPAGE.CAPTION
+msgid "SystemSetupPage"
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET1.CAPTION
