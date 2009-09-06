@@ -714,7 +714,7 @@ var BASS_Pause:function: BOOL; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 var BASS_SetVolume:function(volume: FLOAT): BOOL; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 var BASS_GetVolume:function: FLOAT; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 
-var BASS_PluginLoad:function(filename: PChar; flags: DWORD): HPLUGIN; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
+var BASS_PluginLoad:function(filename: ansistring; flags: DWORD): HPLUGIN; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 var BASS_PluginFree:function(handle: HPLUGIN): BOOL; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 var BASS_PluginGetInfo:function(handle: HPLUGIN): PBASS_PLUGININFO; {$IFDEF WIN32}stdcall{$ELSE}cdecl{$ENDIF};
 

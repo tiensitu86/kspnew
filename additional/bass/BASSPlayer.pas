@@ -5,7 +5,7 @@ interface
 {$INCLUDE Delphi_Ver.inc}
 
 uses
-  {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, Messages, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
+  {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
   Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages;
@@ -235,9 +235,6 @@ type
   //  RestartPos : DWORD;
 
     //FMBHandle  : HWND;  // Handle to Mini Browser window
-
-  // variables for vis plug-in
-    DataReadyMsg : hwnd;
 
     MPEGFileInfoForm: TMPEGFileInfoForm;
     OggVorbisInfoForm : TOggVorbisInfoForm;
@@ -735,9 +732,10 @@ const
    MajorVer = '2';
    MinorVer = '10';
    RevVer = '0';
-
+{$IFDEF WINDOWS}
    NoDX8Msg : pchar = 'DirectX Ver 8 or higher is not installed.' + #13#10 +
                       'Sound effects except rotate are disabled.';
+{$ENDIF}
    StreamFileExt = '*.wav;*.mp1;*.mp2;*.mp3;*.ogg;*.aiff';
    MIDIFileExt = '*.MID;*.MIDI;*.RMI;*.KAR;';
    MusicFileExt = '*.MO3;*.IT;*.XM;*.S3M;*.MTM;*.MOD;*.UMX;';
@@ -1530,25 +1528,29 @@ begin
 
    if not (csDesigning in ComponentState) then
    begin
+{$IFDEF WINDOWS}
       fn := GetProgDir + 'basswma.dll';
       if FileExists(fn) then  // * Changed at Ver 2.00
       begin
-         HBASSWMA := BASS_PluginLoad(pChar(fn), 0);
+         HBASSWMA := BASS_PluginLoad(fn, 0);
          if HBASSWMA <> 0 then
             FBASSWMAReady := true;
-      end;
+       end;
+
       if FileExists(GetProgDir + 'bassmix.dll') then
       begin
          if Load_BASSMIXDLL(GetProgDir + 'bassmix.dll') then
-{$IFDEF WINDOWS}
             if (HIWORD(BASS_Mixer_GetVersion) = BASSVERSION) then
-{$ENDIF}
                FMixerReady := true
-{$IFDEF WINDOWS}
             else
                ShowErrorMsgBox('BASS Mixer version is not ' + BASSVERSIONTEXT + ' !');
-{$ENDIF}
+
       end;
+{$ELSE}
+      if Load_BASSMIXDLL('libbassmix.so') then FMixerReady:=true;
+{$ENDIF}
+
+      if FMixerReady then hLog.Send('bassmix is loaded');
 
       if Load_BASSCDDLL(GetProgDir + 'basscd.dll') then
       begin
@@ -1568,9 +1570,14 @@ begin
          end;
          FNumCDDrives := n;
       end;
-
+{$IFDEF WINDOWS}
       if Load_BASSMIDIDLL(GetProgDir + 'bassmidi.dll') then
+{$ELSE}
+      if Load_BASSMIDIDLL('libbassmidi.so') then
+{$ENDIF}
          FBASSMIDIReady := true;
+
+      if FBASSMIDIReady then hLog.Send('bassmidi is loaded');
 
       MPEG := TMPEGaudio.Create;
       Vorbis := TOggVorbis.Create;
@@ -3063,12 +3070,12 @@ begin
    result.Handle := 0;
 
    if not BASSDLLLoaded then begin
-      hLog.Send('BASS not loaded ('+FileName+')');
+      hLog.Send('BASS not loaded ('+FilePath+')');
       exit;
    end;
 
    if not FileExists(FilePath) then begin
-      hLog.Send('Plugin does not exist ('+FileName+')');
+      hLog.Send('Plugin does not exist ('+FilePath+')');
       exit;
    end;
 
@@ -3085,11 +3092,12 @@ begin
    FindNameRes:=FileSupportList.FindName(FileName, not ForceLoad);
 
    if FindNameRes<>-1 then begin
-      hLog.Send('Plugin already loaded ('+FileName+')');
+      hLog.Send('Plugin already loaded ('+FilePath+')');
       exit;
     end;
 
-   AddonHandle := BASS_PluginLoad(pChar(FilePath), 0);
+   AddonHandle := BASS_PluginLoad(FilePath, 0);
+
    if AddonHandle <> 0 then
    begin
       fd.Handle := AddonHandle;
@@ -3107,7 +3115,9 @@ begin
          FBASSAACReady := true;
       FileSupportList.Add(fd);
       result := fd;
-   end else hLog.Send('Plugin cannot be loaded ('+FileName+')');
+   end else begin
+      hLog.Send('Plugin cannot be loaded ('+FilePath+') | ERROR CODE: '+IntToStr(BASS_ErrorGetCode));
+   end;
 
 end;
 

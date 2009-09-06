@@ -9,7 +9,7 @@ Unit RT_bassmix;
 
 interface
 
-uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_Bass;
+uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_Bass, SysUtils, Dialogs;
 
 const
   // additional BASS_SetConfig option
@@ -80,8 +80,6 @@ var
 implementation
 
 function Load_BASSMIXDLL(const dllfilename : string) : boolean;
-var
-   oldmode : integer;
 begin
    if BASSMIX_Handle <> 0 then // is it already there ?
    begin
@@ -90,15 +88,9 @@ begin
    end;
 
    // load the dll
-{$IFDEF WINDOWS}
-   oldmode := SetErrorMode($8001);
-{$ENDIF}
-   BASSMIX_Handle := LoadLibrary(pchar(dllfilename));  // obtain the handle we want
-{$IFDEF WINDOWS}
-   SetErrorMode(oldmode);
-{$ENDIF}
+   BASSMIX_Handle := DynLibs.LoadLibrary(dllfilename);  // obtain the handle we want
 
-   if BASSMIX_Handle <> 0 then
+   if BASSMIX_Handle <> DynLibs.NilHandle then
    begin {now we tie the functions to the VARs from above}
      @BASS_Mixer_GetVersion:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_GetVersion');
      @BASS_Mixer_StreamCreate:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamCreate');
@@ -141,11 +133,14 @@ begin
      begin
         FreeLibrary(BASSMIX_Handle);
         BASSMIX_Handle := 0;
+        //hLog.Send('bassmix found but not proper version ('+IntToStr(BASS_ErrorGetCode)+')');
      end;
 
      result := (BASSMIX_Handle <> 0);
-   end else
+   end else begin
      result := false;
+     //hLog.Send('bassmix cannot be loaded ('+IntToStr(BASS_ErrorGetCode)+')');
+   end;
 end;
 
 procedure Unload_BASSMIXDLL;

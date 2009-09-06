@@ -2733,7 +2733,11 @@ begin
   MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height-Panel8.Height);
   MainWebView.SetPosition(0, Panel8.Height);
 
+{$IFDEF WINDOWS}
   HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
+{$ELSE}
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html');
+{$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;
