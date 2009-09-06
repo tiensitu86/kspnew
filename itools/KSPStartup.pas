@@ -3,7 +3,7 @@ unit KSPStartup;
 interface
 
 uses Forms, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst,
-  Qt4;
+  Qt4, BassPlayer;
 
 procedure SetupKSP;
 
@@ -93,6 +93,7 @@ begin
   QCoreApplication_addLibraryPath(@W);
 
   Application.ShowMainForm := True;
+  Player:=TBassPlayer.Create(nil);
 end;
 
 procedure SetupKSP;

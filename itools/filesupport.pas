@@ -93,10 +93,5 @@ begin
   Result:=Stream.Duration;
 end;
 
-initialization
-  Player:=TBassPlayer.Create(nil);
-finalization
-  Player.Free;
-
 end.
  
