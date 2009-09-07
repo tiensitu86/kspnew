@@ -65,6 +65,8 @@ begin
       (FileSupportList.FindExtension(ExtractFileExt(STemp.Strings[i]), false)>-1) then
         st.Add(STemp.Strings[i]);
 
+  hLog.Send('MEDIA LIBRARY: Scanning folder (part 2) '+Entry.Folder);
+
   ItemsNo:=BuildMediaInfo(st, true, AllSongs, FileSupportList,
     KSPMainWindow.SongsInLib);
 

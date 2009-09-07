@@ -115,7 +115,7 @@ begin
     try
       RmDir(Path)
     except
-      ShowMessage(Path);
+      hLog.Send('Unable to delete folder: '+Path);
     end;
 
 

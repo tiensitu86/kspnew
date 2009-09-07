@@ -177,6 +177,7 @@ object KSPMainWindow: TKSPMainWindow
     Position = 15
     Smooth = True
     TabOrder = 3
+    Visible = False
     BarShowText = True
   end
   object Panel2: TPanel

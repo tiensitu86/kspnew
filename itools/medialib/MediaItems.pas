@@ -424,13 +424,12 @@ begin
   FSL:=FileSL;
 //  p:=TPlaylist.Create;
 
-  KSPMainWindow.MediaLibProgress.Visible:=true;
-  KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
 //  onestep:=stemp.Count div 100;
 //  curstep:=0;
   stemp.SaveToFile(KSPdataFolder+'new_files.txt');
   hLog.Send('Starting reading tags...');
    if stemp.Count>0 then
+    KSPMainWindow.MediaLibProgress.Visible:=true;
     KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
   for i:=0 to stemp.Count-1 do begin
 
@@ -464,12 +463,12 @@ begin
 //    KSPMainWindow.MediaLibProgress.ShowProgressText:=true;
 
 
-    KSPMainWindow.MediaLibProgress.Position:=i;//KSPMainWindow.MediaLibProgress.Max-stemp.Count;
+      KSPMainWindow.MediaLibProgress.Position:=i;//KSPMainWindow.MediaLibProgress.Max-stemp.Count;
 //    KSPMainWindow.MediaLibProgress.ProgressText:=IntToStr(KSPMainWindow.MediaLibProgress.Value)+'/'+
-
+      KSPMainWindow.MediaLibProgress.Visible:=false;
     end;
 
-  KSPMainWindow.MediaLibProgress.Visible:=false;
+
 //  p.Free;
   //while KSPDatabaseThreads>0 do
   //  Sleep(100);
