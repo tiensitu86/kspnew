@@ -1,0 +1,63 @@
+object SupportForm: TSupportForm
+  Left = 473
+  Height = 468
+  Top = 244
+  Width = 400
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'KSP Crash Report'
+  ClientHeight = 468
+  ClientWidth = 400
+  Position = poScreenCenter
+  LCLVersion = '0.9.26.2'
+  object Label1: TLabel
+    Left = 8
+    Height = 57
+    Top = 8
+    Width = 384
+    Caption = 'KSP recently crashed. You may not be able to continue work with KSP til restart.'#13#10'Review following report and press Save button to save it on your HDD.'#13#10'Press Send Issue Report button to report this crash. Don''t forget to attach'#13#10'generated report'
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 338
+    Top = 80
+    Width = 384
+    Lines.Strings = (
+      'Memo1'
+    )
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 317
+    Height = 25
+    Top = 432
+    Width = 75
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 239
+    Height = 25
+    Top = 432
+    Width = 75
+    Caption = 'Save Report'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 120
+    Height = 25
+    Top = 432
+    Width = 115
+    Caption = 'Send Issue Report'
+    TabOrder = 3
+  end
+  object SDD: TSaveDialog
+    left = 77
+    top = 331
+  end
+end

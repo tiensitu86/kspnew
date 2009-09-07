@@ -1,0 +1,920 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: kspstrings.salbum
+msgctxt "kspstrings.salbum"
+msgid "Album"
+msgstr ""
+
+#: kspstrings.sartist
+msgctxt "kspstrings.sartist"
+msgid "Artist"
+msgstr ""
+
+#: kspstrings.sbookmarkdelete
+msgid "Are you sure you want to remove bookmark %s?"
+msgstr ""
+
+#: kspstrings.sbookmarkdeletecaption
+msgid "Delete bookmark"
+msgstr ""
+
+#: kspstrings.sbookmarks
+msgctxt "kspstrings.sbookmarks"
+msgid "Bookmarks"
+msgstr ""
+
+#: kspstrings.scannotdeleterenamedefauleq
+msgid "Any default setting of Equalizer cannot be renamed or deleted.\\nYou can only rename or delete settings created by you"
+msgstr ""
+
+#: kspstrings.sclose
+msgctxt "kspstrings.sclose"
+msgid "Close"
+msgstr ""
+
+#: kspstrings.scustomhintplaylist
+msgid "KSP Playlist Editor Quick Hint"
+msgstr ""
+
+#: kspstrings.sdbmemo
+msgid "KSP requires connection to database.\\nCurrently MySQL and Sqlite3 database is supported.\\nProvide valid database information in order to\\nconfigure application.\\n\\nIMPORTANT:\\n\\nKSP requires MySQL username that has FULL rights\\nto chosen database (create table, insert, delete, alter,\\nselect). Additionally if that user has create database\\nright it is possible thatKSP will create database if chosen\\ndatabase is missing. Otherwise you have to create it manually"
+msgstr ""
+
+#: kspstrings.sdownloadnow
+msgid "Download Now"
+msgstr ""
+
+#: kspstrings.sdownloadprogress
+msgid "%s buffered"
+msgstr ""
+
+#: kspstrings.sduplicateditems
+msgid "Because of some reason in Media Library there are\\nsome items duplicated. KSP will now search for this duplicated items\\nand eliminate them. This process can tak a few minutes and computer can\\nslow down for this time. Please, be patient"
+msgstr ""
+
+#: kspstrings.selapsed
+msgid "Elapsed:"
+msgstr ""
+
+#: kspstrings.seqnameinput
+msgid "Preset name:"
+msgstr ""
+
+#: kspstrings.seqnameinputcaption
+msgid "Preset Name:"
+msgstr ""
+
+#: kspstrings.sfile
+msgid "File:"
+msgstr ""
+
+#: kspstrings.sgenre
+msgctxt "kspstrings.sgenre"
+msgid "Genre"
+msgstr ""
+
+#: kspstrings.sinputbookmarkcaption
+msgctxt "kspstrings.sinputbookmarkcaption"
+msgid "Bookmark name:"
+msgstr ""
+
+#: kspstrings.sinputbookmarkprompt
+msgctxt "kspstrings.sinputbookmarkprompt"
+msgid "Bookmark name:"
+msgstr ""
+
+#: kspstrings.sinternetmedia
+msgctxt "kspstrings.sinternetmedia"
+msgid "Internet Media"
+msgstr ""
+
+#: kspstrings.slastsongplayed
+msgid "Last Song - KSP"
+msgstr ""
+
+#: kspstrings.slastsongplayed2
+msgid "Last song played"
+msgstr ""
+
+#: kspstrings.slength
+msgid "Length:"
+msgstr ""
+
+#: kspstrings.slibrary
+msgid "Library"
+msgstr ""
+
+#: kspstrings.smedialibrary
+msgid "Media Library"
+msgstr ""
+
+#: kspstrings.smetacontent
+msgid "ICECAST: Playing %s"
+msgstr ""
+
+#: kspstrings.smigratedtonew
+msgid "Media Items database migrated into new version.\\nOld entries are still available.\\nIf you do not experience any problems with the new database\\nyou can safely remove them"
+msgstr ""
+
+#: kspstrings.snativefiles
+msgid "Native file formats"
+msgstr ""
+
+#: kspstrings.snewestrelease
+msgid "The newest release is:"
+msgstr ""
+
+#: kspstrings.sno
+msgid "No"
+msgstr ""
+
+#: kspstrings.snotifications
+msgid "Notifications"
+msgstr ""
+
+#: kspstrings.sonminimizetotrayalert
+msgid "You have minimized KSP to system tray, To restore it just right click on KSP icon. You can disable this alert in KSP options"
+msgstr ""
+
+#: kspstrings.splayingnewfile
+msgid "New File - KSP"
+msgstr ""
+
+#: kspstrings.splaylist
+msgid "Playlist"
+msgstr ""
+
+#: kspstrings.splaylists
+msgid "Playlists"
+msgstr ""
+
+#: kspstrings.splugins
+msgid "Plugins"
+msgstr ""
+
+#: kspstrings.spluginsdisabled
+msgid "All currently installed plugins are disabled"
+msgstr ""
+
+#: kspstrings.spluginsenabled
+msgid "All currently installed plugins are enabled"
+msgstr ""
+
+#: kspstrings.spluginsloaded
+msgid "All enabled plugins are loaded"
+msgstr ""
+
+#: kspstrings.spluginsunloaded
+msgid "All enabled plugins are unloaded"
+msgstr ""
+
+#: kspstrings.sremaining
+msgid "Remaining:"
+msgstr ""
+
+#: kspstrings.srepeatall
+msgid "Repeat ALL"
+msgstr ""
+
+#: kspstrings.srepeatoff
+msgid "OFF"
+msgstr ""
+
+#: kspstrings.srepeatone
+msgid "Repeat ONE"
+msgstr ""
+
+#: kspstrings.srestartneeded
+msgid "This feature will be changed/enabled after restart"
+msgstr ""
+
+#: kspstrings.ssamplealert
+msgid "Sample alert text"
+msgstr ""
+
+#: kspstrings.ssamplealertcaption
+msgid "Sample alert caption"
+msgstr ""
+
+#: kspstrings.sscanning
+msgid "Scanning folders..."
+msgstr ""
+
+#: kspstrings.sscanningdone
+msgid "Media library has been rescaned sucessfully. Now you can continue your work"
+msgstr ""
+
+#: kspstrings.ssetup
+msgid "Setup"
+msgstr ""
+
+#: kspstrings.sshoutcastaddresscaption
+msgid "Add URL:"
+msgstr ""
+
+#: kspstrings.sshoutcastaddressdesc
+msgid "Enter the URL to be played"
+msgstr ""
+
+#: kspstrings.sshoutcastentry
+msgid "ICECAST: %s"
+msgstr ""
+
+#: kspstrings.ssortby
+msgid "Sort by"
+msgstr ""
+
+#: kspstrings.stagalbum
+msgid "Album:"
+msgstr ""
+
+#: kspstrings.stagartist
+msgid "Artist:"
+msgstr ""
+
+#: kspstrings.stagcomment
+msgid "Comment:"
+msgstr ""
+
+#: kspstrings.staggenre
+msgid "Genre:"
+msgstr ""
+
+#: kspstrings.staggenreid
+msgid "Genre-ID:"
+msgstr ""
+
+#: kspstrings.stagyear
+msgid "Year:"
+msgstr ""
+
+#: kspstrings.stitle
+msgid "Title:"
+msgstr ""
+
+#: kspstrings.stocenteroutput
+msgid "Set to center"
+msgstr ""
+
+#: kspstrings.stoleftoutput
+msgid "%s%% to left speaker"
+msgstr ""
+
+#: kspstrings.storightoutput
+msgid "%s%% to right speaker"
+msgstr ""
+
+#: kspstrings.sunknownalbum
+msgid "Unknown Album"
+msgstr ""
+
+#: kspstrings.sunknownartist
+msgid "Unknown Artist"
+msgstr ""
+
+#: kspstrings.sunknowngenre
+msgid "Unknown Genre"
+msgstr ""
+
+#: kspstrings.sunknowntitle
+msgid "Unknown Title"
+msgstr ""
+
+#: kspstrings.sunknownyear
+msgid "Unknown Year"
+msgstr ""
+
+#: kspstrings.swelcome
+msgctxt "kspstrings.swelcome"
+msgid "Welcome"
+msgstr ""
+
+#: kspstrings.sxmlerror
+msgid "XML Parser: An error occured while parsing, line: %s, char: %s, message: %s"
+msgstr ""
+
+#: kspstrings.sxmlincorrectchar
+msgid "XML Parser: Incorrect char"
+msgstr ""
+
+#: kspstrings.sxmlincorrectcharb
+msgid "XML Parser: Incorrect end of file. \" was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrectcharequal
+msgid "XML Parser: Incorrect char. = was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrectcharlower
+msgid "XML Parser: Char < is expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrectcharparamname
+msgid "XML Parser: Incorrect char in parameter name"
+msgstr ""
+
+#: kspstrings.sxmlincorrecteof
+msgid "XML Parser: Unexpected end of file"
+msgstr ""
+
+#: kspstrings.sxmlincorrecteofb
+msgid "XML Parser: Unexpected end of file. \" was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrecteofequal
+msgid "XML Parser: Unexpected end of file. = was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrecteofnoparam
+msgid "XML Parser: Unexpected end of file. A parameter was not closed"
+msgstr ""
+
+#: kspstrings.sxmlincorrecteofparams
+msgid "XML Parser: Unexpected end of file. Tag closing or a parameter was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrectindex
+msgid "XML Parser: Incorrect Index: %s"
+msgstr ""
+
+#: kspstrings.sxmlincorrectnoclosingtag
+msgid "XML Parser: Unexpected end of file. A closing tag was expected"
+msgstr ""
+
+#: kspstrings.sxmlincorrecttagname
+msgid "XML Parser: Incorrect tag name"
+msgstr ""
+
+#: kspstrings.sxmlnoeoc
+msgid "XML Parser: Unexpected end of file. Comment is not closed"
+msgstr ""
+
+#: kspstrings.sxmlunexpectedclosetag
+msgid "XML Parser: Unexpected closing tag"
+msgstr ""
+
+#: kspstrings.syear
+msgctxt "kspstrings.syear"
+msgid "Year"
+msgstr ""
+
+#: kspstrings.syes
+msgid "Yes"
+msgstr ""
+
+#: optionsfrm2.serrorconnectiontodatabase
+msgid "An error occured while trying to connect to database server.\\nPlease read applications documentation for more details\\n\\nError code: %d"
+msgstr ""
+
+#: TKSPMAINWINDOW.ACTION3.CAPTION
+msgid "Action3"
+msgstr ""
+
+#: TKSPMAINWINDOW.ACTION4.CAPTION
+msgid "Action4"
+msgstr ""
+
+#: TKSPMAINWINDOW.ACTION5.CAPTION
+msgid "Action5"
+msgstr ""
+
+#: TKSPMAINWINDOW.ADDCURRENTFROMPLAYLIST1.CAPTION
+msgid "Add Currently Played Bookmark"
+msgstr ""
+
+#: TKSPMAINWINDOW.ADDSELECTEDFROMPLAYLIST1.CAPTION
+msgid "Add Selected To Bookmark"
+msgstr ""
+
+#: TKSPMAINWINDOW.BOOKMARKS1.CAPTION
+msgctxt "TKSPMAINWINDOW.BOOKMARKS1.CAPTION"
+msgid "Bookmarks"
+msgstr ""
+
+#: TKSPMAINWINDOW.BOOKMARKSMENU.CAPTION
+msgctxt "TKSPMAINWINDOW.BOOKMARKSMENU.CAPTION"
+msgid "Bookmarks"
+msgstr ""
+
+#: TKSPMAINWINDOW.BOOKMARKSSETUPPAGE.CAPTION
+msgid "BookmarksSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON1.CAPTION
+msgctxt "TKSPMAINWINDOW.BUTTON1.CAPTION"
+msgid "Delete"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON10.CAPTION
+msgid "Unload"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON11.CAPTION
+msgid "Load ALL"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON12.CAPTION
+msgid "Unload ALL"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON13.CAPTION
+msgid "Disable ALL Plugins"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON14.CAPTION
+msgid "Enable ALL Plugins"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON15.CAPTION
+msgid "About QT"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON2.CAPTION
+msgid "Save"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON3.CAPTION
+msgid "Add"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON4.CAPTION
+msgid "HOW CAN I HELP?"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON5.CAPTION
+msgid "Force Rescan"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON6.CAPTION
+msgid "Setup Database"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON7.CAPTION
+msgid "Preview"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON8.CAPTION
+msgid "Apply"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON9.CAPTION
+msgid "Load"
+msgstr ""
+
+#: TKSPMAINWINDOW.CAPTION
+msgctxt "TKSPMAINWINDOW.CAPTION"
+msgid "KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.CLEARPLAYLISTACTION.CAPTION
+msgid "Clear Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.DEFAULTSETUPPAGE.CAPTION
+msgid "DefaultSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.DELETEBOOKMARK.CAPTION
+msgctxt "TKSPMAINWINDOW.DELETEBOOKMARK.CAPTION"
+msgid "Delete"
+msgstr ""
+
+#: TKSPMAINWINDOW.DELETESELECTEDACTION.CAPTION
+msgid "Delete Selected"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL1.CAPTION
+msgid "Device buffer (in ms):"
+msgstr ""
+
+#: TKSPMAINWINDOW.MEDIALIBSETUPPAGE.CAPTION
+msgid "MediaLibSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM10.CAPTION
+msgid "By Track"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM11.CAPTION
+msgid "By Album"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM12.CAPTION
+msgid "By Year"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM13.CAPTION
+msgid "By Genre"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM14.CAPTION
+msgid "By File Name"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM15.CAPTION
+msgid "File Information"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM16.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM16.CAPTION"
+msgid "KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM17.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM17.CAPTION"
+msgid "Bookmarks"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM17.HINT
+msgctxt "TKSPMAINWINDOW.MENUITEM17.HINT"
+msgid "Bookmarks"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM18.CAPTION
+msgid "Help"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM22.CAPTION
+msgid "How Can I Help?"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM23.CAPTION
+msgid "Exit KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM3.CAPTION
+msgid "Add Selected To Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM4.CAPTION
+msgid "Select All"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM5.CAPTION
+msgid "Select None"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM6.CAPTION
+msgid "Revert Selection"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM8.CAPTION
+msgid "Sort Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM9.CAPTION
+msgid "By Artist"
+msgstr ""
+
+#: TKSPMAINWINDOW.N2.CAPTION
+msgid "-"
+msgstr ""
+
+#: TKSPMAINWINDOW.NOTCHECKED.CAPTION
+msgid "Enable OSD"
+msgstr ""
+
+#: TKSPMAINWINDOW.NOTSETUPPAGE.CAPTION
+msgid "NotSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.OPENFILEACTION.CAPTION
+msgid "Open File / Append Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.OSDPOSBOX.TEXT
+msgid "Left Top Corner"
+msgstr ""
+
+#: TKSPMAINWINDOW.PAGE1.CAPTION
+msgid "Page1"
+msgstr ""
+
+#: TKSPMAINWINDOW.PAGE2.CAPTION
+msgid "Page2"
+msgstr ""
+
+#: TKSPMAINWINDOW.PAGE3.CAPTION
+msgid "Page3"
+msgstr ""
+
+#: TKSPMAINWINDOW.PANEL5.CAPTION
+msgid "Panel5"
+msgstr ""
+
+#: TKSPMAINWINDOW.PLGONSTARTUP.CAPTION
+msgid "Load On Startup"
+msgstr ""
+
+#: TKSPMAINWINDOW.PLUGINSSETUPPAGE.CAPTION
+msgid "PluginsSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.RELATIVEPATHS.CAPTION
+msgid "Use relative paths for playlist saving"
+msgstr ""
+
+#: TKSPMAINWINDOW.RENAMEBOOKMARK.CAPTION
+msgid "Rename"
+msgstr ""
+
+#: TKSPMAINWINDOW.REPEATBUTTON.CAPTION
+msgid "Repeat"
+msgstr ""
+
+#: TKSPMAINWINDOW.SAVEWHOLEPLAYLISTASBOOKMARK1.CAPTION
+msgid "Add Playlist To Bookmark"
+msgstr ""
+
+#: TKSPMAINWINDOW.SHUFFLEBUTTON.CAPTION
+msgid "Shuffle"
+msgstr ""
+
+#: TKSPMAINWINDOW.SPEEDBUTTON1.CAPTION
+msgctxt "TKSPMAINWINDOW.SPEEDBUTTON1.CAPTION"
+msgid "GO"
+msgstr ""
+
+#: TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION
+msgctxt "TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION"
+msgid "GO"
+msgstr ""
+
+#: TKSPMAINWINDOW.SYSTEMSETUPPAGE.CAPTION
+msgid "SystemSetupPage"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET1.CAPTION
+msgid "Media"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET2.CAPTION
+msgid "Global Plugins"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET3.CAPTION
+msgctxt "TKSPMAINWINDOW.TABSHEET3.CAPTION"
+msgid "Welcome"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET4.CAPTION
+msgid "About..."
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET5.CAPTION
+msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
+msgid "Internet Media"
+msgstr ""
+
+#: TKSPOPTIONS.BUTTON1.CAPTION
+msgid "Cancel"
+msgstr ""
+
+#: TKSPOPTIONS.BUTTON2.CAPTION
+msgid "Ok"
+msgstr ""
+
+#: TKSPOPTIONS.CAPTION
+msgid "Database Options:"
+msgstr ""
+
+#: TKSPOPTIONS.CHECKBOX1.CAPTION
+msgid "Use Sqlite"
+msgstr ""
+
+#: TKSPOPTIONS.DBNAME.EDITLABEL.CAPTION
+msgid "Database name:"
+msgstr ""
+
+#: TKSPOPTIONS.DBPASSWORD.EDITLABEL.CAPTION
+msgid "Password:"
+msgstr ""
+
+#: TKSPOPTIONS.DBUSERNAME.EDITLABEL.CAPTION
+msgid "Username:"
+msgstr ""
+
+#: TKSPOPTIONS.SERVERADDRESS.EDITLABEL.CAPTION
+msgid "Database server address:"
+msgstr ""
+
+#: TKSPOPTIONS.SERVERPORT.EDITLABEL.CAPTION
+msgid "Server port:"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCANCEL.CAPTION
+msgid "&Cancel"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCOPYFROM.CAPTION
+msgid "Copy &from ID3v1"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNCOPYTO.CAPTION
+msgid "Copy &to ID3v1"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNUNDO.CAPTION
+msgid "Undo Changes"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.BTNUPDATE.CAPTION
+msgid "&Update"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CAPTION
+msgid "MPEG file info box + ID3 tag editor"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CBID3V1TAG.CAPTION
+msgid "ID3v&1 Tag"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.CBID3V2TAG.CAPTION
+msgid "ID3v&2 Tag"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.FFILENAME.CAPTION
+msgid "fFileName"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GENRE.CAPTION
+msgctxt "TMPEGFILEINFOFORM.GENRE.CAPTION"
+msgid "Genre"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX1.CAPTION
+msgid " ID3v1 "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX2.CAPTION
+msgid " ID3v2 "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.GROUPBOX3.CAPTION
+msgid " MPEG info "
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL1.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL1.CAPTION"
+msgid "Track #"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL10.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL10.CAPTION"
+msgid "Album"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL11.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL11.CAPTION"
+msgid "Year"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL12.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL12.CAPTION"
+msgid "Genre"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL13.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL13.CAPTION"
+msgid "Comment"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL14.CAPTION
+msgid "Composer"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL15.CAPTION
+msgid "Orig. Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL16.CAPTION
+msgid "Copyright"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL17.CAPTION
+msgid "URL"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL18.CAPTION
+msgid "Encoded by"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL19.CAPTION
+msgid "File/URL :"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL2.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL2.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL3.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL3.CAPTION"
+msgid "Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL4.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL4.CAPTION"
+msgid "Album"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL5.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL5.CAPTION"
+msgid "Year"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL6.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL6.CAPTION"
+msgid "Comment"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL7.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL7.CAPTION"
+msgid "Track #"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL8.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL8.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LABEL9.CAPTION
+msgctxt "TMPEGFILEINFOFORM.LABEL9.CAPTION"
+msgid "Artist"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBBITFRAME.CAPTION
+msgid "lbBitFrame"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBCOPYRIGHTED.CAPTION
+msgid "lbCopyrighted"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBCRC.CAPTION
+msgid "lbCRC"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBEMPHASIS.CAPTION
+msgid "lbEmphasis"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBFREQ_CHANNELS.CAPTION
+msgid "lbFreq_Channels"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBHEADERPOS.CAPTION
+msgid "lbHeaderPos"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBLENGTH.CAPTION
+msgid "lbLength"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBORIGINAL.CAPTION
+msgid "lbOriginal"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBSIZE.CAPTION
+msgid "lbSize"
+msgstr ""
+
+#: TMPEGFILEINFOFORM.LBTYPE.CAPTION
+msgid "lbType"
+msgstr ""
+
+#: TSPLASHFORM.CAPTION
+msgid "SplashForm"
+msgstr ""
+
+#: TSUPPORTFORM.BUTTON1.CAPTION
+msgctxt "TSUPPORTFORM.BUTTON1.CAPTION"
+msgid "Close"
+msgstr ""
+
+#: TSUPPORTFORM.BUTTON2.CAPTION
+msgid "Save Report"
+msgstr ""
+
+#: TSUPPORTFORM.BUTTON3.CAPTION
+msgid "Send Issue Report"
+msgstr ""
+
+#: TSUPPORTFORM.CAPTION
+msgid "KSP Crash Report"
+msgstr ""
+
+#: TSUPPORTFORM.LABEL1.CAPTION
+msgid "KSP recently crashed. You may not be able to continue work with KSP til restart."
+msgstr ""
+

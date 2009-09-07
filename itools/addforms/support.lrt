@@ -1,0 +1,8 @@
+TSUPPORTFORM.CAPTION=KSP Crash Report
+TSUPPORTFORM.LABEL1.CAPTION=KSP recently crashed. You may not be able to continue work with KSP til restart.
+Review following report and press Save button to save it on your HDD.
+Press Send Issue Report button to report this crash. Don't forget to attach
+generated report
+TSUPPORTFORM.BUTTON1.CAPTION=Close
+TSUPPORTFORM.BUTTON2.CAPTION=Save Report
+TSUPPORTFORM.BUTTON3.CAPTION=Send Issue Report

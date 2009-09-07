@@ -1,0 +1,97 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TWMAInfoForm','FORMDATA',[
+  'TPF0'#12'TWMAInfoForm'#11'WMAInfoForm'#4'Left'#3'2'#1#6'Height'#3#153#1#3'To'
+  +'p'#3#18#1#5'Width'#3'h'#2#11'BorderStyle'#7#8'bsDialog'#7'Caption'#6#21'WMA'
+  +' info + tag editor'#12'ClientHeight'#3#153#1#11'ClientWidth'#3'h'#2#11'Font'
+  +'.Height'#2#245#9'Font.Name'#6#13'MS Sans Serif'#8'OnCreate'#7#10'FormCreate'
+  +#9'OnDestroy'#7#11'FormDestroy'#6'OnShow'#7#8'FormShow'#8'Position'#7#15'poD'
+  +'esktopCenter'#10'LCLVersion'#6#8'0.9.26.2'#0#6'TLabel'#6'Label9'#4'Left'#2
+  +#15#6'Height'#2#11#3'Top'#3#214#0#5'Width'#2#30#7'Caption'#6#7'Artist:'#11'P'
+  +'arentColor'#8#0#0#6'TLabel'#7'Label11'#4'Left'#2#15#6'Height'#2#11#3'Top'#3
+  +#1#1#5'Width'#2#22#7'Caption'#6#6'Title:'#11'ParentColor'#8#0#0#6'TLabel'#7
+  +'Label13'#4'Left'#2#15#6'Height'#2#11#3'Top'#3#22#1#5'Width'#2' '#7'Caption'
+  +#6#6'Album:'#11'ParentColor'#8#0#0#6'TLabel'#7'Label10'#4'Left'#2#15#6'Heigh'
+  +'t'#2#11#3'Top'#3','#1#5'Width'#2#25#7'Caption'#6#5'Year:'#11'ParentColor'#8
+  +#0#0#6'TLabel'#7'Label14'#4'Left'#3#177#0#6'Height'#2#11#3'Top'#3','#1#5'Wid'
+  +'th'#2#28#7'Caption'#6#6'Track:'#11'ParentColor'#8#0#0#6'TLabel'#7'Label16'#4
+  +'Left'#3'F'#1#6'Height'#2#11#3'Top'#2#29#5'Width'#2'6'#7'Caption'#6#9'Commen'
+  +'ts:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label1'#4'Left'#2#15#6'Height'#2#11#3
+  +'Top'#3#192#0#5'Width'#2' '#7'Caption'#6#6'Genre:'#11'ParentColor'#8#0#0#6'T'
+  +'Label'#6'Label2'#4'Left'#3'F'#1#6'Height'#2#11#3'Top'#3#166#0#5'Width'#2#31
+  +#7'Caption'#6#7'Lyrics:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'Left'#2
+  +#15#6'Height'#2#11#3'Top'#3#169#0#5'Width'#2'+'#7'Caption'#6#8'Encoder:'#11
+  +'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#15#6'Height'#2#11#3'Top'#3
+  +#235#0#5'Width'#2'4'#7'Caption'#6#9'Composer:'#11'ParentColor'#8#0#0#6'TLabe'
+  +'l'#6'Label6'#4'Left'#2#15#6'Height'#2#11#3'Top'#3'A'#1#5'Width'#2#18#7'Capt'
+  +'ion'#6#4'Url:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label7'#4'Left'#2#15#6'Hei'
+  +'ght'#2#11#3'Top'#3'W'#1#5'Width'#2'3'#7'Caption'#6#10'Copyright:'#11'Parent'
+  +'Color'#8#0#0#6'TLabel'#7'Label18'#4'Left'#2#18#6'Height'#2#11#3'Top'#3'q'#1
+  +#5'Width'#3'P'#1#7'Caption'#6'LThe original author : Philip Hadar - Israel  '
+  +'(modifications by Chris Tr?ken)'#11'ParentColor'#8#0#0#6'TLabel'#7'Label20'
+  +#4'Left'#2#19#6'Height'#2#11#3'Top'#3#130#1#5'Width'#3#11#1#7'Caption'#6'7Ad'
+  +'ditional modification for TBASSPlayer by Silhwan Hyun'#11'ParentColor'#8#0#0
+  +#6'TLabel'#6'Label4'#4'Left'#2#12#6'Height'#2#12#3'Top'#2#13#5'Width'#2'7'#7
+  +'Caption'#6#10'File/URL :'#12'Font.CharSet'#7#12'ANSI_CHARSET'#11'Font.Heigh'
+  +'t'#2#244#9'Font.Name'#6#5'Arial'#11'ParentColor'#8#10'ParentFont'#8#0#0#6'T'
+  +'Label'#9'fFileName'#4'Left'#2'H'#6'Height'#2#15#3'Top'#2#13#5'Width'#3#17#2
+  +#8'AutoSize'#8#7'Caption'#6#9'fFileName'#12'Font.CharSet'#7#12'ANSI_CHARSET'
+  +#10'Font.Color'#7#8'clPurple'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'
+  +#11'ParentColor'#8#10'ParentFont'#8#0#0#5'TEdit'#7'fArtist'#4'Left'#2'C'#6'H'
+  +'eight'#2#20#3'Top'#3#210#0#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANSI_CHAR'
+  +'SET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Aria'
+  +'l'#10'ParentFont'#8#8'TabOrder'#2#1#0#0#5'TEdit'#6'fTitle'#4'Left'#2'C'#6'H'
+  +'eight'#2#20#3'Top'#3#253#0#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANSI_CHAR'
+  +'SET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Aria'
+  +'l'#10'ParentFont'#8#8'TabOrder'#2#2#0#0#5'TEdit'#6'fAlbum'#4'Left'#2'C'#6'H'
+  +'eight'#2#20#3'Top'#3#19#1#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANSI_CHARS'
+  +'ET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'
+  +#10'ParentFont'#8#8'TabOrder'#2#3#0#0#5'TEdit'#5'fYear'#4'Left'#2'C'#6'Heigh'
+  +'t'#2#20#3'Top'#3')'#1#5'Width'#2'*'#12'Font.CharSet'#7#12'ANSI_CHARSET'#10
+  +'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'#10'Pa'
+  +'rentFont'#8#8'TabOrder'#2#4#0#0#5'TEdit'#6'fTrack'#4'Left'#3#216#0#6'Height'
+  +#2#20#3'Top'#3')'#1#5'Width'#2#30#12'Font.CharSet'#7#12'ANSI_CHARSET'#10'Fon'
+  +'t.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'#10'Paren'
+  +'tFont'#8#8'TabOrder'#2#5#0#0#5'TMemo'#9'fComments'#4'Left'#3'D'#1#6'Height'
+  +#2'p'#3'Top'#2'-'#5'Width'#3#25#1#5'Color'#7#7'clWhite'#12'Font.CharSet'#7#12
+  +'ANSI_CHARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'
+  +#6#5'Arial'#10'ParentFont'#8#10'ScrollBars'#7#10'ssVertical'#8'TabOrder'#2#6
+  +#8'WordWrap'#8#0#0#5'TEdit'#6'fGenre'#4'Left'#2'C'#6'Height'#2#20#3'Top'#3
+  +#188#0#5'Width'#3#148#0#12'Font.CharSet'#7#12'ANSI_CHARSET'#10'Font.Color'#7
+  +#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'#10'ParentFont'#8#8
+  +'TabOrder'#2#7#0#0#7'TButton'#9'btnUpdate'#4'Left'#3#130#1#6'Height'#2#25#3
+  +'Top'#3'r'#1#5'Width'#2'K'#7'Caption'#6#6'Update'#7'Enabled'#8#7'OnClick'#7
+  +#14'btnUpdateClick'#8'TabOrder'#2#8#0#0#7'TButton'#9'btnCancel'#4'Left'#3#226
+  +#1#6'Height'#2#25#3'Top'#3'r'#1#5'Width'#2'K'#7'Caption'#6#6'Cancel'#7'OnCli'
+  +'ck'#7#14'btnCancelClick'#8'TabOrder'#2#9#0#0#5'TMemo'#7'fLyrics'#4'Left'#3
+  +'D'#1#6'Height'#3#177#0#3'Top'#3#183#0#5'Width'#3#25#1#5'Color'#7#7'clWhite'
+  ,#12'Font.CharSet'#7#12'ANSI_CHARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Heig'
+  +'ht'#2#244#9'Font.Name'#6#5'Arial'#10'ParentFont'#8#10'ScrollBars'#7#10'ssVe'
+  +'rtical'#8'TabOrder'#2#10#8'WordWrap'#8#0#0#5'TEdit'#8'fEncoder'#4'Left'#2'C'
+  +#6'Height'#2#20#3'Top'#3#166#0#5'Width'#3#148#0#12'Font.CharSet'#7#12'ANSI_C'
+  +'HARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'A'
+  +'rial'#10'ParentFont'#8#8'TabOrder'#2#0#0#0#5'TEdit'#9'fComposer'#4'Left'#2
+  +'C'#6'Height'#2#20#3'Top'#3#231#0#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANS'
+  +'I_CHARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5
+  +'Arial'#10'ParentFont'#8#8'TabOrder'#2#11#0#0#5'TEdit'#4'fUrl'#4'Left'#2'C'#6
+  +'Height'#2#20#3'Top'#3'>'#1#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANSI_CHAR'
+  +'SET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5'Aria'
+  +'l'#10'ParentFont'#8#8'TabOrder'#2#12#0#0#5'TEdit'#10'fCopyright'#4'Left'#2
+  +'C'#6'Height'#2#20#3'Top'#3'T'#1#5'Width'#3#234#0#12'Font.CharSet'#7#12'ANSI'
+  +'_CHARSET'#10'Font.Color'#7#6'clNavy'#11'Font.Height'#2#244#9'Font.Name'#6#5
+  +'Arial'#10'ParentFont'#8#8'TabOrder'#2#13#0#0#9'TGroupBox'#9'GroupBox3'#4'Le'
+  +'ft'#2#22#6'Height'#2'}'#3'Top'#2'!'#5'Width'#3#248#0#7'Caption'#6#10' WMA i'
+  +'nfo '#12'ClientHeight'#2'k'#11'ClientWidth'#3#244#0#5'Ctl3D'#8#8'TabOrder'#2
+  +#14#0#6'TLabel'#6'lbSize'#4'Left'#2#16#6'Height'#2#13#3'Top'#2#15#5'Width'#2
+  +#28#7'Caption'#6#6'lbSize'#11'ParentColor'#8#0#0#6'TLabel'#8'lbLength'#4'Lef'
+  +'t'#2#16#6'Height'#2#13#3'Top'#2#30#5'Width'#2')'#7'Caption'#6#8'lbLength'#11
+  +'ParentColor'#8#0#0#6'TLabel'#9'lbBitrate'#4'Left'#2#16#6'Height'#2#13#3'Top'
+  +#2'.'#5'Width'#2'&'#7'Caption'#6#9'lbBitrate'#11'ParentColor'#8#0#0#6'TLabel'
+  +#10'lbChannels'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'L'#5'Width'#2'4'#7'Capt'
+  +'ion'#6#10'lbChannels'#11'ParentColor'#8#0#0#6'TLabel'#5'lbVBR'#4'Left'#2#16
+  +#6'Height'#2#13#3'Top'#2'\'#5'Width'#2#30#7'Caption'#6#5'lbVBR'#11'ParentCol'
+  +'or'#8#0#0#6'TLabel'#14'lbSamplingrate'#4'Left'#2#16#6'Height'#2#13#3'Top'#2
+  +'='#5'Width'#2'E'#7'Caption'#6#14'lbSamplingrate'#11'ParentColor'#8#0#0#6'TL'
+  +'abel'#9'lbVersion'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'k'#5'Width'#2'+'#7
+  +'Caption'#6#9'lbVersion'#11'ParentColor'#8#0#0#0#0
+]);

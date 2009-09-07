@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\2.2.2\bin\i386-win32\fpc.exe" Date="979720427"/>
+  <Params Value=" -MDelphi -Sgi -Os2 -OoUNCERTAIN -Xs -vewnhi -l -FiE:\ksp\KSP2009\src\itools\ -FuE:\ksp\KSP2009\src\itools\ -FuE:\ksp\KSP2009\kspplayer\additional\bass\ -FuC:\lazarus\lcl\units\i386-win32\ -FuC:\lazarus\lcl\units\i386-win32\qt\ -FuC:\lazarus\packager\units\i386-win32\ -FuE:\ksp\KSP2009\universal\source\dlls\files\ -Fu. -oE:\ksp\KSP2009\universal\source\dlls\files\kspfiles.dll -uDEBUG -dRELEASE -Cg -dLCL -dLCLqt kspfiles.lpr"/>
+</CONFIG>
