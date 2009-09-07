@@ -2,8 +2,6 @@ unit BASSPlayer;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
   {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
   Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,

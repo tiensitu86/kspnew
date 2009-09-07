@@ -79,11 +79,9 @@ unit ID3v2;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
   {$IFDEF WINDOWS}Windows, {$ENDIF}Classes, SysUtils, FileUtil, UniCodeUtils,
-  {$IFNDEF DELPHI_2007_BELOW}AnsiStringStream,{$ENDIF} ID3v1, Dialogs;
+  ID3v1, Dialogs;
 
 const
   TAG_VERSION_2_2 = 2;                               { Code for ID3v2.2.x tag }
@@ -403,22 +401,14 @@ begin
     Result := Trim(Result);
   end
   else
-   {$IFDEF DELPHI_2007_BELOW}
     Result := Trim(UTF8Decode(Source));
-   {$ELSE}
-    Result := Trim(UTF8ToWideString(Source));
-   {$ENDIF}
 end;
 
 function GetUnicode2(const Source: ansistring; EncodeByte : byte): WideString;
 begin
    if EncodeByte = 0 then
    begin
-   {$IFDEF DELPHI_2007_BELOW}
      Result := Trim(UTF8Decode(Source));
-   {$ELSE}
-     Result := Trim(UTF8ToWideString(Source));
-   {$ENDIF}
    end else
      Result := GetUnicode(Source);
 
@@ -643,22 +633,12 @@ end;
 
 function SaveTag(const FileName: WideString; Tag: TagInfo): Boolean;
 var
- {$IFDEF DELPHI_2007_BELOW}
   TagData: TStringStream;
- {$ELSE}
- // TStringStream of Delphi 2009 shows erroneous behaviour at handling ansistring.
- // So, use TAnsiStringStream instead of TStringStream for ansistring.
-  TagData: TAnsiStringStream;
- {$ENDIF}
   Iterator, FrameSize: Integer;
   Padding: array [1..ID3V2_MAX_SIZE] of Byte;
 begin
   { Build and write tag header and frames to stream }
-  {$IFDEF DELPHI_2007_BELOW}
-   TagData := TStringStream.Create('');
-  {$ELSE}
-   TagData := TAnsiStringStream.Create('');
-  {$ENDIF}
+  TagData := TStringStream.Create('');
   BuildHeader(Tag);
   TagData.Write(Tag, 10);
   for Iterator := 1 to ID3V2_FRAME_COUNT do

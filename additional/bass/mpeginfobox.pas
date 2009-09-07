@@ -18,8 +18,6 @@ unit MPEGInfoBox;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
   LResources, DefaultTranslator, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, MPEGaudio, ID3v1, ID3v2, filectrl, AACfile;

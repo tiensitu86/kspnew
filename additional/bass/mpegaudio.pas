@@ -70,7 +70,6 @@ unit MPEGaudio;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
 
 uses
   Classes, SysUtils, ID3v1, ID3v2, APEtag, FileUtil, Dialogs;
@@ -772,21 +771,12 @@ begin
   Result := MPEG_ENCODER[FGetEncoderID];
   if FVBR.VendorID <> '' then VendorID := FVBR.VendorID;
   if FVendorID <> '' then VendorID := FVendorID;
- {$IFDEF DELPHI_2007_BELOW}
   if (FGetEncoderID = MPEG_ENCODER_LAME) and
     (Length(VendorID) >= 8) and
     (VendorID[5] in ['0'..'9']) and
     (VendorID[6] = '.') and
     (VendorID[7] in ['0'..'9']) and
     (VendorID[8] in ['0'..'9']) then
- {$ELSE}
-  if (FGetEncoderID = MPEG_ENCODER_LAME) and
-    (Length(VendorID) >= 8) and
-    CharInSet(VendorID[5], ['0'..'9']) and
-    (VendorID[6] = '.') and
-    CharInSet(VendorID[7], ['0'..'9']) and
-    CharInSet(VendorID[8], ['0'..'9']) then
- {$ENDIF}
     Result :=
       Result + #32 +
       VendorID[5] +

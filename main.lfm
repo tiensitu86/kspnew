@@ -49,24 +49,24 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 2
     object lLeft: TLabel
       Left = 672
-      Height = 24
+      Height = 25
       Top = 8
-      Width = 10
+      Width = 11
       ParentColor = False
       OnClick = lLeftClick
     end
     object lTime2: TLabel
       Left = 584
-      Height = 24
+      Height = 25
       Top = 8
-      Width = 10
+      Width = 11
       ParentColor = False
     end
     object TotalTimeLabel: TLabel
       Left = 8
-      Height = 24
+      Height = 25
       Top = 41
-      Width = 10
+      Width = 11
       ParentColor = False
     end
     object PosBar: TTrackBar
@@ -191,16 +191,16 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object lFileName: TLabel
       Left = 120
-      Height = 24
+      Height = 25
       Top = 8
-      Width = 10
+      Width = 11
       ParentColor = False
     end
     object ScanFolder: TLabel
       Left = 8
-      Height = 24
+      Height = 25
       Top = 8
-      Width = 10
+      Width = 11
       ParentColor = False
     end
   end
@@ -1204,9 +1204,9 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object AppVersion: TLabel
                 Left = 370
-                Height = 17
+                Height = 18
                 Top = 11
-                Width = 3
+                Width = 4
                 ParentColor = False
               end
               object Image1: TImage
@@ -2793,11 +2793,11 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
-            ClientWidth = 439
-            ClientHeight = 419
+            ClientWidth = 443
+            ClientHeight = 423
             object MFolders: TListBox
               Left = 0
-              Height = 419
+              Height = 423
               Top = 0
               Width = 208
               Align = alLeft
@@ -2853,8 +2853,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
-            ClientWidth = 439
-            ClientHeight = 419
+            ClientWidth = 443
+            ClientHeight = 423
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -2888,8 +2888,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object NotSetupPage: TPage
             Caption = 'NotSetupPage'
-            ClientWidth = 439
-            ClientHeight = 419
+            ClientWidth = 443
+            ClientHeight = 423
             object NotChecked: TCheckBox
               Left = 14
               Height = 18
@@ -2932,13 +2932,13 @@ object KSPMainWindow: TKSPMainWindow
           end
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
-            ClientWidth = 439
-            ClientHeight = 419
+            ClientWidth = 443
+            ClientHeight = 423
             object PageControl1: TPageControl
               Left = 0
-              Height = 419
+              Height = 423
               Top = 0
-              Width = 439
+              Width = 443
               ActivePage = TabSheet2
               Align = alClient
               TabIndex = 0
@@ -3027,8 +3027,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
-            ClientWidth = 439
-            ClientHeight = 419
+            ClientWidth = 443
+            ClientHeight = 423
             object Label1: TLabel
               Left = 9
               Height = 13
@@ -3451,23 +3451,6 @@ object KSPMainWindow: TKSPMainWindow
       Caption = 'Revert Selection'
       OnClick = MenuItem4Click
     end
-  end
-  object Process1: TProcess
-    Active = False
-    CommandLine = 'http://kspplayer.sourceforge.net/index.php?option=com_content&view=article&id=2&Itemid=7'
-    Options = []
-    Priority = ppNormal
-    StartupOptions = []
-    ShowWindow = swoShowNormal
-    WindowColumns = 0
-    WindowHeight = 0
-    WindowLeft = 0
-    WindowRows = 0
-    WindowTop = 0
-    WindowWidth = 0
-    FillAttribute = 0
-    left = 664
-    top = 137
   end
   object NotificationTimer: TTimer
     Enabled = False

@@ -141,7 +141,6 @@ type  TWebView = class(TObject)
     Panel4: TPanel;
     Panel5: TPanel;
     MediaBuild: TProgressBar;
-    Process1: TProcess;
     SongListMenu: TPopupMenu;
     ScanFolder: TLabel;
     lTime2: TLabel;

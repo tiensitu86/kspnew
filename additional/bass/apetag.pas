@@ -52,11 +52,8 @@ unit APETag;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
-  Dialogs, Classes, SysUtils
- {$IFNDEF DELPHI_2007_BELOW}, AnsiStringStream, AnsiStrings{$ENDIF};
+  Dialogs, Classes, SysUtils;
 
 const
   { Tag ID }
@@ -217,13 +214,8 @@ begin
 
       ValuePosition := SourceFile.Position;
       SourceFile.Read(FieldValue, ValueSize mod SizeOf(FieldValue));
-     {$IFNDEF DELPHI_2007_BELOW}
-      pField[Iterator].Name := Ansistrings.Trim(FieldName);
-      pField[Iterator].Value := Ansistrings.Trim(FieldValue);
-     {$ELSE}
       pField[Iterator].Name := Trim(FieldName);
       pField[Iterator].Value := Trim(FieldValue);
-     {$ENDIF}
       SourceFile.Seek(ValuePosition + ValueSize, soFromBeginning);
     end;
 
@@ -316,11 +308,7 @@ var
   Header, Footer, RefFooter: RTagHeader;
   ID3: PAnsiChar;
   i, len, TagSize, Flags: integer;
- {$IFDEF DELPHI_2007_BELOW}
   TagData: TStringStream;
- {$ELSE}
-  TagData: TAnsiStringStream;
- {$ENDIF}
 begin
   ID3 := nil;
  // method : first, save any eventual ID3v1 tag lying around
@@ -349,11 +337,7 @@ begin
     SourceFile.Free;
   end;
 
- {$IFDEF DELPHI_2007_BELOW}
   TagData := TStringStream.Create('');
- {$ELSE}
-  TagData := TAnsiStringStream.Create('');
- {$ENDIF}
   TagSize := APE_TAG_FOOTER_SIZE;
 
   for i:=0 to high(pField) do
@@ -480,11 +464,7 @@ begin
 
   for i:=0 to high(pField) do
   begin
-  {$IFNDEF DELPHI_2007_BELOW}
-   if Ansistrings.UpperCase(Field)=Ansistrings.UpperCase(pField[i].Name) then
-  {$ELSE}
    if UpperCase(Field)=UpperCase(pField[i].Name) then
-  {$ENDIF}
    begin
      Result := pField[i].Value;
      Break;

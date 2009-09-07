@@ -29,8 +29,6 @@ unit WMAReader;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
   SysUtils,
   Windows,
@@ -39,13 +37,8 @@ uses
 type
 
   TTagsData = packed record
-   {$IFDEF DELPHI_2007_BELOW}
     Encoder, Version, Genre, Author, Title, Album,
       Composer, Url, Track, Year, CopyRight: string[255];
-   {$ELSE}
-    Encoder, Version, Genre, Author, Title, Album,
-      Composer, Url, Track, Year, CopyRight: string;
-   {$ENDIF}
     Comments, Lyrics: WideString;
     BitRate: cardinal;
     Duration, Filesize: Int64;

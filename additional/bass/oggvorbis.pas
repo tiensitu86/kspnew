@@ -78,11 +78,8 @@ unit OggVorbis;
 
 interface
 
-{$INCLUDE Delphi_Ver.inc}
-
 uses
-  Classes, SysUtils, FileUtil
-  {$IFNDEF DELPHI_2007_BELOW}, AnsiStrings, AnsiStringStream{$ENDIF};
+  Classes, SysUtils, FileUtil;
 
 const
   { Used with ChannelModeID property }
@@ -323,11 +320,7 @@ var
   IsExtraTag: boolean;
 begin
   { Set Vorbis tag item if supported comment field found }
- {$IFDEF DELPHI_2007_BELOW}
   Separator := Pos('=', Data);
- {$Else}
-  Separator := PosEx('=', Data, 1);
- {$ENDIF}
   if Separator > 0 then
   begin
     FieldID := UpperCase(Copy(Data, 1, Separator - 1));
@@ -336,27 +329,15 @@ begin
     for Index := 1 to VORBIS_FIELD_COUNT do
       if VORBIS_FIELD[Index] = FieldID then
       begin
-       {$IFDEF DELPHI_2007_BELOW}
         Info.Tag.FieldData[Index] := UTF8Decode(Trim(FieldData));
-       {$ELSE}
-        Info.Tag.FieldData[Index] := UTF8ToWideString(Trim(FieldData));
-       {$ENDIF}
         IsExtraTag := false;
         break;
       end;
     if IsExtraTag then
        if Info.ExtraTag = '' then
-         {$IFDEF DELPHI_2007_BELOW}
           Info.ExtraTag := FieldId + '=' + UTF8Decode(Trim(FieldData))
-         {$ELSE}
-          Info.ExtraTag := FieldId + '=' + UTF8ToWideString(Trim(FieldData))
-         {$ENDIF}
        else  // use chr(0) as seperator between tags
-         {$IFDEF DELPHI_2007_BELOW}
           Info.ExtraTag := Info.ExtraTag + AnsiChar(0) + FieldId + '=' + UTF8Decode(Trim(FieldData));
-         {$ELSE}
-          Info.ExtraTag := Info.ExtraTag + AnsiChar(0) + FieldId + '=' + UTF8ToWideString(Trim(FieldData));
-         {$ENDIF}
   end
   else
     if Info.Tag.FieldData[0] = '' then Info.Tag.FieldData[0] := Data;
@@ -475,32 +456,16 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-{$IFDEF DELPHI_2007_BELOW}
 function BuildTag(const Info: FileInfo): TStringStream;
-{$ELSE}
-function BuildTag(const Info: FileInfo): TAnsiStringStream;
-{$ENDIF}
 var
   Index, Fields, Size: Integer;
   tmpStr, TAGStr : string;
- {$IFDEF DELPHI_2007_BELOW}
   FieldData: AnsiString;
- {$ELSE}
-  FieldData: RawByteString;
-  S1 : string;
-  S2 : RawByteString;
- {$ENDIF}
   SeperatorPos, EqualPos : integer;
 begin
   { Build Vorbis tag }
 
-  {$IFDEF DELPHI_2007_BELOW}
-   Result := TStringStream.Create('');
-  {$ELSE}
- // TStringStream of Delphi 2009 shows erroneous behaviour at handling ansistring.
- // So, use TAnsiStringStream instead of TStringStream for ansistring.
-   Result := TAnsiStringStream.Create('');
-  {$ENDIF}
+  Result := TStringStream.Create('');
 
   Fields := 0;
   for Index := 1 to VORBIS_FIELD_COUNT do
@@ -558,15 +523,8 @@ begin
         EqualPos := pos('=', TAGStr);
         if EqualPos > 0 then
         begin
-          {$IFDEF DELPHI_2007_BELOW}
            FieldData := copy(TAGStr, 1, EqualPos)
                       + UTF8Encode(copy(TAGStr, EqualPos + 1, length(TAGStr) - EqualPos));
-          {$ELSE}
-        // FieldData gets wrong value if we use above sentence with Delphi 2009.
-           s1 := copy(TAGStr, EqualPos + 1, length(TAGStr) - EqualPos);
-           S2 := copy(TAGStr, 1, EqualPos);
-           FieldData := S2 + UTF8Encode(S1);
-          {$ENDIF}
            Size := Length(FieldData);
            Result.Write(Size, SizeOf(Size));
            Result.WriteString(FieldData);
@@ -830,11 +788,7 @@ end;
 function TOggVorbis.SaveTag(const FileName: WideString): Boolean;
 var
   Info: FileInfo;
- {$IFDEF DELPHI_2007_BELOW}
   Tag: TStringStream;
- {$ELSE}
-  Tag: TAnsiStringStream;
- {$ENDIF}
 begin
   { Save Vorbis tag }
   Result := false;
