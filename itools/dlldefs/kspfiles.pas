@@ -2,7 +2,7 @@ unit kspfiles;
 
 interface
 
-uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ELSE}IdHTTP, {$ENDIF}DateUtils, Dialogs,
+uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}IdHTTP, DateUtils, Dialogs,
   {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
 
 const
@@ -19,14 +19,14 @@ const
 {$IFDEF KSP_SPECIAL_BUILD}
 const KSPSpecialInfo = 'R3 alpha';
 {$ELSE}
-const KSPSpecialInfo = 'R2';
+const KSPSpecialInfo = 'R2.1';
 {$ENDIF}
 const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 95;
-  Build = 0;
+  Minor = 100;
+  Build = 103;
 
 {$IFNDEF KSP_STATIC}
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
@@ -278,8 +278,8 @@ end;
 
 
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
-{$IFDEF WINDOWS}
-var
+//{$IFDEF WINDOWS}
+{var
   hSession: HINTERNET;
   hService: HINTERNET;
   lpBuffer: array[0..1024 + 1] of Char;
@@ -310,8 +310,8 @@ begin
   finally
     InternetCloseHandle(hSession);
   end;
-end;
-{$ELSE}
+end;   }
+//{$ELSE}
 var
   HTTP: TIdHTTP;
 begin
@@ -319,7 +319,7 @@ begin
   Output.Text:=Http.Get(aUrl);
   HTTP.Free;
 end;
-{$ENDIF}
+//{$ENDIF}
 
 
 function GetKSPVersion(AppPath: TPathChar): ShortString;

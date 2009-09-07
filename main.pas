@@ -226,6 +226,7 @@ type  TWebView = class(TObject)
     procedure RepeatButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure AudioOut1Done(Sender: TObject);
+    procedure NewMetaIcecast(Sender: TObject; Content : ansistring);
     procedure FormDestroy(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
     procedure HeaderControl1SectionClick(HeaderControl: TCustomHeaderControl;
@@ -1689,6 +1690,13 @@ song. It works as if RepeatType=rtOne}
           Exit;
         end;
 
+end;
+
+procedure TKSPMainWindow.NewMetaIcecast(Sender: TObject; Content : ansistring);
+begin
+  if ShowOSD then
+    ShowAlert(SPlayingNewFile, Content);
+  lFileName.Caption:=Content;
 end;
 
 procedure TKSPMainWindow.FormDestroy(Sender: TObject);

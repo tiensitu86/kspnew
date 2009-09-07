@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="10"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -68,12 +68,12 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="3" Y="558"/>
-        <TopLine Value="554"/>
+        <CursorPos X="31" Y="1693"/>
+        <TopLine Value="1678"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
-          <Item0 X="12" Y="577" ID="0"/>
+          <Item0 X="4" Y="1698" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -82,8 +82,8 @@
         <Filename Value="additional\bass\BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="4" Y="1421"/>
-        <TopLine Value="1526"/>
+        <CursorPos X="15" Y="3397"/>
+        <TopLine Value="3377"/>
         <EditorIndex Value="7"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
@@ -348,8 +348,8 @@
         <Filename Value="itools\dlldefs\kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="77" Y="9"/>
-        <TopLine Value="1"/>
+        <CursorPos X="147" Y="304"/>
+        <TopLine Value="295"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -379,7 +379,7 @@
         <Filename Value="itools\mrng.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MRNG"/>
-        <CursorPos X="5" Y="13"/>
+        <CursorPos X="29" Y="15"/>
         <TopLine Value="1"/>
         <EditorIndex Value="10"/>
         <UsageCount Value="205"/>
@@ -502,7 +502,7 @@
         <UnitName Value="MediaItems"/>
         <CursorPos X="10" Y="464"/>
         <TopLine Value="434"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -537,11 +537,9 @@
         <Filename Value="itools\KSPStartup.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPStartup"/>
-        <CursorPos X="104" Y="49"/>
+        <CursorPos X="54" Y="59"/>
         <TopLine Value="45"/>
-        <EditorIndex Value="12"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
@@ -550,9 +548,7 @@
         <UnitName Value="MainWindowStartupThreads"/>
         <CursorPos X="1" Y="87"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="11"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit56>
       <Unit57>
@@ -570,9 +566,7 @@
         <UnitName Value="FoldersScan"/>
         <CursorPos X="18" Y="58"/>
         <TopLine Value="42"/>
-        <EditorIndex Value="13"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -1630,76 +1624,76 @@
         <Caret Line="30" Column="1" TopLine="1"/>
       </Position9>
       <Position10>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="100" Column="1" TopLine="75"/>
-      </Position10>
-      <Position11>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="101" Column="1" TopLine="75"/>
-      </Position11>
-      <Position12>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="44" Column="1" TopLine="24"/>
-      </Position12>
-      <Position13>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="45" Column="1" TopLine="25"/>
-      </Position13>
-      <Position14>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="46" Column="1" TopLine="26"/>
-      </Position14>
-      <Position15>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="48" Column="1" TopLine="28"/>
-      </Position15>
-      <Position16>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="50" Column="1" TopLine="30"/>
-      </Position16>
-      <Position17>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="59" Column="1" TopLine="39"/>
-      </Position17>
-      <Position18>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="61" Column="1" TopLine="41"/>
-      </Position18>
-      <Position19>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="62" Column="1" TopLine="42"/>
-      </Position19>
-      <Position20>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="63" Column="1" TopLine="43"/>
-      </Position20>
-      <Position21>
-        <Filename Value="itools\KSPStartup.pas"/>
-        <Caret Line="65" Column="1" TopLine="45"/>
-      </Position21>
-      <Position22>
         <Filename Value="itools\mrng.pas"/>
         <Caret Line="114" Column="18" TopLine="93"/>
-      </Position22>
-      <Position23>
+      </Position10>
+      <Position11>
         <Filename Value="itools\mrng.pas"/>
         <Caret Line="36" Column="15" TopLine="16"/>
-      </Position23>
-      <Position24>
+      </Position11>
+      <Position12>
         <Filename Value="itools\mrng.pas"/>
         <Caret Line="78" Column="10" TopLine="70"/>
-      </Position24>
-      <Position25>
+      </Position12>
+      <Position13>
         <Filename Value="itools\mrng.pas"/>
         <Caret Line="77" Column="8" TopLine="50"/>
-      </Position25>
-      <Position26>
+      </Position13>
+      <Position14>
         <Filename Value="itools\mrng.pas"/>
         <Caret Line="44" Column="9" TopLine="15"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="570" Column="17" TopLine="554"/>
+      </Position15>
+      <Position16>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="683" Column="51" TopLine="663"/>
+      </Position16>
+      <Position17>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="3398" Column="10" TopLine="3378"/>
+      </Position17>
+      <Position18>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="283" Column="30" TopLine="263"/>
+      </Position18>
+      <Position19>
+        <Filename Value="main.pas"/>
+        <Caret Line="570" Column="1" TopLine="554"/>
+      </Position19>
+      <Position20>
+        <Filename Value="main.pas"/>
+        <Caret Line="853" Column="29" TopLine="833"/>
+      </Position20>
+      <Position21>
+        <Filename Value="main.pas"/>
+        <Caret Line="1697" Column="4" TopLine="1678"/>
+      </Position21>
+      <Position22>
+        <Filename Value="main.pas"/>
+        <Caret Line="481" Column="6" TopLine="440"/>
+      </Position22>
+      <Position23>
+        <Filename Value="main.pas"/>
+        <Caret Line="1208" Column="8" TopLine="1188"/>
+      </Position23>
+      <Position24>
+        <Filename Value="main.pas"/>
+        <Caret Line="911" Column="14" TopLine="891"/>
+      </Position24>
+      <Position25>
+        <Filename Value="main.pas"/>
+        <Caret Line="1697" Column="10" TopLine="1678"/>
+      </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="1499" Column="7" TopLine="1482"/>
       </Position26>
       <Position27>
-        <Filename Value="itools\threads\MainWindowStartupThreads.pas"/>
-        <Caret Line="34" Column="1" TopLine="14"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="169" Column="69" TopLine="149"/>
       </Position27>
     </JumpHistory>
   </ProjectOptions>
@@ -1759,15 +1753,11 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="2">
+    <BreakPoints Count="1">
       <Item1>
         <Source Value="itools\threads\MainWindowStartupThreads.pas"/>
         <Line Value="34"/>
       </Item1>
-      <Item2>
-        <Source Value="itools\KSPStartup.pas"/>
-        <Line Value="59"/>
-      </Item2>
     </BreakPoints>
     <Exceptions Count="3">
       <Item1>
