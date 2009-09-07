@@ -40,6 +40,7 @@ type  TWebView = class(TObject)
     Button12: TButton;
     Button13: TButton;
     Button14: TButton;
+    Button15: TButton;
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
@@ -112,6 +113,7 @@ type  TWebView = class(TObject)
     SpeedButton8: TSpeedButton;
     Splitter4: TSplitter;
     TabSheet2: TTabSheet;
+    DownloadTimer: TTimer;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -184,6 +186,7 @@ type  TWebView = class(TObject)
     procedure Button12Click(Sender: TObject);
     procedure Button13Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -194,6 +197,7 @@ type  TWebView = class(TObject)
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure DeleteBookmarkClick(Sender: TObject);
+    procedure DownloadTimerTimer(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure MenuItem15Click(Sender: TObject);
@@ -982,6 +986,17 @@ begin
   end;
 end;
 
+procedure TKSPMainWindow.DownloadTimerTimer(Sender: TObject);
+var
+  Progress: DWORD;
+begin
+  Progress:=Player.DownloadProgress;
+  if Progress=0 then
+    lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentFile)]), lFilename.Canvas, lFilename.Width)
+  else
+    lFileName.Caption:=Format(SDownloadProgress, [IntToStr(Progress)]);
+end;
+
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
 begin
   Self.HistoryWebView.SetDimensions(Self.History.Width, Self.History.Height);
@@ -1276,6 +1291,11 @@ begin
   DeleteFile(KSPPluginsBlacklist);
   Self.LoadPlugins;
   ShowMessage(SPluginsEnabled);
+end;
+
+procedure TKSPMainWindow.Button15Click(Sender: TObject);
+begin
+  QApplication_aboutQt;
 end;
 
 function TKSPMainWindow.GetCurrentFile: string;

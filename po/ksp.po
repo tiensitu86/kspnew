@@ -53,6 +53,10 @@ msgstr ""
 msgid "Download Now"
 msgstr ""
 
+#: kspstrings.sdownloadprogress
+msgid "%s buffered"
+msgstr ""
+
 #: kspstrings.sduplicateditems
 msgid "Because of some reason in Media Library there are\\nsome items duplicated. KSP will now search for this duplicated items\\nand eliminate them. This process can tak a few minutes and computer can\\nslow down for this time. Please, be patient"
 msgstr ""
@@ -428,6 +432,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON14.CAPTION
 msgid "Enable ALL Plugins"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON15.CAPTION
+msgid "About QT"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON2.CAPTION

@@ -25,7 +25,7 @@ const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 85;
+  Minor = 95;
   Build = 0;
 
 {$IFNDEF KSP_STATIC}

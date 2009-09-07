@@ -123,6 +123,7 @@ SArtist = 'Artist';
 SYear = 'Year';
 SAlbum = 'Album';
 SGenre = 'Genre';
+SDownloadProgress = '%s buffered';
 
 implementation
 
