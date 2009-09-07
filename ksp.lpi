@@ -9,6 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
+      <ActiveEditorIndexAtStart Value="9"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="186">
+    <Units Count="192">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,9 +65,11 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="27" Y="186"/>
-        <TopLine Value="163"/>
+        <CursorPos X="40" Y="2785"/>
+        <TopLine Value="2768"/>
+        <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -235,7 +238,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="37" Y="24"/>
         <TopLine Value="10"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -335,9 +338,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="97" Y="61"/>
-        <TopLine Value="39"/>
+        <CursorPos X="1" Y="316"/>
+        <TopLine Value="280"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -373,7 +378,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="23" Y="18"/>
         <TopLine Value="18"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -617,9 +622,11 @@
         <Filename Value="additional/bass/oggvorbis.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OggVorbis"/>
-        <CursorPos X="34" Y="428"/>
-        <TopLine Value="410"/>
-        <UsageCount Value="41"/>
+        <CursorPos X="17" Y="81"/>
+        <TopLine Value="56"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="42"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -628,7 +635,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="12" Y="852"/>
         <TopLine Value="842"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit68>
       <Unit69>
@@ -996,9 +1003,11 @@
       </Unit118>
       <Unit119>
         <Filename Value="additional/bass/Delphi_Ver.inc"/>
-        <CursorPos X="36" Y="6"/>
+        <CursorPos X="73" Y="7"/>
         <TopLine Value="1"/>
-        <UsageCount Value="5"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit119>
       <Unit120>
@@ -1052,7 +1061,7 @@
         <UnitName Value="Support"/>
         <CursorPos X="11" Y="15"/>
         <TopLine Value="2"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="103"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
@@ -1131,7 +1140,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit137>
       <Unit138>
@@ -1350,7 +1359,7 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="40" Y="15"/>
         <TopLine Value="6"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit169>
       <Unit170>
@@ -1419,9 +1428,11 @@
       </Unit179>
       <Unit180>
         <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/filutilh.inc"/>
-        <CursorPos X="10" Y="85"/>
-        <TopLine Value="55"/>
+        <CursorPos X="10" Y="83"/>
+        <TopLine Value="53"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit180>
       <Unit181>
         <Filename Value="../../../../../usr/lib64/lazarus/lcl/dirsel.pas"/>
@@ -1459,8 +1470,103 @@
         <TopLine Value="1879"/>
         <UsageCount Value="10"/>
       </Unit185>
+      <Unit186>
+        <Filename Value="additional/indy/fpc/examples/httpget/httpget.pas"/>
+        <UnitName Value="httpget"/>
+        <CursorPos X="17" Y="90"/>
+        <TopLine Value="67"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit186>
+      <Unit187>
+        <Filename Value="additional/indy/fpc/examples/httpget/httpprothandler.pas"/>
+        <UnitName Value="httpprothandler"/>
+        <CursorPos X="15" Y="56"/>
+        <TopLine Value="46"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit187>
+      <Unit188>
+        <Filename Value="additional/indy/fpc/IdHTTP.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IdHTTP"/>
+        <CursorPos X="34" Y="571"/>
+        <TopLine Value="554"/>
+        <EditorIndex Value="8"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit188>
+      <Unit189>
+        <Filename Value="additional/indy/fpc/IdBaseComponent.pas"/>
+        <UnitName Value="IdBaseComponent"/>
+        <CursorPos X="3" Y="170"/>
+        <TopLine Value="168"/>
+        <EditorIndex Value="10"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit189>
+      <Unit190>
+        <Filename Value="additional/indy/fpc/IdGlobal.pas"/>
+        <UnitName Value="IdGlobal"/>
+        <CursorPos X="16" Y="3773"/>
+        <TopLine Value="3750"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit190>
+      <Unit191>
+        <Filename Value="additional/indy/fpc/IdCompilerDefines.inc"/>
+        <CursorPos X="17" Y="160"/>
+        <TopLine Value="144"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit191>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="9" HistoryIndex="8">
+      <Position1>
+        <Filename Value="additional/indy/fpc/examples/httpget/httpget.pas"/>
+        <Caret Line="90" Column="18" TopLine="62"/>
+      </Position1>
+      <Position2>
+        <Filename Value="additional/indy/fpc/IdHTTP.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="313" Column="20" TopLine="300"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="175" Column="7" TopLine="163"/>
+      </Position4>
+      <Position5>
+        <Filename Value="additional/indy/fpc/IdGlobal.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="additional/indy/fpc/IdGlobal.pas"/>
+        <Caret Line="3775" Column="13" TopLine="3750"/>
+      </Position6>
+      <Position7>
+        <Filename Value="additional/indy/fpc/IdCompilerDefines.inc"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="additional/bass/oggvorbis.pas"/>
+        <Caret Line="428" Column="34" TopLine="410"/>
+      </Position8>
+      <Position9>
+        <Filename Value="additional/bass/oggvorbis.pas"/>
+        <Caret Line="81" Column="17" TopLine="56"/>
+      </Position9>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="8"/>
@@ -1469,7 +1575,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)/"/>
-      <OtherUnitFiles Value="additional/bass/;additional/atl/;itools/;additional/;itools/dlldefs/;itools/threads/;itools/platformdep/;itools/medialib/;itools/sqlite/;additional/multilog/;itools/addforms/;dlls/files/"/>
+      <OtherUnitFiles Value="additional/bass/;additional/atl/;itools/;additional/;itools/dlldefs/;itools/threads/;itools/platformdep/;itools/medialib/;itools/sqlite/;additional/multilog/;itools/addforms/;dlls/files/;additional/indy/fpc/"/>
       <UnitOutputDirectory Value="../dcu"/>
       <LCLWidgetType Value="qt"/>
     </SearchPaths>
@@ -1505,7 +1611,7 @@
       <Verbosity>
         <ShowSummary Value="True"/>
       </Verbosity>
-      <CustomOptions Value="-dVER185
+      <CustomOptions Value="-dLAZARUS
 -uDEBUG -dRELEASE
 -dKSP64
 -dLOAD_DYNAMICALLY

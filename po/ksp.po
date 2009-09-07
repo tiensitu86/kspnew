@@ -430,10 +430,6 @@ msgstr ""
 msgid "Enable ALL Plugins"
 msgstr ""
 
-#: TKSPMAINWINDOW.BUTTON15.CAPTION
-msgid "Button15"
-msgstr ""
-
 #: TKSPMAINWINDOW.BUTTON2.CAPTION
 msgid "Save"
 msgstr ""

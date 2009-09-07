@@ -3,7 +3,7 @@ unit kspfiles;
 interface
 
 uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
-  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
+  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil, IdHTTP;
 
 const
 {$IFDEF WINDOWS}
@@ -307,8 +307,12 @@ begin
   end;
 end;
 {$ELSE}
+var
+  HTTP: TIdHTTP;
 begin
-
+  HTTP:=TIdHTTP.Create;
+  Output.Text:=Http.Get(aUrl);
+  HTTP.Free;
 end;
 {$ENDIF}
 
