@@ -274,6 +274,7 @@ type  TWebView = class(TObject)
   private
     { private declarations }
     CurrentFile: string;
+    CurrentTitle: string;
     CurrentIndex: integer;
     PreviousIndex: integer;
     LoadPlsThr: TLoadPlsThread;
@@ -852,6 +853,7 @@ begin
   if Self.ShowSplash then SplashForm.Show;
 
   Player.OnPlayEnd:=@AudioOut1Done;
+  Player.OnGetMeta:=@NewMetaIcecast;
 
   CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
   LoadVarsSem2 := 1;//CreateSemaphore(nil, 0,1,'LoadVarsSem');
@@ -1023,7 +1025,7 @@ var
 begin
   Progress:=Player.DownloadProgress;
   if Progress=0 then
-    lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentFile)]), lFilename.Canvas, lFilename.Width)
+    lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width)
   else
     lFileName.Caption:=Format(SDownloadProgress, [IntToStr(Progress)]);
 end;
@@ -1484,7 +1486,7 @@ begin
 
       PlayAudio;
 
-      lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentFile)]), lFilename.Canvas, lFilename.Width);
+      lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width);
       P:=PlayList.GetItem(CurrentIndex);
 
       if IsStream(Pc) then TrayIcon1.Hint:=lFilename.Caption else
@@ -1495,6 +1497,10 @@ begin
 
       //PlayerBase.RenderFile(CurrentFile);
       FStopped := False;
+
+      if not IsStream(Pc) then begin
+        CurrentTitle:=CurrentFile;
+      end else CurrentTitle:=Player.StreamInfo.Title;
 
       if ShowOSD then begin
         if IsStream(Pc) then
@@ -1694,9 +1700,9 @@ end;
 
 procedure TKSPMainWindow.NewMetaIcecast(Sender: TObject; Content : ansistring);
 begin
+  CurrentTitle:=Content;
   if ShowOSD then
-    ShowAlert(SPlayingNewFile, Content);
-  lFileName.Caption:=Content;
+    ShowAlert(SPlayingNewFile, CurrentTitle);
 end;
 
 procedure TKSPMainWindow.FormDestroy(Sender: TObject);
