@@ -199,10 +199,19 @@ type  TWebView = class(TObject)
     procedure DownloadTimerTimer(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
+    procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
+    procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
+      State: TDragState; var Accept: Boolean);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem23Click(Sender: TObject);
+    procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure MIViewMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure MIViewStartDrag(Sender: TObject; var DragObject: TDragObject);
     procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
@@ -284,6 +293,8 @@ type  TWebView = class(TObject)
     EQGains : TEQGains;
     ShowSplash: boolean;
     KSPNotification: QWidgetH;
+    MGStartDrag: TPoint;
+    MGDragItem: string;
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
@@ -1009,6 +1020,21 @@ begin
   end;
 end;
 
+procedure TKSPMainWindow.lbPlaylistDragDrop(Sender, Source: TObject; X,
+  Y: Integer);
+begin
+  if FileExists(Self.MGDragItem) then
+    Self.AddToPlayList(Self.MGDragItem) else
+    hLog.Send('Cannot add item: '+Self.MGDragItem);
+  Self.MGDragItem:='';
+end;
+
+procedure TKSPMainWindow.lbPlaylistDragOver(Sender, Source: TObject; X,
+  Y: Integer; State: TDragState; var Accept: Boolean);
+begin
+  Accept:=FileExists(Self.MGDragItem);
+end;
+
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
 var
   s: string;
@@ -1061,11 +1087,41 @@ begin
   Close;
 end;
 
+procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+
+end;
+
+procedure TKSPMainWindow.MGViewStartDrag(Sender: TObject;
+  var DragObject: TDragObject);
+begin
+
+end;
+
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);
 begin
   if (MIView.ItemIndex<0) or (MIView.ItemIndex>=MIView.Count) then Exit;
   if MediaSongs.Count=0 then Exit;
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
+end;
+
+procedure TKSPMainWindow.MIViewMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  MGStartDrag.X:=X;
+  MGStartDrag.Y:=Y;
+  MIView.BeginDrag(true);
+end;
+
+procedure TKSPMainWindow.MIViewStartDrag(Sender: TObject;
+  var DragObject: TDragObject);
+var
+  index: integer;
+begin
+  index:=MIView.ItemAtPos(Self.MGStartDrag, true);
+  if index<>-1 then
+    MGDragItem:=(MediaSongs.GetItem(index)^.FileName);
 end;
 
 procedure TKSPMainWindow.NotCheckedChange(Sender: TObject);
