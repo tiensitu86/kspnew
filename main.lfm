@@ -9,6 +9,8 @@ object KSPMainWindow: TKSPMainWindow
   Menu = MainMenu1
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnDragDrop = lbPlaylistDragDrop
+  OnDragOver = lbPlaylistDragOver
   OnWindowStateChange = FormWindowStateChange
   Position = poDefault
   LCLVersion = '0.9.26.2'
@@ -30,6 +32,7 @@ object KSPMainWindow: TKSPMainWindow
     OnDrawItem = lbPlaylistDrawItem
     OnDragDrop = lbPlaylistDragDrop
     OnDragOver = lbPlaylistDragOver
+    OnEndDrag = lbPlaylistEndDrag
     OnMouseMove = lbPlaylistMouseMove
     OnMouseDown = lbPlaylistMouseDown
     OnMouseUp = lbPlaylistMouseUp
@@ -1790,6 +1793,7 @@ object KSPMainWindow: TKSPMainWindow
                 Align = alClient
                 Ctl3D = False
                 DefaultItemHeight = 14
+                DragMode = dmAutomatic
                 TabOrder = 2
                 OnClick = MGViewClick
                 OnMouseDown = MGViewMouseDown
@@ -1804,6 +1808,7 @@ object KSPMainWindow: TKSPMainWindow
                 DragMode = dmAutomatic
                 ItemHeight = 0
                 OnDblClick = MIViewDblClick
+                OnEndDrag = MIViewEndDrag
                 OnMouseDown = MIViewMouseDown
                 OnStartDrag = MIViewStartDrag
                 PopupMenu = SongListMenu

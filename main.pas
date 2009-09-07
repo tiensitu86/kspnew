@@ -202,6 +202,7 @@ type  TWebView = class(TObject)
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
       State: TDragState; var Accept: Boolean);
+    procedure lbPlaylistEndDrag(Sender, Target: TObject; X, Y: Integer);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem23Click(Sender: TObject);
@@ -209,6 +210,7 @@ type  TWebView = class(TObject)
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
     procedure MIViewDblClick(Sender: TObject);
+    procedure MIViewEndDrag(Sender, Target: TObject; X, Y: Integer);
     procedure MIViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MIViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -295,9 +297,11 @@ type  TWebView = class(TObject)
     KSPNotification: QWidgetH;
     MGStartDrag: TPoint;
     MGDragItem: string;
+    MGDragPlaylist: boolean;
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
+    procedure LoadPlsDrag;
     procedure LoadOptions;
     procedure SaveOptions;
     procedure PerformFileOpen(const AFileName: string);
@@ -559,12 +563,27 @@ begin
   if LoadPlsThr<>nil then
     LoadPlsThr.Terminate;
 //  PlayList.Clear;
-  LoadPlsThr:=TLoadPlsThread.Create(false, FileName);
+  LoadPlsThr:=TLoadPlsThread.Create(true);
+  LoadPlsThr.aFromMemory:=false;
+  LoadPlsThr.aFileName:=FileName;
+  LoadPlsThr.Resume;
  { with LoadPlsThr do
     begin
       aFileName:=FileName;
       Resume;
     end; }
+end;
+
+procedure TKSPMainWindow.LoadPlsDrag;
+var
+  e: Cardinal;
+begin
+  if LoadingPlaylist then Exit;
+  if LoadPlsThr<>nil then
+    LoadPlsThr.Terminate;
+  LoadPlsThr:=TLoadPlsThread.Create(true);
+  LoadPlsThr.aFromMemory:=true;
+  LoadPlsThr.Resume;
 end;
 
 procedure TKSPMainWindow.PerformFileOpen(const AFileName: string);
@@ -749,6 +768,7 @@ var
   begin
     CurrentFile:=''; CurrentIndex:=-1;  PreviousIndex:=-1;  FStopped:=True;
     Caption:=Application.Title;
+    MGDragPlaylist:=false;
     //KSPMainWindow.GetNewestInfo;
 
     LoadingPlaylist:=false;
@@ -1023,16 +1043,27 @@ end;
 procedure TKSPMainWindow.lbPlaylistDragDrop(Sender, Source: TObject; X,
   Y: Integer);
 begin
+  if MGDragPlaylist then begin
+    LoadPlsDrag;
+  end else
   if FileExists(Self.MGDragItem) then
     Self.AddToPlayList(Self.MGDragItem) else
     hLog.Send('Cannot add item: '+Self.MGDragItem);
   Self.MGDragItem:='';
+  MGDragPlaylist:=false;
 end;
 
 procedure TKSPMainWindow.lbPlaylistDragOver(Sender, Source: TObject; X,
   Y: Integer; State: TDragState; var Accept: Boolean);
 begin
-  Accept:=FileExists(Self.MGDragItem);
+  Accept:=FileExists(Self.MGDragItem) or MGDragPlaylist;
+  hLog.Send('Accept='+BoolToStr(Accept));
+end;
+
+procedure TKSPMainWindow.lbPlaylistEndDrag(Sender, Target: TObject; X,
+  Y: Integer);
+begin
+
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -1095,8 +1126,43 @@ end;
 
 procedure TKSPMainWindow.MGViewStartDrag(Sender: TObject;
   var DragObject: TDragObject);
-begin
 
+  procedure ParentSelected;
+  begin
+    case SortType of
+    stByArtist: FindSongsArtist(MediaSongs, AllSongs, MGView.Selected.Text);
+    stByAlbum: FindSongsAlbum(MediaSongs, AllSongs, MGView.Selected.Text);
+    stByYear: FindSongsByYear(MediaSongs, AllSongs, MGView.Selected.Text);
+    stByGenre: FindSongsByGenre(MediaSongs, AllSongs, MGView.Selected.Text);
+{    stCDArtist: begin
+        FindCDArtistSongs(CDTracks, AllCDS, Frame11.TeTreeView2.Selected.Text);
+        CDTracks
+        //s:=CDTracks.Entry.Tracks;
+      end;  }
+    end;
+  end;
+
+begin
+  if MGView.Selected=nil then Exit;;
+  if MGView.Items.Count=0 then Exit;
+
+  if MGView.Selected.Parent=nil then
+    begin
+      ParentSelected;
+    end else
+  //showMessage(TeTreeView2.Selected.Text);
+  case SortType of
+    stByArtist: begin
+        AllSongs.FindSongs(MediaSongs, MGView.Selected.Parent.Text, MGView.Selected.Text);
+      end;
+    stByAlbum: begin
+        AllSongs.FindSongs(MediaSongs, MGView.Selected.Text, MGView.Selected.Parent.Text);
+      end;
+    stByYear: FindSongsByYear(MediaSongs, AllSongs, MGView.Selected.Parent.Text, MGView.Selected.Text);
+    stByGenre: FindSongsByGenre(MediaSongs, AllSongs, MGView.Selected.Parent.Text, MGView.Selected.Text);
+  end;
+
+  MGDragPlaylist:=true;
 end;
 
 procedure TKSPMainWindow.MIViewDblClick(Sender: TObject);
@@ -1106,12 +1172,16 @@ begin
   AddToPlayList(MediaSongs.GetItem(MIView.ItemIndex)^.FileName);
 end;
 
+procedure TKSPMainWindow.MIViewEndDrag(Sender, Target: TObject; X, Y: Integer);
+begin
+  hLog.Send('Drag finished');
+end;
+
 procedure TKSPMainWindow.MIViewMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   MGStartDrag.X:=X;
   MGStartDrag.Y:=Y;
-  MIView.BeginDrag(true);
 end;
 
 procedure TKSPMainWindow.MIViewStartDrag(Sender: TObject;
@@ -1120,8 +1190,11 @@ var
   index: integer;
 begin
   index:=MIView.ItemAtPos(Self.MGStartDrag, true);
-  if index<>-1 then
-    MGDragItem:=(MediaSongs.GetItem(index)^.FileName);
+  hLog.Send('Drag object at: '+IntToStr(Index));
+  if index<>-1 then begin
+      MGDragItem:=(MediaSongs.GetItem(index)^.FileName);
+      hLog.Send('Drag object: '+MGDragItem);
+      end;
 end;
 
 procedure TKSPMainWindow.NotCheckedChange(Sender: TObject);
