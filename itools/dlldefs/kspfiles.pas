@@ -97,9 +97,14 @@ var
   sr: TSearchRec;
   FileAttrs: Integer;
 begin
-  FileAttrs := faAnyFile;//+faDirectory;
-
-  if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+{$IFDEF WINDOWS}
+    FileAttrs:=faAnyFile;
+    if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+{$ELSE}
+    FileAttrs := faReadOnly+faHidden+faSysFile+faVolumeId+faDirectory+faArchive+
+    faSymLink+faAnyFile;//+faDirectory;
+    if FindFirst(Path+'/*', FileAttrs, sr) = 0 then
+{$ENDIF}
   begin
     repeat
       if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
