@@ -84,7 +84,6 @@ begin
     hLog.Send('Loading randomizer...');
     
     Randomize;
-    MRandSeed(GetTickCount);
     AlreadyEncoding:=false;
 
     //if TheNewestKSP<>'' then begin
