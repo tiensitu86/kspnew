@@ -1417,6 +1417,9 @@ var
    t : string;
    n: Integer;
    CD_Info : BASS_CD_INFO;
+{$IFDEF WINDOWS}
+   fn: string;
+{$ENDIF}
 begin
    inherited Create(AOwner);
 

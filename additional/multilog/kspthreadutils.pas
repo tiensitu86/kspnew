@@ -126,7 +126,9 @@ begin
   PID:=PtrInt(GetThreadID);
   Filename:=KSPLogFilename+'\Log'+IntToStr(PID);
   FixFolderNames(FileName);
+{$IFNDEF WINDOWS}
   write(Msg);
+{$ENDIF}
   if FileExistsUTF8(Filename) then
     fs:=TFileStream.Create(UTF8ToSys(Filename),fmOpenWrite)
   else

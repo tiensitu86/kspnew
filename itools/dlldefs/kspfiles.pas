@@ -2,8 +2,8 @@ unit kspfiles;
 
 interface
 
-uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}DateUtils, Dialogs,
-  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil, IdHTTP;
+uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ELSE}IdHTTP, {$ENDIF}DateUtils, Dialogs,
+  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
 
 const
 {$IFDEF WINDOWS}
