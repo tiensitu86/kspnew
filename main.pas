@@ -1504,7 +1504,7 @@ begin
 
       if ShowOSD then begin
         if IsStream(Pc) then
-          ShowAlert(SPlayingNewFile, lFileName.Caption)
+          ShowAlert(SPlayingNewFile, CurrentTitle)
         else
           ShowAlert(SPlayingNewFile, ProduceFormatedString(FormatedHintInfo, p^.Tag, GetDuration(p^.Stream),
             CurrentIndex));
