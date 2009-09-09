@@ -11,6 +11,7 @@ const
   KSPHowHelp = 'http://www.ksplayer.boo.pl/help-wanted';
   KSPSupportURL = 'http://code.google.com/p/kspnew/issues/list';
   KSPTellAFriend = 'http://www.freetellafriend.com/tell/??u=5653&title=KSPSoundPlayer&url=http://ksplayer.boo.pl/';
+
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
   KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
