@@ -3,7 +3,7 @@ unit kspfiles;
 interface
 
 uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}IdHTTP, DateUtils, Dialogs,
-  {$IFDEF KSP_STATIC}KSPDLLFileUtils{$ENDIF}, FileUtil;
+  KSPDLLFileUtils, FileUtil;
 
 const
 {$IFDEF WINDOWS}
@@ -28,21 +28,11 @@ const Version = 0;
   Minor = 100;
   Build = 103;
 
-{$IFNDEF KSP_STATIC}
-function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
-  PlsIndex: integer): ShortString; external 'kspfiles'+LIB_SUFFIX;
-procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char); external 'kspfiles'+LIB_SUFFIX;
-
-function IsStream(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
-function IsCD(str: string): boolean; external 'kspfiles'+LIB_SUFFIX;
-
-{$ELSE}
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
   PlsIndex: integer): ShortString;
 function IsCD(str: string): boolean;
 function IsStream(str: string): boolean;
-{$ENDIF}
 
 function GetKSPVersion(AppPath: TPathChar): ShortString;
 function GetKSPVersion2(AppPath: TPathChar): ShortString;
@@ -68,7 +58,6 @@ implementation
 
 uses SysUtils, main, multilog;
 
-{$IFDEF KSP_STATIC}
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 begin
   KSPDLLFileUtils.RemoveForbiddenChars(Str, ReplaceWith);
@@ -89,7 +78,6 @@ function IsStream(str: string): boolean;
 begin
  Result:=KSPDLLFileUtils.IsStream(str);
 end;
-{$ENDIF}
 
 procedure KSPDeleteFolder(Path: string);
 var

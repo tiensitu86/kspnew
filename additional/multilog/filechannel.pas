@@ -111,12 +111,9 @@ begin
 end;
 
 procedure TFileChannel.Deliver(const AMsg: TLogMessage);
-{$IFDEF KSPDEBUG}
 var
   Text: string;
-{$ENDIF}
 begin
-{$IFDEF KSPDEBUG}
   if FShowTime then
     Text:=FormatDateTime('hh:nn:ss:zzz',AMsg.MsgTime)+' ';
   Text:=Text+Space(FRelativeIdent);
@@ -125,7 +122,6 @@ begin
 
   Text:=Text+AMsg.MsgText;
   DebuglnThreadLog([Text]);
-{$ENDIF}
 //  Append(FFileHandle);
   //Exit method identation must be set before
 {  EnterCriticalSection(FCritical);

@@ -4,7 +4,7 @@ unit KSPDLLFileUtils;
 
 interface
 
-uses SysUtils, Graphics {$IFDEF KSP_STATIC}, ID3Mgmnt{$ENDIF};
+uses SysUtils, Graphics, ID3Mgmnt;
 
 const
   art='[%artist]';
@@ -16,23 +16,6 @@ const
   track = '[%track]';
   tracklength = '[%length]';
   plindex = '[%plindex]';
-
-{$IFNDEF KSP_STATIC}
-type
-{ID3Tag is the current structure for getting tags from MP3 and MP3-like files}
-TID3Tag = packed record
-   IsTag: boolean;          // 128 bytes
-   Title: ShortString;    //  30 bytes: Song's title
-   Artist: ShortString;   //  30 bytes: Song's artist
-   Album: ShortString;    //  30 bytes: Song's album
-   Year: ShortString;      //   4 bytes: Publishing year
-   Comment: ShortString;  //  30 bytes: Comment
-   Genre: ShortString;
-   Track: integer;
-   GID: integer;                  //   1 byte:  Genere-ID
-end;
-
-{$ENDIF}
 
 function MinimizeName(const Filename: PChar; Canvas: TCanvas;
   MaxLen: Integer): TFileName;

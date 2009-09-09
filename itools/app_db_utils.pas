@@ -2,16 +2,14 @@ unit app_db_utils;
 
 interface
 
-uses Classes, SysUtils, Forms, mysql50conn, {$IFDEF WINX86KSP}sqlite3conn{$ENDIF}, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
+uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
   Playlists;
 
 type TDatabaseType = (dbMySQL, dbSqlite);
 
 type TFDatabase = record
     MySQLConnection: TMySQL50Connection;
-{$IFDEF WINX86KSP}
     SQLiteConnection: TSQLite3Connection;
-{$ENDIF}
 //    SQLDataSet: TSQLDataSet;
     SQLQuery: TSQLQuery;
     DBInUse: TDatabaseType;
