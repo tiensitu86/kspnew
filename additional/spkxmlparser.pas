@@ -766,7 +766,7 @@ try
         while (i<=len) and (s[i] in [' ',#9,#10,#13]) do inc(i);
         if (i<=len) then
            begin
-           if (s[i]='<'){or(s[i]='?')} then
+           if (s[i]='<')or(s[i]='?') then
               begin
               node:=ParseNode(s,i);
               if node<>nil then

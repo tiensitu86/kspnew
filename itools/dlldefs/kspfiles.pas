@@ -135,6 +135,7 @@ function IsPlaylist(FileName: string): boolean;
 begin
   Result:=(UpperCase(ExtractFileExt(FileName))='.KPL') or
     (UpperCase(ExtractFileExt(FileName))='.M3U') or
+    (UpperCase(ExtractFileExt(FileName))='.XSPF') or
     (UpperCase(ExtractFileExt(FileName))='.PLS');
 end;
 

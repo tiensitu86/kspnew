@@ -3,7 +3,8 @@ unit PlayLists;
 interface
 
 uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
-  DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles;
+  DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles, DOM,
+  XMLRead;
 
 {This unit includes all playlist management clases and structures}
 
@@ -78,7 +79,7 @@ procedure SearchForKPL(Path: string; Rec: boolean; var s: TStringList);
 
 implementation
 
-uses Math , KSPConstsVars, Main;
+uses Math , KSPConstsVars, Main, multilog, profilefunc;
 
 function CompareTracks(Item1, Item2: Pointer): Integer;
 begin
@@ -755,20 +756,55 @@ end;
 
 procedure TXMLPlaylist.LoadPlsXSPF(FileName: string; var Pls: TPlayList);
 var
-  XMLPls: TSpkXMLParser;
-  Node, Main: TSpkXMLNode;
+  XMLPls: TXMLDocument;
+  Node, Main: TDOMNode;
   i: integer;
   fname: string;
+  Pc: TPathChar;
+  P: TPLEntry;
+
+  function FindNode(x: TDOMNode; Name: string): TDOMNode;
+  var
+    i: integer;
+  begin
+    Result:=nil;
+    for i:=0 to x.ChildNodes.Count-1 do begin
+      if UpperCase(x.ChildNodes.Item[i].NodeName)=UpperCase(Name) then begin
+          hLog.Send('Node found: '+Name);
+          Result:=x.ChildNodes.Item[i]
+        end;
+        hLog.Send(x.ChildNodes.Item[i].NodeName);
+      end;
+    if Result=nil then hLog.Send('Node not found: '+Name);
+  end;
+
 begin
-  XMLPls:=TSpkXMLParser.create;
-  XMLPls.LoadFromFile(FileName);
+  ReadXMLFile(XMLPls, FileName);
 
-  Main:=XMLPls.NodeByName['playlist', true].SubNodeByName['tracklist', true];
+  hLog.Send('Loading XSPF playlist');
+  hLog.Send(XMLPls.NodeName+' '+IntToStr(XMLPls.DocumentElement.ChildNodes.Count));
 
-  for i:=0 to Main.Count-1 do begin
-    Node:=Main.SubNodeByIndex[i].SubNodeByName['location', true];
-    fname:=Node.Parameters.ParamByName['', false].Attribute;
-    ShowMessage(fname);
+  hLog.Send(XMLPls.DocumentElement.ChildNodes.Item[2].FirstChild.TextContent);
+
+  Main:=FindNode(XMLPls.DocumentElement, 'tracklist');
+  hLog.Send(Main.FirstChild.NodeValue);
+
+  hLog.Send('Number of items in playlist: '+IntToStr(Main.ChildNodes.Count));
+
+  for i:=0 to Main.ChildNodes.Count-1 do begin
+    //Node:=FindNode(Main.ChildNodes.Item[i].FirstChild, 'track');
+    Node:=FindNode(Main.ChildNodes.Item[i], 'location');
+    hLog.Send(Node.FirstChild.NodeValue);
+    fname:=Node.FirstChild.NodeValue;
+    //ShowMessage(fname);
+    hLog.Send(fname);
+    StrPCopy(Pc, fname);
+    if (IsStream(Pc) or IsCD(Pc)) then
+      p.FileName:=fname else
+      p.FileName:=ExpandFileName(fname);
+    if not (IsStream(pc) or IsCD(Pc)) then p.Tag:=ReadID3(p.FileName);
+    Pls.Add(p);
+
   end;
 
   XMLPls.Free;
@@ -778,6 +814,8 @@ procedure TXMLPlaylist.LoadPls(FileName: string; var Pls: TPlayList);
 begin
   //if Pls.Count=0 then Exit;
   //ShowMessage(ExtractFileExt(FileName));
+  FixFolderNames(FileName);
+  hLog.Send('Loading playlist from file: '+FileName);
   if UpperCase(ExtractFileExt(FileName))='.KPL' then LoadKPLPls(FileName, Pls)
   else if UpperCase(ExtractFileExt(FileName))='.M3U' then
     LoadM3UPls(FileName, Pls)

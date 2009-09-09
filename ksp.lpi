@@ -49,16 +49,14 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="206">
+    <Units Count="210">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksp"/>
         <CursorPos X="16" Y="14"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -67,8 +65,8 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="26" Y="2927"/>
-        <TopLine Value="2896"/>
+        <CursorPos X="11" Y="2997"/>
+        <TopLine Value="2976"/>
         <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -84,9 +82,7 @@
         <UnitName Value="BASSPlayer"/>
         <CursorPos X="1" Y="768"/>
         <TopLine Value="752"/>
-        <EditorIndex Value="4"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -243,7 +239,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="1" Y="21"/>
         <TopLine Value="1"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="54"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -272,9 +268,9 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="20" Y="68"/>
-        <TopLine Value="43"/>
-        <EditorIndex Value="1"/>
+        <CursorPos X="25" Y="794"/>
+        <TopLine Value="770"/>
+        <EditorIndex Value="0"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -283,9 +279,11 @@
         <Filename Value="additional/spkxmlparser.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SpkXMLParser"/>
-        <CursorPos X="73" Y="478"/>
-        <TopLine Value="478"/>
+        <CursorPos X="39" Y="762"/>
+        <TopLine Value="744"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
@@ -319,9 +317,11 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="8" Y="26"/>
+        <CursorPos X="21" Y="15"/>
         <TopLine Value="2"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -345,9 +345,9 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="12" Y="22"/>
-        <TopLine Value="16"/>
-        <EditorIndex Value="0"/>
+        <CursorPos X="73" Y="147"/>
+        <TopLine Value="134"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -356,9 +356,9 @@
         <Filename Value="itools/threads/loadplsthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoadPlsThread"/>
-        <CursorPos X="1" Y="37"/>
-        <TopLine Value="8"/>
-        <EditorIndex Value="5"/>
+        <CursorPos X="16" Y="33"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="207"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -378,7 +378,7 @@
         <UnitName Value="MRNG"/>
         <CursorPos X="29" Y="15"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -389,7 +389,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="1" Y="55"/>
         <TopLine Value="31"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="67"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -423,8 +423,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="profilefunc"/>
         <CursorPos X="25" Y="11"/>
-        <TopLine Value="10"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit41>
       <Unit42>
@@ -497,7 +499,7 @@
         <UnitName Value="MediaItems"/>
         <CursorPos X="47" Y="447"/>
         <TopLine Value="434"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -534,7 +536,7 @@
         <UnitName Value="KSPStartup"/>
         <CursorPos X="63" Y="79"/>
         <TopLine Value="45"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -599,7 +601,7 @@
         <UnitName Value="app_db_utils"/>
         <CursorPos X="1" Y="12"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -641,7 +643,7 @@
         <UnitName Value="OggVorbis"/>
         <CursorPos X="1" Y="81"/>
         <TopLine Value="57"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="67"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -650,7 +652,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="1" Y="73"/>
         <TopLine Value="49"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="63"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit68>
       <Unit69>
@@ -697,9 +699,7 @@
         <UnitName Value="filechannel"/>
         <CursorPos X="1" Y="125"/>
         <TopLine Value="98"/>
-        <EditorIndex Value="10"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="11"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit74>
       <Unit75>
@@ -846,9 +846,7 @@
         <UnitName Value="KSPThreadUtils"/>
         <CursorPos X="17" Y="130"/>
         <TopLine Value="109"/>
-        <EditorIndex Value="7"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit93>
       <Unit94>
@@ -1078,7 +1076,7 @@
         <UnitName Value="Support"/>
         <CursorPos X="11" Y="15"/>
         <TopLine Value="2"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="128"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
@@ -1157,7 +1155,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="67"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit137>
       <Unit138>
@@ -1374,10 +1372,10 @@
         <Filename Value="dlls/files/kspdllfileutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPDLLFileUtils"/>
-        <CursorPos X="1" Y="20"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="62"/>
+        <CursorPos X="28" Y="185"/>
+        <TopLine Value="143"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit169>
@@ -1469,7 +1467,7 @@
         <UnitName Value="IdHTTP"/>
         <CursorPos X="9" Y="559"/>
         <TopLine Value="554"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="46"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit182>
       <Unit183>
@@ -1590,7 +1588,7 @@
         <UnitName Value="uxmpp"/>
         <CursorPos X="37" Y="1240"/>
         <TopLine Value="1216"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="31"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit198>
       <Unit199>
@@ -1638,7 +1636,7 @@
         <UnitName Value="blcksock"/>
         <CursorPos X="21" Y="142"/>
         <TopLine Value="124"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit204>
       <Unit205>
@@ -1646,132 +1644,159 @@
         <UnitName Value="ssl_openssl_lib"/>
         <CursorPos X="36" Y="73"/>
         <TopLine Value="50"/>
-        <EditorIndex Value="6"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit205>
+      <Unit206>
+        <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/filutilh.inc"/>
+        <CursorPos X="10" Y="84"/>
+        <TopLine Value="53"/>
+        <UsageCount Value="10"/>
+      </Unit206>
+      <Unit207>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-xml/src/xmlread.pp"/>
+        <UnitName Value="XMLRead"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="18"/>
+        <UsageCount Value="10"/>
+      </Unit207>
+      <Unit208>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-xml/src/dom.pp"/>
+        <UnitName Value="DOM"/>
+        <CursorPos X="33" Y="1232"/>
+        <TopLine Value="1227"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit208>
+      <Unit209>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-base/src/avl_tree.pp"/>
+        <UnitName Value="AVL_Tree"/>
+        <CursorPos X="3" Y="657"/>
+        <TopLine Value="653"/>
+        <UsageCount Value="10"/>
+      </Unit209>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="2951" Column="49" TopLine="2928"/>
+        <Caret Line="2940" Column="58" TopLine="2924"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="75" Column="29" TopLine="55"/>
+        <Caret Line="45" Column="25" TopLine="34"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="2997" Column="30" TopLine="2970"/>
+        <Caret Line="11" Column="67" TopLine="1"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="2940" Column="58" TopLine="2924"/>
+        <Caret Line="11" Column="67" TopLine="1"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="45" Column="25" TopLine="34"/>
+        <Caret Line="2006" Column="17" TopLine="2003"/>
       </Position5>
       <Position6>
-        <Filename Value="additional/synapse/ssl_openssl_lib.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
-      </Position6>
-      <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="11" Column="67" TopLine="1"/>
-      </Position7>
-      <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="11" Column="67" TopLine="1"/>
-      </Position8>
-      <Position9>
-        <Filename Value="main.pas"/>
-        <Caret Line="2006" Column="17" TopLine="2003"/>
-      </Position9>
-      <Position10>
         <Filename Value="main.pas"/>
         <Caret Line="2863" Column="8" TopLine="2860"/>
-      </Position10>
-      <Position11>
-        <Filename Value="additional/multilog/filechannel.pas"/>
-        <Caret Line="127" Column="14" TopLine="96"/>
-      </Position11>
-      <Position12>
+      </Position6>
+      <Position7>
         <Filename Value="itools/app_db_utils.pas"/>
         <Caret Line="63" Column="37" TopLine="53"/>
-      </Position12>
-      <Position13>
+      </Position7>
+      <Position8>
         <Filename Value="itools/app_db_utils.pas"/>
         <Caret Line="5" Column="56" TopLine="1"/>
-      </Position13>
-      <Position14>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="304" Column="147" TopLine="295"/>
-      </Position14>
-      <Position15>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="36" Column="1" TopLine="1"/>
-      </Position15>
-      <Position16>
+      </Position8>
+      <Position9>
         <Filename Value="dlls/files/kspdllfileutils.pas"/>
         <Caret Line="31" Column="4" TopLine="1"/>
+      </Position9>
+      <Position10>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="81" Column="26" TopLine="49"/>
+      </Position10>
+      <Position11>
+        <Filename Value="itools/KSPStartup.pas"/>
+        <Caret Line="59" Column="54" TopLine="45"/>
+      </Position11>
+      <Position12>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="764" Column="16" TopLine="738"/>
+      </Position12>
+      <Position13>
+        <Filename Value="main.pas"/>
+        <Caret Line="44" Column="32" TopLine="34"/>
+      </Position13>
+      <Position14>
+        <Filename Value="main.pas"/>
+        <Caret Line="599" Column="32" TopLine="581"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="2964" Column="43" TopLine="2944"/>
+      </Position15>
+      <Position16>
+        <Filename Value="main.pas"/>
+        <Caret Line="2985" Column="12" TopLine="2976"/>
       </Position16>
       <Position17>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="2543" Column="62" TopLine="2519"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="759" Column="19" TopLine="746"/>
       </Position17>
       <Position18>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="728" Column="37" TopLine="703"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="81" Column="49" TopLine="51"/>
       </Position18>
       <Position19>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="1670" Column="13" TopLine="1652"/>
+        <Filename Value="itools/threads/loadplsthread.pas"/>
+        <Caret Line="49" Column="22" TopLine="38"/>
       </Position19>
       <Position20>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="860" Column="52" TopLine="836"/>
+        <Filename Value="itools/threads/loadplsthread.pas"/>
+        <Caret Line="43" Column="10" TopLine="1"/>
       </Position20>
       <Position21>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="761" Column="20" TopLine="737"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="766" Column="15" TopLine="740"/>
       </Position21>
       <Position22>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="81" Column="1" TopLine="47"/>
+        <Filename Value="dlls/files/kspdllfileutils.pas"/>
+        <Caret Line="20" Column="1" TopLine="1"/>
       </Position22>
       <Position23>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="7" Column="49" TopLine="1"/>
+        <Filename Value="additional/spkxmlparser.pas"/>
+        <Caret Line="768" Column="37" TopLine="744"/>
       </Position23>
       <Position24>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="309" Column="1" TopLine="273"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="7" Column="6" TopLine="1"/>
       </Position24>
       <Position25>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="37" Column="18" TopLine="13"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="774" Column="17" TopLine="749"/>
       </Position25>
       <Position26>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="284" Column="24" TopLine="273"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="769" Column="58" TopLine="748"/>
       </Position26>
       <Position27>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="274" Column="19" TopLine="244"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="768" Column="55" TopLine="752"/>
       </Position27>
       <Position28>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="119" Column="1" TopLine="95"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="771" Column="35" TopLine="745"/>
       </Position28>
       <Position29>
         <Filename Value="itools/playlists.pas"/>
-        <Caret Line="81" Column="26" TopLine="49"/>
+        <Caret Line="773" Column="38" TopLine="745"/>
       </Position29>
       <Position30>
-        <Filename Value="itools/KSPStartup.pas"/>
-        <Caret Line="59" Column="54" TopLine="45"/>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-xml/src/dom.pp"/>
+        <Caret Line="1232" Column="33" TopLine="1227"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

@@ -2977,19 +2977,22 @@ procedure TKSPMainWindow.ICLinkClicked(Value: QUrlH); cdecl;
 var
   URL,URL2: widestring;
   sl: TStringList;
-  s: string;
+  s, s2: string;
 begin
   QUrl_toString(Value, @URL2);
 
   URL:=URl2;
   if IsPlaylist(URL) then begin
     s:=ExtractFileName(URL);
+    hLog.Send('Downloading playlist: '+s);
     sl:=TStringList.Create;
     kspfiles.DownloadURLi(URL, sl);
     ForceDirectories(KSPDataFolder+'temp');
-    sl.SaveToFile(KSPDataFolder+'temp\'+s);
+    s2:=KSPDataFolder+'temp\'+s;
+    FixFolderNames(s2);
+    sl.SaveToFile(s2);
     Self.ClearPlayList;
-    LoadPls(KSPDataFolder+'temp\'+s);
+    LoadPls(s2);
     sl.Free;
   end else WebView.LoadURL(URL);
 

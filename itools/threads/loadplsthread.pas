@@ -3,7 +3,7 @@ unit LoadPlsThread;
 interface
 
 uses
-  Classes;
+  Classes, SysUtils;
 
 type
   TLoadPlsThread = class(TThread)
@@ -40,6 +40,7 @@ var
   i: integer;
   PlayList2: TPlayList;
 begin
+  if FileExists(aFileName) then begin
   PlayList2:=TPlayList.Create;
   hLog.Send('PLAYLIST LOADING: Playlist object created');
 //  LoadPlsSem := CreateSemaphore(nil, 0,1,'KSPLoadPls');
@@ -77,6 +78,7 @@ begin
   PlayList2.Free;
   KSPMainWindow.LoadingPlaylist:=false;
   hLog.Send('PLAYLIST LOADING: Playlist loading done');
+  end;
 
   LoadPlsSem2:=0;//ReleaseSemaphore(LoadPlsSem, 1, nil);
 end;
