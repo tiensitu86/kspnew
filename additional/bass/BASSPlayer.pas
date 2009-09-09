@@ -725,7 +725,7 @@ type
 
 implementation
 
-uses Main, KSPConstsVars, MultiLog, KSPMessages, KSPFiles;
+uses Main, KSPConstsVars, MultiLog, KSPFiles;
 
 
 const
@@ -765,7 +765,6 @@ var
    TitlePos, DelimeterPos : integer;
    PMetaSyncParam : ^TMetaSyncParam;
    //tmpPChar : pAnsiChar;
-   tmpStr2 : WideString;
 begin
    PMetaSyncParam := user;
    StreamTitle := '';
@@ -1673,11 +1672,9 @@ end;
 
 function TBASSPlayer.FileInfoBox(StreamName : string): Boolean;
 var
-   i : integer;
    tmpChannel : DWORD;
    ByteLen : int64;
    ExtCode : string;
-   _file : array[0..255] of ansichar;
    Duration, BitRate : DWORD;
    UseGivenData : boolean;
 

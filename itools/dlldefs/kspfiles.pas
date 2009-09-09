@@ -2,7 +2,7 @@ unit kspfiles;
 
 interface
 
-uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, {$IFDEF WINDOWS}WinInet, {$ENDIF}IdHTTP, DateUtils, Dialogs,
+uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, IdHTTP, DateUtils, Dialogs,
   KSPDLLFileUtils, FileUtil;
 
 const
@@ -26,7 +26,7 @@ const KSPMajorVersion = '2009';
 const Version = 0;
   Major = 2;
   Minor = 100;
-  Build = 103;
+  Build = 121;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
@@ -34,8 +34,8 @@ function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Card
 function IsCD(str: string): boolean;
 function IsStream(str: string): boolean;
 
-function GetKSPVersion(AppPath: TPathChar): ShortString;
-function GetKSPVersion2(AppPath: TPathChar): ShortString;
+function GetKSPVersion: ShortString;
+function GetKSPVersion2: ShortString;
 
 //FileUtils
 
@@ -81,7 +81,6 @@ end;
 
 procedure KSPDeleteFolder(Path: string);
 var
-  i: integer;
   sr: TSearchRec;
   FileAttrs: Integer;
 begin
@@ -116,7 +115,6 @@ end;
 
 procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 var
-  i: integer;
   sr: TSearchRec;
   FileAttrs: Integer;
 begin
@@ -266,57 +264,23 @@ end;
 
 
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
-//{$IFDEF WINDOWS}
-{var
-  hSession: HINTERNET;
-  hService: HINTERNET;
-  lpBuffer: array[0..1024 + 1] of Char;
-  dwBytesRead: DWORD;
-begin
-  Result := False;
-  // hSession := InternetOpen( 'MyApp', INTERNET_OPEN_TYPE_DIRECT, nil, nil, 0);
-  hSession := InternetOpen('MyApp', INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
-  try
-    if Assigned(hSession) then
-    begin
-      hService := InternetOpenUrl(hSession, PChar(aUrl), nil, 0, 0, 0);
-      if Assigned(hService) then
-        try
-          while True do
-          begin
-            dwBytesRead := 1024;
-            InternetReadFile(hService, @lpBuffer, 1024, dwBytesRead);
-            if dwBytesRead = 0 then break;
-            lpBuffer[dwBytesRead] := #0;
-            Output.Add(lpBuffer);
-          end;
-          Result := True;
-        finally
-          InternetCloseHandle(hService);
-        end;
-    end;
-  finally
-    InternetCloseHandle(hSession);
-  end;
-end;   }
-//{$ELSE}
 var
   HTTP: TIdHTTP;
 begin
   HTTP:=TIdHTTP.Create;
   Output.Text:=Http.Get(aUrl);
   HTTP.Free;
+  Result:=Output.Text<>'';
 end;
-//{$ENDIF}
 
 
-function GetKSPVersion(AppPath: TPathChar): ShortString;
+function GetKSPVersion: ShortString;
 begin
   Result := KSPMajorVersion;
   Result:=Result+' '+KSPSpecialInfo;
 end;
 
-function GetKSPVersion2(AppPath: TPathChar): ShortString;
+function GetKSPVersion2: ShortString;
 begin
   Result:=IntToStr(Version)+'.'+
     IntToStr(Major)+'.'+
@@ -341,7 +305,6 @@ end;
 
 procedure KSPShowMessage(msg: string);
 var
-  p : pointer;
   pc: pChar;
 begin
   pc:=pChar(msg);

@@ -67,9 +67,8 @@ begin
     hLog.Send('Loading version info...');
 
 //    KSPMainWindow.ApplicationVisible:=true;
-    KSPVersion:=GetKSPVersion('');
-    StrPCopy(Pc, ExtractFilePath(Application.ExeName));
-    KSPVersion2:=GetKSPVersion2(Pc);
+    KSPVersion:=GetKSPVersion;
+    KSPVersion2:=GetKSPVersion2;
 
   hLog.Send('Version loaded: '+Application.Title+' '+KSPVersion+' ('+KSPVersion2+')');
 
