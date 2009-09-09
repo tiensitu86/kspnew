@@ -555,6 +555,10 @@ msgstr ""
 msgid "Bug Report / Feature Request"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM25.CAPTION
+msgid "Tell A Friend"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM3.CAPTION
 msgid "Add Selected To Playlist"
 msgstr ""

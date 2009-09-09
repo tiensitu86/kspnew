@@ -3973,6 +3973,10 @@ object KSPMainWindow: TKSPMainWindow
         Caption = 'Bug Report / Feature Request'
         OnClick = MenuItem24Click
       end
+      object MenuItem25: TMenuItem
+        Caption = 'Tell A Friend'
+        OnClick = MenuItem25Click
+      end
     end
   end
   object MenuImages: TImageList
