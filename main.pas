@@ -2912,10 +2912,12 @@ begin
 //{$IFDEF USECHECKED}
       lbPlayList.State[lbPlayList.Items.Count-1]:=cbUnchecked;
 //{$ENDIF}
+      if not FStopped and (CurrentIndex>-1) then
+        if p^.FileName=CurrentFile then CurrentIndex:=i;
     end;
 
-  if not FStopped and (CurrentIndex>-1) then
-    lbPlayList.Items.Strings[CurrentIndex]:=lbPlayList.Items.Strings[CurrentIndex];
+
+    //lbPlayList.Items.Strings[CurrentIndex]:=lbPlayList.Items.Strings[CurrentIndex];
 
 end;
 
