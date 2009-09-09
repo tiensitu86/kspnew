@@ -496,6 +496,10 @@ msgstr ""
 msgid "Device buffer (in ms):"
 msgstr ""
 
+#: TKSPMAINWINDOW.LFILENAME.CAPTION
+msgid "asdf"
+msgstr ""
+
 #: TKSPMAINWINDOW.MEDIALIBSETUPPAGE.CAPTION
 msgid "MediaLibSetupPage"
 msgstr ""

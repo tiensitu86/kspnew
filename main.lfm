@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 391
+  Left = 393
   Height = 632
-  Top = 139
+  Top = 125
   Width = 977
   Caption = 'KSP'
   ClientHeight = 607
@@ -53,7 +53,7 @@ object KSPMainWindow: TKSPMainWindow
     ClientWidth = 977
     TabOrder = 2
     object lLeft: TLabel
-      Left = 672
+      Left = 544
       Height = 28
       Top = 8
       Width = 14
@@ -61,23 +61,30 @@ object KSPMainWindow: TKSPMainWindow
       OnClick = lLeftClick
     end
     object lTime2: TLabel
-      Left = 584
+      Left = 456
       Height = 28
       Top = 8
       Width = 14
       ParentColor = False
     end
     object TotalTimeLabel: TLabel
-      Left = 8
+      Left = 456
       Height = 28
-      Top = 41
+      Top = 32
       Width = 14
       ParentColor = False
     end
+    object lFileName: TLabel
+      Left = 544
+      Height = 14
+      Top = 32
+      Width = 25
+      ParentColor = False
+    end
     object PosBar: TTrackBar
-      Left = 384
-      Height = 22
-      Top = 2
+      Left = 264
+      Height = 30
+      Top = 0
       Width = 184
       Max = 200
       OnChange = PosBarChange
@@ -89,10 +96,10 @@ object KSPMainWindow: TKSPMainWindow
       TabOrder = 0
     end
     object TB: TTrackBar
-      Left = 352
+      Left = 232
       Height = 55
       Top = 2
-      Width = 24
+      Width = 30
       Max = 255
       OnChange = TBChange
       Orientation = trVertical
@@ -105,8 +112,8 @@ object KSPMainWindow: TKSPMainWindow
     object ToolBar1: TToolBar
       Left = 8
       Height = 24
-      Top = 8
-      Width = 328
+      Top = 2
+      Width = 216
       Align = alNone
       Ctl3D = False
       DisabledImages = ImageList2
@@ -143,8 +150,8 @@ object KSPMainWindow: TKSPMainWindow
       end
     end
     object Balance: TTrackBar
-      Left = 384
-      Height = 25
+      Left = 264
+      Height = 30
       Top = 32
       Width = 184
       Max = 200
@@ -155,7 +162,7 @@ object KSPMainWindow: TKSPMainWindow
       TabOrder = 3
     end
     object RepeatButton: TButton
-      Left = 128
+      Left = 8
       Height = 25
       Top = 32
       Width = 104
@@ -164,7 +171,7 @@ object KSPMainWindow: TKSPMainWindow
       TabOrder = 4
     end
     object ShuffleButton: TToggleBox
-      Left = 240
+      Left = 120
       Height = 25
       Top = 32
       Width = 104
@@ -194,13 +201,6 @@ object KSPMainWindow: TKSPMainWindow
     ClientHeight = 45
     ClientWidth = 977
     TabOrder = 4
-    object lFileName: TLabel
-      Left = 120
-      Height = 28
-      Top = 8
-      Width = 14
-      ParentColor = False
-    end
     object ScanFolder: TLabel
       Left = 8
       Height = 28
