@@ -78,7 +78,7 @@ uses
   Classes,
   synafpc,
 {$IFNDEF WIN32}
-  Libc, SysUtils;
+  SysUtils;
 {$ELSE}
   Windows;
 {$ENDIF}

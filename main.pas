@@ -1145,7 +1145,7 @@ procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
   PagesWelcome.ActivePage:=TabSheet3;
-//  Self.MainWebView.LoadURL(KSPTellAFriend);
+  Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
