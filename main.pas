@@ -1768,6 +1768,7 @@ var
 begin
   if LoadingPlaylist then Exit;
   CurrentFile:='';
+  CurrentTitle:='';
   if (CurrentIndex>-1) and PlayedPrevious then begin
       ResetDisplay;
       s:=lbPlaylist.Items.Strings[CurrentIndex];
@@ -2217,7 +2218,7 @@ end;
 
 procedure TKSPMainWindow.ResetDisplay;
 begin
-  lFilename.Caption := MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentFile)]), lFilename.Canvas, lFilename.Width);
+  lFilename.Caption := MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width);
 
   {if (CurrentIndex<PlayItems.Count)
   and (CurrentIndex>=0) then}
