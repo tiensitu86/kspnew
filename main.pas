@@ -48,6 +48,7 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    lFileName: TLabel;
     MenuItem24: TMenuItem;
     MenuItem25: TMenuItem;
     RelativePaths: TCheckBox;
@@ -148,7 +149,6 @@ type  TWebView = class(TObject)
     lTime2: TLabel;
     lLeft: TLabel;
     lbPlaylist: TCheckListBox;
-    lFileName: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     Panel1: TPanel;
