@@ -8,7 +8,7 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp;
 
 
   { TWebView }
@@ -1145,7 +1145,7 @@ procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
   PagesWelcome.ActivePage:=TabSheet3;
-  Self.MainWebView.LoadURL(KSPTellAFriend);
+//  Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
