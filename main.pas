@@ -51,6 +51,8 @@ type  TWebView = class(TObject)
     lFileName: TLabel;
     MenuItem24: TMenuItem;
     MenuItem25: TMenuItem;
+    MainWeb: TPanel;
+    MWProgress: TProgressBar;
     RelativePaths: TCheckBox;
     Label1: TLabel;
     MenuItem23: TMenuItem;
@@ -205,6 +207,7 @@ type  TWebView = class(TObject)
     procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
       State: TDragState; var Accept: Boolean);
     procedure lbPlaylistEndDrag(Sender, Target: TObject; X, Y: Integer);
+    procedure MainWebResize(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem23Click(Sender: TObject);
@@ -357,6 +360,7 @@ type  TWebView = class(TObject)
     procedure DoSetupThing(Par: integer; Sel: integer = -1);
     procedure ICLinkClicked(Value: QUrlH); cdecl;
     procedure IMProgressChange(progress: Integer); cdecl;
+    procedure MWProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
 
@@ -1071,6 +1075,11 @@ procedure TKSPMainWindow.lbPlaylistEndDrag(Sender, Target: TObject; X,
   Y: Integer);
 begin
 
+end;
+
+procedure TKSPMainWindow.MainWebResize(Sender: TObject);
+begin
+  MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -2106,7 +2115,7 @@ end;
 
 procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);
 begin
-  MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height-Panel8.Height);
+
 end;
 
 
@@ -2935,9 +2944,13 @@ begin
   // WebView
   WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php');
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
-  MainWebView:=TWebView.Create(Self.TabSheet3, KSPHost);
-  MainWebView.SetDimensions(TabSheet3.Width, TabSheet3.Height-Panel8.Height);
-  MainWebView.SetPosition(0, Panel8.Height);
+  MainWebView:=TWebView.Create(Self.MainWeb, KSPHost);
+  MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
+  MainWebView.SetPosition(0, 0);
+
+  QWebView_loadProgress_Event(Method):=@MWProgressChange;
+  WebViewHook:=QWebView_hook_create(MainWebView.Handle);
+  QWebView_hook_hook_loadProgress(WebViewHook,Method);
 
 {$IFDEF WINDOWS}
   HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
@@ -2987,6 +3000,12 @@ procedure TKSPMainWindow.IMProgressChange(progress: Integer); cdecl;
 begin
   IMProgress.Position:=Progress;
   IMprogress.Visible:=Progress<>100;
+end;
+
+procedure TKSPMainWindow.MWProgressChange(progress: Integer); cdecl;
+begin
+  MWProgress.Position:=Progress;
+  MWprogress.Visible:=Progress<>100;
 end;
 
 procedure TKSPMainWindow.btnCloseNotification; cdecl;
