@@ -551,6 +551,10 @@ msgstr ""
 msgid "Exit KSP"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM24.CAPTION
+msgid "Bug Report / Feature Request"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM3.CAPTION
 msgid "Add Selected To Playlist"
 msgstr ""
