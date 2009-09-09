@@ -67,9 +67,9 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="37" Y="1135"/>
-        <TopLine Value="1124"/>
-        <EditorIndex Value="2"/>
+        <CursorPos X="89" Y="344"/>
+        <TopLine Value="332"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
           <Item0 X="4" Y="1732" ID="0"/>
@@ -317,9 +317,9 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="3" Y="13"/>
+        <CursorPos X="3" Y="14"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -844,7 +844,7 @@
         <UnitName Value="KSPThreadUtils"/>
         <CursorPos X="17" Y="130"/>
         <TopLine Value="109"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1642,9 +1642,9 @@
       <Unit205>
         <Filename Value="additional/synapse/ssl_openssl_lib.pas"/>
         <UnitName Value="ssl_openssl_lib"/>
-        <CursorPos X="41" Y="74"/>
+        <CursorPos X="36" Y="73"/>
         <TopLine Value="50"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
