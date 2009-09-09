@@ -49,6 +49,7 @@ type  TWebView = class(TObject)
     Button8: TButton;
     Button9: TButton;
     MenuItem24: TMenuItem;
+    MenuItem25: TMenuItem;
     RelativePaths: TCheckBox;
     Label1: TLabel;
     MenuItem23: TMenuItem;
@@ -208,6 +209,7 @@ type  TWebView = class(TObject)
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem23Click(Sender: TObject);
     procedure MenuItem24Click(Sender: TObject);
+    procedure MenuItem25Click(Sender: TObject);
     procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -1128,6 +1130,13 @@ begin
   Self.Notebook1.ActivePage:='Page1';
   PagesWelcome.ActivePage:=TabSheet3;
   Self.MainWebView.LoadURL(KSPSupportURL);
+end;
+
+procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
+begin
+  Self.Notebook1.ActivePage:='Page1';
+  PagesWelcome.ActivePage:=TabSheet3;
+  Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
