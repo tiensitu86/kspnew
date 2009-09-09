@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -49,14 +49,14 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="198">
+    <Units Count="204">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksp"/>
-        <CursorPos X="28" Y="12"/>
+        <CursorPos X="42" Y="22"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="13"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -67,7 +67,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="35" Y="2943"/>
+        <CursorPos X="58" Y="2940"/>
         <TopLine Value="2924"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
@@ -82,9 +82,9 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="34" Y="1785"/>
-        <TopLine Value="1766"/>
-        <EditorIndex Value="7"/>
+        <CursorPos X="83" Y="2180"/>
+        <TopLine Value="2156"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -243,7 +243,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="1" Y="21"/>
         <TopLine Value="1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="44"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -319,7 +319,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -378,7 +378,7 @@
         <UnitName Value="MRNG"/>
         <CursorPos X="29" Y="15"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="14"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -389,7 +389,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="1" Y="55"/>
         <TopLine Value="31"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="57"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -465,7 +465,7 @@
         <UnitName Value="KSPStrings"/>
         <CursorPos X="9" Y="70"/>
         <TopLine Value="50"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -499,7 +499,7 @@
         <UnitName Value="MediaItems"/>
         <CursorPos X="10" Y="464"/>
         <TopLine Value="434"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="15"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -572,7 +572,7 @@
         <UnitName Value="StartupThread"/>
         <CursorPos X="27" Y="12"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -641,7 +641,7 @@
         <UnitName Value="OggVorbis"/>
         <CursorPos X="1" Y="81"/>
         <TopLine Value="57"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="57"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -650,7 +650,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="1" Y="73"/>
         <TopLine Value="49"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="53"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit68>
       <Unit69>
@@ -844,7 +844,7 @@
         <UnitName Value="KSPThreadUtils"/>
         <CursorPos X="17" Y="130"/>
         <TopLine Value="109"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1076,7 +1076,7 @@
         <UnitName Value="Support"/>
         <CursorPos X="11" Y="15"/>
         <TopLine Value="2"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
@@ -1155,7 +1155,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="57"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit137>
       <Unit138>
@@ -1374,8 +1374,8 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="4" Y="31"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="54"/>
+        <EditorIndex Value="10"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit169>
@@ -1467,7 +1467,7 @@
         <UnitName Value="IdHTTP"/>
         <CursorPos X="9" Y="559"/>
         <TopLine Value="554"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="36"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit182>
       <Unit183>
@@ -1582,127 +1582,181 @@
         <TopLine Value="265"/>
         <UsageCount Value="10"/>
       </Unit197>
+      <Unit198>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uxmpp"/>
+        <CursorPos X="37" Y="225"/>
+        <TopLine Value="206"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit198>
+      <Unit199>
+        <Filename Value="additional/xmpp/tcpsynapse.pas"/>
+        <UnitName Value="tcpsynapse"/>
+        <CursorPos X="9" Y="60"/>
+        <TopLine Value="54"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit199>
+      <Unit200>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-base/src/syncobjs.pp"/>
+        <UnitName Value="syncobjs"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit200>
+      <Unit201>
+        <Filename Value="additional/xmpp/saslauth.pas"/>
+        <UnitName Value="saslauth"/>
+        <CursorPos X="35" Y="29"/>
+        <TopLine Value="18"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit201>
+      <Unit202>
+        <Filename Value="additional/indy/fpc/IdTCPClient.pas"/>
+        <UnitName Value="IdTCPClient"/>
+        <CursorPos X="15" Y="221"/>
+        <TopLine Value="206"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit202>
+      <Unit203>
+        <Filename Value="additional/indy/fpc/IdComponent.pas"/>
+        <UnitName Value="IdComponent"/>
+        <CursorPos X="14" Y="129"/>
+        <TopLine Value="105"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit203>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="1808" Column="47" TopLine="1784"/>
+        <Caret Line="54" Column="32" TopLine="53"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="1629" Column="3" TopLine="1612"/>
+        <Caret Line="6" Column="13" TopLine="1"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="1439" Column="54" TopLine="1433"/>
+        <Caret Line="210" Column="46" TopLine="209"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="117" Column="28" TopLine="116"/>
+        <Caret Line="1082" Column="58" TopLine="1080"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="116" Column="27" TopLine="116"/>
+        <Caret Line="2942" Column="66" TopLine="2923"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="44" Column="23" TopLine="43"/>
+        <Caret Line="2116" Column="26" TopLine="2092"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="52" Column="16" TopLine="43"/>
+        <Caret Line="2951" Column="49" TopLine="2928"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="51" Column="22" TopLine="43"/>
+        <Caret Line="75" Column="29" TopLine="55"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="43" Column="23" TopLine="43"/>
+        <Caret Line="2997" Column="30" TopLine="2970"/>
       </Position9>
       <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="210" Column="48" TopLine="209"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="25" Column="30" TopLine="1"/>
       </Position10>
       <Position11>
-        <Filename Value="main.pas"/>
-        <Caret Line="1128" Column="3" TopLine="1126"/>
+        <Filename Value="additional/xmpp/tcpsynapse.pas"/>
+        <Caret Line="18" Column="27" TopLine="1"/>
       </Position11>
       <Position12>
-        <Filename Value="main.pas"/>
-        <Caret Line="965" Column="1" TopLine="962"/>
+        <Filename Value="additional/xmpp/tcpsynapse.pas"/>
+        <Caret Line="151" Column="34" TopLine="1"/>
       </Position12>
       <Position13>
-        <Filename Value="main.pas"/>
-        <Caret Line="1144" Column="38" TopLine="1126"/>
+        <Filename Value="additional/xmpp/tcpsynapse.pas"/>
+        <Caret Line="18" Column="27" TopLine="1"/>
       </Position13>
       <Position14>
-        <Filename Value="main.pas"/>
-        <Caret Line="52" Column="27" TopLine="51"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="21" Column="31" TopLine="14"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="212" Column="48" TopLine="211"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="51" Column="9" TopLine="27"/>
       </Position15>
       <Position16>
-        <Filename Value="kspconstsvars.pas"/>
-        <Caret Line="13" Column="17" TopLine="1"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="181" Column="9" TopLine="164"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="1138" Column="31" TopLine="1135"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="22" Column="27" TopLine="8"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="150" Column="31" TopLine="150"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="1785" Column="34" TopLine="1766"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="51" Column="23" TopLine="50"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="2988" Column="3" TopLine="2986"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="25" Column="29" TopLine="1"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="2993" Column="12" TopLine="2987"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="51" Column="25" TopLine="34"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="54" Column="32" TopLine="53"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="56" Column="1" TopLine="33"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="6" Column="13" TopLine="1"/>
+        <Filename Value="additional/xmpp/saslauth.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="210" Column="46" TopLine="209"/>
+        <Filename Value="additional/xmpp/saslauth.pas"/>
+        <Caret Line="12" Column="47" TopLine="1"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="1082" Column="58" TopLine="1080"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="173" Column="12" TopLine="150"/>
       </Position25>
       <Position26>
-        <Filename Value="main.pas"/>
-        <Caret Line="2942" Column="66" TopLine="2923"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="190" Column="29" TopLine="166"/>
       </Position26>
       <Position27>
-        <Filename Value="main.pas"/>
-        <Caret Line="2116" Column="26" TopLine="2092"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="87" Column="1" TopLine="63"/>
       </Position27>
       <Position28>
-        <Filename Value="main.pas"/>
-        <Caret Line="2951" Column="49" TopLine="2928"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="189" Column="1" TopLine="165"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="75" Column="29" TopLine="55"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="188" Column="33" TopLine="164"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="2997" Column="30" TopLine="2970"/>
+        <Filename Value="additional/xmpp/uxmpp.pas"/>
+        <Caret Line="189" Column="15" TopLine="165"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -1713,7 +1767,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)/"/>
-      <OtherUnitFiles Value="additional/bass/;additional/atl/;itools/;additional/;itools/dlldefs/;itools/threads/;itools/platformdep/;itools/medialib/;itools/sqlite/;additional/multilog/;itools/addforms/;dlls/files/;additional/indy/fpc/"/>
+      <OtherUnitFiles Value="additional/bass/;additional/atl/;itools/;additional/;itools/dlldefs/;itools/threads/;itools/platformdep/;itools/medialib/;itools/sqlite/;additional/multilog/;itools/addforms/;dlls/files/;additional/indy/fpc/;additional/xmpp/"/>
       <UnitOutputDirectory Value="../dcu"/>
       <LCLWidgetType Value="qt"/>
     </SearchPaths>
