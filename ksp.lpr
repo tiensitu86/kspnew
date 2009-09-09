@@ -19,7 +19,7 @@ uses
   OptionsFrm2, splash, complib, KSPThreadUtils, TurboPowerIPro, Support,
   WAVfile, APETag, OggVorbis
   {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
-  , MPEGaudio, MPEGInfoBox, IdHTTP;
+  , MPEGaudio, MPEGInfoBox, IdHTTP, uxmpp;
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 
