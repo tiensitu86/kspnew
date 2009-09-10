@@ -8,6 +8,7 @@ uses Messages, FileSupportLst, SysUtils, BASSPlayer,
 
 const
   KSPHost = 'http://ksplayer.boo.pl';
+  KSPHost2 = KSPHost+'/?kmajor=%s&kminor=%s&krelease=%s&kbuild=%s&from_ksp=1';
   KSPHowHelp = 'http://www.ksplayer.boo.pl/help-wanted';
   KSPSupportURL = 'http://code.google.com/p/kspnew/issues/list';
   KSPTellAFriend = 'http://www.freetellafriend.com/tell/??u=5653&title=KSPSoundPlayer&url=http://ksplayer.boo.pl';

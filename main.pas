@@ -2936,6 +2936,7 @@ procedure TKSPMainWindow.SetupWebBrowserIC;
 var
   WebViewHook     : QWebView_hookH;
   Method          : TMethod;
+  s1, s2, s3, s4: string;
 
 begin
 //  HandleIC:=QWidget_Create(nil, 0);
@@ -2946,7 +2947,8 @@ begin
   // WebView
   WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php');
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
-  MainWebView:=TWebView.Create(Self.MainWeb, KSPHost);
+  GetKSPVersion3(s1, s2, s3, s4);
+  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]));
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
   MainWebView.SetPosition(0, 0);
 

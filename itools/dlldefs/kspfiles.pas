@@ -36,6 +36,7 @@ function IsStream(str: string): boolean;
 
 function GetKSPVersion: ShortString;
 function GetKSPVersion2: ShortString;
+procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
 
 //FileUtils
 
@@ -287,6 +288,14 @@ begin
     IntToStr(Major)+'.'+
     IntToStr(Minor)+'.'+
     IntToStr(Build);//GetKSPVersion(AppPath);
+end;
+
+procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
+begin
+  kversion:=IntToStr(Version);
+  kmajor:=IntToStr(Major);
+  kminor:=IntToStr(Minor);
+  kbuild:=IntToStr(Build);
 end;
 
 function KSPGetFileSize(const FileName: WideString): Int64;
