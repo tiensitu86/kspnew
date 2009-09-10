@@ -41,6 +41,7 @@ type  TWebView = class(TObject)
     Button13: TButton;
     Button14: TButton;
     Button15: TButton;
+    Button16: TButton;
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
@@ -48,11 +49,13 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    SongsLike: TEdit;
     lFileName: TLabel;
     MenuItem24: TMenuItem;
     MenuItem25: TMenuItem;
     MainWeb: TPanel;
     MWProgress: TProgressBar;
+    Panel9: TPanel;
     RelativePaths: TCheckBox;
     Label1: TLabel;
     MenuItem23: TMenuItem;
@@ -190,6 +193,7 @@ type  TWebView = class(TObject)
     procedure Button13Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
+    procedure Button16Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -315,7 +319,7 @@ type  TWebView = class(TObject)
     procedure SaveOptions;
     procedure PerformFileOpen(const AFileName: string);
     procedure MigrateDatabase;
-    procedure AssignMedia;
+    procedure AssignMedia(UseSortType: boolean = true);
     procedure SortByTrackPLS;
     procedure SortByArtistPLS;
     procedure SortByAlbumPLS;
@@ -1456,6 +1460,12 @@ begin
   QApplication_aboutQt;
 end;
 
+procedure TKSPMainWindow.Button16Click(Sender: TObject);
+begin
+  FindSongsLike(MediaSongs, AllSongs, SongsLike.Text);
+  AssignMedia(false);
+end;
+
 function TKSPMainWindow.GetCurrentFile: string;
 begin
   Result:=CurrentFile;
@@ -2567,14 +2577,15 @@ begin
   end;
 end;
 
-procedure TKSPMainWindow.AssignMedia;
+procedure TKSPMainWindow.AssignMedia(UseSortType: boolean = true);
 var
   i: integer;
 begin
-  if (SortType<>stByArtist)
-    and (SortType<>stByAlbum)
-    and (SortType<>stByYear)
-    and (SortType<>stByGenre) then Exit;
+  if UseSortType then
+    if (SortType<>stByArtist)
+      and (SortType<>stByAlbum)
+      and (SortType<>stByYear)
+      and (SortType<>stByGenre) then Exit;
 
   MIView.Clear;
   if MediaSongs.Count=0 then Exit;

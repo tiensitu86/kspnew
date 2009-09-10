@@ -59,7 +59,7 @@ type
     function MultipleTransactionsSupported: boolean;
 
     function ReadEntry: TPLEntry;
-    function CompactLib(Step: integer = 1; s: TStringList = nil): TStringList;
+    procedure CompactLib;
     procedure Remove(FileName: string);
     function IsPlaylist(FileName: string): boolean;
     function ReturnFromArtist(FileName: string; Artist: string): TPlayList;
@@ -601,20 +601,21 @@ begin
 //      p.InternalNumberName:=f.FieldByName('IM').AsInteger;
 end;
 
-function TAppDBConnection.CompactLib(Step: integer = 1; s: TStringList = nil): TStringList;
+procedure TAppDBConnection.CompactLib;
 var
   Pc: TPathChar;
+  s: TStringList;
 
   procedure Step1;
   var
     x: integer;
   begin
-    Result:=TStringList.Create;
     OpenQuery('SELECT * FROM meta');
     if ReturnRecordsCount>0 then for x:=0 to ReturnRecordsCount-1 do begin
-      Result.Add(ReadEntry.FileName);
+      s.Add(ReadEntry.FileName);
       GoToNext;
     end;
+    hLog.Send('MEDIA LIBRARY: '+IntToStr(s.Count)+' items returned');
     CloseQuery;
   end;
 
@@ -622,8 +623,9 @@ var
   procedure Step2;
   var
     i: integer;
+    str: string;
   begin
-    if s = nil then Exit;
+    hLog.Send('MEDIA LIBRARY: '+IntToStr(s.Count)+' items to process');
     if s.Count>0 then begin
     for i:=0 to s.Count-1 do
       if (not FileExists(s.Strings[i])) or
@@ -631,25 +633,24 @@ var
       or (s.Strings[i]='')
       or (FileSupportList.FindExtension(ExtractFileExt(s.Strings[i]), false)=-1) then
       begin
-        StrPCopy(Pc, s.Strings[i]);
+        if not FileExists(s.Strings[i]) then hLog.Send('MEDIA LIBRARY: File doesn''t exist: '+s.Strings[i]);
+        str:=s.Strings[i];
+        FixFileNameDB2(str);
+        hLog.Send('MEDIA LIBRARY: Removing item from library: '+str);
+        StrPCopy(Pc, str);
         ExecuteSQL(Format(RemoveItem, [PrepareString(Pc)]));
       end;
     end;
-    s.Free;
-
     hLog.Send('MEDIA LIBRARY: Compact done');
   end;
 
 begin
-
   s:=TStringList.Create;
 
-  hLog.Send('MEDIA LIBRARY: Compact part '+IntToStr(Step));
+  Step1;
+  Step2;
 
-  case Step of
-    1: Step1;
-    2: Step2;
-  end;
+  s.Free;
 end;
 
 procedure TAppDBConnection.AddToDataBase(p: TPlaylist);

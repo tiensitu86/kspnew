@@ -37,7 +37,6 @@ end;
 
 procedure SetupStage1;
 var
-  Pc: TPathChar;
   i: integer;
   W : WideString;
   s: string;

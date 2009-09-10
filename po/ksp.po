@@ -438,6 +438,10 @@ msgstr ""
 msgid "About QT"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON16.CAPTION
+msgid "Find Songs Like"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON2.CAPTION
 msgid "Save"
 msgstr ""

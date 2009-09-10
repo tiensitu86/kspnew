@@ -130,9 +130,9 @@ begin
 
   KSPMainWindow.SongsInLib:=ItemsNo;
 
-  s:=AllSongs.CompactLib;
+  //s:=AllSongs.CompactLib;
   KSPMainWindow.WaitForB:=0;
-  AllSongs.CompactLib(2, s);
+  AllSongs.CompactLib;//(2, s);
 
   KSPMainWindow.TabSheet1.Visible:=ItemsNo>0;
 

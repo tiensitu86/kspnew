@@ -11,6 +11,7 @@ function GetUserDataFolder: string;
 procedure FixFolderNames(var FolderName: string);
 Function ForceDirectoriesKSP(Const Dir: string): Boolean;
 procedure FixFileNameDB(var Name: string);
+procedure FixFileNameDB2(var Name: string);
 
 
 implementation
@@ -55,6 +56,17 @@ begin
 {$else}
   Name:=ReplaceStr(Name, '/', '\');
   Name:=ReplaceStr(Name, '\', '//');
+{$endif}
+end;
+
+procedure FixFileNameDB2(var Name: string);
+begin
+{$ifdef mswindows}
+  Name:=ReplaceStr(Name, '\\', '/');
+  Name:=ReplaceStr(Name, '/', '\');
+{$else}
+  Name:=ReplaceStr(Name, '//', '\');
+  Name:=ReplaceStr(Name, '\', '/');
 {$endif}
 end;
 

@@ -32,7 +32,7 @@ type TMediaFolder = record
 
 implementation
 
-uses IniFiles, FoldersScan, KSPConstsVars;
+uses IniFiles, FoldersScan, KSPConstsVars, multilog;
 
 constructor TMediaFoldersList.Create;
 begin
@@ -80,11 +80,16 @@ function TMediaFoldersList.FileInFolders(FileName: string): boolean;
 var
   i: integer;
 begin
+  FixFileNameDB2(FileName);
   Result:=false;
   if Count>0 then
     for i:=0 to Count-1 do
-      if Pos(UpperCase(GetItem(i).Folder), UpperCase(FileName))>0 then
+      if Pos(UpperCase(GetItem(i).Folder), UpperCase(FileName))>0 then begin
         Result:=true;
+      end;
+
+  if not Result then
+    hLog.Send('MEDIA LIBRARY: File not in library folder: '+FileName);
 end;
 
 procedure TMediaFoldersList.ReplaceEntry(Index: Integer; new: TMediaFolder);

@@ -46,7 +46,7 @@ TFileSupportList = class(TList)
 
 implementation
 
-uses KSPConstsVars;
+uses KSPConstsVars, multilog;
 
 constructor TFileSupportList.Create;
 begin
@@ -174,11 +174,12 @@ begin
   Result:=-1;
   if not CharSize then Ext:=UpperCase(Ext);
 
-  if Pos(Ext, UpperCase(Player.NativeFileExts))>-1 then Result:=0;
+  if Pos(Ext, UpperCase(Player.NativeFileExts))>0 then Result:=0;
 
   if (Count>0) and (Ext<>'') and (Result<>-2) then begin
       for i:=0 to Count-1 do begin
           found:=false;
+          //hLog.Send('Extension2: '+TFileInfo(Items[i]).Entry.FormatP[0].exts);
           for x:=0 to TFileInfo(Items[i]).Entry.NumFormat-1 do
             if UpperCase(TFileInfo(Items[i]).Entry.FormatP[x].exts)=Ext then begin
                 found:=true;

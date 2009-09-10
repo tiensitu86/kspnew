@@ -628,7 +628,7 @@ var
 begin
   if not CheckForTags then begin
       StrPCopy(Pc, Input);
-      Input:=Format(SelectGetItemLike, [PrepareString(Pc)]);
+      Input:=Format(SelectGetItemLike, ['%'+PrepareString(Pc)+'%']);
       Exit;
     end;
 
@@ -643,6 +643,7 @@ begin
     end;
 
   Input:=Tmp;
+  hLog.Send('LIKE: '+Input);
 end;
 
 procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string);
