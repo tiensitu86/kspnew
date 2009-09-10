@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="6"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -268,7 +268,7 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="19" Y="781"/>
+        <CursorPos X="37" Y="787"/>
         <TopLine Value="770"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="210"/>
@@ -326,11 +326,9 @@
         <Filename Value="itools/filesupportlst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FileSupportLst"/>
-        <CursorPos X="1" Y="175"/>
+        <CursorPos X="34" Y="161"/>
         <TopLine Value="147"/>
-        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit30>
       <Unit31>
@@ -418,7 +416,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="25" Y="14"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -548,7 +546,7 @@
         <UnitName Value="MediaFolders"/>
         <CursorPos X="1" Y="83"/>
         <TopLine Value="79"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -588,7 +586,7 @@
         <UnitName Value="PresetsU"/>
         <CursorPos X="29" Y="93"/>
         <TopLine Value="68"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -597,7 +595,7 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="11" Y="628"/>
+        <CursorPos X="41" Y="627"/>
         <TopLine Value="609"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="200"/>
@@ -1682,7 +1680,7 @@
         <Filename Value="../../../../../usr/share/fpcsrc/rtl/inc/systemh.inc"/>
         <CursorPos X="13" Y="589"/>
         <TopLine Value="566"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit211>
@@ -1690,7 +1688,7 @@
         <Filename Value="../../../../../usr/share/fpcsrc/rtl/inc/astrings.inc"/>
         <CursorPos X="3" Y="779"/>
         <TopLine Value="774"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit212>
