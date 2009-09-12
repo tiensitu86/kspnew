@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="8"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -66,13 +66,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="18" Y="822"/>
-        <TopLine Value="802"/>
-        <EditorIndex Value="6"/>
+        <CursorPos X="21" Y="52"/>
+        <TopLine Value="51"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="4" Y="1742" ID="0"/>
-          <Item1 X="12" Y="867" ID="1"/>
+          <Item0 X="4" Y="1743" ID="0"/>
+          <Item1 X="12" Y="868" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -271,9 +271,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="33" Y="274"/>
         <TopLine Value="253"/>
-        <EditorIndex Value="0"/>
         <UsageCount Value="210"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
@@ -318,7 +316,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="3" Y="97"/>
         <TopLine Value="77"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -346,7 +344,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="6" Y="35"/>
         <TopLine Value="23"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -491,10 +489,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="MediaItems"/>
         <CursorPos X="64" Y="643"/>
-        <TopLine Value="598"/>
-        <EditorIndex Value="5"/>
+        <TopLine Value="577"/>
         <UsageCount Value="206"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -556,9 +552,7 @@
         <UnitName Value="FoldersScan"/>
         <CursorPos X="46" Y="119"/>
         <TopLine Value="100"/>
-        <EditorIndex Value="10"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -593,8 +587,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
         <CursorPos X="39" Y="119"/>
-        <TopLine Value="94"/>
-        <EditorIndex Value="7"/>
+        <TopLine Value="29"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -603,9 +597,9 @@
         <Filename Value="itools\app_sql.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_sql"/>
-        <CursorPos X="61" Y="43"/>
+        <CursorPos X="43" Y="34"/>
         <TopLine Value="27"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -629,9 +623,7 @@
         <UnitName Value="CommonATL"/>
         <CursorPos X="42" Y="156"/>
         <TopLine Value="140"/>
-        <EditorIndex Value="1"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
@@ -1563,9 +1555,7 @@
         <UnitName Value="System"/>
         <CursorPos X="21" Y="43"/>
         <TopLine Value="26"/>
-        <EditorIndex Value="2"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit195>
       <Unit196>
         <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win\sysos.inc"/>
@@ -1701,19 +1691,19 @@
         <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
         <CursorPos X="25" Y="206"/>
         <TopLine Value="186"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit214>
       <Unit215>
         <Filename Value="..\..\lyrics.sql"/>
         <CursorPos X="40" Y="4"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="SQL"/>
       </Unit215>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="196" Column="46" TopLine="195"/>
@@ -1751,81 +1741,33 @@
         <Caret Line="2579" Column="37" TopLine="2579"/>
       </Position9>
       <Position10>
-        <Filename Value="itools\threads\FoldersScan.pas"/>
-        <Caret Line="133" Column="19" TopLine="96"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="611" Column="26" TopLine="587"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="611" Column="26" TopLine="587"/>
+        <Caret Line="597" Column="31" TopLine="587"/>
       </Position11>
       <Position12>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="668" Column="51" TopLine="655"/>
-      </Position12>
-      <Position13>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="673" Column="18" TopLine="656"/>
-      </Position13>
-      <Position14>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="649" Column="12" TopLine="635"/>
-      </Position14>
-      <Position15>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="670" Column="43" TopLine="656"/>
-      </Position15>
-      <Position16>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="9" Column="33" TopLine="1"/>
-      </Position16>
-      <Position17>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="7" Column="10" TopLine="631"/>
-      </Position17>
-      <Position18>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="664" Column="22" TopLine="651"/>
-      </Position18>
-      <Position19>
-        <Filename Value="additional\bass\CommonATL.pas"/>
-        <Caret Line="135" Column="9" TopLine="133"/>
-      </Position19>
-      <Position20>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="667" Column="26" TopLine="649"/>
-      </Position20>
-      <Position21>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="667" Column="27" TopLine="649"/>
-      </Position21>
-      <Position22>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="833" Column="60" TopLine="802"/>
-      </Position22>
-      <Position23>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="12" Column="7" TopLine="1"/>
-      </Position23>
-      <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="597" Column="31" TopLine="587"/>
-      </Position24>
-      <Position25>
         <Filename Value="main.pas"/>
         <Caret Line="822" Column="18" TopLine="802"/>
-      </Position25>
-      <Position26>
+      </Position12>
+      <Position13>
         <Filename Value="itools\app_db_utils.pas"/>
         <Caret Line="262" Column="22" TopLine="242"/>
-      </Position26>
-      <Position27>
+      </Position13>
+      <Position14>
         <Filename Value="itools\app_db_utils.pas"/>
         <Caret Line="122" Column="41" TopLine="94"/>
-      </Position27>
-      <Position28>
+      </Position14>
+      <Position15>
         <Filename Value="itools\app_sql.pas"/>
         <Caret Line="12" Column="19" TopLine="1"/>
-      </Position28>
+      </Position15>
+      <Position16>
+        <Filename Value="main.pas"/>
+        <Caret Line="822" Column="18" TopLine="802"/>
+      </Position16>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

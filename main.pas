@@ -49,6 +49,7 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    Panel10: TPanel;
     SongsLike: TEdit;
     lFileName: TLabel;
     MenuItem24: TMenuItem;
