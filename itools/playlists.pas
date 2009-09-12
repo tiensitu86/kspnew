@@ -624,6 +624,7 @@ begin
   if Cnt>0 then begin
       for i := 1 to Cnt do begin
           p.FileName:=f.ReadString('playlist', 'File'+IntToStr(i), '');
+          if Length(p.FileName)>MAX_PATH then Continue;
           StrPCopy(Pc, p.FileName);
           if not (IsStream(Pc) or IsCD(Pc)) then
             p.FileName:=ExpandFileName(p.FileName);
@@ -660,15 +661,24 @@ begin
 
   Readln(f, s);
   While Length(s)>0 do begin
-      if (s[1]<>'#') and (s[1]<>' ') and (Length(s)<>0)then begin
+      if (s[1]<>'#') and (s[1]<>' ') and (Length(s)<MAX_PATH)then begin
+{If provided string is too long and it's path to the file then don't process
+too it if it is too long (it might lead to stack overflow). This can't be checked
+in any other part of this routine (if it is not a file name then BASS should handle this)}
           StrPCopy(Pc, s);
           if not (IsStream(Pc) or IsCD(Pc)) then
-            p.FileName:=ExpandFileName(s) else
-            p.FileName:=s;
+            begin
+             try
+               p.FileName:=ExpandFileName(s)
+             except
+               Continue;
+             end
+            end else
+              p.FileName:=s;
           //if not FileExists(p.FileName) then
           //  p.FileName:=s;
           if p.FileName<>'' then begin
-
+            try
               if FileExists(p.FileName) or IsStream(Pc)
               or IsCD(Pc) then begin
                   lack:=0;
@@ -679,6 +689,9 @@ begin
                   end;
                   Pls.Add(p);
                 end;
+            except
+              Continue;
+            end;
           end;
         end;
 
@@ -739,6 +752,7 @@ begin
       if Node<>nil then begin
           Entry:=Node.Parameters.ParamByName['filename', false];
           if Entry=nil then p.FileName:='' else begin
+              if Length(Entry.Value)>MAX_PATH then Continue;
               StrPCopy(Pc, Entry.Value);
               if (IsStream(Pc)) or (IsCD(Pc)) then
                 p.FileName:=Entry.Value else
@@ -796,6 +810,7 @@ begin
     Node:=FindNode(Main.ChildNodes.Item[i], 'location');
     hLog.Send(Node.FirstChild.NodeValue);
     fname:=Node.FirstChild.NodeValue;
+    if Length(fname)>MAX_PATH then Continue;
     //ShowMessage(fname);
     hLog.Send(fname);
     StrPCopy(Pc, fname);

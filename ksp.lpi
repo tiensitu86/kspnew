@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -50,7 +50,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="212">
+    <Units Count="215">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -68,7 +68,7 @@
         <UnitName Value="main"/>
         <CursorPos X="22" Y="610"/>
         <TopLine Value="587"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
           <Item0 X="4" Y="1742" ID="0"/>
@@ -240,7 +240,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="1" Y="21"/>
         <TopLine Value="1"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="59"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -269,8 +269,8 @@
         <Filename Value="itools\playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="29" Y="785"/>
-        <TopLine Value="770"/>
+        <CursorPos X="31" Y="749"/>
+        <TopLine Value="737"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
@@ -289,9 +289,11 @@
         <Filename Value="itools\id3mgmnt.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ID3Mgmnt"/>
-        <CursorPos X="15" Y="230"/>
-        <TopLine Value="210"/>
+        <CursorPos X="14" Y="24"/>
+        <TopLine Value="7"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
@@ -307,18 +309,20 @@
         <Filename Value="itools\kspmessages.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPMessages"/>
-        <CursorPos X="6" Y="9"/>
+        <CursorPos X="29" Y="9"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="52" Y="85"/>
-        <TopLine Value="62"/>
-        <EditorIndex Value="1"/>
+        <CursorPos X="3" Y="97"/>
+        <TopLine Value="77"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -344,9 +348,9 @@
         <Filename Value="itools\dlldefs\kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="22" Y="27"/>
+        <CursorPos X="6" Y="35"/>
         <TopLine Value="23"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -355,9 +359,11 @@
         <Filename Value="itools\threads\loadplsthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoadPlsThread"/>
-        <CursorPos X="16" Y="33"/>
-        <TopLine Value="1"/>
+        <CursorPos X="34" Y="55"/>
+        <TopLine Value="43"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="207"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
@@ -384,7 +390,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="1" Y="55"/>
         <TopLine Value="31"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="72"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -492,7 +498,7 @@
         <UnitName Value="MediaItems"/>
         <CursorPos X="64" Y="643"/>
         <TopLine Value="598"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -556,7 +562,7 @@
         <UnitName Value="FoldersScan"/>
         <CursorPos X="46" Y="119"/>
         <TopLine Value="100"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="13"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -623,9 +629,11 @@
       <Unit66>
         <Filename Value="additional\bass\CommonATL.pas"/>
         <UnitName Value="CommonATL"/>
-        <CursorPos X="9" Y="135"/>
-        <TopLine Value="133"/>
-        <UsageCount Value="7"/>
+        <CursorPos X="42" Y="156"/>
+        <TopLine Value="140"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
@@ -634,7 +642,7 @@
         <UnitName Value="OggVorbis"/>
         <CursorPos X="1" Y="81"/>
         <TopLine Value="57"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="72"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -643,7 +651,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="1" Y="73"/>
         <TopLine Value="49"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="68"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit68>
       <Unit69>
@@ -1067,7 +1075,7 @@
         <UnitName Value="Support"/>
         <CursorPos X="11" Y="15"/>
         <TopLine Value="2"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="133"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
@@ -1146,7 +1154,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="72"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit137>
       <Unit138>
@@ -1365,7 +1373,7 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="28" Y="185"/>
         <TopLine Value="139"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit169>
       <Unit170>
@@ -1456,7 +1464,7 @@
         <UnitName Value="IdHTTP"/>
         <CursorPos X="9" Y="559"/>
         <TopLine Value="554"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="51"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit182>
       <Unit183>
@@ -1555,9 +1563,11 @@
       <Unit195>
         <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win32\system.pp"/>
         <UnitName Value="System"/>
-        <CursorPos X="19" Y="311"/>
-        <TopLine Value="309"/>
-        <UsageCount Value="9"/>
+        <CursorPos X="21" Y="43"/>
+        <TopLine Value="26"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit195>
       <Unit196>
         <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\win\sysos.inc"/>
@@ -1577,7 +1587,7 @@
         <UnitName Value="uxmpp"/>
         <CursorPos X="37" Y="1240"/>
         <TopLine Value="1216"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="36"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit198>
       <Unit199>
@@ -1625,7 +1635,7 @@
         <UnitName Value="blcksock"/>
         <CursorPos X="21" Y="142"/>
         <TopLine Value="124"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit204>
       <Unit205>
@@ -1677,88 +1687,152 @@
         <TopLine Value="774"/>
         <UsageCount Value="11"/>
       </Unit211>
+      <Unit212>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\finah.inc"/>
+        <CursorPos X="17" Y="30"/>
+        <TopLine Value="3"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit212>
+      <Unit213>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\fina.inc"/>
+        <CursorPos X="2" Y="140"/>
+        <TopLine Value="135"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit213>
+      <Unit214>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <CursorPos X="25" Y="206"/>
+        <TopLine Value="186"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit214>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="itools\playlists.pas"/>
-        <Caret Line="7" Column="6" TopLine="1"/>
+        <Caret Line="771" Column="35" TopLine="745"/>
       </Position1>
       <Position2>
         <Filename Value="itools\playlists.pas"/>
-        <Caret Line="774" Column="17" TopLine="749"/>
+        <Caret Line="773" Column="38" TopLine="745"/>
       </Position2>
       <Position3>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="769" Column="58" TopLine="748"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2949" Column="25" TopLine="2930"/>
       </Position3>
       <Position4>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="768" Column="55" TopLine="752"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="56" Column="20" TopLine="55"/>
       </Position4>
       <Position5>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="771" Column="35" TopLine="745"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="51" Column="18" TopLine="50"/>
       </Position5>
       <Position6>
-        <Filename Value="itools\playlists.pas"/>
-        <Caret Line="773" Column="38" TopLine="745"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="196" Column="46" TopLine="195"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="2949" Column="25" TopLine="2930"/>
+        <Caret Line="1465" Column="12" TopLine="1441"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="56" Column="20" TopLine="55"/>
+        <Caret Line="1462" Column="25" TopLine="1441"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="51" Column="18" TopLine="50"/>
+        <Caret Line="2061" Column="10" TopLine="2024"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="196" Column="46" TopLine="195"/>
+        <Caret Line="2579" Column="30" TopLine="2579"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="1465" Column="12" TopLine="1441"/>
+        <Caret Line="2061" Column="3" TopLine="2037"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="1462" Column="25" TopLine="1441"/>
+        <Caret Line="2579" Column="32" TopLine="2555"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="2061" Column="10" TopLine="2024"/>
+        <Caret Line="322" Column="23" TopLine="298"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="2579" Column="30" TopLine="2579"/>
+        <Caret Line="2579" Column="37" TopLine="2579"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="2061" Column="3" TopLine="2037"/>
+        <Filename Value="itools\threads\FoldersScan.pas"/>
+        <Caret Line="133" Column="19" TopLine="96"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="2579" Column="32" TopLine="2555"/>
+        <Caret Line="611" Column="26" TopLine="587"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="322" Column="23" TopLine="298"/>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="668" Column="51" TopLine="655"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="2579" Column="37" TopLine="2579"/>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="673" Column="18" TopLine="656"/>
       </Position18>
       <Position19>
-        <Filename Value="itools\threads\FoldersScan.pas"/>
-        <Caret Line="133" Column="19" TopLine="96"/>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="649" Column="12" TopLine="635"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="611" Column="26" TopLine="587"/>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="670" Column="43" TopLine="656"/>
       </Position20>
+      <Position21>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="9" Column="33" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="itools\kspmessages.pas"/>
+        <Caret Line="9" Column="29" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <Caret Line="206" Column="25" TopLine="186"/>
+      </Position23>
+      <Position24>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="7" Column="10" TopLine="631"/>
+      </Position24>
+      <Position25>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="664" Column="22" TopLine="651"/>
+      </Position25>
+      <Position26>
+        <Filename Value="additional\bass\CommonATL.pas"/>
+        <Caret Line="135" Column="9" TopLine="133"/>
+      </Position26>
+      <Position27>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="667" Column="26" TopLine="649"/>
+      </Position27>
+      <Position28>
+        <Filename Value="C:\lazarus\fpc\2.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <Caret Line="206" Column="25" TopLine="186"/>
+      </Position28>
+      <Position29>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="667" Column="27" TopLine="649"/>
+      </Position29>
+      <Position30>
+        <Filename Value="itools\playlists.pas"/>
+        <Caret Line="833" Column="60" TopLine="802"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -1811,11 +1885,15 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="1">
+    <BreakPoints Count="2">
       <Item1>
         <Source Value="itools\threads\MainWindowStartupThreads.pas"/>
         <Line Value="34"/>
       </Item1>
+      <Item2>
+        <Source Value="itools\playlists.pas"/>
+        <Line Value="651"/>
+      </Item2>
     </BreakPoints>
     <Exceptions Count="3">
       <Item1>

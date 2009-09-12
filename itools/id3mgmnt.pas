@@ -21,7 +21,7 @@ TID3Tag = packed record
 end;
 
 type KSPMetaInt = 0..2;
-  TPLEntry = packed record
+  TPLEntry = record
     Tag: TID3Tag;
     Stream: TStreamInfo;
     FileName: string;

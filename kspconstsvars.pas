@@ -94,6 +94,8 @@ const
   KSP_APP_FOLDER = '/usr/share/KSP/';
 {$ENDIF}
 
+  MAX_PATH_KSP = 4096;
+
 var
   SaveRemFolder: string;
   SetupFileName: string;// = 'data\setup.opt';
