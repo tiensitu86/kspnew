@@ -121,6 +121,7 @@ begin
 
   CreateTableIfMissing('artists', TB_ARTISTS(sqlite));
   CreateTableIfMissing('meta', TB_META(sqlite));
+  CreateTableIfMissing('lyrics', TB_LYRICS(sqlite));
   Result:=Res;
 end;
 

@@ -9,6 +9,7 @@ uses
 
 function TB_ARTISTS(sqlite: boolean): string;
 function TB_META(sqlite: boolean): string;
+function TB_LYRICS(sqlite: boolean): string;
 
 implementation
 
@@ -39,6 +40,12 @@ const  TB_ARTISTS_C = 'CREATE TABLE `artists` ('+
   '`FirstPlay` VARCHAR(127) NOT NULL,'+
   'PRIMARY KEY (`I_NAME`)'+
   ') ENGINE = InnoDB;';
+
+
+  TB_LYRICS_C_LITE = 'CREATE TABLE `lyrics` ('+
+  '`lyric` MEMO,'+
+  '`item_id` INTEGER NOT NULL DEFAULT ''-1'''+
+  ')';
 
   TB_ARTISTS_C_LITE = 'CREATE TABLE `artists` ('+
   '`ArtistRelated` VARCHAR(%s) NOT NULL,'+
@@ -74,6 +81,14 @@ begin
     Result:=(Format(TB_ARTISTS_C_LITE, [IntToStr(MAX_PATH), IntToStr(MAX_PATH)]))
   else
     Result:=(Format(TB_ARTISTS_C, [IntToStr(MAX_PATH), IntToStr(MAX_PATH)]))
+end;
+
+function TB_LYRICS(sqlite: boolean): string;
+begin
+  if sqlite then
+    Result:=TB_LYRICS_C_LITE
+  else
+    Result:='';
 end;
 
 function TB_META(sqlite: boolean): string;

@@ -9,7 +9,7 @@ uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
 {This unit includes all playlist management clases and structures}
 
 type 
-  TPlsType = (plKPL, plM3U);
+  TPlsType = (plKPL, plM3U, plPLS);
 
   TPLEntryInfo = class(TObject)
   public
