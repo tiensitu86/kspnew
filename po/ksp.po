@@ -492,6 +492,11 @@ msgctxt "TKSPMAINWINDOW.DELETEBOOKMARK.CAPTION"
 msgid "Delete"
 msgstr ""
 
+#: TKSPMAINWINDOW.DELETELYRICSBTN.CAPTION
+msgctxt "TKSPMAINWINDOW.DELETELYRICSBTN.CAPTION"
+msgid "Delete"
+msgstr ""
+
 #: TKSPMAINWINDOW.DELETESELECTEDACTION.CAPTION
 msgid "Delete Selected"
 msgstr ""
@@ -619,6 +624,10 @@ msgstr ""
 msgid "Page3"
 msgstr ""
 
+#: TKSPMAINWINDOW.PAGE4.CAPTION
+msgid "Page4"
+msgstr ""
+
 #: TKSPMAINWINDOW.PANEL10.CAPTION
 msgid "Panel10"
 msgstr ""
@@ -645,6 +654,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.REPEATBUTTON.CAPTION
 msgid "Repeat"
+msgstr ""
+
+#: TKSPMAINWINDOW.SAVELYRICSBTN.CAPTION
+msgid "Save lyrics"
 msgstr ""
 
 #: TKSPMAINWINDOW.SAVEWHOLEPLAYLISTASBOOKMARK1.CAPTION

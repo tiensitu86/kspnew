@@ -221,6 +221,11 @@ object KSPMainWindow: TKSPMainWindow
           Visible = True
         end      
         item
+          Text = 'Currently Played'
+          Width = 200
+          Visible = True
+        end      
+        item
           Text = 'Setup'
           Width = 100
           Visible = True
@@ -234,16 +239,16 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 686
       Align = alClient
-      PageIndex = 1
+      PageIndex = 3
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
         Caption = 'Page1'
-        ClientWidth = 686
-        ClientHeight = 423
+        ClientWidth = 680
+        ClientHeight = 401
         object PagesWelcome: TPageControl
-          Height = 423
-          Width = 686
+          Height = 401
+          Width = 680
           ActivePage = TabSheet3
           Align = alClient
           TabIndex = 0
@@ -251,15 +256,15 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
-            ClientHeight = 423
-            ClientWidth = 686
+            ClientHeight = 401
+            ClientWidth = 680
             OnResize = TabSheet3Resize
             object Panel8: TPanel
               Height = 43
-              Width = 686
+              Width = 680
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 686
+              ClientWidth = 680
               TabOrder = 0
               object SpeedButton5: TSpeedButton
                 Left = 339
@@ -1173,17 +1178,17 @@ object KSPMainWindow: TKSPMainWindow
             end
             object MWProgress: TProgressBar
               Height = 20
-              Top = 403
-              Width = 686
+              Top = 381
+              Width = 680
               Align = alBottom
               Smooth = True
               TabOrder = 1
               Visible = False
             end
             object MainWeb: TPanel
-              Height = 360
+              Height = 338
               Top = 43
-              Width = 686
+              Width = 680
               Align = alClient
               TabOrder = 2
               OnResize = MainWebResize
@@ -1720,15 +1725,15 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 396
-            ClientWidth = 674
+            ClientHeight = 422
+            ClientWidth = 680
             object Splitter1: TSplitter
               Left = 186
-              Height = 396
+              Height = 422
               Width = 5
             end
             object MsortType: TTreeView
-              Height = 396
+              Height = 422
               Width = 186
               Align = alLeft
               DefaultItemHeight = 16
@@ -1745,32 +1750,32 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 396
-              Width = 483
+              Height = 422
+              Width = 489
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 396
-              ClientWidth = 483
+              ClientHeight = 422
+              ClientWidth = 489
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Height = 5
-                Top = 169
-                Width = 483
+                Top = 195
+                Width = 489
                 Align = alBottom
                 ResizeAnchor = akBottom
               end
               object MediaBuild: TProgressBar
                 Height = 20
-                Top = 376
-                Width = 483
+                Top = 402
+                Width = 489
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
-                Height = 169
-                Width = 483
+                Height = 195
+                Width = 489
                 Align = alClient
                 DefaultItemHeight = 16
                 DragMode = dmAutomatic
@@ -1781,21 +1786,21 @@ object KSPMainWindow: TKSPMainWindow
               end
               object Panel10: TPanel
                 Height = 202
-                Top = 174
-                Width = 483
+                Top = 200
+                Width = 489
                 Align = alBottom
                 Caption = 'Panel10'
                 ClientHeight = 202
-                ClientWidth = 483
+                ClientWidth = 489
                 TabOrder = 3
                 object Panel9: TPanel
                   Left = 1
                   Height = 37
                   Top = 164
-                  Width = 481
+                  Width = 487
                   Align = alBottom
                   ClientHeight = 37
-                  ClientWidth = 481
+                  ClientWidth = 487
                   TabOrder = 0
                   object SongsLike: TEdit
                     Left = 4
@@ -1818,7 +1823,7 @@ object KSPMainWindow: TKSPMainWindow
                   Left = 1
                   Height = 163
                   Top = 1
-                  Width = 481
+                  Width = 487
                   Align = alClient
                   DragMode = dmAutomatic
                   OnDblClick = MIViewDblClick
@@ -3065,6 +3070,33 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 2
             end
           end
+        end
+      end
+      object Page4: TPage
+        Caption = 'Page4'
+        ClientWidth = 680
+        ClientHeight = 422
+        object Lyrics: TMemo
+          Height = 422
+          Width = 264
+          Align = alLeft
+          TabOrder = 0
+        end
+        object SaveLyricsBtn: TButton
+          Left = 269
+          Height = 25
+          Top = 5
+          Width = 128
+          Caption = 'Save lyrics'
+          TabOrder = 1
+        end
+        object DeleteLyricsBtn: TButton
+          Left = 269
+          Height = 25
+          Top = 37
+          Width = 128
+          Caption = 'Delete'
+          TabOrder = 2
         end
       end
     end

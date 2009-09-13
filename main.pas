@@ -42,6 +42,8 @@ type  TWebView = class(TObject)
     Button14: TButton;
     Button15: TButton;
     Button16: TButton;
+    SaveLyricsBtn: TButton;
+    DeleteLyricsBtn: TButton;
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
@@ -49,6 +51,8 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    Lyrics: TMemo;
+    Page4: TPage;
     Panel10: TPanel;
     SongsLike: TEdit;
     lFileName: TLabel;
@@ -1552,6 +1556,7 @@ begin
       s:=lbPlayList.Items.Strings[CurrentIndex];
       //PlayItems.Items[CurrentIndex].Checked:=true;
       lbPlayList.Items.Strings[CurrentIndex]:=s;
+      SaveLyricsBtn.Enabled:=AllSongs.FileInLib(CurrentFile);
       PlayedPrevious:=true;
       lbPlaylist.Repaint;
       lbPlaylist.Invalidate;
@@ -1796,7 +1801,8 @@ begin
   case Section.Index of
     0: Notebook1.ActivePage:='Page1';
     1: Notebook1.ActivePage:='Page2';
-    2: Notebook1.ActivePage:='Page3';
+    2: Notebook1.ActivePage:='Page4';
+    3: Notebook1.ActivePage:='Page3';
   end;
 end;
 
