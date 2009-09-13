@@ -1039,8 +1039,12 @@ begin
 end;
 
 procedure TKSPMainWindow.DeleteLyricsBtnClick(Sender: TObject);
+var
+  findex: integer;
 begin
-
+  findex:=AllSongs.GetItemIndex(CurrentFile);
+  AllSongs.DeleteLyrics(findex);
+  Lyrics.Clear;
 end;
 
 procedure TKSPMainWindow.DownloadTimerTimer(Sender: TObject);
@@ -1568,6 +1572,7 @@ begin
       findex:=AllSongs.GetItemIndex(CurrentFile);
       InLib:=findex<>-1;//AllSongs.FileInLib(CurrentFile);
       SaveLyricsBtn.Enabled:=InLib;
+      Lyrics.Clear;
 
       if InLib then begin
         Lyrics.Text:=AllSongs.ReadLyrics(findex);
