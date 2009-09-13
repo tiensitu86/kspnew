@@ -910,6 +910,7 @@ var
   Pc: TPathChar;
 begin
   Result:=false;
+  //FixFileNameDB(FileName);
   StrPCopy(Pc, FileName);
   try
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));

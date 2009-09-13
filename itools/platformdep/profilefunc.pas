@@ -50,6 +50,7 @@ end;
 
 procedure FixFileNameDB(var Name: string);
 begin
+  FixFileNameDB2(Name);
 {$ifdef mswindows}
   Name:=ReplaceStr(Name, '\', '/');
   Name:=ReplaceStr(Name, '/', '\\');
