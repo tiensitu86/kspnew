@@ -40,7 +40,7 @@ type
     property SqliteInUse: boolean read UseSqlite;
     procedure Add(Entry: TPLEntry; OnLoad: boolean);
     function SetupDatabase( FileName : String = ''): Integer;
-    function ExecuteSQL( Sql : String): Integer;
+    function ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
     function OpenQuery(Sql: string): integer;
     function CloseQuery: integer;
     procedure GoToFirst;
@@ -66,6 +66,9 @@ type
     function ReturnFromGID(FileName: string; GID: integer): TPlayList;
     procedure FindSongs(var Songs: TPlayList; Artist, Album: string);
     function FileInLib(FileName: string): boolean;
+    function GetItemIndex(FileName: string): integer;
+    procedure SaveLyrics(Lyrics: string; IM: integer);
+    function ReadLyrics(IM: integer): string;
   end;
 
 var
@@ -407,15 +410,22 @@ begin
 //  end;
 end;
 
-function TAppDBConnection.ExecuteSQL( Sql : String): Integer;
+function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
 begin
-  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do
+  hLog.Send('Entering Execute SQL: '+Sql);
+
+  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do begin
+    hLog.Send('Some query is opened...');
+    if not Database.SQLQuery.Active then KSPDatabaseThreadsInternal:=0 else
     Sleep(2000);
+  end;
+
   if Database.SQLQuery.Active then Result:=-1 else begin//Database.SQLQuery.Active:=false;
     Inc(KSPDatabaseThreadsInternal);
-    FixFileNameDB(sql);
+    if not NoFixName then
+      FixFileNameDB(sql);
     Log.Add('Executing SQL: '+sql);
-    //Log.SaveToFile(KSPDataFolder+'\sql.log');
+    Log.SaveToFile(KSPDataFolder+'\sql.log');
     Database.SQLQuery.SQL.Text:=Sql;
 //    Database.SQLQuery.Open;
 //    Database.SQLQuery.Close;
@@ -433,8 +443,12 @@ function TAppDBConnection.OpenQuery(Sql: string): integer;
 var
   s: string;
 begin
-  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do
+  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do begin
+    hLog.Send('Some query is opened...');
+    if not Database.SQLQuery.Active then KSPDatabaseThreadsInternal:=0 else
     Sleep(2000);
+  end;
+
   if Database.SQLQuery.Active then Result:=-1 else begin
     Inc(KSPDatabaseThreadsInternal);
     FixFileNameDB(sql);
@@ -443,7 +457,9 @@ begin
     s:=KSPDataFolder+'\sql.log';
     FixFolderNames(s);
     Log.SaveToFile(s);
+    hLog.Send('1');
     Database.SQLQuery.Open;
+    hLog.Send('2');
     Result:=0;
   end;
 end;
@@ -912,14 +928,59 @@ begin
   Result:=false;
   //FixFileNameDB(FileName);
   StrPCopy(Pc, FileName);
-  try
+
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
   if Self.ReturnRecordsCount>0 then
     Result:=true;//RetFields.InternalNumberName;
   CloseQuery;
-  except
+
+end;
+
+function TAppDBConnection.GetItemIndex(FileName: string): integer;
+var
+  Pc: TPathChar;
+begin
+  Result:=-1;
+  //FixFileNameDB(FileName);
+  StrPCopy(Pc, FileName);
+
+  OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+  if Self.ReturnRecordsCount>0 then
+    Result:=ReadEntry.IM;//RetFields.InternalNumberName;
+  CloseQuery;
+
+  hLog.Send('IM of '+FileName+' is '+IntToStr(Result));
+end;
+
+procedure TAppDBConnection.SaveLyrics(Lyrics: string; IM: integer);
+var
+  sql: string;
+begin
+  sql:=Format(InsLyrics, [PrepareString(Lyrics), IntToStr(IM)]);
+  ShowMessage(IntToStr(Pos(#13, sql)));
+  ReplaceStr(sql, #13, '\new');
+  Self.ExecuteSQL(sql, true);
+end;
+
+function TAppDBConnection.ReadLyrics(IM: integer): string;
+var
+  sql: string;
+begin
+  Result:='';
+  //FixFileNameDB(FileName);
+ // try
+  sql:=Format(SelectLyrics, [IntToStr(IM)]);
+  //ReplaceStr(sql, '\n', #13);
+  Self.OpenQuery(sql);
+  //Self.Database.SQLQuery.SQL.Text:='SELECT * FROM lyrics WHERE item_id=234';
+  //Self.Database.SQLQuery.Open;
+  if Self.ReturnRecordsCount>0 then begin
+    Result:=Self.Database.SQLQuery.FieldByName('lyric').AsString;
+    end;
+  CloseQuery;
+  //except
     //CloseQuery;
-  end;
+  //end;
 end;
 
 initialization

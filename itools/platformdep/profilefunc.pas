@@ -12,6 +12,7 @@ procedure FixFolderNames(var FolderName: string);
 Function ForceDirectoriesKSP(Const Dir: string): Boolean;
 procedure FixFileNameDB(var Name: string);
 procedure FixFileNameDB2(var Name: string);
+function ReplaceStr(strSource, strFind, strReplace: string):string;
 
 
 implementation

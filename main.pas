@@ -209,6 +209,7 @@ type  TWebView = class(TObject)
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure DeleteBookmarkClick(Sender: TObject);
+    procedure DeleteLyricsBtnClick(Sender: TObject);
     procedure DownloadTimerTimer(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
@@ -267,6 +268,7 @@ type  TWebView = class(TObject)
     procedure MenuItem9Click(Sender: TObject);
     procedure MGViewClick(Sender: TObject);
     procedure MsortTypeClick(Sender: TObject);
+    procedure SaveLyricsBtnClick(Sender: TObject);
     procedure Savewholeplaylistasbookmark1Click(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -1036,6 +1038,11 @@ begin
   end;
 end;
 
+procedure TKSPMainWindow.DeleteLyricsBtnClick(Sender: TObject);
+begin
+
+end;
+
 procedure TKSPMainWindow.DownloadTimerTimer(Sender: TObject);
 var
   Progress: DWORD;
@@ -1486,6 +1493,8 @@ var
   P: PPLEntry;
   s: string;
   Pc: TPathChar;
+  InLib: boolean;
+  findex: integer;
 
   procedure PlayAudio;
   begin
@@ -1556,7 +1565,14 @@ begin
       s:=lbPlayList.Items.Strings[CurrentIndex];
       //PlayItems.Items[CurrentIndex].Checked:=true;
       lbPlayList.Items.Strings[CurrentIndex]:=s;
-      SaveLyricsBtn.Enabled:=AllSongs.FileInLib(CurrentFile);
+      findex:=AllSongs.GetItemIndex(CurrentFile);
+      InLib:=findex<>-1;//AllSongs.FileInLib(CurrentFile);
+      SaveLyricsBtn.Enabled:=InLib;
+
+      if InLib then begin
+        Lyrics.Text:=AllSongs.ReadLyrics(findex);
+      end;
+
       PlayedPrevious:=true;
       lbPlaylist.Repaint;
       lbPlaylist.Invalidate;
@@ -2073,6 +2089,11 @@ procedure TKSPMainWindow.MsortTypeClick(Sender: TObject);
 begin
   if MSortType.Selected=nil then Exit;
   DoThingOnMediaLib(MSortType.Selected.Parent.Index, MSortType.Selected.Index);
+end;
+
+procedure TKSPMainWindow.SaveLyricsBtnClick(Sender: TObject);
+begin
+  AllSongs.SaveLyrics(Lyrics.Text, AllSongs.GetItemIndex(CurrentFile));
 end;
 
 procedure TKSPMainWindow.Savewholeplaylistasbookmark1Click(Sender: TObject);

@@ -88,6 +88,9 @@ const
   RemoveItem = 'DELETE FROM meta WHERE FileName = ''%s''';
   RemoveItemDupl = 'DELETE FROM meta WHERE FileName = ''%s'' AND PlayCount=%s';
 
+  InsLyrics = 'INSERT INTO lyrics (lyric, item_id) VALUES (''%s'', %s)';
+  SelectLyrics = 'SELECT * FROM lyrics WHERE item_id=%s';
+
   DB_VERSION = 5;
 
 {$IFNDEF WINDOWS}

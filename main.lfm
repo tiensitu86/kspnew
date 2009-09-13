@@ -3088,6 +3088,7 @@ object KSPMainWindow: TKSPMainWindow
           Top = 5
           Width = 128
           Caption = 'Save lyrics'
+          OnClick = SaveLyricsBtnClick
           TabOrder = 1
         end
         object DeleteLyricsBtn: TButton
@@ -3096,6 +3097,7 @@ object KSPMainWindow: TKSPMainWindow
           Top = 37
           Width = 128
           Caption = 'Delete'
+          OnClick = DeleteLyricsBtnClick
           TabOrder = 2
         end
       end

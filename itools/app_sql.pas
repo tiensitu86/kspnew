@@ -43,7 +43,7 @@ const  TB_ARTISTS_C = 'CREATE TABLE `artists` ('+
 
 
   TB_LYRICS_C_LITE = 'CREATE TABLE `lyrics` ('+
-  '`lyric` MEMO,'+
+  '`lyric` TEXT,'+
   '`item_id` INTEGER NOT NULL DEFAULT ''-1'''+
   ')';
 
