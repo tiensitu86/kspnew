@@ -2092,8 +2092,12 @@ begin
 end;
 
 procedure TKSPMainWindow.SaveLyricsBtnClick(Sender: TObject);
+var
+  findex: integer;
 begin
-  AllSongs.SaveLyrics(Lyrics.Text, AllSongs.GetItemIndex(CurrentFile));
+  findex:=AllSongs.GetItemIndex(CurrentFile);
+  AllSongs.DeleteLyrics(findex);
+  AllSongs.SaveLyrics(Lyrics.Text, findex);
 end;
 
 procedure TKSPMainWindow.Savewholeplaylistasbookmark1Click(Sender: TObject);

@@ -90,6 +90,7 @@ const
 
   InsLyrics = 'INSERT INTO lyrics (lyric, item_id) VALUES (''%s'', %s)';
   SelectLyrics = 'SELECT * FROM lyrics WHERE item_id=%s';
+  DelLyrics = 'DELETE FROM lyrics WHERE item_id=%s';
 
   DB_VERSION = 5;
 

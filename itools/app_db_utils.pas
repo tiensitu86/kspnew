@@ -69,6 +69,7 @@ type
     function GetItemIndex(FileName: string): integer;
     procedure SaveLyrics(Lyrics: string; IM: integer);
     function ReadLyrics(IM: integer): string;
+    procedure DeleteLyrics(IM: integer);
   end;
 
 var
@@ -412,7 +413,7 @@ end;
 
 function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
 begin
-  hLog.Send('Entering Execute SQL: '+Sql);
+  //hLog.Send('Entering Execute SQL: '+Sql);
 
   while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do begin
     hLog.Send('Some query is opened...');
@@ -981,6 +982,11 @@ begin
   //except
     //CloseQuery;
   //end;
+end;
+
+procedure TAppDBConnection.DeleteLyrics(IM: integer);
+begin
+  Self.ExecuteSQL(Format(DelLyrics, [IntToStr(IM)]));
 end;
 
 initialization
