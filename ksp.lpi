@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="8"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -65,8 +65,8 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="49" Y="2132"/>
-        <TopLine Value="2099"/>
+        <CursorPos X="41" Y="857"/>
+        <TopLine Value="838"/>
         <EditorIndex Value="6"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -1750,7 +1750,7 @@
         <Loaded Value="True"/>
       </Unit221>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="itools/app_db_utils.pas"/>
         <Caret Line="467" Column="31" TopLine="467"/>
@@ -1843,6 +1843,10 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <Caret Line="7" Column="68" TopLine="1"/>
       </Position23>
+      <Position24>
+        <Filename Value="main.pas"/>
+        <Caret Line="2132" Column="49" TopLine="2099"/>
+      </Position24>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
