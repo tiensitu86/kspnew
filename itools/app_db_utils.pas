@@ -958,8 +958,8 @@ var
   sql: string;
 begin
   sql:=Format(InsLyrics, [PrepareString(Lyrics), IntToStr(IM)]);
-  ShowMessage(IntToStr(Pos(#13, sql)));
-  ReplaceStr(sql, #13, '\new');
+  //ShowMessage(IntToStr(Pos(#13, sql)));
+  //ReplaceStr(sql, #13, '\new');
   Self.ExecuteSQL(sql, true);
 end;
 
