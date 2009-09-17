@@ -16,6 +16,8 @@ uses
 type  TWebView = class(TObject)
   private
     QWebPage               : QLCLWebPageH;
+    NetworkAccessManager : QNetworkAccessManagerH;
+    NetworkProxy : QNetworkProxyH;
     procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString);cdecl;
   public
 
@@ -519,11 +521,7 @@ end;
 
 constructor TWebView.Create(Parent : TWinControl; URL: string);
 var
-  Page: QWebPageH;
-  NetworkAccessManager : QNetworkAccessManagerH;
-  NetworkProxy : QNetworkProxyH;
   W : WideString;
-
 begin
   Handle := QWebView_create(L2Qt(Parent));
   QWebPage:=QLCLWebPage_create(TQtWidget(Parent).Widget);
@@ -533,8 +531,8 @@ begin
   QWebSettings_setAttribute(Settings,QWebSettingsJavascriptEnabled,true);
   QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
 
-  Page:=QWebView_page(Handle);
-  NetworkAccessManager:=QWebPage_networkAccessManager(Page);
+  QWebView_setPage(Handle,QWebPage);
+  NetworkAccessManager:=QWebPage_networkAccessManager(QWebPage);
 
   // proxy :adapt host/port and remove comment of setProxy
   w:='150.10.10.111';
