@@ -14,6 +14,9 @@ uses
   { TWebView }
 
 type  TWebView = class(TObject)
+  private
+    QWebPage               : QLCLWebPageH;
+    procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString);cdecl;
   public
 
     Handle : QWebViewH;
@@ -523,6 +526,7 @@ var
 
 begin
   Handle := QWebView_create(L2Qt(Parent));
+  QWebPage:=QLCLWebPage_create(TQtWidget(Parent).Widget);
 
   Settings:=QWebView_settings(Handle);
 
@@ -537,6 +541,8 @@ begin
   NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy,@w,3128);
   //QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
   QNetworkProxy_destroy(NetworkProxy);
+
+  QLCLWebPage_override_userAgentForUrl(QWebPage,TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
 
   w:=URL;
   fUrl:=QUrl_create(@w);
@@ -555,6 +561,19 @@ begin
   w:=URL;
   fUrl:=QUrl_create(@w);
   QWebView_load(Handle,fUrl);
+end;
+
+procedure TWebView.UserAgentForUrl(aUrl: QUrlH; Agent: PWideString); cdecl;
+var
+  W : WideString;
+begin
+  QUrl_toString(aUrl,@W);
+  //if Pos('localhost',W)<>0 then
+    begin
+    w:=Application.Title+' '+KSPVersion+' ('+KSPVersion2+')';
+    Agent^:=w;
+    end
+  //else QLCLWebPage_defaultUserAgentForUrl(QWebPage,@Agent,aUrl);
 end;
 
 procedure TWebView.GoBack;
