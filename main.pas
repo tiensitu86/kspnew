@@ -298,7 +298,6 @@ type  TWebView = class(TObject)
     { private declarations }
     CurrentFile: string;
     CurrentTitle: string;
-    CurrentIndex: integer;
     PreviousIndex: integer;
     LoadPlsThr: TLoadPlsThread;
     FormatedPlayListInfo: string;
@@ -365,6 +364,10 @@ type  TWebView = class(TObject)
     HistoryWebView: TWebView;
     ShowOSD: boolean;
     OSDPosition: integer;
+    TotalPlayCount: Longint;
+    Forbidden: TStringList;
+    UseVDJ: boolean;
+    CurrentIndex: integer;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
@@ -543,8 +546,9 @@ begin
   QLCLWebPage_override_userAgentForUrl(QWebPage,TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
 
   w:=URL;
-  fUrl:=QUrl_create(@w);
-  QWebView_load(Handle,fUrl);
+  fUrl:=QUrl_create(@w, QUrlTolerantMode);
+  //QWebView_load(Handle,fUrl);
+  QWebView_setUrl(Handle,fUrl);
   QWidget_resize(Handle, 500, 500);
   QUrl_Destroy(fUrl);
 
@@ -557,8 +561,8 @@ var
   W : WideString;
 begin
   w:=URL;
-  fUrl:=QUrl_create(@w);
-  QWebView_load(Handle,fUrl);
+  fUrl:=QUrl_create(@w, QUrlTolerantMode);
+  QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
 end;
 
 procedure TWebView.UserAgentForUrl(aUrl: QUrlH; Agent: PWideString); cdecl;
@@ -1817,6 +1821,8 @@ begin
   Pls.SavePls(PlayList, PlsFile, Self.RelativePaths.Checked);
   Pls.Free;
 
+  Forbidden.SaveToFile(KSPDataFolder+'data\vdj\last');
+
   Player.Stop;
   Player.Close;
   Player.Free;
@@ -2690,11 +2696,13 @@ var
       2:  KSPMainWindow.RepeatType:=rtAll;
     end;
     self.ShowSplash:=XMLFile.ReadBool('Vars', 'Splash', false);
+    UseVDJ:=XMLFile.ReadBool('Vars', 'UseVDJ', false);
 
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.OpenDialog1.InitialDir:=LastOpenDir;//SaveDialog.InitialDir;
     RelativePaths.Checked:=XMLFile.ReadBool('General', 'UseRelativePaths', true);
+    Self.TotalPlayCount:=XMLFile.ReadInteger('General', 'PlayCount', 0);
 
     case XMLFile.ReadInteger('General', 'TimeFormat', 1) of
       0: KSPMainWindow.TimeFormat:=tfRemain;
@@ -2836,7 +2844,9 @@ var
   begin
     XMLFile.EraseSection('Vars');
     XMLFile.WriteBool('Vars', 'Shuffled', Shuffled);
+    XMLFile.WriteBool('Vars', 'UseVDJ', UseVDJ);
     XMLFile.WriteBool('Vars', 'Splash', Self.ShowSplash);
+    XMLFile.WriteInteger('General', 'PlayCount', Self.TotalPlayCount);
     case RepeatType of
       rtNone: XMLFile.WriteInteger('Vars', 'Repeat', 0);
       rtOne:  XMLFile.WriteInteger('Vars', 'Repeat', 1);

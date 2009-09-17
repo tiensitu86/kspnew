@@ -47,6 +47,9 @@ begin
     KSPMainWindow.MediaSongs:=TPlayList.Create;
 
     KSPMP3SettingsList:=TStringList.Create;
+    KSPMainWindow.Forbidden:=TStringList.Create;
+    if FileExists(KSPDataFolder+'data\vdj\last') then
+      KSPMainWindow.Forbidden.LoadFromFile(KSPDataFolder+'data\vdj\last');
     
     hLog.Send('Creating objects done');
 

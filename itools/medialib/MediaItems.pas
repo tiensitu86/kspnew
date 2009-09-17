@@ -27,34 +27,7 @@ type TCDEntryInfo = record
 type TASParseType = (asptTracks, asptAlbums, asptRelated);
 
 type
-  TFavouriteList = class;
   TMediaItemsList = class;
-
-  TPlayNextSong = record
-      FileName: string;
-      PlayCount: Cardinal;
-      Favourite: Double;
-      end;
-
-  TFavInfo = class(TObject)
-  public
-    Entry: TPlayNextSong;
-  end;
-
-  TFavouriteList = class(TList)
-    fIM: integer;
-  public
-    property InternalName: integer read fIM write fIM;
-    constructor Create; overload;
-    constructor Create(AFileName: string; IM: Integer); overload;
-    destructor Destroy; override;
-    function Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
-    procedure Remove(Index: Integer);
-    function GetItem(Index: Integer): TPlayNextSong;
-    procedure ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
-    function FindItem(FileName: string): integer;
-    procedure Sort;
-  end;
 
   TCDEntry = class(TObject)
   public
@@ -118,9 +91,7 @@ type
     //function IsPlaylist(FileName: string): boolean;
   end;
 
-procedure SortMediaFavList(FavList: TFavouriteList; mItems: TAppDBConnection;
-  Song: TPLEntry; Forb: TStringList; UseGID: boolean; GID: integer;
-  UseArtist: boolean; Artist: string; UseAS: boolean);
+procedure SortMediaFavList(FavList: TFavouriteList; Song: TPLEntry; Forb: TStringList);
 
 procedure ReturnArtists(var Artists: TCrossList; mItems: TAppDBConnection); overload;
 procedure ReturnArtists(var Artists: TStringList; mItems: TAppDBConnection; Album: string); overload;
@@ -1187,9 +1158,7 @@ begin
     end;
 end;
 
-procedure SortMediaFavList(FavList: TFavouriteList; mItems: TAppDBConnection;
-  Song: TPLEntry; Forb: TStringList; UseGID: boolean; GID: integer;
-  UseArtist: boolean; Artist: string; UseAS: boolean);
+procedure SortMediaFavList(FavList: TFavouriteList; Song: TPLEntry; Forb: TStringList);
 var
 //  s: TStringList;
   i: integer;
@@ -1213,12 +1182,12 @@ var
     i: integer;
   begin
       //s:=TStringList.Create;
-    mItems.OpenQuery('SELECT * FROM meta');
+    AllSongs.OpenQuery('SELECT * FROM meta');
 
-    if mItems.ReturnRecordsCount>0 then
-    for i:=0 to mItems.ReturnRecordsCount-1 do begin
-      p:=mItems.ReadEntry;
-      mItems.GoToNext;
+    if AllSongs.ReturnRecordsCount>0 then
+    for i:=0 to AllSongs.ReturnRecordsCount-1 do begin
+      p:=AllSongs.ReadEntry;
+      AllSongs.GoToNext;
 
       if FileExists(p.FileName) then begin
           //p.Tag:=ReadID3(p.FileName);
@@ -1227,24 +1196,13 @@ var
         end;
     end;
 
-    mItems.CloseQuery;
+    AllSongs.CloseQuery;
   end;
 
 begin
   SuggFindHelpPlaylist.Clear;
 //  UseAS:=UseAS and KSPMainWindow.UseInternet;
-      if FavList.Count>1 then
-        FavList.Sort;
-
-      if UseGID then begin
-        SuggFindHelpPlaylist.Free;
-        SuggFindHelpPlaylist:=mItems.ReturnFromGID(Song.FileName, GID);
-      end
-      else if UseArtist then begin
-        SuggFindHelpPlaylist.Free;
-        SuggFindHelpPlaylist:=mItems.ReturnFromArtist(Song.FileName, Artist)
-      end
-      else PrepareNormal;
+  PrepareNormal;
 
 //      hLog.Send('Fav list sort 1..');
 
@@ -1308,71 +1266,6 @@ begin
   Result:=(FileName='.M3U')or(FileName='.PLS')or(FileName='.KPL');
 end;     }
 
-constructor TFavouriteList.Create;
-begin
-  inherited Create;
-end;
-
-constructor TFavouriteList.Create(AFileName: string; IM: Integer);
-var
-//  s: string;
-//  s2: string;
-//  s3: string;
-  Ini: TIniFile;
-  sl: TStringList;
-//  f: TPlayNextSong;
-
-  procedure ParseEntry(i: integer);
-  var
-    s: string;
-  begin
-    s:=Ini.ReadString(IntToStr(i),'FileName', '');
-    if s='' then Exit;
-    if FileExists(s) then Exit;
-
-    sl.Delete(i);
-  end;
-
-begin
-  inherited Create;
-  fIM:=IM;
-
-  {  fIM:=IM;
-  s:=IntToStr(IM);
-  if Length(s)>2 then begin
-      s2:=Copy(s, 1, 2);
-      s3:=Copy(s, 3, Length(s));
-    end else begin
-      s2:='0';
-      s3:=IntToStr(IM);
-    end;
-
-  ForceDirectories(KSPDataFolder+'data\vdj\entries\'+s2);
-  s:=KSPDataFolder+'data\vdj\entries\'+s2+'\'+s3;
-
-  if not FileExists(s) then Exit;
-
-  Ini:=TIniFile.Create(s);
-
-  sl:=TStringList.Create;
-  Ini.ReadSections(sl);
-
-  if sl.Count>0 then begin
-      for i:=sl.Count-1 downto 0 do
-        ParseEntry(i);
-
-      for i:=0 to sl.Count-1 do begin
-          f.Favourite:=Ini.ReadFloat(IntToStr(i), 'Fav', 0);
-          f.PlayCount:=Ini.ReadInteger(IntToStr(i), 'PlayCount', 0);
-          f.FileName:=Ini.ReadString(IntToStr(i),'FileName', '');
-
-          Add(f);
-        end;
-    end;
-
-  Ini.Free;
-  Sl.Free;   }
-end;
 
 {procedure TFavouriteList.Save;
 var
@@ -1419,110 +1312,5 @@ end;  }
 {The Items should be freed here but it isn't. Doesn't matter.
 TPlayList is created only once and destroyed only while KSP is
 to be closed}
-
-destructor TFavouriteList.Destroy;
-var
-  i: integer;
-begin
-  if Count>0 then
-  for I := 0 to Count-1 do
-    TFavInfo(Items[I]).Free;
-  inherited Destroy;
-end;
-
-function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
-var
-  T: TFavInfo;
-  sql: string;
-  Pc: TPathChar;
-  fm: TFormatSettings;
-
-  function CheckIfExists: boolean;
-  var
-    i: integer;
-  begin
-    //Result:=Songs.OpenQuery('SELECT * FROM vdjentries WHERE I_NAME='+IntToStr(fIM)+
-    //  ' AND FileName='''+PrepareString(Pc)+'''')>0;
-    //Songs.CloseQuery;
-    Result:=false;
-    if Self.Count>0 then
-      for i:=0 to Self.Count-1 do
-        if TFavInfo(Items[i]).Entry.FileName=Entry.FileName then Result:=true;
-  end;
-
-begin
-  StrPCopy(Pc, Entry.FileName);
-  Result:=not CheckIfExists;
-
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
-
-  if Result then begin
-      T:=TFavInfo.Create;
-      T.Entry:=Entry;
-      if Insert then begin
-          sql:=Format('INSERT INTO vdjentries (FileName, I_NAME, Fav, PlayCount) values (''%s'', %s, %s, %s)',
-            [PrepareString(Pc), IntToStr(fIM), FloatToStr(Entry.Favourite, fm),
-            IntToStr(Entry.PlayCount)]);
-          try
-            Songs.ExecuteSQL(sql);
-          except
-          end;
-        end;
-      inherited Add(T);
-    end;
-end;
-
-procedure TFavouriteList.ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
-var
-  sql: string;
-  Pc: TPathChar;
-  fm: TFormatSettings;
-begin
-  StrPCopy(Pc, new.FileName);
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
-  sql:=Format('UPDATE vdjentries SET FileName=''%s'', I_NAME=%s, Fav=%s, PlayCount=%s WHERE I_NAME=%s AND FileName=''%s''',
-        [PrepareString(Pc), IntToStr(fIM),
-        FloatToStr(new.Favourite, fm), IntToStr(new.PlayCount),
-        IntToStr(fIM), PrepareString(Pc)]);
-  try
-    Songs.ExecuteSQL(sql);
-  except
-
-  end;
-  //TFavInfo(Items[Index]).Entry:=new;
-end;
-
-procedure TFavouriteList.Remove(Index: Integer);
-begin
-  TFavInfo(Items[Index]).Free;
-  Delete(Index);
-end;
-
-function TFavouriteList.GetItem(Index: Integer): TPlayNextSong;
-begin
-  Result:=TFavInfo(Items[Index]).Entry;
-end;
-
-function TFavouriteList.FindItem(FileName: String): Integer;
-var
-  i: integer;
-begin
-  Result:=-1;
-  for i:=0 to Count-1 do
-    if UpperCase(TFavInfo(Items[i]).Entry.FileName)=UpperCase(FileName) then
-      Result:=i;
-end;
-
-function CompareFav(Item1, Item2: Pointer): Integer;
-begin
-  Result := -CompareValue(TFavInfo(Item1).Entry.Favourite, TFavInfo(Item2).Entry.Favourite);
-end;
-
-procedure TFavouriteList.Sort;
-begin
-  inherited Sort(@CompareFav);
-end;
 
 end.

@@ -3,7 +3,7 @@ unit app_db_utils;
 interface
 
 uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
-  Playlists;
+  Playlists, Math;
 
 type TDatabaseType = (dbMySQL, dbSqlite);
 
@@ -21,6 +21,33 @@ end;
 //type TKSPDatabaseType = (kdtMeta, kdtAS);
 
 type
+  TAppDBConnection = class;
+  TPlayNextSong = record
+      FileName: string;
+      PlayCount: Cardinal;
+      Favourite: Double;
+      end;
+
+  TFavInfo = class(TObject)
+  public
+    Entry: TPlayNextSong;
+  end;
+
+  TFavouriteList = class(TList)
+    fIM: integer;
+  public
+    property InternalName: integer read fIM write fIM;
+    constructor Create; overload;
+    constructor Create(AFileName: string; IM: Integer); overload;
+    destructor Destroy; override;
+    function Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
+    procedure Remove(Index: Integer);
+    function GetItem(Index: Integer): TPlayNextSong;
+    procedure ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
+    function FindItem(FileName: string): integer;
+    procedure Sort;
+  end;
+
   TAppDBConnection = class
   public
     constructor Create;
@@ -70,6 +97,7 @@ type
     procedure SaveLyrics(Lyrics: string; IM: integer);
     function ReadLyrics(IM: integer): string;
     procedure DeleteLyrics(IM: integer);
+    function GetFavList(FileName: string): TFavouriteList;
   end;
 
 var
@@ -987,6 +1015,171 @@ end;
 procedure TAppDBConnection.DeleteLyrics(IM: integer);
 begin
   Self.ExecuteSQL(Format(DelLyrics, [IntToStr(IM)]));
+end;
+
+function TAppDBConnection.GetFavList(FileName: string): TFavouriteList;
+var
+  f: TFavouriteList;
+  P: TPLEntry;
+  PC: TPathChar;
+
+  procedure FillFavList;
+  var
+    i, RecNum: integer;
+    pns: TPlayNextSong;
+    p: TPLEntry;
+  begin
+    OpenQuery('SELECT * FROM vdjentries WHERE I_NAME='+IntToStr(p.IM));
+    RecNum:=Self.ReturnRecordsCount;
+
+    if RecNum>0 then
+      for i := 0 to RecNum - 1 do begin
+        p:=Self.ReadEntry;
+        GoToNext;
+        pns.PlayCount:=p.PlayCount;
+        pns.Favourite:=p.Fav;
+        pns.FileName:=p.FileName;
+        f.Add(pns, Self, false);
+      end;
+
+    CloseQuery;
+  end;
+
+begin
+  StrPCopy(PC, FileName);
+  try
+  OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+  if ReturnRecordsCount>0 then begin
+      p:=ReadEntry;
+      CloseQuery;
+      f:=TFavouriteList.Create(FileName, p.IM);
+      FillFavList;
+      if f.Count>0 then f.Sort;
+    end else begin
+      CloseQuery;
+      f:=TFavouriteList.Create;
+      f.InternalName:=p.IM;
+    end;
+  Result:=f;
+  except
+    Result:=nil;
+  end;
+end;
+
+constructor TFavouriteList.Create;
+begin
+  inherited Create;
+end;
+
+constructor TFavouriteList.Create(AFileName: string; IM: Integer);
+begin
+  inherited Create;
+  fIM:=IM;
+end;
+
+destructor TFavouriteList.Destroy;
+var
+  i: integer;
+begin
+  if Count>0 then
+  for I := 0 to Count-1 do
+    TFavInfo(Items[I]).Free;
+  inherited Destroy;
+end;
+
+function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
+var
+  T: TFavInfo;
+  sql: string;
+  Pc: TPathChar;
+  fm: TFormatSettings;
+
+  function CheckIfExists: boolean;
+  var
+    i: integer;
+  begin
+    //Result:=Songs.OpenQuery('SELECT * FROM vdjentries WHERE I_NAME='+IntToStr(fIM)+
+    //  ' AND FileName='''+PrepareString(Pc)+'''')>0;
+    //Songs.CloseQuery;
+    Result:=false;
+    if Self.Count>0 then
+      for i:=0 to Self.Count-1 do
+        if TFavInfo(Items[i]).Entry.FileName=Entry.FileName then Result:=true;
+  end;
+
+begin
+  StrPCopy(Pc, Entry.FileName);
+  Result:=not CheckIfExists;
+
+//  GetLocaleFormatSettings(KSPLangID, fm);
+  fm.DecimalSeparator:='.';
+
+  if Result then begin
+      T:=TFavInfo.Create;
+      T.Entry:=Entry;
+      if Insert then begin
+          sql:=Format('INSERT INTO vdjentries (FileName, I_NAME, Fav, PlayCount) values (''%s'', %s, %s, %s)',
+            [PrepareString(Pc), IntToStr(fIM), FloatToStr(Entry.Favourite, fm),
+            IntToStr(Entry.PlayCount)]);
+          try
+            Songs.ExecuteSQL(sql);
+          except
+          end;
+        end;
+      inherited Add(T);
+    end;
+end;
+
+procedure TFavouriteList.ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
+var
+  sql: string;
+  Pc: TPathChar;
+  fm: TFormatSettings;
+begin
+  StrPCopy(Pc, new.FileName);
+//  GetLocaleFormatSettings(KSPLangID, fm);
+  fm.DecimalSeparator:='.';
+  sql:=Format('UPDATE vdjentries SET FileName=''%s'', I_NAME=%s, Fav=%s, PlayCount=%s WHERE I_NAME=%s AND FileName=''%s''',
+        [PrepareString(Pc), IntToStr(fIM),
+        FloatToStr(new.Favourite, fm), IntToStr(new.PlayCount),
+        IntToStr(fIM), PrepareString(Pc)]);
+  try
+    Songs.ExecuteSQL(sql);
+  except
+
+  end;
+  //TFavInfo(Items[Index]).Entry:=new;
+end;
+
+procedure TFavouriteList.Remove(Index: Integer);
+begin
+  TFavInfo(Items[Index]).Free;
+  Delete(Index);
+end;
+
+function TFavouriteList.GetItem(Index: Integer): TPlayNextSong;
+begin
+  Result:=TFavInfo(Items[Index]).Entry;
+end;
+
+function TFavouriteList.FindItem(FileName: String): Integer;
+var
+  i: integer;
+begin
+  Result:=-1;
+  for i:=0 to Count-1 do
+    if UpperCase(TFavInfo(Items[i]).Entry.FileName)=UpperCase(FileName) then
+      Result:=i;
+end;
+
+function CompareFav(Item1, Item2: Pointer): Integer;
+begin
+  Result := -CompareValue(TFavInfo(Item1).Entry.Favourite, TFavInfo(Item2).Entry.Favourite);
+end;
+
+procedure TFavouriteList.Sort;
+begin
+  inherited Sort(@CompareFav);
 end;
 
 initialization
