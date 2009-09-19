@@ -9,7 +9,7 @@ Unit RT_bassmix;
 
 interface
 
-uses Dynlibs, Dynamic_Bass, SysUtils;
+uses Dynlibs, Dynamic_Bass, SysUtils, multilog;
 
 const
   // additional BASS_SetConfig option
@@ -49,7 +49,11 @@ type
   end;
 
 const
+{$IFDEF WINDOWS}
   bassmixdll = 'bassmix.dll';
+{$ELSE}
+  bassmixdll = 'libbassmix.so';
+{$ENDIF}
 
 var
   BASS_Mixer_GetVersion: function: DWORD; stdcall;
@@ -88,9 +92,10 @@ begin
    end;
 
    // load the dll
-   BASSMIX_Handle := LoadLibrary(dllfilename);  // obtain the handle we want
+   BASSMIX_Handle := DynLibs.LoadLibrary(dllfilename);  // obtain the handle we want
+   hLog.Send('bassmix handle: '+IntToStr(BASSMIX_Handle)+', file exists: '+BoolToStr(FileExists(dllfilename), true));
 
-   if BASSMIX_Handle <> 0 then
+   if BASSMIX_Handle <> DynLibs.NilHandle then
    begin {now we tie the functions to the VARs from above}
      @BASS_Mixer_GetVersion:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_GetVersion');
      @BASS_Mixer_StreamCreate:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamCreate');

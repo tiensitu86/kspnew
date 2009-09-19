@@ -384,6 +384,9 @@ type  TWebView = class(TObject)
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
 
     procedure KSPShowMessage(Data: PtrInt);
+    procedure MediaLibProgressMax(Data: PtrInt);
+    procedure MediaLibProgressInc(Data: PtrInt);
+    procedure MediaLibProgressHide(Data: PtrInt);
   end; 
 
 var
@@ -3199,6 +3202,23 @@ end;
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
 begin
   ShowMessage(string(Data));
+end;
+
+procedure TKSPMainWindow.MediaLibProgressMax(Data: PtrInt);
+begin
+  Self.MediaLibProgress.Visible:=true;
+  Self.MediaLibProgress.Max:=Data;
+  Self.MediaLibProgress.Position:=0;
+end;
+
+procedure TKSPMainWindow.MediaLibProgressInc(Data: PtrInt);
+begin
+  Self.MediaLibProgress.Position:=Self.MediaLibProgress.Position+Data;
+end;
+
+procedure TKSPMainWindow.MediaLibProgressHide(Data: PtrInt);
+begin
+  Self.MediaLibProgress.Visible:=false;
 end;
 
 initialization

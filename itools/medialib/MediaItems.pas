@@ -400,8 +400,10 @@ begin
   stemp.SaveToFile(KSPdataFolder+'new_files.txt');
   hLog.Send('Starting reading tags...');
 //   if stemp.Count>0 then
-  KSPMainWindow.MediaLibProgress.Visible:=true;
-  KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
+  Application.QueueAsyncCall(KSPMainWindow.MediaLibProgressMax, stemp.Count);
+
+//  KSPMainWindow.MediaLibProgress.Visible:=true;
+//  KSPMainWindow.MediaLibProgress.Max:=stemp.Count;
 
   for i:=0 to stemp.Count-1 do begin
 
@@ -435,7 +437,8 @@ begin
 //    KSPMainWindow.MediaLibProgress.ShowProgressText:=true;
 
 
-      KSPMainWindow.MediaLibProgress.Position:=i;//KSPMainWindow.MediaLibProgress.Max-stemp.Count;
+      //KSPMainWindow.MediaLibProgress.Position:=i;//KSPMainWindow.MediaLibProgress.Max-stemp.Count;
+      Application.QueueAsyncCall(KSPMainWindow.MediaLibProgressInc, 1);
 //    KSPMainWindow.MediaLibProgress.ProgressText:=IntToStr(KSPMainWindow.MediaLibProgress.Value)+'/'+
     end;
 
@@ -443,7 +446,8 @@ begin
 //  p.Free;
   //while KSPDatabaseThreads>0 do
   //  Sleep(100);
-  KSPMainWindow.MediaLibProgress.Visible:=false;
+  //KSPMainWindow.MediaLibProgress.Visible:=false;
+  Application.QueueAsyncCall(KSPMainWindow.MediaLibProgressHide, 0);
   Result:=mItems.ReturnRecordsCount;
 end;
 

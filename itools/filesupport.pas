@@ -2,12 +2,31 @@ unit FileSupport;
 
 interface
 
-uses BASSPlayer, MPEGAudio, OggVorbis, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile, Classes,
+uses MPEGAudio, OggVorbis, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile, Classes,
     SysUtils, Dialogs, AACfile, ID3v1, ID3v2, KSPMessages, Musepack;
 
 const MAXCDDRIVES = 10;
 
 //type TSupportedBy = (Both, BASSNative, WinampPlugin, None);
+type TSupportedBy = (Both, BASSNative, None);
+   TStreamInfo = record
+     FileName : string;
+     FileSize : DWORD;        // File size in byte
+     SampleRate : DWORD;      // Sampling rate in Hz
+     BitRate : DWORD;         // Bit Rate in KBPS
+     BitsPerSample : Word;    // Bits per sample
+     Duration : DWORD;        // playback duration in mili second
+     Channels : Word;         // 1- Mono, 2 - Stereo
+     Format   : DWORD;        // Stream format   // * Added at Ver 1.44
+     Title : string;
+     Artist : string;
+     Album : string;
+     Year : string;
+     Genre : string;
+     GenreID : byte;
+     Track : byte;
+     Comment : string;
+  end;
 
 type TCDDriveList     = array[0..MAXCDDRIVES-1] of string[255];
 {$IFNDEF KSP_PLUGINS}

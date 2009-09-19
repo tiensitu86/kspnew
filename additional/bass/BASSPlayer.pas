@@ -6,7 +6,8 @@ uses
   {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
   Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
-  MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages;
+  MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages,
+  FileSupport;
 
 
 const
@@ -79,26 +80,6 @@ type
   PChannelInfo = ^TChannelInfo;
 
   TPlayerMode = (plmStandby, plmReady, plmStopped, plmPlaying, plmPaused);
-
-   TSupportedBy = (Both, BASSNative, None);
-   TStreamInfo = record
-     FileName : string;
-     FileSize : DWORD;        // File size in byte
-     SampleRate : DWORD;      // Sampling rate in Hz
-     BitRate : DWORD;         // Bit Rate in KBPS
-     BitsPerSample : Word;    // Bits per sample
-     Duration : DWORD;        // playback duration in mili second
-     Channels : Word;         // 1- Mono, 2 - Stereo
-     Format   : DWORD;        // Stream format   // * Added at Ver 1.44
-     Title : string;
-     Artist : string;
-     Album : string;
-     Year : string;
-     Genre : string;
-     GenreID : byte;
-     Track : byte;
-     Comment : string;
-  end;
 
 const
    MaxChannels = ChannelLimit;
@@ -1532,7 +1513,7 @@ begin
             FBASSWMAReady := true;
        end;
 
-      if FileExists(GetProgDir + 'bassmix.dll') then
+      if FileExists(GetProgDir + bassmixdll) then
       begin
          if Load_BASSMIXDLL(GetProgDir + 'bassmix.dll') then
             if (HIWORD(BASS_Mixer_GetVersion) = BASSVERSION) then
@@ -1542,7 +1523,7 @@ begin
 
       end;
 {$ELSE}
-      if Load_BASSMIXDLL(KSP_APP_FOLDER+'libbassmix.so') then FMixerReady:=true;
+      if Load_BASSMIXDLL(KSP_APP_FOLDER+bassmixdll) then FMixerReady:=true;
 {$ENDIF}
 
       if FMixerReady then hLog.Send('bassmix is loaded');

@@ -4,7 +4,7 @@ unit ID3Mgmnt;
 
 interface
 
-uses Classes, SysUtils, FileSupport, ID3v2, Dialogs, BassPlayer;
+uses Classes, SysUtils, FileSupport, ID3v2, Dialogs;
 
 type
 {ID3Tag is the current structure for getting tags from MP3 and MP3-like files}
@@ -45,6 +45,8 @@ function GetStreamInfoSimple(FileName: string; var GetIsTag: boolean): TStreamIn
 procedure FillByFolder(var p: TPLEntry);
 
 implementation
+
+uses BassPlayer;
 
 {Read ID3 tag from file}
 
