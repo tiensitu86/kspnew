@@ -9,7 +9,7 @@ unit suggfind;
 interface
 
 uses
-  Windows, Classes, SysUtils, Dialogs, KSPFiles, KSPMessages;
+  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages;
 
 type
   TFindSugg = class(TThread)

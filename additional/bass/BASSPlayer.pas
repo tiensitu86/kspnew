@@ -1449,7 +1449,7 @@ begin
 {$IFDEF WINDOWS}
    BASSDLLLoaded := Load_BASSDLL(GetProgDir+BASS_DLL);
 {$ELSE}
-   BASSDLLLoaded := Load_BASSDLL(BASS_DLL);
+   BASSDLLLoaded := Load_BASSDLL(KSP_APP_FOLDER+BASS_DLL);
 {$ENDIF}
    if not BASSDLLLoaded then
    begin
@@ -1542,7 +1542,7 @@ begin
 
       end;
 {$ELSE}
-      if Load_BASSMIXDLL('libbassmix.so') then FMixerReady:=true;
+      if Load_BASSMIXDLL(KSP_APP_FOLDER+'libbassmix.so') then FMixerReady:=true;
 {$ENDIF}
 
       if FMixerReady then hLog.Send('bassmix is loaded');
@@ -1568,7 +1568,7 @@ begin
 {$IFDEF WINDOWS}
       if Load_BASSMIDIDLL(GetProgDir + 'bassmidi.dll') then
 {$ELSE}
-      if Load_BASSMIDIDLL('libbassmidi.so') then
+      if Load_BASSMIDIDLL(KSP_APP_FOLDER+'libbassmidi.so') then
 {$ENDIF}
          FBASSMIDIReady := true;
 
