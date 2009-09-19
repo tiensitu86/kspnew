@@ -575,7 +575,12 @@ begin
   QUrl_toString(aUrl,@W);
   //if Pos('localhost',W)<>0 then
     begin
-    w:=Application.Title+' '+KSPVersion+' ('+KSPVersion2+')';
+    w:=Application.Title+'/'+KSPVersion2;
+{$IFDEF WINDOWS}
+    w:=w+' (compatible; MSIE 7.0; Windows NT 5.1)';
+{$ELSE}
+    w:=w+' (X11; Linux x86_64; U; pl, en_US)';
+{$ENDIF}
     Agent^:=w;
     end
   //else QLCLWebPage_defaultUserAgentForUrl(QWebPage,@Agent,aUrl);
