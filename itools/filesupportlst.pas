@@ -4,7 +4,7 @@ unit FileSupportLst;
 
 interface
 
-uses LCLIntf, {PluginCtrl,} Classes, Dynamic_bass,
+uses LCLIntf, {PluginCtrl,} Classes, bass,
     SysUtils, {RT_basscd,} Dialogs;
 
 const MAXCDDRIVES = 8;

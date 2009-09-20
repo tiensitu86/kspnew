@@ -23,7 +23,7 @@ type
 
 implementation
 
-uses Main, IniFiles, Dynamic_BASS, KSPConstsVars, BASSPlayer,
+uses Main, IniFiles, BASS, KSPConstsVars, BASSPlayer,
   Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog;
 
 procedure TCreateObjectsThread.Execute;

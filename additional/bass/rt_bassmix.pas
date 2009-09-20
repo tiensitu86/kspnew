@@ -11,7 +11,8 @@ Unit RT_bassmix;
 
 interface
 
-uses {$IFNDEF WINDOWS}dl, {$ENDIF}Dynlibs, Dynamic_Bass, SysUtils, Dialogs;
+uses {$IFNDEF WINDOWS}dl, {$ENDIF}Dynlibs, Bass, SysUtils, Dialogs,
+  multilog;
 
 const
   // additional BASS_SetConfig option
@@ -51,7 +52,11 @@ type
   end;
 
 const
+{$IFDEF WINDOWS}
   bassmixdll = 'bassmix.dll';
+{$ELSE}
+  bassmixdll = 'libbassmix.so';
+{$ENDIF}
 
 var
   BASS_Mixer_GetVersion: function: DWORD; stdcall;

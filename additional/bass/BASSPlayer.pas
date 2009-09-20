@@ -4,7 +4,7 @@ interface
 
 uses
   {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
-  Dynamic_BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
+  BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages,
   FileSupport;
@@ -1430,7 +1430,7 @@ begin
 {$IFDEF WINDOWS}
    BASSDLLLoaded := Load_BASSDLL(GetProgDir+BASS_DLL);
 {$ELSE}
-   BASSDLLLoaded := Load_BASSDLL(KSP_APP_FOLDER+BASS_DLL);
+   BASSDLLLoaded := true;//Load_BASSDLL(KSP_APP_FOLDER+BASS_DLL);
 {$ENDIF}
    if not BASSDLLLoaded then
    begin
@@ -1608,7 +1608,7 @@ begin
    begin
       BASS_PluginFree(0);  // Unplugs all plugins
       BASS_Free;
-      Unload_BASSDLL;
+      //Unload_BASSDLL;
    end;
   { if FBASSWMAReady then
       Unload_BASSWMADLL; }
@@ -3063,7 +3063,7 @@ begin
       exit;
     end;
 
-   AddonHandle := BASS_PluginLoad(FilePath, 0);
+   AddonHandle := BASS_PluginLoad(pChar(FilePath), 0);
 
    if AddonHandle <> 0 then
    begin

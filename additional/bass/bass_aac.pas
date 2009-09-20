@@ -2,7 +2,7 @@ Unit BASS_AAC;
 
 interface
 
-uses dynamic_bass;
+uses bass;
 
 const
   // Additional tags available from BASS_StreamGetTags

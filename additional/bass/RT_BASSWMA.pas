@@ -12,7 +12,7 @@ Unit RT_BASSWMA;
 
 interface
 
-uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_bass;
+uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, bass;
 
 const
   // Additional error codes returned by BASS_ErrorGetCode

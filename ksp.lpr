@@ -9,7 +9,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  { you can add units after this }, main, LResources, BASSPlayer, Dynamic_Bass,
+  { you can add units after this }, main, LResources, BASSPlayer, Bass,
   RT_basscd, PlayLists, SpkXMLParser, ID3Mgmnt, FileSupport,
   KSPMessages, KSPConstsVars, FileSupportLst, kspfiles, LoadPlsThread,
   FileUtils, MRNG, profilefunc, KSPStrings, SQLDBLaz, MediaItems,

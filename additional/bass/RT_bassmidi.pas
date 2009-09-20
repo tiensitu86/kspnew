@@ -11,7 +11,7 @@ unit RT_bassmidi;
 
 interface
 
-uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Dynamic_Bass;
+uses {$IFDEF WINDOWS}Windows {$ELSE}dynlibs {$ENDIF}, Bass;
 
 const
   // Additional config options
