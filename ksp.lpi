@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="5"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -67,7 +67,7 @@
         <UnitName Value="main"/>
         <CursorPos X="42" Y="1593"/>
         <TopLine Value="1570"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
           <Item0 X="15" Y="1606" ID="1"/>
@@ -271,7 +271,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="3" Y="780"/>
         <TopLine Value="766"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -348,9 +348,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="61" Y="285"/>
-        <TopLine Value="268"/>
+        <CursorPos X="18" Y="25"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -421,7 +423,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="10" Y="15"/>
         <TopLine Value="22"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -540,7 +542,7 @@
         <UnitName Value="MainWindowStartupThreads"/>
         <CursorPos X="20" Y="52"/>
         <TopLine Value="22"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -551,7 +553,7 @@
         <UnitName Value="MediaFolders"/>
         <CursorPos X="3" Y="143"/>
         <TopLine Value="137"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -562,7 +564,7 @@
         <UnitName Value="FoldersScan"/>
         <CursorPos X="39" Y="129"/>
         <TopLine Value="96"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -598,8 +600,8 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="23" Y="1025"/>
-        <TopLine Value="1007"/>
+        <CursorPos X="37" Y="1062"/>
+        <TopLine Value="1036"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
@@ -614,7 +616,7 @@
         <UnitName Value="app_sql"/>
         <CursorPos X="34" Y="40"/>
         <TopLine Value="22"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1799,7 +1801,7 @@
         <UnitName Value="suggfind"/>
         <CursorPos X="26" Y="86"/>
         <TopLine Value="58"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
