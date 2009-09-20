@@ -9,6 +9,36 @@
   <tbody>
     <tr>
       <td>
+      <h2 style="font-weight: bold;">KSP 2009 R2.2</h2>
+      <br>
+      <span style="font-weight: bold;">Fixed "m3u" Playlist Buffer
+Overflow</span><br>
+It could happen that some playlists could not be properly handled and
+that lead to application (and sometimes system) crash. It is rare
+situation and considers only specially prepared playlists with long
+strings in it. Now KSP by default processes only items with at most 260
+characters in file name<br>
+      <span style="font-weight: bold;">Fixed MediaLibProgress bug
+(always hidden)</span><br>
+Due to problems with Linux version this progress bar was always hidden
+even if rescanning media library. Now this progress bar is handled
+different way which increases stability of Linux compilations<br>
+      <span style="font-weight: bold;">libbass.so is loaded from
+/usr/share/KSP (Linux)</span><br>
+Currently all non user specific data is loaded from /usr/share/KSP
+excluding libqt4intf.so<br>
+      <span style="font-weight: bold;">Agent string changed</span><br>
+Currently builtin webbrwser uses following strings:<br>
+      <span style="font-style: italic;">KSP/&lt;version&gt;
+(compatible; MSIE 7.0; Windows NT 5.1)</span> - Windows<br>
+      <span style="font-style: italic;">KSP/&lt;version&gt; (X11; Linux
+x86_64; U; pl, en_US) </span>- Linux<br>
+where version is the version number of KSP (for example 0.2.200.150).<br>
+      <span style="font-weight: bold;">Saving playlists as bookmarks
+fixed (Linux)</span><br>
+Playlists where saved in the wrong files. It was working well but still
+now it looks more tidy and clean<br>
+      <br>
       <h2 style="font-weight: bold;">KSP 2009 R2.1</h2>
       <span style="font-weight: bold;">Linux compilation possible (as
 2009 R3 alpha)</span><br>
