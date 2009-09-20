@@ -577,9 +577,9 @@ begin
     begin
     w:=Application.Title+'/'+KSPVersion2;
 {$IFDEF WINDOWS}
-    w:=w+' (compatible; MSIE 7.0; Windows NT 5.1)';
+    w:=w+' (compatible; MSIE 7.0; '+OSName+')';
 {$ELSE}
-    w:=w+' (X11; Linux x86_64; U; pl, en_US)';
+    w:=w+' (X11; '+OSName+'; U; pl, en_US)';
 {$ENDIF}
     Agent^:=w;
     end
@@ -832,6 +832,8 @@ var
     LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
     SetupBook.ActivePage:='DefaultSetupPage';
+    OSName:=GetOSVersion;
+    hLog.Send('Operating system: '+OSName);
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;

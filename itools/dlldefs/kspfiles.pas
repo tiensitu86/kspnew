@@ -2,8 +2,9 @@ unit kspfiles;
 
 interface
 
-uses LResources, Forms, ID3Mgmnt, Classes, FileSupportLst, KSPMessages, IdHTTP, DateUtils, Dialogs,
-  KSPDLLFileUtils, FileUtil;
+uses {$IFDEF WINDOWS}Windows, {$ENDIF}LResources, Forms, ID3Mgmnt, Classes,
+  FileSupportLst, KSPMessages, IdHTTP, DateUtils, Dialogs, KSPDLLFileUtils,
+  FileUtil, Process;
 
 const
 {$IFDEF WINDOWS}
@@ -11,6 +12,7 @@ const
 {$ELSE}
   LIB_SUFFIX = '.so';
 {$ENDIF}
+  READ_BYTES = 2048;
 
 {$IFNDEF WINDOWS}
   {$DEFINE KSP_SPECIAL_BUILD}
@@ -53,6 +55,9 @@ function IsPlaylist(FileName: string): boolean;
 function KSPGetFileSize(const FileName: WideString): Int64;
 
 procedure KSPShowMessage(msg: string);
+function ExecuteCommand(cmd: string): string;
+function GetOSVersion: string;
+
 
 
 
@@ -341,5 +346,96 @@ begin
     hLog.Send('KSP MAIN WINDOWS MESSAGE: '+msg)
   end;
 end;
+
+function ExecuteCommand(cmd: string): string;
+var
+   S: TStringList;
+   M: TMemoryStream;
+   P: TProcess;
+   n: LongInt;
+   BytesRead: LongInt;
+
+begin
+   // We cannot use poWaitOnExit here since we don't
+   // know the size of the output. On Linux the size of the
+   // output pipe is 2 kB. If the output data is more, we
+   // need to read the data. This isn't possible since we are
+   // waiting. So we get a deadlock here.
+   //
+   // A temp Memorystream is used to buffer the output
+
+   M := TMemoryStream.Create;
+   BytesRead := 0;
+
+   P := TProcess.Create(nil);
+   P.CommandLine := cmd;
+   P.Options := [poUsePipes];
+   P.Execute;
+   while P.Running do
+   begin
+     // make sure we have room
+     M.SetSize(BytesRead + READ_BYTES);
+
+     // try reading it
+     n := P.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     if n > 0
+     then begin
+       Inc(BytesRead, n);
+       Write('.')
+     end
+     else begin
+       // no data, wait 100 ms
+       Sleep(100);
+     end;
+   end;
+   // read last part
+   repeat
+     // make sure we have room
+     M.SetSize(BytesRead + READ_BYTES);
+     // try reading it
+     n := P.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     if n > 0
+     then begin
+       Inc(BytesRead, n);
+       Write('.');
+     end;
+   until n <= 0;
+   if BytesRead > 0 then WriteLn;
+   M.SetSize(BytesRead);
+
+   S := TStringList.Create;
+   S.LoadFromStream(M);
+   Result:='';
+   for n := 0 to S.Count - 1 do
+   begin
+     Result:=Result+S[n];
+   end;
+   S.Free;
+   P.Free;
+   M.Free;
+end;
+
+function GetOSVersion: string;
+{$IFDEF WINDOWS}
+var
+   osVerInfo: TOSVersionInfo;
+   majorVersion, minorVersion: Integer;
+begin
+   Result := '';
+   osVerInfo.dwOSVersionInfoSize := SizeOf(TOSVersionInfo) ;
+   if GetVersionEx(osVerInfo) then
+   begin
+     minorVersion := osVerInfo.dwMinorVersion;
+     majorVersion := osVerInfo.dwMajorVersion;
+     if osVerInfo.dwPlatformId = VER_PLATFORM_WIN32_NT then
+      Result:='Windows NT' else Result:='Windows';
+     Result:=Result+' '+IntToStr(majorVersion)+'.'+IntToStr(minorVersion);
+   end;
+end;
+{$ELSE}
+begin
+  Result:='Linux '+ExecuteCommand('uname -m');
+end;
+{$ENDIF}
 
 end.

@@ -124,6 +124,7 @@ const
 
 var
   Player: TBassPlayer;
+  OSName: string;
 //  KSPUserEmail: string;
 //  KSPUserName: string;
 
