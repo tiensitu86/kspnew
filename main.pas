@@ -2161,6 +2161,7 @@ begin
   if p.Name='' then Exit;
 
   Pls:=TXMLPlayList.create;
+  FixFolderNames(bName);
   Pls.SavePls(PlayList, bName, false);
   Pls.Free;
 
