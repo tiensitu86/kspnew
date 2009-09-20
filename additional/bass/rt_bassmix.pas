@@ -145,7 +145,9 @@ begin
      result := (BASSMIX_Handle <> 0);
    end else begin
      result := false;
+{$IFNDEF WINDOWS}
      hLog.Send('bassmix cannot be loaded ('+dlerror+')');
+{$ENDIF}
    end;
 end;
 

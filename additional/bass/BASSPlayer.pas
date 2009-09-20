@@ -1427,11 +1427,11 @@ begin
    FSoundEffects := [];
    FPlayerMode := plmStandby;
    FPan:=0;
-{$IFDEF WINDOWS}
-   BASSDLLLoaded := Load_BASSDLL(GetProgDir+BASS_DLL);
-{$ELSE}
+//{$IFDEF WINDOWS}
+//   BASSDLLLoaded := Load_BASSDLL(GetProgDir+BASS_DLL);
+//{$ELSE}
    BASSDLLLoaded := true;//Load_BASSDLL(KSP_APP_FOLDER+BASS_DLL);
-{$ENDIF}
+//{$ENDIF}
    if not BASSDLLLoaded then
    begin
       ShowMessage('Bass not loaded');
@@ -1508,7 +1508,7 @@ begin
       fn := GetProgDir + 'basswma.dll';
       if FileExists(fn) then  // * Changed at Ver 2.00
       begin
-         HBASSWMA := BASS_PluginLoad(fn, 0);
+         HBASSWMA := BASS_PluginLoad(pChar(fn), 0);
          if HBASSWMA <> 0 then
             FBASSWMAReady := true;
        end;
