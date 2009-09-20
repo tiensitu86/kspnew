@@ -56,7 +56,7 @@ begin
 
 //      StrPCopy(Pc, KSPMainWindow.GetCurrentFile);
 
-      hLog.Send('Updating info...');
+      hLog.Send('Reading info...');
 
       AllSongs.OpenQuery(Format(SelectGetItem, [PrepareString(KSPMainWindow.GetCurrentFile)]));
       i:=AllSongs.ReturnRecordsCount;
@@ -66,7 +66,7 @@ begin
 
       if i>0 then begin
           //p:=KSPMainWindow.AllSongs.GetItem2(i);
-
+          hLog.Send('Track in library, updating info...');
           p.LastPlay:=Now;
           if not p.PlayedEver then
             p.FirstPlay:=Now;

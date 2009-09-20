@@ -43,6 +43,7 @@ procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
 function PrepareString(str: string): string;// external 'kspfiles.dll';
 
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
+function Url_encode(const url:string):string;
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
 procedure KSPDeleteFolder(Path: string);
@@ -273,6 +274,21 @@ begin
   Output.Text:=Http.Get(aUrl);
   HTTP.Free;
   Result:=Output.Text<>'';
+end;
+
+function Url_encode(const url:string):string;
+var
+i: integer;
+begin
+  result:='';
+  for i:=1 to length(url) do begin
+    case url[i] of
+      'a'..'z','A'..'Z','0'..'9','/','.','&','-','=', '?'
+(* maybe some more are allowed *)
+        : result:=result+ url[i];
+      else result:=result+'%'+uppercase(inttohex(ord(url[i]),2));
+    end;
+  end;
 end;
 
 

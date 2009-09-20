@@ -3,7 +3,7 @@ unit app_db_utils;
 interface
 
 uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
-  Playlists, Math;
+  Playlists, Math, DOM, XMLRead;
 
 type TDatabaseType = (dbMySQL, dbSqlite);
 
@@ -486,9 +486,7 @@ begin
     s:=KSPDataFolder+'\sql.log';
     FixFolderNames(s);
     Log.SaveToFile(s);
-    hLog.Send('1');
     Database.SQLQuery.Open;
-    hLog.Send('2');
     Result:=0;
   end;
 end;
@@ -1023,26 +1021,60 @@ var
   P: TPLEntry;
   PC: TPathChar;
 
+  function FindNode(x: TDOMNode; Name: string): TDOMNode;
+  var
+    i: integer;
+  begin
+    Result:=nil;
+    for i:=0 to x.ChildNodes.Count-1 do begin
+      if UpperCase(x.ChildNodes.Item[i].NodeName)=UpperCase(Name) then begin
+          hLog.Send('Node found: '+Name);
+          Result:=x.ChildNodes.Item[i]
+        end;
+        hLog.Send(x.ChildNodes.Item[i].NodeName);
+      end;
+    if Result=nil then hLog.Send('Node not found: '+Name);
+  end;
+
+  procedure ProcessFeed;
+  var
+    XMLPls: TXMLDocument;
+    Node, Main: TDOMNode;
+    i: integer;
+  begin
+    ReadXMLFile(XMLPls, FileName);
+    Main:=FindNode(XMLPls.DocumentElement, 'similartracks');
+    hLog.Send('Found '+IntToStr(Main.ChildNodes.Count)+' similar tracks');
+
+    for i:=0 to Main.ChildNodes.Count-1 do begin
+
+    end;
+  end;
+
+
+  function DownloadFeed: boolean;
+  var
+    s: TStringList;
+    str: string;
+  begin
+    s:=TStringList.Create;
+    str:='http://'+Url_encode(Format(ASTrackFeed, [p.Tag.Artist, p.Tag.Title]));
+    hLog.Send('AS feed: '+str);
+    Result:=DownloadURLi(str, s);
+    str:=KSPDataFolder+'astrack.xml';
+    FixFolderNames(str);
+    if Result then s.SaveToFile(str);
+    s.Free;
+  end;
+
   procedure FillFavList;
   var
     i, RecNum: integer;
     pns: TPlayNextSong;
     p: TPLEntry;
   begin
-    OpenQuery('SELECT * FROM vdjentries WHERE I_NAME='+IntToStr(p.IM));
-    RecNum:=Self.ReturnRecordsCount;
-
-    if RecNum>0 then
-      for i := 0 to RecNum - 1 do begin
-        p:=Self.ReadEntry;
-        GoToNext;
-        pns.PlayCount:=p.PlayCount;
-        pns.Favourite:=p.Fav;
-        pns.FileName:=p.FileName;
-        f.Add(pns, Self, false);
-      end;
-
-    CloseQuery;
+    if DownloadFeed then
+      ProcessFeed;
   end;
 
 begin
@@ -1051,6 +1083,7 @@ begin
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
   if ReturnRecordsCount>0 then begin
       p:=ReadEntry;
+      hLog.Send(Format('Title: %s, Artist: %s', [p.Tag.Title, p.Tag.Artist]));
       CloseQuery;
       f:=TFavouriteList.Create(FileName, p.IM);
       FillFavList;

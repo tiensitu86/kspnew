@@ -118,6 +118,10 @@ var
   KSPLogFilename: string;
   KSPPluginsBlacklist: string;
 
+const
+  ASKey = '053e8f8c040a00ba100a2eaf5aa17fd9';
+  ASTrackFeed = 'ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=%s&track=%s&api_key='+ASKey;
+
 var
   Player: TBassPlayer;
 //  KSPUserEmail: string;

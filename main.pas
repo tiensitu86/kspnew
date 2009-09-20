@@ -8,7 +8,7 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind;
 
 
   { TWebView }
@@ -1606,6 +1606,10 @@ begin
       if InLib then begin
         Lyrics.Text:=AllSongs.ReadLyrics(findex);
       end;
+
+
+      Self.TotalPlayCount:=Self.TotalPlayCount+1;
+      TFindSugg.Create(false);
 
       PlayedPrevious:=true;
       lbPlaylist.Repaint;
