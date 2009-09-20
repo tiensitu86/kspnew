@@ -102,9 +102,15 @@ begin
   begin
     repeat
       if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
+{$IFDEF WINDOWS}
         if (sr.Attr and faDirectory) = sr.Attr then
           KSPDeleteFolder(Path+'\'+sr.Name) else
         if FileExists(Path+'\'+sr.Name) then DeleteFile(Path+'\'+sr.Name);
+{$ELSE}
+        if DirectoryExists(Path+'/'+sr.Name) then
+          KSPDeleteFolder(Path+'/'+sr.Name) else
+        if FileExists(Path+'/'+sr.Name) then DeleteFile(Path+'/'+sr.Name);
+{$ENDIF}
       end;
     until FindNext(sr) <> 0;
       FindClose(sr);
@@ -125,13 +131,28 @@ var
   sr: TSearchRec;
   FileAttrs: Integer;
 begin
-  FileAttrs := faDirectory;
+{$IFDEF WINDOWS}
+  FileAttrs:=faDirectory;
   if FindFirst(Path+'\*.*', FileAttrs, sr) = 0 then
+{$ELSE}
+  FileAttrs := faReadOnly+faHidden+faSysFile+faVolumeId+faDirectory+faArchive+
+  faSymLink+faAnyFile;//+faDirectory;
+  if FindFirst(Path+'/*', FileAttrs, sr) = 0 then
+{$ENDIF}
   begin
     repeat
       if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
-        if ((sr.Attr and faDirectory) = sr.Attr) and (DaysBetween(Now, FileDateToDateTime(sr.Time))>OlderThan) then
+{$IFDEF WINDOWS}
+        if ((sr.Attr and faDirectory) = sr.Attr) and (DaysBetween(Now, FileDateToDateTime(sr.Time))>OlderThan) then begin
           s.Add(Path+'\'+sr.Name);
+          hLog.Send('Found folder: '+sr.Name);
+        end;
+{$ELSE}
+        if DirectoryExists(Path+'/'+sr.Name) and (DaysBetween(Now, FileDateToDateTime(FileAge(Path+'/'+sr.Name)))>OlderThan) then begin
+          s.Add(Path+'/'+sr.Name);
+          hLog.Send('Found folder: '+sr.Name);
+        end;
+{$ENDIF}
       end;
     until FindNext(sr) <> 0;
       FindClose(sr);

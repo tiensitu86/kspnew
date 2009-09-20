@@ -1148,8 +1148,9 @@ var
   s: string;
   p2: TPLEntry;
   p: PPLEntry;
-  Index: integer;
+  Index, NotFound: integer;
   Pc, pc2: TPathChar;
+  GetIsTag: boolean;
 begin
   if (lbPlaylist.ItemIndex>lbPlaylist.Count) or (lbPlaylist.ItemIndex<0) then Exit;
   Index:=lbPlaylist.ItemIndex;
@@ -1158,20 +1159,27 @@ begin
 
   StrPCopy(Pc, s);
   if not IsStream(Pc) then begin
+      hLog.Send('File info: '+s);
       FileInfoBox(s);
-      P2.Tag:=ReadID3(s);
+      P2.FileName:=s;
+      P2.Stream:=GetStreamInfoSimple(s, GetIsTag);
+      P2.Tag:=GetFromInfo(P2.Stream, NotFound);//ReadID3(s);
+      p2.Tag.IsTag:=GetIsTag;
       if AllSongs.FileInLib(s) then begin
           StrPCopy(Pc2, s);
           AllSongs.OpenQuery(Format(SelectGetItem,[PrepareString(Pc2)]));
           P2:=AllSongs.ReadEntry;
           //P2.Tag:=P^.Tag;
+          P2.Stream:=GetStreamInfoSimple(s, GetIsTag);
+          P2.Tag:=GetFromInfo(P2.Stream, NotFound);//ReadID3(s);
+          p2.Tag.IsTag:=GetIsTag;
           AllSongs.CloseQuery;
           AllSongs.Add(P2, false);
         end;
       PlayList.ChangeEntry(Index, P2);
 
       lbPlaylist.Items.Strings[Index]:=
-        ProduceFormatedString(FormatedPlaylistInfo, ReadID3(s), GetDuration(P^.Stream), Index);
+        ProduceFormatedString(FormatedPlaylistInfo, P2.Tag, GetDuration(P2.Stream), Index);
     end else begin
       //ThemedMessages.MessageDlg(Format(GetResConst('SInfoShoutcast'), [))
     end;

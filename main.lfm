@@ -1,5 +1,5 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 393
+  Left = 394
   Height = 632
   Top = 125
   Width = 977
@@ -159,6 +159,8 @@ object KSPMainWindow: TKSPMainWindow
       Position = 100
       TickStyle = tsNone
       Ctl3D = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 3
     end
     object RepeatButton: TButton
