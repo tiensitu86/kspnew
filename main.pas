@@ -893,6 +893,13 @@ var
     MSortType.Items.Item[0].Text:=SSortBy;
   end;
 
+{$IFNDEF KSP_DEVEL}
+  procedure PrepareNonDevel;
+  begin
+    HeaderControl1.Sections.Items[2].Visible:=false;
+  end;
+{$ENDIF}
+
 begin
   SplashForm:=TSplashForm.Create(nil);
 
@@ -953,6 +960,9 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
+{$IFNDEF KSP_DEVEL}
+  PrepareNonDevel;
+{$ENDIF}
 
   SplashForm.Free;
 
