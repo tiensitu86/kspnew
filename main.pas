@@ -1831,25 +1831,30 @@ var
   end;  }
 
 begin
+  hLog.Send('Closing KSP');
   AllSongs.Free;
   MediaSongs.Free;
 
+  hLog.Send('Saving bookmarks');
   BookmarksList.SaveToFile(KSPDataFolder+'data\bookmarks.xml');
 
+  hLog.Send('Saving options');
   SaveOptions;
 
 
+  hLog.Send('Saving playlist');
   Pls:=TXMLPlayList.create;
   PlsFile:= KSPDataFolder+'data/pls.kpl';
   FixFolderNames(PlsFile);
   Pls.SavePls(PlayList, PlsFile, Self.RelativePaths.Checked);
   Pls.Free;
 
+  hLog.Send('Saving forbidden list');
   Forbidden.SaveToFile(KSPDataFolder+'data\vdj\last');
 
-  Player.Stop;
-  Player.Close;
-  Player.Free;
+  hLog.Send('Stopping playback'); Player.Stop;
+  hLog.Send('Closing media files'); Player.Close;
+  hLog.Send('Freeing player'); Player.Free;
   hLog.Free;
   TrayIcon1.Visible:=false;
 end;

@@ -54,31 +54,31 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 2
     object lLeft: TLabel
       Left = 544
-      Height = 38
+      Height = 39
       Top = 8
-      Width = 24
+      Width = 25
       ParentColor = False
       OnClick = lLeftClick
     end
     object lTime2: TLabel
       Left = 456
-      Height = 38
+      Height = 39
       Top = 8
-      Width = 24
+      Width = 25
       ParentColor = False
     end
     object TotalTimeLabel: TLabel
       Left = 456
-      Height = 38
+      Height = 39
       Top = 32
-      Width = 24
+      Width = 25
       ParentColor = False
     end
     object lFileName: TLabel
       Left = 544
-      Height = 24
+      Height = 25
       Top = 32
-      Width = 35
+      Width = 36
       ParentColor = False
     end
     object PosBar: TTrackBar
@@ -203,9 +203,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 38
+      Height = 39
       Top = 8
-      Width = 24
+      Width = 25
       ParentColor = False
     end
   end
@@ -3019,11 +3019,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 419
-                ClientWidth = 439
+                ClientHeight = 423
+                ClientWidth = 443
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 419
+                  Height = 423
                   Top = 0
                   Width = 232
                   Align = alLeft
