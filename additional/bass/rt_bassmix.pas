@@ -7,9 +7,11 @@
 
 Unit RT_bassmix;
 
+{$mode objfpc}{$H+}
+
 interface
 
-uses Dynlibs, Dynamic_Bass, SysUtils, multilog;
+uses {$IFNDEF WINDOWS}dl, {$ENDIF}Dynlibs, Dynamic_Bass, SysUtils, Dialogs;
 
 const
   // additional BASS_SetConfig option
@@ -49,11 +51,7 @@ type
   end;
 
 const
-{$IFDEF WINDOWS}
   bassmixdll = 'bassmix.dll';
-{$ELSE}
-  bassmixdll = 'libbassmix.so';
-{$ENDIF}
 
 var
   BASS_Mixer_GetVersion: function: DWORD; stdcall;
@@ -92,30 +90,29 @@ begin
    end;
 
    // load the dll
-   BASSMIX_Handle := DynLibs.LoadLibrary(dllfilename);  // obtain the handle we want
-   hLog.Send('bassmix handle: '+IntToStr(BASSMIX_Handle)+', file exists: '+BoolToStr(FileExists(dllfilename), true));
+   BASSMIX_Handle := LoadLibrary(dllfilename);  // obtain the handle we want
 
-   if BASSMIX_Handle <> DynLibs.NilHandle then
+   if BASSMIX_Handle <> 0 then
    begin {now we tie the functions to the VARs from above}
-     @BASS_Mixer_GetVersion:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_GetVersion');
-     @BASS_Mixer_StreamCreate:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamCreate');
-     @BASS_Mixer_StreamAddChannel:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamAddChannel');
-     @BASS_Mixer_StreamAddChannelEx:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamAddChannelEx');
+     Pointer(BASS_Mixer_GetVersion):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_GetVersion');
+     Pointer(BASS_Mixer_StreamCreate):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamCreate');
+     Pointer(BASS_Mixer_StreamAddChannel):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamAddChannel');
+     Pointer(BASS_Mixer_StreamAddChannelEx):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_StreamAddChannelEx');
 
-     @BASS_Mixer_ChannelGetMixer:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetMixer');
-     @BASS_Mixer_ChannelFlags:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelFlags');
-     @BASS_Mixer_ChannelRemove:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelRemove');
-     @BASS_Mixer_ChannelSetPosition:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetPosition');
-     @BASS_Mixer_ChannelGetPosition:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetPosition');
-     @BASS_Mixer_ChannelGetLevel:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetLevel');
-     @BASS_Mixer_ChannelGetData:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetData');
-     @BASS_Mixer_ChannelSetSync:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetSync');
-     @BASS_Mixer_ChannelRemoveSync:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelRemoveSync');
-     @BASS_Mixer_ChannelSetMatrix:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetMatrix');
-     @BASS_Mixer_ChannelGetMatrix:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetMatrix');
-     @BASS_Mixer_ChannelSetEnvelope:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetEnvelope');
-     @BASS_Mixer_ChannelSetEnvelopePos:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetEnvelopePos');
-     @BASS_Mixer_ChannelGetEnvelopePos:= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetEnvelopePos');
+     Pointer(BASS_Mixer_ChannelGetMixer):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetMixer');
+     Pointer(BASS_Mixer_ChannelFlags):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelFlags');
+     Pointer(BASS_Mixer_ChannelRemove):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelRemove');
+     Pointer(BASS_Mixer_ChannelSetPosition):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetPosition');
+     Pointer(BASS_Mixer_ChannelGetPosition):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetPosition');
+     Pointer(BASS_Mixer_ChannelGetLevel):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetLevel');
+     Pointer(BASS_Mixer_ChannelGetData):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetData');
+     Pointer(BASS_Mixer_ChannelSetSync):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetSync');
+     Pointer(BASS_Mixer_ChannelRemoveSync):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelRemoveSync');
+     Pointer(BASS_Mixer_ChannelSetMatrix):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetMatrix');
+     Pointer(BASS_Mixer_ChannelGetMatrix):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetMatrix');
+     Pointer(BASS_Mixer_ChannelSetEnvelope):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetEnvelope');
+     Pointer(BASS_Mixer_ChannelSetEnvelopePos):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelSetEnvelopePos');
+     Pointer(BASS_Mixer_ChannelGetEnvelopePos):= GetProcAddress(BASSMIX_Handle, 'BASS_Mixer_ChannelGetEnvelopePos');
 
      if (@BASS_Mixer_GetVersion = nil) or
         (@BASS_Mixer_StreamCreate = nil) or
@@ -138,13 +135,12 @@ begin
      begin
         FreeLibrary(BASSMIX_Handle);
         BASSMIX_Handle := 0;
-        //hLog.Send('bassmix found but not proper version ('+IntToStr(BASS_ErrorGetCode)+')');
      end;
 
      result := (BASSMIX_Handle <> 0);
    end else begin
      result := false;
-     //hLog.Send('bassmix cannot be loaded ('+IntToStr(BASS_ErrorGetCode)+')');
+     hLog.Send('bassmix cannot be loaded ('+dlerror+')');
    end;
 end;
 
