@@ -54,31 +54,31 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 2
     object lLeft: TLabel
       Left = 544
-      Height = 39
+      Height = 40
       Top = 8
-      Width = 25
+      Width = 26
       ParentColor = False
       OnClick = lLeftClick
     end
     object lTime2: TLabel
       Left = 456
-      Height = 39
+      Height = 40
       Top = 8
-      Width = 25
+      Width = 26
       ParentColor = False
     end
     object TotalTimeLabel: TLabel
       Left = 456
-      Height = 39
+      Height = 40
       Top = 32
-      Width = 25
+      Width = 26
       ParentColor = False
     end
     object lFileName: TLabel
       Left = 544
-      Height = 25
+      Height = 26
       Top = 32
-      Width = 36
+      Width = 37
       ParentColor = False
     end
     object PosBar: TTrackBar
@@ -205,9 +205,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 39
+      Height = 40
       Top = 8
-      Width = 25
+      Width = 26
       ParentColor = False
     end
   end
@@ -226,6 +226,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 1
       Width = 686
       DragReorder = False
+      Images = MenuImages
       Sections = <      
         item
           Alignment = taLeftJustify
@@ -260,52 +261,54 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 686
       Align = alClient
-      PageIndex = 3
+      PageIndex = 1
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
         Caption = 'Page1'
-        ClientWidth = 686
-        ClientHeight = 423
+        ClientWidth = 682
+        ClientHeight = 419
         object PagesWelcome: TPageControl
           Left = 0
-          Height = 423
+          Height = 419
           Top = 0
-          Width = 686
-          ActivePage = TabSheet4
+          Width = 682
+          ActivePage = TabSheet3
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
-            ClientHeight = 423
-            ClientWidth = 686
+            ClientHeight = 388
+            ClientWidth = 678
             OnResize = TabSheet3Resize
             object Panel8: TPanel
               Left = 0
               Height = 43
               Top = 0
-              Width = 686
+              Width = 678
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 686
+              ClientWidth = 678
               TabOrder = 0
               object SpeedButton5: TSpeedButton
-                Left = 339
-                Height = 36
-                Top = 3
+                Left = 536
+                Height = 41
+                Top = 1
                 Width = 51
+                Align = alRight
                 Caption = 'GO'
                 Color = clBtnFace
                 NumGlyphs = 0
                 OnClick = SpeedButton1Click
               end
               object Image3: TImage
-                Left = 547
-                Height = 34
-                Top = 3
+                Left = 587
+                Height = 41
+                Top = 1
                 Width = 90
+                Align = alRight
                 Picture.Data = {
                   1754506F727461626C654E6574776F726B477261706869633739000089504E47
                   0D0A1A0A0000000D494844520000006A0000003608060000002F6D0C1B000000
@@ -770,10 +773,11 @@ object KSPMainWindow: TKSPMainWindow
                 Stretch = True
               end
               object SpeedButton6: TSpeedButton
-                Left = 395
-                Height = 36
-                Top = 3
+                Left = 1
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -911,10 +915,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton2Click
               end
               object SpeedButton7: TSpeedButton
-                Left = 435
-                Height = 36
-                Top = 3
+                Left = 37
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -1052,10 +1057,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton3Click
               end
               object SpeedButton8: TSpeedButton
-                Left = 475
-                Height = 36
-                Top = 3
+                Left = 73
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -1193,10 +1199,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton4Click
               end
               object IMAddress1: TEdit
-                Left = 11
-                Height = 22
-                Top = 10
-                Width = 320
+                Left = 109
+                Height = 41
+                Top = 1
+                Width = 427
+                Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
               end
@@ -1204,8 +1211,8 @@ object KSPMainWindow: TKSPMainWindow
             object MWProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 403
-              Width = 686
+              Top = 368
+              Width = 678
               Align = alBottom
               Smooth = True
               TabOrder = 1
@@ -1213,9 +1220,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object MainWeb: TPanel
               Left = 0
-              Height = 360
+              Height = 325
               Top = 43
-              Width = 686
+              Width = 678
               Align = alClient
               TabOrder = 2
               OnResize = MainWebResize
@@ -1223,22 +1230,22 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet4: TTabSheet
             Caption = 'About...'
-            ClientHeight = 423
-            ClientWidth = 686
+            ClientHeight = 388
+            ClientWidth = 678
             object Panel4: TPanel
               Left = 0
               Height = 50
               Top = 0
-              Width = 686
+              Width = 678
               Align = alTop
               ClientHeight = 50
-              ClientWidth = 686
+              ClientWidth = 678
               TabOrder = 0
               object AppVersion: TLabel
                 Left = 370
-                Height = 15
+                Height = 16
                 Top = 11
-                Width = 1
+                Width = 2
                 ParentColor = False
               end
               object Image1: TImage
@@ -1711,9 +1718,9 @@ object KSPMainWindow: TKSPMainWindow
               end
               object Button4: TButton
                 Left = 107
-                Height = 24
+                Height = 27
                 Top = 11
-                Width = 104
+                Width = 117
                 AutoSize = True
                 Caption = 'HOW CAN I HELP?'
                 OnClick = Button4Click
@@ -1731,9 +1738,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object History: TPanel
               Left = 0
-              Height = 373
+              Height = 338
               Top = 50
-              Width = 686
+              Width = 678
               Align = alClient
               TabOrder = 1
               OnResize = HistoryResize
@@ -1743,36 +1750,36 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page2: TPage
         Caption = 'Page2'
-        ClientWidth = 686
-        ClientHeight = 423
+        ClientWidth = 682
+        ClientHeight = 419
         object LibPages: TPageControl
           Left = 0
-          Height = 423
+          Height = 419
           Top = 0
-          Width = 686
-          ActivePage = TabSheet1
+          Width = 682
+          ActivePage = TabSheet5
           Align = alClient
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 423
-            ClientWidth = 686
+            ClientHeight = 388
+            ClientWidth = 678
             object Splitter1: TSplitter
               Left = 186
-              Height = 423
+              Height = 388
               Top = 0
               Width = 5
             end
             object MsortType: TTreeView
               Left = 0
-              Height = 423
+              Height = 388
               Top = 0
               Width = 186
               Align = alLeft
               Ctl3D = False
-              DefaultItemHeight = 16
+              DefaultItemHeight = 14
               TabOrder = 1
               OnClick = MsortTypeClick
               Items.Data = {
@@ -1786,40 +1793,40 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 423
+              Height = 388
               Top = 0
-              Width = 495
+              Width = 487
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 423
-              ClientWidth = 495
+              ClientHeight = 388
+              ClientWidth = 487
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Left = 0
                 Height = 5
-                Top = 196
-                Width = 495
+                Top = 161
+                Width = 487
                 Align = alBottom
                 ResizeAnchor = akBottom
               end
               object MediaBuild: TProgressBar
                 Left = 0
                 Height = 20
-                Top = 403
-                Width = 495
+                Top = 368
+                Width = 487
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
                 Left = 0
-                Height = 196
+                Height = 161
                 Top = 0
-                Width = 495
+                Width = 487
                 Align = alClient
                 Ctl3D = False
-                DefaultItemHeight = 16
+                DefaultItemHeight = 14
                 DragMode = dmAutomatic
                 TabOrder = 2
                 OnClick = MGViewClick
@@ -1829,21 +1836,21 @@ object KSPMainWindow: TKSPMainWindow
               object Panel10: TPanel
                 Left = 0
                 Height = 202
-                Top = 201
-                Width = 495
+                Top = 166
+                Width = 487
                 Align = alBottom
                 Caption = 'Panel10'
                 ClientHeight = 202
-                ClientWidth = 495
+                ClientWidth = 487
                 TabOrder = 3
                 object Panel9: TPanel
                   Left = 1
                   Height = 37
                   Top = 164
-                  Width = 493
+                  Width = 485
                   Align = alBottom
                   ClientHeight = 37
-                  ClientWidth = 493
+                  ClientWidth = 485
                   TabOrder = 0
                   object SongsLike: TEdit
                     Left = 4
@@ -1866,7 +1873,7 @@ object KSPMainWindow: TKSPMainWindow
                   Left = 1
                   Height = 163
                   Top = 1
-                  Width = 493
+                  Width = 485
                   Align = alClient
                   DragMode = dmAutomatic
                   ItemHeight = 0
@@ -1883,13 +1890,13 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 423
-            ClientWidth = 686
+            ClientHeight = 388
+            ClientWidth = 678
             object Panel7: TPanel
               Left = 0
-              Height = 360
+              Height = 325
               Top = 43
-              Width = 686
+              Width = 678
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
@@ -1898,26 +1905,28 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 43
               Top = 0
-              Width = 686
+              Width = 678
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 686
+              ClientWidth = 678
               TabOrder = 1
               object SpeedButton1: TSpeedButton
-                Left = 339
-                Height = 36
-                Top = 3
+                Left = 536
+                Height = 41
+                Top = 1
                 Width = 51
+                Align = alRight
                 Caption = 'GO'
                 Color = clBtnFace
                 NumGlyphs = 0
                 OnClick = SpeedButton1Click
               end
               object Image2: TImage
-                Left = 547
-                Height = 34
-                Top = 3
+                Left = 587
+                Height = 41
+                Top = 1
                 Width = 90
+                Align = alRight
                 Picture.Data = {
                   1754506F727461626C654E6574776F726B477261706869633739000089504E47
                   0D0A1A0A0000000D494844520000006A0000003608060000002F6D0C1B000000
@@ -2382,10 +2391,11 @@ object KSPMainWindow: TKSPMainWindow
                 Stretch = True
               end
               object SpeedButton2: TSpeedButton
-                Left = 395
-                Height = 36
-                Top = 3
+                Left = 1
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -2523,10 +2533,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton2Click
               end
               object SpeedButton3: TSpeedButton
-                Left = 435
-                Height = 36
-                Top = 3
+                Left = 37
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -2664,10 +2675,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton3Click
               end
               object SpeedButton4: TSpeedButton
-                Left = 475
-                Height = 36
-                Top = 3
+                Left = 73
+                Height = 41
+                Top = 1
                 Width = 36
+                Align = alLeft
                 Color = clBtnFace
                 Glyph.Data = {
                   36100000424D3610000000000000360000002800000020000000200000000100
@@ -2805,10 +2817,11 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton4Click
               end
               object IMAddress: TEdit
-                Left = 11
-                Height = 22
-                Top = 10
-                Width = 320
+                Left = 109
+                Height = 41
+                Top = 1
+                Width = 427
+                Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
               end
@@ -2816,8 +2829,8 @@ object KSPMainWindow: TKSPMainWindow
             object IMProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 403
-              Width = 686
+              Top = 368
+              Width = 678
               Align = alBottom
               Smooth = True
               TabOrder = 2
@@ -2827,16 +2840,16 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page3: TPage
         Caption = 'Page3'
-        ClientWidth = 686
-        ClientHeight = 423
+        ClientWidth = 682
+        ClientHeight = 419
         object SetupTreeView: TTreeView
           Left = 0
-          Height = 423
+          Height = 419
           Top = 0
           Width = 238
           Align = alLeft
           Ctl3D = False
-          DefaultItemHeight = 16
+          DefaultItemHeight = 14
           TabOrder = 0
           OnClick = SetupTreeViewClick
           Items.Data = {
@@ -2854,15 +2867,15 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Splitter4: TSplitter
           Left = 238
-          Height = 423
+          Height = 419
           Top = 0
           Width = 5
         end
         object SetupBook: TNotebook
           Left = 243
-          Height = 423
+          Height = 419
           Top = 0
-          Width = 443
+          Width = 439
           Align = alClient
           PageIndex = 5
           ShowTabs = False
@@ -3103,13 +3116,13 @@ object KSPMainWindow: TKSPMainWindow
           end
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
-            ClientWidth = 443
-            ClientHeight = 423
+            ClientWidth = 435
+            ClientHeight = 415
             object Label1: TLabel
               Left = 9
-              Height = 15
+              Height = 13
               Top = 35
-              Width = 105
+              Width = 120
               Caption = 'Device buffer (in ms):'
               ParentColor = False
             end
@@ -3133,9 +3146,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object RelativePaths: TCheckBox
               Left = 8
-              Height = 18
+              Height = 21
               Top = 3
-              Width = 199
+              Width = 226
               Caption = 'Use relative paths for playlist saving'
               TabOrder = 2
             end
@@ -4079,7 +4092,7 @@ object KSPMainWindow: TKSPMainWindow
     left = 216
     top = 536
     Bitmap = {
-      4C6906000000100000001000000090D7FF008EDAFF0091DDFF0094D9FF0094D9
+      4C6908000000100000001000000090D7FF008EDAFF0091DDFF0094D9FF0094D9
       FF0094D9FF0094D9FF0055BEFFA768C5FFD192D7FF0093D7FF0093D7FF009ADB
       FF005BC1FF001A9AFF001E8DFF0090D7FF008ED9FF0090E0FF0096E1FF0098DF
       FF0098DFFF0097DFFF0077D4FFF595DEFFFF5AC3FF1F96DDFF009ADEFF008AD9
@@ -4271,7 +4284,71 @@ object KSPMainWindow: TKSPMainWindow
       50FF02026F0A0506480003034500020242000000400000004E02000040FF0101
       99FF02029DFF000040FF00002C0C0E0D550000005F0308094DFF06064AFF0000
       6007020243000101410000004000000040000000400000004000000039020000
-      40FF000040FF00002C0A00004000
+      40FF000040FF00002C0A00004000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000BD9373FFD8AD96FFE8BCA9FFE7BBA8FFD8AC95FFBC9371FF000000000000
+      0000000000000000000000000000000000000000000000000000B48760FFDFAC
+      96FFE2A79AFFE2A698FFE1A497FFE1A395FFE1A293FFE0A092FFDCA48CFFB384
+      5AFF0000000000000000000000000000000000000000A9794DFFDD9B84FFDC93
+      82FFDB9281FFDB9280FFDC917EFFDB907DFFDB8E7BFFDA8D79FFD98B77FFDA92
+      78FFA8784AFF00000000000000000000000000000000CC8A65FFD6826CFFD782
+      6BFFD7836BFFD7836AFFD89986FFF0ECEAFFDBA594FFD67E64FFD57C62FFD379
+      60FFCA835BFF000000000000000000000000A27141FFD3765AFFD27458FFD377
+      58FFD2704DFFD06A44FFCC714DFFE9DCD5FFF4F4F3FFCC866BFFC4481CFFC344
+      1AFFC3441AFFA16C36FF0000000000000000AF6F3BFFC8522CFFC74E21FFBF59
+      30FFC05F36FFC16237FFC26438FFBE6E48FFDED5D0FFECEBEBFFC88467FFC548
+      16FFC34214FFAD692FFF0000000000000000AF632CFFC54716FFC84E18FFD8D1
+      CEFFE8E7E7FFE8E7E7FFE8E7E7FFE8E7E7FFE8E7E7FFE8E7E7FFE8E7E7FFC46E
+      44FFC84E18FFB0662DFF0000000000000000AD6A30FFC9521AFFCD5B1DFFC885
+      5BFFCD966EFFCE986FFFCF9A70FFCE9A71FFD5CCC6FFE2E1E1FFD4B8A5FFCD62
+      21FFCC5A1DFFAE6C31FF0000000000000000A47036FFCE5D1EFFD26822FFD672
+      26FFD97B2AFFDC822CFFDA8531FFD0B093FFDEDDDCFFD3BAA4FFD67A2CFFD671
+      26FFD26622FFA57137FF000000000000000000000000CA772DFFD77527FFDC80
+      2CFFE08B30FFE39333FFD49D5BFFDAD9D8FFD3BEA3FFDF9236FFE08A30FFDB7F
+      2BFFCD7E30FF00000000000000000000000000000000B17B38FFDB852FFFE28F
+      32FFE79C36FFEBA63BFFEAAB3FFFD9B067FFE9AA3FFFEBA53AFFE69B36FFE091
+      33FFB27E39FF0000000000000000000000000000000000000000BD863AFFE29C
+      38FFEDAC3DFFF2B942FFF6C245FFF8C547FFF6C145FFF2B841FFE7A73DFFBE8A
+      3BFF00000000000000000000000000000000000000000000000000000000A374
+      39FFC6933DFFE5B645FFF9CF4CFFF9D24CFFE8BD48FFC89A40FFA37639FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF008F6036FF906139FF8D6038FF8B5D35FF8E5F
+      35008E5F35008E5F35008E5F35008E5F35008E5F35008E5F35008E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00ECC4ADFFE6C4A5FFD8B693FFBC9873FF9F76
+      4EFF8F623BFF8E5F35008E5F35008E5F35008E5F35008E5F35008E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00E6B3A8FFE6B3A7FFE6B3A7FFE6B2A7FFEABD
+      AAFFDBB793FFA88259FF906038FF8E5F35008E5F35008E5F35008E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00E3A99CFFE3A89BFFE3A89AFFE3A79AFFE2A6
+      99FFE2A598FFE7B29CFFD0AD81FF996840FF8E5F35008E5F35008E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00E09F90FFDF9E8FFFDF9D8DFFDF9C8DFFDF9B
+      8CFFDF9B8BFFDE9A8AFFDE9989FFE1B78BFFA16F45FF8B5D35008E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00DD9583FFDC9483FFDC9382FFDC9381FFDC92
+      80FFDC917FFFDB907EFFDB8F7DFFDA8E7DFFE0B282FF98673EFF8E5F35008E5F
+      35008E5F3500FFFFFF00FFFFFF00DA8D78FFDA8C77FFDA8B76FFDA8A76FFD989
+      74FFD98974FFD88772FFD88672FFD78571FFD78470FFD1A36BFF905E36FF8E5F
+      35008E5F3500FFFFFF00FFFFFF00E8E4E1FFE0D5D0FFD38D78FFD7836BFFD782
+      6AFFD78169FFD68068FFD67E67FFD57D66FFD57C65FFD98769FFAB7C48FF8B5D
+      35008E5F3500FFFFFF00FFFFFF00FCFCFCFFFCFCFCFFF0EEECFFD29783FFD57C
+      60FFD57B5FFFD47A5EFFD4785DFFD3765CFFD2755BFFD2735AFFD29861FF9261
+      37FF8E5F3500FFFFFF00FFFFFF00F9F9F8FFF9F8F8FFF9F8F8FFF2F0EFFFC47A
+      5EFFC74F25FFC64D24FFC64C24FFC54A23FFC44822FFC34621FFCA5527FFA171
+      39FF8E5F3500FFFFFF00FFFFFF00C18B72FFF4F4F3FFF4F4F3FFF4F4F3FFEBE9
+      E7FFBC6745FFC44515FFC34314FFC34113FFC23F13FFC13C12FFC03A11FFBB7A
+      34FF885B36FFFFFFFF00FFFFFF00C9511AFFBC7858FFE8E5E4FFF0F0F0FFF0F0
+      F0FFE8E5E4FFBD6946FFC64917FFC54716FFC44415FFC34114FFC23F13FFC97E
+      31FF926135FFFFFFFF00FFFFFF00BB7957FFBB7957FFB69481FFEDECECFFEDEC
+      ECFFEDECECFFE4E2E0FFBC7E62FFC84D18FFC64A17FFC54716FFC44415FFC966
+      24FF926235FFFFFFFF00FFFFFF00EAE9E9FFEAE9E9FFEAE9E9FFEAE9E9FFEAE9
+      E9FFEAE9E9FFEAE9E9FFEAE9E9FFBC7F62FFC95019FFC84D18FFC64917FFD16B
+      25FF8F6035FFFFFFFF00FFFFFF00E7E6E5FFE7E6E5FFE7E6E5FFE7E6E5FFE7E6
+      E5FFE7E6E5FFE7E6E5FFE7E6E5FFC0937CFFCC571CFFCA531BFFC84F19FFD26E
+      26FF8F6035FFFFFFFF00FFFFFF00
     }
   end
   object ActionList1: TActionList

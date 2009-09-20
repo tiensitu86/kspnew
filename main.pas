@@ -829,6 +829,7 @@ var
     LastMediaLibTag:=-1;
     ApplicationVisible:=true;
     Notebook1.ActivePage:='Page1';
+    HeaderControl1.Sections.Items[0].ImageIndex:=6;
     LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
     SetupBook.ActivePage:='DefaultSetupPage';
@@ -1021,6 +1022,7 @@ procedure TKSPMainWindow.Button4Click(Sender: TObject);
 begin
   //ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
   Self.Notebook1.ActivePage:='Page1';
+  HeaderControl1.Sections.Items[0].ImageIndex:=6;
   PagesWelcome.ActivePage:=TabSheet3;
   Self.MainWebView.LoadURL(KSPHowHelp);
 end;
@@ -1206,6 +1208,7 @@ end;
 procedure TKSPMainWindow.MenuItem24Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
+  HeaderControl1.Sections.Items[0].ImageIndex:=6;
   PagesWelcome.ActivePage:=TabSheet3;
   Self.MainWebView.LoadURL(KSPSupportURL);
 end;
@@ -1214,6 +1217,7 @@ procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
   PagesWelcome.ActivePage:=TabSheet3;
+  HeaderControl1.Sections.Items[0].ImageIndex:=6;
   Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
@@ -1862,7 +1866,7 @@ begin
 
   hLog.Send('Stopping playback'); Player.Stop;
   hLog.Send('Closing media files'); Player.Close;
-  hLog.Send('Freeing player'); Player.Free;
+  hLog.Send('Freeing player'); try Player.Free; except end;
   hLog.Free;
   TrayIcon1.Visible:=false;
 end;
@@ -1885,6 +1889,11 @@ begin
     2: Notebook1.ActivePage:='Page4';
     3: Notebook1.ActivePage:='Page3';
   end;
+  HeaderControl1.Sections.Items[0].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[1].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[2].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[3].ImageIndex:=-1;
+  Section.ImageIndex:=6;
 end;
 
 procedure TKSPMainWindow.lbPlaylistDblClick(Sender: TObject);

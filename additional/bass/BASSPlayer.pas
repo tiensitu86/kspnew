@@ -1607,7 +1607,7 @@ begin
    if BASSDLLLoaded then
    begin
       BASS_PluginFree(0);  // Unplugs all plugins
-      BASS_Free;
+      //BASS_Free;
       //Unload_BASSDLL;
    end;
   { if FBASSWMAReady then
@@ -1624,6 +1624,12 @@ begin
    end;
    if FMixerReady then
       Unload_BASSMIXDLL;
+
+   if BASSDLLLoaded then
+   begin
+      BASS_Free;
+      //Unload_BASSDLL;
+   end;
 
    if msgCount > 0 then
    begin
