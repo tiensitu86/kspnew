@@ -90,7 +90,7 @@ begin
 
       //if we are not looking for items from chosen genre then GID should be -1
       //we must ensure that it is
-      SortMediaFavList(fav, p, KSPMainWindow.Forbidden);
+      //SortMediaFavList(fav, p, KSPMainWindow.Forbidden);
       hLog.Send('Fav list sorted...');
 
       fav.Free;
