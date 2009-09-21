@@ -2,6 +2,8 @@ unit main;
 
 {$mode objfpc}{$H+}
 
+{$I ksp_version.inc}
+
 interface
 
 uses
@@ -964,7 +966,7 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
-{$IFNDEF KSP_DEVEL}
+{$IFNDEF KSP_CURRENTLY_PLAYED}
   PrepareNonDevel;
 {$ENDIF}
 

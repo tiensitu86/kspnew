@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 394
+  Left = 397
   Height = 632
-  Top = 125
+  Top = 170
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610

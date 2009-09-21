@@ -4,7 +4,9 @@ interface
 
 uses Messages, FileSupportLst, SysUtils, BASSPlayer,
   Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems,
-  Playlists, app_db_utils;
+  Playlists, app_db_utils, LuaObjects;
+
+{$I ksp_version.inc}
 
 const
   KSPHost = 'http://ksplayer.boo.pl';
@@ -110,6 +112,7 @@ var
   AllSongs: TAppDBConnection;
   SuggestionList: TPlayList;
   SuggFindHelpPlaylist: TPlaylist;
+  ScriptedAddons: TLuaScript;
   FindApproxVals: TPlayList;
   InsertingDataInThread: boolean;
   KSPAssociatedFiles: TStringList;
