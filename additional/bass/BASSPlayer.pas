@@ -871,6 +871,7 @@ var
 begin
   s := msg + #13#10 + '(error code: ' + IntToStr(BASS_ErrorGetCode) + ')';
   ShowErrorMsgBox(s);
+  hLog.Send('BASS ERROR: '+s);
 end;
 
 procedure TBASSPlayer.ClearEffectHandle;

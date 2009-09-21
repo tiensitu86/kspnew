@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="7"/>
+      <ActiveEditorIndexAtStart Value="10"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -83,8 +83,8 @@
         <Filename Value="additional\bass\BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="13" Y="1462"/>
-        <TopLine Value="1445"/>
+        <CursorPos X="28" Y="880"/>
+        <TopLine Value="868"/>
         <EditorIndex Value="10"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -1688,9 +1688,11 @@
       <Unit211>
         <Filename Value="additional\bass\bass.pas"/>
         <UnitName Value="Bass"/>
-        <CursorPos X="57" Y="699"/>
-        <TopLine Value="673"/>
+        <CursorPos X="3" Y="58"/>
+        <TopLine Value="38"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit211>
       <Unit212>
@@ -1771,123 +1773,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="974" Column="33" TopLine="954"/>
+        <Caret Line="3292" Column="1" TopLine="3253"/>
       </Position1>
       <Position2>
-        <Filename Value="additional\luaobjects.pas"/>
-        <Caret Line="116" Column="73" TopLine="98"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="977" Column="27" TopLine="957"/>
       </Position2>
       <Position3>
-        <Filename Value="additional\luaobjects.pas"/>
-        <Caret Line="118" Column="38" TopLine="98"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="976" Column="19" TopLine="957"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="975" Column="26" TopLine="954"/>
+        <Caret Line="978" Column="22" TopLine="957"/>
       </Position4>
       <Position5>
-        <Filename Value="additional\luaobjects.pas"/>
-        <Caret Line="125" Column="59" TopLine="105"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="201" Column="42" TopLine="199"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="401" Column="63" TopLine="375"/>
+        <Caret Line="203" Column="42" TopLine="201"/>
       </Position6>
       <Position7>
-        <Filename Value="itools\lua\ksplua.pas"/>
-        <Caret Line="16" Column="24" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="1471" Column="29" TopLine="1468"/>
       </Position7>
       <Position8>
-        <Filename Value="itools\lua\ksplua.pas"/>
-        <Caret Line="19" Column="32" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2345" Column="12" TopLine="2341"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="977" Column="30" TopLine="936"/>
+        <Caret Line="52" Column="27" TopLine="51"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="2317" Column="49" TopLine="2297"/>
+        <Caret Line="53" Column="27" TopLine="51"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="3292" Column="1" TopLine="3253"/>
+        <Caret Line="241" Column="48" TopLine="240"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="977" Column="27" TopLine="957"/>
+        <Caret Line="1274" Column="34" TopLine="1245"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="976" Column="19" TopLine="957"/>
+        <Caret Line="2163" Column="3" TopLine="2161"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="978" Column="22" TopLine="957"/>
+        <Caret Line="1253" Column="24" TopLine="1245"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="201" Column="42" TopLine="199"/>
+        <Caret Line="2309" Column="21" TopLine="2292"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="203" Column="42" TopLine="201"/>
+        <Caret Line="2298" Column="44" TopLine="2292"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="1471" Column="29" TopLine="1468"/>
+        <Caret Line="2297" Column="13" TopLine="2277"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="2345" Column="12" TopLine="2341"/>
+        <Caret Line="2284" Column="35" TopLine="2277"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="52" Column="27" TopLine="51"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="1513" Column="6" TopLine="1491"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="53" Column="27" TopLine="51"/>
+        <Caret Line="2290" Column="33" TopLine="2277"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="241" Column="48" TopLine="240"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="1465" Column="13" TopLine="1445"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="1274" Column="34" TopLine="1245"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="879" Column="26" TopLine="868"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="2163" Column="3" TopLine="2161"/>
+        <Filename Value="additional\bass\bass.pas"/>
+        <Caret Line="699" Column="57" TopLine="673"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="1253" Column="24" TopLine="1245"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="313" Column="17" TopLine="293"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="2309" Column="21" TopLine="2292"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="443" Column="21" TopLine="423"/>
       </Position25>
       <Position26>
-        <Filename Value="main.pas"/>
-        <Caret Line="2298" Column="44" TopLine="2292"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="444" Column="46" TopLine="423"/>
       </Position26>
       <Position27>
-        <Filename Value="main.pas"/>
-        <Caret Line="2297" Column="13" TopLine="2277"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="454" Column="24" TopLine="423"/>
       </Position27>
       <Position28>
-        <Filename Value="main.pas"/>
-        <Caret Line="2284" Column="35" TopLine="2277"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="469" Column="25" TopLine="442"/>
       </Position28>
       <Position29>
         <Filename Value="additional\bass\BASSPlayer.pas"/>
-        <Caret Line="1513" Column="6" TopLine="1491"/>
+        <Caret Line="490" Column="22" TopLine="464"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="2290" Column="33" TopLine="2277"/>
+        <Filename Value="additional\bass\BASSPlayer.pas"/>
+        <Caret Line="1465" Column="13" TopLine="1445"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
