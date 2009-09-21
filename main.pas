@@ -322,6 +322,7 @@ type  TWebView = class(TObject)
     MGStartDrag: TPoint;
     MGDragItem: string;
     MGDragPlaylist: boolean;
+    procedure SetHeaderControlImage(sIndex: integer);
     procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
@@ -829,7 +830,7 @@ var
     LastMediaLibTag:=-1;
     ApplicationVisible:=true;
     Notebook1.ActivePage:='Page1';
-    HeaderControl1.Sections.Items[0].ImageIndex:=6;
+    SetHeaderControlImage(0);
     LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
     SetupBook.ActivePage:='DefaultSetupPage';
@@ -1022,7 +1023,7 @@ procedure TKSPMainWindow.Button4Click(Sender: TObject);
 begin
   //ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
   Self.Notebook1.ActivePage:='Page1';
-  HeaderControl1.Sections.Items[0].ImageIndex:=6;
+  SetHeaderControlImage(0);
   PagesWelcome.ActivePage:=TabSheet3;
   Self.MainWebView.LoadURL(KSPHowHelp);
 end;
@@ -1208,7 +1209,7 @@ end;
 procedure TKSPMainWindow.MenuItem24Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
-  HeaderControl1.Sections.Items[0].ImageIndex:=6;
+  SetHeaderControlImage(0);
   PagesWelcome.ActivePage:=TabSheet3;
   Self.MainWebView.LoadURL(KSPSupportURL);
 end;
@@ -1217,7 +1218,7 @@ procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
 begin
   Self.Notebook1.ActivePage:='Page1';
   PagesWelcome.ActivePage:=TabSheet3;
-  HeaderControl1.Sections.Items[0].ImageIndex:=6;
+  SetHeaderControlImage(0);
   Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
@@ -1538,6 +1539,16 @@ end;
 function TKSPMainWindow.GetCurrentFile: string;
 begin
   Result:=CurrentFile;
+end;
+
+procedure TKSPMainWindow.SetHeaderControlImage(sIndex: integer);
+begin
+  HeaderControl1.Sections.Items[0].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[1].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[2].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[3].ImageIndex:=-1;
+
+  HeaderControl1.Sections.Items[sIndex].ImageIndex:=6;
 end;
 
 function TKSPMainWindow.GetFormatedPlayListInfo: string;
@@ -1889,11 +1900,7 @@ begin
     2: Notebook1.ActivePage:='Page4';
     3: Notebook1.ActivePage:='Page3';
   end;
-  HeaderControl1.Sections.Items[0].ImageIndex:=-1;
-  HeaderControl1.Sections.Items[1].ImageIndex:=-1;
-  HeaderControl1.Sections.Items[2].ImageIndex:=-1;
-  HeaderControl1.Sections.Items[3].ImageIndex:=-1;
-  Section.ImageIndex:=6;
+  SetHeaderControlImage(Section.Index);
 end;
 
 procedure TKSPMainWindow.lbPlaylistDblClick(Sender: TObject);
