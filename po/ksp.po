@@ -580,6 +580,10 @@ msgstr ""
 msgid "Center"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM29.CAPTION
+msgid "Offline Mode"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM3.CAPTION
 msgid "Add Selected To Playlist"
 msgstr ""

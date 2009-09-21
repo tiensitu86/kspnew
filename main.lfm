@@ -3919,6 +3919,10 @@ object KSPMainWindow: TKSPMainWindow
         }
         OnClick = MenuItem7Click
       end
+      object MenuItem29: TMenuItem
+        Caption = 'Offline Mode'
+        OnClick = MenuItem29Click
+      end
       object MenuItem23: TMenuItem
         Caption = 'Exit KSP'
         OnClick = MenuItem23Click

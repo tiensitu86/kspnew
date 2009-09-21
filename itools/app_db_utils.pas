@@ -1073,6 +1073,7 @@ var
     pns: TPlayNextSong;
     p: TPLEntry;
   begin
+    if KSPMainWindow.OfflineMode then Exit;
     if DownloadFeed then
       ProcessFeed;
   end;

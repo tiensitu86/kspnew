@@ -53,6 +53,7 @@ type  TWebView = class(TObject)
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
     BalancePopup: TPopupMenu;
+    MenuItem29: TMenuItem;
     SaveLyricsBtn: TButton;
     DeleteLyricsBtn: TButton;
     Button2: TButton;
@@ -239,6 +240,7 @@ type  TWebView = class(TObject)
     procedure MenuItem24Click(Sender: TObject);
     procedure MenuItem25Click(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
+    procedure MenuItem29Click(Sender: TObject);
     procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -394,6 +396,7 @@ type  TWebView = class(TObject)
     procedure MWProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
+    function OfflineMode: boolean;
 
     procedure KSPShowMessage(Data: PtrInt);
     procedure MediaLibProgressMax(Data: PtrInt);
@@ -1251,6 +1254,11 @@ begin
   end;
 
   Self.BalanceChange(nil);
+end;
+
+procedure TKSPMainWindow.MenuItem29Click(Sender: TObject);
+begin
+  MenuItem29.Checked:=not MenuItem29.Checked;
 end;
 
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
@@ -3163,6 +3171,8 @@ var
   sl: TStringList;
   s, s2: string;
 begin
+  if Self.OfflineMode then Exit;
+
   QUrl_toString(Value, @URL2);
 
   URL:=URl2;
@@ -3301,6 +3311,11 @@ begin
     if not Preview then
       NotificationTimer.Enabled:=true;
   end;
+end;
+
+function TKSPMainWindow.OfflineMode: boolean;
+begin
+  Result:=MenuItem29.Checked;
 end;
 
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
