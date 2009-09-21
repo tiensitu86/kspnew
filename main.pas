@@ -10,7 +10,7 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind, LuaObjects;
 
 
   { TWebView }
@@ -49,6 +49,10 @@ type  TWebView = class(TObject)
     Button14: TButton;
     Button15: TButton;
     Button16: TButton;
+    MenuItem26: TMenuItem;
+    MenuItem27: TMenuItem;
+    MenuItem28: TMenuItem;
+    BalancePopup: TPopupMenu;
     SaveLyricsBtn: TButton;
     DeleteLyricsBtn: TButton;
     Button2: TButton;
@@ -197,6 +201,10 @@ type  TWebView = class(TObject)
     MsortType: TTreeView;
     MGView: TTreeView;
     procedure AddSelectedFromPlaylist1Click(Sender: TObject);
+    procedure BalanceMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure BalanceMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure btPlayClick(Sender: TObject);
     procedure btStopClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -230,6 +238,7 @@ type  TWebView = class(TObject)
     procedure MenuItem23Click(Sender: TObject);
     procedure MenuItem24Click(Sender: TObject);
     procedure MenuItem25Click(Sender: TObject);
+    procedure MenuItem26Click(Sender: TObject);
     procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -398,7 +407,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, OptionsFrm2, splash, complib
+  KSPCrossList, MultiLog, OptionsFrm2, splash, complib, ksplua
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
@@ -970,6 +979,15 @@ begin
   PrepareNonDevel;
 {$ENDIF}
 
+{$IFDEF KSP_LUA}
+  ScriptedAddons:=TLuaScript.Create(nil);
+  ScriptedAddons.RegisterFunction('ShowMessage', @LuaShowMessage);
+  ScriptedAddons.DoFile(KSPDataFolder+'lua\test.lua');
+  hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
+  if ScriptedAddons.Call([LuaVar(GetKSPVersion2)], 'RunTest')<>0 then
+    hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
+{$ENDIF}
+
   SplashForm.Free;
 
   TCompactlibThread.Create(false);
@@ -1224,6 +1242,17 @@ begin
   Self.MainWebView.LoadURL(KSPTellAFriend);
 end;
 
+procedure TKSPMainWindow.MenuItem26Click(Sender: TObject);
+begin
+  case TMenuItem(Sender).Tag of
+    0: Balance.Position:=0;
+    1: Balance.Position:=200;
+    2: Balance.Position:=100;
+  end;
+
+  Self.BalanceChange(nil);
+end;
+
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -1444,6 +1473,18 @@ begin
   p.URL:=Playlist.GetItem(Index)^.FileName;
   BookmarksList.Add(p);
   RefreshBookmarks;
+end;
+
+procedure TKSPMainWindow.BalanceMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+
+end;
+
+procedure TKSPMainWindow.BalanceMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  Caption:=Application.Title;
 end;
 
 procedure TKSPMainWindow.btStopClick(Sender: TObject);
@@ -1859,6 +1900,9 @@ begin
   hLog.Send('Closing KSP');
   AllSongs.Free;
   MediaSongs.Free;
+{$IFDEF KSP_LUA}
+  ScriptedAddons.Free;
+{$ENDIF}
 
   hLog.Send('Saving bookmarks');
   BookmarksList.SaveToFile(KSPDataFolder+'data\bookmarks.xml');
@@ -2246,8 +2290,12 @@ end;
 
 
 procedure TKSPMainWindow.TBChange(Sender: TObject);
+var
+  s: string;
 begin
   Player.Volume:=TB.Position;// else
+  s:=IntToStr((TB.Position*100) div 255);
+  Caption:=Application.Title+' ('+s+'%)';
 end;
 
 procedure TKSPMainWindow.PosBarChange(Sender: TObject);
@@ -2316,13 +2364,14 @@ var
   i: integer;
 begin
   Player.SetPan((Balance.Position / 100)-1);
-  i:=Balance.Position div 100;
+  i:=Balance.Position - 100;
   if i<0 then
     s:=Format(SToLeftOutput, [IntToStr(i)]) else
   if i>0 then
     s:=Format(SToRightOutput, [IntToStr(i)]) else
   s:=SToCenterOutput;
   Balance.Hint:=s;
+  Caption:=Application.Title+' ('+s+')';
 end;
 
 procedure TKSPMainWindow.ToolButton1Click(Sender: TObject);

@@ -568,6 +568,18 @@ msgstr ""
 msgid "Tell A Friend"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM26.CAPTION
+msgid "Left Speaker"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM27.CAPTION
+msgid "Right Speaker"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM28.CAPTION
+msgid "Center"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM3.CAPTION
 msgid "Add Selected To Playlist"
 msgstr ""

@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 397
+  Left = 394
   Height = 632
-  Top = 170
+  Top = 182
   Width = 977
   Caption = 'KSP'
   ClientHeight = 610
@@ -97,6 +97,7 @@ object KSPMainWindow: TKSPMainWindow
       Orientation = trVertical
       TickMarks = tmBoth
       TickStyle = tsNone
+      OnMouseUp = BalanceMouseUp
       TabOrder = 1
     end
     object ToolBar1: TToolBar
@@ -147,7 +148,10 @@ object KSPMainWindow: TKSPMainWindow
       OnChange = BalanceChange
       Position = 100
       TickStyle = tsNone
+      OnMouseDown = BalanceMouseDown
+      OnMouseUp = BalanceMouseUp
       ParentShowHint = False
+      PopupMenu = BalancePopup
       ShowHint = True
       TabOrder = 3
     end
@@ -4323,5 +4327,23 @@ object KSPMainWindow: TKSPMainWindow
     OnTimer = DownloadTimerTimer
     left = 256
     top = 480
+  end
+  object BalancePopup: TPopupMenu
+    left = 122
+    top = 411
+    object MenuItem26: TMenuItem
+      Caption = 'Left Speaker'
+      OnClick = MenuItem26Click
+    end
+    object MenuItem27: TMenuItem
+      Tag = 1
+      Caption = 'Right Speaker'
+      OnClick = MenuItem26Click
+    end
+    object MenuItem28: TMenuItem
+      Tag = 2
+      Caption = 'Center'
+      OnClick = MenuItem26Click
+    end
   end
 end
