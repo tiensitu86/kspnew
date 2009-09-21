@@ -1506,10 +1506,12 @@ begin
   btPlay.ImageIndex:=3;
   //lbPlayList.Items.Item[CurrentIndex].ImageIndex:=-1;
 
-  s:=lbPlaylist.Items.Strings[CurrentIndex];
+  if CurrentIndex<lbPlaylist.Items.Count then begin
+    s:=lbPlaylist.Items.Strings[CurrentIndex];
 //  DeleteBookmark(s, 1, Length(SPlaying)+1);
-  PlayedPrevious:=false;
-  lbPlaylist.Items.Strings[CurrentIndex]:=s;
+    PlayedPrevious:=false;
+    lbPlaylist.Items.Strings[CurrentIndex]:=s;
+  end;
 
   lbPlayList.Refresh;
 end;
