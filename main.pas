@@ -237,6 +237,7 @@ type  TWebView = class(TObject)
     procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
       State: TDragState; var Accept: Boolean);
     procedure lbPlaylistEndDrag(Sender, Target: TObject; X, Y: Integer);
+    procedure LyricsPanelResize(Sender: TObject);
     procedure MainWebResize(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
@@ -1193,6 +1194,11 @@ procedure TKSPMainWindow.lbPlaylistEndDrag(Sender, Target: TObject; X,
   Y: Integer);
 begin
 
+end;
+
+procedure TKSPMainWindow.LyricsPanelResize(Sender: TObject);
+begin
+  Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 end;
 
 procedure TKSPMainWindow.MainWebResize(Sender: TObject);
