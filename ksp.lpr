@@ -2,6 +2,8 @@ program ksp;
 
 {$mode objfpc}{$H+}
 
+{$I ksp_version.inc}
+
 uses
   {$IFDEF UNIX}//{$IFDEF UseCThreads}
   cthreads,
@@ -19,7 +21,8 @@ uses
   OptionsFrm2, splash, complib, KSPThreadUtils, TurboPowerIPro, Support,
   WAVfile, APETag, OggVorbis
   {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
-  , MPEGaudio, MPEGInfoBox, IdHTTP, blcksock, suggfind, LuaObjects, ksplua;
+  , MPEGaudio, MPEGInfoBox, IdHTTP, blcksock, suggfind
+  {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 

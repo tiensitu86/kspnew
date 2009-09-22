@@ -4,7 +4,7 @@ interface
 
 uses Messages, FileSupportLst, SysUtils, BASSPlayer,
   Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems,
-  Playlists, app_db_utils, LuaObjects;
+  Playlists, app_db_utils{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
 
 {$I ksp_version.inc}
 
@@ -112,7 +112,9 @@ var
   AllSongs: TAppDBConnection;
   SuggestionList: TPlayList;
   SuggFindHelpPlaylist: TPlaylist;
+{$IFDEF KSP_LUA}
   ScriptedAddons: TLuaScript;
+{$ENDIF}
   FindApproxVals: TPlayList;
   InsertingDataInThread: boolean;
   KSPAssociatedFiles: TStringList;

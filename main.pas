@@ -10,7 +10,8 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind, LuaObjects;
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind
+  {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
 
 
   { TWebView }
@@ -410,7 +411,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, OptionsFrm2, splash, complib, ksplua
+  KSPCrossList, MultiLog, OptionsFrm2, splash, complib
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT

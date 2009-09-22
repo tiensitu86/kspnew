@@ -48,25 +48,32 @@ KSP requires QT 4.5.x. You can obtain it either from http://qtsoftware.com or (b
 
 In order to compile KSP from sources you have to install Lazarus IDE from http://www.lazarus.freepascal.org/. After that follow the steps:
 
-1. Download http://users.telenet.be/Jan.Van.hijfte/qtforfpc/win_demos-V1.70_Qt4.5.0.zip and open it
-2. Extract qt4.pas to c:\lazarus\lcl\interfaces\qt (replace file when prompted). Of course assuming you have installes Lazarus in c:\lazarus
+1. Download QT FPC bindings version 1.72 from http://users.telenet.be/Jan.Van.hijfte/qtforfpc/fpcqt4.html and open it
+2. Extract qt4.pas to c:\lazarus\lcl\interfaces\qt (replace file when prompted). Of course assuming you have installes Lazarus in c:\lazarus. Linux users must also copy proper so library to system folder with libraries for current architecture and run ldconfig
 3. Run Lazarus and choose Tools->Configure Build Lazarus->Advanced Build Options
 4. As LCL interface choose QT and for LCL part choose Build or Clean and Build 
 5. Click Build button. If everything goes fine after a few minutes you should have QT interface support recompiled.
+6. Download BASS library for your system from http://un4seen.com. If you are using Linux then copy libbass.so to the proper system folder (remember to choose libbass.so proper for your system architecture) and run ldconfig
+
+Remember that if you are Linux user all steps above you must do as root
 
 Now Lazarus is ready to compile KSP. In order to get KSP from sourcs you need either to download sources from KSP website or from SVN. Remember that SVN version is not thought to be officially released. It might contain fixes for old bugs found in last release as well as contain new ones. Use it with caution. To learn how to get sources from SVN go to http://code.google.com/p/kspnew/source/checkout.
 
 1. Create folder ksp (you can call it whatever you like)
 2. In folder ksp create folders bin, dcu, po and src
 3. Put KSP sources in ksp\src folder
-4. Open ksp\src\dlls\files\kspfiles.lpr and build it. Copy kspfiles.dll to ksp\bin
-5. Open ksp\src\dlls\files\kspinet.lpr and build it. Copy kspinet.dll to ksp\bin
-6. Open ksp\src\dlls\files\ksp.lpr and build it. Copy ksp.dll to ksp\bin
-7. Open ksp\src\ksp.lpr and build it
-8. If compilation was successful in ksp\bin there should appear ksp.exe file  and in ksp\po there should be ksp.po file
-9. You can safely remove ksp\bin\ksp.dbg file (it's debugger information)
-10. From original KSP instalation copy all missing dll libraries (bass*.dll, lib*.dll, sqlite3.dll, Qt*.dll, mingwm10.dll and so on)
+4. Open ksp\src\ksp.lpr and build it
+5. If compilation was successful in ksp\bin there should appear ksp.exe file  and in ksp\po there should be ksp.po file
+6. You can safely remove ksp\bin\ksp.dbg file (it's debugger information)
+7a. Windows users: From original KSP instalation copy all missing dll libraries and history.html (bass*.dll, lib*.dll, sqlite3.dll, Qt*.dll, mingwm10.dll and so on)
+7b. Linux users: make dir /usr/share/KSP and copy there history.html from DOCS folder of KSP sources
+
+Follow next steps if you are using Linux
+
+8. From bass package copy libbassmix to /usr/sare/KSP
+9. Make folder /usr/share/KSP/plugins and copy there plugin libraries (like libbassflac.so for example)
+
 
 IMPORTANT
 
-1. Defalt server character encoding should be UTF-8
+1. Default MySQL server character encoding should be UTF-8
