@@ -94,8 +94,8 @@ type
     procedure FindSongs(var Songs: TPlayList; Artist, Album: string);
     function FileInLib(FileName: string): boolean;
     function GetItemIndex(FileName: string): integer;
-    procedure SaveLyrics(Lyrics: string; IM: integer);
-    function ReadLyrics(IM: integer): string;
+    procedure SaveLyrics(Lyrics: WideString; IM: integer);
+    function ReadLyrics(IM: integer): WideString;
     procedure DeleteLyrics(IM: integer);
     function GetFavList(FileName: string): TFavouriteList;
   end;
@@ -979,7 +979,7 @@ begin
   hLog.Send('IM of '+FileName+' is '+IntToStr(Result));
 end;
 
-procedure TAppDBConnection.SaveLyrics(Lyrics: string; IM: integer);
+procedure TAppDBConnection.SaveLyrics(Lyrics: WideString; IM: integer);
 var
   sql: string;
 begin
@@ -989,7 +989,7 @@ begin
   Self.ExecuteSQL(sql, true);
 end;
 
-function TAppDBConnection.ReadLyrics(IM: integer): string;
+function TAppDBConnection.ReadLyrics(IM: integer): WideString;
 var
   sql: string;
 begin

@@ -36,8 +36,8 @@ type  TWebView = class(TObject)
     procedure GoForward;
     procedure Reload;
     procedure Clear;
-    procedure SetContent(HTML: string);
-    function GetContent: string;
+    procedure SetContent(HTML: WideString);
+    function GetContent: WideString;
   end;
 
   { TKSPMainWindow }
@@ -594,15 +594,12 @@ begin
   Self.SetContent('');
 end;
 
-procedure TWebView.SetContent(HTML: string);
-var
-  W : WideString;
+procedure TWebView.SetContent(HTML: WideString);
 begin
-  W:=HTML;
-  QWebView_setHtml(Handle, @W);
+  QWebView_setHtml(Handle, @HTML);
 end;
 
-function TWebView.GetContent: string;
+function TWebView.GetContent: WideString;
 var
   fr: QWebFrameH;
 begin
