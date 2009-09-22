@@ -19,16 +19,16 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'yle'#7#19'lbOwnerDrawVariable'#8'TabOrder'#2#1#8'TopIndex'#2#255#0#0#6'TPan'
   +'el'#6'Panel1'#4'Left'#2#0#6'Height'#2'B'#3'Top'#2#0#5'Width'#3#209#3#5'Alig'
   +'n'#7#5'alTop'#12'ClientHeight'#2'B'#11'ClientWidth'#3#209#3#8'TabOrder'#2#2
-  +#0#6'TLabel'#5'lLeft'#4'Left'#3' '#2#6'Height'#2')'#3'Top'#2#8#5'Width'#2#27
+  +#0#6'TLabel'#5'lLeft'#4'Left'#3' '#2#6'Height'#2'*'#3'Top'#2#8#5'Width'#2#28
   +#11'ParentColor'#8#7'OnClick'#7#10'lLeftClick'#0#0#6'TLabel'#6'lTime2'#4'Lef'
-  +'t'#3#200#1#6'Height'#2')'#3'Top'#2#8#5'Width'#2#27#11'ParentColor'#8#0#0#6
-  +'TLabel'#14'TotalTimeLabel'#4'Left'#3#200#1#6'Height'#2')'#3'Top'#2' '#5'Wid'
-  +'th'#2#27#11'ParentColor'#8#0#0#6'TLabel'#9'lFileName'#4'Left'#3' '#2#6'Heig'
-  +'ht'#2#27#3'Top'#2' '#5'Width'#2'&'#11'ParentColor'#8#0#0#9'TTrackBar'#6'Pos'
-  +'Bar'#4'Left'#3#8#1#6'Height'#2#30#3'Top'#2#0#5'Width'#3#184#0#3'Max'#3#200#0
-  +#8'OnChange'#7#12'PosBarChange'#8'Position'#2#0#9'TickStyle'#7#6'tsNone'#5'C'
-  +'tl3D'#8#11'OnMouseDown'#7#15'PosBarMouseDown'#9'OnMouseUp'#7#13'PosBarMouse'
-  +'Up'#8'TabOrder'#2#0#0#0#9'TTrackBar'#2'TB'#4'Left'#3#232#0#6'Height'#2'7'#3
+  +'t'#3#200#1#6'Height'#2'*'#3'Top'#2#8#5'Width'#2#28#11'ParentColor'#8#0#0#6
+  +'TLabel'#14'TotalTimeLabel'#4'Left'#3#200#1#6'Height'#2'*'#3'Top'#2' '#5'Wid'
+  +'th'#2#28#11'ParentColor'#8#0#0#6'TLabel'#9'lFileName'#4'Left'#3' '#2#6'Heig'
+  +'ht'#2#28#3'Top'#2' '#5'Width'#2''''#11'ParentColor'#8#0#0#9'TTrackBar'#6'Po'
+  +'sBar'#4'Left'#3#8#1#6'Height'#2#30#3'Top'#2#0#5'Width'#3#184#0#3'Max'#3#200
+  +#0#8'OnChange'#7#12'PosBarChange'#8'Position'#2#0#9'TickStyle'#7#6'tsNone'#5
+  +'Ctl3D'#8#11'OnMouseDown'#7#15'PosBarMouseDown'#9'OnMouseUp'#7#13'PosBarMous'
+  +'eUp'#8'TabOrder'#2#0#0#0#9'TTrackBar'#2'TB'#4'Left'#3#232#0#6'Height'#2'7'#3
   +'Top'#2#2#5'Width'#2#30#3'Max'#3#255#0#8'OnChange'#7#8'TBChange'#11'Orientat'
   +'ion'#7#10'trVertical'#8'Position'#2#0#9'TickMarks'#7#6'tmBoth'#9'TickStyle'
   +#7#6'tsNone'#5'Ctl3D'#8#9'OnMouseUp'#7#14'BalanceMouseUp'#8'TabOrder'#2#1#0#0
@@ -55,8 +55,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'tion'#2#15#6'Smooth'#9#8'TabOrder'#2#3#7'Visible'#8#11'BarShowText'#9#0#0#6
   +'TPanel'#6'Panel2'#4'Left'#2#0#6'Height'#2'-'#3'Top'#3#9#2#5'Width'#3#209#3#5
   +'Align'#7#8'alBottom'#12'ClientHeight'#2'-'#11'ClientWidth'#3#209#3#8'TabOrd'
-  +'er'#2#4#0#6'TLabel'#10'ScanFolder'#4'Left'#2#8#6'Height'#2')'#3'Top'#2#8#5
-  +'Width'#2#27#11'ParentColor'#8#0#0#0#6'TPanel'#6'Panel3'#4'Left'#2#0#6'Heigh'
+  +'er'#2#4#0#6'TLabel'#10'ScanFolder'#4'Left'#2#8#6'Height'#2'*'#3'Top'#2#8#5
+  +'Width'#2#28#11'ParentColor'#8#0#0#0#6'TPanel'#6'Panel3'#4'Left'#2#0#6'Heigh'
   +'t'#3#199#1#3'Top'#2'B'#5'Width'#3#176#2#5'Align'#7#8'alClient'#12'ClientHei'
   +'ght'#3#199#1#11'ClientWidth'#3#176#2#8'TabOrder'#2#5#0#14'THeaderControl'#14
   +'HeaderControl1'#4'Left'#2#1#6'Height'#2#30#3'Top'#2#1#5'Width'#3#174#2#11'D'
@@ -69,11 +69,11 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'lick'#5'Align'#7#5'alTop'#0#0#9'TNotebook'#9'Notebook1'#4'Left'#2#1#6'Heigh'
   +'t'#3#167#1#3'Top'#2#31#5'Width'#3#174#2#5'Align'#7#8'alClient'#9'PageIndex'
   +#2#3#8'ShowTabs'#8#8'TabOrder'#2#1#0#5'TPage'#5'Page1'#7'Caption'#6#5'Page1'
-  +#11'ClientWidth'#3#174#2#12'ClientHeight'#3#172#1#0#12'TPageControl'#12'Page'
-  +'sWelcome'#4'Left'#2#0#6'Height'#3#172#1#3'Top'#2#0#5'Width'#3#174#2#10'Acti'
+  +#11'ClientWidth'#3#174#2#12'ClientHeight'#3#167#1#0#12'TPageControl'#12'Page'
+  +'sWelcome'#4'Left'#2#0#6'Height'#3#167#1#3'Top'#2#0#5'Width'#3#174#2#10'Acti'
   +'vePage'#7#9'TabSheet3'#5'Align'#7#8'alClient'#8'TabIndex'#2#0#8'TabOrder'#2
   +#0#11'TabPosition'#7#8'tpBottom'#0#9'TTabSheet'#9'TabSheet3'#7'Caption'#6#7
-  +'Welcome'#12'ClientHeight'#3#168#1#11'ClientWidth'#3#170#2#8'OnResize'#7#15
+  +'Welcome'#12'ClientHeight'#3#163#1#11'ClientWidth'#3#170#2#8'OnResize'#7#15
   +'TabSheet3Resize'#0#6'TPanel'#6'Panel8'#4'Left'#2#0#6'Height'#2'+'#3'Top'#2#0
   +#5'Width'#3#170#2#5'Align'#7#5'alTop'#12'ClientHeight'#2'+'#11'ClientWidth'#3
   +#170#2#8'TabOrder'#2#0#0#12'TSpeedButton'#12'SpeedButton5'#4'Left'#3#28#2#6
@@ -1262,14 +1262,14 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#255#255#0#9'NumGlyphs'#2#0#7'OnClick'#7#17'SpeedButton4Click'#0#0#5'TEdit'
   +#10'IMAddress1'#4'Left'#2'm'#6'Height'#2')'#3'Top'#2#1#5'Width'#3#175#1#5'Al'
   +'ign'#7#8'alClient'#10'OnKeyPress'#7#17'IMAddressKeyPress'#8'TabOrder'#2#0#0
-  +#0#0#12'TProgressBar'#10'MWProgress'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#148
+  +#0#0#12'TProgressBar'#10'MWProgress'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#143
   +#1#5'Width'#3#170#2#5'Align'#7#8'alBottom'#6'Smooth'#9#8'TabOrder'#2#1#7'Vis'
-  +'ible'#8#0#0#6'TPanel'#7'MainWeb'#4'Left'#2#0#6'Height'#3'i'#1#3'Top'#2'+'#5
+  +'ible'#8#0#0#6'TPanel'#7'MainWeb'#4'Left'#2#0#6'Height'#3'd'#1#3'Top'#2'+'#5
   +'Width'#3#170#2#5'Align'#7#8'alClient'#8'TabOrder'#2#2#8'OnResize'#7#13'Main'
   +'WebResize'#0#0#0#9'TTabSheet'#9'TabSheet4'#7'Caption'#6#8'About...'#12'Clie'
-  +'ntHeight'#3#163#1#11'ClientWidth'#3#170#2#0#6'TPanel'#6'Panel4'#4'Left'#2#0
-  +#6'Height'#2'2'#3'Top'#2#0#5'Width'#3#170#2#5'Align'#7#5'alTop'#12'ClientHei'
-  +'ght'#2'2'#11'ClientWidth'#3#170#2#8'TabOrder'#2#0#0#6'TLabel'#10'AppVersion'
+  +'ntHeight'#3#172#1#11'ClientWidth'#3#174#2#0#6'TPanel'#6'Panel4'#4'Left'#2#0
+  +#6'Height'#2'2'#3'Top'#2#0#5'Width'#3#174#2#5'Align'#7#5'alTop'#12'ClientHei'
+  +'ght'#2'2'#11'ClientWidth'#3#174#2#8'TabOrder'#2#0#0#6'TLabel'#10'AppVersion'
   +#4'Left'#3'r'#1#6'Height'#2#16#3'Top'#2#11#5'Width'#2#2#11'ParentColor'#8#0#0
   +#6'TImage'#6'Image1'#4'Left'#2#11#6'Height'#2'"'#3'Top'#2#3#5'Width'#2'Z'#12
   +'Picture.Data'#10'S9'#0#0#23'TPortableNetworkGraphic79'#0#0#137'PNG'#13#10#26
@@ -1892,16 +1892,16 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'Size'#9#7'Caption'#6#15'HOW CAN I HELP?'#7'OnClick'#7#12'Button4Click'#8'Ta'
   +'bOrder'#2#0#0#0#7'TButton'#8'Button15'#4'Left'#3#243#0#6'Height'#2#27#3'Top'
   +#2#11#5'Width'#2'h'#7'Caption'#6#8'About QT'#7'OnClick'#7#13'Button15Click'#8
-  +'TabOrder'#2#1#0#0#0#6'TPanel'#7'History'#4'Left'#2#0#6'Height'#3'q'#1#3'Top'
-  +#2'2'#5'Width'#3#170#2#5'Align'#7#8'alClient'#8'TabOrder'#2#1#8'OnResize'#7
+  +'TabOrder'#2#1#0#0#0#6'TPanel'#7'History'#4'Left'#2#0#6'Height'#3'z'#1#3'Top'
+  +#2'2'#5'Width'#3#174#2#5'Align'#7#8'alClient'#8'TabOrder'#2#1#8'OnResize'#7
   +#13'HistoryResize'#0#0#0#0#0#5'TPage'#5'Page2'#7'Caption'#6#5'Page2'#11'Clie'
-  +'ntWidth'#3#170#2#12'ClientHeight'#3#163#1#0#12'TPageControl'#8'LibPages'#4
-  +'Left'#2#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#170#2#10'ActivePage'#7#9
+  +'ntWidth'#3#174#2#12'ClientHeight'#3#167#1#0#12'TPageControl'#8'LibPages'#4
+  +'Left'#2#0#6'Height'#3#167#1#3'Top'#2#0#5'Width'#3#174#2#10'ActivePage'#7#9
   +'TabSheet5'#5'Align'#7#8'alClient'#8'TabIndex'#2#1#8'TabOrder'#2#0#11'TabPos'
   +'ition'#7#8'tpBottom'#0#9'TTabSheet'#9'TabSheet1'#7'Caption'#6#5'Media'#12'C'
-  +'lientHeight'#3#166#1#11'ClientWidth'#3#168#2#0#9'TSplitter'#9'Splitter1'#4
-  +'Left'#3#186#0#6'Height'#3#166#1#3'Top'#2#0#5'Width'#2#5#0#0#9'TTreeView'#9
-  +'MsortType'#4'Left'#2#0#6'Height'#3#166#1#3'Top'#2#0#5'Width'#3#186#0#5'Alig'
+  +'lientHeight'#3#163#1#11'ClientWidth'#3#170#2#0#9'TSplitter'#9'Splitter1'#4
+  +'Left'#3#186#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#2#5#0#0#9'TTreeView'#9
+  +'MsortType'#4'Left'#2#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#186#0#5'Alig'
   +'n'#7#6'alLeft'#5'Ctl3D'#8#17'DefaultItemHeight'#2#14#8'TabOrder'#2#1#7'OnCl'
   +'ick'#7#14'MsortTypeClick'#10'Items.Data'#10#182#0#0#0#249#255#255#255#2#0#1
   +#0#0#0#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255#4#0#0
@@ -1911,39 +1911,39 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255#0#0#0#0#0#0#0#0
   +#0#4#0#0#0'Year'#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255
   +#255#0#0#0#0#0#0#0#0#0#5#0#0#0'Genre'#0#0#6'TPanel'#6'Panel5'#4'Left'#3#191#0
-  +#6'Height'#3#166#1#3'Top'#2#0#5'Width'#3#233#1#5'Align'#7#8'alClient'#10'Bev'
-  +'elOuter'#7#6'bvNone'#7'Caption'#6#6'Panel5'#12'ClientHeight'#3#166#1#11'Cli'
-  +'entWidth'#3#233#1#8'TabOrder'#2#2#0#9'TSplitter'#9'Splitter2'#6'Cursor'#7#8
-  +'crVSplit'#4'Left'#2#0#6'Height'#2#5#3'Top'#3#195#0#5'Width'#3#233#1#5'Align'
+  +#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#235#1#5'Align'#7#8'alClient'#10'Bev'
+  +'elOuter'#7#6'bvNone'#7'Caption'#6#6'Panel5'#12'ClientHeight'#3#163#1#11'Cli'
+  +'entWidth'#3#235#1#8'TabOrder'#2#2#0#9'TSplitter'#9'Splitter2'#6'Cursor'#7#8
+  +'crVSplit'#4'Left'#2#0#6'Height'#2#5#3'Top'#3#192#0#5'Width'#3#235#1#5'Align'
   +#7#8'alBottom'#12'ResizeAnchor'#7#8'akBottom'#0#0#12'TProgressBar'#10'MediaB'
-  +'uild'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#146#1#5'Width'#3#233#1#5'Align'#7
+  +'uild'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#143#1#5'Width'#3#235#1#5'Align'#7
   +#8'alBottom'#8'TabOrder'#2#1#0#0#9'TTreeView'#6'MGView'#4'Left'#2#0#6'Height'
-  +#3#195#0#3'Top'#2#0#5'Width'#3#233#1#5'Align'#7#8'alClient'#5'Ctl3D'#8#17'De'
+  +#3#192#0#3'Top'#2#0#5'Width'#3#235#1#5'Align'#7#8'alClient'#5'Ctl3D'#8#17'De'
   +'faultItemHeight'#2#14#8'DragMode'#7#11'dmAutomatic'#8'TabOrder'#2#2#7'OnCli'
   +'ck'#7#11'MGViewClick'#11'OnMouseDown'#7#15'MGViewMouseDown'#11'OnStartDrag'
   ,#7#15'MGViewStartDrag'#0#0#6'TPanel'#7'Panel10'#4'Left'#2#0#6'Height'#3#202#0
-  +#3'Top'#3#200#0#5'Width'#3#233#1#5'Align'#7#8'alBottom'#7'Caption'#6#7'Panel'
-  +'10'#12'ClientHeight'#3#202#0#11'ClientWidth'#3#233#1#8'TabOrder'#2#3#0#6'TP'
-  +'anel'#6'Panel9'#4'Left'#2#1#6'Height'#2'%'#3'Top'#3#164#0#5'Width'#3#231#1#5
-  +'Align'#7#8'alBottom'#12'ClientHeight'#2'%'#11'ClientWidth'#3#231#1#8'TabOrd'
+  +#3'Top'#3#197#0#5'Width'#3#235#1#5'Align'#7#8'alBottom'#7'Caption'#6#7'Panel'
+  +'10'#12'ClientHeight'#3#202#0#11'ClientWidth'#3#235#1#8'TabOrder'#2#3#0#6'TP'
+  +'anel'#6'Panel9'#4'Left'#2#1#6'Height'#2'%'#3'Top'#3#164#0#5'Width'#3#233#1#5
+  +'Align'#7#8'alBottom'#12'ClientHeight'#2'%'#11'ClientWidth'#3#233#1#8'TabOrd'
   +'er'#2#0#0#5'TEdit'#9'SongsLike'#4'Left'#2#4#6'Height'#2#23#3'Top'#2#3#5'Wid'
   +'th'#3#0#1#8'TabOrder'#2#0#0#0#7'TButton'#8'Button16'#4'Left'#3#12#1#6'Heigh'
   +'t'#2#25#3'Top'#2#3#5'Width'#3#200#0#7'Caption'#6#15'Find Songs Like'#7'OnCl'
   +'ick'#7#13'Button16Click'#8'TabOrder'#2#1#0#0#0#13'TCheckListBox'#6'MIView'#4
-  +'Left'#2#1#6'Height'#3#163#0#3'Top'#2#1#5'Width'#3#231#1#5'Align'#7#8'alClie'
+  +'Left'#2#1#6'Height'#3#163#0#3'Top'#2#1#5'Width'#3#233#1#5'Align'#7#8'alClie'
   +'nt'#8'DragMode'#7#11'dmAutomatic'#10'ItemHeight'#2#0#10'OnDblClick'#7#14'MI'
   +'ViewDblClick'#9'OnEndDrag'#7#13'MIViewEndDrag'#11'OnMouseDown'#7#15'MIViewM'
   +'ouseDown'#11'OnStartDrag'#7#15'MIViewStartDrag'#9'PopupMenu'#7#12'SongListM'
   +'enu'#8'TabOrder'#2#1#8'TopIndex'#2#255#0#0#0#0#0#9'TTabSheet'#9'TabSheet5'#7
-  +'Caption'#6#14'Internet Media'#12'ClientHeight'#3#132#1#11'ClientWidth'#3#166
-  +#2#0#6'TPanel'#6'Panel7'#4'Left'#2#0#6'Height'#3'E'#1#3'Top'#2'+'#5'Width'#3
-  +#166#2#5'Align'#7#8'alClient'#8'TabOrder'#2#0#8'OnResize'#7#12'Panel7Resize'
-  +#0#0#6'TPanel'#6'Panel6'#4'Left'#2#0#6'Height'#2'+'#3'Top'#2#0#5'Width'#3#166
-  +#2#5'Align'#7#5'alTop'#12'ClientHeight'#2'+'#11'ClientWidth'#3#166#2#8'TabOr'
-  +'der'#2#1#0#12'TSpeedButton'#12'SpeedButton1'#4'Left'#3#24#2#6'Height'#2')'#3
+  +'Caption'#6#14'Internet Media'#12'ClientHeight'#3#163#1#11'ClientWidth'#3#170
+  +#2#0#6'TPanel'#6'Panel7'#4'Left'#2#0#6'Height'#3'd'#1#3'Top'#2'+'#5'Width'#3
+  +#170#2#5'Align'#7#8'alClient'#8'TabOrder'#2#0#8'OnResize'#7#12'Panel7Resize'
+  +#0#0#6'TPanel'#6'Panel6'#4'Left'#2#0#6'Height'#2'+'#3'Top'#2#0#5'Width'#3#170
+  +#2#5'Align'#7#5'alTop'#12'ClientHeight'#2'+'#11'ClientWidth'#3#170#2#8'TabOr'
+  +'der'#2#1#0#12'TSpeedButton'#12'SpeedButton1'#4'Left'#3#28#2#6'Height'#2')'#3
   +'Top'#2#1#5'Width'#2'3'#5'Align'#7#7'alRight'#7'Caption'#6#2'GO'#5'Color'#7#9
   +'clBtnFace'#9'NumGlyphs'#2#0#7'OnClick'#7#17'SpeedButton1Click'#0#0#6'TImage'
-  +#6'Image2'#4'Left'#3'K'#2#6'Height'#2')'#3'Top'#2#1#5'Width'#2'Z'#5'Align'#7
+  +#6'Image2'#4'Left'#3'O'#2#6'Height'#2')'#3'Top'#2#1#5'Width'#2'Z'#5'Align'#7
   +#7'alRight'#12'Picture.Data'#10'S9'#0#0#23'TPortableNetworkGraphic79'#0#0#137
   +'PNG'#13#10#26#10#0#0#0#13'IHDR'#0#0#0'j'#0#0#0'6'#8#6#0#0#0'/m'#12#27#0#0#0
   +#6'bKGD'#0#255#0#255#0#255#160#189#167#147#0#0#0#9'pHYs'#0#0#11#19#0#0#11#19
@@ -3123,12 +3123,12 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#255#217#217#216#255#217#217#216#255#217#217#216#255#217#217#216#255#0#0#0#24
   +#0#0#0#8#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#255#255#255#0#255
   +#255#255#0#9'NumGlyphs'#2#0#7'OnClick'#7#17'SpeedButton4Click'#0#0#5'TEdit'#9
-  +'IMAddress'#4'Left'#2'm'#6'Height'#2')'#3'Top'#2#1#5'Width'#3#171#1#5'Align'
+  +'IMAddress'#4'Left'#2'm'#6'Height'#2')'#3'Top'#2#1#5'Width'#3#175#1#5'Align'
   +#7#8'alClient'#10'OnKeyPress'#7#17'IMAddressKeyPress'#8'TabOrder'#2#0#0#0#0
-  +#12'TProgressBar'#10'IMProgress'#4'Left'#2#0#6'Height'#2#20#3'Top'#3'p'#1#5
-  +'Width'#3#166#2#5'Align'#7#8'alBottom'#6'Smooth'#9#8'TabOrder'#2#2#0#0#0#0#0
-  +#5'TPage'#5'Page3'#7'Caption'#6#5'Page3'#11'ClientWidth'#3#170#2#12'ClientHe'
-  +'ight'#3#163#1#0#9'TTreeView'#13'SetupTreeView'#4'Left'#2#0#6'Height'#3#163#1
+  +#12'TProgressBar'#10'IMProgress'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#143#1#5
+  +'Width'#3#170#2#5'Align'#7#8'alBottom'#6'Smooth'#9#8'TabOrder'#2#2#0#0#0#0#0
+  +#5'TPage'#5'Page3'#7'Caption'#6#5'Page3'#11'ClientWidth'#3#174#2#12'ClientHe'
+  +'ight'#3#167#1#0#9'TTreeView'#13'SetupTreeView'#4'Left'#2#0#6'Height'#3#167#1
   +#3'Top'#2#0#5'Width'#3#238#0#5'Align'#7#6'alLeft'#5'Ctl3D'#8#17'DefaultItemH'
   +'eight'#2#14#8'TabOrder'#2#0#7'OnClick'#7#18'SetupTreeViewClick'#10'Items.Da'
   +'ta'#10'@'#1#0#0#249#255#255#255#2#0#3#0#0#0#255#255#255#255#255#255#255#255
@@ -3143,8 +3143,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#255#255#255#255#255#255#255#255#255#0#0#0#0#0#0#0#0#0#13#0#0#0'Media Folder'
   +'s'#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255#255#0#0#0#0#0
   +#0#0#0#0#14#0#0#0'Internet Media'#0#0#9'TSplitter'#9'Splitter4'#4'Left'#3#238
-  +#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#2#5#0#0#9'TNotebook'#9'SetupBook'#4
-  +'Left'#3#243#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#183#1#5'Align'#7#8'al'
+  +#0#6'Height'#3#167#1#3'Top'#2#0#5'Width'#2#5#0#0#9'TNotebook'#9'SetupBook'#4
+  +'Left'#3#243#0#6'Height'#3#167#1#3'Top'#2#0#5'Width'#3#187#1#5'Align'#7#8'al'
   +'Client'#9'PageIndex'#2#5#8'ShowTabs'#8#8'TabOrder'#2#2#0#5'TPage'#17'MediaL'
   +'ibSetupPage'#7'Caption'#6#17'MediaLibSetupPage'#11'ClientWidth'#3#183#1#12
   +'ClientHeight'#3#163#1#0#8'TListBox'#8'MFolders'#4'Left'#2#0#6'Height'#3#163
@@ -3184,8 +3184,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#12'PageControl1'#4'Left'#2#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#183#1
   +#10'ActivePage'#7#9'TabSheet2'#5'Align'#7#8'alClient'#8'TabIndex'#2#0#8'TabO'
   +'rder'#2#0#0#9'TTabSheet'#9'TabSheet2'#7'Caption'#6#14'Global Plugins'#12'Cl'
-  +'ientHeight'#3#159#1#11'ClientWidth'#3#179#1#0#13'TCheckListBox'#11'PluginsL'
-  +'ist'#4'Left'#2#0#6'Height'#3#159#1#3'Top'#2#0#5'Width'#3#232#0#5'Align'#7#6
+  +'ientHeight'#3#163#1#11'ClientWidth'#3#183#1#0#13'TCheckListBox'#11'PluginsL'
+  +'ist'#4'Left'#2#0#6'Height'#3#163#1#3'Top'#2#0#5'Width'#3#232#0#5'Align'#7#6
   +'alLeft'#10'ItemHeight'#2#0#7'OnClick'#7#16'PluginsListClick'#12'OnClickChec'
   +'k'#7#21'PluginsListClickCheck'#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0#9'TChe'
   +'ckBox'#12'PlgOnStartup'#4'Left'#3#238#0#6'Height'#2#18#3'Top'#2#12#5'Width'
@@ -3204,7 +3204,7 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   ,'utton'#8'Button14'#4'Left'#3#238#0#6'Height'#2#25#3'Top'#3'D'#1#5'Width'#3
   +#179#0#7'Caption'#6#18'Enable ALL Plugins'#7'OnClick'#7#13'Button14Click'#8
   +'TabOrder'#2#7#0#0#0#0#0#5'TPage'#15'SystemSetupPage'#7'Caption'#6#15'System'
-  +'SetupPage'#11'ClientWidth'#3#179#1#12'ClientHeight'#3#159#1#0#6'TLabel'#6'L'
+  +'SetupPage'#11'ClientWidth'#3#183#1#12'ClientHeight'#3#163#1#0#6'TLabel'#6'L'
   +'abel1'#4'Left'#2#9#6'Height'#2#13#3'Top'#2'#'#5'Width'#2'x'#7'Caption'#6#22
   +'Device buffer (in ms):'#11'ParentColor'#8#0#0#7'TButton'#7'Button8'#4'Left'
   +#3'X'#1#6'Height'#2#25#3'Top'#2#11#5'Width'#2'K'#7'Caption'#6#5'Apply'#7'OnC'

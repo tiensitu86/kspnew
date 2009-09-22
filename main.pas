@@ -595,8 +595,14 @@ begin
 end;
 
 procedure TWebView.SetContent(HTML: WideString);
+var
+  s: TStringList;
 begin
-  QWebView_setHtml(Handle, @HTML);
+  s:=TStringList.Create;
+  s.Text:=HTML;
+  s.SaveToFile(KSPDataFolder+'lyrics.html');
+  s.Free;
+  Self.LoadURL(KSPDataFolder+'lyrics.html');
 end;
 
 function TWebView.GetContent: WideString;
@@ -2257,7 +2263,7 @@ procedure TKSPMainWindow.SaveLyricsBtnClick(Sender: TObject);
 var
   findex: integer;
 begin
-  //hLog.Send(Lyrics.GetContent);
+  hLog.Send(Lyrics.GetContent);
   findex:=AllSongs.GetItemIndex(CurrentFile);
   if findex=-1 then Exit;
   AllSongs.DeleteLyrics(findex);
@@ -3180,7 +3186,7 @@ begin
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
-  Lyrics:=TWebView.Create(Self.LyricsPanel, '', true);
+  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;

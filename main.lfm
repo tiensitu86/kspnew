@@ -54,31 +54,31 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 2
     object lLeft: TLabel
       Left = 544
-      Height = 41
+      Height = 42
       Top = 8
-      Width = 27
+      Width = 28
       ParentColor = False
       OnClick = lLeftClick
     end
     object lTime2: TLabel
       Left = 456
-      Height = 41
+      Height = 42
       Top = 8
-      Width = 27
+      Width = 28
       ParentColor = False
     end
     object TotalTimeLabel: TLabel
       Left = 456
-      Height = 41
+      Height = 42
       Top = 32
-      Width = 27
+      Width = 28
       ParentColor = False
     end
     object lFileName: TLabel
       Left = 544
-      Height = 27
+      Height = 28
       Top = 32
-      Width = 38
+      Width = 39
       ParentColor = False
     end
     object PosBar: TTrackBar
@@ -209,9 +209,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 41
+      Height = 42
       Top = 8
-      Width = 27
+      Width = 28
       ParentColor = False
     end
   end
@@ -271,10 +271,10 @@ object KSPMainWindow: TKSPMainWindow
       object Page1: TPage
         Caption = 'Page1'
         ClientWidth = 686
-        ClientHeight = 428
+        ClientHeight = 423
         object PagesWelcome: TPageControl
           Left = 0
-          Height = 428
+          Height = 423
           Top = 0
           Width = 686
           ActivePage = TabSheet3
@@ -284,7 +284,7 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
-            ClientHeight = 424
+            ClientHeight = 419
             ClientWidth = 682
             OnResize = TabSheet3Resize
             object Panel8: TPanel
@@ -1215,7 +1215,7 @@ object KSPMainWindow: TKSPMainWindow
             object MWProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 404
+              Top = 399
               Width = 682
               Align = alBottom
               Smooth = True
@@ -1224,7 +1224,7 @@ object KSPMainWindow: TKSPMainWindow
             end
             object MainWeb: TPanel
               Left = 0
-              Height = 361
+              Height = 356
               Top = 43
               Width = 682
               Align = alClient
@@ -1234,16 +1234,16 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet4: TTabSheet
             Caption = 'About...'
-            ClientHeight = 419
-            ClientWidth = 682
+            ClientHeight = 428
+            ClientWidth = 686
             object Panel4: TPanel
               Left = 0
               Height = 50
               Top = 0
-              Width = 682
+              Width = 686
               Align = alTop
               ClientHeight = 50
-              ClientWidth = 682
+              ClientWidth = 686
               TabOrder = 0
               object AppVersion: TLabel
                 Left = 370
@@ -1742,9 +1742,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object History: TPanel
               Left = 0
-              Height = 369
+              Height = 378
               Top = 50
-              Width = 682
+              Width = 686
               Align = alClient
               TabOrder = 1
               OnResize = HistoryResize
@@ -1754,13 +1754,13 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page2: TPage
         Caption = 'Page2'
-        ClientWidth = 682
-        ClientHeight = 419
+        ClientWidth = 686
+        ClientHeight = 423
         object LibPages: TPageControl
           Left = 0
-          Height = 419
+          Height = 423
           Top = 0
-          Width = 682
+          Width = 686
           ActivePage = TabSheet5
           Align = alClient
           TabIndex = 1
@@ -1768,17 +1768,17 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 422
-            ClientWidth = 680
+            ClientHeight = 419
+            ClientWidth = 682
             object Splitter1: TSplitter
               Left = 186
-              Height = 422
+              Height = 419
               Top = 0
               Width = 5
             end
             object MsortType: TTreeView
               Left = 0
-              Height = 422
+              Height = 419
               Top = 0
               Width = 186
               Align = alLeft
@@ -1797,37 +1797,37 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 422
+              Height = 419
               Top = 0
-              Width = 489
+              Width = 491
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 422
-              ClientWidth = 489
+              ClientHeight = 419
+              ClientWidth = 491
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Left = 0
                 Height = 5
-                Top = 195
-                Width = 489
+                Top = 192
+                Width = 491
                 Align = alBottom
                 ResizeAnchor = akBottom
               end
               object MediaBuild: TProgressBar
                 Left = 0
                 Height = 20
-                Top = 402
-                Width = 489
+                Top = 399
+                Width = 491
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
                 Left = 0
-                Height = 195
+                Height = 192
                 Top = 0
-                Width = 489
+                Width = 491
                 Align = alClient
                 Ctl3D = False
                 DefaultItemHeight = 14
@@ -1840,21 +1840,21 @@ object KSPMainWindow: TKSPMainWindow
               object Panel10: TPanel
                 Left = 0
                 Height = 202
-                Top = 200
-                Width = 489
+                Top = 197
+                Width = 491
                 Align = alBottom
                 Caption = 'Panel10'
                 ClientHeight = 202
-                ClientWidth = 489
+                ClientWidth = 491
                 TabOrder = 3
                 object Panel9: TPanel
                   Left = 1
                   Height = 37
                   Top = 164
-                  Width = 487
+                  Width = 489
                   Align = alBottom
                   ClientHeight = 37
-                  ClientWidth = 487
+                  ClientWidth = 489
                   TabOrder = 0
                   object SongsLike: TEdit
                     Left = 4
@@ -1877,7 +1877,7 @@ object KSPMainWindow: TKSPMainWindow
                   Left = 1
                   Height = 163
                   Top = 1
-                  Width = 487
+                  Width = 489
                   Align = alClient
                   DragMode = dmAutomatic
                   ItemHeight = 0
@@ -1894,13 +1894,13 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 388
-            ClientWidth = 678
+            ClientHeight = 419
+            ClientWidth = 682
             object Panel7: TPanel
               Left = 0
-              Height = 325
+              Height = 356
               Top = 43
-              Width = 678
+              Width = 682
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
@@ -1909,13 +1909,13 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 43
               Top = 0
-              Width = 678
+              Width = 682
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 678
+              ClientWidth = 682
               TabOrder = 1
               object SpeedButton1: TSpeedButton
-                Left = 536
+                Left = 540
                 Height = 41
                 Top = 1
                 Width = 51
@@ -1926,7 +1926,7 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton1Click
               end
               object Image2: TImage
-                Left = 587
+                Left = 591
                 Height = 41
                 Top = 1
                 Width = 90
@@ -2824,7 +2824,7 @@ object KSPMainWindow: TKSPMainWindow
                 Left = 109
                 Height = 41
                 Top = 1
-                Width = 427
+                Width = 431
                 Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
@@ -2833,8 +2833,8 @@ object KSPMainWindow: TKSPMainWindow
             object IMProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 368
-              Width = 678
+              Top = 399
+              Width = 682
               Align = alBottom
               Smooth = True
               TabOrder = 2
@@ -2844,11 +2844,11 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page3: TPage
         Caption = 'Page3'
-        ClientWidth = 682
-        ClientHeight = 419
+        ClientWidth = 686
+        ClientHeight = 423
         object SetupTreeView: TTreeView
           Left = 0
-          Height = 419
+          Height = 423
           Top = 0
           Width = 238
           Align = alLeft
@@ -2871,15 +2871,15 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Splitter4: TSplitter
           Left = 238
-          Height = 419
+          Height = 423
           Top = 0
           Width = 5
         end
         object SetupBook: TNotebook
           Left = 243
-          Height = 419
+          Height = 423
           Top = 0
-          Width = 439
+          Width = 443
           Align = alClient
           PageIndex = 5
           ShowTabs = False
@@ -3038,11 +3038,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 415
-                ClientWidth = 435
+                ClientHeight = 419
+                ClientWidth = 439
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 415
+                  Height = 419
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -3120,8 +3120,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
-            ClientWidth = 435
-            ClientHeight = 415
+            ClientWidth = 439
+            ClientHeight = 419
             object Label1: TLabel
               Left = 9
               Height = 13
