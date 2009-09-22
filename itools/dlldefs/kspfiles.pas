@@ -19,7 +19,7 @@ const
 {$ENDIF}
 
 {$IFDEF KSP_SPECIAL_BUILD}
-const KSPSpecialInfo = 'R3 alpha 2';
+const KSPSpecialInfo = 'R3 alpha 3';
 {$ELSE}
 const KSPSpecialInfo = 'R2.2';
 {$ENDIF}
@@ -28,7 +28,7 @@ const KSPMajorVersion = '2009';
 const Version = 0;
   Major = 2;
   Minor = 200;
-  Build = 160;
+  Build = 165;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;

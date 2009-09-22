@@ -9,7 +9,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -67,7 +67,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="54" Y="405"/>
+        <CursorPos X="49" Y="407"/>
         <TopLine Value="390"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="201"/>
@@ -337,7 +337,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="17" Y="25"/>
+        <CursorPos X="21" Y="29"/>
         <TopLine Value="15"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="209"/>
