@@ -1460,7 +1460,7 @@ begin
 
 
  // setup output - default device, 44100hz, stereo, 16 bits
-   if not BASS_Init(1, 44100, 0, 0, nil) then
+   if not BASS_Init(-1, 44100, 0, 0, nil) then
    begin
       if not (csDesigning in ComponentState) then
          Error('Can''t initialize device');
