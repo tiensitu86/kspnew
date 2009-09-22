@@ -1,12 +1,12 @@
 unit KSPConstsVars;
 
+{$I ksp_version.inc}
+
 interface
 
 uses Messages, FileSupportLst, SysUtils, BASSPlayer,
   Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems,
   Playlists, app_db_utils{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
-
-{$I ksp_version.inc}
 
 const
   KSPHost = 'http://ksplayer.boo.pl';

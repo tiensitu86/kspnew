@@ -30,11 +30,14 @@ type  TWebView = class(TObject)
     pURL: string;
     procedure SetDimensions(x, y: integer);
     procedure SetPosition(x, y: integer);
-    constructor Create(Parent : TWinControl; URL: string);
+    constructor Create(Parent : TWinControl; URL: string; SetEditable: boolean = false);
     procedure LoadURL(URL: string);
     procedure GoBack;
     procedure GoForward;
     procedure Reload;
+    procedure Clear;
+    procedure SetContent(HTML: string);
+    function GetContent: string;
   end;
 
   { TKSPMainWindow }
@@ -55,6 +58,7 @@ type  TWebView = class(TObject)
     MenuItem28: TMenuItem;
     BalancePopup: TPopupMenu;
     MenuItem29: TMenuItem;
+    LyricsPanel: TPanel;
     SaveLyricsBtn: TButton;
     DeleteLyricsBtn: TButton;
     Button2: TButton;
@@ -64,7 +68,6 @@ type  TWebView = class(TObject)
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
-    Lyrics: TMemo;
     Page4: TPage;
     Panel10: TPanel;
     SongsLike: TEdit;
@@ -377,6 +380,7 @@ type  TWebView = class(TObject)
     WebView: TWebView;
     MainWebView: TWebView;
     HistoryWebView: TWebView;
+    Lyrics: TWebView;
     ShowOSD: boolean;
     OSDPosition: integer;
     TotalPlayCount: Longint;
@@ -541,7 +545,7 @@ begin
   QWidget_move(Handle, x, y);
 end;
 
-constructor TWebView.Create(Parent : TWinControl; URL: string);
+constructor TWebView.Create(Parent : TWinControl; URL: string; SetEditable: boolean = false);
 var
   W : WideString;
 begin
@@ -554,6 +558,7 @@ begin
   QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
 
   QWebView_setPage(Handle,QWebPage);
+  QWebPage_setContentEditable(QWebPage, SetEditable);
   NetworkAccessManager:=QWebPage_networkAccessManager(QWebPage);
 
   // proxy :adapt host/port and remove comment of setProxy
@@ -583,6 +588,28 @@ begin
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
   QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
 end;
+
+procedure TWebView.Clear;
+begin
+  Self.SetContent('');
+end;
+
+procedure TWebView.SetContent(HTML: string);
+var
+  W : WideString;
+begin
+  W:=HTML;
+  QWebView_setHtml(Handle, @W);
+end;
+
+function TWebView.GetContent: string;
+var
+  fr: QWebFrameH;
+begin
+  fr:=QWebPage_mainFrame(QWebPage);
+  QWebFrame_toHtml(fr, @Result);
+end;
+
 
 procedure TWebView.UserAgentForUrl(aUrl: QUrlH; Agent: PWideString); cdecl;
 var
@@ -1693,7 +1720,7 @@ begin
       Lyrics.Clear;
 
       if InLib then begin
-        Lyrics.Text:=AllSongs.ReadLyrics(findex);
+        Lyrics.SetContent(AllSongs.ReadLyrics(findex));
       end;
 
 
@@ -2233,9 +2260,11 @@ procedure TKSPMainWindow.SaveLyricsBtnClick(Sender: TObject);
 var
   findex: integer;
 begin
+  //hLog.Send(Lyrics.GetContent);
   findex:=AllSongs.GetItemIndex(CurrentFile);
+  if findex=-1 then Exit;
   AllSongs.DeleteLyrics(findex);
-  AllSongs.SaveLyrics(Lyrics.Text, findex);
+  AllSongs.SaveLyrics(Lyrics.GetContent, findex);
 end;
 
 procedure TKSPMainWindow.Savewholeplaylistasbookmark1Click(Sender: TObject);
@@ -3150,9 +3179,12 @@ begin
 {$IFDEF WINDOWS}
   HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
 {$ELSE}
-  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html');
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', true);
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
+
+  Lyrics:=TWebView.Create(Self.LyricsPanel, '', true);
+  Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
