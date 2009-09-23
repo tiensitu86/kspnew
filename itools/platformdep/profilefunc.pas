@@ -42,11 +42,12 @@ function ReplaceStr(strSource, strFind, strReplace: string):string;
 
 procedure FixFolderNames(var FolderName: string);
 begin
-{$ifdef mswindows}
-  FolderName:=ReplaceStr(FolderName, '/', '\');
-{$ELSE}
-  FolderName:=ReplaceStr(FolderName, '\', '/');
-{$endif}
+//{$ifdef mswindows}
+//  FolderName:=ReplaceStr(FolderName, '/', '\');
+//{$ELSE}
+//  FolderName:=ReplaceStr(FolderName, '\', '/');
+//{$endif}
+  FolderName:=SetDirSeparators(FolderName);
 end;
 
 procedure FixFileNameDB(var Name: string);

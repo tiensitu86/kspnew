@@ -251,7 +251,6 @@ var
 begin
   NotFound:=0;
 
-
   tag:=GetStreamInfo2(FileName, StreamInfo2, Sup);
   id3tag.IsTag:=tag;
   
