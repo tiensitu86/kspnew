@@ -1605,12 +1605,6 @@ begin
         DeallocateHWnd(MessageHandle);   }
    end;
 
-   if BASSDLLLoaded then
-   begin
-      BASS_PluginFree(0);  // Unplugs all plugins
-      //BASS_Free;
-      //Unload_BASSDLL;
-   end;
   { if FBASSWMAReady then
       Unload_BASSWMADLL; }
    if HBASSWMA <> 0 then
@@ -1628,6 +1622,7 @@ begin
 
    if BASSDLLLoaded then
    begin
+      BASS_PluginFree(0);  // Unplugs all plugins
       BASS_Free;
       //Unload_BASSDLL;
    end;

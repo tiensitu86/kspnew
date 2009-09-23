@@ -9,7 +9,7 @@ procedure SetupKSP;
 
 implementation
 
-uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles, KSPMessages,
+uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles,
   qtproc;
 
 //Clear old logs

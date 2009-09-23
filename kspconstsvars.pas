@@ -17,10 +17,10 @@ const
 
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
-  KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
-  KSPMsgDefaultServerPort = 12007;
-  KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
-  KSPSupportAutomatedSubject = 'KSP automated bug report';
+//  KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
+//  KSPMsgDefaultServerPort = 12007;
+//  KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
+//  KSPSupportAutomatedSubject = 'KSP automated bug report';
 
 //  BackColor = clBlack;
   BlockWidth = 6;
@@ -36,15 +36,6 @@ const
   CDefSuggHintFormat = '[%title]'+#13+'[%artist]'+#13+'[%album]';
   CFormatedHintInfoPls = '[%title] ([%length])- [%artist] - [%album]\n[%comment]';
 
-//Messenger
-  MSG_Error_RegisterNewUser_NotConnected        = 60026;
-  MSG_Error_RegisterNewUser_SendCommandFailed   = 60027;
-  MSG_Error_RegisterNewUser_ReceiveResultFailed = 60028;
-  MSG_Error_RegisterNewUser_InvalidParams       = 60029;
-  MSG_Error_RegisterNewUser_InvalidServerReply  = 60030;
-  MSG_Error_RegisterNewUser_Failed              = 60031;
-  MSG_Error_RegisterNewUser_UserAlreadyExists   = 60032;
-
   DB_MAX_THREADS = 1;
   DB_MAX_THREADS2 = 1;
 
@@ -52,7 +43,6 @@ const
   MaxSuggestions = 10;
   TopItems = 10;
   VDJTimeOut = 5; //60sec
-  KSPRotateAdInterval = 1000 * 60 * 60 * 3;
 
 const
   art='[%artist]';
@@ -64,10 +54,7 @@ const
   track = '[%track]';
 
 //database
-const
-  DBMemUsage = 0.005;
-  DBMemUsageDBSize = 0.25;
-  
+
 const
   InsStat = 'INSERT INTO meta (GID, Track, Comment, metaYear, Album,'+
       ' Artist, Title, PlayedEver, Meta, PlayCount, Fav, LastPlay, FirstPlay,'+

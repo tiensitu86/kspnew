@@ -195,12 +195,7 @@ end;
 function GetStreamInfoSimple(FileName: string; var GetIsTag: boolean): TStreamInfo;
 var
   Sup: TSupportedBy;
-  NumCDDriveList:integer;
-  CDDriveList:TCDDriveList;
-  PNum: Integer;
-  PName: string;
 begin
-  NumCDDriveList:=0;
   GetIsTag:=GetStreamInfo2(FileName, Result, Sup);
 end;
 
@@ -211,8 +206,6 @@ var
   StreamInfo2 : TStreamInfo;
   NumCDDriveList:integer;
   CDDriveList:TCDDriveList;
-  PNum: Integer;
-  PName: string;
 begin
   NotFound:=0;
 
@@ -255,16 +248,10 @@ var
   id3tag: Tid3tag;
   Sup: TSupportedBy;
   StreamInfo2 : TStreamInfo;
-  NumCDDriveList:integer;
-  CDDriveList:TCDDriveList;
-  PNum: Integer;
-  PName: string;
-  FileHandle: THandle;
 begin
   NotFound:=0;
 
 
-  NumCDDriveList:=0;
   tag:=GetStreamInfo2(FileName, StreamInfo2, Sup);
   id3tag.IsTag:=tag;
   

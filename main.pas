@@ -10,7 +10,7 @@ uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
   CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, uxmpp, suggfind
+  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, {$IFDEF KSP_XMPP}uxmpp,{$ENDIF} suggfind
   {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
 
 
@@ -335,7 +335,6 @@ type  TWebView = class(TObject)
     KSPSetupStates: TKSPSetup;
     LastOpenDir: string;
     EQGains : TEQGains;
-    ShowSplash: boolean;
     KSPNotification: QWidgetH;
     MGStartDrag: TPoint;
     MGDragItem: string;
@@ -416,7 +415,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, OptionsFrm2, splash, complib
+  KSPCrossList, MultiLog, OptionsFrm2, complib
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
@@ -928,12 +927,6 @@ var
     end;
   end;
 
-  procedure SetSplashProg(prg: integer);
-  begin
-    SplashForm.Prog.Position:=prg;
-    Application.ProcessMessages;
-  end;
-
   procedure SetupCaptions;
   begin
     HeaderControl1.Sections.Items[0].Text:=SWelcome;
@@ -951,11 +944,7 @@ var
 {$ENDIF}
 
 begin
-  SplashForm:=TSplashForm.Create(nil);
-
   LoadOptions;
-
-  if Self.ShowSplash then SplashForm.Show;
 
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
@@ -974,10 +963,9 @@ begin
     Sleep(500);//  Result := WaitForSingleObject(StartupThreadSem, INFINITE);
   until StartupThreadSem2=0;
 
-  SetSplashProg(10);
 
-  LoadPlugins;      SetSplashProg(30);
-  SetupOpenDialog;  SetSplashProg(40);
+  LoadPlugins;
+  SetupOpenDialog;
 
   AppVersion.Caption:=Application.Title+' '+KSPVersion+' ('+KSPVersion2+')';
 
@@ -995,7 +983,7 @@ begin
 
   ShuffleButton.Checked:=Shuffled;
 
-  SetupDatabase;   SetSplashProg(50);
+  SetupDatabase;
   ScanFolders(false);
 
   RefreshMediaFolders;
@@ -1022,8 +1010,6 @@ begin
   if ScriptedAddons.Call([LuaVar(GetKSPVersion2)], 'RunTest')<>0 then
     hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
 {$ENDIF}
-
-  SplashForm.Free;
 
   TCompactlibThread.Create(false);
 
@@ -2849,7 +2835,6 @@ var
       1:  KSPMainWindow.RepeatType:=rtOne;
       2:  KSPMainWindow.RepeatType:=rtAll;
     end;
-    self.ShowSplash:=XMLFile.ReadBool('Vars', 'Splash', false);
     UseVDJ:=XMLFile.ReadBool('Vars', 'UseVDJ', false);
 
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
@@ -2999,7 +2984,6 @@ var
     XMLFile.EraseSection('Vars');
     XMLFile.WriteBool('Vars', 'Shuffled', Shuffled);
     XMLFile.WriteBool('Vars', 'UseVDJ', UseVDJ);
-    XMLFile.WriteBool('Vars', 'Splash', Self.ShowSplash);
     XMLFile.WriteInteger('General', 'PlayCount', Self.TotalPlayCount);
     case RepeatType of
       rtNone: XMLFile.WriteInteger('Vars', 'Repeat', 0);
