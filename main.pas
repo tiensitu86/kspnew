@@ -59,6 +59,7 @@ type  TWebView = class(TObject)
     BalancePopup: TPopupMenu;
     MenuItem29: TMenuItem;
     LyricsPanel: TPanel;
+    EqualizerMenu: TMenuItem;
     SaveLyricsBtn: TButton;
     DeleteLyricsBtn: TButton;
     Button2: TButton;
@@ -364,6 +365,9 @@ type  TWebView = class(TObject)
     procedure SetupOpenDialog;
     procedure LoadPlugins;
     procedure UnloadPlugins;
+    procedure EqClick(Sender: TObject);
+    procedure LoadEqSetting(SettingNo: integer);
+    procedure eq0Change(Sender: TObject);
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -853,6 +857,37 @@ begin
   OpenDialog1.Filter:=OpenDialog1.Filter+'|All Files (*.*)|*.*';
 end;
 
+procedure TKSPMainWindow.EqClick(Sender: TObject);
+var
+  c: integer;
+begin
+  TMenuItem(Sender).Checked:=true;
+  LoadEqSetting(TMenuItem(Sender).Tag);
+end;
+
+procedure TKSPMainWindow.LoadEqSetting(SettingNo: integer);
+var
+  c: integer;
+begin
+  for c := 0 to NumEQBands -1 do
+  begin
+    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
+//    Eq0.Position:=EqList.GetItem(EqPresets.ItemIndex).Vals[c]
+      //for i := 0 to MaxChannels -1 do DCEqualizer.Band[i,z] := 0 - EqList.GetItem(EqPresets.ItemIndex).Vals[c];
+  end;
+end;
+
+procedure TKSPMainWindow.eq0Change(Sender: TObject);
+var
+   BandNum : integer;
+begin
+   BandNum := (Sender as TTrackBar).Tag;
+   KSPMainWindow.EQGains[BandNum] := (Sender as TTrackBar).Position / 2;
+
+ //  BassPlayer1.EQGains := EQGains;
+   Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
+end;
+
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
@@ -936,6 +971,37 @@ var
     MSortType.Items.Item[0].Text:=SSortBy;
   end;
 
+  procedure LoadThings;
+  var
+    i: integer;
+    T: TMenuItem;
+    s: string;
+  begin
+    s:=ExtractFilePath(Application.ExeName)+'data\eq10';
+    FixFolderNames(s);
+    hLog.Send('Loading equalizer');
+    if FileExists(s) then
+        EqList.LoadFromFile(s, true);
+    s:=KSPDataFolder+'data\eq10';
+    FixFolderNames(s);
+    if FileExists(s) then
+        EqList.LoadFromFile(s, false);
+
+        if EqList.Count>0 then
+      begin
+        if EqList.Count>0 then for I := 0 to EqList.Count - 1 do
+          begin
+            T:=TMenuItem.Create(Self);
+            T.Caption:=EqList.GetItem(i).name;
+            T.Tag:=EqualizerMenu.Count;//-1;
+            T.RadioItem:=true;
+            T.OnClick:=@EqClick;
+            KSPMainWindow.EqualizerMenu.Add(T);
+          end;
+
+      end;
+  end;
+
 {$IFNDEF KSP_DEVEL}
   procedure PrepareNonDevel;
   begin
@@ -998,6 +1064,7 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
+  LoadThings;
 {$IFNDEF KSP_CURRENTLY_PLAYED}
   PrepareNonDevel;
 {$ENDIF}

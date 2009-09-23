@@ -5,7 +5,7 @@ unit KSPConstsVars;
 interface
 
 uses Messages, FileSupportLst, SysUtils, BASSPlayer,
-  Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems,
+  Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems, PresetsU,
   Playlists, app_db_utils{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
 
 const
@@ -103,6 +103,7 @@ var
   ScriptedAddons: TLuaScript;
 {$ENDIF}
   FindApproxVals: TPlayList;
+  EqList:TEqList;
   InsertingDataInThread: boolean;
   KSPAssociatedFiles: TStringList;
   AlreadyEncoding: boolean;

@@ -38,6 +38,8 @@ TEqList = class(TList)
 
 implementation
 
+uses Multilog;
+
 constructor TEqList.Create;
 begin
   inherited Create;
@@ -84,31 +86,38 @@ var
   aposition: integer;
   i: Integer;
 begin
+    hLog.Send('Loading presets');
     AssignFile(f, FileName);
     if FileExists(FileName) then begin
         Reset(f);
         while not Eof(f) do begin
             Readln(f, s);
             sname:=Copy(s, 0, Pos('=', s)-1);
+            hLog.Send(sname);
             sval:=Copy(s, Pos('=', s)+1, Length(s));
             //ShowMessage(sval);
 
             vals.name:=sname;
+            hLog.Send(sval);
            //i:=0;
            //aposition:=0;
            for aposition:=0 to NumEQBands-2 do begin
                 //pi:=i;
                 i:=Pos(',', sval);
+                if i=0 then Break;
                 s:=Copy(sval, 0, i-1);
                 Vals.vals[aposition]:=StrToInt(s);
                 //ShowMessage(IntToStr(vals[aposition]));
                 System.Delete(sval,1, Pos(',', sval));
+                hLog.Send(sval);
               end;
 
               Vals.vals[NumEQBands-1]:=StrToInt(sval);
            Vals.FromDefault:=SetAsFromDef;
+           hLog.Send('Part 1');
 
             Add(Vals);
+            hLog.Send('Part 2');
             //EqPresets.Items.Add(vals.name);
             //T:=TMenuItem.Create(Self);
             //T.Caption:=Vals.name;
@@ -120,6 +129,7 @@ begin
           end;
       CloseFile(f);
     end;
+    hLog.Send('Loading presets finished');
 end;
 
 procedure TEqList.SaveToFile(FileName: string);

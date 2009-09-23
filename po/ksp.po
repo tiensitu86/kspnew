@@ -501,6 +501,10 @@ msgstr ""
 msgid "Delete Selected"
 msgstr ""
 
+#: TKSPMAINWINDOW.EQUALIZERMENU.CAPTION
+msgid "Equalizer"
+msgstr ""
+
 #: TKSPMAINWINDOW.LABEL1.CAPTION
 msgid "Device buffer (in ms):"
 msgstr ""
