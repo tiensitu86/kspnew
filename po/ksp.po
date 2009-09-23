@@ -395,6 +395,10 @@ msgstr ""
 msgid "Add Selected To Bookmark"
 msgstr ""
 
+#: TKSPMAINWINDOW.BASIC.CAPTION
+msgid "Basic"
+msgstr ""
+
 #: TKSPMAINWINDOW.BOOKMARKS1.CAPTION
 msgctxt "TKSPMAINWINDOW.BOOKMARKS1.CAPTION"
 msgid "Bookmarks"
@@ -440,6 +444,15 @@ msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON16.CAPTION
 msgid "Find Songs Like"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON17.CAPTION
+msgid "Audio Controls"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON18.CAPTION
+msgctxt "TKSPMAINWINDOW.BUTTON18.CAPTION"
+msgid "Equalizer"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON2.CAPTION
@@ -502,7 +515,12 @@ msgid "Delete Selected"
 msgstr ""
 
 #: TKSPMAINWINDOW.EQUALIZERMENU.CAPTION
+msgctxt "TKSPMAINWINDOW.EQUALIZERMENU.CAPTION"
 msgid "Equalizer"
+msgstr ""
+
+#: TKSPMAINWINDOW.EQUALIZERTAB.CAPTION
+msgid "EqualizerTab"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL1.CAPTION

@@ -43,6 +43,7 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    Balance: TTrackBar;
     BListBox: TListBox;
     BookmarksSetupPage: TPage;
     Button1: TButton;
@@ -53,6 +54,8 @@ type  TWebView = class(TObject)
     Button14: TButton;
     Button15: TButton;
     Button16: TButton;
+    Button17: TToggleBox;
+    Button18: TToggleBox;
     MenuItem26: TMenuItem;
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
@@ -60,6 +63,9 @@ type  TWebView = class(TObject)
     MenuItem29: TMenuItem;
     LyricsPanel: TPanel;
     EqualizerMenu: TMenuItem;
+    AudioControls: TPageControl;
+    Panel11: TPanel;
+    PosBar: TTrackBar;
     SaveLyricsBtn: TButton;
     DeleteLyricsBtn: TButton;
     Button2: TButton;
@@ -144,6 +150,8 @@ type  TWebView = class(TObject)
     Splitter4: TSplitter;
     TabSheet2: TTabSheet;
     DownloadTimer: TTimer;
+    Basic: TTabSheet;
+    EqualizerTab: TTabSheet;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -201,8 +209,6 @@ type  TWebView = class(TObject)
     btStop: TToolButton;
     btPlay: TToolButton;
     ToolButton4: TToolButton;
-    PosBar: TTrackBar;
-    Balance: TTrackBar;
     TrayIcon1: TTrayIcon;
     MsortType: TTreeView;
     MGView: TTreeView;
@@ -220,6 +226,7 @@ type  TWebView = class(TObject)
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure Button18Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -258,6 +265,7 @@ type  TWebView = class(TObject)
     procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
+    procedure AudioControlsChange(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
     procedure PlgOnStartupClick(Sender: TObject);
     procedure PluginsListClick(Sender: TObject);
@@ -871,7 +879,7 @@ var
 begin
   for c := 0 to NumEQBands -1 do
   begin
-    //TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
+    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
 //    Eq0.Position:=EqList.GetItem(EqPresets.ItemIndex).Vals[c]
       //for i := 0 to MaxChannels -1 do DCEqualizer.Band[i,z] := 0 - EqList.GetItem(EqPresets.ItemIndex).Vals[c];
   end;
@@ -916,6 +924,7 @@ var
     SetupBook.ActivePage:='DefaultSetupPage';
     OSName:=GetOSVersion;
     hLog.Send('Operating system: '+OSName);
+    AudioControls.ActivePage:=Basic;
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;
@@ -1446,6 +1455,11 @@ begin
   OSDPosition:=OSDPosBox.ItemIndex;
 end;
 
+procedure TKSPMainWindow.AudioControlsChange(Sender: TObject);
+begin
+
+end;
+
 
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
@@ -1677,6 +1691,19 @@ procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
   FindSongsLike(MediaSongs, AllSongs, SongsLike.Text);
   AssignMedia(false);
+end;
+
+procedure TKSPMainWindow.Button18Click(Sender: TObject);
+begin
+  Button17.Checked:=false;
+  Button18.Checked:=false;
+
+  TToggleBox(Sender).Checked:=true;
+
+  case TToggleBox(Sender).Tag of
+    0: AudioControls.ActivePage:=Basic;
+    1: AudioControls.ActivePage:=EqualizerTab;
+  end;
 end;
 
 function TKSPMainWindow.GetCurrentFile: string;

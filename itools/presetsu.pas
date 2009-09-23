@@ -100,7 +100,6 @@ begin
             //ShowMessage(sval);
 
             vals.name:=sname;
-            hLog.Send(sval);
            //i:=0;
            //aposition:=0;
            for aposition:=0 to NumEQBands-2 do begin
@@ -111,15 +110,12 @@ begin
                 Vals.vals[aposition]:=StrToInt(s);
                 //ShowMessage(IntToStr(vals[aposition]));
                 System.Delete(sval,1, Pos(',', sval));
-                hLog.Send(sval);
               end;
 
               Vals.vals[NumEQBands-1]:=StrToInt(sval);
            Vals.FromDefault:=SetAsFromDef;
-           hLog.Send('Part 1');
 
             Add(Vals);
-            hLog.Send('Part 2');
             //EqPresets.Items.Add(vals.name);
             //T:=TMenuItem.Create(Self);
             //T.Caption:=Vals.name;
