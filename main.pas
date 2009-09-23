@@ -54,8 +54,8 @@ type  TWebView = class(TObject)
     Button14: TButton;
     Button15: TButton;
     Button16: TButton;
-    Button17: TToggleBox;
-    Button18: TToggleBox;
+    Button17: TSpeedButton;
+    Button18: TSpeedButton;
     MenuItem26: TMenuItem;
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
@@ -1695,12 +1695,7 @@ end;
 
 procedure TKSPMainWindow.Button18Click(Sender: TObject);
 begin
-  Button17.Checked:=false;
-  Button18.Checked:=false;
-
-  TToggleBox(Sender).Checked:=true;
-
-  case TToggleBox(Sender).Tag of
+  case TSpeedButton(Sender).Tag of
     0: AudioControls.ActivePage:=Basic;
     1: AudioControls.ActivePage:=EqualizerTab;
   end;

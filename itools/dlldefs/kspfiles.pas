@@ -15,20 +15,20 @@ const
   READ_BYTES = 2048;
 
 {$IFNDEF WINDOWS}
-  {$DEFINE KSP_SPECIAL_BUILD}
+  //{$DEFINE KSP_SPECIAL_BUILD}
 {$ENDIF}
 
 {$IFDEF KSP_SPECIAL_BUILD}
 const KSPSpecialInfo = 'R3 alpha 3';
 {$ELSE}
-const KSPSpecialInfo = 'R2.2';
+const KSPSpecialInfo = 'R3 beta 1';
 {$ENDIF}
 const KSPMajorVersion = '2009';
 
 const Version = 0;
   Major = 2;
-  Minor = 200;
-  Build = 165;
+  Minor = 300;
+  Build = 184;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;

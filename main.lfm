@@ -211,24 +211,26 @@ object KSPMainWindow: TKSPMainWindow
         OnClick = RepeatButtonClick
         TabOrder = 3
       end
-      object Button17: TToggleBox
+      object Button17: TSpeedButton
         Left = 271
         Height = 25
         Top = 2
         Width = 150
         Caption = 'Audio Controls'
+        Color = clBtnFace
+        NumGlyphs = 0
         OnClick = Button18Click
-        TabOrder = 4
       end
-      object Button18: TToggleBox
+      object Button18: TSpeedButton
         Tag = 1
         Left = 271
         Height = 25
         Top = 35
         Width = 150
         Caption = 'Equalizer'
+        Color = clBtnFace
+        NumGlyphs = 0
         OnClick = Button18Click
-        TabOrder = 5
       end
     end
   end
