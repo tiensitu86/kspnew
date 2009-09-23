@@ -2,7 +2,7 @@ unit KSPStartup;
 
 interface
 
-uses Forms, SysUtils, Classes, Dialogs, filechannel, sharedlogger, FileSupportLst,
+uses Forms, SysUtils, Classes, Dialogs, FileSupportLst,
   Qt4, BassPlayer;
 
 procedure SetupKSP;
@@ -58,8 +58,6 @@ begin
   ForceDirectories(KSPLogFilename);
 
   hLog:=TLogger.Create;
-  hLog.Channels.Add(TFileChannel.Create(KSPDataFolder+'ksp.log'));
-  hLog.ActiveClasses:=lcAll;
 
   ClearLogs;
 

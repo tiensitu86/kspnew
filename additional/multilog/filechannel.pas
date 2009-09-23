@@ -122,40 +122,6 @@ begin
 
   Text:=Text+AMsg.MsgText;
   DebuglnThreadLog([Text]);
-//  Append(FFileHandle);
-  //Exit method identation must be set before
-{  EnterCriticalSection(FCritical);
-  try
-  if AMsg.MsgType = ltExitMethod then
-    if FRelativeIdent >= 2 then
-      Dec(FRelativeIdent,2);
-  if FShowTime then
-    Text:=FormatDateTime('hh:nn:ss:zzz',AMsg.MsgTime)+' ';
-  Text:=Text+Space(FRelativeIdent);
-  if FShowPrefix then
-    Text:=Text+LogPrefixes[AMsg.MsgType]+': ';
-
-  Text:=Text+AMsg.MsgText;
-  FQueueStr:=FQueueStr+Text;
-
-  Writeln(FFileHandle,FQueueStr);
-  FQueueStr:='';
-
-
-  if FShowStrings and (AMsg.Data <> nil) then
-  begin
-//    case AMsg.MsgType of
-//      ltStrings,ltCallStack,ltHeapInfo,ltException:WriteStrings(AMsg.Data);
-//      ltObject:WriteComponent(AMsg.Data);
-//    end;
-  end;
-//  Close(FFileHandle);
-  //Update enter method identation
-  if AMsg.MsgType = ltEnterMethod then
-    Inc(FRelativeIdent,2);
-  finally
-    LeaveCriticalsection(FCritical);
-  end;  }
 end;
 
 procedure TFileChannel.Init;

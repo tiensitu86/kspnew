@@ -429,7 +429,7 @@ begin
             id3Tag.FileName:=stemp.Strings[i];
             //if (id3tag.Tag.Track>127)or(id3tag.Tag.Track<0) then id3tag.Tag.Track:=0;
             //if (id3tag.Tag.GID>65000)or(id3tag.Tag.GID<0) then id3tag.Tag.GID:=0;
-        hLog.Send('MEDIA LIBRARY: Adding item ', id3tag.FileName);
+        hLog.Send('MEDIA LIBRARY: Adding item '+ id3tag.FileName);
         mItems.Add(id3tag, false);
 //        stemp.Delete(0);
     //while Thr.Preparing do
