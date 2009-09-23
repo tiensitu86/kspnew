@@ -48,6 +48,7 @@ begin
 
     KSPMP3SettingsList:=TStringList.Create;
     KSPMainWindow.Forbidden:=TStringList.Create;
+    EqList:=TEqList.Create;
     if FileExists(KSPDataFolder+'data\vdj\last') then
       KSPMainWindow.Forbidden.LoadFromFile(KSPDataFolder+'data\vdj\last');
     

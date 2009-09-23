@@ -2,7 +2,9 @@ unit PresetsU;
 
 interface
 
-uses Classes, SysUtils;
+{$mode objfpc}{$H+}
+
+uses SysUtils, Classes;
 
 const
   NumEQBands = 10;

@@ -79,7 +79,7 @@ procedure SearchForKPL(Path: string; Rec: boolean; var s: TStringList);
 
 implementation
 
-uses Math , KSPConstsVars, Main, multilog, profilefunc;
+uses Math, KSPConstsVars, Main, multilog, profilefunc;
 
 function CompareTracks(Item1, Item2: Pointer): Integer;
 begin

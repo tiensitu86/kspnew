@@ -871,7 +871,7 @@ var
 begin
   for c := 0 to NumEQBands -1 do
   begin
-    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
+    //TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
 //    Eq0.Position:=EqList.GetItem(EqPresets.ItemIndex).Vals[c]
       //for i := 0 to MaxChannels -1 do DCEqualizer.Band[i,z] := 0 - EqList.GetItem(EqPresets.ItemIndex).Vals[c];
   end;
