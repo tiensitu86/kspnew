@@ -3,7 +3,7 @@ unit kspfiles;
 interface
 
 uses {$IFDEF WINDOWS}Windows, {$ENDIF}LResources, Forms, ID3Mgmnt, Classes,
-  FileSupportLst, KSPMessages, IdHTTP, DateUtils, Dialogs, KSPDLLFileUtils,
+  FileSupportLst, KSPMessages, httpsend, DateUtils, Dialogs, KSPDLLFileUtils,
   FileUtil, Process;
 
 const
@@ -293,12 +293,8 @@ end;
 
 
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
-var
-  HTTP: TIdHTTP;
 begin
-  HTTP:=TIdHTTP.Create;
-  Output.Text:=Http.Get(aUrl);
-  HTTP.Free;
+  HttpGetText(aUrl, Output);
   Result:=Output.Text<>'';
 end;
 

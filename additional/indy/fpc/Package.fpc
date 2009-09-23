@@ -1,7 +1,0 @@
-[package]
-name=indy
-version=10.2.0.1
-[require]
-packages=rtl fcl
-fpcsubdir=packages/extra
-packages_linux_i386=netdb paszlib pasjpeg hash ibase postgres mysql odbc oracle mysql ibase sqlite netdb  libasync

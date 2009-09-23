@@ -1,6 +1,0 @@
-[package]
-name=indylaz
-version=10.2.0.1
-[require]
-packages=rtl 
-packages_linux_i386=
