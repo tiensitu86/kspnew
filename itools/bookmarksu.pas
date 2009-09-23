@@ -29,6 +29,8 @@ type TBookmarksList = class(TList)
 
 implementation
 
+uses kspfiles, KSPConstsVars, multilog;
+
 constructor TBookmarksList.Create;
 begin
   inherited Create;
@@ -72,6 +74,18 @@ var
   Par: TSpkXMLParameter;
   p: TBookmarkItem;
   i: integer;
+  s: string;
+  s2: TStringList;
+
+  function ItemExists(item: string): boolean;
+  var
+    i: integer;
+  begin
+    Result:=false;
+    for i:=0 to Self.Count-1 do
+      if Self.GetItem(i).URL=item then Result:=true;
+  end;
+
 begin
   FixFolderNames(FileName);
   if not FileExists(FileName) then Exit;
@@ -93,6 +107,21 @@ begin
         Add(p);
       end;
   XML.Free;
+
+  s:=KSPDataFolder+'bookmarks';
+  FixFolderNames(s);
+
+  s2:= TStringList.Create;
+
+  SearchForFilesFS(s, true, s2);
+  for i:=0 to s2.Count-1 do begin
+    if not ItemExists(s2.Strings[i]) then begin
+      hLog.Send('Deleting old bookmark: '+s2.Strings[i]);
+      DeleteFile(s2.Strings[i]);
+    end;
+  end;
+
+  s2.Free;
 end;
 
 procedure TBookmarksList.SaveToFile(FileName: string);
