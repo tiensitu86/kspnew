@@ -18,9 +18,15 @@ const
 {$ENDIF}
 
 {$IFDEF KSP_SPECIAL_BUILD}
-const KSPSpecialInfo = 'R3 alpha 3';
+const KSPSpecialInfo_i = 'R3 alpha 3';
 {$ELSE}
-const KSPSpecialInfo = 'R3 beta 1';
+const KSPSpecialInfo_i = 'R3 beta 1';
+{$ENDIF}
+
+{$IFDEF KSP_DEVEL}
+const KSPSpecialInfo = KSPSpecialInfo_i+' EXPERIMENTAL';
+{$ELSE}
+const KSPSpecialInfo = KSPSpecialInfo_i;
 {$ENDIF}
 const KSPMajorVersion = '2009';
 

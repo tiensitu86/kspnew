@@ -1016,19 +1016,18 @@ var
   f: TFavouriteList;
   P: TPLEntry;
   PC: TPathChar;
+  tmp_xml: string;
 
   function FindNode(x: TDOMNode; Name: string): TDOMNode;
   var
     i: integer;
   begin
     Result:=nil;
-    if x=nil then Exit;
+    //if x=nil then Exit;
     for i:=0 to x.ChildNodes.Count-1 do begin
       if UpperCase(x.ChildNodes.Item[i].NodeName)=UpperCase(Name) then begin
-          hLog.Send('Node found: '+Name);
           Result:=x.ChildNodes.Item[i]
         end;
-        hLog.Send(x.ChildNodes.Item[i].NodeName);
       end;
     if Result=nil then hLog.Send('Node not found: '+Name);
   end;
@@ -1041,14 +1040,19 @@ var
     pls: TPlayList;
     item: TPlayNextSong;
   begin
-    ReadXMLFile(XMLPls, FileName);
+    hLog.Send('Processing Feed...');
+    ReadXMLFile(XMLPls, tmp_xml);
     Main:=FindNode(XMLPls.DocumentElement, 'similartracks');
+    if Main=nil then begin
+      hLog.Send('No similar tracks found...');
+      Exit;
+    end;
     hLog.Send('Found '+IntToStr(Main.ChildNodes.Count)+' similar tracks');
 
     for i:=0 to Main.ChildNodes.Count-1 do begin
       Node:=Main.ChildNodes.Item[i]; //<track>
-      p.Tag.Title:=FindNode(Node, 'name').NodeValue;
-      p.Tag.Artist:=FindNode(FindNode(Node, 'artist'), 'name').NodeValue;
+      p.Tag.Title:=FindNode(Node, 'name').FirstChild.NodeValue;
+      p.Tag.Artist:=FindNode(FindNode(Node, 'artist'), 'name').FirstChild.NodeValue;
 
       pls:=Self.ReturnFromArtist(FileName, p.Tag.Artist);
 
@@ -1056,34 +1060,36 @@ var
         p:=Pls.GetTrack(p.Tag.Artist, '', p.Tag.Title, KSPMainWindow.Forbidden);
         if p.FileName<>'' then begin
           item.FileName:=p.FileName;
+          FixFileNameDB2(item.FileName);
           f.Add(item, Self);
         end;
       end;
       pls.Free;
     end;
+
+    hLog.Send('Similar items in library: '+IntToStr(f.Count));
   end;
 
 
   function DownloadFeed: boolean;
   var
     s: TStringList;
-    str: string;
   begin
     s:=TStringList.Create;
-    str:='http://'+Url_encode(Format(ASTrackFeed, [p.Tag.Artist, p.Tag.Title]));
-    hLog.Send('AS feed: '+str);
-    Result:=DownloadURLi(str, s);
-    str:=KSPDataFolder+'astrack.xml';
-    FixFolderNames(str);
-    if Result then s.SaveToFile(str);
+    tmp_xml:='http://'+Url_encode(Format(ASTrackFeed, [p.Tag.Artist, p.Tag.Title]));
+    hLog.Send('AS feed: '+tmp_xml);
+    Result:=DownloadURLi(tmp_xml, s);
+    tmp_xml:=KSPDataFolder+'astrack.xml';
+    FixFolderNames(tmp_xml);
+    if Result then s.SaveToFile(tmp_xml);
     s.Free;
   end;
 
   procedure FillFavList;
   begin
     if KSPMainWindow.OfflineMode then Exit;
-    if DownloadFeed then
-      ProcessFeed;
+    DownloadFeed;
+    ProcessFeed;
   end;
 
 begin

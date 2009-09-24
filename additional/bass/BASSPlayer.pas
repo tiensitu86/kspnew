@@ -1816,14 +1816,11 @@ begin
       (length(ExtCode) < 3) then
       exit;
 //   hLog.Send(StreamName);
-   hLog.Send(copy(StreamName, 1, 5));
    if (copy(StreamName, 1, 5) = 'http:') or (copy(StreamName, 1, 4) = 'mms:')
       or (copy(StreamName, 1, 4) = 'ftp:') then begin
         StreamInfo.Duration:=0;
         exit;
       end;
-
-  hLog.Send(StreamName);
 
  // Check if native file types
    if ExtCode = '.WAV' then

@@ -85,6 +85,12 @@ begin
 
       fav:=AllSongs.GetFavList(KSPMainWindow.GetCurrentFile);
 
+      KSPMainWindow.SuggList.Clear;
+
+      for i:=0 to fav.Count-1 do begin
+        KSPMainWindow.SuggList.Items.Add(fav.GetItem(i).FileName);
+      end;
+
       hLog.Send('Fav list fetched...');
       //SuggestionList.Clear;
 
