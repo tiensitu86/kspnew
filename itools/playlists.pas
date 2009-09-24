@@ -328,11 +328,11 @@ var
 
   function CheckIfMatch(Index: integer): boolean;
   begin
-    Result:=UpperCase(GetItem(i).Tag.Title)=UpperCase(Title);
+    Result:=UpperCase(GetItem(Index).Tag.Title)=UpperCase(Title);
     if UseArtist then
-      Result:=Result and (UpperCase(GetItem(i).Tag.Artist)=UpperCase(Artist));
+      Result:=Result and (UpperCase(GetItem(Index).Tag.Artist)=UpperCase(Artist));
     if UseAlbum then
-      Result:=Result and (UpperCase(GetItem(i).Tag.Album)=UpperCase(Album));
+      Result:=Result and (UpperCase(GetItem(Index).Tag.Album)=UpperCase(Album));
   end;
 
 begin

@@ -3,7 +3,7 @@ unit BASSPlayer;
 interface
 
 uses
-  {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, StdCtrls, ExtCtrls,
+  {$IFDEF WINDOWS}Windows,{$ENDIF} LResources, SysUtils, Classes, Forms, Controls, ExtCtrls,
   BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages,

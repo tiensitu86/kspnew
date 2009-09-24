@@ -3,8 +3,7 @@ unit kspfiles;
 interface
 
 uses {$IFDEF WINDOWS}Windows, {$ENDIF}LResources, Forms, ID3Mgmnt, Classes,
-  FileSupportLst, KSPMessages, httpsend, DateUtils, Dialogs, KSPDLLFileUtils,
-  FileUtil, Process;
+  httpsend, DateUtils, Dialogs, KSPDLLFileUtils, FileUtil, Process;
 
 const
 {$IFDEF WINDOWS}
