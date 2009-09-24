@@ -1083,9 +1083,9 @@ end;
 function TBASSPlayer.SetAEQGain(BandNum : integer; EQGain : float) : boolean;  
 begin
    result := false;
-
    if not FDX8EffectReady then
       exit;
+
    if BandNum >= FEQBands.Bands then
       exit;
 
@@ -1482,7 +1482,7 @@ begin
       FDX8EffectReady := false;
    end;
 {$ELSE}
-  FDX8EffectReady := false;
+  FDX8EffectReady := true;
 {$ENDIF}
 
 

@@ -56,6 +56,15 @@ type  TWebView = class(TObject)
     Button16: TButton;
     Button17: TSpeedButton;
     Button18: TSpeedButton;
+    Eq1: TTrackBar;
+    Eq2: TTrackBar;
+    Eq3: TTrackBar;
+    Eq4: TTrackBar;
+    Eq5: TTrackBar;
+    Eq6: TTrackBar;
+    Eq7: TTrackBar;
+    Eq8: TTrackBar;
+    Eq9: TTrackBar;
     MenuItem26: TMenuItem;
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
@@ -927,6 +936,7 @@ var
     OSName:=GetOSVersion;
     hLog.Send('Operating system: '+OSName);
     AudioControls.ActivePage:=Basic;
+    //Player.SoundEffects:=Player.SoundEffects+[Equalizer];
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;
