@@ -123,10 +123,6 @@ implementation
 
 uses MRNG, Main, KSPConstsVars, ProfileFunc, KSPStrings, MultiLog;
 
-var FilesNo: integer;
-  FSL:TFileSupportList;
-
-
 constructor TCDEntry.Create;
 begin
   inherited Create;
@@ -164,7 +160,7 @@ end;
 
 procedure ReturnArtists(var Artists: TCrossList; mItems: TAppDBConnection);
 var
-  i, ap: integer;
+  ap: integer;
   s: string;
   P: TPLEntry;
 
@@ -385,14 +381,7 @@ var
   x: integer;
   id3tag: TPLEntry;
   tag: boolean;
-
-//  onestep, curstep: integer;
-//  p: TPlaylist;
-//  Thr: TAddToDatabaseThread;
-  SemDone: DWORD;
-
 begin
-  FSL:=FileSL;
 //  p:=TPlaylist.Create;
 
 //  onestep:=stemp.Count div 100;

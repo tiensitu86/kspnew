@@ -461,7 +461,6 @@ end;
 function ShowNotification(NotTitle, NotText: UTF8String; OSDPosition: integer): QWidgetH;
 var
   tLabel, tLabel2: QLabelH;
-  HBox : QHBoxLayoutH;
   VBox : QVBoxLayoutH;
   lFont: QFontH;
   Style: widestring;
@@ -507,7 +506,6 @@ begin
   clb_h:=QPushButton_hook_create(clb);
   QAbstractButton_hook_hook_clicked2(clb_h, m);
 
-  HBox:=QHBoxLayout_create();
   VBox:=QVBoxLayout_create(Result);
   QBoxLayout_addWidget(VBox,tLabel);
   QBoxLayout_addWidget(VBox,tLabel2);
@@ -673,8 +671,6 @@ end;
 { TKSPMainWindow }
 
 procedure TKSPMainWindow.LoadPls(FileName: string);
-var
-  e: Cardinal;
 begin
 
   if LoadingPlaylist then Exit;
@@ -693,8 +689,6 @@ begin
 end;
 
 procedure TKSPMainWindow.LoadPlsDrag;
-var
-  e: Cardinal;
 begin
   if LoadingPlaylist then Exit;
   if LoadPlsThr<>nil then
@@ -792,7 +786,6 @@ var
 
   procedure PrepareSQL;
   var
-    i: integer;
     p: TPLEntry;
   begin
     s:=TStringList.Create;
@@ -913,9 +906,6 @@ end;
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
-  PODirectory, Lang, FallbackLang: String;
-  Result: DWORD;
-  i: integer;
 
   procedure SetVars;
   begin
@@ -1131,7 +1121,6 @@ end;
 procedure TKSPMainWindow.Button2Click(Sender: TObject);
 var
   i: integer;
-  s: TStringList;
 
   procedure SaveMediaLib(Folder: string);
   var
@@ -1628,7 +1617,6 @@ procedure TKSPMainWindow.btStopClick(Sender: TObject);
 var
   i: integer;
   s: string;
-  E: Cardinal;
 begin
   if CurrentIndex=-1 then Exit;
   if FStopped then Exit;
@@ -1848,7 +1836,6 @@ procedure TKSPMainWindow.AudioOut1Done(Sender: TObject);
 var
   i: integer;
   Ind: Integer;
-  E: Cardinal;
 
   function FindIfRight(i: integer): boolean;
   begin

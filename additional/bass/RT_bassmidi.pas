@@ -154,8 +154,10 @@ procedure Unload_BASSMIDIDLL;
 implementation
 
 function Load_BASSMIDIDLL(const dllfilename : string) : boolean;
+{$IFDEF WINDOWS}
 var
    oldmode : integer;
+{$ENDIF}
 begin
    if BASSMIDI_Handle <> 0 then // is it already there ?
       result := true

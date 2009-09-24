@@ -100,25 +100,15 @@ begin
 end;
 
 procedure TFoldersScanThread.Execute;
-var
-  //d: TDateTime;
-  Result: Cardinal;
-  s: TStringList;
 begin
-//  while not Application.Terminated do begin
-//  WaitForSingleObject(GetCountSem, 0);
   KSPMainWindow.WaitForB:=1;
   hLog.Send('Scanning folders for media files');
   ItemsNo:=0;
 
   AllSongs.CompactLib;//Delete non-existing entries
 
-  GetCountSem2:=0;//ReleaseSemaphore(GetCountSem, 1, nil);
-//  LoadPlsSem := CreateSemaphore(nil, 0,1,'KSPLoadPls');
+  GetCountSem2:=0;
   Self.Priority:=tpHigher;
-//  repeat
-//    Result := WaitForSingleObject(LoadPlsSem, 2000);
-//  until Result=WAIT_OBJECT_0;
 
   SearchForNews;
 

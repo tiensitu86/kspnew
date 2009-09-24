@@ -131,8 +131,10 @@ procedure Unload_BASSCDDLL;
 implementation
 
 function Load_BASSCDDLL(const dllfilename : string) : boolean;
+{$IFDEF WINDOWS}
 var
    oldmode : integer;
+{$ENDIF}
 begin
    if BASSCD_Handle <> 0 then // is it already there ?
       result := true

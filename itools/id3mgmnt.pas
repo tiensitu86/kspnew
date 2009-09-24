@@ -204,13 +204,8 @@ var
   id3tag: Tid3tag;
   Sup: TSupportedBy;
   StreamInfo2 : TStreamInfo;
-  NumCDDriveList:integer;
-  CDDriveList:TCDDriveList;
 begin
   NotFound:=0;
-
-
-  NumCDDriveList:=0;
 
   id3tag.Album:='';
   id3tag.Artist:='';

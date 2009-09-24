@@ -301,8 +301,6 @@ end;
 // ----------------------------------------------------------------------------
 
 function TAPETag.WriteTagInFile(sFile: WideString): Boolean;
-const
-  APEPreample: array [0..7] of Ansichar = ('A','P','E','T','A','G','E','X');
 var
   SourceFile: TFileStream;
   Header, Footer, RefFooter: RTagHeader;

@@ -267,7 +267,6 @@ procedure TLogger.SendStream(AMsgType: Integer; const AText: String;
   AStream: TStream);
 var
   MsgRec: TLogMessage;
-  i:Integer;
 begin
   with MsgRec do
   begin

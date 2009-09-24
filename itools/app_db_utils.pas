@@ -216,10 +216,8 @@ end;
 function TAppDBConnection.SetupDatabase( FileName : String = ''): Integer;
 var
   Tables: TStringList;
-  Ini: TIniFile;
   db_name: string;
   db_exists: boolean;
-  i: integer;
   ParamsLoaded: boolean;
   db_type: integer;
 
@@ -514,11 +512,10 @@ end;
 
 function TAppDBConnection.ReturnRecordsCount: integer;
 var
-  cnt,ind: integer;
+  cnt: integer;
 begin
   cnt:=0;
   if Database.SQLQuery.Active then begin
-    ind:=Database.SQLQuery.RecNo;
     while not EndOfDB do begin
       GoToNext;
       Inc(cnt);
@@ -708,7 +705,6 @@ var
   procedure AddToScript(Index: integer);
   var
     i: integer;
-    Data: TAppDBConnection;
   begin
     StrPCopy(Pc1, p.GetItem(Index).Tag.Comment);
     StrPCopy(Pc2, p.GetItem(Index).Tag.Year);
@@ -1039,7 +1035,7 @@ var
   procedure ProcessFeed;
   var
     XMLPls: TXMLDocument;
-    Node, Main: TDOMNode;
+    Main: TDOMNode;
     i: integer;
   begin
     ReadXMLFile(XMLPls, FileName);
@@ -1068,10 +1064,6 @@ var
   end;
 
   procedure FillFavList;
-  var
-    i, RecNum: integer;
-    pns: TPlayNextSong;
-    p: TPLEntry;
   begin
     if KSPMainWindow.OfflineMode then Exit;
     if DownloadFeed then

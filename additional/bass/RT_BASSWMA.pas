@@ -116,8 +116,10 @@ procedure Unload_BASSWMADLL;
 implementation
 
 function Load_BASSWMADLL(const dllfilename : string) : boolean;
+{$IFDEF WINDOWS}
 var
    oldmode : integer;
+{$ENDIF}
 begin
    if BASSWMA_Handle <> 0 then // is it already there ?
       result := true

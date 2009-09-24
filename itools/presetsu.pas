@@ -133,7 +133,7 @@ end;
 procedure TEqList.SaveToFile(FileName: string);
 var
   s: TStringList;
-  i, x: integer;
+  i: integer;
   str: string;
 begin
   if FileExists(FileName) then
