@@ -1482,6 +1482,7 @@ begin
       FDX8EffectReady := false;
    end;
 {$ELSE}
+  hLog.Send('BASS DS VERSION: '+IntToStr(BassInfoParam.dsver));
   FDX8EffectReady := true;
 {$ENDIF}
 

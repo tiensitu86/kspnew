@@ -879,6 +879,9 @@ procedure TKSPMainWindow.EqClick(Sender: TObject);
 var
   c: integer;
 begin
+  for c:=0 to EqualizerMenu.Count-1 do
+    EqualizerMenu.Items[c].Checked:=false;
+
   TMenuItem(Sender).Checked:=true;
   LoadEqSetting(TMenuItem(Sender).Tag);
 end;
@@ -936,7 +939,9 @@ var
     OSName:=GetOSVersion;
     hLog.Send('Operating system: '+OSName);
     AudioControls.ActivePage:=Basic;
-    //Player.SoundEffects:=Player.SoundEffects+[Equalizer];
+{$IFDEF KSP_EQUALIZER}
+    Player.SoundEffects:=Player.SoundEffects+[Equalizer];
+{$ENDIF}
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;
@@ -1089,7 +1094,11 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
-  LoadThings;
+{$IFDEF KSP_EQUALIZER}  LoadThings;
+{$ELSE}
+  EqualizerMenu.Enabled:=false;
+  Button18.Enabled:=false;
+{$ENDIF}
 {$IFNDEF KSP_CURRENTLY_PLAYED}
   PrepareNonDevel;
 {$ENDIF}
