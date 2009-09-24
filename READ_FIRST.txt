@@ -46,7 +46,10 @@ INSTALLATION FROM SOURCES
 
 KSP requires QT 4.5.x. You can obtain it either from http://qtsoftware.com or (better  way) from KSP installation. If you have already installed KSP 2009R2 pre or newer then you should have all required libraries in KSP folder (only Windows, only 32 bit libraries).
 
-In order to compile KSP from sources you have to install Lazarus IDE from http://www.lazarus.freepascal.org/. After that follow the steps:
+In order to compile KSP from sources you have to install Lazarus IDE from http://www.lazarus.freepascal.org/.
+IMPORTANT!!! KSP newer than KSP 2009 R2.2 is compiled using Lazarus 0.9.29 and that version is recommended
+
+After Lazarus is installed follow the steps:
 
 1. Download QT FPC bindings version 1.71 from http://users.telenet.be/Jan.Van.hijfte/qtforfpc/fpcqt4.html and open it
 2. Extract qt4.pas to c:\lazarus\lcl\interfaces\qt (replace file when prompted). Of course assuming you have installes Lazarus in c:\lazarus. Linux users must also copy proper so library to system folder with libraries for current architecture and run ldconfig

@@ -1,10 +1,10 @@
 1. MAIN WINDOW
 
 1.1.
-- Balance trackbar should have popupmenu with following items: Left, Right, Center
+- Balance trackbar should have popupmenu with following items: Left, Right, Center (done)
 - Balance trackbar should have hint displaying current position (for instance -50% meaning 50% to the
-left or +50% meaning 50% to the right)
-- There should be equalizer
+left or +50% meaning 50% to the right) (done)
+- There should be equalizer (testing)
 - Equalizer should support 8-32 bands
 - Equalizer should always use 32 bands. In case that user decides to use for instance only 10 bands proper
 values should be calculated automatically
@@ -18,7 +18,7 @@ values should be calculated automatically
 options file but by using proper configuration panel
 
 1.4. MINI BROWSER
-- browser should send custom agent string
+- browser should send custom agent string (done)
 - user should be able to define proxy
 
 2. BOOKMARKS
@@ -38,5 +38,5 @@ options file but by using proper configuration panel
 
 6.2 OTHER UNITES
 - function TMPEGaudio.ReadFromFile(const FileName: WideString): Boolean; in MpegAudio needs testing and rewriting
-  (multiplatform, non windows code)
+  (multiplatform, non windows code) (done)
 
