@@ -3376,6 +3376,15 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
           OnResize = LyricsPanelResize
         end
+        object SuggList: TListBox
+          Left = 405
+          Height = 464
+          Top = 13
+          Width = 232
+          ItemHeight = 0
+          TabOrder = 3
+          TopIndex = -1
+        end
       end
     end
   end

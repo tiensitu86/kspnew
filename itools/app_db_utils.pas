@@ -40,7 +40,7 @@ type
     constructor Create; overload;
     constructor Create(AFileName: string; IM: Integer); overload;
     destructor Destroy; override;
-    function Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
+    function Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
     procedure Remove(Index: Integer);
     function GetItem(Index: Integer): TPlayNextSong;
     procedure ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
@@ -1022,6 +1022,7 @@ var
     i: integer;
   begin
     Result:=nil;
+    if x=nil then Exit;
     for i:=0 to x.ChildNodes.Count-1 do begin
       if UpperCase(x.ChildNodes.Item[i].NodeName)=UpperCase(Name) then begin
           hLog.Send('Node found: '+Name);
@@ -1035,15 +1036,30 @@ var
   procedure ProcessFeed;
   var
     XMLPls: TXMLDocument;
-    Main: TDOMNode;
+    Main, Node: TDOMNode;
     i: integer;
+    pls: TPlayList;
+    item: TPlayNextSong;
   begin
     ReadXMLFile(XMLPls, FileName);
     Main:=FindNode(XMLPls.DocumentElement, 'similartracks');
     hLog.Send('Found '+IntToStr(Main.ChildNodes.Count)+' similar tracks');
 
     for i:=0 to Main.ChildNodes.Count-1 do begin
+      Node:=Main.ChildNodes.Item[i]; //<track>
+      p.Tag.Title:=FindNode(Node, 'name').NodeValue;
+      p.Tag.Artist:=FindNode(FindNode(Node, 'artist'), 'name').NodeValue;
 
+      pls:=Self.ReturnFromArtist(FileName, p.Tag.Artist);
+
+      if Pls.FindTrack(p.Tag.Artist, '', p.Tag.Title) then begin
+        p:=Pls.GetTrack(p.Tag.Artist, '', p.Tag.Title, KSPMainWindow.Forbidden);
+        if p.FileName<>'' then begin
+          item.FileName:=p.FileName;
+          f.Add(item, Self);
+        end;
+      end;
+      pls.Free;
     end;
   end;
 
@@ -1113,7 +1129,7 @@ begin
   inherited Destroy;
 end;
 
-function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection; Insert: boolean): boolean;
+function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
 var
   T: TFavInfo;
   sql: string;
@@ -1143,15 +1159,6 @@ begin
   if Result then begin
       T:=TFavInfo.Create;
       T.Entry:=Entry;
-      if Insert then begin
-          sql:=Format('INSERT INTO vdjentries (FileName, I_NAME, Fav, PlayCount) values (''%s'', %s, %s, %s)',
-            [PrepareString(Pc), IntToStr(fIM), FloatToStr(Entry.Favourite, fm),
-            IntToStr(Entry.PlayCount)]);
-          try
-            Songs.ExecuteSQL(sql);
-          except
-          end;
-        end;
       inherited Add(T);
     end;
 end;

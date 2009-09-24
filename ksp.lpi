@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,13 +64,13 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="12" Y="5"/>
-        <TopLine Value="1"/>
+        <CursorPos X="20" Y="1074"/>
+        <TopLine Value="1062"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="27" Y="1001" ID="0"/>
-          <Item1 X="13" Y="2551" ID="1"/>
+          <Item0 X="27" Y="1002" ID="0"/>
+          <Item1 X="13" Y="2557" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -219,7 +219,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="1" Y="21"/>
         <TopLine Value="1"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="149"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -237,9 +237,11 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="29" Y="67"/>
-        <TopLine Value="47"/>
+        <CursorPos X="3" Y="372"/>
+        <TopLine Value="346"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -348,7 +350,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="1" Y="304"/>
         <TopLine Value="286"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
@@ -357,7 +359,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="23" Y="50"/>
         <TopLine Value="34"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -411,9 +413,11 @@
         <Filename Value="itools/medialib/MediaItems.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MediaItems"/>
-        <CursorPos X="3" Y="163"/>
-        <TopLine Value="145"/>
+        <CursorPos X="24" Y="84"/>
+        <TopLine Value="61"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit41>
       <Unit42>
@@ -509,9 +513,11 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="66" Y="52"/>
-        <TopLine Value="23"/>
+        <CursorPos X="24" Y="1023"/>
+        <TopLine Value="1007"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit52>
       <Unit53>
@@ -551,7 +557,7 @@
         <UnitName Value="OggVorbis"/>
         <CursorPos X="1" Y="81"/>
         <TopLine Value="57"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit57>
       <Unit58>
@@ -560,7 +566,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="1" Y="73"/>
         <TopLine Value="49"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="158"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -845,10 +851,10 @@
       </Unit97>
       <Unit98>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="22" Y="3"/>
+        <CursorPos X="24" Y="4"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="19"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
@@ -969,7 +975,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit114>
       <Unit115>
@@ -1093,7 +1099,7 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="3" Y="115"/>
         <TopLine Value="52"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="160"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit132>
       <Unit133>
@@ -1158,7 +1164,7 @@
         <UnitName Value="IdHTTP"/>
         <CursorPos X="3" Y="1984"/>
         <TopLine Value="1981"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="141"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit141>
       <Unit142>
@@ -1279,7 +1285,7 @@
         <UnitName Value="uxmpp"/>
         <CursorPos X="37" Y="1240"/>
         <TopLine Value="1216"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="126"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit157>
       <Unit158>
@@ -1327,7 +1333,7 @@
         <UnitName Value="blcksock"/>
         <CursorPos X="21" Y="142"/>
         <TopLine Value="124"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="125"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit163>
       <Unit164>
@@ -1455,7 +1461,7 @@
         <UnitName Value="KSPWebKit"/>
         <CursorPos X="39" Y="109"/>
         <TopLine Value="85"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="95"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit181>
       <Unit182>
@@ -1484,9 +1490,11 @@
         <Filename Value="itools/threads/suggfind.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="suggfind"/>
-        <CursorPos X="26" Y="86"/>
-        <TopLine Value="64"/>
-        <UsageCount Value="90"/>
+        <CursorPos X="29" Y="100"/>
+        <TopLine Value="79"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="91"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit185>
       <Unit186>
@@ -1501,7 +1509,7 @@
         <UnitName Value="Bass"/>
         <CursorPos X="20" Y="156"/>
         <TopLine Value="141"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="25"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit187>
       <Unit188>
@@ -1531,7 +1539,7 @@
         <UnitName Value="LuaObjects"/>
         <CursorPos X="30" Y="964"/>
         <TopLine Value="954"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="75"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit191>
       <Unit192>
@@ -1561,7 +1569,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="23" Y="17"/>
         <TopLine Value="1"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit195>
       <Unit196>
@@ -1818,7 +1826,7 @@
         <UsageCount Value="10"/>
       </Unit234>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="633" Column="44" TopLine="617"/>
@@ -1835,6 +1843,82 @@
         <Filename Value="main.pas"/>
         <Caret Line="5" Column="12" TopLine="1"/>
       </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="76" Column="17" TopLine="67"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pas"/>
+        <Caret Line="1758" Column="1" TopLine="1740"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="1822" Column="25" TopLine="1808"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="1827" Column="14" TopLine="1808"/>
+      </Position8>
+      <Position9>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="86" Column="25" TopLine="64"/>
+      </Position9>
+      <Position10>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1016" Column="16" TopLine="1012"/>
+      </Position10>
+      <Position11>
+        <Filename Value="itools/medialib/MediaItems.pas"/>
+        <Caret Line="73" Column="22" TopLine="61"/>
+      </Position11>
+      <Position12>
+        <Filename Value="itools/medialib/MediaItems.pas"/>
+        <Caret Line="1220" Column="27" TopLine="1213"/>
+      </Position12>
+      <Position13>
+        <Filename Value="itools/medialib/MediaItems.pas"/>
+        <Caret Line="79" Column="23" TopLine="66"/>
+      </Position13>
+      <Position14>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="86" Column="25" TopLine="64"/>
+      </Position14>
+      <Position15>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1051" Column="17" TopLine="1026"/>
+      </Position15>
+      <Position16>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1054" Column="17" TopLine="1021"/>
+      </Position16>
+      <Position17>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="324" Column="24" TopLine="313"/>
+      </Position17>
+      <Position18>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1054" Column="16" TopLine="1021"/>
+      </Position18>
+      <Position19>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1055" Column="22" TopLine="1021"/>
+      </Position19>
+      <Position20>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1059" Column="15" TopLine="1025"/>
+      </Position20>
+      <Position21>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1132" Column="26" TopLine="1121"/>
+      </Position21>
+      <Position22>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1059" Column="14" TopLine="1041"/>
+      </Position22>
+      <Position23>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1057" Column="23" TopLine="1041"/>
+      </Position23>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

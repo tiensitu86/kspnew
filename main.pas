@@ -18,7 +18,7 @@ uses
 
 type  TWebView = class(TObject)
   private
-    QWebPage               : QLCLWebPageH;
+    QWebPage             : QLCLWebPageH;
     NetworkAccessManager : QNetworkAccessManagerH;
     NetworkProxy : QNetworkProxyH;
     procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString);cdecl;
@@ -65,6 +65,7 @@ type  TWebView = class(TObject)
     Eq7: TTrackBar;
     Eq8: TTrackBar;
     Eq9: TTrackBar;
+    SuggList: TListBox;
     MenuItem26: TMenuItem;
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
@@ -1091,6 +1092,10 @@ begin
   EqualizerMenu.Enabled:=false;
   Button18.Enabled:=false;
 {$ENDIF}
+{$IFNDEF KSP_VDJ}
+  SuggList.Visible:=false;
+{$ENDIF}
+
 {$IFNDEF KSP_CURRENTLY_PLAYED}
   PrepareNonDevel;
 {$ENDIF}
@@ -1755,7 +1760,6 @@ var
 {$IFDEF WINDOWS}
     SHAddToRecentDocs(SHARD_PATH, pchar(CurrentFile));
 {$ENDIF}
-    //SuggThread:=TFindSugg.Create(false);
   end;
 
 begin
@@ -1824,7 +1828,9 @@ begin
 
 
       Self.TotalPlayCount:=Self.TotalPlayCount+1;
+{$IFDEF KSP_VDJ}
       TFindSugg.Create(false);
+{$ENDIF}
 
       PlayedPrevious:=true;
       lbPlaylist.Repaint;
