@@ -401,9 +401,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 21
+      Height = 22
       Top = 8
-      Width = 6
+      Width = 7
       ParentColor = False
     end
   end

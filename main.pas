@@ -2371,22 +2371,24 @@ var
   Pls:TXMLPlayList;
   bName: string;
   i: integer;
+  s: string;
 begin
   ForceDirectories(KSPDataFolder+'bookmarks');
 
-  for i:=0 to MaxInt do
-    if not FileExists(KSPDataFolder+'bookmarks\bookmark'+IntToStr(i)+'.kpl') then
+  for i:=0 to MaxInt do begin
+    s:=KSPDataFolder+'bookmarks\bookmark'+IntToStr(i)+'.kpl';
+    FixFolderNames(s);
+    if not FileExists(s) then
       begin
-        bName:=KSPDataFolder+'bookmarks\bookmark'+IntToStr(i)+'.kpl';
+        bName:=s;
         Break;
       end;
-
+  end;
   p.Name:=InputBox(SInputBookmarkCaption, SInputBookmarkPrompt, ExtractFileName(bName));
 
   if p.Name='' then Exit;
 
   Pls:=TXMLPlayList.create;
-  FixFolderNames(bName);
   Pls.SavePls(PlayList, bName, false);
   Pls.Free;
 

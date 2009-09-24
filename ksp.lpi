@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,13 +64,15 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="44" Y="633"/>
-        <TopLine Value="617"/>
+        <CursorPos X="1" Y="2392"/>
+        <TopLine Value="2368"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
           <Item0 X="27" Y="1001" ID="0"/>
-          <Item1 X="13" Y="2548" ID="1"/>
+          <Item1 X="13" Y="2550" ID="1"/>
         </Bookmarks>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -217,7 +219,7 @@
         <UnitName Value="MPEGInfoBox"/>
         <CursorPos X="1" Y="21"/>
         <TopLine Value="1"/>
-        <UsageCount Value="147"/>
+        <UsageCount Value="148"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -346,7 +348,7 @@
         <UnitName Value="APETag"/>
         <CursorPos X="1" Y="304"/>
         <TopLine Value="286"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
@@ -375,8 +377,8 @@
         <Filename Value="itools/kspstrings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPStrings"/>
-        <CursorPos X="22" Y="127"/>
-        <TopLine Value="95"/>
+        <CursorPos X="23" Y="20"/>
+        <TopLine Value="1"/>
         <UsageCount Value="201"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit37>
@@ -528,9 +530,9 @@
       <Unit55>
         <Filename Value="DOCS/TODO.TXT"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="51" Y="34"/>
-        <TopLine Value="6"/>
-        <EditorIndex Value="2"/>
+        <CursorPos X="40" Y="28"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
@@ -549,7 +551,7 @@
         <UnitName Value="OggVorbis"/>
         <CursorPos X="1" Y="81"/>
         <TopLine Value="57"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit57>
       <Unit58>
@@ -558,7 +560,7 @@
         <UnitName Value="MPEGaudio"/>
         <CursorPos X="1" Y="73"/>
         <TopLine Value="49"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="157"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
@@ -965,7 +967,7 @@
         <UnitName Value="WAVfile"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="54"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit114>
       <Unit115>
@@ -1089,7 +1091,7 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="3" Y="115"/>
         <TopLine Value="52"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="159"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit132>
       <Unit133>
@@ -1154,7 +1156,7 @@
         <UnitName Value="IdHTTP"/>
         <CursorPos X="3" Y="1984"/>
         <TopLine Value="1981"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="140"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit141>
       <Unit142>
@@ -1275,7 +1277,7 @@
         <UnitName Value="uxmpp"/>
         <CursorPos X="37" Y="1240"/>
         <TopLine Value="1216"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="125"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit157>
       <Unit158>
@@ -1323,7 +1325,7 @@
         <UnitName Value="blcksock"/>
         <CursorPos X="21" Y="142"/>
         <TopLine Value="124"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit163>
       <Unit164>
@@ -1451,7 +1453,7 @@
         <UnitName Value="KSPWebKit"/>
         <CursorPos X="39" Y="109"/>
         <TopLine Value="85"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit181>
       <Unit182>
@@ -1482,7 +1484,7 @@
         <UnitName Value="suggfind"/>
         <CursorPos X="26" Y="86"/>
         <TopLine Value="64"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="90"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit185>
       <Unit186>
@@ -1527,7 +1529,7 @@
         <UnitName Value="LuaObjects"/>
         <CursorPos X="30" Y="964"/>
         <TopLine Value="954"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit191>
       <Unit192>
@@ -1557,7 +1559,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="23" Y="17"/>
         <TopLine Value="1"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="73"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit195>
       <Unit196>
@@ -1695,7 +1697,7 @@
         <Filename Value="READ_FIRST.txt"/>
         <CursorPos X="55" Y="47"/>
         <TopLine Value="32"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
@@ -1798,7 +1800,12 @@
         <SyntaxHighlighter Value="Delphi"/>
       </Unit231>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="1" HistoryIndex="0">
+      <Position1>
+        <Filename Value="main.pas"/>
+        <Caret Line="633" Column="44" TopLine="617"/>
+      </Position1>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="8"/>
