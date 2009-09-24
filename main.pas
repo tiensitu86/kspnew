@@ -152,6 +152,7 @@ type  TWebView = class(TObject)
     DownloadTimer: TTimer;
     Basic: TTabSheet;
     EqualizerTab: TTabSheet;
+    Eq0: TTrackBar;
     TrayMenu: TPopupMenu;
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
@@ -321,6 +322,7 @@ type  TWebView = class(TObject)
     procedure TrayIcon1Click(Sender: TObject);
     procedure BookmarkClick(Sender: TObject);
     procedure SetupTreeViewClick(Sender: TObject);
+    procedure eq0Change(Sender: TObject);
   private
     { private declarations }
     CurrentFile: string;
@@ -375,7 +377,6 @@ type  TWebView = class(TObject)
     procedure UnloadPlugins;
     procedure EqClick(Sender: TObject);
     procedure LoadEqSetting(SettingNo: integer);
-    procedure eq0Change(Sender: TObject);
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -879,7 +880,7 @@ var
 begin
   for c := 0 to NumEQBands -1 do
   begin
-    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=EqList.GetItem(SettingNo).Vals[c];
+    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=Round(EqList.GetItem(SettingNo).Vals[c]*10);
 //    Eq0.Position:=EqList.GetItem(EqPresets.ItemIndex).Vals[c]
       //for i := 0 to MaxChannels -1 do DCEqualizer.Band[i,z] := 0 - EqList.GetItem(EqPresets.ItemIndex).Vals[c];
   end;
@@ -890,7 +891,8 @@ var
    BandNum : integer;
 begin
    BandNum := (Sender as TTrackBar).Tag;
-   KSPMainWindow.EQGains[BandNum] := (Sender as TTrackBar).Position / 2;
+   hLog.Send('Changing band: '+IntToStr((Sender as TTrackBar).Tag)+', New position: '+FloatToStr(((Sender as TTrackBar).Position - 150) / 10 + 15));
+   KSPMainWindow.EQGains[BandNum] := ((Sender as TTrackBar).Position - 150) / 10 + 15;
 
  //  BassPlayer1.EQGains := EQGains;
    Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
@@ -986,7 +988,11 @@ var
     T: TMenuItem;
     s: string;
   begin
+{$IFDEF WINDOWS}
     s:=ExtractFilePath(Application.ExeName)+'data\eq10';
+{$ELSE}
+    s:=KSP_APP_FOLDER+'data/eq10';
+{$ENDIF}
     FixFolderNames(s);
     hLog.Send('Loading equalizer');
     if FileExists(s) then

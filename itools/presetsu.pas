@@ -16,7 +16,7 @@ const
   );
 
 type TPreset = record
-        vals: array[0..NumEQBands -1] of ShortInt;
+        vals: array[0..NumEQBands -1] of Single;
         name: string;
         FromDefault: boolean;
       end;
@@ -107,12 +107,12 @@ begin
                 i:=Pos(',', sval);
                 if i=0 then Break;
                 s:=Copy(sval, 0, i-1);
-                Vals.vals[aposition]:=StrToInt(s);
+                Vals.vals[aposition]:=StrToFloat(s);
                 //ShowMessage(IntToStr(vals[aposition]));
                 System.Delete(sval,1, Pos(',', sval));
               end;
 
-              Vals.vals[NumEQBands-1]:=StrToInt(sval);
+              Vals.vals[NumEQBands-1]:=StrToFloat(sval);
            Vals.FromDefault:=SetAsFromDef;
 
             Add(Vals);
@@ -145,8 +145,8 @@ begin
     begin
       if GetItem(i).FromDefault then Continue;      
       str:=GetItem(i).name+'=';
-      for x := 0 to NumEQBands - 1 do
-        str:=str+IntToStr(GetItem(i).vals[x])+',';
+      //for x := 0 to NumEQBands - 1 do
+      //  str:=str+IntToStr(GetItem(i).vals[x])+',';
 
       System.Delete(str, Length(str), 1);
       s.Add(str);
