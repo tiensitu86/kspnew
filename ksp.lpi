@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="232">
+    <Units Count="235">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,13 +64,13 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="1" Y="2392"/>
-        <TopLine Value="2368"/>
+        <CursorPos X="12" Y="5"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
           <Item0 X="27" Y="1001" ID="0"/>
-          <Item1 X="13" Y="2550" ID="1"/>
+          <Item1 X="13" Y="2551" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -355,9 +355,11 @@
         <Filename Value="itools/platformdep/profilefunc.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="profilefunc"/>
-        <CursorPos X="24" Y="55"/>
-        <TopLine Value="36"/>
+        <CursorPos X="23" Y="50"/>
+        <TopLine Value="34"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit34>
       <Unit35>
@@ -532,9 +534,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="40" Y="28"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
       </Unit55>
       <Unit56>
@@ -845,9 +845,11 @@
       </Unit97>
       <Unit98>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="19" Y="7"/>
+        <CursorPos X="22" Y="3"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="19"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -1697,9 +1699,7 @@
         <Filename Value="READ_FIRST.txt"/>
         <CursorPos X="55" Y="47"/>
         <TopLine Value="32"/>
-        <EditorIndex Value="2"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
       </Unit216>
       <Unit217>
@@ -1799,12 +1799,42 @@
         <UsageCount Value="9"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit231>
+      <Unit232>
+        <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/finah.inc"/>
+        <CursorPos X="22" Y="25"/>
+        <TopLine Value="6"/>
+        <UsageCount Value="10"/>
+      </Unit232>
+      <Unit233>
+        <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysansi.inc"/>
+        <CursorPos X="19" Y="24"/>
+        <TopLine Value="3"/>
+        <UsageCount Value="10"/>
+      </Unit233>
+      <Unit234>
+        <Filename Value="../../../../../usr/share/fpcsrc/rtl/unix/sysunixh.inc"/>
+        <CursorPos X="3" Y="51"/>
+        <TopLine Value="22"/>
+        <UsageCount Value="10"/>
+      </Unit234>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="4" HistoryIndex="3">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="633" Column="44" TopLine="617"/>
       </Position1>
+      <Position2>
+        <Filename Value="main.pas"/>
+        <Caret Line="2380" Column="12" TopLine="2368"/>
+      </Position2>
+      <Position3>
+        <Filename Value="itools/platformdep/profilefunc.pas"/>
+        <Caret Line="50" Column="23" TopLine="34"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="5" Column="12" TopLine="1"/>
+      </Position4>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

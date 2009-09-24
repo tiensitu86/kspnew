@@ -2384,6 +2384,7 @@ begin
         Break;
       end;
   end;
+
   p.Name:=InputBox(SInputBookmarkCaption, SInputBookmarkPrompt, ExtractFileName(bName));
 
   if p.Name='' then Exit;
