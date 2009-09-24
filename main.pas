@@ -619,7 +619,9 @@ var
   s: TStringList;
 begin
   s:=TStringList.Create;
-  s.Text:=HTML;
+  if HTML<>'' then
+    s.Text:=HTML else
+    s.Text:=SDefaultLyricsMessage;
   s.SaveToFile(KSPDataFolder+'lyrics.html');
   s.Free;
   Self.LoadURL(KSPDataFolder+'lyrics.html');

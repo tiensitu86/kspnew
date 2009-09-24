@@ -124,6 +124,7 @@ SYear = 'Year';
 SAlbum = 'Album';
 SGenre = 'Genre';
 SDownloadProgress = '%s buffered';
+SDefaultLyricsMessage = 'Here put song lyrics...';
 
 implementation
 

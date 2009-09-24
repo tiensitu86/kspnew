@@ -49,6 +49,10 @@ msgstr ""
 msgid "KSP requires connection to database.\\nCurrently MySQL and Sqlite3 database is supported.\\nProvide valid database information in order to\\nconfigure application.\\n\\nIMPORTANT:\\n\\nKSP requires MySQL username that has FULL rights\\nto chosen database (create table, insert, delete, alter,\\nselect). Additionally if that user has create database\\nright it is possible thatKSP will create database if chosen\\ndatabase is missing. Otherwise you have to create it manually"
 msgstr ""
 
+#: kspstrings.sdefaultlyricsmessage
+msgid "Here put song lyrics..."
+msgstr ""
+
 #: kspstrings.sdownloadnow
 msgid "Download Now"
 msgstr ""
