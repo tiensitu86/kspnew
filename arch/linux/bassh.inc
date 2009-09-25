@@ -1,3 +1,79 @@
+// User file stream callback functions
+type
+FILECLOSEPROC = procedure(user: Pointer); cdecl;
+FILELENPROC = function(user: Pointer): QWORD; cdecl;
+FILEREADPROC = function(buffer: Pointer; length: DWORD; user: Pointer): DWORD; cdecl;
+FILESEEKPROC = function(offset: QWORD; user: Pointer): BOOL; cdecl;
+
+  BASS_FILEPROCS = record
+    close: FILECLOSEPROC;
+    length: FILELENPROC;
+    read: FILEREADPROC;
+    seek: FILESEEKPROC;
+  end;
+
+  STREAMPROC = function(handle: HSTREAM; buffer: Pointer; length: DWORD; user: Pointer): DWORD; cdecl;
+  {
+    User stream callback function. NOTE: A stream function should obviously be as
+    quick as possible, other streams (and MOD musics) can't be mixed until
+    it's finished.
+    handle : The stream that needs writing
+    buffer : Buffer to write the samples in
+    length : Number of bytes to write
+    user   : The 'user' parameter value given when calling BASS_StreamCreate
+    RETURN : Number of bytes written. Set the BASS_STREAMPROC_END flag to end
+             the stream.
+  }
+
+const
+  // special STREAMPROCs
+  STREAMPROC_DUMMY : STREAMPROC = nil;  // "dummy" stream
+  STREAMPROC_PUSH  : STREAMPROC = nil; // push stream
+
+type
+
+  DOWNLOADPROC = procedure(buffer: Pointer; length: DWORD; user: Pointer); cdecl;
+  {
+    Internet stream download callback function.
+    buffer : Buffer containing the downloaded data... NULL=end of download
+    length : Number of bytes in the buffer
+    user   : The 'user' parameter value given when calling BASS_StreamCreateURL
+  }
+
+  SYNCPROC = procedure(handle: HSYNC; channel, data: DWORD; user: Pointer); cdecl;
+  {
+    Sync callback function. NOTE: a sync callback function should be very
+    quick as other syncs cannot be processed until it has finished. If the
+    sync is a "mixtime" sync, then other streams and MOD musics can not be
+    mixed until it's finished either.
+    handle : The sync that has occured
+    channel: Channel that the sync occured in
+    data   : Additional data associated with the sync's occurance
+    user   : The 'user' parameter given when calling BASS_ChannelSetSync
+  }
+
+  DSPPROC = procedure(handle: HDSP; channel: DWORD; buffer: Pointer; length: DWORD; user: Pointer); cdecl;
+  {
+    DSP callback function. NOTE: A DSP function should obviously be as quick
+    as possible... other DSP functions, streams and MOD musics can not be
+    processed until it's finished.
+    handle : The DSP handle
+    channel: Channel that the DSP is being applied to
+    buffer : Buffer to apply the DSP to
+    length : Number of bytes in the buffer
+    user   : The 'user' parameter given when calling BASS_ChannelSetDSP
+  }
+
+  RECORDPROC = function(handle: HRECORD; buffer: Pointer; length: DWORD; user: Pointer): BOOL; cdecl;
+  {
+    Recording callback function.
+    handle : The recording handle
+    buffer : Buffer containing the recorded sample data
+    length : Number of bytes
+    user   : The 'user' parameter value given when calling BASS_RecordStart
+    RETURN : TRUE = continue recording, FALSE = stop
+  }
+
 function BASS_SetConfig(option, value: DWORD): BOOL; cdecl; external bassdll;
 function BASS_GetConfig(option: DWORD): DWORD; cdecl; external bassdll;
 function BASS_SetConfigPtr(option: DWORD; value: Pointer): BOOL; cdecl; external bassdll;

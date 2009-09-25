@@ -1087,11 +1087,14 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
-{$IFDEF KSP_EQUALIZER}  LoadThings;
-{$ELSE}
-  EqualizerMenu.Enabled:=false;
-  Button18.Enabled:=false;
-{$ENDIF}
+//{$IFDEF KSP_EQUALIZER}
+
+  LoadThings;
+
+//{$ELSE}
+//  EqualizerMenu.Enabled:=false;
+//  Button18.Enabled:=false;
+//{$ENDIF}
 {$IFNDEF KSP_VDJ}
   SuggList.Visible:=false;
 {$ENDIF}

@@ -31,6 +31,10 @@ const
 {$ENDIF}
 
 const
+  bassdll = BASS_DLL;
+
+
+const
   BASSVERSION = $204;             // API version
   BASSVERSIONTEXT = '2.4';
 
@@ -504,18 +508,6 @@ type
     z: FLOAT;           // +=front, -=behind
   end;
 
-  // User file stream callback functions
-  FILECLOSEPROC = procedure(user: Pointer); stdcall;
-  FILELENPROC = function(user: Pointer): QWORD; stdcall;
-  FILEREADPROC = function(buffer: Pointer; length: DWORD; user: Pointer): DWORD; stdcall;
-  FILESEEKPROC = function(offset: QWORD; user: Pointer): BOOL; stdcall;
-
-  BASS_FILEPROCS = record
-    close: FILECLOSEPROC;
-    length: FILELENPROC;
-    read: FILEREADPROC;
-    seek: FILESEEKPROC;
-  end;
 
   // ID3v1 tag structure
   TAG_ID3 = record
@@ -621,77 +613,15 @@ type
   end;
 
   // callback function types
-  STREAMPROC = function(handle: HSTREAM; buffer: Pointer; length: DWORD; user: Pointer): DWORD; stdcall;
-  {
-    User stream callback function. NOTE: A stream function should obviously be as
-    quick as possible, other streams (and MOD musics) can't be mixed until
-    it's finished.
-    handle : The stream that needs writing
-    buffer : Buffer to write the samples in
-    length : Number of bytes to write
-    user   : The 'user' parameter value given when calling BASS_StreamCreate
-    RETURN : Number of bytes written. Set the BASS_STREAMPROC_END flag to end
-             the stream.
-  }
 
-const
-  // special STREAMPROCs
-  STREAMPROC_DUMMY : STREAMPROC = nil;  // "dummy" stream
-  STREAMPROC_PUSH  : STREAMPROC = nil; // push stream
-
-type
-
-  DOWNLOADPROC = procedure(buffer: Pointer; length: DWORD; user: Pointer); stdcall;
-  {
-    Internet stream download callback function.
-    buffer : Buffer containing the downloaded data... NULL=end of download
-    length : Number of bytes in the buffer
-    user   : The 'user' parameter value given when calling BASS_StreamCreateURL
-  }
-
-  SYNCPROC = procedure(handle: HSYNC; channel, data: DWORD; user: Pointer); stdcall;
-  {
-    Sync callback function. NOTE: a sync callback function should be very
-    quick as other syncs cannot be processed until it has finished. If the
-    sync is a "mixtime" sync, then other streams and MOD musics can not be
-    mixed until it's finished either.
-    handle : The sync that has occured
-    channel: Channel that the sync occured in
-    data   : Additional data associated with the sync's occurance
-    user   : The 'user' parameter given when calling BASS_ChannelSetSync
-  }
-
-  DSPPROC = procedure(handle: HDSP; channel: DWORD; buffer: Pointer; length: DWORD; user: Pointer); stdcall;
-  {
-    DSP callback function. NOTE: A DSP function should obviously be as quick
-    as possible... other DSP functions, streams and MOD musics can not be
-    processed until it's finished.
-    handle : The DSP handle
-    channel: Channel that the DSP is being applied to
-    buffer : Buffer to apply the DSP to
-    length : Number of bytes in the buffer
-    user   : The 'user' parameter given when calling BASS_ChannelSetDSP
-  }
-
-  RECORDPROC = function(handle: HRECORD; buffer: Pointer; length: DWORD; user: Pointer): BOOL; stdcall;
-  {
-    Recording callback function.
-    handle : The recording handle
-    buffer : Buffer containing the recorded sample data
-    length : Number of bytes
-    user   : The 'user' parameter value given when calling BASS_RecordStart
-    RETURN : TRUE = continue recording, FALSE = stop
-  }
 
 
 // Functions
-const
-  bassdll = BASS_DLL;
 
 {$IFDEF WINDOWS}
 {$I ..\..\arch\windows\bassh.inc}
 {$ELSE}
-{$I ..\..\arch\linux\bassh.inc}
+{$I ../../arch/linux/bassh.inc}
 {$ENDIF}
 
 

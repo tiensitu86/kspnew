@@ -739,7 +739,7 @@ end;
 // -------------------------------- Event Handlers ------------------------------
 
 // This procedure is called when metadata are received in a Shoutcast stream.
-procedure MetaSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
+procedure MetaSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 var
    TagP : pAnsiChar;
    tmpStr, StreamTitle : ansistring;
@@ -807,7 +807,7 @@ end;
 
 
 // This procedure is called when a stream reaches the end.
-procedure PlayEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
+procedure PlayEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 var
    f: PtrInt;
 begin
@@ -815,7 +815,7 @@ begin
 end;
 
 // This procedure is called when downloading of an URL stream is done.
-procedure DownloadSync(SyncHandle : HSYNC; Channel, data: DWORD; user : pointer); stdcall;
+procedure DownloadSync(SyncHandle : HSYNC; Channel, data: DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 var
    f: PtrInt;
 begin
@@ -823,21 +823,21 @@ begin
 end;
 
 // This procedure is called when a lyric event is encountered.
-procedure LyricSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
+procedure LyricSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 begin
 
 end;
 
 // This procedure is called when an attribute slide has ended
 // * Added at Ver 2.01
-procedure SlideEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); stdcall;
+procedure SlideEndSync(SyncHandle : HSYNC; Channel, data : DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 begin
 
 end;
 
 // This procedure is called before the BASS_MIDI_StreamCreateURL call returns.
 // This procedure is used to get HTTP or ICY tags from the server.
-procedure DownProc(buffer : pchar; length : DWORD; user : pointer); stdcall;
+procedure DownProc(buffer : pchar; length : DWORD; user : pointer); {$IFDEF WINDOWS}stdcall{$ELSE}cdecl{$ENDIF};
 var
    bufferStr : string;
    p : pointer;
