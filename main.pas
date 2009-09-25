@@ -386,7 +386,7 @@ type  TWebView = class(TObject)
     procedure LoadPlugins;
     procedure UnloadPlugins;
     procedure EqClick(Sender: TObject);
-    procedure LoadEqSetting(SettingNo: integer);
+    procedure LoadEqSetting(SettingNo: integer = -1);
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -882,13 +882,16 @@ begin
   LoadEqSetting(TMenuItem(Sender).Tag);
 end;
 
-procedure TKSPMainWindow.LoadEqSetting(SettingNo: integer);
+procedure TKSPMainWindow.LoadEqSetting(SettingNo: integer = -1);
 var
   c: integer;
 begin
   for c := 0 to NumEQBands -1 do
   begin
-    TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=Round(EqList.GetItem(SettingNo).Vals[c]*10);
+    if SettingNo>-1 then
+      TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=Round(EqList.GetItem(SettingNo).Vals[c]*10)
+    else
+      TTrackBar(Self.FindComponent('Eq'+IntToStr(c))).Position:=Round(KSPMainWindow.EQGains[c]*10);
 //    Eq0.Position:=EqList.GetItem(EqPresets.ItemIndex).Vals[c]
       //for i := 0 to MaxChannels -1 do DCEqualizer.Band[i,z] := 0 - EqList.GetItem(EqPresets.ItemIndex).Vals[c];
   end;
@@ -899,8 +902,8 @@ var
    BandNum : integer;
 begin
    BandNum := (Sender as TTrackBar).Tag;
-   hLog.Send('Changing band: '+IntToStr((Sender as TTrackBar).Tag)+', New position: '+FloatToStr(((Sender as TTrackBar).Position - 150) / 10 + 15));
-   KSPMainWindow.EQGains[BandNum] := ((Sender as TTrackBar).Position - 150) / 10 + 15;
+   hLog.Send('Changing band: '+IntToStr((Sender as TTrackBar).Tag)+', New position: '+FloatToStr(((Sender as TTrackBar).Position) / 10));
+   KSPMainWindow.EQGains[BandNum] := ((Sender as TTrackBar).Position) / 10;
 
  //  BassPlayer1.EQGains := EQGains;
    Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
@@ -932,9 +935,6 @@ var
     OSName:=GetOSVersion;
     hLog.Send('Operating system: '+OSName);
     AudioControls.ActivePage:=Basic;
-{$IFDEF KSP_EQUALIZER}
-    Player.SoundEffects:=Player.SoundEffects+[Equalizer];
-{$ENDIF}
     WaitForB:=0;
 
     //KSPMainWindow.TB.Position:=Player.Volume;
@@ -3027,28 +3027,17 @@ var
   procedure LoadEqualizer;
   begin
     KSPSetupStates.KSPOptions.Equalizer.Enabled:=XMLFile.ReadBool('Equalizer', 'Enabled', false);
-    KSPSetupStates.KSPOptions.Equalizer.e0:=XMLFile.ReadInteger('Equalizer', 'eq0', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e1:=XMLFile.ReadInteger('Equalizer', 'eq1', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e2:=XMLFile.ReadInteger('Equalizer', 'eq2', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e3:=XMLFile.ReadInteger('Equalizer', 'eq3', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e4:=XMLFile.ReadInteger('Equalizer', 'eq4', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e5:=XMLFile.ReadInteger('Equalizer', 'eq5', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e6:=XMLFile.ReadInteger('Equalizer', 'eq6', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e7:=XMLFile.ReadInteger('Equalizer', 'eq7', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e8:=XMLFile.ReadInteger('Equalizer', 'eq8', 0);
-    KSPSetupStates.KSPOptions.Equalizer.e9:=XMLFile.ReadInteger('Equalizer', 'eq9', 0);
+    KSPMainWindow.EQGains[0]:=XMLFile.ReadFloat('Equalizer', 'eq0', 0);
+    KSPMainWindow.EQGains[1]:=XMLFile.ReadFloat('Equalizer', 'eq1', 0);
+    KSPMainWindow.EQGains[2]:=XMLFile.ReadFloat('Equalizer', 'eq2', 0);
+    KSPMainWindow.EQGains[3]:=XMLFile.ReadFloat('Equalizer', 'eq3', 0);
+    KSPMainWindow.EQGains[4]:=XMLFile.ReadFloat('Equalizer', 'eq4', 0);
+    KSPMainWindow.EQGains[5]:=XMLFile.ReadFloat('Equalizer', 'eq5', 0);
+    KSPMainWindow.EQGains[6]:=XMLFile.ReadFloat('Equalizer', 'eq6', 0);
+    KSPMainWindow.EQGains[7]:=XMLFile.ReadFloat('Equalizer', 'eq7', 0);
+    KSPMainWindow.EQGains[8]:=XMLFile.ReadFloat('Equalizer', 'eq8', 0);
+    KSPMainWindow.EQGains[9]:=XMLFile.ReadFloat('Equalizer', 'eq9', 0);
     KSPSetupStates.KSPOptions.Equalizer.Visible:=XMLFile.ReadBool('Equalizer', 'Visible', false);
-
-    KSPMainWindow.EQGains[0] := KSPSetupStates.KSPOptions.Equalizer.e0 / 2;
-    KSPMainWindow.EQGains[1] := KSPSetupStates.KSPOptions.Equalizer.e1 / 2;
-    KSPMainWindow.EQGains[2] := KSPSetupStates.KSPOptions.Equalizer.e2 / 2;
-    KSPMainWindow.EQGains[3] := KSPSetupStates.KSPOptions.Equalizer.e3 / 2;
-    KSPMainWindow.EQGains[4] := KSPSetupStates.KSPOptions.Equalizer.e4 / 2;
-    KSPMainWindow.EQGains[5] := KSPSetupStates.KSPOptions.Equalizer.e5 / 2;
-    KSPMainWindow.EQGains[6] := KSPSetupStates.KSPOptions.Equalizer.e6 / 2;
-    KSPMainWindow.EQGains[7] := KSPSetupStates.KSPOptions.Equalizer.e7 / 2;
-    KSPMainWindow.EQGains[8] := KSPSetupStates.KSPOptions.Equalizer.e8 / 2;
-    KSPMainWindow.EQGains[9] := KSPSetupStates.KSPOptions.Equalizer.e9 / 2;
 
     Player.SetAEQGain(0, KSPMainWindow.EQGains[0]);
     Player.SetAEQGain(1, KSPMainWindow.EQGains[1]);
@@ -3060,6 +3049,8 @@ var
     Player.SetAEQGain(7, KSPMainWindow.EQGains[7]);
     Player.SetAEQGain(8, KSPMainWindow.EQGains[8]);
     Player.SetAEQGain(9, KSPMainWindow.EQGains[9]);
+
+    LoadEqSetting;
 
     if KSPSetupStates.KSPOptions.Equalizer.Enabled then
       Player.SoundEffects := Player.SoundEffects + [Equalizer]
@@ -3157,23 +3148,22 @@ var
   begin
     XMLFile.EraseSection('Equalizer');
     XMLFile.WriteBool('Equalizer', 'Enabled', Self.KSPSetupStates.KSPOptions.Equalizer.Enabled);
-    XMLFile.WriteInteger('Equalizer', 'eq0', Self.KSPSetupStates.KSPOptions.Equalizer.e0);
-    XMLFile.WriteInteger('Equalizer', 'eq1', Self.KSPSetupStates.KSPOptions.Equalizer.e1);
-    XMLFile.WriteInteger('Equalizer', 'eq2', Self.KSPSetupStates.KSPOptions.Equalizer.e2);
-    XMLFile.WriteInteger('Equalizer', 'eq3', Self.KSPSetupStates.KSPOptions.Equalizer.e3);
-    XMLFile.WriteInteger('Equalizer', 'eq4', Self.KSPSetupStates.KSPOptions.Equalizer.e4);
-    XMLFile.WriteInteger('Equalizer', 'eq5', Self.KSPSetupStates.KSPOptions.Equalizer.e5);
-    XMLFile.WriteInteger('Equalizer', 'eq6', Self.KSPSetupStates.KSPOptions.Equalizer.e6);
-    XMLFile.WriteInteger('Equalizer', 'eq7', Self.KSPSetupStates.KSPOptions.Equalizer.e7);
-    XMLFile.WriteInteger('Equalizer', 'eq8', Self.KSPSetupStates.KSPOptions.Equalizer.e8);
-    XMLFile.WriteInteger('Equalizer', 'eq9', Self.KSPSetupStates.KSPOptions.Equalizer.e9);
+    XMLFile.WriteFloat('Equalizer', 'eq0', KSPMainWindow.EQGains[0]);
+    XMLFile.WriteFloat('Equalizer', 'eq1', KSPMainWindow.EQGains[1]);
+    XMLFile.WriteFloat('Equalizer', 'eq2', KSPMainWindow.EQGains[2]);
+    XMLFile.WriteFloat('Equalizer', 'eq3', KSPMainWindow.EQGains[3]);
+    XMLFile.WriteFloat('Equalizer', 'eq4', KSPMainWindow.EQGains[4]);
+    XMLFile.WriteFloat('Equalizer', 'eq5', KSPMainWindow.EQGains[5]);
+    XMLFile.WriteFloat('Equalizer', 'eq6', KSPMainWindow.EQGains[6]);
+    XMLFile.WriteFloat('Equalizer', 'eq7', KSPMainWindow.EQGains[7]);
+    XMLFile.WriteFloat('Equalizer', 'eq8', KSPMainWindow.EQGains[8]);
+    XMLFile.WriteFloat('Equalizer', 'eq9', KSPMainWindow.EQGains[9]);
     XMLFile.WriteBool('Equalizer', 'Visible', KSPSetupStates.KSPOptions.Equalizer.Visible);
   end;
 
 begin
   XMLFile:=TIniFile.Create(SetupFileName);
   SaveVars;
-  //SaveDocked;
   SaveState;
   SaveFormat;
   SaveEqualizer;

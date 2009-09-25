@@ -40,7 +40,6 @@ type
 
   TKSPEqualizer = packed record
     Enabled: Boolean;
-    e0, e1, e2, e3, e4, e5, e6, e7, e8, e9: integer;
     Visible: boolean;
   end;
 
