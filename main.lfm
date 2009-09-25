@@ -401,9 +401,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 18
+      Height = 19
       Top = 8
-      Width = 3
+      Width = 4
       ParentColor = False
     end
   end
@@ -3224,11 +3224,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 439
+                ClientHeight = 414
                 ClientWidth = 698
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 439
+                  Height = 414
                   Top = 0
                   Width = 232
                   Align = alLeft

@@ -649,9 +649,9 @@ begin
     begin
     w:=Application.Title+'/'+KSPVersion2;
 {$IFDEF WINDOWS}
-    w:=w+' (compatible; MSIE 7.0; '+OSName+')';
+    w:=w+' (Windows; '+OSName+')';
 {$ELSE}
-    w:=w+' (X11; '+OSName+'; U; pl, en_US)';
+    w:=w+' (X11; '+OSName+')';
 {$ENDIF}
     Agent^:=w;
     end

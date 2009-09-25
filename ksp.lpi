@@ -64,8 +64,8 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="19" Y="2076"/>
-        <TopLine Value="2059"/>
+        <CursorPos X="57" Y="648"/>
+        <TopLine Value="633"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
