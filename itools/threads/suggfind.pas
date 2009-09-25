@@ -9,7 +9,7 @@ unit suggfind;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages;
+  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages, FileUtil;
 
 type
   TFindSugg = class(TThread)
@@ -38,27 +38,34 @@ uses Playlists, Main, app_db_utils, KSPConstsVars, Math,
 
 { TFindSugg }
 
+function IsForbidden(name: string): boolean;
+var
+  x: integer;
+begin
+  Result:=false;
+  for x:=0 to KSPMainWindow.Forbidden.Count-1 do begin
+    Result:=Result or (CompareFilenames(name, KSPMainWindow.Forbidden.Strings[x])=0);
+  end;
+end;
+
 procedure TFindSugg.Execute;
 var
   Fav: TFavouriteList;
   p: TPLEntry;
   i: integer;
-//  Sup: TSupportedBy;
-//  StreamInfo2 : TStreamInfo;
-//  PNum: Integer;
-//  PName: string;
   Max: integer;
-//  Pc: TPathChar;
+  cfile: string;
 begin
   { Place thread code here }
       Self.Priority:=tpLower;
+      cfile:=KSPMainWindow.GetCurrentFile;
 
 
 //      StrPCopy(Pc, KSPMainWindow.GetCurrentFile);
 
       hLog.Send('Reading info...');
 
-      AllSongs.OpenQuery(Format(SelectGetItem, [PrepareString(KSPMainWindow.GetCurrentFile)]));
+      AllSongs.OpenQuery(Format(SelectGetItem, [PrepareString(cfile)]));
       i:=AllSongs.ReturnRecordsCount;
       if i>0 then p:=AllSongs.ReadEntry;
       AllSongs.CloseQuery;
@@ -83,7 +90,7 @@ begin
 
 //      Fav:=TFavouriteList.Create;
 
-      fav:=AllSongs.GetFavList(KSPMainWindow.GetCurrentFile);
+      fav:=AllSongs.GetFavList(cfile);
 
       KSPMainWindow.SuggList.Clear;
 
@@ -92,16 +99,6 @@ begin
       end;
 
       hLog.Send('Fav list fetched...');
-      //SuggestionList.Clear;
-
-      //if we are not looking for items from chosen genre then GID should be -1
-      //we must ensure that it is
-      //SortMediaFavList(fav, p, KSPMainWindow.Forbidden);
-      hLog.Send('Fav list sorted...');
-
-      fav.Free;
-
-      hLog.Send('Suggestion search done');
 
       if (KSPMainWindow.UseVDJ) then begin
 
@@ -118,12 +115,22 @@ begin
 
           hLog.Send('VDJ: Looking for '+IntToStr(Max)+' new songs');
 
-          //GetNextSongs(Max, KSPMainWindow.VDJ.Forbidden, KSPMainWindow.VDJ.Names,
-          //  KSPMainWindow.VDJ.Rare, KSPMainWindow.KSPPlaylist);
+          KSPMainWindow.Forbidden.Add(cfile);
+
+          for i:=0 to fav.Count-1 do
+            if not IsForbidden(fav.GetItem(i).FileName) then begin
+              hLog.Send('VDJ: adding file: '+fav.GetItem(i).FileName);
+              KSPMainWindow.AddToPlayList(fav.GetItem(i).FileName);
+            end;
+
+
         end;
-  hLog.Send('Preparing to post message...');
-  //    while KSPMainWindow.Forbidden.Count>KSPMainWindow.VDJ.ForbiddenCount do
-  //      KSPMainWindow.VDJ.Forbidden.Delete(0);
+
+      fav.Free;
+      hLog.Send('Preparing to post message...');
+      while KSPMainWindow.Forbidden.Count>100 do
+        KSPMainWindow.Forbidden.Delete(0);
+
 
   //PostMessage(KSPMainWindow.Handle, WM_SUGGESTIONSFOUND, 0, 0);
 
