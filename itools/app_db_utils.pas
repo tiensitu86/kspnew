@@ -492,7 +492,6 @@ end;
 function TAppDBConnection.CloseQuery: integer;
 begin
   if not Database.SQLQuery.Active then Result:=-1 else begin
-    hLog.Send('Closing query');
     Database.SQLQuery.Close;
     Result:=0;
     Dec(KSPDatabaseThreadsInternal);

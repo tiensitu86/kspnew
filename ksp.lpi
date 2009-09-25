@@ -81,9 +81,7 @@
         <UnitName Value="BASSPlayer"/>
         <CursorPos X="1" Y="1824"/>
         <TopLine Value="1791"/>
-        <EditorIndex Value="6"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -241,9 +239,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="3" Y="228"/>
         <TopLine Value="787"/>
-        <EditorIndex Value="8"/>
         <UsageCount Value="210"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -261,9 +257,7 @@
         <UnitName Value="ID3Mgmnt"/>
         <CursorPos X="42" Y="29"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
         <UsageCount Value="210"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
@@ -272,9 +266,7 @@
         <UnitName Value="FileSupport"/>
         <CursorPos X="25" Y="87"/>
         <TopLine Value="77"/>
-        <EditorIndex Value="5"/>
         <UsageCount Value="210"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
@@ -320,9 +312,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="3" Y="302"/>
         <TopLine Value="300"/>
-        <EditorIndex Value="7"/>
         <UsageCount Value="209"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -367,7 +357,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="25" Y="65"/>
         <TopLine Value="34"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -519,8 +509,8 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="42" Y="1060"/>
-        <TopLine Value="1036"/>
+        <CursorPos X="24" Y="495"/>
+        <TopLine Value="477"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -859,9 +849,7 @@
         <Filename Value="ksp_version.inc"/>
         <CursorPos X="24" Y="4"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
         <UsageCount Value="22"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -1834,8 +1822,8 @@
       <Unit235>
         <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-db/src/base/db.pas"/>
         <UnitName Value="db"/>
-        <CursorPos X="19" Y="1196"/>
-        <TopLine Value="1178"/>
+        <CursorPos X="15" Y="1276"/>
+        <TopLine Value="1258"/>
         <UsageCount Value="12"/>
       </Unit235>
       <Unit236>
@@ -1845,18 +1833,18 @@
         <UsageCount Value="10"/>
       </Unit236>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="1758" Column="1" TopLine="1740"/>
+        <Caret Line="1827" Column="14" TopLine="1808"/>
       </Position1>
       <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="1822" Column="25" TopLine="1808"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="86" Column="25" TopLine="64"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="1827" Column="14" TopLine="1808"/>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1016" Column="16" TopLine="1012"/>
       </Position3>
       <Position4>
         <Filename Value="itools/threads/suggfind.pas"/>
@@ -1864,108 +1852,84 @@
       </Position4>
       <Position5>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1016" Column="16" TopLine="1012"/>
+        <Caret Line="1051" Column="17" TopLine="1026"/>
       </Position5>
       <Position6>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="86" Column="25" TopLine="64"/>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1054" Column="17" TopLine="1021"/>
       </Position6>
       <Position7>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1051" Column="17" TopLine="1026"/>
+        <Caret Line="1054" Column="16" TopLine="1021"/>
       </Position7>
       <Position8>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1054" Column="17" TopLine="1021"/>
+        <Caret Line="1055" Column="22" TopLine="1021"/>
       </Position8>
       <Position9>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="324" Column="24" TopLine="313"/>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1059" Column="15" TopLine="1025"/>
       </Position9>
       <Position10>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1054" Column="16" TopLine="1021"/>
+        <Caret Line="1132" Column="26" TopLine="1121"/>
       </Position10>
       <Position11>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1055" Column="22" TopLine="1021"/>
+        <Caret Line="1059" Column="14" TopLine="1041"/>
       </Position11>
       <Position12>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1059" Column="15" TopLine="1025"/>
+        <Caret Line="1057" Column="23" TopLine="1041"/>
       </Position12>
       <Position13>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1132" Column="26" TopLine="1121"/>
+        <Caret Line="1077" Column="23" TopLine="1062"/>
       </Position13>
       <Position14>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1059" Column="14" TopLine="1041"/>
+        <Caret Line="1099" Column="21" TopLine="1084"/>
       </Position14>
       <Position15>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1057" Column="23" TopLine="1041"/>
+        <Caret Line="518" Column="28" TopLine="513"/>
       </Position15>
       <Position16>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="25" Column="26" TopLine="1"/>
+        <Filename Value="itools/app_db_utils.pas"/>
+        <Caret Line="1078" Column="27" TopLine="1056"/>
       </Position16>
       <Position17>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1077" Column="23" TopLine="1062"/>
+        <Caret Line="1081" Column="34" TopLine="1030"/>
       </Position17>
       <Position18>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1099" Column="21" TopLine="1084"/>
+        <Caret Line="1059" Column="23" TopLine="1042"/>
       </Position18>
       <Position19>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="518" Column="28" TopLine="513"/>
+        <Caret Line="1062" Column="21" TopLine="1038"/>
       </Position19>
       <Position20>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1078" Column="27" TopLine="1056"/>
+        <Caret Line="1057" Column="26" TopLine="1038"/>
       </Position20>
       <Position21>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1081" Column="34" TopLine="1030"/>
+        <Caret Line="905" Column="22" TopLine="887"/>
       </Position21>
       <Position22>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1059" Column="23" TopLine="1042"/>
+        <Caret Line="902" Column="41" TopLine="887"/>
       </Position22>
       <Position23>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1062" Column="21" TopLine="1038"/>
+        <Caret Line="1055" Column="54" TopLine="1036"/>
       </Position23>
       <Position24>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1057" Column="26" TopLine="1038"/>
+        <Caret Line="495" Column="24" TopLine="477"/>
       </Position24>
-      <Position25>
-        <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="905" Column="22" TopLine="887"/>
-      </Position25>
-      <Position26>
-        <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="902" Column="41" TopLine="887"/>
-      </Position26>
-      <Position27>
-        <Filename Value="itools/id3mgmnt.pas"/>
-        <Caret Line="58" Column="16" TopLine="53"/>
-      </Position27>
-      <Position28>
-        <Filename Value="itools/id3mgmnt.pas"/>
-        <Caret Line="220" Column="19" TopLine="202"/>
-      </Position28>
-      <Position29>
-        <Filename Value="itools/filesupport.pas"/>
-        <Caret Line="87" Column="25" TopLine="77"/>
-      </Position29>
-      <Position30>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="2161" Column="23" TopLine="2148"/>
-      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
