@@ -4,7 +4,7 @@ interface
 
 uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
   DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles, DOM,
-  XMLRead;
+  XMLRead, FileUtil;
 
 {This unit includes all playlist management clases and structures}
 
@@ -43,6 +43,7 @@ type
     function FindTrack(Artist, Album, Title: string): boolean;
     function GetTrack(Artist, Album, Title: string; ForbList: TStringList): TPLEntry;
     function ArtistInPlaylist(Artist: string): boolean;
+    function ContainsFileName(fname: string): boolean;
   end;
 
 {  TPlayLists = class(TList)
@@ -93,7 +94,7 @@ end;
 
 function CompareFileName(Item1, Item2: Pointer): Integer;
 begin
-  Result := CompareText(ExtractFileName(TPLEntryInfo(Item1).Entry.FileName),
+  Result := CompareFileNames(ExtractFileName(TPLEntryInfo(Item1).Entry.FileName),
     ExtractFileName(TPLEntryInfo(Item2).Entry.FileName));
 end;
 
@@ -289,6 +290,16 @@ begin
       if UpperCase(GetItem(i).Tag.Artist)=UpperCase(Artist) then
         Result:=true;
     end;
+end;
+
+function TPlayList.ContainsFileName(fname: string): boolean;
+var
+  x: integer;
+begin
+  Result:=false;
+  for x:=0 to Count-1 do begin
+    Result:=Result or (CompareFilenames(fname, GetItem(x)^.FileName)=0);
+  end;
 end;
 
 function TPlayList.FindAlbum(Artist, Album: string): TPlaylist;

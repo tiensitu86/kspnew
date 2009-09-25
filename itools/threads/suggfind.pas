@@ -46,6 +46,7 @@ begin
   for x:=0 to KSPMainWindow.Forbidden.Count-1 do begin
     Result:=Result or (CompareFilenames(name, KSPMainWindow.Forbidden.Strings[x])=0);
   end;
+  Result:=Result or KSPMainWindow.Playlist.ContainsFileName(name);
 end;
 
 procedure TFindSugg.Execute;
