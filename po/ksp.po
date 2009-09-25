@@ -690,6 +690,10 @@ msgstr ""
 msgid "Load On Startup"
 msgstr ""
 
+#: TKSPMAINWINDOW.PLSFORMAT.EDITLABEL.CAPTION
+msgid "Playlist Formatting:"
+msgstr ""
+
 #: TKSPMAINWINDOW.PLUGINSSETUPPAGE.CAPTION
 msgid "PluginsSetupPage"
 msgstr ""
@@ -752,6 +756,10 @@ msgstr ""
 #: TKSPMAINWINDOW.TABSHEET5.CAPTION
 msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
 msgid "Internet Media"
+msgstr ""
+
+#: TKSPMAINWINDOW.USEEQ.CAPTION
+msgid "Use Equalizer"
 msgstr ""
 
 #: TKSPMAINWINDOW.VDJMENU.CAPTION

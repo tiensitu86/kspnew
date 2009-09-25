@@ -64,13 +64,13 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="1" Y="348"/>
-        <TopLine Value="340"/>
+        <CursorPos X="34" Y="1203"/>
+        <TopLine Value="1196"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="20" Y="3076" ID="0"/>
-          <Item1 X="35" Y="898" ID="1"/>
+          <Item0 X="20" Y="3088" ID="0"/>
+          <Item1 X="35" Y="900" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -310,7 +310,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="24" Y="37"/>
+        <CursorPos X="14" Y="36"/>
         <TopLine Value="23"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
@@ -1893,123 +1893,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="398" Column="21" TopLine="379"/>
+        <Caret Line="940" Column="18" TopLine="920"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="400" Column="21" TopLine="379"/>
+        <Caret Line="941" Column="18" TopLine="920"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="1252" Column="10" TopLine="1249"/>
+        <Filename Value="itools/threads/MainWindowStartupThreads.pas"/>
+        <Caret Line="42" Column="13" TopLine="23"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="2961" Column="66" TopLine="2944"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="101" Column="19" TopLine="83"/>
       </Position4>
       <Position5>
-        <Filename Value="main.pas"/>
-        <Caret Line="1102" Column="28" TopLine="1087"/>
+        <Filename Value="itools/medialib/MediaItems.pas"/>
+        <Caret Line="84" Column="24" TopLine="61"/>
       </Position5>
       <Position6>
-        <Filename Value="main.pas"/>
-        <Caret Line="654" Column="23" TopLine="633"/>
+        <Filename Value="itools/medialib/MediaItems.pas"/>
+        <Caret Line="201" Column="46" TopLine="171"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="938" Column="18" TopLine="920"/>
+        <Caret Line="403" Column="1" TopLine="393"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="939" Column="18" TopLine="920"/>
+        <Caret Line="1328" Column="34" TopLine="1314"/>
       </Position8>
       <Position9>
-        <Filename Value="main.pas"/>
-        <Caret Line="940" Column="18" TopLine="920"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="108" Column="29" TopLine="94"/>
       </Position9>
       <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="941" Column="18" TopLine="920"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="81" Column="39" TopLine="78"/>
       </Position10>
       <Position11>
-        <Filename Value="itools/threads/MainWindowStartupThreads.pas"/>
-        <Caret Line="42" Column="13" TopLine="23"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="109" Column="25" TopLine="94"/>
       </Position11>
       <Position12>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="101" Column="19" TopLine="83"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2158" Column="19" TopLine="2148"/>
       </Position12>
       <Position13>
-        <Filename Value="itools/medialib/MediaItems.pas"/>
-        <Caret Line="84" Column="24" TopLine="61"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2617" Column="26" TopLine="2604"/>
       </Position13>
       <Position14>
-        <Filename Value="itools/medialib/MediaItems.pas"/>
-        <Caret Line="201" Column="46" TopLine="171"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="108" Column="28" TopLine="80"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="403" Column="1" TopLine="393"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="58" Column="11" TopLine="47"/>
       </Position15>
       <Position16>
-        <Filename Value="main.pas"/>
-        <Caret Line="1328" Column="34" TopLine="1314"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="103" Column="64" TopLine="74"/>
       </Position16>
       <Position17>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="108" Column="29" TopLine="94"/>
+        <Caret Line="110" Column="51" TopLine="92"/>
       </Position17>
       <Position18>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="81" Column="39" TopLine="78"/>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="103" Column="53" TopLine="85"/>
       </Position18>
       <Position19>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="109" Column="25" TopLine="94"/>
+        <Caret Line="10" Column="69" TopLine="1"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="2158" Column="19" TopLine="2148"/>
-      </Position20>
-      <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="2617" Column="26" TopLine="2604"/>
-      </Position21>
-      <Position22>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="108" Column="28" TopLine="80"/>
-      </Position22>
-      <Position23>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="58" Column="11" TopLine="47"/>
-      </Position23>
-      <Position24>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="103" Column="64" TopLine="74"/>
-      </Position24>
-      <Position25>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="110" Column="51" TopLine="92"/>
-      </Position25>
-      <Position26>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="103" Column="53" TopLine="85"/>
-      </Position26>
-      <Position27>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="10" Column="69" TopLine="1"/>
-      </Position27>
-      <Position28>
         <Filename Value="itools/threads/suggfind.pas"/>
         <Caret Line="101" Column="42" TopLine="90"/>
-      </Position28>
-      <Position29>
+      </Position20>
+      <Position21>
         <Filename Value="itools/threads/suggfind.pas"/>
         <Caret Line="109" Column="52" TopLine="93"/>
+      </Position21>
+      <Position22>
+        <Filename Value="main.pas"/>
+        <Caret Line="347" Column="1" TopLine="340"/>
+      </Position22>
+      <Position23>
+        <Filename Value="main.pas"/>
+        <Caret Line="348" Column="1" TopLine="340"/>
+      </Position23>
+      <Position24>
+        <Filename Value="main.pas"/>
+        <Caret Line="349" Column="1" TopLine="340"/>
+      </Position24>
+      <Position25>
+        <Filename Value="main.pas"/>
+        <Caret Line="350" Column="1" TopLine="340"/>
+      </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="3086" Column="5" TopLine="3057"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="1202" Column="27" TopLine="1196"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="1206" Column="33" TopLine="1196"/>
+      </Position28>
+      <Position29>
+        <Filename Value="main.pas"/>
+        <Caret Line="2060" Column="28" TopLine="2042"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="347" Column="1" TopLine="340"/>
+        <Caret Line="3058" Column="5" TopLine="3041"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

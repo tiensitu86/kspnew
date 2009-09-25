@@ -66,7 +66,9 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    PlsFormat: TLabeledEdit;
     Panel12: TPanel;
+    UseEq: TCheckBox;
     Splitter5: TSplitter;
     Splitter6: TSplitter;
     VDJMenu: TMenuItem;
@@ -1197,6 +1199,14 @@ begin
   Self.KSPSetupStates.KSPOptions.DevBuffer:=BufferEdit.Value;
   Player.SetupDeviceBuffer(Self.KSPSetupStates.KSPOptions.DevBuffer);
 {$ENDIF}
+  KSPSetupStates.KSPOptions.Equalizer.Enabled:=UseEq.Checked;
+
+  if KSPSetupStates.KSPOptions.Equalizer.Enabled then
+    Player.SoundEffects := Player.SoundEffects + [Equalizer]
+  else
+    Player.SoundEffects := Player.SoundEffects - [Equalizer];
+
+  KSPMainWindow.FormatedPlayListInfo:=PlsFormat.Text;
 end;
 
 procedure TKSPMainWindow.Button9Click(Sender: TObject);
@@ -3046,6 +3056,8 @@ var
     if s<>'' then KSPMainWindow.FormatedPlaylistHintInfo:=s else
       KSPMainWindow.FormatedPlaylistHintInfo:=CFormatedHintInfoPls;
     FormatANSICTags(KSPMainWindow.FormatedPlaylistHintInfo);
+
+    PlsFormat.Text:=KSPMainWindow.FormatedPlayListInfo;
   end;
 
   procedure LoadEqualizer;
@@ -3079,6 +3091,7 @@ var
     Player.SetAEQGain(9, KSPMainWindow.EQGains[9]);
 
     LoadEqSetting;
+    UseEq.Checked:=KSPSetupStates.KSPOptions.Equalizer.Enabled;
 
     if KSPSetupStates.KSPOptions.Equalizer.Enabled then
       Player.SoundEffects := Player.SoundEffects + [Equalizer]
