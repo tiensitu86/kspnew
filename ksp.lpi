@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,9 +64,9 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="25" Y="3045"/>
-        <TopLine Value="3024"/>
-        <EditorIndex Value="2"/>
+        <CursorPos X="21" Y="3046"/>
+        <TopLine Value="3042"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
           <Item0 X="20" Y="3048" ID="0"/>
@@ -81,7 +81,7 @@
         <UnitName Value="BASSPlayer"/>
         <CursorPos X="3" Y="101"/>
         <TopLine Value="81"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -284,7 +284,7 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="41" Y="19"/>
+        <CursorPos X="11" Y="3"/>
         <TopLine Value="2"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
@@ -305,7 +305,7 @@
         <UnitName Value="KSPTypes"/>
         <CursorPos X="1" Y="43"/>
         <TopLine Value="28"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -314,9 +314,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="3" Y="302"/>
-        <TopLine Value="300"/>
+        <CursorPos X="22" Y="14"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -361,7 +363,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="25" Y="65"/>
         <TopLine Value="34"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -515,7 +517,7 @@
         <UnitName Value="app_db_utils"/>
         <CursorPos X="41" Y="289"/>
         <TopLine Value="258"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -851,9 +853,11 @@
       </Unit97>
       <Unit98>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="24" Y="4"/>
+        <CursorPos X="17" Y="7"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="22"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -1490,7 +1494,7 @@
         <UnitName Value="suggfind"/>
         <CursorPos X="21" Y="75"/>
         <TopLine Value="68"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="98"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1828,7 +1832,7 @@
         <UnitName Value="sqldb"/>
         <CursorPos X="22" Y="133"/>
         <TopLine Value="104"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit235>
@@ -1836,123 +1840,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1077" Column="23" TopLine="1062"/>
+        <Caret Line="1099" Column="21" TopLine="1084"/>
       </Position1>
       <Position2>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1099" Column="21" TopLine="1084"/>
+        <Caret Line="518" Column="28" TopLine="513"/>
       </Position2>
       <Position3>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="518" Column="28" TopLine="513"/>
+        <Caret Line="1078" Column="27" TopLine="1056"/>
       </Position3>
       <Position4>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1078" Column="27" TopLine="1056"/>
+        <Caret Line="1081" Column="34" TopLine="1030"/>
       </Position4>
       <Position5>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1081" Column="34" TopLine="1030"/>
+        <Caret Line="1059" Column="23" TopLine="1042"/>
       </Position5>
       <Position6>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1059" Column="23" TopLine="1042"/>
+        <Caret Line="1062" Column="21" TopLine="1038"/>
       </Position6>
       <Position7>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1062" Column="21" TopLine="1038"/>
+        <Caret Line="1057" Column="26" TopLine="1038"/>
       </Position7>
       <Position8>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1057" Column="26" TopLine="1038"/>
+        <Caret Line="905" Column="22" TopLine="887"/>
       </Position8>
       <Position9>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="905" Column="22" TopLine="887"/>
+        <Caret Line="902" Column="41" TopLine="887"/>
       </Position9>
       <Position10>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="902" Column="41" TopLine="887"/>
+        <Caret Line="1055" Column="54" TopLine="1036"/>
       </Position10>
       <Position11>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="1055" Column="54" TopLine="1036"/>
+        <Caret Line="495" Column="24" TopLine="477"/>
       </Position11>
       <Position12>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="495" Column="24" TopLine="477"/>
+        <Caret Line="393" Column="40" TopLine="378"/>
       </Position12>
       <Position13>
         <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="393" Column="40" TopLine="378"/>
+        <Caret Line="289" Column="41" TopLine="258"/>
       </Position13>
       <Position14>
-        <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="289" Column="41" TopLine="258"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="9" Column="36" TopLine="1"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="9" Column="36" TopLine="1"/>
+        <Caret Line="106" Column="34" TopLine="91"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="106" Column="34" TopLine="91"/>
+        <Caret Line="162" Column="13" TopLine="142"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="162" Column="13" TopLine="142"/>
+        <Caret Line="252" Column="23" TopLine="232"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="252" Column="23" TopLine="232"/>
+        <Caret Line="341" Column="22" TopLine="321"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="341" Column="22" TopLine="321"/>
+        <Caret Line="366" Column="19" TopLine="346"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="366" Column="19" TopLine="346"/>
+        <Caret Line="367" Column="19" TopLine="346"/>
       </Position20>
       <Position21>
         <Filename Value="main.pas"/>
-        <Caret Line="367" Column="19" TopLine="346"/>
+        <Caret Line="368" Column="19" TopLine="346"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="368" Column="19" TopLine="346"/>
+        <Caret Line="3059" Column="20" TopLine="3127"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="3059" Column="20" TopLine="3127"/>
+        <Caret Line="3042" Column="63" TopLine="3040"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="3042" Column="63" TopLine="3040"/>
+        <Caret Line="3054" Column="30" TopLine="3034"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="3054" Column="30" TopLine="3034"/>
+        <Caret Line="885" Column="32" TopLine="877"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="885" Column="32" TopLine="877"/>
+        <Caret Line="901" Column="111" TopLine="885"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="901" Column="111" TopLine="885"/>
+        <Caret Line="891" Column="91" TopLine="874"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="891" Column="91" TopLine="874"/>
+        <Caret Line="3149" Column="62" TopLine="3129"/>
       </Position28>
       <Position29>
         <Filename Value="main.pas"/>
-        <Caret Line="3149" Column="62" TopLine="3129"/>
+        <Caret Line="358" Column="20" TopLine="338"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="358" Column="20" TopLine="338"/>
+        <Filename Value="kspconstsvars.pas"/>
+        <Caret Line="3" Column="11" TopLine="2"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -2001,7 +2005,7 @@
       </Verbosity>
       <CustomOptions Value="-uDEBUG -dRELEASE
 -dLOAD_DYNAMICALLY
--dKSP_DEVEL"/>
+-dKSP_2009R3"/>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
