@@ -4,7 +4,7 @@ interface
 
 uses
   Classes, SysUtils, KSPTypes, DateUtils, Forms, StrUtils, Graphics, LCLIntf,
-  BookmarksU;
+  BookmarksU, profilefunc;
 
 type
   TCreateObjectsThread = class(TThread)
@@ -27,6 +27,8 @@ uses Main, IniFiles, BASS, KSPConstsVars, BASSPlayer,
   Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog;
 
 procedure TCreateObjectsThread.Execute;
+var
+  s: string;
 begin
   { Place thread code here }
     hLog.Send('Creating objects');
@@ -49,8 +51,10 @@ begin
     KSPMP3SettingsList:=TStringList.Create;
     KSPMainWindow.Forbidden:=TStringList.Create;
     EqList:=TEqList.Create;
-    if FileExists(KSPDataFolder+'data\vdj\last') then
-      KSPMainWindow.Forbidden.LoadFromFile(KSPDataFolder+'data\vdj\last');
+    s:=KSPDataFolder+'data\vdj\last';
+    FixFolderNames(s);
+    if FileExists(s) then
+      KSPMainWindow.Forbidden.LoadFromFile(s);
     
     hLog.Send('Creating objects done');
 

@@ -2039,6 +2039,7 @@ procedure TKSPMainWindow.FormDestroy(Sender: TObject);
 var
   Pls:TXMLPlayList;
   PlsFile: string;
+  s: string;
 
   {procedure FreeHandles;
   begin
@@ -2074,7 +2075,9 @@ begin
   Pls.Free;
 
   hLog.Send('Saving forbidden list');
-  Forbidden.SaveToFile(KSPDataFolder+'data\vdj\last');
+  s:=KSPDataFolder+'data\vdj\last';
+  FixFolderNames(s);
+  Forbidden.SaveToFile(s);
 
   hLog.Send('Stopping playback'); Player.Stop;
   hLog.Send('Closing media files'); Player.Close;
