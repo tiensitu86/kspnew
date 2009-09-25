@@ -3029,7 +3029,11 @@ var
 
   procedure LoadEqualizer;
   begin
+{$IFDEF WINDOWS}
     KSPSetupStates.KSPOptions.Equalizer.Enabled:=XMLFile.ReadBool('Equalizer', 'Enabled', false);
+{$ELSE}
+    KSPSetupStates.KSPOptions.Equalizer.Enabled:=false;
+{$ENDIF}
     KSPMainWindow.EQGains[0]:=XMLFile.ReadFloat('Equalizer', 'eq0', 0);
     KSPMainWindow.EQGains[1]:=XMLFile.ReadFloat('Equalizer', 'eq1', 0);
     KSPMainWindow.EQGains[2]:=XMLFile.ReadFloat('Equalizer', 'eq2', 0);
