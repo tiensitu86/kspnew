@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="5"/>
+      <ActiveEditorIndexAtStart Value="4"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,13 +64,13 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="21" Y="397"/>
-        <TopLine Value="379"/>
+        <CursorPos X="28" Y="1102"/>
+        <TopLine Value="1087"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="20" Y="3055" ID="0"/>
-          <Item1 X="35" Y="892" ID="1"/>
+          <Item0 X="20" Y="3066" ID="0"/>
+          <Item1 X="35" Y="895" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -315,7 +315,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
         <CursorPos X="54" Y="6"/>
-        <TopLine Value="34"/>
+        <TopLine Value="6"/>
         <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -514,7 +514,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
         <CursorPos X="3" Y="1158"/>
-        <TopLine Value="102"/>
+        <TopLine Value="1119"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -1834,7 +1834,7 @@
         <Filename Value="arch/linux/bassh.inc"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="77" Y="164"/>
-        <TopLine Value="146"/>
+        <TopLine Value="143"/>
         <EditorIndex Value="8"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>
@@ -1892,7 +1892,7 @@
         <UsageCount Value="10"/>
       </Unit244>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <Caret Line="1490" Column="12" TopLine="1471"/>
@@ -1910,89 +1910,105 @@
         <Caret Line="742" Column="80" TopLine="724"/>
       </Position4>
       <Position5>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="840" Column="112" TopLine="858"/>
-      </Position5>
-      <Position6>
         <Filename Value="main.pas"/>
         <Caret Line="3059" Column="40" TopLine="3034"/>
+      </Position5>
+      <Position6>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="570" Column="71" TopLine="552"/>
       </Position6>
       <Position7>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="570" Column="71" TopLine="552"/>
+        <Caret Line="1291" Column="43" TopLine="1273"/>
       </Position7>
       <Position8>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="1291" Column="43" TopLine="1273"/>
-      </Position8>
-      <Position9>
         <Filename Value="arch/linux/bassh.inc"/>
         <Caret Line="179" Column="40" TopLine="146"/>
+      </Position8>
+      <Position9>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="121" Column="19" TopLine="96"/>
       </Position9>
       <Position10>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="121" Column="19" TopLine="96"/>
+        <Caret Line="86" Column="26" TopLine="72"/>
       </Position10>
       <Position11>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="86" Column="26" TopLine="72"/>
-      </Position11>
-      <Position12>
         <Filename Value="itools/app_db_utils.pas"/>
         <Caret Line="1063" Column="15" TopLine="1044"/>
-      </Position12>
-      <Position13>
+      </Position11>
+      <Position12>
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <Caret Line="6" Column="54" TopLine="1"/>
+      </Position12>
+      <Position13>
+        <Filename Value="itools/threads/suggfind.pas"/>
+        <Caret Line="116" Column="30" TopLine="99"/>
       </Position13>
       <Position14>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="116" Column="30" TopLine="99"/>
+        <Caret Line="47" Column="35" TopLine="45"/>
       </Position14>
       <Position15>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="47" Column="35" TopLine="45"/>
+        <Caret Line="127" Column="51" TopLine="101"/>
       </Position15>
       <Position16>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="127" Column="51" TopLine="101"/>
+        <Caret Line="120" Column="26" TopLine="102"/>
       </Position16>
       <Position17>
         <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="120" Column="26" TopLine="102"/>
+        <Caret Line="48" Column="43" TopLine="23"/>
       </Position17>
       <Position18>
-        <Filename Value="itools/threads/suggfind.pas"/>
-        <Caret Line="48" Column="43" TopLine="23"/>
-      </Position18>
-      <Position19>
         <Filename Value="../../../../../usr/lib64/lazarus/lcl/fileutil.pas"/>
         <Caret Line="45" Column="18" TopLine="31"/>
-      </Position19>
-      <Position20>
+      </Position18>
+      <Position19>
         <Filename Value="itools/threads/suggfind.pas"/>
         <Caret Line="49" Column="23" TopLine="23"/>
-      </Position20>
-      <Position21>
+      </Position19>
+      <Position20>
         <Filename Value="main.pas"/>
         <Caret Line="397" Column="21" TopLine="379"/>
+      </Position20>
+      <Position21>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="346" Column="26" TopLine="346"/>
       </Position21>
       <Position22>
         <Filename Value="itools/playlists.pas"/>
-        <Caret Line="346" Column="26" TopLine="346"/>
+        <Caret Line="94" Column="18" TopLine="78"/>
       </Position22>
       <Position23>
         <Filename Value="itools/playlists.pas"/>
-        <Caret Line="94" Column="18" TopLine="78"/>
+        <Caret Line="295" Column="25" TopLine="283"/>
       </Position23>
       <Position24>
         <Filename Value="itools/playlists.pas"/>
-        <Caret Line="295" Column="25" TopLine="283"/>
+        <Caret Line="46" Column="54" TopLine="28"/>
       </Position24>
       <Position25>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="46" Column="54" TopLine="28"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="397" Column="21" TopLine="379"/>
       </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="398" Column="21" TopLine="379"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="400" Column="21" TopLine="379"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="1252" Column="10" TopLine="1249"/>
+      </Position28>
+      <Position29>
+        <Filename Value="main.pas"/>
+        <Caret Line="2961" Column="66" TopLine="2944"/>
+      </Position29>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

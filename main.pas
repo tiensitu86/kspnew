@@ -65,6 +65,8 @@ type  TWebView = class(TObject)
     Eq7: TTrackBar;
     Eq8: TTrackBar;
     Eq9: TTrackBar;
+    EnableVDJ: TMenuItem;
+    VDJMenu: TMenuItem;
     SuggList: TListBox;
     MenuItem26: TMenuItem;
     MenuItem27: TMenuItem;
@@ -250,6 +252,7 @@ type  TWebView = class(TObject)
     procedure DeleteBookmarkClick(Sender: TObject);
     procedure DeleteLyricsBtnClick(Sender: TObject);
     procedure DownloadTimerTimer(Sender: TObject);
+    procedure EnableVDJClick(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
@@ -1097,6 +1100,7 @@ begin
 //{$ENDIF}
 {$IFNDEF KSP_VDJ}
   SuggList.Visible:=false;
+  VDJMenu.Visible:=false;
 {$ENDIF}
 
 {$IFNDEF KSP_CURRENTLY_PLAYED}
@@ -1241,6 +1245,12 @@ begin
     lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width)
   else
     lFileName.Caption:=Format(SDownloadProgress, [IntToStr(Progress)]);
+end;
+
+procedure TKSPMainWindow.EnableVDJClick(Sender: TObject);
+begin
+  EnableVDJ.Checked:=not EnableVDJ.Checked;
+  Self.UseVDJ:=EnableVDJ.Checked;
 end;
 
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
@@ -2951,6 +2961,7 @@ var
       2:  KSPMainWindow.RepeatType:=rtAll;
     end;
     UseVDJ:=XMLFile.ReadBool('Vars', 'UseVDJ', false);
+    EnableVDJ.Checked:=UseVDJ;
 
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));
