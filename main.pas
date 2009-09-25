@@ -2075,6 +2075,10 @@ begin
   Pls.Free;
 
   hLog.Send('Saving forbidden list');
+  s:=KSPDataFolder+'data\vdj';
+  FixFolderNames(s);
+  ForceDirectories(s);
+
   s:=KSPDataFolder+'data\vdj\last';
   FixFolderNames(s);
   Forbidden.SaveToFile(s);

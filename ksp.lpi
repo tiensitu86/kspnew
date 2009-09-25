@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="7"/>
+      <ActiveEditorIndexAtStart Value="4"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,12 +64,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="3" Y="2078"/>
+        <CursorPos X="19" Y="2076"/>
         <TopLine Value="2059"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="20" Y="3069" ID="0"/>
+          <Item0 X="20" Y="3073" ID="0"/>
           <Item1 X="35" Y="895" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
@@ -314,7 +314,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="14" Y="36"/>
+        <CursorPos X="36" Y="24"/>
         <TopLine Value="6"/>
         <EditorIndex Value="7"/>
         <UsageCount Value="209"/>
@@ -1853,7 +1853,7 @@
         <CursorPos X="19" Y="45"/>
         <TopLine Value="27"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit238>
       <Unit239>

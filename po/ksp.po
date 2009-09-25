@@ -518,6 +518,14 @@ msgstr ""
 msgid "Delete Selected"
 msgstr ""
 
+#: TKSPMAINWINDOW.ENABLEVDJ.CAPTION
+msgid "Enable"
+msgstr ""
+
+#: TKSPMAINWINDOW.ENABLEVDJ.HINT
+msgid "Add similar tracks to your playlist (uses Laft.fm service)"
+msgstr ""
+
 #: TKSPMAINWINDOW.EQUALIZERMENU.CAPTION
 msgctxt "TKSPMAINWINDOW.EQUALIZERMENU.CAPTION"
 msgid "Equalizer"
@@ -744,6 +752,10 @@ msgstr ""
 #: TKSPMAINWINDOW.TABSHEET5.CAPTION
 msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
 msgid "Internet Media"
+msgstr ""
+
+#: TKSPMAINWINDOW.VDJMENU.CAPTION
+msgid "VDJ"
 msgstr ""
 
 #: TKSPOPTIONS.BUTTON1.CAPTION
