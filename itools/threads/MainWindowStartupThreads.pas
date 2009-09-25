@@ -24,7 +24,8 @@ type
 implementation
 
 uses Main, IniFiles, BASS, KSPConstsVars, BASSPlayer,
-  Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog;
+  Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog,
+  kspstrings;
 
 procedure TCreateObjectsThread.Execute;
 var

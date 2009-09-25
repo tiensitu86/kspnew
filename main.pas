@@ -66,6 +66,9 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    Panel12: TPanel;
+    Splitter5: TSplitter;
+    Splitter6: TSplitter;
     VDJMenu: TMenuItem;
     SuggList: TListBox;
     MenuItem26: TMenuItem;
@@ -342,7 +345,6 @@ type  TWebView = class(TObject)
     CurrentTitle: string;
     PreviousIndex: integer;
     LoadPlsThr: TLoadPlsThread;
-    FormatedPlayListInfo: string;
     FormatedHintInfo: string;
     FormatedPlaylistHintInfo: string;
     FStopped: boolean;
@@ -413,6 +415,7 @@ type  TWebView = class(TObject)
     Forbidden: TStringList;
     UseVDJ: boolean;
     CurrentIndex: integer;
+    FormatedPlayListInfo: string;
     function GetCurrentFile: string;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);

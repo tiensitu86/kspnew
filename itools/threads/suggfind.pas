@@ -9,7 +9,7 @@ unit suggfind;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages, FileUtil;
+  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages, FileUtil, KSPStrings;
 
 type
   TFindSugg = class(TThread)
@@ -55,11 +55,13 @@ var
   p: TPLEntry;
   i: integer;
   Max: integer;
-  cfile: string;
+  cfile, s: string;
+  GetIsTag: boolean;
 begin
   { Place thread code here }
       Self.Priority:=tpLower;
       cfile:=KSPMainWindow.GetCurrentFile;
+      SuggestionList.Clear;
 
 
 //      StrPCopy(Pc, KSPMainWindow.GetCurrentFile);
@@ -96,7 +98,19 @@ begin
       KSPMainWindow.SuggList.Clear;
 
       for i:=0 to fav.Count-1 do begin
-        KSPMainWindow.SuggList.Items.Add(fav.GetItem(i).FileName);
+        p.FileName:=fav.GetItem(i).FileName;
+        p.Tag:=ReadID3(p.FileName);
+        if p.Tag.Artist = '' then p.Tag.Artist:=(SUnknownArtist);
+        if p.Tag.Album = '' then p.Tag.Album:=(SUnknownAlbum);
+        if p.Tag.Title = '' then p.Tag.Album:=(SUnknownTitle);
+        if p.Tag.Genre = '' then p.Tag.Album:=(SUnknownGenre);
+        if p.Tag.Year = '' then p.Tag.Album:=(SUnknownYear);
+        p.Stream:=GetStreamInfoSimple(p.FileName, GetIsTag);
+        SuggestionList.Add(p);
+        s:=ProduceFormatedString(KSPMainWindow.FormatedPlayListInfo,
+            p.Tag, GetDuration(p.Stream),
+            i+1);
+        KSPMainWindow.SuggList.Items.Add(s);
       end;
 
       hLog.Send('Fav list fetched...');
