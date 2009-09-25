@@ -401,9 +401,9 @@ object KSPMainWindow: TKSPMainWindow
     TabOrder = 4
     object ScanFolder: TLabel
       Left = 8
-      Height = 20
+      Height = 21
       Top = 8
-      Width = 5
+      Width = 6
       ParentColor = False
     end
   end
@@ -3076,10 +3076,10 @@ object KSPMainWindow: TKSPMainWindow
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
             ClientWidth = 702
-            ClientHeight = 443
+            ClientHeight = 468
             object MFolders: TListBox
               Left = 0
-              Height = 443
+              Height = 468
               Top = 0
               Width = 208
               Align = alLeft
@@ -3136,7 +3136,7 @@ object KSPMainWindow: TKSPMainWindow
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
             ClientWidth = 702
-            ClientHeight = 443
+            ClientHeight = 468
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -3171,7 +3171,7 @@ object KSPMainWindow: TKSPMainWindow
           object NotSetupPage: TPage
             Caption = 'NotSetupPage'
             ClientWidth = 702
-            ClientHeight = 443
+            ClientHeight = 468
             object NotChecked: TCheckBox
               Left = 14
               Height = 18
@@ -3212,10 +3212,10 @@ object KSPMainWindow: TKSPMainWindow
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
             ClientWidth = 702
-            ClientHeight = 443
+            ClientHeight = 468
             object PageControl1: TPageControl
               Left = 0
-              Height = 443
+              Height = 468
               Top = 0
               Width = 702
               ActivePage = TabSheet2
@@ -3224,11 +3224,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 414
+                ClientHeight = 464
                 ClientWidth = 698
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 414
+                  Height = 464
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -3365,16 +3365,41 @@ object KSPMainWindow: TKSPMainWindow
               Caption = 'Use Equalizer'
               TabOrder = 4
             end
+            object Memo1: TMemo
+              Cursor = crArrow
+              Left = 280
+              Height = 280
+              Top = 67
+              Width = 270
+              BorderStyle = bsNone
+              Color = clBtnFace
+              Lines.Strings = (
+                'Each playlist entry can be formated. This formating will apply to list of suggestions and playlist editor'
+                'Use following defines in order to put special strings:'
+                ''
+                '[%artist] - artist name'
+                '[%album] - album name'
+                '[%title] - track title'
+                '[%genre] - track genre'
+                '[%year] - track year'
+                '[%comment] - track comment (can be long!!!)'
+                '[%track] - track number (from tag)'
+                '[%length] - track length'
+                '[%plindex] - track number in playlist'
+              )
+              ReadOnly = True
+              TabOrder = 5
+            end
           end
         end
       end
       object Page4: TPage
         Caption = 'Page4'
         ClientWidth = 949
-        ClientHeight = 497
+        ClientHeight = 472
         object LyricsPanel: TPanel
           Left = 0
-          Height = 497
+          Height = 472
           Top = 0
           Width = 261
           Align = alLeft
@@ -3383,7 +3408,7 @@ object KSPMainWindow: TKSPMainWindow
         end
         object SuggList: TListBox
           Left = 669
-          Height = 497
+          Height = 472
           Top = 0
           Width = 280
           Align = alRight
@@ -3393,13 +3418,13 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Splitter5: TSplitter
           Left = 261
-          Height = 497
+          Height = 472
           Top = 0
           Width = 5
         end
         object Splitter6: TSplitter
           Left = 664
-          Height = 497
+          Height = 472
           Top = 0
           Width = 5
           Align = alRight
@@ -3407,11 +3432,11 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Panel12: TPanel
           Left = 266
-          Height = 497
+          Height = 472
           Top = 0
           Width = 398
           Align = alClient
-          ClientHeight = 497
+          ClientHeight = 472
           ClientWidth = 398
           TabOrder = 4
           object SaveLyricsBtn: TButton

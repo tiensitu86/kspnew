@@ -66,6 +66,7 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    Memo1: TMemo;
     PlsFormat: TLabeledEdit;
     Panel12: TPanel;
     UseEq: TCheckBox;
