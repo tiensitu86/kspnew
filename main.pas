@@ -1017,7 +1017,9 @@ var
   begin
     HeaderControl1.Sections.Items[0].Text:=SWelcome;
     HeaderControl1.Sections.Items[1].Text:=SLibrary;
-    HeaderControl1.Sections.Items[3].Text:=SSetup;
+    HeaderControl1.Sections.Items[2].Text:=SCurrentlyPlayed;
+    HeaderControl1.Sections.Items[3].Text:=SChat;
+    HeaderControl1.Sections.Items[4].Text:=SSetup;
 
     MSortType.Items.Item[0].Text:=SSortBy;
   end;
@@ -1042,19 +1044,16 @@ var
     if FileExists(s) then
         EqList.LoadFromFile(s, false);
 
-        if EqList.Count>0 then
-      begin
-        if EqList.Count>0 then for I := 0 to EqList.Count - 1 do
-          begin
-            T:=TMenuItem.Create(Self);
-            T.Caption:=EqList.GetItem(i).name;
-            T.Tag:=EqualizerMenu.Count;//-1;
-            T.RadioItem:=true;
-            T.OnClick:=@EqClick;
-            KSPMainWindow.EqualizerMenu.Add(T);
-          end;
-
-      end;
+    if EqList.Count>0 then
+      for I := 0 to EqList.Count - 1 do
+        begin
+          T:=TMenuItem.Create(Self);
+          T.Caption:=EqList.GetItem(i).name;
+          T.Tag:=EqualizerMenu.Count;//-1;
+          T.RadioItem:=true;
+          T.OnClick:=@EqClick;
+          KSPMainWindow.EqualizerMenu.Add(T);
+        end;
   end;
 
 {$IFNDEF KSP_DEVEL}
@@ -1782,6 +1781,7 @@ begin
   HeaderControl1.Sections.Items[1].ImageIndex:=-1;
   HeaderControl1.Sections.Items[2].ImageIndex:=-1;
   HeaderControl1.Sections.Items[3].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[4].ImageIndex:=-1;
 
   HeaderControl1.Sections.Items[sIndex].ImageIndex:=6;
 end;
@@ -2146,6 +2146,7 @@ begin
     0: Notebook1.ActivePage:='Page1';
     1: Notebook1.ActivePage:='Page2';
     2: Notebook1.ActivePage:='Page4';
+    3: Notebook1.ActivePage:='Page5';
     4: Notebook1.ActivePage:='Page3';
   end;
   SetHeaderControlImage(Section.Index);

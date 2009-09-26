@@ -111,6 +111,8 @@ SPluginsEnabled = 'All currently installed plugins are enabled';
 SWelcome = 'Welcome';
 SLibrary = 'Library';
 SSetup = 'Setup';
+SChat = 'Messenger';
+SCurrentlyPlayed = 'Currently Played';
 //Setup TreeView
 SBookmarks = 'Bookmarks';
 SPlugins = 'Plugins';

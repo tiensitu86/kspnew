@@ -36,9 +36,17 @@ msgstr ""
 msgid "Any default setting of Equalizer cannot be renamed or deleted.\\nYou can only rename or delete settings created by you"
 msgstr ""
 
+#: kspstrings.schat
+msgid "Messenger"
+msgstr ""
+
 #: kspstrings.sclose
 msgctxt "kspstrings.sclose"
 msgid "Close"
+msgstr ""
+
+#: kspstrings.scurrentlyplayed
+msgid "Currently Played"
 msgstr ""
 
 #: kspstrings.scustomhintplaylist

@@ -29,6 +29,7 @@ object KSPMainWindow: TKSPMainWindow
     Width = 284
     Align = alRight
     ItemHeight = 0
+    MultiSelect = True
     OnDblClick = lbPlaylistDblClick
     OnDrawItem = lbPlaylistDrawItem
     OnDragDrop = lbPlaylistDragDrop
