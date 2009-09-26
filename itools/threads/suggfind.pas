@@ -62,6 +62,8 @@ begin
       Self.Priority:=tpLower;
       cfile:=KSPMainWindow.GetCurrentFile;
       SuggestionList.Clear;
+      KSPMainWindow.SuggList.Clear;
+      KSPMainWindow.SuggList.Items.Add(SFetchingSuggs);
 
 
 //      StrPCopy(Pc, KSPMainWindow.GetCurrentFile);

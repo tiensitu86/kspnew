@@ -100,7 +100,6 @@ begin
   ForceDirectoriesKSP(KSPDataFolder+'data\db\cd');
   ForceDirectoriesKSP(KSPDataFolder+'data\vdj');
 
-  KSPDatabaseThreads:=0; KSPDatabaseThreadsInternal:=0;
   FileSupportList:=TFileSupportList.Create;
 
   StartupThreadSem2:=1;// := CreateSemaphore(nil, 0,1,'MediaLibGetCount');

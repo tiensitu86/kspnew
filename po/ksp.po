@@ -77,6 +77,10 @@ msgstr ""
 msgid "Preset Name:"
 msgstr ""
 
+#: kspstrings.sfetchingsuggs
+msgid "Fetching suggestions..."
+msgstr ""
+
 #: kspstrings.sfile
 msgid "File:"
 msgstr ""

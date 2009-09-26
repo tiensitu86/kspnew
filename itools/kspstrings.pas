@@ -125,6 +125,7 @@ SAlbum = 'Album';
 SGenre = 'Genre';
 SDownloadProgress = '%s buffered';
 SDefaultLyricsMessage = 'Here put song lyrics...';
+SFetchingSuggs = 'Fetching suggestions...';
 
 implementation
 

@@ -3,7 +3,7 @@ unit app_db_utils;
 interface
 
 uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
-  Playlists, Math, DOM, XMLRead;
+  Playlists, Math, DOM, XMLRead, LCLIntf;
 
 type TDatabaseType = (dbMySQL, dbSqlite);
 
@@ -163,11 +163,13 @@ newer version was installed before so we cannot go backwards with it}
 constructor TAppDBConnection.Create;
 begin
 	inherited Create;
+  InitializeCriticalSection(DBCritSection)
 end;
 
 destructor TAppDBConnection.Destroy;
 begin
   CloseDatabase;
+  DeleteCriticalSection(DBCritSection);
 	inherited Destroy;
 end;
 
@@ -441,14 +443,9 @@ function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false):
 begin
   //hLog.Send('Entering Execute SQL: '+Sql);
 
-  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do begin
-    hLog.Send('Some query is opened...');
-    if not Database.SQLQuery.Active then KSPDatabaseThreadsInternal:=0 else
-    Sleep(2000);
-  end;
-
+  EnterCriticalSection(DBCritSection);
+  try
   if Database.SQLQuery.Active then Result:=-1 else begin//Database.SQLQuery.Active:=false;
-    Inc(KSPDatabaseThreadsInternal);
     if not NoFixName then
       FixFileNameDB(sql);
     Log.Add('Executing SQL: '+sql);
@@ -462,22 +459,18 @@ begin
     if Result=Database.SQLQuery.RowsAffected then
       Result:=0;
   end;
-
-  Dec(KSPDatabaseThreadsInternal);
+  finally
+    LeaveCriticalSection(DBCritSection);
+  end;
 end;
 
 function TAppDBConnection.OpenQuery(Sql: string): integer;
 var
   s: string;
 begin
-  while KSPDatabaseThreadsInternal>=DB_MAX_THREADS do begin
-    hLog.Send('Some query is opened...');
-    if not Database.SQLQuery.Active then KSPDatabaseThreadsInternal:=0 else
-    Sleep(2000);
-  end;
-
+  EnterCriticalSection(DBCritSection);
+  try
   if Database.SQLQuery.Active then Result:=-1 else begin
-    Inc(KSPDatabaseThreadsInternal);
     FixFileNameDB(sql);
     Database.SQLQuery.SQL.Text:=Sql;
     Log.Add('Opening query for: '+sql);
@@ -487,6 +480,9 @@ begin
     Database.SQLQuery.Open;
     Result:=0;
   end;
+  finally
+
+  end;
 end;
 
 function TAppDBConnection.CloseQuery: integer;
@@ -494,7 +490,7 @@ begin
   if not Database.SQLQuery.Active then Result:=-1 else begin
     Database.SQLQuery.Close;
     Result:=0;
-    Dec(KSPDatabaseThreadsInternal);
+    LeaveCriticalSection(DBCritSection);
   end;
 end;
 

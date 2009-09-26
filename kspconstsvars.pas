@@ -6,7 +6,7 @@ interface
 
 uses Messages, FileSupportLst, SysUtils, BASSPlayer,
   Graphics, ID3Mgmnt, Classes, KSPTypes, MediaItems, PresetsU,
-  Playlists, app_db_utils{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
+  Playlists, app_db_utils, LCLType{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
 
 const
   KSPHost = 'http://ksplayer.boo.pl';
@@ -141,8 +141,7 @@ var
   LoadVarsSem2: integer;
   CreateObjectsSem2: integer;
 
-  KSPDatabaseThreads: integer;
-  KSPDatabaseThreadsInternal: integer;
+  DBCritSection: TCriticalSection;
   KSPCPUID: string;
   KSPMP3SettingsList: TStringList;
 
