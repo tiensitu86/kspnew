@@ -17,8 +17,7 @@ uses
   FileUtils, MRNG, profilefunc, KSPStrings, SQLDBLaz, MediaItems,
   MediaItemsInfo, KSPCrossList,
   KSPStartup, MainWindowStartupThreads, MediaFolders, FoldersScan,
-  StartupThread, BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog,
-  OptionsFrm2, complib, KSPThreadUtils, Support,
+  StartupThread, BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog, complib, KSPThreadUtils, Support,
   WAVfile, APETag, OggVorbis
   {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
   , MPEGaudio, MPEGInfoBox, suggfind

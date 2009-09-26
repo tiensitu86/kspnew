@@ -479,10 +479,6 @@ msgstr ""
 msgid "Force Rescan"
 msgstr ""
 
-#: TKSPMAINWINDOW.BUTTON6.CAPTION
-msgid "Setup Database"
-msgstr ""
-
 #: TKSPMAINWINDOW.BUTTON7.CAPTION
 msgid "Preview"
 msgstr ""

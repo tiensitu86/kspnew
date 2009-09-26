@@ -5,17 +5,11 @@ interface
 uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
   Playlists, Math, DOM, XMLRead, LCLIntf;
 
-type TDatabaseType = (dbMySQL, dbSqlite);
-
 type TFDatabase = record
     MySQLConnection: TMySQL50Connection;
     SQLiteConnection: TSQLite3Connection;
-//    SQLDataSet: TSQLDataSet;
     SQLQuery: TSQLQuery;
-    DBInUse: TDatabaseType;
     Trans: TSQLTransaction;
-//    SQLTable: TSQLTable;
-//    SQLMonitor: TSQLMonitor;
 end;
 
 //type TKSPDatabaseType = (kdtMeta, kdtAS);
@@ -60,11 +54,9 @@ type
   private
     function CloseDatabase: Integer;
     function CreateMissingTables(Tables: TStringList): integer;
-    function UseSqlite:boolean;
     procedure AddToDataBase(p: TPLEntry); overload;
     procedure AddToDataBase(p: TPlaylist); overload;
   public
-    property SqliteInUse: boolean read UseSqlite;
     procedure Add(Entry: TPLEntry; OnLoad: boolean);
     function SetupDatabase( FileName : String = ''): Integer;
     function ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
@@ -126,7 +118,6 @@ version but creates tables if it is needed}
 function TAppDBConnection.CreateMissingTables(Tables: TStringList): integer;
 var
   Res: integer;
-  sqlite: boolean;
 
   function CreateTableIfMissing(name, sql: string): boolean;
   var
@@ -146,14 +137,9 @@ var
 begin
   Res:=0;
 
-  case Database.DBInUse of
-    dbMySQL: sqlite:=false;
-    dbSqlite: sqlite:=true;
-  end;
-
-  CreateTableIfMissing('artists', TB_ARTISTS(sqlite));
-  CreateTableIfMissing('meta', TB_META(sqlite));
-  CreateTableIfMissing('lyrics', TB_LYRICS(sqlite));
+  CreateTableIfMissing('artists', TB_ARTISTS);
+  CreateTableIfMissing('meta', TB_META);
+  CreateTableIfMissing('lyrics', TB_LYRICS);
   Result:=Res;
 end;
 
@@ -188,25 +174,14 @@ begin
   Result:=0;
   hLog.Send('Closing database');
   try
-    case Database.DBInUse of
-      dbMySQL: Database.MySQLConnection.CloseDataSets;
-      dbSqlite: Database.SQLiteConnection.CloseDataSets;
-    end;
-//    Database.SQLDataSet.Free;
-//    Database.SQLTable.Free;
+    Database.SQLiteConnection.CloseDataSets;
+
     Database.SQLQuery.Close;
     Database.SQLQuery.Free;
-//    Database.SQLMonitor.Free;
-    case Database.DBInUse of
-      dbMySQL: begin
-        Database.MySQLConnection.Close;
-        Database.MySQLConnection.Free;
-      end;
-      dbSqlite: begin
-        Database.SQLiteConnection.Close;
-        Database.SQLiteConnection.Free;
-      end;
-    end;
+
+    Database.SQLiteConnection.Close;
+    Database.SQLiteConnection.Free;
+
   except
     on Ex: Exception do begin
       Result:=-1;
@@ -221,49 +196,12 @@ var
   db_name: string;
   db_exists: boolean;
   ParamsLoaded: boolean;
-  db_type: integer;
-
-  procedure LoadParams(Init: string);
-  var
-    Ini:TIniFile;
-  begin
-    Ini:=TIniFile.Create(Init);
-    db_type:=Ini.ReadInteger('General', 'db_use', 0);
-    Ini.Free;
-  end;
-
-  procedure LoadParamsMySQL(Init: string);
-  var
-    Ini:TIniFile;
-  begin
-    Ini:=TIniFile.Create(Init);
-
-    Database.MySQLConnection.DatabaseName:='mysql';
-    db_name:=Ini.ReadString('MySQLConnection', 'Database', '');
-    Database.MySQLConnection.HostName:=Ini.ReadString('MySQLConnection', 'HostName', '');
-    Database.MySQLConnection.UserName:=Ini.ReadString('MySQLConnection', 'User_Name', '');
-    Database.MySQLConnection.Password:=Ini.ReadString('MySQLConnection', 'Password', '');
-    Database.MySQLConnection.Port:=Ini.ReadInteger('MySQLConnection', 'Port', 3306);
-
-    Database.MySQLConnection.Charset:='utf8';
-
-//    Database.SQLConnection.DatabaseName:='firma';
-//    Database.SQLConnection.HostName:='127.0.0.1';
-//    Database.SQLConnection.UserName:='root';
-//    Database.SQLConnection.Password:='16d1983';
-//    Database.SQLConnection.Port:=0;
-//    Database.SQLConnection.CharSet:=Ini.ReadString('MySQLConnection', 'ServerCharSet', '');
-    ParamsLoaded:=true;
-
-    Ini.Free;
-  end;
 
   procedure SetupSQLite;
   var
     FileName: string;
   begin
     Result:=0;
-    Database.DBInUse:=dbSqlite;
     Database.SQLiteConnection:=TSQLite3Connection.Create(nil);
     Database.SQLQuery:=TSQLQuery.Create(nil);
     Database.Trans:=TSQLTransaction.Create(nil);
@@ -298,142 +236,8 @@ var
       end;
   end;
 
-procedure SetupMySQL;
 begin
-  Result:=0;
-  Database.DBInUse:=dbMySQL;
-  FixFolderNames(FileName);
-//  if InitialiseMysql=0 then
-//    ShowMessage('Ok') else ShowMessage('Not Ok');
-  hLog.Send('Setting up database');
-  Database.MySQLConnection:=TMySQL50Connection.Create(nil);
-  Database.SQLQuery:=TSQLQuery.Create(nil);
-  Database.Trans:=TSQLTransaction.Create(nil);
-//  Database.SQLMonitor:=TSQLmonitor.Create(nil);
-  Database.SQLQuery.Database:=Database.MySQLConnection;
-//  Database.SQLMonitor.SQLConnection:=Database.SQLConnection;
-//  Database.SQLMonitor.AutoSave:=true;
-//  Database.SQLMonitor.FileName:=DataFolder+'\sqloutput.txt';
-
-  try
-//    Database.SQLConnection.ConnectionName:='MySQLConnection';
-  except
-    Result:=1;
-    Database.SQLQuery.Free;
-    Database.MySQLConnection.Free;
-    hLog.Send('Connection name problem!!!');
-  end;
-
-//Connection type chosen. Now setup connection parameters and establish connection
-
-  if Result=0 then
-    begin
-      if FileExists(FileName) then
-        LoadParamsMySQL(FileName) else
-      begin
-        Result:=2;
-        hLog.Send('Connection params problem!!!');
-      end;
-    end;
-
-  if not ParamsLoaded then
-    begin
-      Result:=2;
-      hLog.Send('Connection params not loaded!!!');
-    end;
-
-//  Database.SQLConnection.DriverName:='MySQL';
-  Database.MySQLConnection.LoginPrompt:=false;
-
-//  Database.SQLConnection.
-
-//  ShowMessage(Database.SQLConnection.);
-
-  if Result=0 then
-    begin
-      try
-        Database.MySQLConnection.Connected:=true;
-        Database.Trans.DataBase:=Database.MySQLConnection;
-        Database.MySQLConnection.Transaction:=Database.Trans;
-        Database.SQLQuery.Transaction:=Database.Trans;
-        Database.Trans.StartTransaction;
-
-        Database.SQLQuery.SQL.Text := 'show databases';
-        Database.SQLQuery.Open;
-        db_exists:=false;
-        while (not Database.SQLQuery.EOF) and (not db_exists) do begin
-          db_exists:=UpperCase(Database.SQLQuery.Fields[0].AsString)=UpperCase(db_name);
-          Database.SQLQuery.Next;
-//         ShowMessage(UpperCase(Database.SQLQuery.Fields[0].AsString));
-        end;
-
-        Database.SQLQuery.Close;
-        if not db_exists then
-          Self.ExecuteSQL('CREATE DATABASE `'+db_name+'`');
-        Database.MySQLConnection.Connected:=false;
-        Database.MySQLConnection.DatabaseName:=db_name;
-        Database.MySQLConnection.Connected:=true;
-
-        //if not db_exists then begin
-        //  CreateMissingTables(Database, nil);
-        //end;
-
-      except
-          Result:=3;
-          hLog.Send('Database cannot be created!!!');
-      end;
-    end;
-
-//Check if database is ok
-
-  Tables:=TStringList.Create;
-
-  if Result=0 then
-    begin
-      try
-        hLog.Send('Getting names of existing tables');
-        Database.MySQLConnection.GetTableNames(Tables);
-        hLog.Send('Existing tables count: '+IntToStr(Tables.Count));
-        Result:=CreateMissingTables(Tables)
-      except
-        Result:=4;
-        hLog.Send('Cannot get tables list or cannot create tables!!!');
-      end;
-    end;
-
-  Database.Trans.Commit;
-
-  if Result<>0 then
-    begin
-//if CreateMissingTables fails then error occured but hasn't been risen so Data
-//objects still exist
-      Database.Trans.Free;
-      Database.SQLQuery.Free;
-      Database.MySQLConnection.Free;
-      hLog.Send('Cannot create all missing tables or some other problem occured');
-    end;
-
-    Tables.Free;
-
-    hLog.Send('Database setup done');
-end;
-
-begin
-  if not FileExists(FileName) then
-    db_type:=0;
-
-//MySQL is only optional
-  if not FileExists(ExtractFilePath(Application.ExeName)+'libmysql.dll') then
-    db_type:=0;
-
-//  if (db_type=0) and not FileExists(ExtractFilePath(Application.ExeName)+'sqlite3.dll') then
-//    Result:=-1 else begin
-
-    LoadParams(FileName);
-    case db_type of
-      0: SetupSqlite;
-      1: SetupMySQL;
-    end;
+  SetupSqlite;
 
   hLog.Send('Database set');
 //  end;
@@ -721,7 +525,7 @@ var
                                                 PrepareString(Pc3),
                                                 PrepareString(Pc6),
                                                 PrepareString(Pc7),
-                                                BoolToStr(p.GetItem(Index).PlayedEver, not UseSqlite),
+                                                BoolToStr(p.GetItem(Index).PlayedEver, false),
                                                 IntToStr(p.GetItem(Index).MetaTag),
                                                 IntToStr(p.GetItem(Index).PlayCount),
                                                 FloatToStr(p.GetItem(Index).Fav, fm),
@@ -738,7 +542,7 @@ var
                                                 PrepareString(Pc3),
                                                 PrepareString(Pc6),
                                                 PrepareString(Pc7),
-                                                BoolToStr(p.GetItem(Index).PlayedEver, not UseSqlite),
+                                                BoolToStr(p.GetItem(Index).PlayedEver, false),
                                                 IntToStr(p.GetItem(Index).MetaTag),
                                                 IntToStr(p.GetItem(Index).PlayCount),
                                                 FloatToStr(p.GetItem(Index).Fav, fm),
@@ -759,11 +563,6 @@ begin
 
   ExecuteSQL(s.Text);
   s.Free;
-end;
-
-function TAppDBConnection.UseSqlite:boolean;
-begin
-  Result:=Database.DBInUse=dbSqlite;
 end;
 
 procedure TAppDBConnection.AddToDataBase(p: TPLEntry);
@@ -797,7 +596,7 @@ begin
                                                 PrepareString(Pc3),
                                                 PrepareString(Pc6),
                                                 PrepareString(Pc7),
-                                                BoolToStr(p.PlayedEver, not UseSqlite),
+                                                BoolToStr(p.PlayedEver, false),
                                                 IntToStr(p.MetaTag),
                                                 IntToStr(p.PlayCount),
                                                 FloatToStr(p.Fav, fm),
@@ -814,7 +613,7 @@ begin
                                                 PrepareString(Pc3),
                                                 PrepareString(Pc6),
                                                 PrepareString(Pc7),
-                                                BoolToStr(p.PlayedEver, not UseSqlite),
+                                                BoolToStr(p.PlayedEver, false),
                                                 IntToStr(p.MetaTag),
                                                 IntToStr(p.PlayCount),
                                                 FloatToStr(p.Fav, fm),

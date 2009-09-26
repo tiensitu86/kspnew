@@ -3070,16 +3070,16 @@ object KSPMainWindow: TKSPMainWindow
           Top = 0
           Width = 706
           Align = alClient
-          PageIndex = 5
+          PageIndex = 0
           ShowTabs = False
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
             ClientWidth = 702
-            ClientHeight = 468
+            ClientHeight = 493
             object MFolders: TListBox
               Left = 0
-              Height = 468
+              Height = 493
               Top = 0
               Width = 208
               Align = alLeft
@@ -3122,15 +3122,6 @@ object KSPMainWindow: TKSPMainWindow
               Caption = 'Add'
               OnClick = Button3Click
               TabOrder = 4
-            end
-            object Button6: TButton
-              Left = 220
-              Height = 25
-              Top = 33
-              Width = 120
-              Caption = 'Setup Database'
-              OnClick = Button6Click
-              TabOrder = 5
             end
           end
           object BookmarksSetupPage: TPage
@@ -3212,10 +3203,10 @@ object KSPMainWindow: TKSPMainWindow
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
             ClientWidth = 702
-            ClientHeight = 468
+            ClientHeight = 493
             object PageControl1: TPageControl
               Left = 0
-              Height = 468
+              Height = 493
               Top = 0
               Width = 702
               ActivePage = TabSheet2
@@ -3224,11 +3215,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 439
+                ClientHeight = 464
                 ClientWidth = 698
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 439
+                  Height = 464
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -3240,9 +3231,9 @@ object KSPMainWindow: TKSPMainWindow
                 end
                 object PlgOnStartup: TCheckBox
                   Left = 238
-                  Height = 18
+                  Height = 21
                   Top = 12
-                  Width = 104
+                  Width = 112
                   Caption = 'Load On Startup'
                   OnClick = PlgOnStartupClick
                   TabOrder = 1

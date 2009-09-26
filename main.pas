@@ -89,7 +89,6 @@ type  TWebView = class(TObject)
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
-    Button6: TButton;
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
@@ -251,7 +250,6 @@ type  TWebView = class(TObject)
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
@@ -385,7 +383,6 @@ type  TWebView = class(TObject)
     procedure SortByGenrePLS;
     procedure SortByFileNamePLS;
     procedure LoadToLB;
-    procedure DatabaseSetupDialog;
     procedure SetupWebBrowserIC;
     procedure RefreshBookmarks;
     procedure RefreshMediaFolders;
@@ -447,7 +444,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, OptionsFrm2, complib
+  KSPCrossList, MultiLog, complib
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
@@ -785,7 +782,7 @@ var
                                                   PrepareString(Pc3),
                                                   PrepareString(Pc6),
                                                   PrepareString(Pc7),
-                                                  BoolToStr(p.PlayedEver, not AllSongs.SqliteInUse),
+                                                  BoolToStr(p.PlayedEver, false),
                                                   IntToStr(p.MetaTag),
                                                   IntToStr(p.PlayCount),
                                                   FloatToStr(p.Fav, fm),
@@ -967,8 +964,7 @@ var
     ForceDirectoriesKSP(KSPDataFolder+'db');
     AllSongs:=TAppDBConnection.Create;
     with AllSongs do begin
-      while SetupDatabase(KSPDataFolder+'db/ksp.kspdb')<>0 do
-        DatabaseSetupDialog;
+      SetupDatabase(KSPDataFolder+'db/ksp.kspdb');
 
       MigrateDatabase;
 
@@ -1182,11 +1178,6 @@ end;
 procedure TKSPMainWindow.Button5Click(Sender: TObject);
 begin
   Self.ScanFolders(true);
-end;
-
-procedure TKSPMainWindow.Button6Click(Sender: TObject);
-begin
-  Self.DatabaseSetupDialog;
 end;
 
 procedure TKSPMainWindow.Button7Click(Sender: TObject);
@@ -3276,17 +3267,6 @@ begin
 
     //lbPlayList.Items.Strings[CurrentIndex]:=lbPlayList.Items.Strings[CurrentIndex];
 
-end;
-
-procedure TKSPMainWindow.DatabaseSetupDialog;
-var
-  OptForm: TKSPOptions;
-begin
-//  hLog.Add('Showing application options');
-  OptForm:=TKSPOptions.Create(nil);
-  OptForm.ShowModal;
-  OptForm.Free;
-//  hLog.Add('Aplication options window closed');
 end;
 
 procedure TKSPMainWindow.SetupWebBrowserIC;
