@@ -2161,6 +2161,10 @@ var
   s: string;
   Pc: TPathChar;
 begin
+if Index>=lbPlaylist.Count then begin
+  hLog.Send('Trying to paint non existing item. Terminating');
+  Exit;
+end;
 try
   with lbPlaylist.Canvas do  { draw on control canvas, not on the form }
   begin

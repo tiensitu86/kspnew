@@ -32,6 +32,7 @@ type
   public
     property InternalName: integer read fIM write fIM;
     constructor Create; overload;
+    procedure Clear; override;
     constructor Create(IM: Integer); overload;
     destructor Destroy; override;
     function Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
@@ -924,13 +925,20 @@ begin
 end;
 
 destructor TFavouriteList.Destroy;
+begin
+  Clear;
+  inherited Destroy;
+end;
+
+procedure TFavouriteList.Clear;
 var
   i: integer;
 begin
   if Count>0 then
-  for I := 0 to Count-1 do
+  for I := Count-1 downto 0 do begin
     TFavInfo(Items[I]).Free;
-  inherited Destroy;
+    Delete(i);
+  end;
 end;
 
 function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
