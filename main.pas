@@ -338,6 +338,7 @@ type  TWebView = class(TObject)
     procedure SpeedButton4Click(Sender: TObject);
     procedure Splitter7CanResize(Sender: TObject; var NewSize: Integer;
       var Accept: Boolean);
+    procedure SuggListDblClick(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
     procedure PosBarChange(Sender: TObject);
@@ -2472,6 +2473,15 @@ procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
   var NewSize: Integer; var Accept: Boolean);
 begin
   Accept:=NewSize<=82;
+end;
+
+procedure TKSPMainWindow.SuggListDblClick(Sender: TObject);
+begin
+  if SuggestionList.Count=0 then Exit;
+  if SuggList.ItemIndex,0 then Exit;
+  if SuggList.ItemIndex>SuggestionList.Count-1 then Exit;
+
+  Self.AddToPlayList(SuggestionList.GetItem(SuggList.ItemIndex)^.FileName);
 end;
 
 procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);
