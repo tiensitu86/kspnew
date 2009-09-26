@@ -32,7 +32,7 @@ type
   public
     property InternalName: integer read fIM write fIM;
     constructor Create; overload;
-    constructor Create(AFileName: string; IM: Integer); overload;
+    constructor Create(IM: Integer); overload;
     destructor Destroy; override;
     function Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
     procedure Remove(Index: Integer);
@@ -58,7 +58,7 @@ type
     procedure AddToDataBase(p: TPlaylist); overload;
   public
     procedure Add(Entry: TPLEntry; OnLoad: boolean);
-    function SetupDatabase( FileName : String = ''): Integer;
+    function SetupDatabase: Integer;
     function ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
     function OpenQuery(Sql: string): integer;
     function CloseQuery: integer;
@@ -161,7 +161,7 @@ end;
 
 function TAppDBConnection.InitDatabase( FileName : String = '' ): Integer;
 begin
-  Result:=SetupDatabase(FileName);
+  Result:=SetupDatabase;
 end;
 
 function TAppDBConnection.CheckDatabase: Integer;
@@ -190,7 +190,7 @@ begin
   end;
 end;
 
-function TAppDBConnection.SetupDatabase( FileName : String = ''): Integer;
+function TAppDBConnection.SetupDatabase: Integer;
 var
   Tables: TStringList;
   db_name: string;
@@ -898,7 +898,7 @@ begin
       p:=ReadEntry;
       hLog.Send(Format('Title: %s, Artist: %s', [p.Tag.Title, p.Tag.Artist]));
       CloseQuery;
-      f:=TFavouriteList.Create(FileName, p.IM);
+      f:=TFavouriteList.Create(p.IM);
       FillFavList;
       if f.Count>0 then f.Sort;
     end else begin
@@ -917,7 +917,7 @@ begin
   inherited Create;
 end;
 
-constructor TFavouriteList.Create(AFileName: string; IM: Integer);
+constructor TFavouriteList.Create(IM: Integer);
 begin
   inherited Create;
   fIM:=IM;
@@ -936,9 +936,7 @@ end;
 function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
 var
   T: TFavInfo;
-  sql: string;
   Pc: TPathChar;
-  fm: TFormatSettings;
 
   function CheckIfExists: boolean;
   var
@@ -956,9 +954,6 @@ var
 begin
   StrPCopy(Pc, Entry.FileName);
   Result:=not CheckIfExists;
-
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
 
   if Result then begin
       T:=TFavInfo.Create;

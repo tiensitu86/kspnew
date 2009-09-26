@@ -19,9 +19,6 @@ unit uxmpp;
 interface
 
 uses
-  {$IFDEF WIN32}
-  Windows,
-  {$ENDIF}
   Classes, SysUtils, tcpsynapse, xmltag, ExtCtrls;
 
 type

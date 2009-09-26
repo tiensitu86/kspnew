@@ -978,7 +978,7 @@ var
     ForceDirectoriesKSP(KSPDataFolder+'db');
     AllSongs:=TAppDBConnection.Create;
     with AllSongs do begin
-      SetupDatabase(KSPDataFolder+'db/ksp.kspdb');
+      AllSongs.SetupDatabase;
 
       MigrateDatabase;
 
@@ -2478,7 +2478,7 @@ end;
 procedure TKSPMainWindow.SuggListDblClick(Sender: TObject);
 begin
   if SuggestionList.Count=0 then Exit;
-  if SuggList.ItemIndex,0 then Exit;
+  if SuggList.ItemIndex<0 then Exit;
   if SuggList.ItemIndex>SuggestionList.Count-1 then Exit;
 
   Self.AddToPlayList(SuggestionList.GetItem(SuggList.ItemIndex)^.FileName);
