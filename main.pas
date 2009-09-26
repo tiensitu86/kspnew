@@ -66,9 +66,20 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Memo1: TMemo;
     PlsFormat: TLabeledEdit;
     Panel12: TPanel;
+    Splitter7: TSplitter;
     UseEq: TCheckBox;
     Splitter5: TSplitter;
     Splitter6: TSplitter;
@@ -325,6 +336,8 @@ type  TWebView = class(TObject)
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
+    procedure Splitter7CanResize(Sender: TObject; var NewSize: Integer;
+      var Accept: Boolean);
     procedure TabSheet3Resize(Sender: TObject);
     procedure TBChange(Sender: TObject);
     procedure PosBarChange(Sender: TObject);
@@ -2453,6 +2466,12 @@ end;
 procedure TKSPMainWindow.SpeedButton4Click(Sender: TObject);
 begin
   if (Sender=SpeedButton4) then webView.Reload else MainWebView.Reload;
+end;
+
+procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
+  var NewSize: Integer; var Accept: Boolean);
+begin
+  Accept:=NewSize<=82;
 end;
 
 procedure TKSPMainWindow.TabSheet3Resize(Sender: TObject);

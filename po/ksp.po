@@ -543,6 +543,46 @@ msgstr ""
 msgid "Device buffer (in ms):"
 msgstr ""
 
+#: TKSPMAINWINDOW.LABEL10.CAPTION
+msgid "6k"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL11.CAPTION
+msgid "14k"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL2.CAPTION
+msgid "80"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL3.CAPTION
+msgid "170"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL4.CAPTION
+msgid "310"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL5.CAPTION
+msgid "3k"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL6.CAPTION
+msgid "1k"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL7.CAPTION
+msgid "600"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL8.CAPTION
+msgid "12k"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL9.CAPTION
+msgid "10k"
+msgstr ""
+
 #: TKSPMAINWINDOW.MEDIALIBSETUPPAGE.CAPTION
 msgid "MediaLibSetupPage"
 msgstr ""
