@@ -21,7 +21,7 @@ type  TWebView = class(TObject)
     QWebPage             : QLCLWebPageH;
     NetworkAccessManager : QNetworkAccessManagerH;
     NetworkProxy : QNetworkProxyH;
-    procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString);cdecl;
+    procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString); cdecl;
   public
 
     Handle : QWebViewH;
@@ -56,6 +56,7 @@ type  TWebView = class(TObject)
     Button16: TButton;
     Button17: TSpeedButton;
     Button18: TSpeedButton;
+    ComboBox1: TComboBox;
     Eq1: TTrackBar;
     Eq2: TTrackBar;
     Eq3: TTrackBar;
@@ -76,10 +77,15 @@ type  TWebView = class(TObject)
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    ListBox1: TListBox;
     Memo1: TMemo;
+    Page5: TPage;
+    Panel13: TPanel;
+    Panel14: TPanel;
     PlsFormat: TLabeledEdit;
     Panel12: TPanel;
     Splitter7: TSplitter;
+    Splitter8: TSplitter;
     UseEq: TCheckBox;
     Splitter5: TSplitter;
     Splitter6: TSplitter;
@@ -380,6 +386,9 @@ type  TWebView = class(TObject)
     MGStartDrag: TPoint;
     MGDragItem: string;
     MGDragPlaylist: boolean;
+{$IFDEF KSP_XMPP}
+    Jabber: TXmpp;
+{$ENDIF}
     procedure SetHeaderControlImage(sIndex: integer);
     procedure PlayFile;
     procedure ResetDisplay;
@@ -957,6 +966,10 @@ var
     AudioControls.ActivePage:=Basic;
     WaitForB:=0;
 
+{$IFDEF KSP_XMPP}
+    Jabber:=TXmpp.Create;
+{$ENDIF}
+
     //KSPMainWindow.TB.Position:=Player.Volume;
 
     //KSPMainWindow.RemDevSheet.TabVisible:=false;
@@ -1047,7 +1060,12 @@ var
 {$IFNDEF KSP_DEVEL}
   procedure PrepareNonDevel;
   begin
+  {$IFNDEF KSP_CURRENTLY_PLAYED}
     HeaderControl1.Sections.Items[2].Visible:=false;
+  {$ENDIF}
+  {$IFNDEF KSP_XMPP}
+    HeaderControl1.Sections.Items[3].Visible:=false;
+  {$ENDIF}
   end;
 {$ENDIF}
 
@@ -1119,7 +1137,7 @@ begin
   VDJMenu.Visible:=false;
 {$ENDIF}
 
-{$IFNDEF KSP_CURRENTLY_PLAYED}
+{$IFNDEF KSP_DEVEL}
   PrepareNonDevel;
 {$ENDIF}
 
@@ -2085,7 +2103,6 @@ begin
   hLog.Send('Saving options');
   SaveOptions;
 
-
   hLog.Send('Saving playlist');
   Pls:=TXMLPlayList.create;
   PlsFile:= KSPDataFolder+'data/pls.kpl';
@@ -2101,6 +2118,10 @@ begin
   s:=KSPDataFolder+'data\vdj\last';
   FixFolderNames(s);
   Forbidden.SaveToFile(s);
+{$IFDEF KSP_XMPP}
+  hLog.Send('Closing messenger');
+  Jabber.Free;
+{$ENDIF}
 
   hLog.Send('Stopping playback'); Player.Stop;
   hLog.Send('Closing media files'); Player.Close;
@@ -2125,7 +2146,7 @@ begin
     0: Notebook1.ActivePage:='Page1';
     1: Notebook1.ActivePage:='Page2';
     2: Notebook1.ActivePage:='Page4';
-    3: Notebook1.ActivePage:='Page3';
+    4: Notebook1.ActivePage:='Page3';
   end;
   SetHeaderControlImage(Section.Index);
 end;
