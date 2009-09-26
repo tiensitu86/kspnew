@@ -2220,11 +2220,11 @@ var
   i, PlayListMoveIndex: integer;
 begin
   if LoadingPlaylist then Exit;
-  if (lbPlayList.ItemAtPos(p, true)>=lbPlayList.Items.Count)
-  or (lbPlayList.ItemAtPos(p, true)<0) then Exit;
-  //PlayListMove:=true;
+
   p.X:=X; p.Y:=Y;
   i:=lbPlayList.ItemAtPos(p, true);
+  //PlayListMove:=true;
+
   if (i<0)or(i>=lbPlaylist.Items.Count) then Exit;
   PlaylistMove:=true;
   PlayListMoveIndex:=i;
@@ -2257,6 +2257,7 @@ begin
   if lbPlayList.ItemAtPos(p, true)<0 then Exit;
   if (PlayListMoveText=lbPlayList.Items.Strings[lbPlayList.ItemAtPos(p, true)]) then Exit;
   if LastMoveIndex=lbPlayList.ItemAtPos(p, true) then Exit;
+
   //log.WriteLogFile(lbPlayList.Items);
 //  s:=PlsForm.lbPlayList.Items.Strings[PlsForm.lbPlayList.ItemAtPos(p, true)];
 //  PlsForm.lbPlayList.Items.Strings[PlsForm.lbPlayList.ItemAtPos(p, true)]:=PlsForm.lbPlayList.Items.Strings[LastMoveIndex];
