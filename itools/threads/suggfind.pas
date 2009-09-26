@@ -114,6 +114,8 @@ begin
             i+1);
         KSPMainWindow.SuggList.Items.Add(s);
       end;
+      if fav.Count=0 then
+        KSPMainWindow.SuggList.Items.Add(SNoSuggestions);
 
       hLog.Send('Fav list fetched...');
 
