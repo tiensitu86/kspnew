@@ -247,7 +247,7 @@ function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false):
 begin
   //hLog.Send('Entering Execute SQL: '+Sql);
 
-  EnterCriticalSection(DBCritSection);
+  LCLIntf.EnterCriticalSection(DBCritSection);
   try
   if Database.SQLQuery.Active then Result:=-1 else begin//Database.SQLQuery.Active:=false;
     if not NoFixName then
@@ -264,7 +264,7 @@ begin
       Result:=0;
   end;
   finally
-    LeaveCriticalSection(DBCritSection);
+    LCLIntf.LeaveCriticalSection(DBCritSection);
   end;
 end;
 
@@ -272,7 +272,7 @@ function TAppDBConnection.OpenQuery(Sql: string): integer;
 var
   s: string;
 begin
-  EnterCriticalSection(DBCritSection);
+  LCLIntf.EnterCriticalSection(DBCritSection);
   try
   if Database.SQLQuery.Active then Result:=-1 else begin
     FixFileNameDB(sql);
@@ -294,7 +294,7 @@ begin
   if not Database.SQLQuery.Active then Result:=-1 else begin
     Database.SQLQuery.Close;
     Result:=0;
-    LeaveCriticalSection(DBCritSection);
+    LCLIntf.LeaveCriticalSection(DBCritSection);
   end;
 end;
 

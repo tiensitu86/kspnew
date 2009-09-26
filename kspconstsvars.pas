@@ -141,7 +141,7 @@ var
   LoadVarsSem2: integer;
   CreateObjectsSem2: integer;
 
-  DBCritSection: TCriticalSection;
+  DBCritSection: LCLType.TCriticalSection;
   KSPCPUID: string;
   KSPMP3SettingsList: TStringList;
 
