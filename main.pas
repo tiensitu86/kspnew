@@ -1059,9 +1059,6 @@ var
 {$IFNDEF KSP_DEVEL}
   procedure PrepareNonDevel;
   begin
-  {$IFNDEF KSP_CURRENTLY_PLAYED}
-    HeaderControl1.Sections.Items[2].Visible:=false;
-  {$ENDIF}
   {$IFNDEF KSP_XMPP}
     HeaderControl1.Sections.Items[3].Visible:=false;
   {$ENDIF}
@@ -1131,10 +1128,6 @@ begin
 //  EqualizerMenu.Enabled:=false;
 //  Button18.Enabled:=false;
 //{$ENDIF}
-{$IFNDEF KSP_VDJ}
-  SuggList.Visible:=false;
-  VDJMenu.Visible:=false;
-{$ENDIF}
 
 {$IFNDEF KSP_DEVEL}
   PrepareNonDevel;
@@ -1878,9 +1871,8 @@ begin
 
 
       Self.TotalPlayCount:=Self.TotalPlayCount+1;
-{$IFDEF KSP_VDJ}
+
       TFindSugg.Create(false);
-{$ENDIF}
 
       PlayedPrevious:=true;
       lbPlaylist.Repaint;

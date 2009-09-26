@@ -20,7 +20,7 @@ const
 {$IFDEF KSP_SPECIAL_BUILD}
 const KSPSpecialInfo_i = 'R3 alpha 3';
 {$ELSE}
-const KSPSpecialInfo_i = 'R3 beta 1';
+const KSPSpecialInfo_i = 'R3';
 {$ENDIF}
 
 {$IFDEF KSP_DEVEL}
@@ -31,9 +31,9 @@ const KSPSpecialInfo = KSPSpecialInfo_i;
 const KSPMajorVersion = '2009';
 
 const Version = 0;
-  Major = 2;
-  Minor = 300;
-  Build = 216;
+  Major = 3;
+  Minor = 0;
+  Build = 223;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
