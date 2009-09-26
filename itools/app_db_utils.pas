@@ -244,6 +244,8 @@ begin
 end;
 
 function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
+var
+  s: string;
 begin
   //hLog.Send('Entering Execute SQL: '+Sql);
 
@@ -253,7 +255,9 @@ begin
     if not NoFixName then
       FixFileNameDB(sql);
     Log.Add('Executing SQL: '+sql);
-    Log.SaveToFile(KSPDataFolder+'\sql.log');
+    s:=KSPDataFolder+'\sql.log';
+    FixFolderNames(s);
+    Log.SaveToFile(s);
     Database.SQLQuery.SQL.Text:=Sql;
 //    Database.SQLQuery.Open;
 //    Database.SQLQuery.Close;
