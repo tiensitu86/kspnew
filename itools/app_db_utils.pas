@@ -939,6 +939,8 @@ begin
     TFavInfo(Items[I]).Free;
     Delete(i);
   end;
+
+  inherited;
 end;
 
 function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
@@ -994,6 +996,7 @@ end;
 procedure TFavouriteList.Remove(Index: Integer);
 begin
   TFavInfo(Items[Index]).Free;
+//  FreeAndNil(TFavInfo(Items[Index]));
   Delete(Index);
 end;
 

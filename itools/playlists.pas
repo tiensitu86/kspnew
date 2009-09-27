@@ -203,9 +203,10 @@ var
 //  p: TPLEntryInfo;
 begin
   for i := Count-1 downto 0 do begin
-    {p:=}TPLEntryInfo(Items[i]).Free;
+    TPLEntryInfo(Items[i]).Free;
+    //FreeAndnil(TPLEntryInfo(Items[i]));
     //FreeAndNil(p);//.Free;//FreeMem(Items[I], SizeOf(TPLEntry);
-    //Delete(i);
+    Delete(i);
   end;
   inherited;
 
@@ -249,6 +250,7 @@ end;
 procedure TPlayList.Remove(Index: Integer);
 begin
   TPLEntryInfo(Items[Index]).Free;
+  //FreeAndNil(TPLEntryInfo(Items[Index]));
   Delete(Index);
 end;
 
