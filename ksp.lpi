@@ -64,8 +64,8 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="15" Y="640"/>
-        <TopLine Value="633"/>
+        <CursorPos X="54" Y="3358"/>
+        <TopLine Value="3337"/>
         <EditorIndex Value="11"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -1726,7 +1726,7 @@
         <Loaded Value="True"/>
       </Unit221>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="itools/app_db_utils.pas"/>
         <Caret Line="943" Column="8" TopLine="933"/>
@@ -1767,6 +1767,14 @@
         <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/inc/wustrings.inc"/>
         <Caret Line="1333" Column="15" TopLine="1331"/>
       </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="23" Column="26" TopLine="10"/>
+      </Position11>
+      <Position12>
+        <Filename Value="main.pas"/>
+        <Caret Line="451" Column="23" TopLine="431"/>
+      </Position12>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

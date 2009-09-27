@@ -3358,6 +3358,10 @@ begin
   WebViewHook:=QWebView_hook_create(Webview.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,Method);
 
+  QWebView_linkClicked_Event(Method):=@ICLinkClicked;
+  WebViewHook:=QWebView_hook_create(MainWebView.Handle);
+  QWebView_hook_hook_linkClicked(WebViewHook,Method);
+
   QWebView_loadProgress_Event(Method):=@IMProgressChange;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
   QWebView_hook_hook_loadProgress(WebViewHook,Method);
