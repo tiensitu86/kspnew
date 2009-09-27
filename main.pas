@@ -633,8 +633,11 @@ end;
 procedure TWebView.LoadURL(URL: string);
 var
   W : WideString;
+
 begin
-  w:=URL;
+  if Pos('://', URL)=0 then
+    w:='http://'+URL else
+    w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
   QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
 end;

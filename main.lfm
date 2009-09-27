@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 276
+  Left = 306
   Height = 707
-  Top = 159
+  Top = 168
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -543,7 +543,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 953
       Align = alClient
-      PageIndex = 4
+      PageIndex = 0
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
