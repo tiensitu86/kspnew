@@ -67,8 +67,10 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    Image4: TImage;
     Label10: TLabel;
     Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
