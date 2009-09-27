@@ -738,6 +738,10 @@ msgstr ""
 msgid "Panel10"
 msgstr ""
 
+#: TKSPMAINWINDOW.PANEL15.CAPTION
+msgid "Suggestions:"
+msgstr ""
+
 #: TKSPMAINWINDOW.PANEL5.CAPTION
 msgid "Panel5"
 msgstr ""
