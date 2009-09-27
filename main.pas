@@ -82,6 +82,8 @@ type  TWebView = class(TObject)
     Page5: TPage;
     Panel13: TPanel;
     Panel14: TPanel;
+    Panel15: TPanel;
+    Panel2: TPanel;
     PlsFormat: TLabeledEdit;
     Panel12: TPanel;
     Splitter7: TSplitter;
@@ -209,7 +211,6 @@ type  TWebView = class(TObject)
     Page1: TPage;
     Page2: TPage;
     PagesWelcome: TPageControl;
-    Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
@@ -634,7 +635,9 @@ procedure TWebView.LoadURL(URL: string);
 var
   W : WideString;
 begin
-  w:=URL;
+  if Pos('://', URL)=0 then
+    w:='http://'+URL else
+    w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
   QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
 end;
@@ -2491,7 +2494,7 @@ end;
 procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
   var NewSize: Integer; var Accept: Boolean);
 begin
-  Accept:=NewSize<=82;
+  Accept:=NewSize<=89;
 end;
 
 procedure TKSPMainWindow.SuggListDblClick(Sender: TObject);
@@ -3344,7 +3347,7 @@ begin
 {$IFDEF WINDOWS}
   HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
 {$ELSE}
-  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', true);
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html');
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
@@ -3353,6 +3356,9 @@ begin
 
   QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
+  QWebView_hook_hook_linkClicked(WebViewHook,Method);
+
+  WebViewHook:=QWebView_hook_create(MainWebView.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,Method);
 
   QWebView_loadProgress_Event(Method):=@IMProgressChange;
@@ -3372,6 +3378,7 @@ begin
   if Self.OfflineMode then Exit;
 
   QUrl_toString(Value, @URL2);
+  hLog.Send('Clicked URL: '+URL2);
 
   URL:=URl2;
   if IsPlaylist(URL) then begin
