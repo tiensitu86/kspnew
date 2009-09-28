@@ -218,7 +218,6 @@ type  TWebView = class(TObject)
     Panel5: TPanel;
     MediaBuild: TProgressBar;
     SongListMenu: TPopupMenu;
-    ScanFolder: TLabel;
     lTime2: TLabel;
     lLeft: TLabel;
     lbPlaylist: TCheckListBox;
@@ -459,6 +458,7 @@ type  TWebView = class(TObject)
     function OfflineMode: boolean;
 
     procedure KSPShowMessage(Data: PtrInt);
+    procedure KSPShowStatusBarText(Data: PtrInt);
     procedure MediaLibProgressMax(Data: PtrInt);
     procedure MediaLibProgressInc(Data: PtrInt);
     procedure MediaLibProgressHide(Data: PtrInt);
@@ -3528,6 +3528,11 @@ end;
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
 begin
   ShowMessage(string(Data));
+end;
+
+procedure TKSPMainWindow.KSPShowStatusBarText(Data: PtrInt);
+begin
+  StatusBar1.Panels.Items[0].Text:=string(Data);
 end;
 
 procedure TKSPMainWindow.MediaLibProgressMax(Data: PtrInt);

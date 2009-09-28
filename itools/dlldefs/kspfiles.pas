@@ -60,6 +60,7 @@ function IsPlaylist(FileName: string): boolean;
 function KSPGetFileSize(const FileName: WideString): Int64;
 
 procedure KSPShowMessage(msg: string);
+procedure KSPSetStatusText(msg: string);
 function ExecuteCommand(cmd: string): string;
 function GetOSVersion: string;
 
@@ -365,7 +366,19 @@ begin
   if KSPMainWindow<>nil then try
     Application.QueueAsyncCall(KSPMainWindow.KSPShowMessage, DWORD(pc));
   except
-    hLog.Send('KSP MAIN WINDOWS MESSAGE: '+msg)
+    hLog.Send('KSP MAIN WINDOW MESSAGE: '+msg)
+  end;
+end;
+
+procedure KSPSetStatusText(msg: string);
+var
+  pc: pChar;
+begin
+  pc:=pChar(msg);
+  if KSPMainWindow<>nil then try
+    Application.QueueAsyncCall(KSPMainWindow.KSPShowStatusBarText, DWORD(pc));
+  except
+    hLog.Send('KSP MAIN WINDOW STATUS: '+msg)
   end;
 end;
 
