@@ -25,7 +25,7 @@ type
 
 implementation
 
-uses Main, KSPConstsVars, KSPStrings, MultiLog, kspfiles;
+uses Main, KSPConstsVars, KSPStrings, MultiLog;
 
 procedure TFoldersScanThread.MInfo(var Entry: TMediaFolder);
 var
@@ -48,7 +48,7 @@ begin
 
   Scanning:=true;
 
-  KKSPSetStatusText(SScanning);
+  KSPSetStatusText(SScanning);
 //  e.OnStatistics:=KSPMainWIndow.EasyFileSearch1Statistics;
 
   ToDate:=(Entry.ScannedEver) and (not ForceRescan);

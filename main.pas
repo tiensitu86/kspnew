@@ -637,7 +637,7 @@ procedure TWebView.LoadURL(URL: string);
 var
   W : WideString;
 begin
-  if Pos('://', URL)=0 then
+  if (Pos('://', URL)=0) and (not FileExists(URL)) then
     w:='http://'+URL else
     w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
@@ -3532,7 +3532,9 @@ end;
 
 procedure TKSPMainWindow.KSPShowStatusBarText(Data: PtrInt);
 begin
+{$IFDEF WINDOWS}
   StatusBar1.Panels.Items[0].Text:=string(Data);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.MediaLibProgressMax(Data: PtrInt);
