@@ -3533,7 +3533,7 @@ end;
 procedure TKSPMainWindow.KSPShowStatusBarText(Data: PtrInt);
 begin
 {$IFDEF WINDOWS}
-  StatusBar1.Panels.Items[0].Text:=string(Data);
+//  StatusBar1.Panels.Items[0].Text:=string(Data);
 {$ENDIF}
 end;
 
