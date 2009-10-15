@@ -296,6 +296,7 @@ type  TWebView = class(TObject)
     procedure DownloadTimerTimer(Sender: TObject);
     procedure EnableVDJClick(Sender: TObject);
     procedure ExitKSPActionExecute(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
@@ -408,6 +409,7 @@ type  TWebView = class(TObject)
     MGStartDrag: TPoint;
     MGDragItem: string;
     MGDragPlaylist: boolean;
+    ClosingKSP: boolean;
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
 {$ENDIF}
@@ -1220,6 +1222,7 @@ begin
 
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
+  ClosingKSP:=false;
 
   CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
   LoadVarsSem2 := 1;//CreateSemaphore(nil, 0,1,'LoadVarsSem');
@@ -1434,7 +1437,17 @@ end;
 
 procedure TKSPMainWindow.ExitKSPActionExecute(Sender: TObject);
 begin
+  ClosingKSP:=true;
   Close;
+end;
+
+procedure TKSPMainWindow.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  CanClose:=ClosingKSP;
+  if not ClosingKSP then begin
+    Hide;
+    ApplicationVisible:=false;
+  end;
 end;
 
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);

@@ -8,6 +8,7 @@ object KSPMainWindow: TKSPMainWindow
   ClientHeight = 683
   ClientWidth = 1244
   Menu = MainMenu1
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDragDrop = lbPlaylistDragDrop
@@ -4700,10 +4701,6 @@ object KSPMainWindow: TKSPMainWindow
     Images = MenuImages
     left = 48
     top = 528
-    object MenuItem32: TMenuItem
-      Action = ExitKSPAction
-      OnClick = ExitKSPActionExecute
-    end
     object Bookmarks1: TMenuItem
       Caption = 'Bookmarks'
       Bitmap.Data = {
@@ -4751,6 +4748,10 @@ object KSPMainWindow: TKSPMainWindow
     object MenuItem31: TMenuItem
       Action = OpenFileAction
       OnClick = MenuItem1Click
+    end
+    object MenuItem32: TMenuItem
+      Action = ExitKSPAction
+      OnClick = ExitKSPActionExecute
     end
   end
   object ImageList2: TImageList
