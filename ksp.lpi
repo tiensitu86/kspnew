@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="4"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -65,7 +65,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="25" Y="3362"/>
+        <CursorPos X="37" Y="3354"/>
         <TopLine Value="3345"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="201"/>
@@ -301,9 +301,9 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="36" Y="17"/>
+        <CursorPos X="37" Y="18"/>
         <TopLine Value="2"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1621,131 +1621,129 @@
         <UnitName Value="qt45"/>
         <CursorPos X="33" Y="7470"/>
         <TopLine Value="7452"/>
-        <EditorIndex Value="4"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit209>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="1294" Column="21" TopLine="1290"/>
+        <Caret Line="638" Column="8" TopLine="633"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="638" Column="8" TopLine="633"/>
+        <Caret Line="23" Column="26" TopLine="10"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="23" Column="26" TopLine="10"/>
+        <Caret Line="451" Column="23" TopLine="431"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="451" Column="23" TopLine="431"/>
+        <Caret Line="3530" Column="66" TopLine="3450"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="3530" Column="66" TopLine="3450"/>
+        <Caret Line="211" Column="32" TopLine="211"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="211" Column="32" TopLine="211"/>
+        <Caret Line="2508" Column="33" TopLine="2492"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="2508" Column="33" TopLine="2492"/>
+        <Caret Line="85" Column="21" TopLine="85"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="85" Column="21" TopLine="85"/>
+        <Caret Line="3369" Column="26" TopLine="3349"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="3369" Column="26" TopLine="3349"/>
+        <Caret Line="3341" Column="33" TopLine="3330"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="3341" Column="33" TopLine="3330"/>
+        <Caret Line="70" Column="20" TopLine="70"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="70" Column="20" TopLine="70"/>
+        <Caret Line="3531" Column="23" TopLine="3520"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="3531" Column="23" TopLine="3520"/>
+        <Caret Line="5" Column="11" TopLine="1"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="5" Column="11" TopLine="1"/>
+        <Caret Line="9" Column="15" TopLine="1"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="9" Column="15" TopLine="1"/>
+        <Caret Line="1871" Column="17" TopLine="1847"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="1871" Column="17" TopLine="1847"/>
+        <Caret Line="659" Column="27" TopLine="647"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="659" Column="27" TopLine="647"/>
+        <Caret Line="658" Column="22" TopLine="625"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="658" Column="22" TopLine="625"/>
+        <Caret Line="12" Column="35" TopLine="1"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="12" Column="35" TopLine="1"/>
+        <Caret Line="422" Column="12" TopLine="402"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="422" Column="12" TopLine="402"/>
+        <Caret Line="713" Column="13" TopLine="693"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="713" Column="13" TopLine="693"/>
+        <Caret Line="730" Column="13" TopLine="693"/>
       </Position20>
       <Position21>
         <Filename Value="main.pas"/>
-        <Caret Line="730" Column="13" TopLine="693"/>
+        <Caret Line="1050" Column="21" TopLine="1030"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="1050" Column="21" TopLine="1030"/>
+        <Caret Line="3531" Column="19" TopLine="3505"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="3531" Column="19" TopLine="3505"/>
+        <Caret Line="539" Column="26" TopLine="522"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="539" Column="26" TopLine="522"/>
+        <Caret Line="538" Column="1" TopLine="522"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="538" Column="1" TopLine="522"/>
+        <Caret Line="618" Column="21" TopLine="604"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="618" Column="21" TopLine="604"/>
+        <Caret Line="620" Column="53" TopLine="604"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="620" Column="53" TopLine="604"/>
+        <Caret Line="3341" Column="14" TopLine="3328"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="3341" Column="14" TopLine="3328"/>
+        <Caret Line="3358" Column="5" TopLine="3342"/>
       </Position28>
       <Position29>
         <Filename Value="main.pas"/>
-        <Caret Line="3358" Column="5" TopLine="3342"/>
+        <Caret Line="3362" Column="54" TopLine="3345"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="3362" Column="54" TopLine="3345"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="20" Column="18" TopLine="2"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -1794,7 +1792,8 @@
         <ShowSummary Value="True"/>
       </Verbosity>
       <CustomOptions Value="-uDEBUG -dRELEASE
--dLOAD_DYNAMICALLY"/>
+-dLOAD_DYNAMICALLY
+-dKSP_SPECIAL_BUILD"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteAfter>
         <Command Value="upx -9 ../bin/ksp.exe"/>
