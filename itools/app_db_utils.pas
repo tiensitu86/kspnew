@@ -58,6 +58,7 @@ type
     procedure AddToDataBase(p: TPLEntry); overload;
     procedure AddToDataBase(p: TPlaylist); overload;
   public
+    procedure FindAproxMaxPlayCountValues(var PlayCount: integer; var Approx: Extended);
     procedure Add(Entry: TPLEntry; OnLoad: boolean);
     function SetupDatabase: Integer;
     function ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
@@ -493,6 +494,40 @@ begin
   Step2;
 
   s.Free;
+end;
+
+procedure TAppDBConnection.FindAproxMaxPlayCountValues(var PlayCount: integer; var Approx: Extended);
+var
+  i: integer;
+  All: Int64;
+  WithZero: integer;
+begin
+  FindApproxVals.Clear;
+  OpenQuery('SELECT * FROM meta');
+  All:=0;
+  WithZero:=0;
+  if Self.ReturnRecordsCount>0 then
+    for i:=0 to ReturnRecordsCount-1 do
+      begin
+        FindApproxVals.Add(Self.ReadEntry);
+        GoToNext;
+        if FindApproxVals.GetItem(i).PlayCount=0 then Inc(WithZero);
+        All:=All+FindApproxVals.GetItem(i).PlayCount;
+      end;
+
+  CloseQuery;
+
+  FindApproxVals.SortPlaylist(pstPlayCount);
+  //ShowMessage(IntToStr(All));
+  if FindApproxVals.Count>0 then
+    Approx:=All / (FindApproxVals.Count-(WithZero/2));
+//  if Approx>0 then
+//    begin
+//      Approx:=(Approx/3)*4;
+//    end;
+  //ShowMessage(FloatToStr(Approx));
+  PlayCount:=FindApproxVals.GetItem(0).PlayCount;
+//  p.Clear;
 end;
 
 procedure TAppDBConnection.AddToDataBase(p: TPlaylist);

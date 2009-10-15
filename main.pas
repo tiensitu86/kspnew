@@ -67,7 +67,22 @@ type  TWebView = class(TObject)
     Eq8: TTrackBar;
     Eq9: TTrackBar;
     EnableVDJ: TMenuItem;
+    CPInfoPanel: TGroupBox;
     Image4: TImage;
+    Mark1: TImage;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    GenreLabel: TLabel;
+    AlbumLabel: TLabel;
+    ArtistLabel: TLabel;
+    Mark2: TImage;
+    Mark3: TImage;
+    Mark4: TImage;
+    Mark5: TImage;
+    Star1: TImage;
+    Star2: TImage;
+    Star3: TImage;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -456,6 +471,7 @@ type  TWebView = class(TObject)
     procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
     function OfflineMode: boolean;
+    procedure ReadID3In(FileName: WideString);
 
     procedure KSPShowMessage(Data: PtrInt);
     procedure KSPShowStatusBarText(Data: PtrInt);
@@ -731,6 +747,132 @@ begin
   LoadPlsThr:=TLoadPlsThread.Create(true);
   LoadPlsThr.aFromMemory:=true;
   LoadPlsThr.Resume;
+end;
+
+procedure TKSPMainWindow.ReadID3In(FileName: WideString);
+var
+  t: boolean;
+  lack: integer;
+  p: TPLEntry;
+  fm: TFormatSettings;
+  Pc: TPathChar;
+  MaxPC: integer;
+  Approx, ApproxBet: Extended;
+  MinStars: integer;
+  HalfStar: boolean;
+  CurrPC: Extended;
+
+  procedure PutMark(Mark: integer; MType: Integer);
+  begin
+    case Mark of
+      1: begin
+          case MType of
+           0:  Mark1.Picture.Assign(Star1.Picture);
+           1:  Mark1.Picture.Assign(Star2.Picture);
+           2:  Mark1.Picture.Assign(Star3.Picture);
+         end;
+         end;
+      2: case MType of
+           0:  Mark2.Picture.Assign(Star1.Picture);
+           1:  Mark2.Picture.Assign(Star2.Picture);
+           2:  Mark2.Picture.Assign(Star3.Picture);
+         end;
+      3: case MType of
+           0:  Mark3.Picture.Assign(Star1.Picture);
+           1:  Mark3.Picture.Assign(Star2.Picture);
+           2:  Mark3.Picture.Assign(Star3.Picture);
+         end;
+      4: case MType of
+           0:  Mark4.Picture.Assign(Star1.Picture);
+           1:  Mark4.Picture.Assign(Star2.Picture);
+           2:  Mark4.Picture.Assign(Star3.Picture);
+         end;
+      5: case MType of
+           0:  Mark5.Picture.Assign(Star1.Picture);
+           1:  Mark5.Picture.Assign(Star2.Picture);
+           2:  Mark5.Picture.Assign(Star3.Picture);
+         end;
+    end;
+  end;
+
+  procedure ShowAsBigger;
+  begin
+    MinStars:=3;
+    ApproxBet:=(MaxPC-Approx)/5;
+    PutMark(1, 0);
+    PutMark(2, 0);
+    PutMark(3, 0);
+    PutMark(4, 2);
+    PutMark(5, 2);
+    CurrPC:=Approx;
+    while P.PlayCount>CurrPC do
+      begin
+        if HalfStar then begin
+            Inc(MinStars);
+            PutMark(MinStars, 0);
+          end;
+        HalfStar:=not HalfStar;
+        CurrPC:=CurrPC+ApproxBet;
+      end;
+    if HalfStar then
+      PutMark(MinStars+1, 1);
+    //ShowMessage(IntToStr(MinStars));
+  end;
+
+  procedure ShowAsSmaller;
+  begin
+    MinStars:=0;
+    ApproxBet:=(Approx)/5;
+    PutMark(1, 2);
+    PutMark(2, 2);
+    PutMark(3, 2);
+    PutMark(4, 2);
+    PutMark(5, 2);
+    CurrPC:=0;
+    while P.PlayCount>CurrPC do
+      begin
+        if HalfStar then begin
+            Inc(MinStars);
+            PutMark(MinStars, 0);
+          end;
+        HalfStar:=not HalfStar;
+        CurrPC:=CurrPC+ApproxBet;
+      end;
+    if HalfStar then
+      PutMark(MinStars+1, 1);
+  end;
+
+begin
+  if not FileExists(FileName) then Exit;
+
+  fm.DecimalSeparator:='.';
+
+  StrPCopy(Pc, FileName);
+  AllSongs.OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+  if AllSongs.ReturnRecordsCount>0 then
+    p:=AllSongs.ReadEntry;
+  AllSongs.CloseQuery;
+
+  p.Tag:=ReadID3(FileName, t, lack);
+
+  CPInfoPanel.Caption:=STitle+' '+p.Tag.Title;
+  ArtistLabel.Caption:=p.Tag.Artist;
+  AlbumLabel.Caption:=p.Tag.Album;
+  GenreLabel.Caption:=p.Tag.Genre;
+
+  AllSongs.FindAproxMaxPlayCountValues(MaxPC, Approx);
+
+  Mark5.Visible:=true;
+  Mark4.Visible:=true;
+  Mark3.Visible:=true;
+  Mark2.Visible:=true;
+  Mark1.Visible:=true;
+
+  if p.PlayCount>Approx then
+    ShowAsBigger else ShowAsSmaller;
+
+  //SongInfoFr2.FavLabel.Caption:=GetResConst('SFavourite');//+' '+FloatToStrF(p.Fav*100, ffFixed, 5, 1, fm);
+
 end;
 
 procedure TKSPMainWindow.PerformFileOpen(const AFileName: string);
@@ -1876,6 +2018,7 @@ begin
       Self.TotalPlayCount:=Self.TotalPlayCount+1;
 
       TFindSugg.Create(false);
+      ReadID3In(CurrentFile);
 
       PlayedPrevious:=true;
       lbPlaylist.Repaint;

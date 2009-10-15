@@ -249,10 +249,12 @@ msgid "Sort by"
 msgstr ""
 
 #: kspstrings.stagalbum
+msgctxt "kspstrings.stagalbum"
 msgid "Album:"
 msgstr ""
 
 #: kspstrings.stagartist
+msgctxt "kspstrings.stagartist"
 msgid "Artist:"
 msgstr ""
 
@@ -261,6 +263,7 @@ msgid "Comment:"
 msgstr ""
 
 #: kspstrings.staggenre
+msgctxt "kspstrings.staggenre"
 msgid "Genre:"
 msgstr ""
 
@@ -507,6 +510,10 @@ msgstr ""
 msgid "Clear Playlist"
 msgstr ""
 
+#: TKSPMAINWINDOW.CPINFOPANEL.CAPTION
+msgid "CPInfoPanel"
+msgstr ""
+
 #: TKSPMAINWINDOW.DEFAULTSETUPPAGE.CAPTION
 msgid "DefaultSetupPage"
 msgstr ""
@@ -556,6 +563,21 @@ msgstr ""
 
 #: TKSPMAINWINDOW.LABEL12.CAPTION
 msgid "Suggestions"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL13.CAPTION
+msgctxt "TKSPMAINWINDOW.LABEL13.CAPTION"
+msgid "Artist:"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL14.CAPTION
+msgctxt "TKSPMAINWINDOW.LABEL14.CAPTION"
+msgid "Album:"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL15.CAPTION
+msgctxt "TKSPMAINWINDOW.LABEL15.CAPTION"
+msgid "Genre:"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL2.CAPTION
