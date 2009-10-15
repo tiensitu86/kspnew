@@ -84,6 +84,8 @@ type  TWebView = class(TObject)
     MenuItem30: TMenuItem;
     MenuItem31: TMenuItem;
     MenuItem32: TMenuItem;
+    Panel16: TPanel;
+    Splitter9: TSplitter;
     Star1: TImage;
     Star2: TImage;
     Star3: TImage;
@@ -324,6 +326,7 @@ type  TWebView = class(TObject)
     procedure NotificationTimerTimer(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
     procedure AudioControlsChange(Sender: TObject);
+    procedure Panel16Resize(Sender: TObject);
     procedure Panel7Resize(Sender: TObject);
     procedure PlgOnStartupClick(Sender: TObject);
     procedure PluginsListClick(Sender: TObject);
@@ -366,6 +369,8 @@ type  TWebView = class(TObject)
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure Splitter7CanResize(Sender: TObject; var NewSize: Integer;
+      var Accept: Boolean);
+    procedure Splitter9CanResize(Sender: TObject; var NewSize: Integer;
       var Accept: Boolean);
     procedure SuggListDblClick(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
@@ -1691,6 +1696,11 @@ begin
 
 end;
 
+procedure TKSPMainWindow.Panel16Resize(Sender: TObject);
+begin
+
+end;
+
 
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
@@ -2661,6 +2671,16 @@ procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
   var NewSize: Integer; var Accept: Boolean);
 begin
   Accept:=NewSize<=89;
+end;
+
+procedure TKSPMainWindow.Splitter9CanResize(Sender: TObject;
+  var NewSize: Integer; var Accept: Boolean);
+var
+  pSize: integer;
+begin
+  Accept:=true;//NewSize>=80;
+  pSize:=Panel12.ClientHeight-NewSize;
+  if pSize<80 then NewSize:=Panel12.ClientHeight-80;
 end;
 
 procedure TKSPMainWindow.SuggListDblClick(Sender: TObject);
