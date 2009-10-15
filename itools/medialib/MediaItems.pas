@@ -2,9 +2,8 @@ unit MediaItems;
 
 interface
 
-uses Forms, Types, Classes, ID3Mgmnt, PlayLists, Dialogs, SysUtils, FileSupport,
-    IniFiles, FileSupportLst, kspfiles, DateUtils, MediaItemsInfo, Math,
-    StdCtrls, KSPCrossList, ExtCtrls, KSPMessages, app_db_utils, DB, DOM;
+uses Forms, Classes, ID3Mgmnt, PlayLists, Dialogs, SysUtils,
+    kspfiles, DateUtils, KSPCrossList, ExtCtrls, KSPMessages, app_db_utils;
 
 const
   faReadOnly  = $00000001;
@@ -97,8 +96,7 @@ procedure ReturnArtists(var Artists: TCrossList; mItems: TAppDBConnection); over
 procedure ReturnArtists(var Artists: TStringList; mItems: TAppDBConnection; Album: string); overload;
 procedure ReturnAlbums(var Albums: TCrossList; mItems: TAppDBConnection); overload;
 procedure ReturnAlbums(var Albums: TStringList; mItems: TAppDBConnection; Artist: string); overload;
-function BuildMediaInfo(stemp: TStringList; Rec: Boolean; var mItems: TAppDBConnection;
- FileSL: TFileSupportList; SongsInLib: integer): integer;
+function BuildMediaInfo(stemp: TStringList; var mItems: TAppDBConnection): integer;
 //procedure FindSongs(var Songs: TPlayList; mItems: TMediaItemsList; Artist, Album: string);
 procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string);
 procedure FindSongsArtist(var Songs: TPlayList; mItems: TAppDBConnection; Artist: string);
@@ -121,7 +119,7 @@ procedure ReturnAlbumsFromGenre(var Albums: TStringList; mItems: TAppDBConnectio
 
 implementation
 
-uses MRNG, Main, KSPConstsVars, ProfileFunc, KSPStrings, MultiLog;
+uses Main, KSPConstsVars, KSPStrings, MultiLog;
 
 constructor TCDEntry.Create;
 begin
@@ -374,8 +372,7 @@ begin
 
 end;
 
-function BuildMediaInfo(stemp: TStringList; Rec: Boolean; var mItems: TAppDBConnection;
- FileSL: TFileSupportList; SongsInLib: integer): integer;
+function BuildMediaInfo(stemp: TStringList; var mItems: TAppDBConnection): integer;
 var
   i: integer;
   x: integer;

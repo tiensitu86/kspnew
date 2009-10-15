@@ -4,7 +4,7 @@ interface
 
 uses
   Forms, Classes, ComCtrls, MediaItems, Dialogs, SysUtils,
-  Graphics, MediaFolders, DateUtils, Playlists, KSPFiles, ID3Mgmnt;
+  Graphics, MediaFolders, DateUtils, KSPFiles;
 
 type
   TFoldersScanThread = class(TThread)
@@ -67,8 +67,7 @@ begin
 
   hLog.Send('MEDIA LIBRARY: Scanning folder (part 2) '+Entry.Folder);
 
-  ItemsNo:=BuildMediaInfo(st, true, AllSongs, FileSupportList,
-    KSPMainWindow.SongsInLib);
+  ItemsNo:=BuildMediaInfo(st, AllSongs);
 
   st.Free;
 

@@ -9,7 +9,7 @@ unit suggfind;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, KSPFiles, KSPMessages, FileUtil, KSPStrings;
+  Classes, SysUtils, Dialogs, KSPFiles, FileUtil, KSPStrings;
 
 type
   TFindSugg = class(TThread)
@@ -21,8 +21,8 @@ type
 
 implementation
 
-uses Playlists, Main, app_db_utils, KSPConstsVars, Math,
-  ID3Mgmnt, DateUtils, FileSupport, multilog, MediaItems;
+uses Main, app_db_utils, KSPConstsVars,
+  ID3Mgmnt, DateUtils, FileSupport, multilog;
 
 { Important: Methods and properties of objects in visual components can only be
   used in a method called using Synchronize, for example,

@@ -3,7 +3,7 @@ unit MainWindowStartupThreads;
 interface
 
 uses
-  Classes, SysUtils, KSPTypes, DateUtils, Forms, StrUtils, Graphics, LCLIntf,
+  Classes, SysUtils, KSPTypes, DateUtils, Forms, Graphics, LCLIntf,
   BookmarksU, profilefunc;
 
 type
@@ -23,9 +23,7 @@ type
 
 implementation
 
-uses Main, IniFiles, BASS, KSPConstsVars, BASSPlayer,
-  Playlists, PresetsU, MediaFolders, KSPMessages, kspfiles, MRNG, MultiLog,
-  kspstrings;
+uses Main, KSPConstsVars, Playlists, PresetsU, MediaFolders, MultiLog;
 
 procedure TCreateObjectsThread.Execute;
 var

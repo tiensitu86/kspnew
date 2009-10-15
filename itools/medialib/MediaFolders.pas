@@ -2,7 +2,7 @@ unit MediaFolders;
 
 interface
 
-uses Classes, SysUtils, MediaItems, Dialogs, Playlists, ID3Mgmnt, app_db_utils, profilefunc;
+uses Classes, SysUtils, Dialogs, ID3Mgmnt, profilefunc;
 
 type TMediaFolder = record
   Folder: string;
@@ -32,7 +32,7 @@ type TMediaFolder = record
 
 implementation
 
-uses IniFiles, FoldersScan, KSPConstsVars, multilog;
+uses IniFiles, KSPConstsVars, multilog;
 
 constructor TMediaFoldersList.Create;
 begin

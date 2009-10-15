@@ -9,7 +9,7 @@ interface
 uses
   LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
   StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
-  CheckLst, MRNG, KSPTypes,ID3Mgmnt, LMessages, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
+  CheckLst, MRNG, KSPTypes,ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
   FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, {$IFDEF KSP_XMPP}uxmpp,{$ENDIF} suggfind
   {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
 
@@ -499,7 +499,6 @@ var
   Style: widestring;
   NotTitle2, NotText2: widestring;
   clb: QPushButtonH;
-  m: TMethod;
   clb_h: QPushButton_hookH;
   x, y, w, h: integer;
 begin

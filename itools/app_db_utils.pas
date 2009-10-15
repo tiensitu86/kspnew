@@ -35,7 +35,7 @@ type
     procedure Clear; override;
     constructor Create(IM: Integer); overload;
     destructor Destroy; override;
-    function Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
+    function Add(Entry: TPlayNextSong): boolean;
     procedure Remove(Index: Integer);
     function GetItem(Index: Integer): TPlayNextSong;
     procedure ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
@@ -50,7 +50,7 @@ type
   private
     Database:app_db_utils.TFDatabase;
   public
-    function InitDatabase(FileName : String = ''): Integer;
+    function InitDatabase: Integer;
     function CheckDatabase: Integer;
   private
     function CloseDatabase: Integer;
@@ -98,7 +98,7 @@ var
 
 implementation
 
-uses Main, Dialogs, KSPConstsVars, IniFiles, KSPMessages, KSPFiles, MultiLog;
+uses Main, Dialogs, KSPConstsVars, KSPMessages, KSPFiles, MultiLog;
 
 
 function FindNoCase(Text: string; List: TStringList): integer;
@@ -160,7 +160,7 @@ begin
 	inherited Destroy;
 end;
 
-function TAppDBConnection.InitDatabase( FileName : String = '' ): Integer;
+function TAppDBConnection.InitDatabase: Integer;
 begin
   Result:=SetupDatabase;
 end;
@@ -194,9 +194,6 @@ end;
 function TAppDBConnection.SetupDatabase: Integer;
 var
   Tables: TStringList;
-  db_name: string;
-  db_exists: boolean;
-  ParamsLoaded: boolean;
 
   procedure SetupSQLite;
   var
@@ -860,7 +857,7 @@ var
         if p.FileName<>'' then begin
           item.FileName:=p.FileName;
           FixFileNameDB2(item.FileName);
-          f.Add(item, Self);
+          f.Add(item);
         end;
       end;
       pls.Free;
@@ -943,7 +940,7 @@ begin
   inherited;
 end;
 
-function TFavouriteList.Add(Entry: TPlayNextSong; Songs: TAppDBConnection): boolean;
+function TFavouriteList.Add(Entry: TPlayNextSong): boolean;
 var
   T: TFavInfo;
   Pc: TPathChar;
