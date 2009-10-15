@@ -549,6 +549,11 @@ msgstr ""
 msgid "EqualizerTab"
 msgstr ""
 
+#: TKSPMAINWINDOW.EXITKSPACTION.CAPTION
+msgctxt "TKSPMAINWINDOW.EXITKSPACTION.CAPTION"
+msgid "Exit KSP"
+msgstr ""
+
 #: TKSPMAINWINDOW.LABEL1.CAPTION
 msgid "Device buffer (in ms):"
 msgstr ""
@@ -661,10 +666,6 @@ msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM22.CAPTION
 msgid "How Can I Help?"
-msgstr ""
-
-#: TKSPMAINWINDOW.MENUITEM23.CAPTION
-msgid "Exit KSP"
 msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM24.CAPTION

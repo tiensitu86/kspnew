@@ -43,6 +43,7 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    ExitKSPAction: TAction;
     Balance: TTrackBar;
     BListBox: TListBox;
     BookmarksSetupPage: TPage;
@@ -80,6 +81,9 @@ type  TWebView = class(TObject)
     Mark3: TImage;
     Mark4: TImage;
     Mark5: TImage;
+    MenuItem30: TMenuItem;
+    MenuItem31: TMenuItem;
+    MenuItem32: TMenuItem;
     Star1: TImage;
     Star2: TImage;
     Star3: TImage;
@@ -291,6 +295,7 @@ type  TWebView = class(TObject)
     procedure DeleteLyricsBtnClick(Sender: TObject);
     procedure DownloadTimerTimer(Sender: TObject);
     procedure EnableVDJClick(Sender: TObject);
+    procedure ExitKSPActionExecute(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
@@ -1427,6 +1432,11 @@ begin
   Self.UseVDJ:=EnableVDJ.Checked;
 end;
 
+procedure TKSPMainWindow.ExitKSPActionExecute(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
 begin
   Self.HistoryWebView.SetDimensions(Self.History.Width, Self.History.Height);
@@ -1533,7 +1543,7 @@ end;
 
 procedure TKSPMainWindow.MenuItem23Click(Sender: TObject);
 begin
-  Close;
+
 end;
 
 procedure TKSPMainWindow.MenuItem24Click(Sender: TObject);
