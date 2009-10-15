@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -65,7 +65,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="44" Y="1455"/>
+        <CursorPos X="51" Y="1450"/>
         <TopLine Value="1438"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
@@ -564,9 +564,11 @@
         <Filename Value="additional/multilog/multilog.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MultiLog"/>
-        <CursorPos X="31" Y="267"/>
-        <TopLine Value="251"/>
+        <CursorPos X="1" Y="102"/>
+        <TopLine Value="92"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit59>
       <Unit60>

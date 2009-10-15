@@ -510,10 +510,6 @@ msgstr ""
 msgid "Clear Playlist"
 msgstr ""
 
-#: TKSPMAINWINDOW.CPINFOPANEL.CAPTION
-msgid "CPInfoPanel"
-msgstr ""
-
 #: TKSPMAINWINDOW.DEFAULTSETUPPAGE.CAPTION
 msgid "DefaultSetupPage"
 msgstr ""

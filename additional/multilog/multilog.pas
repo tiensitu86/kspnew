@@ -99,9 +99,6 @@ type
     Data: TStream;
   end;
 
-  TCustomDataNotify = function (Sender: TLogger; Data: Pointer; var DoSend: Boolean): String of Object;
-  TCustomDataNotifyStatic = function (Sender: TLogger; Data: Pointer; var DoSend: Boolean): String;
-
   { TLogger }
 
   TLogger = class
@@ -110,7 +107,6 @@ type
     FLogStack: TStrings;
     FCheckList: TStringList;
     FCounterList: TStringList;
-    FOnCustomData: TCustomDataNotify;
     FEnabled: boolean;
     procedure GetCallStack(AStream:TStream);
     procedure SetEnabled(AValue: Boolean);
@@ -162,7 +158,6 @@ type
     property Enabled: Boolean read GetEnabled write SetEnabled;
     property LogStack: TStrings read FLogStack;
     property MaxStackCount: Integer read FMaxStackCount write SetMaxStackCount;
-    property OnCustomData: TCustomDataNotify read FOnCustomData write FOnCustomData;
   end;
 
 var
