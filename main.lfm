@@ -3520,8 +3520,7 @@ object KSPMainWindow: TKSPMainWindow
             Height = 385
             Top = 79
             Width = 385
-            Caption = 'CPInfoPanel'
-            ClientHeight = 368
+            ClientHeight = 381
             ClientWidth = 381
             TabOrder = 2
             object Label13: TLabel
