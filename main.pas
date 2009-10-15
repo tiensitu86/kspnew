@@ -535,9 +535,8 @@ begin
   Style:=SClose;
   QAbstractButton_setText(clb, @Style);
   QWidget_setGeometry(clb, 10, 40, 185, 41);
-  QAbstractButton_clicked2_Event(m):=@KSPMainWindow.btnCloseNotification;
   clb_h:=QPushButton_hook_create(clb);
-  QAbstractButton_hook_hook_clicked2(clb_h, m);
+  QAbstractButton_hook_hook_clicked2(clb_h, @KSPMainWindow.btnCloseNotification);
 
   VBox:=QVBoxLayout_create(Result);
   QBoxLayout_addWidget(VBox,tLabel);
@@ -620,7 +619,7 @@ begin
   //QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
   QNetworkProxy_destroy(NetworkProxy);
 
-  QLCLWebPage_override_userAgentForUrl(QWebPage,TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
+  QLCLWebPage_override_userAgentForUrl(QWebPage, @UserAgentForUrl);//TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
 
   w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
@@ -3342,9 +3341,9 @@ begin
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
   MainWebView.SetPosition(0, 0);
 
-  QWebView_loadProgress_Event(Method):=@MWProgressChange;
+  //QWebView_loadProgress_Event(Method):=@MWProgressChange;
   WebViewHook:=QWebView_hook_create(MainWebView.Handle);
-  QWebView_hook_hook_loadProgress(WebViewHook,Method);
+  QWebView_hook_hook_loadProgress(WebViewHook,@MWProgressChange);
 
 {$IFDEF WINDOWS}
   HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
@@ -3356,16 +3355,16 @@ begin
   Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
-  QWebView_linkClicked_Event(Method):=@ICLinkClicked;
+  //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
-  QWebView_hook_hook_linkClicked(WebViewHook,Method);
+  QWebView_hook_hook_linkClicked(WebViewHook,@ICLinkClicked);
 
   WebViewHook:=QWebView_hook_create(MainWebView.Handle);
-  QWebView_hook_hook_linkClicked(WebViewHook,Method);
+  QWebView_hook_hook_linkClicked(WebViewHook,@ICLinkClicked);
 
-  QWebView_loadProgress_Event(Method):=@IMProgressChange;
+  //QWebView_loadProgress_Event(Method):=@IMProgressChange;
   WebViewHook:=QWebView_hook_create(Webview.Handle);
-  QWebView_hook_hook_loadProgress(WebViewHook,Method);
+  QWebView_hook_hook_loadProgress(WebViewHook,@IMProgressChange);
 
   QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
 
