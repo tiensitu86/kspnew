@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="4"/>
+      <ActiveEditorIndexAtStart Value="5"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -301,7 +301,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="30" Y="29"/>
+        <CursorPos X="24" Y="21"/>
         <TopLine Value="6"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="209"/>
@@ -1367,9 +1367,11 @@
       </Unit169>
       <Unit170>
         <Filename Value="READ_FIRST.txt"/>
-        <CursorPos X="29" Y="27"/>
+        <CursorPos X="58" Y="34"/>
         <TopLine Value="20"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="22"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="None"/>
       </Unit170>
       <Unit171>

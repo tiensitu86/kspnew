@@ -39,7 +39,7 @@ IMPORTANT!!! KSP newer than KSP 2009 R2.2 is compiled using Lazarus 0.9.29 and t
 
 After Lazarus is installed follow the steps:
 
-1. Download QT FPC bindings version 1.71 from http://users.telenet.be/Jan.Van.hijfte/qtforfpc/fpcqt4.html and open it
+1. Download QT FPC bindings version 1.72 from http://users.telenet.be/Jan.Van.hijfte/qtforfpc/fpcqt4.html and open it
 2. Extract qt4.pas to c:\lazarus\lcl\interfaces\qt (replace file when prompted). Of course assuming you have installes Lazarus in c:\lazarus. Linux users must also copy proper so library to system folder with libraries for current architecture and run ldconfig
 3. Run Lazarus and choose Tools->Configure Build Lazarus->Advanced Build Options
 4. As LCL interface choose QT and for LCL part choose Build or Clean and Build 
