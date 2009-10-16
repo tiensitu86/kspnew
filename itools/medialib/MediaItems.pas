@@ -98,7 +98,7 @@ procedure ReturnAlbums(var Albums: TCrossList; mItems: TAppDBConnection); overlo
 procedure ReturnAlbums(var Albums: TStringList; mItems: TAppDBConnection; Artist: string); overload;
 function BuildMediaInfo(stemp: TStringList; var mItems: TAppDBConnection): integer;
 //procedure FindSongs(var Songs: TPlayList; mItems: TMediaItemsList; Artist, Album: string);
-procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string);
+procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string; UseOR: boolean);
 procedure FindSongsArtist(var Songs: TPlayList; mItems: TAppDBConnection; Artist: string);
 procedure FindSongsAlbum(var Songs: TPlayList; mItems: TAppDBConnection; Album: string);
 procedure FindSongsByYear(var Songs: TPlayList; mItems: TAppDBConnection; Year, Album: string); overload;
@@ -490,7 +490,7 @@ end;
 
 
 
-procedure PrepareLike(var Input: string);
+procedure PrepareLike(var Input: string; UseOR: boolean);
 const
   art='[%artist]';
   album='[%album]';
@@ -528,7 +528,10 @@ var
 
   procedure AddAnd;
   begin
-    Tmp:=Tmp+' AND';
+    if UseOR then
+      Tmp:=Tmp+' OR'
+    else
+      Tmp:=Tmp+' AND';
   end;
 
   procedure ProduceSQLPart(Field, Value: string);
@@ -608,13 +611,14 @@ begin
   hLog.Send('LIKE: '+Input);
 end;
 
-procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string);
+procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string; UseOR: boolean);
 var
   i: integer;
   T: TPLEntry;
 begin
+  hLog.Send('LIKE search query: '+FileName);
   Songs.Clear;
-  PrepareLike(FileName);
+  PrepareLike(FileName, UseOR);
 //  StrPCopy(Pc, FileName);
   if FileName='' then Exit;
   mItems.OpenQuery(FileName);

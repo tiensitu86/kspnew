@@ -413,6 +413,16 @@ msgstr ""
 msgid "Add Selected To Bookmark"
 msgstr ""
 
+#: TKSPMAINWINDOW.ALBUMBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.ALBUMBOX.CAPTION"
+msgid "Album"
+msgstr ""
+
+#: TKSPMAINWINDOW.ARTISTBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.ARTISTBOX.CAPTION"
+msgid "Artist"
+msgstr ""
+
 #: TKSPMAINWINDOW.BASIC.CAPTION
 msgid "Basic"
 msgstr ""
@@ -458,10 +468,6 @@ msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON15.CAPTION
 msgid "About QT"
-msgstr ""
-
-#: TKSPMAINWINDOW.BUTTON16.CAPTION
-msgid "Find Songs Like"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON17.CAPTION
@@ -510,6 +516,11 @@ msgstr ""
 msgid "Clear Playlist"
 msgstr ""
 
+#: TKSPMAINWINDOW.COMMENTBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.COMMENTBOX.CAPTION"
+msgid "Comment"
+msgstr ""
+
 #: TKSPMAINWINDOW.DEFAULTSETUPPAGE.CAPTION
 msgid "DefaultSetupPage"
 msgstr ""
@@ -548,6 +559,11 @@ msgstr ""
 #: TKSPMAINWINDOW.EXITKSPACTION.CAPTION
 msgctxt "TKSPMAINWINDOW.EXITKSPACTION.CAPTION"
 msgid "Exit KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.GENREBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.GENREBOX.CAPTION"
+msgid "Genre"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL1.CAPTION
@@ -713,6 +729,7 @@ msgid "By Artist"
 msgstr ""
 
 #: TKSPMAINWINDOW.N2.CAPTION
+msgctxt "TKSPMAINWINDOW.N2.CAPTION"
 msgid "-"
 msgstr ""
 
@@ -832,12 +849,40 @@ msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
 msgid "Internet Media"
 msgstr ""
 
+#: TKSPMAINWINDOW.TITLEBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.TITLEBOX.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOOLBUTTON2.CAPTION
+msgctxt "TKSPMAINWINDOW.TOOLBUTTON2.CAPTION"
+msgid "Perform Like Search"
+msgstr ""
+
+#: TKSPMAINWINDOW.TRACKBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.TRACKBOX.CAPTION"
+msgid "Track"
+msgstr ""
+
 #: TKSPMAINWINDOW.USEEQ.CAPTION
 msgid "Use Equalizer"
 msgstr ""
 
+#: TKSPMAINWINDOW.USEOR.CAPTION
+msgid "Use OR"
+msgstr ""
+
+#: TKSPMAINWINDOW.USEOR.HINT
+msgid "Use OR in query instead of AND"
+msgstr ""
+
 #: TKSPMAINWINDOW.VDJMENU.CAPTION
 msgid "VDJ"
+msgstr ""
+
+#: TKSPMAINWINDOW.YEARBOX.CAPTION
+msgctxt "TKSPMAINWINDOW.YEARBOX.CAPTION"
+msgid "Year"
 msgstr ""
 
 #: TKSPOPTIONS.BUTTON1.CAPTION

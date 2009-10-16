@@ -532,7 +532,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 953
       Align = alClient
-      PageIndex = 3
+      PageIndex = 1
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -2022,34 +2022,34 @@ object KSPMainWindow: TKSPMainWindow
       object Page2: TPage
         Caption = 'Page2'
         ClientWidth = 949
-        ClientHeight = 487
+        ClientHeight = 512
         object LibPages: TPageControl
           Left = 0
-          Height = 487
+          Height = 512
           Top = 0
           Width = 949
-          ActivePage = TabSheet5
+          ActivePage = TabSheet1
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 458
+            ClientHeight = 483
             ClientWidth = 945
             object Splitter1: TSplitter
               Left = 186
-              Height = 458
+              Height = 483
               Top = 0
               Width = 5
             end
             object MsortType: TTreeView
               Left = 0
-              Height = 458
+              Height = 483
               Top = 0
               Width = 186
               Align = alLeft
-              DefaultItemHeight = 14
+              DefaultItemHeight = 17
               TabOrder = 1
               OnClick = MsortTypeClick
               Items.Data = {
@@ -2063,20 +2063,20 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 458
+              Height = 483
               Top = 0
               Width = 754
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 458
+              ClientHeight = 483
               ClientWidth = 754
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Left = 0
                 Height = 5
-                Top = 231
+                Top = 256
                 Width = 754
                 Align = alBottom
                 ResizeAnchor = akBottom
@@ -2084,18 +2084,18 @@ object KSPMainWindow: TKSPMainWindow
               object MediaBuild: TProgressBar
                 Left = 0
                 Height = 20
-                Top = 438
+                Top = 463
                 Width = 754
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
                 Left = 0
-                Height = 231
+                Height = 256
                 Top = 0
                 Width = 754
                 Align = alClient
-                DefaultItemHeight = 14
+                DefaultItemHeight = 17
                 DragMode = dmAutomatic
                 TabOrder = 2
                 OnClick = MGViewClick
@@ -2105,7 +2105,7 @@ object KSPMainWindow: TKSPMainWindow
               object Panel10: TPanel
                 Left = 0
                 Height = 202
-                Top = 236
+                Top = 261
                 Width = 754
                 Align = alBottom
                 Caption = 'Panel10'
@@ -2114,33 +2114,102 @@ object KSPMainWindow: TKSPMainWindow
                 TabOrder = 3
                 object Panel9: TPanel
                   Left = 1
-                  Height = 37
-                  Top = 164
+                  Height = 53
+                  Top = 148
                   Width = 752
                   Align = alBottom
-                  ClientHeight = 37
+                  ClientHeight = 53
                   ClientWidth = 752
                   TabOrder = 0
                   object SongsLike: TEdit
-                    Left = 4
-                    Height = 23
-                    Top = 3
+                    Left = 1
+                    Height = 21
+                    Top = 2
                     Width = 256
                     TabOrder = 0
                   end
-                  object Button16: TButton
-                    Left = 268
-                    Height = 25
-                    Top = 3
-                    Width = 200
-                    Caption = 'Find Songs Like'
+                  object ToolButton2: TSpeedButton
+                    Left = 259
+                    Height = 22
+                    Top = 4
+                    Width = 160
+                    Caption = 'Perform Like Search'
+                    Color = clBtnFace
+                    NumGlyphs = 0
                     OnClick = Button16Click
+                  end
+                  object ArtistBox: TCheckBox
+                    Left = 3
+                    Height = 21
+                    Top = 28
+                    Width = 50
+                    Caption = 'Artist'
                     TabOrder = 1
+                  end
+                  object AlbumBox: TCheckBox
+                    Left = 67
+                    Height = 21
+                    Top = 28
+                    Width = 58
+                    Caption = 'Album'
+                    TabOrder = 2
+                  end
+                  object TitleBox: TCheckBox
+                    Left = 131
+                    Height = 21
+                    Top = 28
+                    Width = 46
+                    Caption = 'Title'
+                    TabOrder = 3
+                  end
+                  object CommentBox: TCheckBox
+                    Left = 259
+                    Height = 21
+                    Top = 28
+                    Width = 78
+                    Caption = 'Comment'
+                    TabOrder = 4
+                  end
+                  object GenreBox: TCheckBox
+                    Left = 195
+                    Height = 21
+                    Top = 28
+                    Width = 57
+                    Caption = 'Genre'
+                    TabOrder = 5
+                  end
+                  object YearBox: TCheckBox
+                    Left = 411
+                    Height = 21
+                    Top = 28
+                    Width = 47
+                    Caption = 'Year'
+                    TabOrder = 6
+                  end
+                  object TrackBox: TCheckBox
+                    Left = 347
+                    Height = 21
+                    Top = 28
+                    Width = 53
+                    Caption = 'Track'
+                    TabOrder = 7
+                  end
+                  object UseOR: TCheckBox
+                    Left = 427
+                    Height = 21
+                    Hint = 'Use OR in query instead of AND'
+                    Top = 5
+                    Width = 67
+                    Caption = 'Use OR'
+                    OnChange = UseORClick
+                    ParentShowHint = False
+                    ShowHint = True
+                    TabOrder = 8
                   end
                 end
                 object MIView: TCheckListBox
                   Left = 1
-                  Height = 163
+                  Height = 147
                   Top = 1
                   Width = 752
                   Align = alClient
@@ -2159,11 +2228,11 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 458
+            ClientHeight = 483
             ClientWidth = 945
             object Panel7: TPanel
               Left = 0
-              Height = 395
+              Height = 420
               Top = 43
               Width = 945
               Align = alClient
@@ -3098,7 +3167,7 @@ object KSPMainWindow: TKSPMainWindow
             object IMProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 438
+              Top = 463
               Width = 945
               Align = alBottom
               Smooth = True
@@ -3464,10 +3533,10 @@ object KSPMainWindow: TKSPMainWindow
       object Page4: TPage
         Caption = 'Page4'
         ClientWidth = 949
-        ClientHeight = 512
+        ClientHeight = 487
         object LyricsPanel: TPanel
           Left = 0
-          Height = 512
+          Height = 487
           Top = 0
           Width = 261
           Align = alLeft
@@ -3476,13 +3545,13 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Splitter5: TSplitter
           Left = 261
-          Height = 512
+          Height = 487
           Top = 0
           Width = 5
         end
         object Splitter6: TSplitter
           Left = 684
-          Height = 512
+          Height = 487
           Top = 0
           Width = 5
           Align = alRight
@@ -3490,17 +3559,17 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Panel12: TPanel
           Left = 266
-          Height = 512
+          Height = 487
           Top = 0
           Width = 418
           Align = alClient
-          ClientHeight = 512
+          ClientHeight = 487
           ClientWidth = 418
           TabOrder = 3
           object CPInfoPanel: TGroupBox
             Left = 1
             Height = 424
-            Top = 87
+            Top = 62
             Width = 416
             Align = alBottom
             ClientHeight = 420
@@ -3532,23 +3601,23 @@ object KSPMainWindow: TKSPMainWindow
             end
             object GenreLabel: TLabel
               Left = 87
-              Height = 19
+              Height = 20
               Top = 65
-              Width = 41
+              Width = 42
               ParentColor = False
             end
             object AlbumLabel: TLabel
               Left = 87
-              Height = 19
+              Height = 20
               Top = 41
-              Width = 42
+              Width = 43
               ParentColor = False
             end
             object ArtistLabel: TLabel
               Left = 87
-              Height = 19
+              Height = 20
               Top = 17
-              Width = 34
+              Width = 35
               ParentColor = False
             end
             object Mark1: TImage
@@ -3936,11 +4005,11 @@ object KSPMainWindow: TKSPMainWindow
           end
           object Panel16: TPanel
             Left = 1
-            Height = 78
+            Height = 53
             Top = 1
             Width = 416
             Align = alClient
-            ClientHeight = 78
+            ClientHeight = 53
             ClientWidth = 416
             TabOrder = 1
             OnResize = Panel16Resize
@@ -3967,7 +4036,7 @@ object KSPMainWindow: TKSPMainWindow
             Cursor = crVSplit
             Left = 1
             Height = 8
-            Top = 79
+            Top = 54
             Width = 416
             Align = alBottom
             OnCanResize = Splitter9CanResize
@@ -3976,16 +4045,16 @@ object KSPMainWindow: TKSPMainWindow
         end
         object Panel2: TPanel
           Left = 689
-          Height = 512
+          Height = 487
           Top = 0
           Width = 260
           Align = alRight
-          ClientHeight = 512
+          ClientHeight = 487
           ClientWidth = 260
           TabOrder = 4
           object SuggList: TListBox
             Left = 1
-            Height = 458
+            Height = 433
             Top = 53
             Width = 258
             Align = alClient
@@ -4689,8 +4758,8 @@ object KSPMainWindow: TKSPMainWindow
     top = 536
   end
   object SongListMenu: TPopupMenu
-    left = 176
-    top = 536
+    left = 136
+    top = 480
     object MenuItem3: TMenuItem
       Caption = 'Add Selected To Playlist'
       OnClick = MenuItem3Click
@@ -5317,8 +5386,8 @@ object KSPMainWindow: TKSPMainWindow
     end
   end
   object MenuImages: TImageList
-    left = 216
-    top = 536
+    left = 296
+    top = 416
     Bitmap = {
       4C6908000000100000001000000090D7FF008EDAFF0091DDFF0094D9FF0094D9
       FF0094D9FF0094D9FF0055BEFFA768C5FFD192D7FF0093D7FF0093D7FF009ADB

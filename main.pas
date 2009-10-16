@@ -7,10 +7,12 @@ unit main;
 interface
 
 uses
-  LResources, DefaultTranslator, {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, BASSPlayer,
-  StdCtrls, ComCtrls, Playlists, KSPMessages, ExtCtrls, LoadPlsThread, FileUtils, StrUtils,
-  CheckLst, MRNG, KSPTypes,ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU, MainWindowStartupThreads,
-  FoldersScan, process, Buttons, Qt4, qtwidgets, ActnList, Spin, {$IFDEF KSP_XMPP}uxmpp,{$ENDIF} suggfind
+  LResources, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls,
+  Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
+  ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
+  ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
+  MainWindowStartupThreads, FoldersScan, process, Buttons, Qt4, qtwidgets,
+  ActnList, Spin, FileCtrl, suggfind,uxmpp
   {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
 
 
@@ -43,6 +45,14 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    UseOR: TCheckBox;
+    TrackBox: TCheckBox;
+    YearBox: TCheckBox;
+    GenreBox: TCheckBox;
+    ArtistBox: TCheckBox;
+    AlbumBox: TCheckBox;
+    TitleBox: TCheckBox;
+    CommentBox: TCheckBox;
     ExitKSPAction: TAction;
     Balance: TTrackBar;
     BListBox: TListBox;
@@ -54,7 +64,6 @@ type  TWebView = class(TObject)
     Button13: TButton;
     Button14: TButton;
     Button15: TButton;
-    Button16: TButton;
     Button17: TSpeedButton;
     Button18: TSpeedButton;
     ComboBox1: TComboBox;
@@ -84,6 +93,7 @@ type  TWebView = class(TObject)
     MenuItem30: TMenuItem;
     MenuItem31: TMenuItem;
     MenuItem32: TMenuItem;
+    ToolButton2: TSpeedButton;
     Panel16: TPanel;
     Splitter9: TSplitter;
     Star1: TImage;
@@ -388,6 +398,7 @@ type  TWebView = class(TObject)
     procedure BookmarkClick(Sender: TObject);
     procedure SetupTreeViewClick(Sender: TObject);
     procedure eq0Change(Sender: TObject);
+    procedure UseORClick(Sender: TObject);
   private
     { private declarations }
     CurrentFile: string;
@@ -1093,6 +1104,18 @@ begin
 
  //  BassPlayer1.EQGains := EQGains;
    Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
+end;
+
+procedure TKSPMainWindow.UseORClick(Sender: TObject);
+begin
+//  UseOR.Checked:=not UseOR.Checked;
+  ArtistBox.Enabled:=UseOR.Checked;
+  AlbumBox.Enabled:=UseOR.Checked;
+  TitleBox.Enabled:=UseOR.Checked;
+  GenreBox.Enabled:=UseOR.Checked;
+  CommentBox.Enabled:=UseOR.Checked;
+  TrackBox.Enabled:=UseOR.Checked;
+  YearBox.Enabled:=UseOR.Checked;
 end;
 
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
@@ -1929,7 +1952,7 @@ end;
 
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
-  FindSongsLike(MediaSongs, AllSongs, SongsLike.Text);
+  FindSongsLike(MediaSongs, AllSongs, SongsLike.Text, Self.UseOR.Checked);
   AssignMedia(false);
 end;
 
@@ -3509,7 +3532,6 @@ end;
 procedure TKSPMainWindow.SetupWebBrowserIC;
 var
   WebViewHook     : QWebView_hookH;
-  Method          : TMethod;
   s1, s2, s3, s4: string;
 
 begin
