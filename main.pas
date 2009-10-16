@@ -32,7 +32,7 @@ type  TWebView = class(TObject)
     pURL: string;
     procedure SetDimensions(x, y: integer);
     procedure SetPosition(x, y: integer);
-    constructor Create(Parent : TWinControl; URL: string; SetEditable: boolean = false);
+    constructor Create(Parent : TWinControl; URL: string; Proxy: string; SetEditable: boolean = false);
     procedure LoadURL(URL: string);
     procedure GoBack;
     procedure GoForward;
@@ -426,6 +426,7 @@ type  TWebView = class(TObject)
     MGDragItem: string;
     MGDragPlaylist: boolean;
     ClosingKSP: boolean;
+    ProxyStr: string;
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
 {$ENDIF}
@@ -635,7 +636,7 @@ begin
   QWidget_move(Handle, x, y);
 end;
 
-constructor TWebView.Create(Parent : TWinControl; URL: string; SetEditable: boolean = false);
+constructor TWebView.Create(Parent : TWinControl; URL: string; Proxy: string; SetEditable: boolean = false);
 var
   W : WideString;
 begin
@@ -652,10 +653,12 @@ begin
   NetworkAccessManager:=QWebPage_networkAccessManager(QWebPage);
 
   // proxy :adapt host/port and remove comment of setProxy
-  w:='150.10.10.111';
-  NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy,@w,3128);
-  //QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
-  QNetworkProxy_destroy(NetworkProxy);
+  if Proxy<>'' then begin
+    w:=Proxy;//'150.10.10.111';
+    NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy,@w,3128);
+    QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
+    QNetworkProxy_destroy(NetworkProxy);
+  end;
 
   QLCLWebPage_override_userAgentForUrl(QWebPage, @UserAgentForUrl);//TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
 
@@ -1108,14 +1111,7 @@ end;
 
 procedure TKSPMainWindow.UseORClick(Sender: TObject);
 begin
-//  UseOR.Checked:=not UseOR.Checked;
-  ArtistBox.Enabled:=UseOR.Checked;
-  AlbumBox.Enabled:=UseOR.Checked;
-  TitleBox.Enabled:=UseOR.Checked;
-  GenreBox.Enabled:=UseOR.Checked;
-  CommentBox.Enabled:=UseOR.Checked;
-  TrackBox.Enabled:=UseOR.Checked;
-  YearBox.Enabled:=UseOR.Checked;
+
 end;
 
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
@@ -3251,6 +3247,11 @@ var
     Button8Click(Self);
   end;
 
+  procedure LoadNetworkSettings;
+  begin
+    ProxyStr:=XMLFile.ReadString('Net', 'Proxy', '');
+  end;
+
   procedure LoadVars;
   begin
     KSPMainWindow.Shuffled:=XMLFile.ReadBool('Vars', 'Shuffled', KSPMainWindow.Shuffled);
@@ -3387,6 +3388,7 @@ begin
   LoadFormat;
   LoadEqualizer;
   LoadAudioSettings;
+  LoadNetworkSettings;
   XMLFile.Free;
 end;
 
@@ -3400,6 +3402,12 @@ var
 
     XMLFile.WriteInteger('Audio', 'Pan', Balance.Position);
     XMLFile.WriteInteger('Audio', 'Buffer', Self.KSPSetupStates.KSPOptions.DevBuffer);
+  end;
+
+  procedure SaveNetworkSettings;
+  begin
+    XMLFile.EraseSection('Net');
+    XMLFile.WriteString('Net', 'Proxy', ProxyStr);
   end;
 
   procedure SaveVars;
@@ -3488,6 +3496,7 @@ begin
   SaveFormat;
   SaveEqualizer;
   SaveAudioSettings;
+  SaveNetworkSettings;
   XMLFile.UpdateFile;
   XMLFile.Free;
 end;
@@ -3568,10 +3577,10 @@ begin
 //  VBox:=QVBoxLayout_create(HandleIC);
 
   // WebView
-  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php');
+  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', ProxyStr);
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
   GetKSPVersion3(s1, s2, s3, s4);
-  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]));
+  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), ProxyStr);
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
   MainWebView.SetPosition(0, 0);
 
@@ -3580,13 +3589,13 @@ begin
   QWebView_hook_hook_loadProgress(WebViewHook,@MWProgressChange);
 
 {$IFDEF WINDOWS}
-  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html');
+  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html', ProxyStr);
 {$ELSE}
-  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html');
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', ProxyStr);
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
-  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, true);
+  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, ProxyStr, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
   //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
@@ -3601,7 +3610,6 @@ begin
   QWebView_hook_hook_loadProgress(WebViewHook,@IMProgressChange);
 
   QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
-
 end;
 
 procedure TKSPMainWindow.ICLinkClicked(Value: QUrlH); cdecl;

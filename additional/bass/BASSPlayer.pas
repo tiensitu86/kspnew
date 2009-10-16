@@ -1529,8 +1529,11 @@ begin
 {$ENDIF}
 
       if FMixerReady then hLog.Send('bassmix is loaded');
-
+{$IFDEF WINDOWS}
       if Load_BASSCDDLL(GetProgDir + 'basscd.dll') then
+{$ELSE}
+      if Load_BASSCDDLL(KSP_APP_FOLDER + 'libbasscd.so') then
+{$ENDIF}
       begin
          FBASSCDReady := true;
       // Get list of available CDROM drives
@@ -1548,6 +1551,8 @@ begin
          end;
          FNumCDDrives := n;
       end;
+
+      if FBASSCDReady then hLog.Send('basscd is loaded');
 {$IFDEF WINDOWS}
       if Load_BASSMIDIDLL(GetProgDir + 'bassmidi.dll') then
 {$ELSE}

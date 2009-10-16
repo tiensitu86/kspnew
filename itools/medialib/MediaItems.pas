@@ -26,8 +26,6 @@ type TCDEntryInfo = record
 type TASParseType = (asptTracks, asptAlbums, asptRelated);
 
 type
-  TMediaItemsList = class;
-
   TCDEntry = class(TObject)
   public
     Entry: TCDEntryInfo;
@@ -44,52 +42,6 @@ type
     function GetItem(Index: Integer): TCDEntry;
   end;
 
-  TMediaItemsList = class(TObject)
-  private
-//    fXML: TXMLEntryFile;
-    //FavouriteList: TFavouriteList;
-    //fMetaXML: TXMLMetaTags;
-    //fDataBase: TKSPDataBase;
-    //function SetupDatabase: TAppDBConnection;
-    //procedure AddToDataBase(p: TPLEntry); overload;
-    {procedure nxEventLog1LogDataFilter(const aLogData: InxLogData;
-      var aFiltered: Boolean);}
-    //procedure MemoryTimer(Sender: TObject);
-    //procedure MigrateDatabase;
-    //procedure SaveVersion;
-  public
-//    DBName: string;
-    //DBFileName: string;
-    //fDatabase: TAppDBConnection;
-    //constructor Create;
-//    procedure Migrate;
-    //destructor Destroy; override;
-    //property KSPDatabase: TKSPDataBase read fDatabase write fDatabase;
-    //procedure Add(Entry: TPLEntry; OnLoad: boolean);
-    //procedure AddToDataBase(p: TPlaylist); overload;
-    //function QueryFindNext: boolean;
-    //function RetFields: TPLEntry;
-//    function RetVDJEntry: TPlayNextSong;
-    //procedure OpenQuery(sql: string);
-    //procedure QueryInsert(sql: string);
-    //procedure CloseQuery;
-    //procedure RenameInBase(P: TPLEntry; OldName: string);
-    //procedure CompactLib;
-    //function GetFavList(FileName: string): TFavouriteList;
-//    procedure SaveToFile;//(FileName: string);
-    //procedure AddPlayNext(FileName: String; OldFileName: string);
-    //function Count: integer;
-    //procedure Remove(FileName: string);
-    //function ReturnFromGID(FileName: string; GID: integer): TPlayList;
-    //function ReturnFromArtist(FileName: string; Artist: string): TPlayList;
-    //procedure UpdateItems;
-    //function FileInLib(FileName: string): boolean;
-    //function FindSongFileName(Song: integer): string;
-    //procedure FindSongs(var Songs: TPlayList; Artist, Album: string);
-    //function ReturnAllItems: TPlaylist;
-    //function IsPlaylist(FileName: string): boolean;
-  end;
-
 procedure SortMediaFavList(FavList: TFavouriteList; Song: TPLEntry; Forb: TStringList);
 
 procedure ReturnArtists(var Artists: TCrossList; mItems: TAppDBConnection); overload;
@@ -97,7 +49,6 @@ procedure ReturnArtists(var Artists: TStringList; mItems: TAppDBConnection; Albu
 procedure ReturnAlbums(var Albums: TCrossList; mItems: TAppDBConnection); overload;
 procedure ReturnAlbums(var Albums: TStringList; mItems: TAppDBConnection; Artist: string); overload;
 function BuildMediaInfo(stemp: TStringList; var mItems: TAppDBConnection): integer;
-//procedure FindSongs(var Songs: TPlayList; mItems: TMediaItemsList; Artist, Album: string);
 procedure FindSongsLike(var Songs: TPlayList; mItems: TAppDBConnection; FileName: string; UseOR: boolean);
 procedure FindSongsArtist(var Songs: TPlayList; mItems: TAppDBConnection; Artist: string);
 procedure FindSongsAlbum(var Songs: TPlayList; mItems: TAppDBConnection; Album: string);
@@ -106,8 +57,6 @@ procedure FindSongsByGenre(var Songs: TPlayList; mItems: TAppDBConnection; Genre
 procedure FindSongsByYear(var Songs: TPlayList; mItems: TAppDBConnection; Year: string); overload;
 procedure FindSongsByGenre(var Songs: TPlayList; mItems: TAppDBConnection; Genre: string); overload;
 function ArtistInLib(mItems: TAppDBConnection; Artist: string): boolean;
-//function FindSongFileName(Song: integer; mItems: TMediaItemsList): string;
-//function FindSong(Song: string; mItems: TMediaItemsList): integer;
 
 procedure ReturnYears(var Years: TCrossList; mItems: TAppDBConnection);
 procedure ReturnGenres(var Gn: TCrossList; mItems: TAppDBConnection);
@@ -1226,94 +1175,5 @@ begin
   //s.Free;
 
 end;
-
-{function TMediaItemsList.RetVDJEntry: TPlayNextSong;
-begin
-  try
-    Result.PlayCount:=fDataBase.aDatabase.Fields.FieldByName('PlayCount').AsInteger;
-  except
-    Log.Add('PlayCount is missing');
-  end;
-  try
-    Result.Favourite:=fDataBase.aDatabase.Fields.FieldByName('Fav').AsFloat;
-  except
-    Log.Add('Fav is missing');
-  end;
-  try
-    Result.FileName:=fDataBase.aDatabase.Fields.FieldByName('FileName').AsString;
-  except
-    Log.Add('FileName is missing');
-  end;
-end;  }
-
-{
-function TMediaItemsList.ReturnAllItems: TPlaylist;
-var
-  i: integer;
-  Data: TAppDBConnection;
-begin
-  Result:=TPlaylist.Create;
-  Data:=OpenQuery('SELECT * FROM meta');
-  if Data.ReturnRecordsCount>0 then
-    for i:=0 to Data.ReturnRecordsCount-1 do
-      begin
-        Result.Add(RetFields(Data));
-        QueryFindNext(Data);
-      end;
-  CloseQuery(Data);
-end;
-
-function TMediaItemsList.IsPlaylist(FileName: string): boolean;
-begin
-  FileName:=ExtractFileExt(UpperCase(FileName));
-  Result:=(FileName='.M3U')or(FileName='.PLS')or(FileName='.KPL');
-end;     }
-
-
-{procedure TFavouriteList.Save;
-var
-  i: integer;
-  Ini: TIniFile;
-  sl: TStringList;
-  f: TPlayNextSong;
-  s, s2, s3: string;
-begin
-  s:=IntToStr(fIM);
-  if Length(s)>2 then begin
-      s2:=Copy(s, 1, 2);
-      s3:=Copy(s, 3, Length(s));
-    end else begin
-      s2:='0';
-      s3:=IntToStr(fIM);
-    end;
-  s:=KSPDataFolder+'data\vdj\entries\'+s2+'\'+s3;
-  Ini:=TIniFile.Create(s);
-  sl:=TStringList.Create;
-  Ini.ReadSections(sl);
-
-  if sl.Count>0 then for i:=0 to sl.Count-1 do
-    Ini.EraseSection(IntToStr(i));
-
-  if Count>0 then for i:=0 to Count-1 do begin
-      f:=GetItem(i);
-      Ini.WriteFloat(IntToStr(i), 'Fav', f.Favourite);
-      Ini.WriteInteger(IntToStr(i), 'PlayCount', f.PlayCount);
-      Ini.WriteString(IntToStr(i),'FileName', f.FileName);
-    end;
-
-  Ini.Free;
-  sl.Free;
-
-//  i:=f.FindSong(AFileName);
-//  try
-//    f.Add(AFileName, Self);
-//  finally
-//    f.UpdateFile;
-//  end;
-end;  }
-
-{The Items should be freed here but it isn't. Doesn't matter.
-TPlayList is created only once and destroyed only while KSP is
-to be closed}
 
 end.
