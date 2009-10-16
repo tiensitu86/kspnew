@@ -2201,9 +2201,11 @@ object KSPMainWindow: TKSPMainWindow
                     Top = 5
                     Width = 67
                     Caption = 'Use OR'
+                    Checked = True
                     OnChange = UseORClick
                     ParentShowHint = False
                     ShowHint = True
+                    State = cbChecked
                     TabOrder = 8
                   end
                 end

@@ -113,13 +113,31 @@ procedure ReturnYears(var Years: TCrossList; mItems: TAppDBConnection);
 procedure ReturnGenres(var Gn: TCrossList; mItems: TAppDBConnection);
 procedure ReturnAlbumsFromYear(var Albums: TStringList; mItems: TAppDBConnection; Year: string);
 procedure ReturnAlbumsFromGenre(var Albums: TStringList; mItems: TAppDBConnection; Gn: string);
+function CheckForLikeTags(Input: string): boolean;
 
 //procedure SearchFiles(Path: string; Rec: boolean; var s: TStringList); external 'kspfiles.dll';
+
+const
+  artl='[%artist]';
+  albuml='[%album]';
+  titlel = '[%title]';
+  genrel = '[%genre]';
+  yearl = '[%year]';
+  commentl = '[%comment]';
+  trackl = '[%track]';
+  tracklengthl = '[%length]';
 
 
 implementation
 
 uses Main, KSPConstsVars, KSPStrings, MultiLog;
+
+function CheckForLikeTags(Input: string): boolean;
+begin
+  Result:=(Pos(artl, Input)+Pos(albuml, Input)+Pos(titlel, Input)
+    +Pos(genrel, Input)+Pos(yearl, Input)+Pos(commentl, Input)
+    +Pos(trackl, Input)+Pos(tracklengthl, Input)>0);
+end;
 
 constructor TCDEntry.Create;
 begin
@@ -491,15 +509,6 @@ end;
 
 
 procedure PrepareLike(var Input: string; UseOR: boolean);
-const
-  art='[%artist]';
-  album='[%album]';
-  title = '[%title]';
-  genre = '[%genre]';
-  year = '[%year]';
-  comment = '[%comment]';
-  track = '[%track]';
-  tracklength = '[%length]';
 var
   artp, albump, titlep, genrep, yearp,
   commentp, trackp, tracklengthp: integer;
@@ -509,14 +518,14 @@ var
 
   function CheckForTags: boolean;
   begin
-    artp:=Pos(art, Input);
-    albump:=Pos(album, Input);
-    titlep:=Pos(title, Input);
-    genrep:=Pos(genre, Input);
-    yearp:=Pos(year, Input);
-    commentp:=Pos(comment, Input);
-    trackp:=Pos(track, Input);
-    tracklengthp:=Pos(tracklength, Input);
+    artp:=Pos(artl, Input);
+    albump:=Pos(albuml, Input);
+    titlep:=Pos(titlel, Input);
+    genrep:=Pos(genrel, Input);
+    yearp:=Pos(yearl, Input);
+    commentp:=Pos(commentl, Input);
+    trackp:=Pos(trackl, Input);
+    tracklengthp:=Pos(tracklengthl, Input);
 
     Result:=(artp+albump+titlep+genrep+yearp+commentp+trackp+tracklengthp>0);
   end;
@@ -559,7 +568,7 @@ var
     if FType=album then ProduceSQLPart('Album', t) else
     if FType=title then ProduceSQLPart('Title', t) else
     if FType=genre then ProduceSQLPart('Genre', t) else
-    if FType=year then ProduceSQLPart('Year', t) else
+    if FType=year then ProduceSQLPart('MetaYear', t) else
     if FType=comment then ProduceSQLPart('Comment', t) else
     if FType=track then ProduceSQLPart('Track', t);
   end;
@@ -580,14 +589,14 @@ var
   function FindString(Position: integer): string;
   begin
     Result:='';
-    if (artp=Position) then Result:=art;
-    if (albump=Position) then Result:=album;
-    if (titlep=Position) then Result:=title;
-    if (genrep=Position) then Result:=genre;
-    if (yearp=Position) then Result:=year;
-    if (commentp=Position) then Result:=comment;
-    if (trackp=Position) then Result:=track;
-    if (tracklengthp=Position) then Result:=tracklength;
+    if (artp=Position) then Result:=artl;
+    if (albump=Position) then Result:=albuml;
+    if (titlep=Position) then Result:=titlel;
+    if (genrep=Position) then Result:=genrel;
+    if (yearp=Position) then Result:=yearl;
+    if (commentp=Position) then Result:=commentl;
+    if (trackp=Position) then Result:=trackl;
+    if (tracklengthp=Position) then Result:=tracklengthl;
   end;
 
 begin

@@ -1951,9 +1951,36 @@ begin
 end;
 
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
+var
+  slike: string;
+
+  procedure ProduceSLike;
+  begin
+    slike:='';
+    if ArtistBox.Checked then
+      slike:=artl+' '+SongsLike.Text;
+    if AlbumBox.Checked then
+      slike:=slike+' '+albuml+' '+SongsLike.Text;
+    if TitleBox.Checked then
+      slike:=slike+' '+titlel+' '+SongsLike.Text;
+    if GenreBox.Checked then
+      slike:=slike+' '+genrel+' '+SongsLike.Text;
+    if YearBox.Checked then
+      slike:=slike+' '+yearl+' '+SongsLike.Text;
+    if CommentBox.Checked then
+      slike:=slike+' '+commentl+' '+SongsLike.Text;
+    if TrackBox.Checked then
+      slike:=slike+' '+trackl+' '+SongsLike.Text;
+  end;
+
 begin
-  FindSongsLike(MediaSongs, AllSongs, SongsLike.Text, Self.UseOR.Checked);
-  AssignMedia(false);
+  if CheckForLikeTags(SongsLike.Text) then
+    slike:=SongsLike.Text else
+    ProduceSLike;
+  if slike<>'' then begin
+    FindSongsLike(MediaSongs, AllSongs, slike, Self.UseOR.Checked);
+    AssignMedia(false);
+  end;
 end;
 
 procedure TKSPMainWindow.Button18Click(Sender: TObject);
