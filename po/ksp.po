@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -516,11 +519,17 @@ msgstr ""
 msgid "Force Rescan"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON6.CAPTION
+msgctxt "TKSPMAINWINDOW.BUTTON6.CAPTION"
+msgid "Apply"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON7.CAPTION
 msgid "Preview"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON8.CAPTION
+msgctxt "TKSPMAINWINDOW.BUTTON8.CAPTION"
 msgid "Apply"
 msgstr ""
 
@@ -572,6 +581,26 @@ msgstr ""
 msgid "Add similar tracks to your playlist (uses Laft.fm service)"
 msgstr ""
 
+#: TKSPMAINWINDOW.EPROXYENABLED.CAPTION
+msgid "Enable Proxy"
+msgstr ""
+
+#: TKSPMAINWINDOW.EPROXYHOST.TEXT
+msgid "EProxyHost"
+msgstr ""
+
+#: TKSPMAINWINDOW.EPROXYPASSWORD.TEXT
+msgid "EProxyPassword"
+msgstr ""
+
+#: TKSPMAINWINDOW.EPROXYTYPE.TEXT
+msgid "Http"
+msgstr ""
+
+#: TKSPMAINWINDOW.EPROXYUSERNAME.TEXT
+msgid "EProxyUserName"
+msgstr ""
+
 #: TKSPMAINWINDOW.EQUALIZERMENU.CAPTION
 msgctxt "TKSPMAINWINDOW.EQUALIZERMENU.CAPTION"
 msgid "Equalizer"
@@ -589,6 +618,10 @@ msgstr ""
 #: TKSPMAINWINDOW.GENREBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.GENREBOX.CAPTION"
 msgid "Genre"
+msgstr ""
+
+#: TKSPMAINWINDOW.GROUPBOXPROXY.CAPTION
+msgid "Proxy Settings"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL1.CAPTION
@@ -622,8 +655,28 @@ msgctxt "TKSPMAINWINDOW.LABEL15.CAPTION"
 msgid "Genre:"
 msgstr ""
 
+#: TKSPMAINWINDOW.LABEL16.CAPTION
+msgid "Type"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL17.CAPTION
+msgid "Host"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL18.CAPTION
+msgid "User Name"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL19.CAPTION
+msgid "Password"
+msgstr ""
+
 #: TKSPMAINWINDOW.LABEL2.CAPTION
 msgid "80"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL20.CAPTION
+msgid "Port"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL3.CAPTION
@@ -777,6 +830,10 @@ msgstr ""
 #: TKSPMAINWINDOW.N2.CAPTION
 msgctxt "TKSPMAINWINDOW.N2.CAPTION"
 msgid "-"
+msgstr ""
+
+#: TKSPMAINWINDOW.NETWORKSETUPPAGE.CAPTION
+msgid "NetworkSetupPage"
 msgstr ""
 
 #: TKSPMAINWINDOW.NOTCHECKED.CAPTION

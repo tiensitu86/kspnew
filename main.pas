@@ -32,7 +32,7 @@ type  TWebView = class(TObject)
     pURL: string;
     procedure SetDimensions(x, y: integer);
     procedure SetPosition(x, y: integer);
-    constructor Create(Parent : TWinControl; URL: string; Proxy: string;
+    constructor Create(Parent : TWinControl; URL: string;
       aNetworkAccessManager: QNetworkAccessManagerH; SetEditable: boolean = false);
     procedure LoadURL(URL: string);
     procedure GoBack;
@@ -46,12 +46,26 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    Button6: TButton;
     claBox: TComboBox;
+    EProxyEnabled: TCheckBox;
+    EProxyHost: TEdit;
+    EProxyPassword: TEdit;
+    EProxyPort: TSpinEdit;
+    EProxyType: TComboBox;
+    EProxyUserName: TEdit;
+    GroupBoxProxy: TGroupBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
     MenuItem33: TMenuItem;
     MenuItem34: TMenuItem;
     MenuItem35: TMenuItem;
     MenuItem36: TMenuItem;
     MenuItem37: TMenuItem;
+    NetworkSetupPage: TPage;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -307,6 +321,7 @@ type  TWebView = class(TObject)
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
@@ -315,6 +330,7 @@ type  TWebView = class(TObject)
     procedure DeleteLyricsBtnClick(Sender: TObject);
     procedure DownloadTimerTimer(Sender: TObject);
     procedure EnableVDJClick(Sender: TObject);
+    procedure EProxyEnabledChange(Sender: TObject);
     procedure ExitKSPActionExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure HistoryResize(Sender: TObject);
@@ -438,7 +454,6 @@ type  TWebView = class(TObject)
     MGDragPlaylist: boolean;
     ClosingKSP: boolean;
     CloseAction: integer;
-    ProxyStr: string;
     QCookieJar : QLCLNetworkCookieJarH;
     QNetworkAccessManager : QNetworkAccessManagerH;
     CookiesFileName : String;
@@ -654,7 +669,7 @@ begin
   QWidget_move(Handle, x, y);
 end;
 
-constructor TWebView.Create(Parent : TWinControl; URL: string; Proxy: string;
+constructor TWebView.Create(Parent : TWinControl; URL: string;
   aNetworkAccessManager: QNetworkAccessManagerH; SetEditable: boolean = false);
 var
   W : WideString;
@@ -671,14 +686,6 @@ begin
   QWebPage_setContentEditable(QWebPage, SetEditable);
   NetworkAccessManager:=aNetworkAccessManager;//QWebPage_networkAccessManager(QWebPage);
   QWebPage_setNetworkAccessManager(QWebPage,aNetworkAccessManager);
-
-  // proxy :adapt host/port and remove comment of setProxy
-  if Proxy<>'' then begin
-    w:=Proxy;//'150.10.10.111';
-    NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy,@w,3128);
-    QNetworkAccessManager_setProxy(NetworkAccessManager,NetworkProxy);
-    QNetworkProxy_destroy(NetworkProxy);
-  end;
 
   QLCLWebPage_override_userAgentForUrl(QWebPage, @UserAgentForUrl);//TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
 
@@ -1407,6 +1414,37 @@ begin
   Self.ScanFolders(true);
 end;
 
+procedure TKSPMainWindow.Button6Click(Sender: TObject);
+var
+  w : WideString;
+  NetworkProxy : QNetworkProxyH;
+begin
+  if EProxyEnabled.Checked then
+    begin
+    // Using QNetworkProxy_setType does not correctly initialize proxy capabilities
+    // Recreation each time of Proxy object ensures initialization of capabilities by Qt
+    if EProxyType.ItemIndex = 0
+    then NetworkProxy:=QNetworkProxy_create(QNetworkProxyHttpProxy)
+    else NetworkProxy:=QNetworkProxy_create(QNetworkProxySocks5Proxy);
+
+    w:=EProxyHost.Text;
+    QNetworkProxy_setHostName(NetworkProxy,@w);
+
+    QNetworkProxy_setPort(NetworkProxy,EProxyPort.Value);
+
+    w:=EProxyUserName.Text;
+    QNetworkProxy_setUser(NetworkProxy,nil);
+
+    w:=EProxyPassword.Text;
+    QNetworkProxy_setPassword(NetworkProxy,nil);
+
+    end
+  else NetworkProxy:=QNetworkProxy_create(QNetworkProxyNoProxy);
+
+  QNetworkProxy_setApplicationProxy(NetworkProxy);
+  QNetworkProxy_destroy(NetworkProxy);
+end;
+
 procedure TKSPMainWindow.Button7Click(Sender: TObject);
 begin
   Self.ShowAlert(SSampleAlertCaption, SSampleAlert, true);
@@ -1488,6 +1526,11 @@ procedure TKSPMainWindow.EnableVDJClick(Sender: TObject);
 begin
   EnableVDJ.Checked:=not EnableVDJ.Checked;
   Self.UseVDJ:=EnableVDJ.Checked;
+end;
+
+procedure TKSPMainWindow.EProxyEnabledChange(Sender: TObject);
+begin
+  GroupBoxProxy.Enabled:=EProxyEnabled.Checked;
 end;
 
 procedure TKSPMainWindow.ExitKSPActionExecute(Sender: TObject);
@@ -3255,6 +3298,7 @@ begin
       case Par of
         0: SetupBook.ActivePage:='DefaultSetupPage';
         1: SetupBook.ActivePage:='MediaLibSetupPage';
+        2: SetupBook.ActivePage:='NetworkSetupPage';
       end
     end else begin
       case Par of
@@ -3316,7 +3360,14 @@ var
 
   procedure LoadNetworkSettings;
   begin
-    ProxyStr:=XMLFile.ReadString('Net', 'Proxy', '');
+    EProxyEnabled.Checked:=XMLFile.ReadBool('Proxy','Enabled',False);
+    EProxyType.ItemIndex:=XMLFile.ReadInteger('Proxy','TypeSocks',0);
+    EProxyHost.Text:=XMLFile.ReadString('Proxy','Host','');
+    EProxyPort.Value:=XMLFile.ReadInteger('Proxy','Port',8080);
+    EProxyUserName.Text:=XMLFile.ReadString('Proxy','UserName','');
+    EProxyPassword.Text:=XMLFile.ReadString('Proxy','Password','');
+    GroupBoxProxy.Enabled:=EProxyEnabled.Checked;
+    Self.Button6Click(Self);
   end;
 
   procedure LoadVars;
@@ -3475,8 +3526,13 @@ var
 
   procedure SaveNetworkSettings;
   begin
-    XMLFile.EraseSection('Net');
-    XMLFile.WriteString('Net', 'Proxy', ProxyStr);
+    XMLFile.EraseSection('Proxy');
+    XMLFile.WriteBool('Proxy','Enabled',EProxyEnabled.Checked);
+    XMLFile.WriteInteger('Proxy','TypeSocks',EProxyType.ItemIndex);
+    XMLFile.WriteString('Proxy','Host',EProxyHost.Text);
+    XMLFile.WriteInteger('Proxy','Port',EProxyPort.Value);
+    XMLFile.WriteString('Proxy','UserName',EProxyUserName.Text);
+    XMLFile.WriteString('Proxy','Password',EProxyPassword.Text);
   end;
 
   procedure SaveVars;
@@ -3698,10 +3754,10 @@ begin
   LoadCookies;
   QNetworkAccessManager_setCookieJar(QNetworkAccessManager,QCookieJar);
 
-  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', ProxyStr, QNetworkAccessManager);
+  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', QNetworkAccessManager);
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
   GetKSPVersion3(s1, s2, s3, s4);
-  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), ProxyStr, QNetworkAccessManager);
+  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), QNetworkAccessManager);
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
   MainWebView.SetPosition(0, 0);
 
@@ -3710,13 +3766,13 @@ begin
   QWebView_hook_hook_loadProgress(WebViewHook,@MWProgressChange);
 
 {$IFDEF WINDOWS}
-  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html', ProxyStr), QNetworkAccessManager;
+  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html', QNetworkAccessManager);
 {$ELSE}
-  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', ProxyStr, QNetworkAccessManager);
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', QNetworkAccessManager);
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
-  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, ProxyStr, QNetworkAccessManager, true);
+  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, QNetworkAccessManager, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
   //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
