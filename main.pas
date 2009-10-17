@@ -1313,6 +1313,7 @@ begin
 
 {$IFDEF KSP_LUA}
   ScriptedAddons:=TLUA.Create(nil);
+  ScriptedAddons.LuaPath:=KSPDataFolder+'lua\';
   ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
   ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
   ScriptedAddons.LoadFile(KSPDataFolder+'lua\test.lua');

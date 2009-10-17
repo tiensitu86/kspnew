@@ -20,7 +20,7 @@ var
 begin
   p:=lua_tostring(L, -1);
   hLog.Send('MSG FROM LUA: '+p);
-  KSPShowMessage(p);
+  KSPShowMessage(p^);
   Result:=0;
 end;
 

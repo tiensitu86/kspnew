@@ -7,7 +7,8 @@ interface
 uses
   Classes,
   LUA,
-  LuaUtils;{,
+  LuaUtils,
+  ProfileFunc;{,
   Lauxlib,
   LuaLib;}
 
@@ -111,7 +112,8 @@ implementation
 
 uses
   Variants,
-  SysUtils;
+  SysUtils,
+  Multilog;
 
 constructor TLUA.Create(Owner: TComponent);
 begin
@@ -172,12 +174,20 @@ begin
 end;
 
 procedure TLUA.LoadFile(FileName: String);
+var
+  Res: integer;
 begin
+  FixFolderNames(FileName);
   if L = nil then
     Open;
   FLibFile := FileName;
   FScript := '';
-  luaL_loadfile(L, PChar(FileName));
+  hLog.Send('LUA: LOADING FILE: '+FileName);
+  if not FileExists(FileName) then
+    hLog.Send('LUA: file does not exist');
+  Res:=luaL_loadfile(L, PChar(FileName));
+  if Res<>0 then
+    hLog.Send('LUA ERROR WHILE LOADING SCRIPT: '+IntToStr(Res));
 end;
 
 procedure TLUA.LoadScript(Script: String);
