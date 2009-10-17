@@ -5,7 +5,7 @@ unit KSPConstsVars;
 interface
 
 uses FileSupportLst, SysUtils, BASSPlayer, Graphics, Classes, PresetsU,
-  Playlists, app_db_utils, LCLType{$IFDEF KSP_LUA}, LuaObjects{$ENDIF};
+  Playlists, app_db_utils, LCLType{$IFDEF KSP_LUA}, LuaWrapper{$ENDIF};
 
 const
   KSPHost = 'http://ksplayer.boo.pl';
@@ -99,7 +99,7 @@ var
   SuggestionList: TPlayList;
   SuggFindHelpPlaylist: TPlaylist;
 {$IFDEF KSP_LUA}
-  ScriptedAddons: TLuaScript;
+  ScriptedAddons: TLUA;
 {$ENDIF}
   FindApproxVals: TPlayList;
   EqList:TEqList;

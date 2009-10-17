@@ -13,7 +13,7 @@ uses
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
   MainWindowStartupThreads, FoldersScan, process, Buttons, Qt4, qtwidgets,
   ActnList, Spin, FileCtrl, suggfind,uxmpp
-  {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
+  {$IFDEF KSP_LUA}, LuaWrapper, ksplua{$ENDIF};
 
 
   { TWebView }
@@ -1117,6 +1117,7 @@ end;
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
+  lRes: integer;
 
   procedure SetVars;
   begin
@@ -1311,12 +1312,15 @@ begin
 {$ENDIF}
 
 {$IFDEF KSP_LUA}
-  ScriptedAddons:=TLuaScript.Create(nil);
-  ScriptedAddons.RegisterFunction('ShowMessage', @LuaShowMessage);
-  ScriptedAddons.DoFile(KSPDataFolder+'lua\test.lua');
-  hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
-  if ScriptedAddons.Call([LuaVar(GetKSPVersion2)], 'RunTest')<>0 then
-    hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
+  ScriptedAddons:=TLUA.Create(nil);
+  ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
+  ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
+  ScriptedAddons.LoadFile(KSPDataFolder+'lua\test.lua');
+  ScriptedAddons.Execute;
+//  hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
+//  lRes:=ScriptedAddons.Call([LuaVar(GetKSPVersion2)], 'RunTest');
+//  if lRes<>0 then
+//    hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage+'('+IntToStr(lRes)+')');
 {$ENDIF}
 
   TCompactlibThread.Create(false);

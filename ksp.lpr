@@ -21,7 +21,7 @@ uses
   WAVfile, APETag, OggVorbis
   {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
   , MPEGaudio, MPEGInfoBox, suggfind
-  {$IFDEF KSP_LUA}, LuaObjects, ksplua{$ENDIF};
+  {$IFDEF KSP_LUA}, ksplua{$ENDIF};
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 
