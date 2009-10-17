@@ -1,0 +1,6 @@
+TCLOSEACTIONFORM.CAPTION=Minimize to tray question
+TCLOSEACTIONFORM.LABEL1.CAPTION=By default when you try to close KSP windows KSP is only minimised to tray icon
+TCLOSEACTIONFORM.LABEL2.CAPTION=Choose action you want to perform now:
+TCLOSEACTIONFORM.ASDEFAULT.CAPTION=Use this action as default one
+TCLOSEACTIONFORM.BITBTN1.CAPTION=Close KSP entirely
+TCLOSEACTIONFORM.BITBTN2.CAPTION=Minimise KSP to tray

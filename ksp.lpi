@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -297,7 +297,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="26" Y="28"/>
+        <CursorPos X="26" Y="27"/>
         <TopLine Value="6"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
@@ -735,7 +735,7 @@
       </Unit81>
       <Unit82>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="9" Y="10"/>
+        <CursorPos X="38" Y="4"/>
         <TopLine Value="1"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="29"/>
@@ -1143,7 +1143,7 @@
         <UnitName Value="KSPWebKit"/>
         <CursorPos X="39" Y="109"/>
         <TopLine Value="85"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="175"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit138>
       <Unit139>
@@ -1174,7 +1174,7 @@
         <UnitName Value="suggfind"/>
         <CursorPos X="17" Y="52"/>
         <TopLine Value="42"/>
-        <UsageCount Value="170"/>
+        <UsageCount Value="171"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit142>
       <Unit143>
@@ -1198,7 +1198,7 @@
         <UnitName Value="LuaObjects"/>
         <CursorPos X="14" Y="20"/>
         <TopLine Value="1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="155"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit145>
       <Unit146>
@@ -1229,7 +1229,7 @@
         <CursorPos X="28" Y="19"/>
         <TopLine Value="1"/>
         <EditorIndex Value="8"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit149>
@@ -1498,7 +1498,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="77" Y="164"/>
         <TopLine Value="143"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
       </Unit190>
       <Unit191>
         <Filename Value="arch/windows/bassh.inc"/>
@@ -1903,8 +1903,7 @@
       </Verbosity>
       <CustomOptions Value="-uDEBUG -dRELEASE
 -dLOAD_DYNAMICALLY
--dKSP_SPECIAL_BUILD
--dKSP_DEVEL"/>
+-dKSP_SPECIAL_BUILD"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteAfter>
         <Command Value="upx -9 ../bin/ksp.exe"/>
