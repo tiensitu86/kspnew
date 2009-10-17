@@ -536,6 +536,10 @@ msgctxt "TKSPMAINWINDOW.CAPTION"
 msgid "KSP"
 msgstr ""
 
+#: TKSPMAINWINDOW.CLABOX.TEXT
+msgid "Always ask what to do when Close button is pressed"
+msgstr ""
+
 #: TKSPMAINWINDOW.CLEARPLAYLISTACTION.CAPTION
 msgid "Clear Playlist"
 msgstr ""

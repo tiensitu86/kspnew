@@ -33,7 +33,7 @@ const KSPMajorVersion = '2009';
 const Version = 0;
   Major = 3;
   Minor = 1;
-  Build = 250;
+  Build = 255;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;

@@ -45,6 +45,7 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    claBox: TComboBox;
     MenuItem33: TMenuItem;
     MenuItem34: TMenuItem;
     MenuItem35: TMenuItem;
@@ -308,6 +309,7 @@ type  TWebView = class(TObject)
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
+    procedure claBoxChange(Sender: TObject);
     procedure DeleteBookmarkClick(Sender: TObject);
     procedure DeleteLyricsBtnClick(Sender: TObject);
     procedure DownloadTimerTimer(Sender: TObject);
@@ -1318,14 +1320,8 @@ begin
 
   Self.SetupWebBrowserIC;
   SetupCaptions;
-//{$IFDEF KSP_EQUALIZER}
 
   LoadThings;
-
-//{$ELSE}
-//  EqualizerMenu.Enabled:=false;
-//  Button18.Enabled:=false;
-//{$ENDIF}
 
 {$IFNDEF KSP_DEVEL}
   PrepareNonDevel;
@@ -1440,6 +1436,11 @@ begin
   Self.SetupOpenDialog;
 end;
 
+procedure TKSPMainWindow.claBoxChange(Sender: TObject);
+begin
+  Self.CloseAction:=claBox.ItemIndex;
+end;
+
 procedure TKSPMainWindow.DeleteBookmarkClick(Sender: TObject);
 var
   i:integer;
@@ -1515,6 +1516,7 @@ begin
   CanClose:=ClosingKSP;
   if not ClosingKSP then begin
     Hide;
+    claBox.ItemIndex:=Self.CloseAction;
     ApplicationVisible:=false;
   end;
 end;
@@ -3353,6 +3355,7 @@ var
     KSPMainWindow.Width:=XMLFile.ReadInteger('Main window', 'width', KSPMainWindow.Width);
     KSPMainWindow.Update;
     Self.CloseAction:=XMLFile.ReadInteger('Main window', 'close', 0);
+    claBox.ItemIndex:=Self.CloseAction;
 
     lbPlaylist.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
     KSPMainWindow.MSortType.Width:=XMLFile.ReadInteger('Main Window', 'MediaLibPanelSize', KSPMainWindow.MSortType.Width);

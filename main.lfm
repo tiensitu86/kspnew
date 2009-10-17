@@ -1,5 +1,5 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 342
+  Left = 343
   Height = 707
   Top = 159
   Width = 1244
@@ -3448,7 +3448,7 @@ object KSPMainWindow: TKSPMainWindow
             object Label1: TLabel
               Left = 8
               Height = 16
-              Top = 131
+              Top = 157
               Width = 117
               Caption = 'Device buffer (in ms):'
               ParentColor = False
@@ -3465,7 +3465,7 @@ object KSPMainWindow: TKSPMainWindow
             object BufferEdit: TSpinEdit
               Left = 8
               Height = 21
-              Top = 155
+              Top = 181
               Width = 114
               MaxValue = 100000
               TabOrder = 1
@@ -3482,13 +3482,13 @@ object KSPMainWindow: TKSPMainWindow
             object PlsFormat: TLabeledEdit
               Left = 16
               Height = 21
-              Top = 91
+              Top = 117
               Width = 408
               EditLabel.AnchorSideLeft.Control = PlsFormat
               EditLabel.AnchorSideBottom.Control = PlsFormat
               EditLabel.Left = 16
               EditLabel.Height = 16
-              EditLabel.Top = 72
+              EditLabel.Top = 98
               EditLabel.Width = 105
               EditLabel.Caption = 'Playlist Formatting:'
               EditLabel.ParentColor = False
@@ -3506,7 +3506,7 @@ object KSPMainWindow: TKSPMainWindow
               Cursor = crArrow
               Left = 149
               Height = 280
-              Top = 138
+              Top = 164
               Width = 270
               BorderStyle = bsNone
               Lines.Strings = (
@@ -3528,6 +3528,23 @@ object KSPMainWindow: TKSPMainWindow
               )
               ReadOnly = True
               TabOrder = 5
+            end
+            object claBox: TComboBox
+              Left = 8
+              Height = 25
+              Top = 63
+              Width = 411
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'Always ask what to do when Close button is pressed'
+                'Always Exit KSP when Close button is pressed'
+                'Always minimise to tray when Close button is pressed (Exit only via menu)'
+              )
+              OnChange = claBoxChange
+              Style = csDropDownList
+              TabOrder = 6
+              Text = 'Always ask what to do when Close button is pressed'
             end
           end
         end
