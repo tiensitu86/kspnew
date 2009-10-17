@@ -32,7 +32,8 @@ type  TWebView = class(TObject)
     pURL: string;
     procedure SetDimensions(x, y: integer);
     procedure SetPosition(x, y: integer);
-    constructor Create(Parent : TWinControl; URL: string; Proxy: string; SetEditable: boolean = false);
+    constructor Create(Parent : TWinControl; URL: string; Proxy: string;
+      aNetworkAccessManager: QNetworkAccessManagerH; SetEditable: boolean = false);
     procedure LoadURL(URL: string);
     procedure GoBack;
     procedure GoForward;
@@ -438,6 +439,9 @@ type  TWebView = class(TObject)
     ClosingKSP: boolean;
     CloseAction: integer;
     ProxyStr: string;
+    QCookieJar : QLCLNetworkCookieJarH;
+    QNetworkAccessManager : QNetworkAccessManagerH;
+    CookiesFileName : String;
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
 {$ENDIF}
@@ -467,6 +471,8 @@ type  TWebView = class(TObject)
     procedure UnloadPlugins;
     procedure EqClick(Sender: TObject);
     procedure LoadEqSetting(SettingNo: integer = -1);
+    procedure LoadCookies;
+    procedure SaveCookies;
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -648,7 +654,8 @@ begin
   QWidget_move(Handle, x, y);
 end;
 
-constructor TWebView.Create(Parent : TWinControl; URL: string; Proxy: string; SetEditable: boolean = false);
+constructor TWebView.Create(Parent : TWinControl; URL: string; Proxy: string;
+  aNetworkAccessManager: QNetworkAccessManagerH; SetEditable: boolean = false);
 var
   W : WideString;
 begin
@@ -662,7 +669,8 @@ begin
 
   QWebView_setPage(Handle,QWebPage);
   QWebPage_setContentEditable(QWebPage, SetEditable);
-  NetworkAccessManager:=QWebPage_networkAccessManager(QWebPage);
+  NetworkAccessManager:=aNetworkAccessManager;//QWebPage_networkAccessManager(QWebPage);
+  QWebPage_setNetworkAccessManager(QWebPage,aNetworkAccessManager);
 
   // proxy :adapt host/port and remove comment of setProxy
   if Proxy<>'' then begin
@@ -2396,6 +2404,9 @@ begin
   Jabber.Free;
 {$ENDIF}
 
+  hLog.Send('Saving cookies');
+  SaveCookies;
+
   hLog.Send('Stopping playback'); Player.Stop;
   hLog.Send('Closing media files'); Player.Close;
   hLog.Send('Freeing player'); try Player.Free; except end;
@@ -3624,22 +3635,73 @@ begin
 
 end;
 
+procedure TKSPMainWindow.LoadCookies;
+var
+  CookiesData : TMemoryStream;
+begin
+  if CookiesFileName='' then
+    begin
+    // Prepare Cookie Destination Dir & FileName
+    CookiesFileName := KSPDataFolder+'cookies.dat';
+    hLog.Send('Cookief file name: '+CookiesFileName);
+    end;
+
+  if not FileExists(CookiesFileName) then exit;
+  CookiesData:=TMemoryStream.Create;
+try
+  CookiesData.LoadFromFile(CookiesFileName);
+  QLCLNetworkCookieJar_setRawCookies(QCookieJar,CookiesData.Memory);
+finally
+  CookiesData.Free;
+end;
+
+end;
+
+procedure TKSPMainWindow.SaveCookies;
+var
+  Cookies : QByteArrayH;
+  CookiesData : PAnsiChar;
+  F : File of Byte;
+
+begin
+  Cookies:=QByteArray_create;
+  try
+    QLCLNetworkCookieJar_getRawCookies(QCookieJar,Cookies);
+    CookiesData := QByteArray_constData(Cookies);
+    AssignFile(F,CookiesFileName);
+    Rewrite(F);
+    BlockWrite(F,CookiesData^,Length(CookiesData));
+    CloseFile(F);
+  finally
+    QByteArray_destroy(Cookies);
+  end;
+end;
+
 procedure TKSPMainWindow.SetupWebBrowserIC;
 var
   WebViewHook     : QWebView_hookH;
   s1, s2, s3, s4: string;
-
+  Method          : TMethod;
+  QWebSettings    : QWebSettingsH;
 begin
-//  HandleIC:=QWidget_Create(nil, 0);
 
-  // VBox
-//  VBox:=QVBoxLayout_create(HandleIC);
+  // Web Settings
+  QWebSettings:=QWebSettings_globalSettings;
+  QWebSettings_setAttribute(QWebSettings,QWebSettingsJavascriptEnabled,true);
+  QWebSettings_setAttribute(QWebSettings,QWebSettingsPluginsEnabled,true);
+  QWebSettings_setAttribute(QWebSettings,QWebSettingsPrivateBrowsingEnabled,false);
 
-  // WebView
-  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', ProxyStr);
+
+  // Common NetworkAccessManager
+  QNetworkAccessManager := QNetworkAccessManager_create();
+  QCookieJar:=QLCLNetworkCookieJar_create();
+  LoadCookies;
+  QNetworkAccessManager_setCookieJar(QNetworkAccessManager,QCookieJar);
+
+  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', ProxyStr, QNetworkAccessManager);
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
   GetKSPVersion3(s1, s2, s3, s4);
-  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), ProxyStr);
+  MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), ProxyStr, QNetworkAccessManager);
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
   MainWebView.SetPosition(0, 0);
 
@@ -3648,13 +3710,13 @@ begin
   QWebView_hook_hook_loadProgress(WebViewHook,@MWProgressChange);
 
 {$IFDEF WINDOWS}
-  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html', ProxyStr);
+  HistoryWebView:=TWebView.Create(Self.History, ExtractFilePath(Application.ExeName)+'history.html', ProxyStr), QNetworkAccessManager;
 {$ELSE}
-  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', ProxyStr);
+  HistoryWebView:=TWebView.Create(Self.History, KSP_APP_FOLDER+'history.html', ProxyStr, QNetworkAccessManager);
 {$ENDIF}
   HistoryWebView.SetDimensions(History.Width, History.Height);
 
-  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, ProxyStr, true);
+  Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, ProxyStr, QNetworkAccessManager, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
 
   //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
