@@ -14,6 +14,10 @@ const
   KSPSupportURL = 'http://code.google.com/p/kspnew/issues/list';
   KSPTellAFriend = 'http://www.freetellafriend.com/tell/?u=5653&title=KSPSoundPlayer&url=http://ksplayer.boo.pl';
 
+  KSPMDir = KSPHost+'/music-links';
+  KSPMDirAdd = KSPMDir+'/add';
+  KSPForum = KSPHost+'/support/forum';
+
   NetworkStreams = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
 //  KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';

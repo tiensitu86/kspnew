@@ -45,6 +45,11 @@ type  TWebView = class(TObject)
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    MenuItem33: TMenuItem;
+    MenuItem34: TMenuItem;
+    MenuItem35: TMenuItem;
+    MenuItem36: TMenuItem;
+    MenuItem37: TMenuItem;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -324,6 +329,9 @@ type  TWebView = class(TObject)
     procedure MenuItem25Click(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem29Click(Sender: TObject);
+    procedure MenuItem35Click(Sender: TObject);
+    procedure MenuItem36Click(Sender: TObject);
+    procedure MenuItem37Click(Sender: TObject);
     procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -496,6 +504,7 @@ type  TWebView = class(TObject)
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
     function OfflineMode: boolean;
     procedure ReadID3In(FileName: WideString);
+    procedure LoadWebURL(URL: string; ChangeTab: boolean = true);
 
     procedure KSPShowMessage(Data: PtrInt);
     procedure KSPShowStatusBarText(Data: PtrInt);
@@ -899,6 +908,16 @@ begin
 
   //SongInfoFr2.FavLabel.Caption:=GetResConst('SFavourite');//+' '+FloatToStrF(p.Fav*100, ffFixed, 5, 1, fm);
 
+end;
+
+procedure TKSPMainWindow.LoadWebURL(URL: string; ChangeTab: boolean = true);
+begin
+  if ChangeTab then begin
+    Self.Notebook1.ActivePage:='Page1';
+    SetHeaderControlImage(0);
+    PagesWelcome.ActivePage:=TabSheet3;
+  end;
+  Self.MainWebView.LoadURL(URL);
 end;
 
 procedure TKSPMainWindow.PerformFileOpen(const AFileName: string);
@@ -1375,10 +1394,7 @@ end;
 procedure TKSPMainWindow.Button4Click(Sender: TObject);
 begin
   //ShellExecute(KSPMainWindow.Handle,'Open', KSPHowHelp,nil,nil,SW_NORMAL);
-  Self.Notebook1.ActivePage:='Page1';
-  SetHeaderControlImage(0);
-  PagesWelcome.ActivePage:=TabSheet3;
-  Self.MainWebView.LoadURL(KSPHowHelp);
+  Self.LoadWebURL(KSPHowHelp);
 end;
 
 procedure TKSPMainWindow.Button5Click(Sender: TObject);
@@ -1590,18 +1606,12 @@ end;
 
 procedure TKSPMainWindow.MenuItem24Click(Sender: TObject);
 begin
-  Self.Notebook1.ActivePage:='Page1';
-  SetHeaderControlImage(0);
-  PagesWelcome.ActivePage:=TabSheet3;
-  Self.MainWebView.LoadURL(KSPSupportURL);
+  LoadWebURL(KSPSupportURL);
 end;
 
 procedure TKSPMainWindow.MenuItem25Click(Sender: TObject);
 begin
-  Self.Notebook1.ActivePage:='Page1';
-  PagesWelcome.ActivePage:=TabSheet3;
-  SetHeaderControlImage(0);
-  Self.MainWebView.LoadURL(KSPTellAFriend);
+  LoadWebURL(KSPTellAFriend);
 end;
 
 procedure TKSPMainWindow.MenuItem26Click(Sender: TObject);
@@ -1618,6 +1628,21 @@ end;
 procedure TKSPMainWindow.MenuItem29Click(Sender: TObject);
 begin
   MenuItem29.Checked:=not MenuItem29.Checked;
+end;
+
+procedure TKSPMainWindow.MenuItem35Click(Sender: TObject);
+begin
+  Self.LoadWebURL(KSPMDir);
+end;
+
+procedure TKSPMainWindow.MenuItem36Click(Sender: TObject);
+begin
+  Self.LoadWebURL(KSPMDirAdd);
+end;
+
+procedure TKSPMainWindow.MenuItem37Click(Sender: TObject);
+begin
+  Self.LoadWebURL(KSPForum);
 end;
 
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;

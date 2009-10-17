@@ -2035,17 +2035,17 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Media'
-            ClientHeight = 483
+            ClientHeight = 458
             ClientWidth = 945
             object Splitter1: TSplitter
               Left = 186
-              Height = 483
+              Height = 458
               Top = 0
               Width = 5
             end
             object MsortType: TTreeView
               Left = 0
-              Height = 483
+              Height = 458
               Top = 0
               Width = 186
               Align = alLeft
@@ -2063,20 +2063,20 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Panel5: TPanel
               Left = 191
-              Height = 483
+              Height = 458
               Top = 0
               Width = 754
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel5'
-              ClientHeight = 483
+              ClientHeight = 458
               ClientWidth = 754
               TabOrder = 2
               object Splitter2: TSplitter
                 Cursor = crVSplit
                 Left = 0
                 Height = 5
-                Top = 256
+                Top = 231
                 Width = 754
                 Align = alBottom
                 ResizeAnchor = akBottom
@@ -2084,14 +2084,14 @@ object KSPMainWindow: TKSPMainWindow
               object MediaBuild: TProgressBar
                 Left = 0
                 Height = 20
-                Top = 463
+                Top = 438
                 Width = 754
                 Align = alBottom
                 TabOrder = 1
               end
               object MGView: TTreeView
                 Left = 0
-                Height = 256
+                Height = 231
                 Top = 0
                 Width = 754
                 Align = alClient
@@ -2105,7 +2105,7 @@ object KSPMainWindow: TKSPMainWindow
               object Panel10: TPanel
                 Left = 0
                 Height = 202
-                Top = 261
+                Top = 236
                 Width = 754
                 Align = alBottom
                 Caption = 'Panel10'
@@ -2230,11 +2230,11 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 483
+            ClientHeight = 458
             ClientWidth = 945
             object Panel7: TPanel
               Left = 0
-              Height = 420
+              Height = 395
               Top = 43
               Width = 945
               Align = alClient
@@ -3169,7 +3169,7 @@ object KSPMainWindow: TKSPMainWindow
             object IMProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 463
+              Top = 438
               Width = 945
               Align = alBottom
               Smooth = True
@@ -3361,11 +3361,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 479
+                ClientHeight = 454
                 ClientWidth = 698
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 479
+                  Height = 454
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -5373,6 +5373,24 @@ object KSPMainWindow: TKSPMainWindow
       }
       ImageIndex = 2
       OnClick = Button4Click
+      object MenuItem34: TMenuItem
+        Caption = 'KSP Community'
+        object MenuItem35: TMenuItem
+          Caption = 'Music Links Directory'
+          OnClick = MenuItem35Click
+        end
+        object MenuItem36: TMenuItem
+          Caption = 'Submit New Music Links'
+          OnClick = MenuItem36Click
+        end
+        object MenuItem37: TMenuItem
+          Caption = 'Forum'
+          OnClick = MenuItem37Click
+        end
+      end
+      object MenuItem33: TMenuItem
+        Caption = '-'
+      end
       object MenuItem22: TMenuItem
         Caption = 'How Can I Help?'
         OnClick = Button4Click

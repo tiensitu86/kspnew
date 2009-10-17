@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -703,6 +706,27 @@ msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM3.CAPTION
 msgid "Add Selected To Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM33.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM33.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM34.CAPTION
+msgid "KSP Community"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM35.CAPTION
+msgid "Music Links Directory"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM36.CAPTION
+msgid "Submit New Music Links"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM37.CAPTION
+msgid "Forum"
 msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM4.CAPTION
