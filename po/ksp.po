@@ -393,6 +393,30 @@ msgstr ""
 msgid "An error occured while trying to connect to database server.\\nPlease read applications documentation for more details\\n\\nError code: %d"
 msgstr ""
 
+#: TCLOSEACTIONFORM.ASDEFAULT.CAPTION
+msgid "Use this action as default one"
+msgstr ""
+
+#: TCLOSEACTIONFORM.BITBTN1.CAPTION
+msgid "Close KSP entirely"
+msgstr ""
+
+#: TCLOSEACTIONFORM.BITBTN2.CAPTION
+msgid "Minimise KSP to tray"
+msgstr ""
+
+#: TCLOSEACTIONFORM.CAPTION
+msgid "Minimize to tray question"
+msgstr ""
+
+#: TCLOSEACTIONFORM.LABEL1.CAPTION
+msgid "By default when you try to close KSP windows KSP is only minimised to tray icon"
+msgstr ""
+
+#: TCLOSEACTIONFORM.LABEL2.CAPTION
+msgid "Choose action you want to perform now:"
+msgstr ""
+
 #: TKSPMAINWINDOW.ACTION3.CAPTION
 msgid "Action3"
 msgstr ""

@@ -434,6 +434,7 @@ type  TWebView = class(TObject)
     MGDragItem: string;
     MGDragPlaylist: boolean;
     ClosingKSP: boolean;
+    CloseAction: integer;
     ProxyStr: string;
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
@@ -519,7 +520,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, complib
+  KSPCrossList, MultiLog, complib, closefrm
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
@@ -1487,7 +1488,30 @@ begin
 end;
 
 procedure TKSPMainWindow.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+var
+  cla: TCloseActionForm;
+
+  procedure PerformCLA;
+  begin
+    cla:=TCloseActionForm.Create(Self);
+    cla.ShowModal;
+    if cla.ModalResult=mrOk then
+      ClosingKSP:=true;
+    if cla.AsDefault.Checked then begin
+      if cla.ModalResult=mrOk then
+        CloseAction:=1 else CloseAction:=2;
+    end;
+    cla.Free;
+  end;
+
 begin
+  if not ClosingKSP then begin
+    if Self.CloseAction = 0 then
+      PerformCLA else
+    if Self.CloseAction = 1 then
+      ClosingKSP:=true;
+  end;
+
   CanClose:=ClosingKSP;
   if not ClosingKSP then begin
     Hide;
@@ -3328,6 +3352,7 @@ var
     KSPMainWindow.Height:=XMLFile.ReadInteger('Main window', 'height', KSPMainWindow.Height);
     KSPMainWindow.Width:=XMLFile.ReadInteger('Main window', 'width', KSPMainWindow.Width);
     KSPMainWindow.Update;
+    Self.CloseAction:=XMLFile.ReadInteger('Main window', 'close', 0);
 
     lbPlaylist.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
     KSPMainWindow.MSortType.Width:=XMLFile.ReadInteger('Main Window', 'MediaLibPanelSize', KSPMainWindow.MSortType.Width);
@@ -3485,6 +3510,7 @@ var
     XMLFile.WriteInteger('Main window', 'left', Left);
     XMLFile.WriteInteger('Main window', 'height', Height);
     XMLFile.WriteInteger('Main window', 'width', Width);
+    XMLFile.WriteInteger('Main window', 'close', CloseAction);
 
     XMLFile.WriteInteger('Main window', 'Volume', TB.Position);
     XMLFile.WriteInteger('Main Window', 'PlsInfoBox', lbPlaylist.Width);
