@@ -158,18 +158,24 @@ begin
 end;
 
 procedure TLUA.SetLuaPath(const AValue: AnsiString);
+var
+  av: string;
 begin
+  av:=AValue;
+  FixFolderNames(av);
+  hLog.Send('LUA_PATH: '+av);
   if LUA_VERSION_NUM = 501 then
     begin
-     luaPushString(L, 'package');
-     lua_gettable(L, LUA_GLOBALSINDEX);
-     luaPushString(L, 'path');
-     luaPushString(L, AValue);
-     lua_SetTable(L, -3);
+      luaPushString(L, 'package');
+      lua_gettable(L, LUA_GLOBALSINDEX);
+      luaPushString(L, 'PATH');
+      luaPushString(L, av);
+      //lua_SetTable(L, -3);
+      lua_settable(L, LUA_GLOBALSINDEX);
     end
   else
     begin
-      LuaSetTableString(L, LUA_GLOBALSINDEX, 'LUA_PATH', AValue);
+      LuaSetTableString(L, LUA_GLOBALSINDEX, 'LUA_PATH', av);
     end;
 end;
 

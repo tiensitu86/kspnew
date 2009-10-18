@@ -3222,10 +3222,10 @@ object KSPMainWindow: TKSPMainWindow
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
             ClientWidth = 702
-            ClientHeight = 508
+            ClientHeight = 483
             object MFolders: TListBox
               Left = 0
-              Height = 508
+              Height = 483
               Top = 0
               Width = 208
               Align = alLeft
@@ -3273,7 +3273,7 @@ object KSPMainWindow: TKSPMainWindow
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
             ClientWidth = 702
-            ClientHeight = 508
+            ClientHeight = 483
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -3308,7 +3308,7 @@ object KSPMainWindow: TKSPMainWindow
           object NotSetupPage: TPage
             Caption = 'NotSetupPage'
             ClientWidth = 702
-            ClientHeight = 508
+            ClientHeight = 483
             object NotChecked: TCheckBox
               Left = 14
               Height = 21
@@ -3349,10 +3349,10 @@ object KSPMainWindow: TKSPMainWindow
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
             ClientWidth = 702
-            ClientHeight = 508
+            ClientHeight = 483
             object PageControl1: TPageControl
               Left = 0
-              Height = 508
+              Height = 483
               Top = 0
               Width = 702
               ActivePage = TabSheet2
@@ -3444,7 +3444,7 @@ object KSPMainWindow: TKSPMainWindow
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
             ClientWidth = 702
-            ClientHeight = 508
+            ClientHeight = 483
             object Label1: TLabel
               Left = 8
               Height = 16
@@ -3602,10 +3602,11 @@ object KSPMainWindow: TKSPMainWindow
               end
               object EProxyType: TComboBox
                 Left = 134
-                Height = 23
+                Height = 25
                 Top = 44
                 Width = 152
                 ItemHeight = 0
+                ItemIndex = 0
                 Items.Strings = (
                   'Http'
                   'Socks'

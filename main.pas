@@ -12,8 +12,7 @@ uses
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
   MainWindowStartupThreads, FoldersScan, process, Buttons, Qt4, qtwidgets,
-  ActnList, Spin, FileCtrl, suggfind,uxmpp
-  {$IFDEF KSP_LUA}, LuaWrapper, ksplua{$ENDIF};
+  ActnList, Spin, FileCtrl, suggfind,uxmpp, LuaWrapper, ksplua;
 
 
   { TWebView }
@@ -1342,20 +1341,9 @@ begin
   PrepareNonDevel;
 {$ENDIF}
 
-{$IFDEF KSP_LUA}
-  ScriptedAddons:=TLUA.Create(nil);
-  ScriptedAddons.LuaPath:=KSPDataFolder+'lua\';
-  ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
-  ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
-  ScriptedAddons.LoadFile(KSPDataFolder+'lua\test.lua');
-  ScriptedAddons.Execute;
-//  hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage);
-//  lRes:=ScriptedAddons.Call([LuaVar(GetKSPVersion2)], 'RunTest');
-//  if lRes<>0 then
-//    hLog.Send('LUA ERROR MSG: '+ScriptedAddons.ErrorMessage+'('+IntToStr(lRes)+')');
-{$ENDIF}
-
   TCompactlibThread.Create(false);
+
+  SetupLua;
 
 //  ShowNotification;
 end;
@@ -2417,9 +2405,6 @@ begin
   hLog.Send('Closing KSP');
   AllSongs.Free;
   MediaSongs.Free;
-{$IFDEF KSP_LUA}
-  ScriptedAddons.Free;
-{$ENDIF}
 
   hLog.Send('Saving bookmarks');
   BookmarksList.SaveToFile(KSPDataFolder+'data\bookmarks.xml');
@@ -2449,6 +2434,8 @@ begin
 
   hLog.Send('Saving cookies');
   SaveCookies;
+
+  FreeLua;
 
   hLog.Send('Stopping playback'); Player.Stop;
   hLog.Send('Closing media files'); Player.Close;
