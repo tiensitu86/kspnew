@@ -8,6 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -329,9 +330,11 @@
         <Filename Value="itools/platformdep/profilefunc.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="profilefunc"/>
-        <CursorPos X="34" Y="58"/>
-        <TopLine Value="44"/>
+        <CursorPos X="1" Y="45"/>
+        <TopLine Value="43"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -887,16 +890,18 @@
         <UnitName Value="LuaObjects"/>
         <CursorPos X="14" Y="20"/>
         <TopLine Value="1"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit101>
       <Unit102>
         <Filename Value="itools/lua/ksplua.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksplua"/>
-        <CursorPos X="3" Y="49"/>
-        <TopLine Value="28"/>
-        <UsageCount Value="195"/>
+        <CursorPos X="50" Y="46"/>
+        <TopLine Value="22"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="196"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit102>
       <Unit103>
@@ -1042,7 +1047,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="77" Y="164"/>
         <TopLine Value="143"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="135"/>
       </Unit124>
       <Unit125>
         <Filename Value="arch/windows/bassh.inc"/>
@@ -1268,7 +1273,7 @@
         <UnitName Value="closefrm"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit156>
       <Unit157>
@@ -1324,7 +1329,12 @@
         <UsageCount Value="10"/>
       </Unit164>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="1" HistoryIndex="0">
+      <Position1>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="18" Column="56" TopLine="1"/>
+      </Position1>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="8"/>
@@ -1376,7 +1386,7 @@
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteAfter>
         <Command Value="upx -9 ../bin/ksp.exe"/>
-        <CompileReasons Compile="False" Run="False"/>
+        <CompileReasons Compile="False" Build="False" Run="False"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>

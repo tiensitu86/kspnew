@@ -15,7 +15,7 @@ procedure FreeLua;
 
 implementation
 
-uses kspfiles, multilog, KSPConstsVars, LuaWrapper;
+uses kspfiles, multilog, KSPConstsVars, LuaWrapper, ProfileFunc;
 
 function LuaShowMessage(L: Plua_State): Integer; cdecl;
 var
@@ -44,15 +44,12 @@ begin
   hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
   ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
-  //ScriptedAddons.LoadFile(KSPDataFolder+'lua\test.lua');
-  //
-  DefaultScript:='AddLog("LUA_CPATH=", os.getenv("LUA_CPATH"))';
-  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("LUA_PATH"))';
-  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("HOME"))';
-  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("USERNAME"))';
-  //DefaultScript:='os.getenv("LUA_CPATH")';
-  ScriptedAddons.LoadScript(DefaultScript);
-  ScriptedAddons.Execute;
+  DefaultScript:=KSPDataFolder+'lua/test.lua';
+  FixFolderNames(DefaultScript);
+  if FileExists(DefaultScript) then begin
+    ScriptedAddons.LoadFile();
+    ScriptedAddons.Execute;
+  end;
 end;
 
 procedure FreeLua;
