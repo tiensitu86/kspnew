@@ -38,17 +38,19 @@ end;
 
 procedure SetupLua;
 begin
-  ScriptedAddons:=TLUA.Create(nil);
+  ScriptedAddons:=TLUA.Create;
   hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
-  ScriptedAddons.LuaPath:=KSPDataFolder+'lua/?.lua';
+  ScriptedAddons.LuaPath:=ScriptedAddons.LuaPath+';'+KSPDataFolder+'lua/?.lua';
+  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
   ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
   //ScriptedAddons.LoadFile(KSPDataFolder+'lua\test.lua');
   //
   DefaultScript:='AddLog("LUA_CPATH=", os.getenv("LUA_CPATH"))';
-  DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("LUA_PATH"))';
-  DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("HOME"))';
-  DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("USERNAME"))';
+  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("LUA_PATH"))';
+  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("HOME"))';
+  //DefaultScript:=DefaultScript+#13+'AddLog(os.getenv("USERNAME"))';
+  //DefaultScript:='os.getenv("LUA_CPATH")';
   ScriptedAddons.LoadScript(DefaultScript);
   ScriptedAddons.Execute;
 end;

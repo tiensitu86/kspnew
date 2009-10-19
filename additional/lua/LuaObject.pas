@@ -1,16 +1,16 @@
 unit LuaObject;
 
+{$IFDEF FPC}
 {$mode objfpc}{$H+}
+{$ENDIF}
 
 interface
 
 uses
-  Classes, SysUtils, lua;
+  Classes, SysUtils, lua, Variants, pLuaObject, pLua;
 
 type
   TLuaObject = class;
-  TVariantArray =array of Variant;
-  PVariantArray =^TVariantArray;
 
   { TLuaObject }
 
@@ -28,8 +28,10 @@ type
     function  SetPropValue(PropName : AnsiString; const AValue: Variant) : Boolean; virtual;
     function  SetPropObject(propName: AnsiString) : Boolean; virtual;
     function  PropIsObject(propName : AnsiString): Boolean; virtual;
+    procedure CommonCreate(LuaState : PLua_State; AParent : TLuaObject = nil); virtual;
   public
-    constructor Create(LuaState : PLua_State; AParent : TLuaObject = nil); virtual;
+    constructor Create(LuaState : PLua_State; AParent : TLuaObject = nil); virtual; overload;
+    constructor Create(LuaState: PLua_State; LuaClassName, LuaName: AnsiString); virtual; overload;
     destructor Destroy; override;
 
     procedure PushSelf;
@@ -70,22 +72,24 @@ procedure RegisterClassTLuaObject(L : Plua_State);
 implementation
 
 uses
-  typinfo, LuaUtils;
+  typinfo;
 
 const
   LuaTLuaObjectClassName = 'TLuaObject';
 
 constructor TLuaObject.Create(LuaState : PLua_State; AParent : TLuaObject = nil);
 begin
-  L := LuaState;
-  FParent := AParent;
-  if assigned(FParent) then
-    FParent.FChildren.Add(Self);
-  FChildren := TList.Create;
+  CommonCreate(LuaState, nil);
   // Create a reference to the object table, this way lua won't GC its version
   FLuaReference := luaL_ref(L, LUA_REGISTRYINDEX);
   lua_rawgeti (L, LUA_REGISTRYINDEX, FLuaReference);
   LuaObjects.Add(Self);
+end;
+
+constructor TLuaObject.Create(LuaState: PLua_State; LuaClassName, LuaName: AnsiString);
+begin
+  CommonCreate(LuaState, nil);
+  RegisterObjectInstance(LuaState, LuaClassName, LuaName, self);
 end;
 
 destructor TLuaObject.Destroy;
@@ -117,51 +121,19 @@ begin
 end;
 
 function TLuaObject.CallEvent(EventName : AnsiString; args: array of Variant; Results: PVariantArray) : Integer;
-var
-   NArgs,
-   NResults,
-   i :Integer;
-  idx :Integer;
 begin
+  result := -1;
   if not EventExists(EventName) then
     exit;
-  lua_rawgeti (L, LUA_REGISTRYINDEX, FLuaReference); // Place our object on the stack
-  idx := lua_gettop(L);
-  lua_pushliteral(L, PChar(EventName)); // Place the event name on the stack
-  lua_gettable(L, idx); // try to get the item
-  //Put self on the stack
-  lua_rawgeti(L, LUA_REGISTRYINDEX, FLuaReference);
-  //lua_pushvalue(L, fti);
-  //Put Parameters on the Stack
-  NArgs := High(Args)+1;
-  for i:=0 to (NArgs-1) do
-    LuaPushVariant(L, Args[i]);
-
-  NResults := LUA_MULTRET;
-  //Call the Function
-  LuaPcall(L, NArgs+1, NResults, 0); // NArgs+1 for self + args
-  CallEvent :=lua_gettop(L);   //Get Number of Results
-
-  if (Results<>Nil) then
-    begin
-      //Get Results in the right order
-      SetLength(Results^, CallEvent);
-      for i:=0 to CallEvent-1 do
-        Results^[CallEvent-(i+1)] :=LuaToVariant(L, -(i+1));
-    end;
+  PushSelf;
+  result := plua_callfunction(L, EventName, args, results, lua_gettop(L));
 end;
 
 function TLuaObject.EventExists(EventName: AnsiString): Boolean;
-var
-  idx :Integer;
 begin
-  lua_rawgeti (L, LUA_REGISTRYINDEX, FLuaReference); // Place our object on the stack
-  idx := lua_gettop(L);
-  lua_pushliteral(L, PChar(EventName)); // Place the event name on the stack
-  lua_gettable(L, idx); // try to get the item
-  result := lua_isfunction(L, lua_gettop(L));// item at the top of the stack
-  if result then
-    lua_pop(L, 2);
+  PushSelf;
+  result := plua_functionexists(L, EventName, lua_gettop(L));
+  lua_pop(L, 1);
 end;
 
 function TLuaObject.GetLuaProp(PropName : AnsiString): Variant;
@@ -172,7 +144,7 @@ begin
   idx := lua_gettop(L);
   lua_pushliteral(L, PChar(PropName)); // Place the event name on the stack
   lua_gettable(L, idx); // try to get the item
-  result := LuaToVariant(L, lua_gettop(L));
+  result := plua_tovariant(L, lua_gettop(L));
   lua_pop(L, 2);
 end;
 
@@ -183,7 +155,7 @@ begin
   lua_rawgeti (L, LUA_REGISTRYINDEX, FLuaReference); // Place our object on the stack
   idx := lua_gettop(L);
   lua_pushstring(L, PChar(propName));
-  LuaPushVariant(L, AValue);
+  plua_pushvariant(L, AValue);
   lua_rawset(L, idx);
 end;
 
@@ -217,6 +189,15 @@ begin
   result := false;
 end;
 
+procedure TLuaObject.CommonCreate(LuaState: PLua_State; AParent: TLuaObject);
+begin
+  L := LuaState;
+  FParent := AParent;
+  if assigned(FParent) then
+    FParent.FChildren.Add(Self);
+  FChildren := TList.Create;
+end;
+
 { Global LUA Methods }
 
 procedure LuaCopyTable(L: Plua_State; IdxFrom, IdxTo, MtTo : Integer);
@@ -229,7 +210,7 @@ begin
   lua_pushnil(L);
   while(lua_next(L, IdxFrom)<>0)do
     begin
-      key := LuaToVariant(L, -2);
+      key := plua_tovariant(L, -2);
       if CompareText(key, '__') = 1 then
         tbl := MtTo
       else
@@ -237,7 +218,7 @@ begin
       case lua_type(L, -1) of
         LUA_TFUNCTION : begin
           cf := lua_tocfunction(L, -1);
-          LuaPushVariant(L, key);
+          plua_pushvariant(L, key);
           lua_pushcfunction(L, cf);
           lua_rawset(L, tbl);
         end;
@@ -246,9 +227,9 @@ begin
           LuaCopyTable(L, id, IdxTo, MtTo);
         end;
       else
-        val := LuaToVariant(L, -1);
-        LuaPushVariant(L, key);
-        LuaPushVariant(L, val);
+        val := plua_tovariant(L, -1);
+        plua_pushvariant(L, key);
+        plua_pushvariant(L, val);
         lua_rawset(L, tbl);
       end;
       lua_pop(L, 1);
@@ -259,7 +240,13 @@ function LuaToTLuaObject(L: Plua_State; Idx : Integer) : TLuaObject;
 begin
   result := nil;
   if lua_type(L, Idx) = LUA_TTABLE then
-    result := TLuaObject(LuaGetTableInteger(L, Idx, '_Self'))
+    begin
+      Idx := plua_absindex(L, Idx);
+      lua_pushstring(L, '_Self');
+      lua_gettable(L, Idx);
+      result := TLuaObject(ptrint(lua_tointeger(L, -1)));
+      lua_pop(L, 1);
+    end
   else
     luaL_error(L, PChar('Class table expected.'));
 end;
@@ -287,7 +274,7 @@ begin
   idx := lua_gettop(L);
 
   lua_pushliteral(L, '_Self');
-  lua_pushinteger(L, Integer(Pointer(E)));
+  lua_pushinteger(L, PtrInt(Pointer(E)));
   lua_rawset(L, idx);
 
   lua_newtable(L);
@@ -318,7 +305,7 @@ begin
       result := 0;
       exit;
     end;
-  propName := LuaToString(L, 1);
+  propName := plua_tostring(L, 1);
   index_TLuaObject := 1;
   if E.PropIsObject(propName) then
     begin
@@ -331,7 +318,7 @@ begin
       if v = NULL then
         index_TLuaObject := 0
       else
-        LuaPushVariant(L, v);
+        plua_pushvariant(L, v);
     end;
 end;
 
@@ -347,14 +334,14 @@ begin
     begin
       exit;
     end;
-  propName := LuaToString(L, 2);
+  propName := plua_tostring(L, 2);
   if E.PropIsObject(propName) and E.SetPropObject(propName) then
-  else if not E.SetPropValue(propName, LuaToVariant(L, 3)) then
+  else if not E.SetPropValue(propName, plua_tovariant(L, 3)) then
     begin
     // This is a standard handler, no value was found in the object instance
     // so we push the value into the Lua Object reference.
-      TableIndex := LuaAbsIndex(L, 1);
-      ValueIndex := LuaAbsIndex(L, 3);
+      TableIndex := plua_absindex(L, 1);
+      ValueIndex := plua_absindex(L, 3);
       lua_pushstring(L, PChar(propName));
       lua_pushvalue(L, ValueIndex);
       lua_rawset(L, TableIndex);
@@ -374,23 +361,18 @@ end;
 
 procedure RegisterObjectInstance(L: Plua_State; aClassName, InstanceName: AnsiString; ObjectInstance : TLuaObject);
 var
-  P, E : TLuaObject;
-  n, idx, idx2, mt : Integer;
+  idx, idx2, mt : Integer;
 begin
-  n := lua_gettop(L);
-  if lua_type(L, 1) <> LUA_TTABLE then
-    lua_remove(L, 1);
-  if n = 1 then
-    P := LuaToTLuaObject(L, 1)
-  else
-    P := nil;
-
+  lua_pushliteral(L, PChar(InstanceName));
   lua_newtable(L);
-  E := ObjectInstance; //NewCallback(L, P);
+
+  ObjectInstance.FLuaReference := luaL_ref(L, LUA_REGISTRYINDEX);
+  lua_rawgeti (L, LUA_REGISTRYINDEX, ObjectInstance.FLuaReference);
+  LuaObjects.Add(ObjectInstance);
   idx := lua_gettop(L);
 
   lua_pushliteral(L, '_Self');
-  lua_pushinteger(L, Integer(Pointer(E)));
+  lua_pushinteger(L, PtrInt(Pointer(ObjectInstance)));
   lua_rawset(L, idx);
 
   lua_newtable(L);
@@ -433,7 +415,7 @@ begin
   idx := lua_gettop(L);
 
   lua_pushliteral(L, '_Self');
-  lua_pushinteger(L, Integer(Pointer(E)));
+  lua_pushinteger(L, PtrInt(Pointer(E)));
   lua_rawset(L, idx);
 
   lua_newtable(L);

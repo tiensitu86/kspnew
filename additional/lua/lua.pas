@@ -793,7 +793,7 @@ begin
   Write(p);                        // show prompt
   ReadLn(s);                       // get line
   b := PChar(s);                   //   and return it
-  result := (b[0] <> #4);          // test for ctrl-D
+  lua_readline := (b[0] <> #4);          // test for ctrl-D
 end;
 
 procedure lua_saveline(L : Plua_State; idx : Integer);
@@ -811,7 +811,7 @@ end;
 
 function lua_upvalueindex(idx : Integer) : Integer;
 begin
-  result := LUA_GLOBALSINDEX - idx;
+  lua_upvalueindex := LUA_GLOBALSINDEX - idx;
 end;
 
 procedure lua_pop(L : Plua_State; n : Integer);
@@ -837,47 +837,47 @@ end;
 
 function  lua_strlen(L : Plua_State; idx : Integer) : Integer;
 begin
-  result := lua_objlen(L, idx);
+  lua_strlen := lua_objlen(L, idx);
 end;
 
 function lua_isfunction(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TFUNCTION;
+  lua_isfunction := lua_type(L, n) = LUA_TFUNCTION;
 end;
 
 function lua_istable(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TTABLE;
+  lua_istable := lua_type(L, n) = LUA_TTABLE;
 end;
 
 function lua_islightuserdata(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TLIGHTUSERDATA;
+  lua_islightuserdata := lua_type(L, n) = LUA_TLIGHTUSERDATA;
 end;
 
 function lua_isnil(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TNIL;
+  lua_isnil := lua_type(L, n) = LUA_TNIL;
 end;
 
 function lua_isboolean(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TBOOLEAN;
+  lua_isboolean := lua_type(L, n) = LUA_TBOOLEAN;
 end;
 
 function lua_isthread(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TTHREAD;
+  lua_isthread := lua_type(L, n) = LUA_TTHREAD;
 end;
 
 function lua_isnone(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) = LUA_TNONE;
+  lua_isnone := lua_type(L, n) = LUA_TNONE;
 end;
 
 function lua_isnoneornil(L : Plua_State; n : Integer) : Boolean;
 begin
-  result := lua_type(L, n) <= 0;
+  lua_isnoneornil := lua_type(L, n) <= 0;
 end;
 
 procedure lua_pushliteral(L : Plua_State; s : PChar);
@@ -897,12 +897,12 @@ end;
 
 function lua_tostring(L : Plua_State; idx : Integer) : PChar;
 begin
-  result := lua_tolstring(L, idx, nil);
+  lua_tostring := lua_tolstring(L, idx, nil);
 end;
 
 function lua_open : Plua_State;
 begin
-  result := luaL_newstate;
+  lua_open := luaL_newstate;
 end;
 
 procedure lua_getregistry(L : Plua_State);
@@ -912,7 +912,7 @@ end;
 
 function lua_getgccount(L : Plua_State) : Integer;
 begin
-  result := lua_gc(L, LUA_GCCOUNT, 0);
+  lua_getgccount := lua_gc(L, LUA_GCCOUNT, 0);
 end;
 
 
@@ -931,7 +931,7 @@ end;
 
 function luaL_getn(L : Plua_State; idx : Integer) : Integer;
 begin
-  result := lua_objlen(L, idx);
+  luaL_getn := lua_objlen(L, idx);
 end;
 
 procedure luaL_setn(L : plua_State; i, j : Integer);
@@ -943,58 +943,66 @@ function luaL_argcheck(L : Plua_State; cond : Boolean; numarg : Integer;
                        extramsg : PChar): Integer;
 begin
   if not cond then
-    result := luaL_argerror(L, numarg, extramsg)
+    luaL_argcheck := luaL_argerror(L, numarg, extramsg)
   else
-    result := 0;
+    luaL_argcheck := 0;
 end;
 
 function luaL_checkstring(L : Plua_State; n : Integer) : PChar;
 begin
-  result := luaL_checklstring(L, n, nil);
+  luaL_checkstring := luaL_checklstring(L, n, nil);
 end;
 
 function luaL_optstring(L : Plua_State; n : Integer; d : PChar) : PChar;
 begin
-  result := luaL_optlstring(L, n, d, nil);
+  luaL_optstring := luaL_optlstring(L, n, d, nil);
 end;
 
 function luaL_checkint(L : Plua_State; n : Integer) : Integer;
 begin
-  result := luaL_checkinteger(L, n);
+  luaL_checkint := luaL_checkinteger(L, n);
 end;
 
 function luaL_optint(L : Plua_State; n, d : Integer): Integer;
 begin
-  result := luaL_optinteger(L, n, d);
+  luaL_optint := luaL_optinteger(L, n, d);
 end;
 
 function luaL_checklong(L : Plua_State; n : LongInt) : LongInt;
 begin
-  result := luaL_checkinteger(L, n);
+  luaL_checklong := luaL_checkinteger(L, n);
 end;
 
 function luaL_optlong(L : Plua_State; n : Integer; d : LongInt) : LongInt;
 begin
-  result := luaL_optinteger(L, n, d);
+  luaL_optlong := luaL_optinteger(L, n, d);
 end;
 
 function luaL_typename(L : Plua_State; idx : Integer) : PChar;
 begin
-  result := lua_typename( L, lua_type(L, idx) );
+  luaL_typename := lua_typename( L, lua_type(L, idx) );
 end;
 
 function luaL_dofile(L : Plua_State; fn : PChar) : Integer;
+Var
+  Res : Integer;
 begin
-  result := luaL_loadfile(L, fn);
-  if result = 0 then
-    result := lua_pcall(L, 0, 0, 0);
+  // WC 2007\03\22 - Updated for Delphi
+  Res := luaL_loadfile(L, fn);
+  if Res = 0 then
+    Res := lua_pcall(L, 0, 0, 0);
+  Result := Res;
 end;
 
 function luaL_dostring(L : Plua_State; s : PChar) : Integer;
+Var
+  Res : Integer;
 begin
-  result := luaL_loadstring(L, s);
-  if result = 0 then
-    result := lua_pcall(L, 0, 0, 0);
+  // WC 2007\03\22 - Updated for Delphi
+  Res := luaL_loadstring(L, s);
+  if Res = 0 then
+    Res := lua_pcall(L, 0, 0, 0);
+  Result := Res;
 end;
 
 procedure luaL_getmetatable(L : Plua_State; n : PChar);
@@ -1023,11 +1031,11 @@ end;
 function lua_ref(L : Plua_State; lock : Boolean) : Integer;
 begin
   if lock then
-    result := luaL_ref(L, LUA_REGISTRYINDEX)
+    lua_ref := luaL_ref(L, LUA_REGISTRYINDEX)
   else begin
     lua_pushstring(L, 'unlocked references are obsolete');
     lua_error(L);
-    result := 0;
+    lua_ref := 0;
   end;
 end;
 
