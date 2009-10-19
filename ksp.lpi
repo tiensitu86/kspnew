@@ -285,9 +285,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="52" Y="29"/>
-        <TopLine Value="23"/>
+        <CursorPos X="47" Y="37"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
@@ -332,7 +334,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="1" Y="45"/>
         <TopLine Value="43"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -529,9 +531,11 @@
         <Filename Value="additional/multilog/multilog.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MultiLog"/>
-        <CursorPos X="48" Y="162"/>
-        <TopLine Value="155"/>
+        <CursorPos X="19" Y="67"/>
+        <TopLine Value="63"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
@@ -897,8 +901,8 @@
         <Filename Value="itools/lua/ksplua.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksplua"/>
-        <CursorPos X="50" Y="46"/>
-        <TopLine Value="22"/>
+        <CursorPos X="36" Y="32"/>
+        <TopLine Value="25"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="196"/>
         <Loaded Value="True"/>
@@ -1329,11 +1333,31 @@
         <UsageCount Value="10"/>
       </Unit164>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="itools/lua/ksplua.pas"/>
         <Caret Line="18" Column="56" TopLine="1"/>
       </Position1>
+      <Position2>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="35" Column="10" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="additional/multilog/multilog.pas"/>
+        <Caret Line="349" Column="18" TopLine="347"/>
+      </Position3>
+      <Position4>
+        <Filename Value="additional/multilog/multilog.pas"/>
+        <Caret Line="49" Column="6" TopLine="31"/>
+      </Position4>
+      <Position5>
+        <Filename Value="additional/multilog/multilog.pas"/>
+        <Caret Line="83" Column="35" TopLine="66"/>
+      </Position5>
+      <Position6>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="35" Column="10" TopLine="1"/>
+      </Position6>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

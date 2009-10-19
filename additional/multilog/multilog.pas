@@ -64,12 +64,13 @@ const
   ltCustomData = 15;
   ltWatch = 20;
   ltCounter = 21;
+  ltLua = 22;
 
 
   ltClear=100;
 
 const
-  LogPrefixes: array [ltInfo..ltCounter] of String = (
+  LogPrefixes: array [ltInfo..ltLua] of String = (
     'INFO',
     'ERROR',
     'WARNING',
@@ -87,7 +88,8 @@ const
     'MEMORY',
     '','','','','',
     'WATCH',
-    'COUNTER');
+    'COUNTER',
+    'LUA INFO');
   
 type
   TLogger = class;
@@ -126,6 +128,7 @@ type
     function PointToStr(const APoint: TPoint): String; //inline
     //Send functions
     procedure Send(const AText: String); inline;
+    procedure SendLua(const AText: String); inline;
     procedure SendPointer(const AText: String; APointer: Pointer); overload; {$ifdef fpc}inline;{$endif}
     procedure SendCallStack(const AText: String); overload; {$ifdef fpc}inline;{$endif}
     procedure SendException(const AText: String; AException: Exception);overload; {$ifdef fpc}inline;{$endif}
@@ -346,6 +349,11 @@ end;
 procedure TLogger.Send(const AText: String);
 begin
   SendStream(ltInfo,AText,nil);
+end;
+
+procedure TLogger.SendLua(const AText: String); inline;
+begin
+  SendStream(ltLua,AText,nil);
 end;
 
 procedure TLogger.SendPointer(const AText: String; APointer: Pointer);

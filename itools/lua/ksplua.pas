@@ -32,7 +32,7 @@ var
   p: pChar;
 begin
   p:=lua_tostring(L, -1);
-  hLog.Send('LUA LOG: '+p);
+  hLog.SendLua(p);
   Result:=0;
 end;
 
@@ -47,7 +47,7 @@ begin
   DefaultScript:=KSPDataFolder+'lua/test.lua';
   FixFolderNames(DefaultScript);
   if FileExists(DefaultScript) then begin
-    ScriptedAddons.LoadFile();
+    ScriptedAddons.LoadFile(DefaultScript);
     ScriptedAddons.Execute;
   end;
 end;
