@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"

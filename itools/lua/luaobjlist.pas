@@ -33,9 +33,83 @@ unit luaobjlist;
 interface
 
 uses
-  Classes, SysUtils; 
+  Classes, SysUtils, Controls;
+
+type TLuaUIItem = record
+    Caption: string;
+    Name: string;
+    Item: TControl;
+  end;
+
+type TLuaUIObject = class
+    Entry: TLuaUIItem;
+  end;
+
+type TLuaUIList = class(TList)
+  public
+    procedure Clear;
+    constructor Create;
+    destructor Destroy;
+    procedure Add(Item: TLuaUIItem);
+    procedure ReplaceEntry(NewEntry: TLuaUIItem; Index: integer);
+    procedure RemoveEntry(Index: integer);
+    function GetItem(Index: integer): TLuaUIItem;
+    procedure LoadFromFile(FileName: string);
+    procedure SaveToFile(FileName: string);
+  end;
 
 implementation
+
+procedure TLuaUIList.Clear;
+var
+  i: integer;
+begin
+  for i := 0 to Count - 1 do begin
+    TLuaUIObject(Items[i]).Entry.Item.Free;
+    TLuaUIObject(Items[i]).Free;
+  end;
+  inherited Clear;
+end;
+
+constructor TLuaUIList.Create;
+begin
+  inherited Create;
+end;
+
+destructor TLuaUIList.Destroy;
+begin
+  inherited Destroy
+end;
+
+procedure TLuaUIList.Add(Item: TLuaUIItem);
+begin
+
+end;
+
+procedure TLuaUIList.ReplaceEntry(NewEntry: TLuaUIItem; Index: integer);
+begin
+
+end;
+
+procedure TLuaUIList.RemoveEntry(Index: integer);
+begin
+
+end;
+
+function TLuaUIList.GetItem(Index: integer): TLuaUIItem;
+begin
+
+end;
+
+procedure TLuaUIList.LoadFromFile(FileName: string);
+begin
+
+end;
+
+procedure TLuaUIList.SaveToFile(FileName: string);
+begin
+
+end;
 
 end.
 

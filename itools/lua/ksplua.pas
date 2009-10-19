@@ -47,8 +47,11 @@ implementation
 uses kspfiles, multilog, KSPConstsVars, LuaWrapper, ProfileFunc;
 
 function LuaLoadInterface(L: Plua_State): Integer; cdecl;
+var
+  p: pChar;
 begin
-
+  p:=lua_tostring(L, -1);
+  hLog.SendLua('Loading addon interface: '+p);
 end;
 
 function LuaShowMessage(L: Plua_State): Integer; cdecl;
