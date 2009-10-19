@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="7"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -49,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="165">
+    <Units Count="168">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -268,9 +268,9 @@
         <Filename Value="itools/filesupportlst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FileSupportLst"/>
-        <CursorPos X="1" Y="29"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="1"/>
+        <CursorPos X="40" Y="209"/>
+        <TopLine Value="186"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -288,7 +288,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
         <CursorPos X="1" Y="29"/>
-        <TopLine Value="1"/>
+        <TopLine Value="45"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -300,9 +300,7 @@
         <UnitName Value="LoadPlsThread"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
         <UsageCount Value="207"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
@@ -424,9 +422,7 @@
         <UnitName Value="MainWindowStartupThreads"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="5"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit42>
       <Unit43>
@@ -444,9 +440,7 @@
         <UnitName Value="FoldersScan"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit44>
       <Unit45>
@@ -455,9 +449,7 @@
         <UnitName Value="StartupThread"/>
         <CursorPos X="1" Y="33"/>
         <TopLine Value="5"/>
-        <EditorIndex Value="6"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit45>
       <Unit46>
@@ -465,8 +457,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="BookmarksU"/>
         <CursorPos X="1" Y="29"/>
-        <TopLine Value="1"/>
+        <TopLine Value="34"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit46>
       <Unit47>
@@ -596,9 +590,7 @@
         <UnitName Value="complib"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit61>
       <Unit62>
@@ -876,11 +868,9 @@
         <Filename Value="itools/threads/suggfind.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="suggfind"/>
-        <CursorPos X="1" Y="29"/>
+        <CursorPos X="39" Y="8"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="7"/>
         <UsageCount Value="204"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -911,9 +901,11 @@
         <Filename Value="itools/lua/ksplua.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksplua"/>
-        <CursorPos X="1" Y="29"/>
-        <TopLine Value="1"/>
+        <CursorPos X="46" Y="71"/>
+        <TopLine Value="59"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit102>
       <Unit103>
@@ -1059,7 +1051,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="77" Y="164"/>
         <TopLine Value="143"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="140"/>
       </Unit124>
       <Unit125>
         <Filename Value="arch/windows/bassh.inc"/>
@@ -1285,7 +1277,7 @@
         <UnitName Value="closefrm"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="69"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit156>
       <Unit157>
@@ -1340,6 +1332,37 @@
         <TopLine Value="888"/>
         <UsageCount Value="9"/>
       </Unit164>
+      <Unit165>
+        <Filename Value="../../../LuaTutfpc-1/pLua/Demos/pLuaObjects/lib/LuaButton.pas"/>
+        <UnitName Value="LuaButton"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="178"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit165>
+      <Unit166>
+        <Filename Value="itools/lua/luamenu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="luamenu"/>
+        <CursorPos X="35" Y="17"/>
+        <TopLine Value="5"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit166>
+      <Unit167>
+        <Filename Value="itools/lua/luaobjlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="luaobjlist"/>
+        <CursorPos X="23" Y="36"/>
+        <TopLine Value="5"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit167>
     </Units>
     <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectOptions>
