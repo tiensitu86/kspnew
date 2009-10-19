@@ -3,18 +3,19 @@ object SupportForm: TSupportForm
   Height = 468
   Top = 244
   Width = 400
+  ActiveControl = Memo1
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'KSP Crash Report'
   ClientHeight = 468
   ClientWidth = 400
   Position = poScreenCenter
-  LCLVersion = '0.9.26.2'
+  LCLVersion = '0.9.29'
   object Label1: TLabel
     Left = 8
-    Height = 57
+    Height = 70
     Top = 8
-    Width = 384
+    Width = 431
     Caption = 'KSP recently crashed. You may not be able to continue work with KSP til restart.'#13#10'Review following report and press Save button to save it on your HDD.'#13#10'Press Send Issue Report button to report this crash. Don''t forget to attach'#13#10'generated report'
     ParentColor = False
   end

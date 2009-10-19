@@ -3361,11 +3361,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 479
+                ClientHeight = 454
                 ClientWidth = 698
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 479
+                  Height = 454
                   Top = 0
                   Width = 232
                   Align = alLeft

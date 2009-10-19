@@ -3,6 +3,7 @@ object CloseActionForm: TCloseActionForm
   Height = 126
   Top = 469
   Width = 498
+  ActiveControl = AsDefault
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Minimize to tray question'
