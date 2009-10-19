@@ -44,7 +44,7 @@ begin
   hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
   ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
-  DefaultScript:=KSPDataFolder+'lua/test.lua';
+  DefaultScript:=KSPDataFolder+'lua/runaddons.lua';
   FixFolderNames(DefaultScript);
   if FileExists(DefaultScript) then begin
     ScriptedAddons.LoadFile(DefaultScript);
