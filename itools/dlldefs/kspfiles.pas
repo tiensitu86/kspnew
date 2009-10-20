@@ -46,9 +46,9 @@ const
 {$ENDIF}
 
 {$IFDEF KSP_SPECIAL_BUILD}
-const KSPSpecialInfo_i = 'R4 alpha 1';
+const KSPSpecialInfo_i = 'R4 beta 1';
 {$ELSE}
-const KSPSpecialInfo_i = 'R3 update 1';
+const KSPSpecialInfo_i = 'R4 beta 1';
 {$ENDIF}
 
 {$IFDEF KSP_DEVEL}

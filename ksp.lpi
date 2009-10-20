@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -49,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="162">
+    <Units Count="165">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -65,12 +65,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="31" Y="928"/>
-        <TopLine Value="920"/>
-        <EditorIndex Value="1"/>
+        <CursorPos X="17" Y="1310"/>
+        <TopLine Value="1292"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="15" Y="1563" ID="0"/>
+          <Item0 X="15" Y="1564" ID="0"/>
           <Item1 X="35" Y="1159" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
@@ -188,7 +188,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MPEGInfoBox"/>
-        <CursorPos X="1" Y="21"/>
+        <CursorPos X="32" Y="22"/>
         <TopLine Value="1"/>
         <UsageCount Value="202"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -279,8 +279,8 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="10" Y="41"/>
-        <TopLine Value="29"/>
+        <CursorPos X="36" Y="47"/>
+        <TopLine Value="40"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -871,7 +871,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="38" Y="50"/>
         <TopLine Value="41"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -973,7 +973,7 @@
         <IsPartOfProject Value="True"/>
         <CursorPos X="77" Y="164"/>
         <TopLine Value="143"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="157"/>
       </Unit113>
       <Unit114>
         <Filename Value="arch/windows/bassh.inc"/>
@@ -1197,9 +1197,11 @@
         <ComponentName Value="CloseActionForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="closefrm"/>
-        <CursorPos X="1" Y="29"/>
+        <CursorPos X="23" Y="31"/>
         <TopLine Value="1"/>
-        <UsageCount Value="82"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="86"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit145>
       <Unit146>
@@ -1267,7 +1269,7 @@
         <UnitName Value="luamenu"/>
         <CursorPos X="39" Y="20"/>
         <TopLine Value="5"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="37"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit155>
       <Unit156>
@@ -1276,7 +1278,7 @@
         <UnitName Value="luaobjlist"/>
         <CursorPos X="53" Y="73"/>
         <TopLine Value="35"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="37"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit156>
       <Unit157>
@@ -1312,12 +1314,63 @@
         <TopLine Value="1440"/>
         <UsageCount Value="9"/>
       </Unit161>
+      <Unit162>
+        <Filename Value="../../../../../usr/lib64/lazarus/lcl/defaulttranslator.pas"/>
+        <UnitName Value="DefaultTranslator"/>
+        <CursorPos X="28" Y="55"/>
+        <TopLine Value="12"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit162>
+      <Unit163>
+        <Filename Value="../../../../../usr/share/fpcsrc/packages/fcl-base/src/gettext.pp"/>
+        <UnitName Value="gettext"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="18"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit163>
+      <Unit164>
+        <Filename Value="../../../../../usr/lib64/lazarus/lcl/translations.pas"/>
+        <UnitName Value="Translations"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="199"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit164>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="7" HistoryIndex="6">
       <Position1>
         <Filename Value="itools/lua/ksplua.pas"/>
         <Caret Line="88" Column="24" TopLine="63"/>
       </Position1>
+      <Position2>
+        <Filename Value="main.pas"/>
+        <Caret Line="928" Column="31" TopLine="887"/>
+      </Position2>
+      <Position3>
+        <Filename Value="main.pas"/>
+        <Caret Line="1311" Column="18" TopLine="1292"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="38" Column="23" TopLine="20"/>
+      </Position4>
+      <Position5>
+        <Filename Value="../../../../../usr/lib64/lazarus/lcl/defaulttranslator.pas"/>
+        <Caret Line="39" Column="36" TopLine="34"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pas"/>
+        <Caret Line="38" Column="83" TopLine="20"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="1310" Column="18" TopLine="1292"/>
+      </Position7>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
