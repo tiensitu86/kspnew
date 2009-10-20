@@ -82,11 +82,15 @@ type  TWebView = class(TObject)
     EProxyType: TComboBox;
     EProxyUserName: TEdit;
     GroupBoxProxy: TGroupBox;
+    Image5: TImage;
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
     Label19: TLabel;
     Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
     MenuItem33: TMenuItem;
     MenuItem34: TMenuItem;
     MenuItem35: TMenuItem;
@@ -362,6 +366,7 @@ type  TWebView = class(TObject)
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
+    procedure Label22Click(Sender: TObject);
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
       State: TDragState; var Accept: Boolean);
@@ -1603,6 +1608,11 @@ begin
     if (Sender=IMAddress) then WebView.LoadURL(IMAddress.Text) else
     MainWebView.LoadURL(IMAddress1.Text);
   end;
+end;
+
+procedure TKSPMainWindow.Label22Click(Sender: TObject);
+begin
+  Self.LoadWebURL(TLabel(Sender).Caption);
 end;
 
 procedure TKSPMainWindow.lbPlaylistDragDrop(Sender, Source: TObject; X,

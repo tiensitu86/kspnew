@@ -679,6 +679,18 @@ msgstr ""
 msgid "Port"
 msgstr ""
 
+#: TKSPMAINWINDOW.LABEL21.CAPTION
+msgid "Created with Lazarus and FreePascal"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL22.CAPTION
+msgid "http://www.lazarus.freepascal.org/"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL23.CAPTION
+msgid "http://www.freepascal.org/"
+msgstr ""
+
 #: TKSPMAINWINDOW.LABEL3.CAPTION
 msgid "170"
 msgstr ""
