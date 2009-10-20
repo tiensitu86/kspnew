@@ -1904,6 +1904,7 @@ var
   s: string;
   pc: TPathChar;
 begin
+  PlaylistMove:=false;
   if (lbPlaylist.ItemIndex>lbPlaylist.Count) or (lbPlaylist.ItemIndex<0) then Exit;
   Index:=lbPlaylist.ItemIndex;
   P:=Playlist.GetItem(Index);
