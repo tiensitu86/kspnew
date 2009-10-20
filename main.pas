@@ -96,7 +96,10 @@ type  TWebView = class(TObject)
     MenuItem35: TMenuItem;
     MenuItem36: TMenuItem;
     MenuItem37: TMenuItem;
+    MenuItem38: TMenuItem;
+    MenuItem39: TMenuItem;
     NetworkSetupPage: TPage;
+    SD: TSaveDialog;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -216,7 +219,7 @@ type  TWebView = class(TObject)
     DefaultSetupPage: TPage;
     DeleteBookmark: TButton;
     DeleteSelectedAction: TAction;
-    Action3: TAction;
+    ExportPlaylist: TAction;
     Action4: TAction;
     Action5: TAction;
     IMAddress1: TEdit;
@@ -363,6 +366,7 @@ type  TWebView = class(TObject)
     procedure EnableVDJClick(Sender: TObject);
     procedure EProxyEnabledChange(Sender: TObject);
     procedure ExitKSPActionExecute(Sender: TObject);
+    procedure ExportPlaylistExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
@@ -1561,6 +1565,21 @@ procedure TKSPMainWindow.ExitKSPActionExecute(Sender: TObject);
 begin
   ClosingKSP:=true;
   Close;
+end;
+
+procedure TKSPMainWindow.ExportPlaylistExecute(Sender: TObject);
+var
+  fname: string;
+  Pls: TXMLPlayList;
+begin
+  SD.Filter:=SPlaylists+' (*.pls;*.m3u;*.kpl)|*.pls;*.m3u;*.kpl';
+  if SD.Execute then begin
+    fname:=SD.FileName;
+    if ExtractFileExt(fname)='' then fname:=fname+'.kpl';
+    Pls:=TXMLPlayList.create;
+    Pls.SavePls(PlayList, fname, Self.RelativePaths.Checked);
+    Pls.Free;
+  end;
 end;
 
 procedure TKSPMainWindow.FormCloseQuery(Sender: TObject; var CanClose: boolean);

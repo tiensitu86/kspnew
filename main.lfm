@@ -7633,6 +7633,10 @@ object KSPMainWindow: TKSPMainWindow
       }
       OnClick = MenuItem7Click
     end
+    object MenuItem38: TMenuItem
+      Action = ExportPlaylist
+      OnClick = ExportPlaylistExecute
+    end
     object VDJMenu: TMenuItem
       Caption = 'VDJ'
       object EnableVDJ: TMenuItem
@@ -8333,6 +8337,10 @@ object KSPMainWindow: TKSPMainWindow
         }
         OnClick = MenuItem7Click
       end
+      object MenuItem39: TMenuItem
+        Action = ExportPlaylist
+        OnClick = ExportPlaylistExecute
+      end
       object MenuItem29: TMenuItem
         Caption = 'Offline Mode'
         OnClick = MenuItem29Click
@@ -8743,9 +8751,10 @@ object KSPMainWindow: TKSPMainWindow
       ImageIndex = 5
       OnExecute = MenuItem7Click
     end
-    object Action3: TAction
+    object ExportPlaylist: TAction
       Category = 'KSP'
-      Caption = 'Action3'
+      Caption = 'Export Current Playlist'
+      OnExecute = ExportPlaylistExecute
     end
     object Action4: TAction
       Category = 'KSP'
@@ -8783,5 +8792,9 @@ object KSPMainWindow: TKSPMainWindow
       Caption = 'Center'
       OnClick = MenuItem26Click
     end
+  end
+  object SD: TSaveDialog
+    left = 192
+    top = 544
   end
 end

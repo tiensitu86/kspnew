@@ -417,10 +417,6 @@ msgstr ""
 msgid "Choose action you want to perform now:"
 msgstr ""
 
-#: TKSPMAINWINDOW.ACTION3.CAPTION
-msgid "Action3"
-msgstr ""
-
 #: TKSPMAINWINDOW.ACTION4.CAPTION
 msgid "Action4"
 msgstr ""
@@ -613,6 +609,10 @@ msgstr ""
 #: TKSPMAINWINDOW.EXITKSPACTION.CAPTION
 msgctxt "TKSPMAINWINDOW.EXITKSPACTION.CAPTION"
 msgid "Exit KSP"
+msgstr ""
+
+#: TKSPMAINWINDOW.EXPORTPLAYLIST.CAPTION
+msgid "Export Current Playlist"
 msgstr ""
 
 #: TKSPMAINWINDOW.GENREBOX.CAPTION
