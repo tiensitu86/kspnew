@@ -65,44 +65,44 @@ object KSPMainWindow: TKSPMainWindow
       Top = 1
       Width = 795
       TabStop = False
-      ActivePage = EqualizerTab
+      ActivePage = Basic
       Align = alClient
       ShowTabs = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = tpLeft
       OnChange = AudioControlsChange
       OnPageChanged = AudioControlsChange
       object Basic: TTabSheet
         Caption = 'Basic'
-        ClientHeight = 60
+        ClientHeight = 85
         ClientWidth = 791
         object TotalTimeLabel: TLabel
           Left = 200
-          Height = 19
+          Height = 21
           Top = 32
-          Width = 4
+          Width = 6
           ParentColor = False
         end
         object lTime2: TLabel
           Left = 200
-          Height = 19
+          Height = 21
           Top = 8
-          Width = 4
+          Width = 6
           ParentColor = False
         end
         object lFileName: TLabel
           Left = 300
-          Height = 19
+          Height = 21
           Top = 32
-          Width = 4
+          Width = 6
           ParentColor = False
         end
         object lLeft: TLabel
           Left = 300
-          Height = 19
+          Height = 21
           Top = 8
-          Width = 4
+          Width = 6
           ParentColor = False
           OnClick = lLeftClick
         end

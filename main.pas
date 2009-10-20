@@ -1531,11 +1531,15 @@ procedure TKSPMainWindow.DownloadTimerTimer(Sender: TObject);
 var
   Progress: DWORD;
 begin
-  Progress:=Player.DownloadProgress;
-  if Progress=0 then
-    lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width)
-  else
-    lFileName.Caption:=Format(SDownloadProgress, [IntToStr(Progress)]);
+  if Self.FStopped then begin
+    ResetDisplay;
+  end else begin
+    Progress:=Player.DownloadProgress;
+    if Progress=0 then
+      lFilename.Caption := MinimizeName(Format(SFile+' %s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width)
+    else
+      lFileName.Caption:=Format(SDownloadProgress, [IntToStr(Progress)]);
+  end;
 end;
 
 procedure TKSPMainWindow.EnableVDJClick(Sender: TObject);
@@ -3000,7 +3004,8 @@ end;
 
 procedure TKSPMainWindow.ResetDisplay;
 begin
-  lFilename.Caption := MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width);
+  lFilename.Caption := '';//MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width);
+  lLeft.Caption:='';
 
   {if (CurrentIndex<PlayItems.Count)
   and (CurrentIndex>=0) then}
