@@ -808,7 +808,7 @@ end;
 
 procedure TKSPMainWindow.LoadPls(FileName: string);
 begin
-
+  FixFolderNames(FileName);
   if LoadingPlaylist then Exit;
   if LoadPlsThr<>nil then
     LoadPlsThr.Terminate;
@@ -1360,8 +1360,7 @@ begin
   PlsName:=KSPDataFolder+'data/pls.kpl';
 
   if ParamCount>0 then PerformFileOpen(ParamStr(1)) else
-      if FileExists(PlsName) then
-        LoadPls(PlsName);
+    LoadPls(PlsName);
 
   ApplyOptions;
 
