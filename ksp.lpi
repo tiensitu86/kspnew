@@ -279,7 +279,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="14" Y="64"/>
+        <CursorPos X="10" Y="41"/>
         <TopLine Value="29"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
