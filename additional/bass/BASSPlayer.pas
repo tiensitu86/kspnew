@@ -3140,7 +3140,7 @@ begin
 
   for i:=FilesupportList.Count-1 downto 0 do begin
     Loaded:=FileSupportList.GetItem(i).Handle=AddonHandle;
-    hLog.Send('Unloading part 1, Pplugin handle: '+IntToStr(AddonHandle));
+    hLog.Send('Unloading part 1, Plugin handle: '+IntToStr(AddonHandle));
     try
       if Loaded then if BASS_PluginFree(AddonHandle) then
         begin

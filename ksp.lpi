@@ -79,7 +79,7 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="30" Y="3150"/>
+        <CursorPos X="44" Y="3140"/>
         <TopLine Value="3131"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
@@ -850,7 +850,7 @@
         <CursorPos X="3" Y="424"/>
         <TopLine Value="406"/>
         <EditorIndex Value="3"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit94>
@@ -1194,7 +1194,7 @@
         <CursorPos X="19" Y="280"/>
         <TopLine Value="275"/>
         <EditorIndex Value="11"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit142>
       <Unit143>
@@ -1295,7 +1295,7 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="4"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit156>
       <Unit157>
@@ -1315,7 +1315,7 @@
         <CursorPos X="17" Y="27"/>
         <TopLine Value="3"/>
         <EditorIndex Value="7"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit159>
       <Unit160>
@@ -1323,7 +1323,7 @@
         <CursorPos X="23" Y="106"/>
         <TopLine Value="101"/>
         <EditorIndex Value="8"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit160>
     </Units>
