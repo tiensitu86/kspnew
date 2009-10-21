@@ -3140,16 +3140,20 @@ begin
 
   for i:=FilesupportList.Count-1 downto 0 do begin
     Loaded:=FileSupportList.GetItem(i).Handle=AddonHandle;
-    if Loaded then if BASS_PluginFree(AddonHandle) then
-      begin
-         if FileSupportList.GetItem(i).Name = 'bass_aac.dll' then
+    hLog.Send('Unloading part 1, Pplugin handle: '+IntToStr(AddonHandle));
+    try
+      if Loaded then if BASS_PluginFree(AddonHandle) then
+        begin
+          if FileSupportList.GetItem(i).Name = 'bass_aac.dll' then
             FBASSAACReady := false;
 
-         hLog.Send('Unloading plugin: '+FileSupportList.GetItem(i).Name);
-         inc(result);
-         FileSupportList.Remove(i);
-         Result:=1
-      end;
+          hLog.Send('Unloading part 2');
+          FileSupportList.Remove(i);
+          Result:=1
+        end;
+    except
+      hLog.Send('Plugin cannot be unloaded');
+    end;
   end;
 end;
 
