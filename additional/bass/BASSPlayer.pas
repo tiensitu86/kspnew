@@ -1426,6 +1426,7 @@ var
    t : string;
    n: Integer;
    CD_Info : BASS_CD_INFO;
+   bdi: BASS_DEVICEINFO;
 {$IFDEF WINDOWS}
    fn: string;
 {$ENDIF}
@@ -1486,6 +1487,12 @@ begin
    BASS_SetConfig(BASS_CONFIG_WMA_BASSFILE, 1);   // * Added at Ver 2.00
    BASS_SetConfig(BASS_CONFIG_WMA_PREBUF, 1);     // * Added at Ver 2.00
 
+   hLog.Send('BASS: Reading system devices');
+   for i:=0 to 128 do begin
+     if BASS_GetDeviceInfo(i, bdi) then
+        hLog.Send(Format('Device %s: %s', [IntToStr(i), bdi.name]))
+     else Break;
+   end;
 
  // setup output - default device, 44100hz, stereo, 16 bits
    if not BASS_Init(-1, 44100, 0, 0, nil) then
