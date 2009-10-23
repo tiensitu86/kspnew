@@ -888,6 +888,7 @@ var
   begin
     MinStars:=3;
     ApproxBet:=(MaxPC-Approx)/5;
+    HalfStar:=false;
     if ApproxBet=0 then Exit;
     PutMark(1, 0);
     PutMark(2, 0);
@@ -958,7 +959,6 @@ begin
   Mark3.Visible:=true;
   Mark2.Visible:=true;
   Mark1.Visible:=true;
-  hLog.Send('Read ID3 in4: '+FileName);
 
   if p.PlayCount>Approx then
     ShowAsBigger else ShowAsSmaller;
