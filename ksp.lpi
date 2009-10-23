@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -283,7 +283,7 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="30" Y="52"/>
+        <CursorPos X="23" Y="60"/>
         <TopLine Value="40"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
@@ -455,7 +455,7 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="22" Y="542"/>
+        <CursorPos X="24" Y="536"/>
         <TopLine Value="527"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="200"/>

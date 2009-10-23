@@ -549,13 +549,6 @@ begin
   if FindApproxVals.Count>0 then begin
     FindApproxVals.SortPlaylist(pstPlayCount);
     Approx:=All / (FindApproxVals.Count);
-//  if Approx>0 then
-//    begin
-//      Approx:=(Approx/3)*4;
-//    end;
-  //ShowMessage(FloatToStr(Approx));
-//    if FindApproxVals.GetItem(0).PlayCount>PlayCount then
-//      PlayCount:=FindApproxVals.GetItem(0).PlayCount;
   end else PlayCount:=0;
 //  p.Clear;
 end;
