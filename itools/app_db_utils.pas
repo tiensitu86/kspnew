@@ -545,16 +545,17 @@ begin
 
   CloseQuery;
 
-  FindApproxVals.SortPlaylist(pstPlayCount);
   //ShowMessage(IntToStr(All));
-  if FindApproxVals.Count>0 then
+  if FindApproxVals.Count>0 then begin
+    FindApproxVals.SortPlaylist(pstPlayCount);
     Approx:=All / (FindApproxVals.Count-(WithZero/2));
 //  if Approx>0 then
 //    begin
 //      Approx:=(Approx/3)*4;
 //    end;
   //ShowMessage(FloatToStr(Approx));
-  PlayCount:=FindApproxVals.GetItem(0).PlayCount;
+    PlayCount:=FindApproxVals.GetItem(0).PlayCount;
+  end else PlayCount:=0;
 //  p.Clear;
 end;
 

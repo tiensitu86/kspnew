@@ -888,6 +888,7 @@ var
   begin
     MinStars:=3;
     ApproxBet:=(MaxPC-Approx)/5;
+    if ApproxBet=0 then Exit;
     PutMark(1, 0);
     PutMark(2, 0);
     PutMark(3, 0);
@@ -912,6 +913,7 @@ var
   begin
     MinStars:=0;
     ApproxBet:=(Approx)/5;
+    if ApproxBet=0 then Exit;
     PutMark(1, 2);
     PutMark(2, 2);
     PutMark(3, 2);
@@ -956,6 +958,7 @@ begin
   Mark3.Visible:=true;
   Mark2.Visible:=true;
   Mark1.Visible:=true;
+  hLog.Send('Read ID3 in4: '+FileName);
 
   if p.PlayCount>Approx then
     ShowAsBigger else ShowAsSmaller;
@@ -2246,7 +2249,9 @@ begin
       Lyrics.Clear;
 
       if InLib then begin
+        hLog.Send('Loading lyrics...');
         Lyrics.SetContent(AllSongs.ReadLyrics(findex));
+        hLog.Send('Lyrics loaded...');
       end;
 
 
