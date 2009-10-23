@@ -370,6 +370,7 @@ type  TWebView = class(TObject)
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
+    procedure Image5Click(Sender: TObject);
     procedure Label22Click(Sender: TObject);
     procedure lbPlaylistDragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure lbPlaylistDragOver(Sender, Source: TObject; X, Y: Integer;
@@ -1629,6 +1630,11 @@ begin
     if (Sender=IMAddress) then WebView.LoadURL(IMAddress.Text) else
     MainWebView.LoadURL(IMAddress1.Text);
   end;
+end;
+
+procedure TKSPMainWindow.Image5Click(Sender: TObject);
+begin
+
 end;
 
 procedure TKSPMainWindow.Label22Click(Sender: TObject);
