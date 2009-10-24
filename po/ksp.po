@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "powered by:"
-msgstr ""
-
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -242,6 +239,14 @@ msgstr ""
 
 #: kspstrings.sshoutcastentry
 msgid "ICECAST: %s"
+msgstr ""
+
+#: kspstrings.sshuffleoff
+msgid "Shuffle OFF"
+msgstr ""
+
+#: kspstrings.sshuffleon
+msgid "Shuffle ON"
 msgstr ""
 
 #: kspstrings.ssortby

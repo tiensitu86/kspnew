@@ -2144,13 +2144,13 @@ begin
    end else
    begin   // Check if the opening stream is playable by an add-on.
       try
-        StreamInfo.FileSize := KSPGetFileSize(StreamName);
+        //StreamInfo.FileSize := KSPGetFileSize(StreamName);
       finally end;
 
       S := UpperCase('.AIFF;' + GetBASSAddonExts);
       if FBASSAACReady then
          S := S + '.M4A;.MP4;'; // acceptable by bass_aac.dll (*.AAC files are checked independently)
-    //  s2 := copy(ExtCode, 2, length(ExtCode) - 1);
+      s2 := copy(ExtCode, 2, length(ExtCode) - 1);
       s2 := s2 + ';';
       if pos(s2, s) > 0 then
       begin
@@ -3178,9 +3178,10 @@ begin
    result := '';
 
    for i := 0 to FileSupportList.Count-1 do begin
-      fd:=FileSupportList.GetItem(i);
-         for j := 1 to fd.NumFormat do
-             result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
+      //fd:=FileSupportList.GetItem(i);
+      //   for j := 1 to fd.NumFormat do
+      //       result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
+      result:=result+GetBASSAddonExts(i);
    end;
 
 end;

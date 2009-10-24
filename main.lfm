@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 150
+  Left = 360
   Height = 707
-  Top = 150
+  Top = 204
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -443,15 +443,6 @@ object KSPMainWindow: TKSPMainWindow
           OnClick = ToolButton4Click
         end
       end
-      object ShuffleButton: TToggleBox
-        Left = 120
-        Height = 25
-        Top = 32
-        Width = 104
-        Caption = 'Shuffle'
-        OnChange = ShuffleButtonChange
-        TabOrder = 2
-      end
       object RepeatButton: TButton
         Left = 8
         Height = 25
@@ -459,7 +450,17 @@ object KSPMainWindow: TKSPMainWindow
         Width = 104
         Caption = 'Repeat'
         OnClick = RepeatButtonClick
-        TabOrder = 3
+        TabOrder = 2
+      end
+      object ShuffleButton: TSpeedButton
+        Left = 120
+        Height = 25
+        Top = 32
+        Width = 104
+        Caption = 'Shuffle'
+        Color = clBtnFace
+        NumGlyphs = 0
+        OnClick = ShuffleButtonChange
       end
     end
   end
@@ -5528,6 +5529,7 @@ object KSPMainWindow: TKSPMainWindow
     ResizeAnchor = akTop
   end
   object OpenDialog1: TOpenDialog
+    Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
     left = 96
     top = 536
   end
