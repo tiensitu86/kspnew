@@ -70,6 +70,7 @@ function ReadID3(FileName: WideString): TID3Tag; overload;
 //procedure WriteID3(FileName: string; FCD: TAccessDBEntry; TrackNo: Integer);
 function GetFromInfo(S: TStreamInfo; var notFound: integer): TID3Tag;
 function GetStreamInfoSimple(FileName: string; var GetIsTag: boolean): TStreamInfo;
+function IsStreamSupported(fname: string): boolean;
 procedure FillByFolder(var p: TPLEntry);
 
 implementation
@@ -225,6 +226,18 @@ var
   Sup: TSupportedBy;
 begin
   GetIsTag:=GetStreamInfo2(FileName, Result, Sup);
+end;
+
+function IsStreamSupported(fname: string): boolean;
+var
+  Sup: TSupportedBy;
+  r: TStreamInfo;
+begin
+  try
+    Result:=GetStreamInfo2(fname, r, Sup);
+  except
+    Result:=false;
+  end;
 end;
 
 function ReadID3(FileName: WideString; var Tag: boolean; var NotFound: integer): TID3Tag;

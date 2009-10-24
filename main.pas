@@ -100,6 +100,7 @@ type  TWebView = class(TObject)
     MenuItem39: TMenuItem;
     NetworkSetupPage: TPage;
     SD: TSaveDialog;
+    ShuffleButton: TSpeedButton;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -321,7 +322,6 @@ type  TWebView = class(TObject)
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     TB: TTrackBar;
-    ShuffleButton: TToggleBox;
     NotificationTimer: TTimer;
     TotalTimeLabel: TLabel;
     OpenDialog1: TOpenDialog;
@@ -504,7 +504,7 @@ type  TWebView = class(TObject)
     procedure LoadPlsDrag;
     procedure LoadOptions;
     procedure SaveOptions;
-    procedure PerformFileOpen(const AFileName: string);
+    procedure PerformFileOpen(AFileName: string);
     procedure MigrateDatabase;
     procedure AssignMedia(UseSortType: boolean = true);
     procedure SortByTrackPLS;
@@ -978,16 +978,18 @@ begin
   Self.MainWebView.LoadURL(URL);
 end;
 
-procedure TKSPMainWindow.PerformFileOpen(const AFileName: string);
+procedure TKSPMainWindow.PerformFileOpen(AFileName: string);
 var
   s: string;
 begin
+  FixFolderNames(AFileName);
   s:=UpperCase(ExtractFileExt(AFileName));
 
   if (s='.KPL') or (s='.M3U') or (s='.PLS') or (s='.XSPF') then
     LoadPls(AFileName) else
-  if FileSupportList.FindExtension(s, false)>-1 then
-    AddToPlayList(AFileName);
+  if IsStreamSupported(AFileName) then
+    AddToPlayList(AFileName) else
+    hLog.Send('Can''t process stream: '+AFileName);
 end;
 
 procedure TKSPMainWindow.MigrateDatabase;
@@ -1233,8 +1235,6 @@ var
   begin
     TCreateObjectsThread.Create(false);
     TSetVarsThread.Create(false);
-
-    SetVars;
   end;
 
   function SetupDatabase: TAppDBConnection;
@@ -1320,6 +1320,7 @@ var
 {$ENDIF}
 
 begin
+  SetVars;
   LoadOptions;
 
   Player.OnPlayEnd:=@AudioOut1Done;
@@ -1358,7 +1359,9 @@ begin
       end;
     end;
 
-  ShuffleButton.Checked:=Shuffled;
+  if Shuffled then
+    ShuffleButton.Caption:=SShuffleOn else
+    ShuffleButton.Caption:=SShuffleOff;
 
   SetupDatabase;
   ScanFolders(false);
@@ -2706,10 +2709,14 @@ begin
 end;
 
 procedure TKSPMainWindow.MenuItem1Click(Sender: TObject);
+var
+  i: integer;
 begin
+  OpenDialog1.Files.Text:='';
   if OpenDialog1.Execute then
     begin
-      Self.PerformFileOpen(OpenDialog1.FileName);
+      for i:=0 to OpenDialog1.Files.Count-1 do
+        Self.PerformFileOpen(OpenDialog1.Files.Strings[i]);
     end;
 end;
 
@@ -2858,7 +2865,10 @@ end;
 
 procedure TKSPMainWindow.ShuffleButtonChange(Sender: TObject);
 begin
-  Shuffled:=ShuffleButton.Checked;
+  Shuffled:=not Shuffled;
+  if Shuffled then
+    ShuffleButton.Caption:=SShuffleOn else
+    ShuffleButton.Caption:=SShuffleOff;
 end;
 
 procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);
