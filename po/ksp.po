@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "powered by:"
-msgstr ""
-
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -423,10 +420,6 @@ msgstr ""
 
 #: TCLOSEACTIONFORM.LABEL2.CAPTION
 msgid "Choose action you want to perform now:"
-msgstr ""
-
-#: TKSPMAINWINDOW.ACTION4.CAPTION
-msgid "Action4"
 msgstr ""
 
 #: TKSPMAINWINDOW.ACTION5.CAPTION
@@ -866,6 +859,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.OPENFILEACTION.CAPTION
 msgid "Open File / Append Playlist"
+msgstr ""
+
+#: TKSPMAINWINDOW.OPENNETWORKSTREAM.CAPTION
+msgid "Open Network Stream"
 msgstr ""
 
 #: TKSPMAINWINDOW.OSDPOSBOX.TEXT

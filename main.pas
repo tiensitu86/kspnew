@@ -98,6 +98,8 @@ type  TWebView = class(TObject)
     MenuItem37: TMenuItem;
     MenuItem38: TMenuItem;
     MenuItem39: TMenuItem;
+    MenuItem40: TMenuItem;
+    MenuItem41: TMenuItem;
     NetworkSetupPage: TPage;
     SD: TSaveDialog;
     ShuffleButton: TSpeedButton;
@@ -221,7 +223,7 @@ type  TWebView = class(TObject)
     DeleteBookmark: TButton;
     DeleteSelectedAction: TAction;
     ExportPlaylist: TAction;
-    Action4: TAction;
+    OpenNetworkStream: TAction;
     Action5: TAction;
     IMAddress1: TEdit;
     Image3: TImage;
@@ -398,6 +400,7 @@ type  TWebView = class(TObject)
     procedure MIViewStartDrag(Sender: TObject; var DragObject: TDragObject);
     procedure NotCheckedChange(Sender: TObject);
     procedure NotificationTimerTimer(Sender: TObject);
+    procedure OpenNetworkStreamExecute(Sender: TObject);
     procedure OSDPosBoxChange(Sender: TObject);
     procedure AudioControlsChange(Sender: TObject);
     procedure Panel16Resize(Sender: TObject);
@@ -980,15 +983,17 @@ end;
 
 procedure TKSPMainWindow.PerformFileOpen(AFileName: string);
 var
-  s: string;
+  s, s2: string;
 begin
+  s2:=AFileName;
   FixFolderNames(AFileName);
   s:=UpperCase(ExtractFileExt(AFileName));
 
   if (s='.KPL') or (s='.M3U') or (s='.PLS') or (s='.XSPF') then
     LoadPls(AFileName) else
-  if IsStreamSupported(AFileName) then
+  if (IsStreamSupported(AFileName)) then
     AddToPlayList(AFileName) else
+  if IsStream(s2) then AddToPlaylist(s2) else
     hLog.Send('Can''t process stream: '+AFileName);
 end;
 
@@ -1199,7 +1204,31 @@ var
   lRes: integer;
 
   procedure SetVars;
+  var
+    Pic: string;
   begin
+{$IFDEF WINDOWS}
+    Pic:=ExtractFilePath(Application.ExeName)+'data\ksp.png';
+{$ELSE}
+    Pic:=KSP_APP_FOLDER+'data/ksp.png';
+{$ENDIF}
+
+    if FileExists(Pic) then begin
+      Image1.Picture.LoadFromFile(Pic);
+      Image3.Picture.LoadFromFile(Pic);
+      Image2.Picture.LoadFromFile(Pic);
+    end;
+
+{$IFDEF WINDOWS}
+    Pic:=ExtractFilePath(Application.ExeName)+'data\lazarus.png';
+{$ELSE}
+    Pic:=KSP_APP_FOLDER+'data/lazarus.png';
+{$ENDIF}
+
+    if FileExists(Pic) then begin
+      Image5.Picture.LoadFromFile(Pic);
+    end;
+
     CurrentFile:=''; CurrentIndex:=-1;  PreviousIndex:=-1;  FStopped:=True;
     Caption:=Application.Title;
     MGDragPlaylist:=false;
@@ -1870,6 +1899,15 @@ procedure TKSPMainWindow.NotificationTimerTimer(Sender: TObject);
 begin
   CloseNotification(Self.KSPNotification);
   NotificationTimer.Enabled:=false;
+end;
+
+procedure TKSPMainWindow.OpenNetworkStreamExecute(Sender: TObject);
+var
+  s: string;
+begin
+  if not InputQuery(SShoutcastAddressCaption, SShoutcastAddressDesc, s) then Exit;
+
+  if IsStream(s) or IsPlaylist(s) then Self.PerformFileOpen(s);
 end;
 
 procedure TKSPMainWindow.OSDPosBoxChange(Sender: TObject);
