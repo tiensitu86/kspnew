@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 360
+  Left = 175
   Height = 707
-  Top = 204
+  Top = 175
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -551,20 +551,20 @@ object KSPMainWindow: TKSPMainWindow
           TabPosition = tpBottom
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
-            ClientHeight = 484
-            ClientWidth = 941
+            ClientHeight = 480
+            ClientWidth = 937
             OnResize = TabSheet3Resize
             object Panel8: TPanel
               Left = 0
               Height = 43
               Top = 0
-              Width = 941
+              Width = 937
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 941
+              ClientWidth = 937
               TabOrder = 0
               object SpeedButton5: TSpeedButton
-                Left = 799
+                Left = 795
                 Height = 41
                 Top = 1
                 Width = 51
@@ -575,7 +575,7 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton1Click
               end
               object Image3: TImage
-                Left = 850
+                Left = 846
                 Height = 41
                 Top = 1
                 Width = 90
@@ -1473,7 +1473,7 @@ object KSPMainWindow: TKSPMainWindow
                 Left = 109
                 Height = 41
                 Top = 1
-                Width = 690
+                Width = 686
                 Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
@@ -1482,8 +1482,8 @@ object KSPMainWindow: TKSPMainWindow
             object MWProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 464
-              Width = 941
+              Top = 460
+              Width = 937
               Align = alBottom
               Smooth = True
               TabOrder = 1
@@ -1491,9 +1491,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object MainWeb: TPanel
               Left = 0
-              Height = 421
+              Height = 417
               Top = 43
-              Width = 941
+              Width = 937
               Align = alClient
               TabOrder = 2
               OnResize = MainWebResize
@@ -3227,13 +3227,13 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
-            ClientHeight = 459
-            ClientWidth = 941
+            ClientHeight = 480
+            ClientWidth = 937
             object Panel7: TPanel
               Left = 0
-              Height = 396
+              Height = 417
               Top = 43
-              Width = 941
+              Width = 937
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
@@ -3242,13 +3242,13 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 43
               Top = 0
-              Width = 941
+              Width = 937
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 941
+              ClientWidth = 937
               TabOrder = 1
               object SpeedButton1: TSpeedButton
-                Left = 799
+                Left = 795
                 Height = 41
                 Top = 1
                 Width = 51
@@ -3259,7 +3259,7 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton1Click
               end
               object Image2: TImage
-                Left = 850
+                Left = 846
                 Height = 41
                 Top = 1
                 Width = 90
@@ -4157,7 +4157,7 @@ object KSPMainWindow: TKSPMainWindow
                 Left = 109
                 Height = 41
                 Top = 1
-                Width = 690
+                Width = 686
                 Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
@@ -4166,8 +4166,8 @@ object KSPMainWindow: TKSPMainWindow
             object IMProgress: TProgressBar
               Left = 0
               Height = 20
-              Top = 439
-              Width = 941
+              Top = 460
+              Width = 937
               Align = alBottom
               Smooth = True
               TabOrder = 2
@@ -4218,11 +4218,11 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
-            ClientWidth = 698
-            ClientHeight = 504
+            ClientWidth = 694
+            ClientHeight = 500
             object MFolders: TListBox
               Left = 0
-              Height = 504
+              Height = 500
               Top = 0
               Width = 208
               Align = alLeft
@@ -4268,8 +4268,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
-            ClientWidth = 698
-            ClientHeight = 504
+            ClientWidth = 694
+            ClientHeight = 500
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -4302,8 +4302,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object NotSetupPage: TPage
             Caption = 'NotSetupPage'
-            ClientWidth = 698
-            ClientHeight = 504
+            ClientWidth = 694
+            ClientHeight = 500
             object NotChecked: TCheckBox
               Left = 14
               Height = 21
@@ -4343,24 +4343,24 @@ object KSPMainWindow: TKSPMainWindow
           end
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
-            ClientWidth = 698
-            ClientHeight = 504
+            ClientWidth = 694
+            ClientHeight = 500
             object PageControl1: TPageControl
               Left = 0
-              Height = 504
+              Height = 500
               Top = 0
-              Width = 698
+              Width = 694
               ActivePage = TabSheet2
               Align = alClient
               TabIndex = 0
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 476
-                ClientWidth = 690
+                ClientHeight = 472
+                ClientWidth = 686
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 476
+                  Height = 472
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -4437,8 +4437,8 @@ object KSPMainWindow: TKSPMainWindow
           end
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
-            ClientWidth = 698
-            ClientHeight = 504
+            ClientWidth = 694
+            ClientHeight = 500
             object Label1: TLabel
               Left = 8
               Height = 16

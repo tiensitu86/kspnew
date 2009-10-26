@@ -2144,7 +2144,7 @@ begin
    end else
    begin   // Check if the opening stream is playable by an add-on.
       try
-        //StreamInfo.FileSize := KSPGetFileSize(StreamName);
+        StreamInfo.FileSize := KSPGetFileSize(StreamName);
       finally end;
 
       S := UpperCase('.AIFF;' + GetBASSAddonExts);
