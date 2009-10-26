@@ -35,7 +35,7 @@ uses
   BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs, FileSupportLst, LMessages,
-  FileSupport;
+  FileSupport, cplayer;
 
 
 const
@@ -179,7 +179,7 @@ type
   TNotifyMIDIEvent = procedure(Sender: TObject; TextP : pAnsiChar) of object;
   TNotifyModeChangeEvent = procedure(Sender: TObject; OldMode, NewMode : TPlayerMode) of object;
 
-  TBASSPlayer = class(TComponent)
+  TBASSPlayer = class(TCorePlayer)
   private
     { Private declarations }
   //  TimerTitleBar : TTimer;  // * Added at Ver 2.00
@@ -350,6 +350,7 @@ type
      // freed, and only then calls Destroy.
 
     function  GetBASSAddonExts(i: integer) : string; overload;
+    function PlayerEnabled: boolean; override;
 
     function GetStreamInfo(StreamName: string; var StreamInfo: TStreamInfo; var SupportedBy: TSupportedBy)
                            : boolean;
@@ -3172,15 +3173,11 @@ end;
 
 function TBASSPlayer.GetBASSAddonExts : string;
 var
-   i, j : integer;
-   fd: TFileDesc;
+   i: integer;
 begin
    result := '';
 
    for i := 0 to FileSupportList.Count-1 do begin
-      //fd:=FileSupportList.GetItem(i);
-      //   for j := 1 to fd.NumFormat do
-      //       result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
       result:=result+GetBASSAddonExts(i);
    end;
 
@@ -3196,6 +3193,11 @@ begin
       fd:=FileSupportList.GetItem(i);
          for j := 1 to fd.NumFormat do
              result := result + LowerCase(fd.FormatP[j-1].exts) + ';';
+end;
+
+function TBASSPlayer.PlayerEnabled: boolean;
+begin
+  Result:=Self.FBASSReady;
 end;
 
 procedure TBASSPlayer.SetupDeviceBuffer(Buffer: DWORD);

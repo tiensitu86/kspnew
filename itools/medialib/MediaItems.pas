@@ -33,16 +33,6 @@ interface
 uses Forms, Classes, ID3Mgmnt, PlayLists, Dialogs, SysUtils,
     kspfiles, DateUtils, KSPCrossList, ExtCtrls, KSPMessages, app_db_utils;
 
-const
-  faReadOnly  = $00000001;
-  faHidden    = $00000002;
-  faSysFile   = $00000004;
-  faVolumeID  = $00000008;
-  faDirectory = $00000010;
-  faArchive   = $00000020;
-  faSymLink   = $00000040;
-  faAnyFile   = $0000003F;
-
 type TCDEntryInfo = record
       CDID: string;
       Title: string;
@@ -50,8 +40,6 @@ type TCDEntryInfo = record
       Genre: string;
       Tracks: TStringList;
     end;
-
-type TASParseType = (asptTracks, asptAlbums, asptRelated);
 
 type
   TCDEntry = class(TObject)
@@ -84,7 +72,6 @@ procedure FindSongsByYear(var Songs: TPlayList; mItems: TAppDBConnection; Year, 
 procedure FindSongsByGenre(var Songs: TPlayList; mItems: TAppDBConnection; Genre, Album: string); overload;
 procedure FindSongsByYear(var Songs: TPlayList; mItems: TAppDBConnection; Year: string); overload;
 procedure FindSongsByGenre(var Songs: TPlayList; mItems: TAppDBConnection; Genre: string); overload;
-function ArtistInLib(mItems: TAppDBConnection; Artist: string): boolean;
 
 procedure ReturnYears(var Years: TCrossList; mItems: TAppDBConnection);
 procedure ReturnGenres(var Gn: TCrossList; mItems: TAppDBConnection);
@@ -747,16 +734,6 @@ begin
   mItems.CloseQuery;
 
   Songs.SortPlaylist(pstArtist);
-end;
-
-function ArtistInLib(mItems: TAppDBConnection; Artist: string): boolean;
-var
-  p: TPathChar;
-begin
-  StrPCopy(p, Artist);
-  mItems.OpenQuery(Format('SELECT * FROM meta WHERE Artist=''%s''', [PrepareString(p)]));
-  Result:=mItems.ReturnRecordsCount>0;
-  mItems.CloseQuery;
 end;
 
 procedure FindSongsByGenre(var Songs: TPlayList; mItems: TAppDBConnection; Genre: string);

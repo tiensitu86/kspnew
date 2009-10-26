@@ -49,7 +49,6 @@ type  TWebView = class(TObject)
   private
     QWebPage             : QLCLWebPageH;
     NetworkAccessManager : QNetworkAccessManagerH;
-    NetworkProxy : QNetworkProxyH;
     procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString); cdecl;
   public
 
@@ -847,7 +846,6 @@ var
   t: boolean;
   lack: integer;
   p: TPLEntry;
-  fm: TFormatSettings;
   Pc: TPathChar;
   MaxPC: integer;
   Approx, ApproxBet: Extended;
@@ -940,8 +938,6 @@ var
 
 begin
   if not FileExists(FileName) then Exit;
-
-  fm.DecimalSeparator:='.';
 
   StrPCopy(Pc, FileName);
   AllSongs.OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
@@ -1201,7 +1197,6 @@ end;
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
-  lRes: integer;
 
   procedure SetVars;
   var
@@ -3845,7 +3840,6 @@ procedure TKSPMainWindow.SetupWebBrowserIC;
 var
   WebViewHook     : QWebView_hookH;
   s1, s2, s3, s4: string;
-  Method          : TMethod;
   QWebSettings    : QWebSettingsH;
 begin
 
