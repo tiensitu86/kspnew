@@ -40,7 +40,7 @@ uses
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
   MainWindowStartupThreads, FoldersScan, process, Buttons, Qt4, qtwidgets,
-  ActnList, Spin, FileCtrl, suggfind,uxmpp, LuaWrapper, ksplua;
+  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} LuaWrapper, ksplua;
 
 
   { TWebView }
