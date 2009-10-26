@@ -77,6 +77,7 @@ procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
 
 function PrepareString(str: string): string;// external 'kspfiles.dll';
 
+function ConnectionEstablished: boolean;
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 function Url_encode(const url:string):string;
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
@@ -98,7 +99,7 @@ function GetOSVersion: string;
 
 implementation
 
-uses SysUtils, main, multilog;
+uses SysUtils, main, multilog, KSPConstsVars;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 begin
@@ -331,6 +332,15 @@ function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 begin
   HttpGetText(aUrl, Output);
   Result:=Output.Text<>'';
+end;
+
+function ConnectionEstablished: boolean;
+var
+  s: TStringList;
+begin
+  s:=TStringList.Create;
+  Result:=DownloadURLi(KSPHost, s);
+  s.Free;
 end;
 
 function Url_encode(const url:string):string;

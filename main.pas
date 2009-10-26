@@ -1224,6 +1224,8 @@ var
       Image5.Picture.LoadFromFile(Pic);
     end;
 
+    MenuItem29.Checked:=not ConnectionEstablished;
+
     CurrentFile:=''; CurrentIndex:=-1;  PreviousIndex:=-1;  FStopped:=True;
     Caption:=Application.Title;
     MGDragPlaylist:=false;
@@ -1789,6 +1791,7 @@ end;
 procedure TKSPMainWindow.MenuItem29Click(Sender: TObject);
 begin
   MenuItem29.Checked:=not MenuItem29.Checked;
+  MenuItem29.Checked:=MenuItem29.Checked or not ConnectionEstablished;
 end;
 
 procedure TKSPMainWindow.MenuItem35Click(Sender: TObject);
@@ -4043,6 +4046,8 @@ end;
 function TKSPMainWindow.OfflineMode: boolean;
 begin
   Result:=MenuItem29.Checked;
+  if not Result then
+    Result:=not ConnectionEstablished;
 end;
 
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
