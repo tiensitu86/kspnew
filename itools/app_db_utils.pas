@@ -528,7 +528,6 @@ procedure TAppDBConnection.FindAproxMaxPlayCountValues(var PlayCount: integer; v
 var
   i: integer;
   All: Int64;
-  p: TPLEntry;
 begin
   FindApproxVals.Clear;
   OpenQuery('SELECT * FROM meta WHERE PlayCount>0 ORDER BY PlayCount DESC');
@@ -537,7 +536,6 @@ begin
     PlayCount:=Self.ReadEntry.PlayCount;
     for i:=0 to ReturnRecordsCount-1 do
       begin
-        p:=Self.ReadEntry;
         FindApproxVals.Add(Self.ReadEntry);
         GoToNext;
         All:=All+FindApproxVals.GetItem(i).PlayCount;
@@ -547,7 +545,6 @@ begin
 
   //ShowMessage(IntToStr(All));
   if FindApproxVals.Count>0 then begin
-    FindApproxVals.SortPlaylist(pstPlayCount);
     Approx:=All / (FindApproxVals.Count);
   end else PlayCount:=0;
 //  p.Clear;

@@ -178,9 +178,6 @@ begin
 end;
 
 procedure TLUA.ExecuteFile(FileName: AnsiString);
-var
-  Script : AnsiString;
-  sl     : TStringList;
 begin
   if L = nil then
     Open;
