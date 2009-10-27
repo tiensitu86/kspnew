@@ -159,6 +159,11 @@ SDownloadProgress = '%s buffered';
 SDefaultLyricsMessage = 'Here put song lyrics...';
 SFetchingSuggs = 'Fetching suggestions...';
 SNoSuggestions = 'No suggestions found';
+SNetMsgCaption = 'Network access';
+SNetMsg = 'KSP requires network access in order to enable some functions like dynamic playlists or suggestions fetching.'+#13+
+  'KSP doesn''t send ANY personal data without user confirmation and notification'+#13+
+  #13+'This message is only for notification purposes. Click Yes if you want to disable it next time you run KSP.'+#13+
+  'Click No if you want this message to be shown next time you run KSP';
 
 implementation
 

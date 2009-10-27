@@ -137,6 +137,19 @@ msgstr ""
 msgid "Native file formats"
 msgstr ""
 
+#: kspstrings.snetmsg
+msgid ""
+"KSP requires network access in order to enable some functions like dynamic playlists or suggestions fetching.\n"
+"KSP doesn't send ANY personal data without user confirmation and notification\n"
+"\n"
+"This message is only for notification purposes. Click Yes if you want to disable it next time you run KSP.\n"
+"Click No if you want this message to be shown next time you run KSP\n"
+msgstr ""
+
+#: kspstrings.snetmsgcaption
+msgid "Network access"
+msgstr ""
+
 #: kspstrings.snewestrelease
 msgid "The newest release is:"
 msgstr ""
