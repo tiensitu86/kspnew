@@ -467,6 +467,7 @@ type  TWebView = class(TObject)
     procedure UseORClick(Sender: TObject);
   private
     { private declarations }
+    DisableNetworkMsg: boolean;
     CurrentFile: string;
     CurrentTitle: string;
     PreviousIndex: integer;
@@ -1224,6 +1225,8 @@ var
       Image5.Picture.LoadFromFile(Pic);
     end;
 
+    MenuItem29.Checked:=not ConnectionEstablished;
+
     CurrentFile:=''; CurrentIndex:=-1;  PreviousIndex:=-1;  FStopped:=True;
     Caption:=Application.Title;
     MGDragPlaylist:=false;
@@ -1789,6 +1792,7 @@ end;
 procedure TKSPMainWindow.MenuItem29Click(Sender: TObject);
 begin
   MenuItem29.Checked:=not MenuItem29.Checked;
+  MenuItem29.Checked:=MenuItem29.Checked or not ConnectionEstablished;
 end;
 
 procedure TKSPMainWindow.MenuItem35Click(Sender: TObject);
@@ -3521,6 +3525,7 @@ var
     KSPMainWindow.Update;
     Self.CloseAction:=XMLFile.ReadInteger('Main window', 'close', 0);
     claBox.ItemIndex:=Self.CloseAction;
+    Self.DisableNetworkMsg:=XMLFile.ReadBool('Main window', 'DisableNetworkMsg', false);
 
     lbPlaylist.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
     KSPMainWindow.MSortType.Width:=XMLFile.ReadInteger('Main Window', 'MediaLibPanelSize', KSPMainWindow.MSortType.Width);
@@ -3684,6 +3689,7 @@ var
     XMLFile.WriteInteger('Main window', 'height', Height);
     XMLFile.WriteInteger('Main window', 'width', Width);
     XMLFile.WriteInteger('Main window', 'close', CloseAction);
+    XMLFile.WriteBool('Main window', 'DisableNetworkMsg', Self.DisableNetworkMsg);
 
     XMLFile.WriteInteger('Main window', 'Volume', TB.Position);
     XMLFile.WriteInteger('Main Window', 'PlsInfoBox', lbPlaylist.Width);
@@ -3842,6 +3848,9 @@ var
   s1, s2, s3, s4: string;
   QWebSettings    : QWebSettingsH;
 begin
+
+  if not Self.DisableNetworkMsg then
+    Self.DisableNetworkMsg:=MessageDlg(SNetMsgCaption, SNetMsg, mtInformation, [mbYes, mbNo], 0)=mrYes;
 
   // Web Settings
   QWebSettings:=QWebSettings_globalSettings;
@@ -4043,6 +4052,8 @@ end;
 function TKSPMainWindow.OfflineMode: boolean;
 begin
   Result:=MenuItem29.Checked;
+  if not Result then
+    Result:=not ConnectionEstablished;
 end;
 
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);

@@ -1,8 +1,6 @@
-{ To jest automatycznie wygenerowany plik zasobów lazarusa }
-
 LazarusResources.Add('TKSPMainWindow','FORMDATA',[
-  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3'W'#1#6'Height'#3#195#2#3
-  +'Top'#3#133#0#5'Width'#3#220#4#13'ActiveControl'#7#6'Panel1'#7'Caption'#6#3
+  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3#225#0#6'Height'#3#195#2
+  +#3'Top'#3#225#0#5'Width'#3#220#4#13'ActiveControl'#7#6'Panel1'#7'Caption'#6#3
   +'KSP'#12'ClientHeight'#3#175#2#11'ClientWidth'#3#220#4#4'Menu'#7#9'MainMenu1'
   +#12'OnCloseQuery'#7#14'FormCloseQuery'#8'OnCreate'#7#10'FormCreate'#9'OnDest'
   +'roy'#7#11'FormDestroy'#10'OnDragDrop'#7#18'lbPlaylistDragDrop'#10'OnDragOve'
