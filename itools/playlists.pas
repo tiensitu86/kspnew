@@ -72,6 +72,7 @@ type
     function GetTrack(Artist, Album, Title: string; ForbList: TStringList): TPLEntry;
     function ArtistInPlaylist(Artist: string): boolean;
     function ContainsFileName(fname: string): boolean;
+    function MatchesSearch(Index: integer; Pattern: string; Artist, ALbum, Title: boolean): boolean;
   end;
 
 {  TPlayLists = class(TList)
@@ -330,6 +331,20 @@ begin
   for x:=0 to Count-1 do begin
     Result:=Result or (CompareFilenames(fname, GetItem(x)^.FileName)=0);
   end;
+end;
+
+function TPlayList.MatchesSearch(Index: integer; Pattern: string; Artist, ALbum, Title: boolean): boolean;
+var
+  p: TPLEntry;
+begin
+  p:=Self.GetItem(Index)^;
+  Result:=false;
+  if Artist then
+    Result:=Pos(UpperCase(Pattern), UpperCase(p.Tag.Artist))<>0;
+  if Album then
+    Result:=Result or (Pos(UpperCase(Pattern), UpperCase(p.Tag.Album))<>0);
+  if Title then
+    Result:=Result or (Pos(UpperCase(Pattern), UpperCase(p.Tag.Title))<>0);
 end;
 
 function TPlayList.FindAlbum(Artist, Album: string): TPlaylist;

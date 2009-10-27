@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -452,8 +455,18 @@ msgctxt "TKSPMAINWINDOW.ALBUMBOX.CAPTION"
 msgid "Album"
 msgstr ""
 
+#: TKSPMAINWINDOW.ALBUMPLSSEARCH.CAPTION
+msgctxt "TKSPMAINWINDOW.ALBUMPLSSEARCH.CAPTION"
+msgid "Album"
+msgstr ""
+
 #: TKSPMAINWINDOW.ARTISTBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.ARTISTBOX.CAPTION"
+msgid "Artist"
+msgstr ""
+
+#: TKSPMAINWINDOW.ARTISTPLSSEARCH.CAPTION
+msgctxt "TKSPMAINWINDOW.ARTISTPLSSEARCH.CAPTION"
 msgid "Artist"
 msgstr ""
 
@@ -632,6 +645,10 @@ msgstr ""
 #: TKSPMAINWINDOW.GENREBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.GENREBOX.CAPTION"
 msgid "Genre"
+msgstr ""
+
+#: TKSPMAINWINDOW.GROUPBOX1.CAPTION
+msgid "Search Playlist (click for more options)"
 msgstr ""
 
 #: TKSPMAINWINDOW.GROUPBOXPROXY.CAPTION
@@ -942,6 +959,10 @@ msgstr ""
 msgid "Add Playlist To Bookmark"
 msgstr ""
 
+#: TKSPMAINWINDOW.SEARCHPLAYLISTEDIT.TEXT
+msgid "Search playlist..."
+msgstr ""
+
 #: TKSPMAINWINDOW.SHUFFLEBUTTON.CAPTION
 msgid "Shuffle"
 msgstr ""
@@ -984,6 +1005,11 @@ msgstr ""
 
 #: TKSPMAINWINDOW.TITLEBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.TITLEBOX.CAPTION"
+msgid "Title"
+msgstr ""
+
+#: TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION
+msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
 msgstr ""
 

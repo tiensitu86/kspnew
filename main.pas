@@ -73,13 +73,18 @@ type  TWebView = class(TObject)
 
   TKSPMainWindow = class(TForm)
     Button6: TButton;
+    ArtistPlsSearch: TCheckBox;
+    AlbumPlsSearch: TCheckBox;
+    TitlePlsSearch: TCheckBox;
     claBox: TComboBox;
+    SearchPlaylistEdit: TEdit;
     EProxyEnabled: TCheckBox;
     EProxyHost: TEdit;
     EProxyPassword: TEdit;
     EProxyPort: TSpinEdit;
     EProxyType: TComboBox;
     EProxyUserName: TEdit;
+    GroupBox1: TGroupBox;
     GroupBoxProxy: TGroupBox;
     Image5: TImage;
     Label16: TLabel;
@@ -100,6 +105,7 @@ type  TWebView = class(TObject)
     MenuItem40: TMenuItem;
     MenuItem41: TMenuItem;
     NetworkSetupPage: TPage;
+    Panel17: TPanel;
     SD: TSaveDialog;
     ShuffleButton: TSpeedButton;
     UseOR: TCheckBox;
@@ -369,6 +375,7 @@ type  TWebView = class(TObject)
     procedure ExitKSPActionExecute(Sender: TObject);
     procedure ExportPlaylistExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure GroupBox1Click(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
     procedure Image5Click(Sender: TObject);
@@ -439,6 +446,9 @@ type  TWebView = class(TObject)
     procedure MsortTypeClick(Sender: TObject);
     procedure SaveLyricsBtnClick(Sender: TObject);
     procedure Savewholeplaylistasbookmark1Click(Sender: TObject);
+    procedure SearchPlaylistEditChange(Sender: TObject);
+    procedure SearchPlaylistEditClick(Sender: TObject);
+    procedure SearchPlaylistEditMouseLeave(Sender: TObject);
     procedure ShuffleButtonChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -497,6 +507,7 @@ type  TWebView = class(TObject)
     QCookieJar : QLCLNetworkCookieJarH;
     QNetworkAccessManager : QNetworkAccessManagerH;
     CookiesFileName : String;
+    SPLDefaultText: string;
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
 {$ENDIF}
@@ -1373,6 +1384,7 @@ begin
   SetupOpenDialog;
 
   AppVersion.Caption:=Application.Title+' '+KSPVersion+' ('+KSPVersion2+')';
+  SPLDefaultText:=SearchPlaylistEdit.Text;
 
     case RepeatType of
     rtNone: begin
@@ -1646,6 +1658,21 @@ begin
     Hide;
     claBox.ItemIndex:=Self.CloseAction;
     ApplicationVisible:=false;
+  end;
+end;
+
+procedure TKSPMainWindow.GroupBox1Click(Sender: TObject);
+begin
+  if GroupBox1.Height<>140 then begin
+    GroupBox1.Height:=140;
+    ArtistPlsSearch.Visible:=true;
+    AlbumPlsSearch.Visible:=true;
+    TitlePlsSearch.Visible:=true;
+  end else begin
+    GroupBox1.Height:=50;
+    ArtistPlsSearch.Visible:=false;
+    AlbumPlsSearch.Visible:=false;
+    TitlePlsSearch.Visible:=false;
   end;
 end;
 
@@ -2898,6 +2925,37 @@ begin
   p.URL:=bName;
   BookmarksList.Add(p);
   RefreshBookmarks;
+end;
+
+procedure TKSPMainWindow.SearchPlaylistEditChange(Sender: TObject);
+
+  procedure PerformPlaylistSearch;
+  var
+    i: integer;
+  begin
+    for i:=lbPlaylist.Count-1 downto 0 do
+     lbPlaylist.Selected[i]:=Playlist.MatchesSearch(i, SearchPlaylistEdit.Text,
+      ArtistPlsSearch.Checked, AlbumPlsSearch.Checked, TitlePlsSearch.Checked);
+  end;
+
+begin
+  SearchPlaylistEdit.Font.Style:=SearchPlaylistEdit.Font.Style-[fsItalic];
+  if (SearchPlaylistEdit.Text<>'') then PerformPlaylistSearch;
+end;
+
+procedure TKSPMainWindow.SearchPlaylistEditClick(Sender: TObject);
+begin
+  if SearchPlaylistEdit.Text=SPLDefaultText then
+    SearchPlaylistEdit.Text:='';
+end;
+
+procedure TKSPMainWindow.SearchPlaylistEditMouseLeave(Sender: TObject);
+begin
+  if (SearchPlaylistEdit.Text='') then begin
+    SearchPlaylistEdit.Text:=SPLDefaultText;
+    SearchPlaylistEdit.Font.Style:=SearchPlaylistEdit.Font.Style+[fsItalic];
+    SearchPlaylistEdit.EditingDone;
+  end;
 end;
 
 procedure TKSPMainWindow.ShuffleButtonChange(Sender: TObject);
