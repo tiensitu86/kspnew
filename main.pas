@@ -89,6 +89,8 @@ type  TWebView = class(TObject)
     MenuItem53: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItem55: TMenuItem;
+    MenuItem56: TMenuItem;
+    MenuItem57: TMenuItem;
     ShuffleItem: TMenuItem;
     RepeatItem: TMenuItem;
     PlsViewItem: TMenuItem;
@@ -125,7 +127,6 @@ type  TWebView = class(TObject)
     Panel17: TPanel;
     SD: TSaveDialog;
     ShuffleButton: TSpeedButton;
-    ToggleBox1: TToggleBox;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -3670,7 +3671,7 @@ var
     claBox.ItemIndex:=Self.CloseAction;
     Self.DisableNetworkMsg:=XMLFile.ReadBool('Main window', 'DisableNetworkMsg', false);
 
-    lbPlaylist.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
+    Panel17.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
     KSPMainWindow.MSortType.Width:=XMLFile.ReadInteger('Main Window', 'MediaLibPanelSize', KSPMainWindow.MSortType.Width);
     KSPMainWindow.MIView.Height:=XMLFile.ReadInteger('Main Window', 'MediaLibLibHeaderPanelHeight', KSPMainWindow.MIView.Height);
 
@@ -3835,7 +3836,9 @@ var
     XMLFile.WriteBool('Main window', 'DisableNetworkMsg', Self.DisableNetworkMsg);
 
     XMLFile.WriteInteger('Main window', 'Volume', TB.Position);
-    XMLFile.WriteInteger('Main Window', 'PlsInfoBox', lbPlaylist.Width);
+    if Panel17.Width>0 then
+      XMLFile.WriteInteger('Main Window', 'PlsInfoBox', Panel17.Width) else
+      XMLFile.WriteInteger('Main Window', 'PlsInfoBox', KSPSetupStates.KSPState.PlaylistWidth);
     XMLFile.WriteInteger('Main Window', 'MediaLibPanelSize', MSortType.Width);
 
     XMLFile.WriteInteger('Main Window', 'MediaLibLibHeaderPanelHeight', Self.MIView.Height);

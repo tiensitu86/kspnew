@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "powered by:"
-msgstr ""
-
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -515,7 +512,7 @@ msgid "Enable ALL Plugins"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON15.CAPTION
-msgid "About QT"
+msgid "About Qt"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON17.CAPTION
@@ -920,6 +917,15 @@ msgstr ""
 msgid "Volume Down"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM56.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM56.CAPTION"
+msgid "Equalizer"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM57.CAPTION
+msgid "Toggle Time Elapsed / Remaining"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM6.CAPTION
 msgid "Revert Selection"
 msgstr ""
@@ -1090,10 +1096,6 @@ msgstr ""
 #: TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION
 msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
-msgstr ""
-
-#: TKSPMAINWINDOW.TOGGLEBOX1.CAPTION
-msgid "ToggleBox1"
 msgstr ""
 
 #: TKSPMAINWINDOW.TOOLBUTTON2.CAPTION

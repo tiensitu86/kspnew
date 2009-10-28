@@ -1,11 +1,11 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 606
-  Height = 707
-  Top = 181
+  Left = 363
+  Height = 710
+  Top = 133
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
-  ClientHeight = 687
+  ClientHeight = 690
   ClientWidth = 1244
   Menu = MainMenu1
   OnCloseQuery = FormCloseQuery
@@ -19,7 +19,7 @@ object KSPMainWindow: TKSPMainWindow
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 664
+    Top = 667
     Width = 1244
     Panels = <    
       item
@@ -445,7 +445,7 @@ object KSPMainWindow: TKSPMainWindow
   object MediaLibProgress: TProgressBar
     Left = 0
     Height = 20
-    Top = 644
+    Top = 647
     Width = 1244
     Align = alBottom
     Position = 15
@@ -456,11 +456,11 @@ object KSPMainWindow: TKSPMainWindow
   end
   object Panel3: TPanel
     Left = 0
-    Height = 548
+    Height = 551
     Top = 96
     Width = 969
     Align = alClient
-    ClientHeight = 548
+    ClientHeight = 551
     ClientWidth = 969
     TabOrder = 3
     object HeaderControl1: THeaderControl
@@ -506,7 +506,7 @@ object KSPMainWindow: TKSPMainWindow
     end
     object Notebook1: TNotebook
       Left = 1
-      Height = 516
+      Height = 519
       Top = 31
       Width = 967
       Align = alClient
@@ -516,10 +516,10 @@ object KSPMainWindow: TKSPMainWindow
       object Page1: TPage
         Caption = 'Page1'
         ClientWidth = 959
-        ClientHeight = 508
+        ClientHeight = 511
         object PagesWelcome: TPageControl
           Left = 0
-          Height = 508
+          Height = 511
           Top = 0
           Width = 959
           ActivePage = TabSheet4
@@ -1018,15 +1018,15 @@ object KSPMainWindow: TKSPMainWindow
           end
           object TabSheet4: TTabSheet
             Caption = 'About...'
-            ClientHeight = 480
+            ClientHeight = 483
             ClientWidth = 951
             object Panel4: TPanel
               Left = 0
-              Height = 480
+              Height = 483
               Top = 0
               Width = 251
               Align = alLeft
-              ClientHeight = 480
+              ClientHeight = 483
               ClientWidth = 251
               TabOrder = 0
               object AppVersion: TLabel
@@ -1057,7 +1057,7 @@ object KSPMainWindow: TKSPMainWindow
                 Height = 27
                 Top = 90
                 Width = 210
-                Caption = 'About QT'
+                Caption = 'About Qt'
                 OnClick = Button15Click
                 TabOrder = 1
               end
@@ -1106,22 +1106,12 @@ object KSPMainWindow: TKSPMainWindow
             end
             object History: TPanel
               Left = 251
-              Height = 480
+              Height = 483
               Top = 0
               Width = 700
               Align = alClient
-              ClientHeight = 480
-              ClientWidth = 700
               TabOrder = 1
               OnResize = HistoryResize
-              object ToggleBox1: TToggleBox
-                Left = 76
-                Height = 23
-                Top = 368
-                Width = 90
-                Caption = 'ToggleBox1'
-                TabOrder = 0
-              end
             end
           end
         end
@@ -3160,7 +3150,7 @@ object KSPMainWindow: TKSPMainWindow
   end
   object Splitter3: TSplitter
     Left = 969
-    Height = 548
+    Height = 551
     Top = 96
     Width = 5
     Align = alRight
@@ -3178,16 +3168,16 @@ object KSPMainWindow: TKSPMainWindow
   end
   object Panel17: TPanel
     Left = 974
-    Height = 548
+    Height = 551
     Top = 96
     Width = 270
     Align = alRight
-    ClientHeight = 548
+    ClientHeight = 551
     ClientWidth = 270
     TabOrder = 6
     object lbPlaylist: TCheckListBox
       Left = 1
-      Height = 496
+      Height = 499
       Top = 1
       Width = 268
       Align = alClient
@@ -3210,7 +3200,7 @@ object KSPMainWindow: TKSPMainWindow
     object GroupBox1: TGroupBox
       Left = 1
       Height = 50
-      Top = 497
+      Top = 500
       Width = 268
       Align = alBottom
       Caption = 'Search Playlist (click for more options)'
@@ -3630,6 +3620,7 @@ object KSPMainWindow: TKSPMainWindow
     end
     object MenuItem15: TMenuItem
       Caption = 'File Information'
+      ShortCut = 32819
       OnClick = MenuItem15Click
     end
   end
@@ -4252,6 +4243,17 @@ object KSPMainWindow: TKSPMainWindow
         ShortCut = 32837
         OnClick = PlsViewItemClick
       end
+      object MenuItem56: TMenuItem
+        Tag = 1
+        Caption = 'Equalizer'
+        ShortCut = 32839
+        OnClick = Button18Click
+      end
+      object MenuItem57: TMenuItem
+        Caption = 'Toggle Time Elapsed / Remaining'
+        ShortCut = 16468
+        OnClick = lLeftClick
+      end
     end
     object MenuItem17: TMenuItem
       Caption = 'Bookmarks'
@@ -4641,28 +4643,33 @@ object KSPMainWindow: TKSPMainWindow
       Caption = 'Open File / Append Playlist'
       ImageIndex = 4
       OnExecute = MenuItem1Click
+      ShortCut = 16463
     end
     object ClearPlaylistAction: TAction
       Category = 'KSP'
       Caption = 'Clear Playlist'
       ImageIndex = 3
       OnExecute = MenuItem2Click
+      ShortCut = 24622
     end
     object DeleteSelectedAction: TAction
       Category = 'KSP'
       Caption = 'Delete Selected'
       ImageIndex = 5
       OnExecute = MenuItem7Click
+      ShortCut = 46
     end
     object ExportPlaylist: TAction
       Category = 'KSP'
       Caption = 'Export Current Playlist'
       OnExecute = ExportPlaylistExecute
+      ShortCut = 16467
     end
     object OpenNetworkStream: TAction
       Category = 'KSP'
       Caption = 'Open Network Stream'
       OnExecute = OpenNetworkStreamExecute
+      ShortCut = 16460
     end
     object Action5: TAction
       Category = 'KSP'
@@ -4672,6 +4679,7 @@ object KSPMainWindow: TKSPMainWindow
       Category = 'KSP'
       Caption = 'Exit KSP'
       OnExecute = ExitKSPActionExecute
+      ShortCut = 32883
     end
   end
   object DownloadTimer: TTimer
