@@ -75,6 +75,23 @@ type  TWebView = class(TObject)
     Button6: TButton;
     ArtistPlsSearch: TCheckBox;
     AlbumPlsSearch: TCheckBox;
+    MenuItem42: TMenuItem;
+    MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
+    MenuItem45: TMenuItem;
+    MenuItem46: TMenuItem;
+    MenuItem47: TMenuItem;
+    MenuItem48: TMenuItem;
+    MenuItem49: TMenuItem;
+    MenuItem50: TMenuItem;
+    MenuItem51: TMenuItem;
+    MenuItem52: TMenuItem;
+    MenuItem53: TMenuItem;
+    MenuItem54: TMenuItem;
+    MenuItem55: TMenuItem;
+    ShuffleItem: TMenuItem;
+    RepeatItem: TMenuItem;
+    PlsViewItem: TMenuItem;
     TitlePlsSearch: TCheckBox;
     claBox: TComboBox;
     SearchPlaylistEdit: TEdit;
@@ -108,6 +125,7 @@ type  TWebView = class(TObject)
     Panel17: TPanel;
     SD: TSaveDialog;
     ShuffleButton: TSpeedButton;
+    ToggleBox1: TToggleBox;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -396,6 +414,11 @@ type  TWebView = class(TObject)
     procedure MenuItem35Click(Sender: TObject);
     procedure MenuItem36Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
+    procedure MenuItem44Click(Sender: TObject);
+    procedure MenuItem50Click(Sender: TObject);
+    procedure MenuItem51Click(Sender: TObject);
+    procedure MenuItem54Click(Sender: TObject);
+    procedure PlsViewItemClick(Sender: TObject);
     procedure MGViewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MGViewStartDrag(Sender: TObject; var DragObject: TDragObject);
@@ -1398,9 +1421,13 @@ begin
       end;
     end;
 
+  RepeatItem.Caption:=RepeatButton.Caption;
+
   if Shuffled then
     ShuffleButton.Caption:=SShuffleOn else
     ShuffleButton.Caption:=SShuffleOff;
+
+  ShuffleItem.Caption:=ShuffleButton.Caption;
 
   SetupDatabase;
   ScanFolders(false);
@@ -1837,6 +1864,61 @@ begin
   Self.LoadWebURL(KSPForum);
 end;
 
+procedure TKSPMainWindow.MenuItem44Click(Sender: TObject);
+begin
+  if (not FPaused) and (not FStopped) then
+    begin
+      Player.Pause(true);
+      FPaused := True;
+      btPlay.ImageIndex:=3;
+    end
+  else if FPaused then begin
+      Player.Pause(false);
+      btPlay.ImageIndex:=4;
+      FPaused:=false;
+  end;
+
+  btStop.ImageIndex := 2;
+  lbPlaylist.Repaint;
+end;
+
+procedure TKSPMainWindow.MenuItem50Click(Sender: TObject);
+begin
+   if Player.Seekable then
+   begin
+      Player.Position := Player.Position-3000;
+      PosBar.Position := (Player.Position * PosBar.Max) div Player.PlayLength
+   end;
+end;
+
+procedure TKSPMainWindow.MenuItem51Click(Sender: TObject);
+begin
+   if Player.Seekable then
+   begin
+      Player.Position := Player.Position+3000;
+      PosBar.Position := (Player.Position * PosBar.Max) div Player.PlayLength
+   end;
+end;
+
+procedure TKSPMainWindow.MenuItem54Click(Sender: TObject);
+begin
+  case TMenuItem(Sender).Tag of
+    1:TB.Position:=TB.Position+2;
+    2:TB.Position:=TB.Position-2;
+  end;
+  Self.TBChange(Sender);
+end;
+
+procedure TKSPMainWindow.PlsViewItemClick(Sender: TObject);
+begin
+  PlsViewItem.Checked:=not PlsViewItem.Checked;
+  if PlsViewItem.Checked then
+    Panel17.Width:=Self.KSPSetupStates.KSPState.PlaylistWidth  else begin
+    Self.KSPSetupStates.KSPState.PlaylistWidth:=Panel17.Width;
+    Panel17.Width:=0;
+  end;
+end;
+
 procedure TKSPMainWindow.MGViewMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -2040,6 +2122,7 @@ begin
         RepeatType:=rtNone;
       end;
   end;
+  RepeatItem.Caption:=RepeatButton.Caption;
 end;
 
 procedure TKSPMainWindow.btPlayClick(Sender: TObject);
@@ -2055,6 +2138,7 @@ begin
       btPlay.ImageIndex:=4;
       FPaused:=false;
   end else begin
+    if Playlist.Count=0 then Self.MenuItem1Click(Sender);
     PlayFile;
   end;
 
@@ -2964,6 +3048,7 @@ begin
   if Shuffled then
     ShuffleButton.Caption:=SShuffleOn else
     ShuffleButton.Caption:=SShuffleOff;
+  ShuffleItem.Caption:=ShuffleButton.Caption;
 end;
 
 procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);

@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.salbum
 msgctxt "kspstrings.salbum"
 msgid "Album"
@@ -175,6 +178,7 @@ msgid "New File - KSP"
 msgstr ""
 
 #: kspstrings.splaylist
+msgctxt "kspstrings.splaylist"
 msgid "Playlist"
 msgstr ""
 
@@ -648,10 +652,6 @@ msgstr ""
 msgid "Search Playlist (click for more options)"
 msgstr ""
 
-#: TKSPMAINWINDOW.GROUPBOX2.CAPTION
-msgid "GroupBox2"
-msgstr ""
-
 #: TKSPMAINWINDOW.GROUPBOXPROXY.CAPTION
 msgid "Proxy Settings"
 msgstr ""
@@ -855,8 +855,69 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM42.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM42.CAPTION"
+msgid "Play"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM43.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM43.CAPTION"
+msgid "Play"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM44.CAPTION
+msgid "Pause"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM45.CAPTION
+msgid "Stop"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM46.CAPTION
+msgid "Previous"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM47.CAPTION
+msgid "Next"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM48.CAPTION
+msgid "View"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM49.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM49.CAPTION"
+msgid "-"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM5.CAPTION
 msgid "Select None"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM50.CAPTION
+msgid "Back 3 Seconds"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM51.CAPTION
+msgid "Forward 3 Seconds"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM52.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM52.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM53.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM53.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM54.CAPTION
+msgid "Volume Up"
+msgstr ""
+
+#: TKSPMAINWINDOW.MENUITEM55.CAPTION
+msgid "Volume Down"
 msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM6.CAPTION
@@ -936,6 +997,11 @@ msgstr ""
 msgid "Playlist Formatting:"
 msgstr ""
 
+#: TKSPMAINWINDOW.PLSVIEWITEM.CAPTION
+msgctxt "TKSPMAINWINDOW.PLSVIEWITEM.CAPTION"
+msgid "Playlist"
+msgstr ""
+
 #: TKSPMAINWINDOW.PLUGINSSETUPPAGE.CAPTION
 msgid "PluginsSetupPage"
 msgstr ""
@@ -949,6 +1015,12 @@ msgid "Rename"
 msgstr ""
 
 #: TKSPMAINWINDOW.REPEATBUTTON.CAPTION
+msgctxt "TKSPMAINWINDOW.REPEATBUTTON.CAPTION"
+msgid "Repeat"
+msgstr ""
+
+#: TKSPMAINWINDOW.REPEATITEM.CAPTION
+msgctxt "TKSPMAINWINDOW.REPEATITEM.CAPTION"
 msgid "Repeat"
 msgstr ""
 
@@ -965,6 +1037,12 @@ msgid "Search playlist..."
 msgstr ""
 
 #: TKSPMAINWINDOW.SHUFFLEBUTTON.CAPTION
+msgctxt "TKSPMAINWINDOW.SHUFFLEBUTTON.CAPTION"
+msgid "Shuffle"
+msgstr ""
+
+#: TKSPMAINWINDOW.SHUFFLEITEM.CAPTION
+msgctxt "TKSPMAINWINDOW.SHUFFLEITEM.CAPTION"
 msgid "Shuffle"
 msgstr ""
 
@@ -1012,6 +1090,10 @@ msgstr ""
 #: TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION
 msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOGGLEBOX1.CAPTION
+msgid "ToggleBox1"
 msgstr ""
 
 #: TKSPMAINWINDOW.TOOLBUTTON2.CAPTION

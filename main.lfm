@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 391
+  Left = 606
   Height = 707
-  Top = 169
+  Top = 181
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -1110,8 +1110,18 @@ object KSPMainWindow: TKSPMainWindow
               Top = 0
               Width = 700
               Align = alClient
+              ClientHeight = 480
+              ClientWidth = 700
               TabOrder = 1
               OnResize = HistoryResize
+              object ToggleBox1: TToggleBox
+                Left = 76
+                Height = 23
+                Top = 368
+                Width = 90
+                Caption = 'ToggleBox1'
+                TabOrder = 0
+              end
             end
           end
         end
@@ -3987,8 +3997,8 @@ object KSPMainWindow: TKSPMainWindow
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 296
-    top = 496
+    left = 320
+    top = 488
     object MenuItem16: TMenuItem
       Caption = 'KSP'
       Bitmap.Data = {
@@ -4163,6 +4173,84 @@ object KSPMainWindow: TKSPMainWindow
       object MenuItem23: TMenuItem
         Action = ExitKSPAction
         OnClick = ExitKSPActionExecute
+      end
+    end
+    object MenuItem42: TMenuItem
+      Caption = 'Play'
+      object MenuItem43: TMenuItem
+        Caption = 'Play'
+        ShortCut = 88
+        OnClick = btPlayClick
+      end
+      object MenuItem44: TMenuItem
+        Caption = 'Pause'
+        ShortCut = 67
+        OnClick = MenuItem44Click
+      end
+      object MenuItem45: TMenuItem
+        Caption = 'Stop'
+        ShortCut = 86
+        OnClick = btStopClick
+      end
+      object MenuItem46: TMenuItem
+        Caption = 'Previous'
+        ShortCut = 90
+        OnClick = ToolButton1Click
+      end
+      object MenuItem47: TMenuItem
+        Caption = 'Next'
+        ShortCut = 66
+        OnClick = ToolButton4Click
+      end
+      object MenuItem49: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem50: TMenuItem
+        Caption = 'Back 3 Seconds'
+        ShortCut = 37
+        OnClick = MenuItem50Click
+      end
+      object MenuItem51: TMenuItem
+        Caption = 'Forward 3 Seconds'
+        ShortCut = 39
+        OnClick = MenuItem51Click
+      end
+      object MenuItem52: TMenuItem
+        Caption = '-'
+      end
+      object RepeatItem: TMenuItem
+        Caption = 'Repeat'
+        ShortCut = 82
+        OnClick = RepeatButtonClick
+      end
+      object ShuffleItem: TMenuItem
+        Caption = 'Shuffle'
+        ShortCut = 83
+        OnClick = ShuffleButtonChange
+      end
+      object MenuItem53: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem54: TMenuItem
+        Tag = 1
+        Caption = 'Volume Up'
+        ShortCut = 38
+        OnClick = MenuItem54Click
+      end
+      object MenuItem55: TMenuItem
+        Tag = 2
+        Caption = 'Volume Down'
+        ShortCut = 40
+        OnClick = MenuItem54Click
+      end
+    end
+    object MenuItem48: TMenuItem
+      Caption = 'View'
+      object PlsViewItem: TMenuItem
+        Caption = 'Playlist'
+        Checked = True
+        ShortCut = 32837
+        OnClick = PlsViewItemClick
       end
     end
     object MenuItem17: TMenuItem

@@ -76,9 +76,14 @@ type
     DevBuffer: DWORD;
   end;
 
+  KSPStates = packed record
+    PlaylistWidth: integer;
+  end;
+
   TKSPSetup = packed record
       //DockedItems: TDockedItems;
       KSPOptions: TKSPOptions;
+      KSPState: KSPStates;
   end;
 
   TSortType = (stByArtist, stByAlbum, stByYear, stByGenre, stCDArtist);

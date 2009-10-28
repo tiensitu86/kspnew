@@ -179,8 +179,8 @@ end;
 
 function CreateButton(Caption: string): TButton;
 begin
-  Result:=TButton.Create(KSPMainWindow.GroupBox2);
-  KSPMainWindow.GroupBox2.InsertControl(Result);
+  Result:=TButton.Create(nil);
+//  KSPMainWindow.GroupBox2.InsertControl(Result);
   Result.Caption:=Caption;
 end;
 
