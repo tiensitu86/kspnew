@@ -33,10 +33,11 @@ unit ksplua;
 interface
 
 uses
-  Classes, SysUtils, uPSComponent, uPSCompiler, uPSRuntime;
+  Classes, SysUtils, uPSComponent, uPSCompiler, uPSRuntime, StdCtrls, Controls;
 
 procedure LuaShowMessage(Msg: string);
 procedure LuaLogEntry(Msg: string);
+function CreateButton(Caption: string): TButton;
 //function LuaLoadInterface(L: Plua_State): Integer; cdecl;
 
 type TAddonManager = class
@@ -140,8 +141,10 @@ begin
   Sender.AddFunction(@LuaShowMessage, 'procedure ShowMessage(s: string);');
   Sender.AddFunction(@LuaLogEntry, 'procedure AddLog(question: string);');
   Sender.AddFunction(@GetOSVersion, 'function GetOSVersion: string;');
+  Sender.AddFunction(@CreateButton, 'function CreateButton(Caption: string): TButton;');
   Sender.AddRegisteredVariable('Application', 'TApplication');
   Sender.AddRegisteredVariable('Self', 'TForm');
+  Sender.AddRegisteredVariable('Basic', 'TControl');
 end;
 
 procedure TAddonManager.PSScriptExecute(Sender: TPSScript);
@@ -172,6 +175,13 @@ end;
 procedure LuaLogEntry(Msg: string);
 begin
   hLog.SendLua(Msg);
+end;
+
+function CreateButton(Caption: string): TButton;
+begin
+  Result:=TButton.Create(KSPMainWindow.GroupBox2);
+  KSPMainWindow.GroupBox2.InsertControl(Result);
+  Result.Caption:=Caption;
 end;
 
 procedure SetupLua;

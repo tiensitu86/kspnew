@@ -648,6 +648,10 @@ msgstr ""
 msgid "Search Playlist (click for more options)"
 msgstr ""
 
+#: TKSPMAINWINDOW.GROUPBOX2.CAPTION
+msgid "GroupBox2"
+msgstr ""
+
 #: TKSPMAINWINDOW.GROUPBOXPROXY.CAPTION
 msgid "Proxy Settings"
 msgstr ""

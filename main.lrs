@@ -1,30 +1,30 @@
 { To jest automatycznie wygenerowany plik zasobów lazarusa }
 
 LazarusResources.Add('TKSPMainWindow','FORMDATA',[
-  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#2#25#6'Height'#3#195#2#3
-  +'Top'#2#25#5'Width'#3#220#4#13'ActiveControl'#7#6'Panel1'#7'Caption'#6#3'KSP'
-  +#12'ClientHeight'#3#175#2#11'ClientWidth'#3#220#4#4'Menu'#7#9'MainMenu1'#12
-  +'OnCloseQuery'#7#14'FormCloseQuery'#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'
-  +#7#11'FormDestroy'#10'OnDragDrop'#7#18'lbPlaylistDragDrop'#10'OnDragOver'#7
-  +#18'lbPlaylistDragOver'#19'OnWindowStateChange'#7#21'FormWindowStateChange'#8
-  +'Position'#7#9'poDefault'#10'LCLVersion'#6#6'0.9.29'#0#10'TStatusBar'#10'Sta'
-  +'tusBar1'#4'Left'#2#0#6'Height'#2#23#3'Top'#3#152#2#5'Width'#3#220#4#6'Panel'
-  +'s'#14#1#5'Width'#3#144#1#0#0#11'SimplePanel'#8#0#0#6'TPanel'#6'Panel1'#4'Le'
-  +'ft'#2#0#6'Height'#2'['#3'Top'#2#0#5'Width'#3#220#4#5'Align'#7#5'alTop'#12'C'
-  +'lientHeight'#2'['#11'ClientWidth'#3#220#4#8'TabOrder'#2#1#0#12'TPageControl'
-  +#13'AudioControls'#4'Left'#3#192#1#6'Height'#2'Y'#3'Top'#2#1#5'Width'#3#27#3
-  +#7'TabStop'#8#10'ActivePage'#7#5'Basic'#5'Align'#7#8'alClient'#8'ShowTabs'#8
-  +#8'TabIndex'#2#0#8'TabOrder'#2#0#11'TabPosition'#7#6'tpLeft'#8'OnChange'#7#19
-  +'AudioControlsChange'#13'OnPageChanged'#7#19'AudioControlsChange'#0#9'TTabSh'
-  +'eet'#5'Basic'#7'Caption'#6#5'Basic'#12'ClientHeight'#2'Q'#11'ClientWidth'#3
-  +#19#3#0#6'TLabel'#14'TotalTimeLabel'#4'Left'#3#200#0#6'Height'#2#16#3'Top'#2
-  +' '#5'Width'#2#1#11'ParentColor'#8#0#0#6'TLabel'#6'lTime2'#4'Left'#3#200#0#6
-  +'Height'#2#16#3'Top'#2#8#5'Width'#2#1#11'ParentColor'#8#0#0#6'TLabel'#9'lFil'
-  +'eName'#4'Left'#3','#1#6'Height'#2#16#3'Top'#2' '#5'Width'#2#1#11'ParentColo'
-  +'r'#8#0#0#6'TLabel'#5'lLeft'#4'Left'#3','#1#6'Height'#2#16#3'Top'#2#8#5'Widt'
-  +'h'#2#1#11'ParentColor'#8#7'OnClick'#7#10'lLeftClick'#0#0#9'TTrackBar'#6'Pos'
-  +'Bar'#4'Left'#2#12#6'Height'#2#30#3'Top'#2#0#5'Width'#3#184#0#3'Max'#3#200#0
-  +#8'OnChange'#7#12'PosBarChange'#8'Position'#2#0#9'TickStyle'#7#6'tsNone'#11
+  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3#135#1#6'Height'#3#195#2
+  +#3'Top'#3#169#0#5'Width'#3#220#4#13'ActiveControl'#7#6'Panel1'#7'Caption'#6#3
+  +'KSP'#12'ClientHeight'#3#175#2#11'ClientWidth'#3#220#4#4'Menu'#7#9'MainMenu1'
+  +#12'OnCloseQuery'#7#14'FormCloseQuery'#8'OnCreate'#7#10'FormCreate'#9'OnDest'
+  +'roy'#7#11'FormDestroy'#10'OnDragDrop'#7#18'lbPlaylistDragDrop'#10'OnDragOve'
+  +'r'#7#18'lbPlaylistDragOver'#19'OnWindowStateChange'#7#21'FormWindowStateCha'
+  +'nge'#8'Position'#7#9'poDefault'#10'LCLVersion'#6#6'0.9.29'#0#10'TStatusBar'
+  +#10'StatusBar1'#4'Left'#2#0#6'Height'#2#23#3'Top'#3#152#2#5'Width'#3#220#4#6
+  +'Panels'#14#1#5'Width'#3#144#1#0#0#11'SimplePanel'#8#0#0#6'TPanel'#6'Panel1'
+  +#4'Left'#2#0#6'Height'#2'['#3'Top'#2#0#5'Width'#3#220#4#5'Align'#7#5'alTop'
+  +#12'ClientHeight'#2'['#11'ClientWidth'#3#220#4#8'TabOrder'#2#1#0#12'TPageCon'
+  +'trol'#13'AudioControls'#4'Left'#3#192#1#6'Height'#2'Y'#3'Top'#2#1#5'Width'#3
+  +#27#3#7'TabStop'#8#10'ActivePage'#7#5'Basic'#5'Align'#7#8'alClient'#8'ShowTa'
+  +'bs'#8#8'TabIndex'#2#0#8'TabOrder'#2#0#11'TabPosition'#7#6'tpLeft'#8'OnChang'
+  +'e'#7#19'AudioControlsChange'#13'OnPageChanged'#7#19'AudioControlsChange'#0#9
+  +'TTabSheet'#5'Basic'#7'Caption'#6#5'Basic'#12'ClientHeight'#2'Q'#11'ClientWi'
+  +'dth'#3#19#3#0#6'TLabel'#14'TotalTimeLabel'#4'Left'#3#200#0#6'Height'#2#16#3
+  +'Top'#2' '#5'Width'#2#1#11'ParentColor'#8#0#0#6'TLabel'#6'lTime2'#4'Left'#3
+  +#200#0#6'Height'#2#16#3'Top'#2#8#5'Width'#2#1#11'ParentColor'#8#0#0#6'TLabel'
+  +#9'lFileName'#4'Left'#3','#1#6'Height'#2#16#3'Top'#2' '#5'Width'#2#1#11'Pare'
+  +'ntColor'#8#0#0#6'TLabel'#5'lLeft'#4'Left'#3','#1#6'Height'#2#16#3'Top'#2#8#5
+  +'Width'#2#1#11'ParentColor'#8#7'OnClick'#7#10'lLeftClick'#0#0#9'TTrackBar'#6
+  +'PosBar'#4'Left'#2#12#6'Height'#2#30#3'Top'#2#0#5'Width'#3#184#0#3'Max'#3#200
+  +#0#8'OnChange'#7#12'PosBarChange'#8'Position'#2#0#9'TickStyle'#7#6'tsNone'#11
   +'OnMouseDown'#7#15'PosBarMouseDown'#9'OnMouseUp'#7#13'PosBarMouseUp'#8'TabOr'
   +'der'#2#0#0#0#9'TTrackBar'#7'Balance'#4'Left'#2#12#6'Height'#2#30#3'Top'#2#24
   +#5'Width'#3#184#0#3'Max'#3#200#0#8'OnChange'#7#13'BalanceChange'#8'Position'

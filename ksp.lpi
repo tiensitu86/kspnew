@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="136">
+    <Units Count="143">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,8 +64,8 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="25" Y="1209"/>
-        <TopLine Value="1185"/>
+        <CursorPos X="33" Y="111"/>
+        <TopLine Value="100"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -192,7 +192,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="35" Y="346"/>
         <TopLine Value="286"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -237,8 +237,8 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="60" Y="27"/>
-        <TopLine Value="1"/>
+        <CursorPos X="35" Y="56"/>
+        <TopLine Value="40"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -257,8 +257,8 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="1" Y="95"/>
-        <TopLine Value="72"/>
+        <CursorPos X="4" Y="499"/>
+        <TopLine Value="477"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -711,8 +711,8 @@
         <Filename Value="itools/lua/ksplua.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksplua"/>
-        <CursorPos X="66" Y="120"/>
-        <TopLine Value="106"/>
+        <CursorPos X="29" Y="140"/>
+        <TopLine Value="142"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -842,7 +842,7 @@
         <UnitName Value="closefrm"/>
         <CursorPos X="43" Y="9"/>
         <TopLine Value="1"/>
-        <UsageCount Value="188"/>
+        <UsageCount Value="189"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit94>
       <Unit95>
@@ -865,7 +865,7 @@
         <UnitName Value="luamenu"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="2"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="140"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit97>
       <Unit98>
@@ -874,7 +874,7 @@
         <UnitName Value="luaobjlist"/>
         <CursorPos X="50" Y="54"/>
         <TopLine Value="34"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="140"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -986,7 +986,7 @@
         <UnitName Value="cplayer"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="77"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit115>
       <Unit116>
@@ -1133,135 +1133,163 @@
       <Unit135>
         <Filename Value="additional/pascalscript/uPSComponent.pas"/>
         <UnitName Value="uPSComponent"/>
-        <CursorPos X="18" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
+        <CursorPos X="3" Y="523"/>
+        <TopLine Value="518"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit135>
+      <Unit136>
+        <Filename Value="additional/pascalscript/uPSR_controls.pas"/>
+        <UnitName Value="uPSR_controls"/>
+        <CursorPos X="11" Y="111"/>
+        <TopLine Value="109"/>
+        <UsageCount Value="11"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit136>
+      <Unit137>
+        <Filename Value="additional/pascalscript/uPSR_std.pas"/>
+        <UnitName Value="uPSR_std"/>
+        <CursorPos X="3" Y="74"/>
+        <TopLine Value="46"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit137>
+      <Unit138>
+        <Filename Value="additional/pascalscript/uPSR_stdctrls.pas"/>
+        <UnitName Value="uPSR_stdctrls"/>
+        <CursorPos X="16" Y="264"/>
+        <TopLine Value="246"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit138>
+      <Unit139>
+        <Filename Value="additional/pascalscript/uPSR_forms.pas"/>
+        <UnitName Value="uPSR_forms"/>
+        <CursorPos X="26" Y="12"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit139>
+      <Unit140>
+        <Filename Value="additional/pascalscript/uPSC_controls.pas"/>
+        <UnitName Value="uPSC_controls"/>
+        <CursorPos X="18" Y="24"/>
+        <TopLine Value="22"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="Delphi"/>
+      </Unit140>
+      <Unit141>
+        <Filename Value="C:/lazarus/lcl/stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <CursorPos X="29" Y="1023"/>
+        <TopLine Value="1003"/>
+        <UsageCount Value="10"/>
+      </Unit141>
+      <Unit142>
+        <Filename Value="C:/lazarus/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <CursorPos X="27" Y="1625"/>
+        <TopLine Value="1605"/>
+        <UsageCount Value="10"/>
+      </Unit142>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="2917" Column="59" TopLine="2908"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="33" Column="51" TopLine="19"/>
       </Position1>
       <Position2>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="344" Column="54" TopLine="323"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="105" Column="72" TopLine="91"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="2930" Column="9" TopLine="2909"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="180" Column="32" TopLine="153"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="507" Column="1" TopLine="487"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="161" Column="36" TopLine="137"/>
       </Position4>
       <Position5>
-        <Filename Value="main.pas"/>
-        <Caret Line="1384" Column="1" TopLine="1364"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="135" Column="50" TopLine="128"/>
       </Position5>
       <Position6>
-        <Filename Value="main.pas"/>
-        <Caret Line="2937" Column="41" TopLine="2908"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="146" Column="51" TopLine="128"/>
       </Position6>
       <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="1665" Column="28" TopLine="1661"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="182" Column="14" TopLine="163"/>
       </Position7>
       <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="1666" Column="28" TopLine="1661"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="142" Column="28" TopLine="109"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="1667" Column="28" TopLine="1661"/>
+        <Caret Line="1210" Column="25" TopLine="1185"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="1669" Column="30" TopLine="1661"/>
+        <Caret Line="9" Column="39" TopLine="1"/>
       </Position10>
       <Position11>
-        <Filename Value="kspconstsvars.pas"/>
-        <Caret Line="36" Column="44" TopLine="16"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="110" Column="17" TopLine="100"/>
       </Position11>
       <Position12>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="71" Column="16" TopLine="59"/>
+        <Caret Line="107" Column="14" TopLine="100"/>
       </Position12>
       <Position13>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="53" Column="32" TopLine="36"/>
+        <Caret Line="110" Column="16" TopLine="100"/>
       </Position13>
       <Position14>
-        <Filename Value="kspconstsvars.pas"/>
-        <Caret Line="134" Column="32" TopLine="118"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="111" Column="18" TopLine="100"/>
       </Position14>
       <Position15>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="56" Column="23" TopLine="36"/>
+        <Caret Line="112" Column="16" TopLine="100"/>
       </Position15>
       <Position16>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="44" Column="37" TopLine="36"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="8" Column="21" TopLine="1"/>
       </Position16>
       <Position17>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="36" Column="38" TopLine="23"/>
+        <Caret Line="49" Column="20" TopLine="29"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="2935" Column="28" TopLine="2927"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="145" Column="25" TopLine="138"/>
       </Position18>
       <Position19>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="43" Column="33" TopLine="29"/>
+        <Caret Line="110" Column="17" TopLine="96"/>
       </Position19>
       <Position20>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="34" Column="54" TopLine="26"/>
+        <Caret Line="82" Column="19" TopLine="75"/>
       </Position20>
       <Position21>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="96" Column="48" TopLine="69"/>
+        <Caret Line="85" Column="15" TopLine="75"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="48" Column="28" TopLine="127"/>
+        <Filename Value="itools/lua/ksplua.pas"/>
+        <Caret Line="179" Column="62" TopLine="159"/>
       </Position22>
       <Position23>
         <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="100" Column="34" TopLine="84"/>
+        <Caret Line="181" Column="18" TopLine="159"/>
       </Position23>
       <Position24>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="33" Column="51" TopLine="19"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="12" Column="38" TopLine="100"/>
       </Position24>
-      <Position25>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="105" Column="72" TopLine="91"/>
-      </Position25>
-      <Position26>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="180" Column="32" TopLine="153"/>
-      </Position26>
-      <Position27>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="161" Column="36" TopLine="137"/>
-      </Position27>
-      <Position28>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="135" Column="50" TopLine="128"/>
-      </Position28>
-      <Position29>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="146" Column="51" TopLine="128"/>
-      </Position29>
-      <Position30>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="182" Column="14" TopLine="163"/>
-      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
