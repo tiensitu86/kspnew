@@ -33,50 +33,160 @@ unit ksplua;
 interface
 
 uses
-  Classes, SysUtils, Lua, luamenu;
+  Classes, SysUtils, uPSComponent, uPSCompiler, uPSRuntime;
 
-function LuaShowMessage(L: Plua_State): Integer; cdecl;
-function LuaLogEntry(L: Plua_State): Integer; cdecl;
-function LuaLoadInterface(L: Plua_State): Integer; cdecl;
+procedure LuaShowMessage(Msg: string);
+procedure LuaLogEntry(Msg: string);
+//function LuaLoadInterface(L: Plua_State): Integer; cdecl;
+
+type TAddonManager = class
+  private
+    fPascal: TPSScript;
+    procedure IFPS3ClassesPlugin1CompImport(Sender: TObject;
+      x: TPSPascalCompiler);
+    procedure IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TPSExec;
+      x: TPSRuntimeClassImporter);
+    procedure PSScriptCompile(Sender: TPSScript);
+    procedure PSScriptExecute(Sender: TPSScript);
+    procedure OutputMessages;
+  public
+    constructor Create(scr: string);
+    destructor Destroy;
+  end;
 
 procedure SetupLua;
 procedure FreeLua;
 
 implementation
 
-uses kspfiles, multilog, KSPConstsVars, LuaWrapper, ProfileFunc;
+uses kspfiles, multilog, KSPConstsVars, ProfileFunc, main,
+  uPSR_std,
+  uPSC_std,
+  uPSR_stdctrls,
+  uPSC_stdctrls,
+  uPSR_forms,
+  uPSC_forms,
+  uPSC_graphics,
+  uPSC_controls,
+  uPSC_classes,
+  uPSR_graphics,
+  uPSR_controls,
+  uPSR_classes;
 
-function LuaLoadInterface(L: Plua_State): Integer; cdecl;
+procedure TAddonManager.IFPS3ClassesPlugin1CompImport(Sender: TObject;
+  x: TIFPSPascalcompiler);
+begin
+  SIRegister_Std(x);
+  SIRegister_Classes(x, true);
+  SIRegister_Graphics(x, true);
+  SIRegister_Controls(x);
+  SIRegister_stdctrls(x);
+  SIRegister_Forms(x);
+end;
+
+procedure TAddonManager.OutputMessages;
+  var
+    l: Longint;
+    b: Boolean;
+  begin
+    b := False;
+
+    for l := 0 to fPascal.CompilerMessageCount - 1 do
+    begin
+      hLog.Send('Compiler: '+ fPascal.CompilerErrorToStr(l));
+      if (not b) and (fPascal.CompilerMessages[l] is TIFPSPascalCompilerError) then
+      begin
+        b := True;
+      end;
+    end;
+  end;
+
+procedure TAddonManager.IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TIFPSExec;
+  x: TIFPSRuntimeClassImporter);
+begin
+  RIRegister_Std(x);
+  RIRegister_Classes(x, True);
+  RIRegister_Graphics(x, True);
+  RIRegister_Controls(x);
+  RIRegister_stdctrls(x);
+  RIRegister_Forms(x);
+end;
+
+constructor TAddonManager.Create(scr: string);
+begin
+  inherited Create;
+  fPascal:=TPSScript.Create(nil);
+  fPascal.OnCompImport:=@IFPS3ClassesPlugin1CompImport;
+  fPascal.OnExecImport:=@IFPS3ClassesPlugin1ExecImport;
+  fPascal.OnCompile:=@PSScriptCompile;
+  fPascal.OnExecute:=@PSScriptExecute;
+  fPascal.Script.Text:=scr;
+  hLog.Send('Compiling addons...');
+  if fPascal.Compile then begin
+    OutputMessages;
+    hLog.Send('Executing code...');
+    if not fPascal.Execute then begin
+      Self.OutputMessages;
+      hLog.Send('Execution failed');
+    end else hLog.Send('Addons code executed');
+  end else begin
+    Self.OutputMessages;
+    hLog.Send('Compilation failed');
+  end;
+end;
+
+procedure TAddonManager.PSScriptCompile(Sender: TPSScript);
+begin
+  Sender.AddFunction(@LuaShowMessage, 'procedure ShowMessage(s: string);');
+  Sender.AddFunction(@LuaLogEntry, 'procedure AddLog(question: string);');
+  Sender.AddFunction(@GetOSVersion, 'function GetOSVersion: string;');
+  Sender.AddRegisteredVariable('Application', 'TApplication');
+  Sender.AddRegisteredVariable('Self', 'TForm');
+end;
+
+procedure TAddonManager.PSScriptExecute(Sender: TPSScript);
+begin
+  Sender.SetVarToInstance('SELF', KSPMainWindow);
+end;
+
+destructor TAddonManager.Destroy;
+begin
+  fPascal.Free;
+  inherited Destroy;
+end;
+
+{function LuaLoadInterface(L: Plua_State): Integer; cdecl;
 var
   p: pChar;
 begin
   p:=lua_tostring(L, -1);
   hLog.SendLua('Loading addon interface: '+p);
+end; }
+
+procedure LuaShowMessage(Msg: string);
+begin
+  hLog.Send('MSG FROM LUA: '+Msg);
+  KSPShowMessage(Msg);
 end;
 
-function LuaShowMessage(L: Plua_State): Integer; cdecl;
-var
-  p: pChar;
+procedure LuaLogEntry(Msg: string);
 begin
-  p:=lua_tostring(L, -1);
-  hLog.Send('MSG FROM LUA: '+p);
-  KSPShowMessageP(p);
-  Result:=0;
-end;
-
-function LuaLogEntry(L: Plua_State): Integer; cdecl;
-var
-  p: pChar;
-begin
-  p:=lua_tostring(L, -1);
-  hLog.SendLua(p);
-  Result:=0;
+  hLog.SendLua(Msg);
 end;
 
 procedure SetupLua;
+var
+  s: TStringList;
 begin
-  ScriptedAddons:=TLUA.Create;
-  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
+  s:=TStringList.Create;
+  DefaultScript:=KSPDataFolder+'addons/runaddons.pas';
+  FixFolderNames(DefaultScript);
+  if FileExists(DefaultScript) then
+    s.LoadFromFile(DefaultScript);
+
+  ScriptedAddons:=TAddonManager.Create(s.Text);
+  s.Free;
+{  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.LuaPath:=ScriptedAddons.LuaPath+';'+KSPDataFolder+'lua/?.lua';
   hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
@@ -87,7 +197,7 @@ begin
   if FileExists(DefaultScript) then begin
     ScriptedAddons.LoadFile(DefaultScript);
     ScriptedAddons.Execute;
-  end;
+  end;}
 end;
 
 procedure FreeLua;

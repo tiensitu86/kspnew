@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 333
+  Left = 25
   Height = 707
-  Top = 150
+  Top = 25
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -530,19 +530,19 @@ object KSPMainWindow: TKSPMainWindow
           object TabSheet3: TTabSheet
             Caption = 'Welcome'
             ClientHeight = 480
-            ClientWidth = 937
+            ClientWidth = 951
             OnResize = TabSheet3Resize
             object Panel8: TPanel
               Left = 0
               Height = 43
               Top = 0
-              Width = 937
+              Width = 951
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 937
+              ClientWidth = 951
               TabOrder = 0
               object SpeedButton5: TSpeedButton
-                Left = 795
+                Left = 809
                 Height = 41
                 Top = 1
                 Width = 51
@@ -553,7 +553,7 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton1Click
               end
               object Image3: TImage
-                Left = 846
+                Left = 860
                 Height = 41
                 Top = 1
                 Width = 90
@@ -990,7 +990,7 @@ object KSPMainWindow: TKSPMainWindow
                 Left = 109
                 Height = 41
                 Top = 1
-                Width = 686
+                Width = 700
                 Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
@@ -1000,7 +1000,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 20
               Top = 460
-              Width = 937
+              Width = 951
               Align = alBottom
               Smooth = True
               TabOrder = 1
@@ -1010,7 +1010,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 417
               Top = 43
-              Width = 937
+              Width = 951
               Align = alClient
               TabOrder = 2
               OnResize = MainWebResize
@@ -1118,13 +1118,13 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page2: TPage
         Caption = 'Page2'
-        ClientWidth = 945
+        ClientWidth = 959
         ClientHeight = 508
         object LibPages: TPageControl
           Left = 0
           Height = 508
           Top = 0
-          Width = 945
+          Width = 959
           ActivePage = TabSheet5
           Align = alClient
           TabIndex = 1
@@ -1327,12 +1327,12 @@ object KSPMainWindow: TKSPMainWindow
           object TabSheet5: TTabSheet
             Caption = 'Internet Media'
             ClientHeight = 480
-            ClientWidth = 937
+            ClientWidth = 951
             object Panel7: TPanel
               Left = 0
               Height = 417
               Top = 43
-              Width = 937
+              Width = 951
               Align = alClient
               TabOrder = 0
               OnResize = Panel7Resize
@@ -1341,13 +1341,13 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 43
               Top = 0
-              Width = 937
+              Width = 951
               Align = alTop
               ClientHeight = 43
-              ClientWidth = 937
+              ClientWidth = 951
               TabOrder = 1
               object SpeedButton1: TSpeedButton
-                Left = 795
+                Left = 809
                 Height = 41
                 Top = 1
                 Width = 51
@@ -1358,7 +1358,7 @@ object KSPMainWindow: TKSPMainWindow
                 OnClick = SpeedButton1Click
               end
               object Image2: TImage
-                Left = 846
+                Left = 860
                 Height = 41
                 Top = 1
                 Width = 90
@@ -1795,7 +1795,7 @@ object KSPMainWindow: TKSPMainWindow
                 Left = 109
                 Height = 41
                 Top = 1
-                Width = 686
+                Width = 700
                 Align = alClient
                 OnKeyPress = IMAddressKeyPress
                 TabOrder = 0
@@ -1805,7 +1805,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 0
               Height = 20
               Top = 460
-              Width = 937
+              Width = 951
               Align = alBottom
               Smooth = True
               TabOrder = 2
@@ -1815,7 +1815,7 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page3: TPage
         Caption = 'Page3'
-        ClientWidth = 945
+        ClientWidth = 959
         ClientHeight = 508
         object SetupTreeView: TTreeView
           Left = 0
@@ -1849,7 +1849,7 @@ object KSPMainWindow: TKSPMainWindow
           Left = 243
           Height = 508
           Top = 0
-          Width = 702
+          Width = 716
           Align = alClient
           PageIndex = 6
           ShowTabs = False
@@ -2181,7 +2181,7 @@ object KSPMainWindow: TKSPMainWindow
           end
           object NetworkSetupPage: TPage
             Caption = 'NetworkSetupPage'
-            ClientWidth = 694
+            ClientWidth = 708
             ClientHeight = 500
             object GroupBoxProxy: TGroupBox
               Left = 16
@@ -2304,7 +2304,7 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page4: TPage
         Caption = 'Page4'
-        ClientWidth = 945
+        ClientWidth = 959
         ClientHeight = 508
         object LyricsPanel: TPanel
           Left = 0
@@ -2322,7 +2322,7 @@ object KSPMainWindow: TKSPMainWindow
           Width = 5
         end
         object Splitter6: TSplitter
-          Left = 680
+          Left = 694
           Height = 508
           Top = 0
           Width = 5
@@ -2333,19 +2333,19 @@ object KSPMainWindow: TKSPMainWindow
           Left = 266
           Height = 508
           Top = 0
-          Width = 414
+          Width = 428
           Align = alClient
           ClientHeight = 508
-          ClientWidth = 414
+          ClientWidth = 428
           TabOrder = 3
           object CPInfoPanel: TGroupBox
             Left = 1
             Height = 424
             Top = 83
-            Width = 412
+            Width = 426
             Align = alBottom
             ClientHeight = 406
-            ClientWidth = 408
+            ClientWidth = 422
             TabOrder = 0
             object Label13: TLabel
               Left = 15
@@ -2779,10 +2779,10 @@ object KSPMainWindow: TKSPMainWindow
             Left = 1
             Height = 74
             Top = 1
-            Width = 412
+            Width = 426
             Align = alClient
             ClientHeight = 74
-            ClientWidth = 412
+            ClientWidth = 426
             TabOrder = 1
             OnResize = Panel16Resize
             object DeleteLyricsBtn: TButton
@@ -2809,14 +2809,14 @@ object KSPMainWindow: TKSPMainWindow
             Left = 1
             Height = 8
             Top = 75
-            Width = 412
+            Width = 426
             Align = alBottom
             OnCanResize = Splitter9CanResize
             ResizeAnchor = akBottom
           end
         end
         object Panel2: TPanel
-          Left = 685
+          Left = 699
           Height = 508
           Top = 0
           Width = 260
@@ -3099,10 +3099,10 @@ object KSPMainWindow: TKSPMainWindow
       end
       object Page5: TPage
         Caption = 'Page5'
-        ClientWidth = 945
+        ClientWidth = 959
         ClientHeight = 508
         object Panel13: TPanel
-          Left = 705
+          Left = 719
           Height = 450
           Top = 0
           Width = 240
@@ -3130,7 +3130,7 @@ object KSPMainWindow: TKSPMainWindow
           end
         end
         object Splitter8: TSplitter
-          Left = 700
+          Left = 714
           Height = 450
           Top = 0
           Width = 5
@@ -3141,7 +3141,7 @@ object KSPMainWindow: TKSPMainWindow
           Left = 0
           Height = 58
           Top = 450
-          Width = 945
+          Width = 959
           Align = alBottom
           TabOrder = 2
         end
