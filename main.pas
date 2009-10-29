@@ -39,13 +39,15 @@ uses
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
-  MainWindowStartupThreads, FoldersScan, process, Buttons, Qt4, qtwidgets,
+  MainWindowStartupThreads, FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets,{$ENDIF}
   ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua;
 
 
   { TWebView }
+type
+{$IFDEF KSP_USE_QT}
 
-type  TWebView = class(TObject)
+  TWebView = class(TObject)
   private
     QWebPage             : QLCLWebPageH;
     NetworkAccessManager : QNetworkAccessManagerH;
@@ -68,6 +70,8 @@ type  TWebView = class(TObject)
     procedure SetContent(HTML: WideString);
     function GetContent: WideString;
   end;
+
+{$ENDIF}
 
   { TKSPMainWindow }
 
@@ -522,14 +526,18 @@ type  TWebView = class(TObject)
     KSPSetupStates: TKSPSetup;
     LastOpenDir: string;
     EQGains : TEQGains;
+{$IFDEF KSP_USE_QT}
     KSPNotification: QWidgetH;
+{$ENDIF}
     MGStartDrag: TPoint;
     MGDragItem: string;
     MGDragPlaylist: boolean;
     ClosingKSP: boolean;
     CloseAction: integer;
+{$IFDEF KSP_USE_QT}
     QCookieJar : QLCLNetworkCookieJarH;
     QNetworkAccessManager : QNetworkAccessManagerH;
+{$ENDIF}
     CookiesFileName : String;
     SPLDefaultText: string;
 {$IFDEF KSP_XMPP}
@@ -576,10 +584,12 @@ type  TWebView = class(TObject)
     PlayListMove: boolean;
     Seeking: boolean;
     MediaSongs: TPlayList;
+{$IFDEF KSP_USE_QT}
     WebView: TWebView;
     MainWebView: TWebView;
     HistoryWebView: TWebView;
     Lyrics: TWebView;
+{$ENDIF}
     ShowOSD: boolean;
     OSDPosition: integer;
     TotalPlayCount: Longint;
@@ -596,7 +606,9 @@ type  TWebView = class(TObject)
     function GetFormatedPlayListInfo: string;
     procedure DoThingOnMediaLib(Par, Chi: Integer);
     procedure DoSetupThing(Par: integer; Sel: integer = -1);
+{$IFDEF KSP_USE_QT}
     procedure ICLinkClicked(Value: QUrlH); cdecl;
+{$ENDIF}
     procedure IMProgressChange(progress: Integer); cdecl;
     procedure MWProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
@@ -622,6 +634,8 @@ uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
+
+{$IFDEF KSP_USE_QT}
 
 function Slot(Name:String):PAnsiChar;
 begin
@@ -846,6 +860,8 @@ begin
   QWebView_forward(Handle);
 end;
 
+{$ENDIF}
+
 
 { TKSPMainWindow }
 
@@ -1010,7 +1026,9 @@ begin
     SetHeaderControlImage(0);
     PagesWelcome.ActivePage:=TabSheet3;
   end;
+{$IFDEF KSP_USE_QT}
   Self.MainWebView.LoadURL(URL);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.PerformFileOpen(AFileName: string);
@@ -1513,6 +1531,7 @@ begin
 end;
 
 procedure TKSPMainWindow.Button6Click(Sender: TObject);
+{$IFDEF KSP_USE_QT}
 var
   w : WideString;
   NetworkProxy : QNetworkProxyH;
@@ -1542,6 +1561,11 @@ begin
   QNetworkProxy_setApplicationProxy(NetworkProxy);
   QNetworkProxy_destroy(NetworkProxy);
 end;
+{$ELSE}
+begin
+
+end;
+{$ENDIF}
 
 procedure TKSPMainWindow.Button7Click(Sender: TObject);
 begin
@@ -1606,7 +1630,9 @@ var
 begin
   findex:=AllSongs.GetItemIndex(CurrentFile);
   AllSongs.DeleteLyrics(findex);
+{$IFDEF KSP_USE_QT}
   Lyrics.Clear;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.DownloadTimerTimer(Sender: TObject);
@@ -1706,15 +1732,19 @@ end;
 
 procedure TKSPMainWindow.HistoryResize(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   Self.HistoryWebView.SetDimensions(Self.History.Width, Self.History.Height);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.IMAddressKeyPress(Sender: TObject; var Key: char);
 begin
+{$IFDEF KSP_USE_QT}
   if Key=#13 then begin
     if (Sender=IMAddress) then WebView.LoadURL(IMAddress.Text) else
     MainWebView.LoadURL(IMAddress1.Text);
   end;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.Image5Click(Sender: TObject);
@@ -1724,7 +1754,9 @@ end;
 
 procedure TKSPMainWindow.Label22Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   Self.LoadWebURL(TLabel(Sender).Caption);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.lbPlaylistDragDrop(Sender, Source: TObject; X,
@@ -1755,12 +1787,16 @@ end;
 
 procedure TKSPMainWindow.LyricsPanelResize(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.MainWebResize(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.MenuItem15Click(Sender: TObject);
@@ -2006,7 +2042,9 @@ end;
 
 procedure TKSPMainWindow.NotificationTimerTimer(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   CloseNotification(Self.KSPNotification);
+{$ENDIF}
   NotificationTimer.Enabled:=false;
 end;
 
@@ -2037,7 +2075,9 @@ end;
 
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   WebView.SetDimensions(Panel7.Width, Panel7.Height);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.PlgOnStartupClick(Sender: TObject);
@@ -2260,7 +2300,9 @@ end;
 
 procedure TKSPMainWindow.Button15Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   QApplication_aboutQt;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
@@ -2404,6 +2446,7 @@ begin
       findex:=AllSongs.GetItemIndex(CurrentFile);
       InLib:=findex<>-1;//AllSongs.FileInLib(CurrentFile);
       SaveLyricsBtn.Enabled:=InLib;
+{$IFDEF KSP_USE_QT}
       Lyrics.Clear;
 
       if InLib then begin
@@ -2411,7 +2454,7 @@ begin
         Lyrics.SetContent(AllSongs.ReadLyrics(findex));
         hLog.Send('Lyrics loaded...');
       end;
-
+{$ENDIF}
 
       Self.TotalPlayCount:=Self.TotalPlayCount+1;
 
@@ -2972,11 +3015,13 @@ procedure TKSPMainWindow.SaveLyricsBtnClick(Sender: TObject);
 var
   findex: integer;
 begin
+{$IFDEF KSP_USE_QT}
   hLog.Send(Lyrics.GetContent);
   findex:=AllSongs.GetItemIndex(CurrentFile);
   if findex=-1 then Exit;
   AllSongs.DeleteLyrics(findex);
   AllSongs.SaveLyrics(Lyrics.GetContent, findex);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.Savewholeplaylistasbookmark1Click(Sender: TObject);
@@ -3054,23 +3099,31 @@ end;
 
 procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   if (Sender=SpeedButton1) then WebView.LoadURL(IMAddress.Text)
     else MainWebView.LoadURL(IMAddress1.Text);
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton2Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   if (Sender=SpeedButton2) then WebView.GoBack else MainWebView.GoBack;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton3Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   if (Sender=SpeedButton3) then WebView.GoForward else MainWebView.GoForward;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton4Click(Sender: TObject);
 begin
+{$IFDEF KSP_USE_QT}
   if (Sender=SpeedButton4) then webView.Reload else MainWebView.Reload;
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
@@ -3950,6 +4003,7 @@ procedure TKSPMainWindow.LoadCookies;
 var
   CookiesData : TMemoryStream;
 begin
+{$IFDEF KSP_USE_QT}
   if CookiesFileName='' then
     begin
     // Prepare Cookie Destination Dir & FileName
@@ -3965,10 +4019,11 @@ try
 finally
   CookiesData.Free;
 end;
-
+{$ENDIF}
 end;
 
 procedure TKSPMainWindow.SaveCookies;
+{$IFDEF KSP_USE_QT}
 var
   Cookies : QByteArrayH;
   CookiesData : PAnsiChar;
@@ -3987,8 +4042,14 @@ begin
     QByteArray_destroy(Cookies);
   end;
 end;
+{$ELSE}
+begin
+
+end;
+{$ENDIF}
 
 procedure TKSPMainWindow.SetupWebBrowserIC;
+{$IFDEF KSP_USE_QT}
 var
   WebViewHook     : QWebView_hookH;
   s1, s2, s3, s4: string;
@@ -4045,7 +4106,13 @@ begin
 
   QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
 end;
+{$ELSE}
+begin
 
+end;
+{$ENDIF}
+
+{$IFDEF KSP_USE_QT}
 procedure TKSPMainWindow.ICLinkClicked(Value: QUrlH); cdecl;
 var
   URL,URL2: widestring;
@@ -4076,6 +4143,7 @@ begin
 //  Self.PerformFileOpen();
 
 end;
+{$ENDIF}
 
 procedure TKSPMainWindow.IMProgressChange(progress: Integer); cdecl;
 begin
@@ -4188,11 +4256,13 @@ end;
 
 procedure TKSPMainWindow.ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
 begin
+{$IFDEF KSP_USE_QT}
   if not NotificationVisible(Self.KSPNotification) then begin
     Self.KSPNotification:=ShowNotification(NotTitle, NotText, Self.OSDPosition);
     if not Preview then
       NotificationTimer.Enabled:=true;
   end;
+{$ENDIF}
 end;
 
 function TKSPMainWindow.OfflineMode: boolean;

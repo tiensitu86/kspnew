@@ -31,14 +31,14 @@ unit KSPStartup;
 interface
 
 uses Forms, SysUtils, Classes, Dialogs, FileSupportLst,
-  Qt4, BassPlayer;
+  {$IFDEF KSP_USE_QT}Qt4, {$ENDIF}BassPlayer;
 
 procedure SetupKSP;
 
 implementation
 
-uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles,
-  qtproc;
+uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles{$IFDEF KSP_USE_QT},
+  qtproc{$ENDIF};
 
 //Clear old logs
 procedure ClearLogs;
@@ -111,10 +111,11 @@ begin
   LoadOptionsSem2:=0;
   LoadVarsSem2:=0;
   CreateObjectsSem2:=0;
-
+{$IFDEF KSP_USE_QT}
   s:=ExtractFilePath(Application.ExeName)+'plugins_qt\';
   W:=GetUtf8String(s);
   QCoreApplication_addLibraryPath(@W);
+{$ENDIF}
 
   Application.ShowMainForm := True;
   Player:=TBassPlayer.Create(nil);

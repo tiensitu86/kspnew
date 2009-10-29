@@ -339,7 +339,7 @@ var
   s: TStringList;
 begin
   s:=TStringList.Create;
-  Result:=DownloadURLi(KSPHost, s);
+  Result:=DownloadURLi(KSPHost+'/wwwtest/wwwtest.txt', s);
   s.Free;
 end;
 
