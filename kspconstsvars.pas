@@ -36,11 +36,11 @@ uses FileSupportLst, SysUtils, BASSPlayer, Graphics, Classes, PresetsU,
   Playlists, app_db_utils, LCLType, ksplua;
 
 const
-  KSPHost = 'http://ksplayer.boo.pl';
+  KSPHost = 'http://ksplayer.com';
   KSPHost2 = KSPHost+'/?kmajor=%s&kminor=%s&krelease=%s&kbuild=%s&from_ksp=1';
-  KSPHowHelp = 'http://www.ksplayer.boo.pl/help-wanted';
+  KSPHowHelp = KSPHost+'/help-wanted';
   KSPSupportURL = 'http://code.google.com/p/kspnew/issues/list';
-  KSPTellAFriend = 'http://www.freetellafriend.com/tell/?u=5653&title=KSPSoundPlayer&url=http://ksplayer.boo.pl';
+  KSPTellAFriend = 'http://www.freetellafriend.com/tell/?u=5653&title=KSPSoundPlayer&url=http://ksplayer.com';
 
   KSPMDir = KSPHost+'/music-links';
   KSPMDirAdd = KSPMDir+'/add';

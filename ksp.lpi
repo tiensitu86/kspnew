@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="7"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="142">
+    <Units Count="140">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,7 +64,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="43" Y="1717"/>
+        <CursorPos X="34" Y="1710"/>
         <TopLine Value="1705"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
@@ -81,7 +81,7 @@
         <UnitName Value="BASSPlayer"/>
         <CursorPos X="9" Y="3510"/>
         <TopLine Value="3474"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -194,7 +194,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="12" Y="896"/>
         <TopLine Value="859"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -239,9 +239,9 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="21" Y="33"/>
+        <CursorPos X="31" Y="31"/>
         <TopLine Value="19"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -528,7 +528,7 @@
         <Filename Value="ksp_version.inc"/>
         <CursorPos X="25" Y="12"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -693,7 +693,7 @@
         <UnitName Value="Bass"/>
         <CursorPos X="31" Y="702"/>
         <TopLine Value="668"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -713,7 +713,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="84" Y="178"/>
         <TopLine Value="178"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -855,7 +855,7 @@
         <UnitName Value="luamenu"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="2"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="169"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit95>
       <Unit96>
@@ -864,7 +864,7 @@
         <UnitName Value="luaobjlist"/>
         <CursorPos X="50" Y="54"/>
         <TopLine Value="34"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="169"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit96>
       <Unit97>
@@ -944,7 +944,7 @@
         <UnitName Value="cplayer"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit108>
       <Unit109>
@@ -1148,7 +1148,7 @@
         <UnitName Value="KSPTypes"/>
         <CursorPos X="39" Y="73"/>
         <TopLine Value="61"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1174,28 +1174,12 @@
         <UsageCount Value="10"/>
       </Unit138>
       <Unit139>
-        <Filename Value="C:/lazarus/lcl/interfaces/qt/qt45.pas"/>
-        <UnitName Value="qt45"/>
-        <CursorPos X="50" Y="13470"/>
-        <TopLine Value="13453"/>
-        <UsageCount Value="10"/>
-      </Unit139>
-      <Unit140>
-        <Filename Value="C:/lazarus/lcl/extctrls.pp"/>
-        <UnitName Value="ExtCtrls"/>
-        <CursorPos X="3" Y="1003"/>
-        <TopLine Value="983"/>
-        <UsageCount Value="10"/>
-      </Unit140>
-      <Unit141>
         <Filename Value="C:/lazarus/lcl/lmessages.pp"/>
         <UnitName Value="LMessages"/>
         <CursorPos X="3" Y="408"/>
         <TopLine Value="388"/>
-        <EditorIndex Value="3"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit141>
+      </Unit139>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
