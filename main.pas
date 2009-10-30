@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, process, FileUtil, LResources, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, AsyncProcess;
+  Dialogs, StdCtrls, AsyncProcess, ComCtrls;
 
 type
 
@@ -18,6 +18,7 @@ type
     Label1: TLabel;
     Memo1: TMemo;
     Process1: TProcess;
+    P1: TProgressBar;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
   private
@@ -34,8 +35,15 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
+  ShowMessage('IMPORTANT: During this process program may stop to respond'+#13+'If it occurs don''t worry. DO NOT terminate it or restart.'
+    +#13+'Note that this process may take up to several minutes depending on your computer spec');
   Self.Memo1.Lines.Clear;
-  ExecuteCmd('upx -9 --lzma Qt*.dll');
+  P1.Position:=0;
+  ExecuteCmd('upx -9 --lzma QtCore4.dll');
+  ExecuteCmd('upx -9 --lzma QtGui4.dll');
+  ExecuteCmd('upx -9 --lzma QtNetwork4.dll');
+  ExecuteCmd('upx -9 --lzma QtSvg4.dll');
+  ExecuteCmd('upx -9 --lzma QtWebKit4.dll');
   ExecuteCmd('upx -9 --lzma ksp.exe');
   ShowMessage('KSP packed successfully');
 end;
@@ -43,7 +51,12 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 begin
   Self.Memo1.Lines.Clear;
-  ExecuteCmd('upx -d Qt*.dll');
+  P1.Position:=0;
+  ExecuteCmd('upx -d QtCore4.dll');
+  ExecuteCmd('upx -d QtGui4.dll');
+  ExecuteCmd('upx -d QtNetwork4.dll');
+  ExecuteCmd('upx -d QtSvg4.dll');
+  ExecuteCmd('upx -d QtWebKit4.dll');
   ExecuteCmd('upx -d ksp.exe');
   ShowMessage('KSP unpacked successfully');
 end;
@@ -55,7 +68,6 @@ const
  var
    S: TStringList;
    M: TMemoryStream;
-   P: TProcess;
    n: LongInt;
    BytesRead: LongInt;
 
@@ -71,18 +83,18 @@ const
    M := TMemoryStream.Create;
    BytesRead := 0;
 
-   P := TProcess.Create(nil);
-   P.CommandLine := cmd;
-   P.Options := [poUsePipes];
+   Process1.CommandLine := cmd;
+   Process1.Options := [poUsePipes];
    Self.Memo1.Lines.Add('-- executing --');
-   P.Execute;
-   while P.Running do
+   Process1.Execute;
+   while Process1.Running do
    begin
      // make sure we have room
      M.SetSize(BytesRead + READ_BYTES);
 
      // try reading it
-     n := P.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     n := Process1.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     Application.ProcessMessages;
      if n > 0
      then begin
        Inc(BytesRead, n);
@@ -98,7 +110,8 @@ const
      // make sure we have room
      M.SetSize(BytesRead + READ_BYTES);
      // try reading it
-     n := P.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     n := Process1.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+     Application.ProcessMessages;
      if n > 0
      then begin
        Inc(BytesRead, n);
@@ -118,8 +131,9 @@ const
    end;
    Self.Memo1.Lines.Add('-- end --');
    S.Free;
-   P.Free;
    M.Free;
+   P1.Position:=P1.Position+1;
+   Application.ProcessMessages;
  end;
 
 initialization

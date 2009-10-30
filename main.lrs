@@ -1,24 +1,30 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
 LazarusResources.Add('TForm1','FORMDATA',[
-  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3'9'#2#6'Height'#3#254#1#3'Top'#3#253#0#5'W'
-  +'idth'#3'l'#1#7'Caption'#6#10'KSP Packer'#12'ClientHeight'#3#254#1#11'Client'
-  +'Width'#3'l'#1#8'Position'#7#14'poScreenCenter'#10'LCLVersion'#6#6'0.9.29'#0
-  +#6'TLabel'#6'Label1'#4'Left'#2#8#6'Height'#3#211#0#3'Top'#2#8#5'Width'#3'9'#1
-  +#7'Caption'#12#189#1#0#0'This application is designed to pack/unpack KSP fil'
-  +'es.'#13#10'Both packed and unpacked KSP can be executed '#13#10'normal way '
-  +'however there are a few significant differences '#13#10'between packed and '
-  +'unpacked version:'#13#10#13#10'Packed version:'#13#10'- decreased size on H'
-  +'DD of KSP'#13#10'- increased RAM usage (a few times!) during execution'#13
-  +#10'- increased startup time'#13#10#13#10'Unpacked version:'#13#10'- increas'
-  +'ed size on HDD (to around 40 MB)'#13#10'- decreased RAM usage'#13#10'- decr'
-  +'eased startup time'#11'ParentColor'#8#0#0#7'TButton'#7'Button1'#4'Left'#2#8
-  +#6'Height'#2#25#3'Top'#3#232#0#5'Width'#2'{'#7'Caption'#6#8'Pack KSP'#7'OnCl'
-  +'ick'#7#12'Button1Click'#8'TabOrder'#2#0#0#0#7'TButton'#7'Button2'#4'Left'#3
-  +#136#0#6'Height'#2#25#3'Top'#3#232#0#5'Width'#2'{'#7'Caption'#6#10'Unpack KS'
-  +'P'#7'OnClick'#7#12'Button2Click'#8'TabOrder'#2#1#0#0#5'TMemo'#5'Memo1'#4'Le'
-  +'ft'#2#8#6'Height'#3#234#0#3'Top'#3#8#1#5'Width'#3'>'#1#8'ReadOnly'#9#8'TabO'
-  +'rder'#2#2#0#0#8'TProcess'#8'Process1'#6'Active'#8#7'Options'#11#0#8'Priorit'
-  +'y'#7#8'ppNormal'#14'StartupOptions'#11#0#10'ShowWindow'#7#7'swoNone'#13'Win'
-  +'dowColumns'#2#0#12'WindowHeight'#2#0#10'WindowLeft'#2#0#10'WindowRows'#2#0#9
-  +'WindowTop'#2#0#11'WindowWidth'#2#0#13'FillAttribute'#2#0#4'left'#2'k'#3'top'
-  +#3#27#1#0#0#0
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3'9'#2#6'Height'#3'%'#2#3'Top'#3#217#0#5'Wi'
+  +'dth'#3'Q'#1#11'BorderIcons'#11#12'biSystemMenu'#10'biMinimize'#0#11'BorderS'
+  +'tyle'#7#8'bsSingle'#7'Caption'#6#10'KSP Packer'#12'ClientHeight'#3'%'#2#11
+  +'ClientWidth'#3'Q'#1#8'Position'#7#14'poScreenCenter'#10'LCLVersion'#6#6'0.9'
+  +'.29'#0#6'TLabel'#6'Label1'#4'Left'#2#8#6'Height'#3#0#1#3'Top'#2#8#5'Width'#3
+  +'9'#1#7'Caption'#12#252#1#0#0'This application is designed to pack/unpack KS'
+  +'P files.'#13#10'Both packed and unpacked KSP can be executed '#13#10'normal'
+  +' way however there are a few significant differences '#13#10'between packed'
+  +' and unpacked version:'#13#10#13#10'Packed version:'#13#10'- decreased size'
+  +' on HDD of KSP'#13#10'- increased RAM usage (a few times!) during execution'
+  +#13#10'- increased startup time'#13#10#13#10'Unpacked version:'#13#10'- incr'
+  +'eased size on HDD (to around 40 MB)'#13#10'- decreased RAM usage'#13#10'- d'
+  +'ecreased startup time'#13#10#13#10'WARNING: THIS APPLICATION REQUIRES'#13#10
+  +'ADMINISTRATOR RIGHTS!!!'#11'ParentColor'#8#0#0#7'TButton'#7'Button1'#4'Left'
+  +#2#8#6'Height'#2#25#3'Top'#3#16#1#5'Width'#2'{'#7'Caption'#6#8'Pack KSP'#7'O'
+  +'nClick'#7#12'Button1Click'#8'TabOrder'#2#0#0#0#7'TButton'#7'Button2'#4'Left'
+  +#3#136#0#6'Height'#2#25#3'Top'#3#16#1#5'Width'#2'{'#7'Caption'#6#10'Unpack K'
+  +'SP'#7'OnClick'#7#12'Button2Click'#8'TabOrder'#2#1#0#0#5'TMemo'#5'Memo1'#4'L'
+  +'eft'#2#8#6'Height'#3#202#0#3'Top'#3'P'#1#5'Width'#3'='#1#8'ReadOnly'#9#8'Ta'
+  +'bOrder'#2#2#0#0#12'TProgressBar'#2'P1'#4'Left'#2#8#6'Height'#2#20#3'Top'#3
+  +'0'#1#5'Width'#3'>'#1#3'Max'#2#6#6'Smooth'#9#4'Step'#2#1#8'TabOrder'#2#3#0#0
+  +#8'TProcess'#8'Process1'#6'Active'#8#7'Options'#11#11'poNoConsole'#0#8'Prior'
+  +'ity'#7#8'ppNormal'#14'StartupOptions'#11#16'suoUseShowWindow'#0#10'ShowWind'
+  +'ow'#7#7'swoHIDE'#13'WindowColumns'#2#0#12'WindowHeight'#2#0#10'WindowLeft'#2
+  +#0#10'WindowRows'#2#0#9'WindowTop'#2#0#11'WindowWidth'#2#0#13'FillAttribute'
+  +#2#0#4'left'#2'k'#3'top'#3'C'#1#0#0#0
 ]);

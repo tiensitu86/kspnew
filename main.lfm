@@ -1,25 +1,27 @@
 object Form1: TForm1
   Left = 569
-  Height = 510
-  Top = 253
-  Width = 364
+  Height = 549
+  Top = 217
+  Width = 337
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'KSP Packer'
-  ClientHeight = 510
-  ClientWidth = 364
+  ClientHeight = 549
+  ClientWidth = 337
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   object Label1: TLabel
     Left = 8
-    Height = 211
+    Height = 256
     Top = 8
     Width = 313
-    Caption = 'This application is designed to pack/unpack KSP files.'#13#10'Both packed and unpacked KSP can be executed '#13#10'normal way however there are a few significant differences '#13#10'between packed and unpacked version:'#13#10#13#10'Packed version:'#13#10'- decreased size on HDD of KSP'#13#10'- increased RAM usage (a few times!) during execution'#13#10'- increased startup time'#13#10#13#10'Unpacked version:'#13#10'- increased size on HDD (to around 40 MB)'#13#10'- decreased RAM usage'#13#10'- decreased startup time'
+    Caption = 'This application is designed to pack/unpack KSP files.'#13#10'Both packed and unpacked KSP can be executed '#13#10'normal way however there are a few significant differences '#13#10'between packed and unpacked version:'#13#10#13#10'Packed version:'#13#10'- decreased size on HDD of KSP'#13#10'- increased RAM usage (a few times!) during execution'#13#10'- increased startup time'#13#10#13#10'Unpacked version:'#13#10'- increased size on HDD (to around 40 MB)'#13#10'- decreased RAM usage'#13#10'- decreased startup time'#13#10#13#10'WARNING: THIS APPLICATION REQUIRES'#13#10'ADMINISTRATOR RIGHTS!!!'
     ParentColor = False
   end
   object Button1: TButton
     Left = 8
     Height = 25
-    Top = 232
+    Top = 272
     Width = 123
     Caption = 'Pack KSP'
     OnClick = Button1Click
@@ -28,7 +30,7 @@ object Form1: TForm1
   object Button2: TButton
     Left = 136
     Height = 25
-    Top = 232
+    Top = 272
     Width = 123
     Caption = 'Unpack KSP'
     OnClick = Button2Click
@@ -36,18 +38,28 @@ object Form1: TForm1
   end
   object Memo1: TMemo
     Left = 8
-    Height = 234
-    Top = 264
-    Width = 318
+    Height = 202
+    Top = 336
+    Width = 317
     ReadOnly = True
     TabOrder = 2
   end
+  object P1: TProgressBar
+    Left = 8
+    Height = 20
+    Top = 304
+    Width = 318
+    Max = 6
+    Smooth = True
+    Step = 1
+    TabOrder = 3
+  end
   object Process1: TProcess
     Active = False
-    Options = []
+    Options = [poNoConsole]
     Priority = ppNormal
-    StartupOptions = []
-    ShowWindow = swoNone
+    StartupOptions = [suoUseShowWindow]
+    ShowWindow = swoHIDE
     WindowColumns = 0
     WindowHeight = 0
     WindowLeft = 0
@@ -56,6 +68,6 @@ object Form1: TForm1
     WindowWidth = 0
     FillAttribute = 0
     left = 107
-    top = 283
+    top = 323
   end
 end
