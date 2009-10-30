@@ -40,7 +40,7 @@ uses
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
   MainWindowStartupThreads, FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets,{$ENDIF}
-  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua;
+  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua, LMessages;
 
 
   { TWebView }
@@ -398,6 +398,7 @@ type
     procedure ExitKSPActionExecute(Sender: TObject);
     procedure ExportPlaylistExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormShortCut(var Msg: TLMKey; var Handled: Boolean);
     procedure GroupBox1Click(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
@@ -766,17 +767,19 @@ begin
   Handle := QWebView_create(L2Qt(Parent));
   QWebPage:=QLCLWebPage_create(TQtWidget(Parent).Widget);
 
-  Settings:=QWebView_settings(Handle);
-
-  QWebSettings_setAttribute(Settings,QWebSettingsJavascriptEnabled,true);
-  QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
-
   QWebView_setPage(Handle,QWebPage);
   QWebPage_setContentEditable(QWebPage, SetEditable);
   NetworkAccessManager:=aNetworkAccessManager;//QWebPage_networkAccessManager(QWebPage);
   QWebPage_setNetworkAccessManager(QWebPage,aNetworkAccessManager);
 
   QLCLWebPage_override_userAgentForUrl(QWebPage, @UserAgentForUrl);//TMethod(QLCLWebPage_UserAgentForUrl_Override(@UserAgentForUrl)));
+
+  Settings:=QWebPage_settings(QWebPage);
+
+  QWebSettings_setAttribute(Settings,QWebSettingsJavascriptEnabled,true);
+  QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
+  QWebSettings_setAttribute(Settings,QWebSettingsPrivateBrowsingEnabled,false);
+  QWebSettings_setAttribute(Settings,QWebSettingsJavascriptCanOpenWindows,true);
 
   w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
@@ -1713,6 +1716,12 @@ begin
     claBox.ItemIndex:=Self.CloseAction;
     ApplicationVisible:=false;
   end;
+end;
+
+procedure TKSPMainWindow.FormShortCut(var Msg: TLMKey; var Handled: Boolean);
+begin
+  Handled:=(Self.ActiveControl.ClassType=TEdit) or
+    (Self.ActiveControl.ClassType=TLabeledEdit);
 end;
 
 procedure TKSPMainWindow.GroupBox1Click(Sender: TObject);
@@ -4064,6 +4073,7 @@ begin
   QWebSettings_setAttribute(QWebSettings,QWebSettingsJavascriptEnabled,true);
   QWebSettings_setAttribute(QWebSettings,QWebSettingsPluginsEnabled,true);
   QWebSettings_setAttribute(QWebSettings,QWebSettingsPrivateBrowsingEnabled,false);
+  QWebSettings_setAttribute(QWebSettings,QWebSettingsJavascriptCanOpenWindows,true);
 
 
   // Common NetworkAccessManager
