@@ -79,6 +79,7 @@ function PrepareString(str: string): string;// external 'kspfiles.dll';
 
 function ConnectionEstablished: boolean;
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
+function DownloadFile(aFileName, Local: string): boolean;
 function Url_encode(const url:string):string;
 procedure SearchForFilesFS(Path: string; Rec: boolean; var s: TStringList); overload;
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;
@@ -332,6 +333,15 @@ function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
 begin
   HttpGetText(aUrl, Output);
   Result:=Output.Text<>'';
+end;
+
+function DownloadFile(aFileName, Local: string): boolean;
+var
+  fs: TFileStream;
+begin
+  fs:=TFileStream.Create(Local, fmCreate);
+  Result:=HttpGetBinary(aFileName, fs);
+  fs.Free;
 end;
 
 function ConnectionEstablished: boolean;
