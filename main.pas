@@ -39,8 +39,8 @@ uses
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
-  MainWindowStartupThreads, FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets,{$ENDIF}
-  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua, LMessages;
+  FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets,{$ENDIF}
+  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua, LMessages, presetsu;
 
 
   { TWebView }
@@ -1314,10 +1314,74 @@ var
     //KSPMainWindow.RemDevSheet.TabVisible:=false;
   end;
 
+
+procedure CreateObjectsF;
+var
+  s: string;
+begin
+  { Place thread code here }
+    hLog.Send('Creating objects');
+//    KSPMainWindow.Prevent:=TStringList.Create;
+    KSPMainWindow.BookmarksList:=TBookmarksList.Create;
+    KSPMainWindow.BookmarksList.LoadFromFile(KSPDataFolder+'data\bookmarks.xml');
+    //SysIconDefault:=TIcon.Create;
+    //SysIconDefault:=spTrayIcon1.Icon;
+    //CDDatabaseForm:=TCDDatabaseForm.Create(nil);
+    KSPMainWindow.PlayList:=TPlayList.Create;
+    SuggestionList:=TPlayList.Create;
+    SuggFindHelpPlaylist:=TPlaylist.Create;
+    FindApproxVals:=TPlayList.Create;
+
+    HotKeyList := TList.Create;
+    KSPMainWindow.MediaFoldersList:=TMediaFoldersList.Create;
+    KSPMainWindow.MediaFoldersList.LoadFromFile(KSPDataFolder+'data\MediaLib.xml');
+    KSPMainWindow.MediaSongs:=TPlayList.Create;
+
+    KSPMP3SettingsList:=TStringList.Create;
+    KSPMainWindow.Forbidden:=TStringList.Create;
+    EqList:=TEqList.Create;
+    s:=KSPDataFolder+'data\vdj\last';
+    FixFolderNames(s);
+    if FileExists(s) then
+      KSPMainWindow.Forbidden.LoadFromFile(s);
+
+    hLog.Send('Creating objects done');
+end;
+
+procedure SetVarsF;
+begin
+  { Place thread code here }
+    hLog.Send('Setting vars');
+    //KSPMainWindow.DSPPlay:=false;
+    KSPPluginsBlacklist:=KSPDataFolder+'plgdisabled.lst';
+    KSPMainWindow.LoadingPlaylist:=false;
+    Application.ShowHint:=true;
+//    KSPMainWindow.AlertVisible:=false;
+
+//    KSPMainWindow.LoadingMediaLibInfo:=false;
+//    KSPMainWindow.MaxiHeight:=KSPMainWindow.ClientHeight;
+    //KSPMainWindow.ForceRescan:=false;
+    KSPMainWindow.PlayedPrevious:=false;
+
+    KSPMainWindow.TimeFormat:=tfElapsed;
+
+    KSPMainWindow.Seeking:=false;
+    KSPMainWindow.PlayListMove:=false;
+
+    //KSPMainWindow.RipJobs.Encode:=false;
+    //KSPMainWindow.RipJobs.Rip:=false;
+
+    hLog.Send('Loading randomizer...');
+
+    Randomize;
+    AlreadyEncoding:=false;
+end;
+
+
   procedure CreateObjectsAndVars;
   begin
-    TCreateObjectsThread.Create(false);
-    TSetVarsThread.Create(false);
+    CreateObjectsF;
+    SetVarsF;
   end;
 
   function SetupDatabase: TAppDBConnection;
@@ -1410,20 +1474,7 @@ begin
   Player.OnGetMeta:=@NewMetaIcecast;
   ClosingKSP:=false;
 
-  CreateObjectsSem2 := 1;//CreateSemaphore(nil, 0,1,'CreateObjectsSem');
-  LoadVarsSem2 := 1;//CreateSemaphore(nil, 0,1,'LoadVarsSem');
   CreateObjectsAndVars;
-  //SetVars;
-  repeat
-    Sleep(500);//)Result := CreateObjectsSem, INFINITE);
-  until CreateObjectsSem2=0;
-  repeat
-    Sleep(500);//Result := WaitForSingleObject(LoadVarsSem, INFINITE);
-  until LoadVarsSem2=0;
-  repeat
-    Sleep(500);//  Result := WaitForSingleObject(StartupThreadSem, INFINITE);
-  until StartupThreadSem2=0;
-
 
   LoadPlugins;
   SetupOpenDialog;

@@ -160,18 +160,8 @@ var
   PassedCounter : array[1..NumFFTBands] of integer;
 
 //Semaphores
-  {GetCountSem: THandle;
-  LoadPlsSem: THandle;
-  StartupThreadSem: THandle;
-  LoadOptionsSem: THandle;
-  LoadVarsSem: THandle;
-  CreateObjectsSem: THandle;}
   GetCountSem2: integer;
   LoadPlsSem2: integer;
-  StartupThreadSem2: integer;
-  LoadOptionsSem2: integer;
-  LoadVarsSem2: integer;
-  CreateObjectsSem2: integer;
 
   DBCritSection: LCLType.TCriticalSection;
   KSPCPUID: string;

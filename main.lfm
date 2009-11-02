@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 390
+  Left = 175
   Height = 707
-  Top = 189
+  Top = 175
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -1858,10 +1858,10 @@ object KSPMainWindow: TKSPMainWindow
           object MediaLibSetupPage: TPage
             Caption = 'MediaLibSetupPage'
             ClientWidth = 708
-            ClientHeight = 503
+            ClientHeight = 500
             object MFolders: TListBox
               Left = 0
-              Height = 503
+              Height = 500
               Top = 0
               Width = 208
               Align = alLeft
@@ -1908,7 +1908,7 @@ object KSPMainWindow: TKSPMainWindow
           object BookmarksSetupPage: TPage
             Caption = 'BookmarksSetupPage'
             ClientWidth = 708
-            ClientHeight = 503
+            ClientHeight = 500
             object BListBox: TListBox
               Left = 11
               Height = 368
@@ -1942,7 +1942,7 @@ object KSPMainWindow: TKSPMainWindow
           object NotSetupPage: TPage
             Caption = 'NotSetupPage'
             ClientWidth = 708
-            ClientHeight = 503
+            ClientHeight = 500
             object NotChecked: TCheckBox
               Left = 14
               Height = 21
@@ -1983,10 +1983,10 @@ object KSPMainWindow: TKSPMainWindow
           object PluginsSetupPage: TPage
             Caption = 'PluginsSetupPage'
             ClientWidth = 708
-            ClientHeight = 503
+            ClientHeight = 500
             object PageControl1: TPageControl
               Left = 0
-              Height = 503
+              Height = 500
               Top = 0
               Width = 708
               ActivePage = TabSheet2
@@ -1995,11 +1995,11 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
               object TabSheet2: TTabSheet
                 Caption = 'Global Plugins'
-                ClientHeight = 475
+                ClientHeight = 472
                 ClientWidth = 700
                 object PluginsList: TCheckListBox
                   Left = 0
-                  Height = 475
+                  Height = 472
                   Top = 0
                   Width = 232
                   Align = alLeft
@@ -2077,7 +2077,7 @@ object KSPMainWindow: TKSPMainWindow
           object SystemSetupPage: TPage
             Caption = 'SystemSetupPage'
             ClientWidth = 708
-            ClientHeight = 503
+            ClientHeight = 500
             object Label1: TLabel
               Left = 8
               Height = 16

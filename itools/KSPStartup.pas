@@ -37,7 +37,7 @@ procedure SetupKSP;
 
 implementation
 
-uses KSPConstsVars, StartupThread, ProfileFunc, MultiLog, kspfiles{$IFDEF KSP_USE_QT},
+uses KSPConstsVars, ProfileFunc, MultiLog, kspfiles{$IFDEF KSP_USE_QT},
   qtproc{$ENDIF};
 
 //Clear old logs
@@ -107,10 +107,6 @@ begin
 
   GetCountSem2:=0;
   LoadPlsSem2:=0;
-  StartupThreadSem2:=0;
-  LoadOptionsSem2:=0;
-  LoadVarsSem2:=0;
-  CreateObjectsSem2:=0;
 {$IFDEF KSP_USE_QT}
   s:=ExtractFilePath(Application.ExeName)+'plugins_qt\';
   W:=GetUtf8String(s);
@@ -130,9 +126,6 @@ begin
   ForceDirectoriesKSP(KSPDataFolder+'data\vdj');
 
   FileSupportList:=TFileSupportList.Create;
-
-  StartupThreadSem2:=1;// := CreateSemaphore(nil, 0,1,'MediaLibGetCount');
-  TStartupThread.Create(False);
 end;
 
 end.

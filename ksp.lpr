@@ -42,12 +42,11 @@ uses
   RT_basscd, PlayLists, SpkXMLParser, ID3Mgmnt, FileSupport,
   KSPMessages, KSPConstsVars, FileSupportLst, kspfiles, LoadPlsThread,
   FileUtils, MRNG, profilefunc, KSPStrings, SQLDBLaz, MediaItems,
-  MediaItemsInfo, KSPCrossList,
-  KSPStartup, MainWindowStartupThreads, MediaFolders, FoldersScan,
-  StartupThread, BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog, complib, KSPThreadUtils, Support,
+  MediaItemsInfo, KSPCrossList, KSPStartup, MediaFolders, FoldersScan,
+  BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog, complib, KSPThreadUtils, Support,
   WAVfile, APETag, OggVorbis
   {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
-  , MPEGaudio, MPEGInfoBox, suggfind, luamenu, luaobjlist, cplayer
+  , MPEGaudio, MPEGInfoBox, suggfind, cplayer
   {$IFDEF KSP_LUA}, ksplua, closefrm{$ENDIF};
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
