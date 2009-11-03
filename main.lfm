@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 175
+  Left = 383
   Height = 707
-  Top = 175
+  Top = 173
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -4254,6 +4254,11 @@ object KSPMainWindow: TKSPMainWindow
         Caption = 'Toggle Time Elapsed / Remaining'
         ShortCut = 16468
         OnClick = lLeftClick
+      end
+      object MenuItem58: TMenuItem
+        Caption = 'Load Current Address'
+        ShortCut = 13
+        OnClick = SpeedButton1Click
       end
     end
     object MenuItem17: TMenuItem

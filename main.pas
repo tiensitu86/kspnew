@@ -95,6 +95,7 @@ type
     MenuItem55: TMenuItem;
     MenuItem56: TMenuItem;
     MenuItem57: TMenuItem;
+    MenuItem58: TMenuItem;
     ShuffleItem: TMenuItem;
     RepeatItem: TMenuItem;
     PlsViewItem: TMenuItem;
@@ -3160,7 +3161,7 @@ end;
 procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  if (Sender=SpeedButton1) then WebView.LoadURL(IMAddress.Text)
+  if (Notebook1.ActivePage='Page2') then WebView.LoadURL(IMAddress.Text)
     else MainWebView.LoadURL(IMAddress1.Text);
 {$ENDIF}
 end;
@@ -4068,7 +4069,7 @@ begin
     begin
     // Prepare Cookie Destination Dir & FileName
     CookiesFileName := KSPDataFolder+'cookies.dat';
-    hLog.Send('Cookief file name: '+CookiesFileName);
+    hLog.Send('Cookie file name: '+CookiesFileName);
     end;
 
   if not FileExists(CookiesFileName) then exit;
@@ -4115,7 +4116,7 @@ var
   s1, s2, s3, s4: string;
   QWebSettings    : QWebSettingsH;
 begin
-
+  hLog.Send('Setting up web browser');
   if not Self.DisableNetworkMsg then
     Self.DisableNetworkMsg:=MessageDlg(SNetMsgCaption, SNetMsg, mtInformation, [mbYes, mbNo], 0)=mrYes;
 

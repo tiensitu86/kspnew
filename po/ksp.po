@@ -929,6 +929,10 @@ msgstr ""
 msgid "Toggle Time Elapsed / Remaining"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM58.CAPTION
+msgid "Load Current Address"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM6.CAPTION
 msgid "Revert Selection"
 msgstr ""
