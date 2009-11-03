@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -64,7 +64,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="1" Y="4395"/>
+        <CursorPos X="12" Y="4375"/>
         <TopLine Value="4367"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
@@ -236,7 +236,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="25" Y="58"/>
         <TopLine Value="37"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -254,9 +254,9 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="74" Y="418"/>
+        <CursorPos X="18" Y="61"/>
         <TopLine Value="37"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -267,7 +267,7 @@
         <UnitName Value="LoadPlsThread"/>
         <CursorPos X="1" Y="36"/>
         <TopLine Value="14"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="207"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -305,7 +305,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="25" Y="45"/>
         <TopLine Value="45"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -354,7 +354,7 @@
         <UnitName Value="KSPStartup"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -701,7 +701,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="39" Y="44"/>
         <TopLine Value="31"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1119,7 +1119,7 @@
         <UnitName Value="ID3v2"/>
         <CursorPos X="69" Y="602"/>
         <TopLine Value="582"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1222,7 +1222,7 @@
         <UnitName Value="updates"/>
         <CursorPos X="24" Y="48"/>
         <TopLine Value="22"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1241,13 +1241,11 @@
         <UnitName Value="updfrm"/>
         <CursorPos X="14" Y="15"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
         <UsageCount Value="21"/>
-        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit146>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="itools/lua/ksplua.pas"/>
         <Caret Line="189" Column="19" TopLine="181"/>
@@ -1333,41 +1331,33 @@
         <Caret Line="3929" Column="63" TopLine="3913"/>
       </Position21>
       <Position22>
-        <Filename Value="itools/addforms/updfrm.pas"/>
-        <Caret Line="9" Column="85" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="4379" Column="18" TopLine="4348"/>
       </Position22>
       <Position23>
-        <Filename Value="itools/addforms/updfrm.pas"/>
-        <Caret Line="10" Column="85" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="4373" Column="15" TopLine="4366"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="4379" Column="18" TopLine="4348"/>
+        <Caret Line="4372" Column="1" TopLine="4353"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="4373" Column="15" TopLine="4366"/>
+        <Caret Line="4375" Column="17" TopLine="4353"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="4372" Column="1" TopLine="4353"/>
+        <Caret Line="43" Column="87" TopLine="24"/>
       </Position26>
       <Position27>
-        <Filename Value="main.pas"/>
-        <Caret Line="4375" Column="17" TopLine="4353"/>
+        <Filename Value="itools/threads/updates.pas"/>
+        <Caret Line="47" Column="32" TopLine="31"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="43" Column="87" TopLine="24"/>
-      </Position28>
-      <Position29>
-        <Filename Value="itools/threads/updates.pas"/>
-        <Caret Line="47" Column="32" TopLine="31"/>
-      </Position29>
-      <Position30>
-        <Filename Value="main.pas"/>
         <Caret Line="11" Column="52" TopLine="1"/>
-      </Position30>
+      </Position28>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
