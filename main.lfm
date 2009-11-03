@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 346
+  Left = 301
   Height = 707
-  Top = 151
+  Top = 154
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -517,7 +517,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 967
       Align = alClient
-      PageIndex = 5
+      PageIndex = 2
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -2306,6 +2306,30 @@ object KSPMainWindow: TKSPMainWindow
               OnChange = EProxyEnabledChange
               TabOrder = 2
             end
+            object Label24: TLabel
+              Left = 20
+              Height = 16
+              Top = 305
+              Width = 69
+              Caption = 'KSP updates:'
+              ParentColor = False
+            end
+            object UpdatesBox: TComboBox
+              Left = 17
+              Height = 23
+              Top = 329
+              Width = 316
+              ItemHeight = 15
+              ItemIndex = 0
+              Items.Strings = (
+                'Do not download updates not notify when updates are available'
+                'Check for updates but don''t automatically download them'
+                'Automatically download new updates for KSP'
+              )
+              Style = csDropDownList
+              TabOrder = 3
+              Text = 'Do not download updates not notify when updates are available'
+            end
           end
         end
       end
@@ -2358,7 +2382,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 15
               Height = 16
               Top = 17
-              Width = 31
+              Width = 32
               Caption = 'Artist:'
               ParentColor = False
             end
@@ -2366,7 +2390,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 15
               Height = 16
               Top = 41
-              Width = 39
+              Width = 40
               Caption = 'Album:'
               ParentColor = False
             end
@@ -2374,29 +2398,29 @@ object KSPMainWindow: TKSPMainWindow
               Left = 15
               Height = 16
               Top = 65
-              Width = 38
+              Width = 35
               Caption = 'Genre:'
               ParentColor = False
             end
             object GenreLabel: TLabel
               Left = 87
-              Height = 20
+              Height = 16
               Top = 65
-              Width = 42
+              Width = 1
               ParentColor = False
             end
             object AlbumLabel: TLabel
               Left = 87
-              Height = 20
+              Height = 16
               Top = 41
-              Width = 43
+              Width = 1
               ParentColor = False
             end
             object ArtistLabel: TLabel
               Left = 87
-              Height = 20
+              Height = 16
               Top = 17
-              Width = 35
+              Width = 1
               ParentColor = False
             end
             object Mark1: TImage
@@ -3095,9 +3119,9 @@ object KSPMainWindow: TKSPMainWindow
             end
             object Label12: TLabel
               Left = 149
-              Height = 34
+              Height = 31
               Top = 4
-              Width = 71
+              Width = 66
               Caption = 'Suggestions'#13#10'powered by:'
               ParentColor = False
             end
@@ -4009,8 +4033,8 @@ object KSPMainWindow: TKSPMainWindow
   end
   object MainMenu1: TMainMenu
     Images = MenuImages
-    left = 320
-    top = 488
+    left = 248
+    top = 560
     object MenuItem16: TMenuItem
       Caption = 'KSP'
       Bitmap.Data = {
@@ -4398,8 +4422,8 @@ object KSPMainWindow: TKSPMainWindow
     end
   end
   object MenuImages: TImageList
-    left = 296
-    top = 416
+    left = 152
+    top = 408
     Bitmap = {
       4C6908000000100000001000000090D7FF008EDAFF0091DDFF0094D9FF0094D9
       FF0094D9FF0094D9FF0055BEFFA768C5FFD192D7FF0093D7FF0093D7FF009ADB
@@ -4710,8 +4734,8 @@ object KSPMainWindow: TKSPMainWindow
   end
   object DownloadTimer: TTimer
     OnTimer = DownloadTimerTimer
-    left = 256
-    top = 480
+    left = 80
+    top = 432
   end
   object BalancePopup: TPopupMenu
     left = 184
@@ -4734,5 +4758,21 @@ object KSPMainWindow: TKSPMainWindow
   object SD: TSaveDialog
     left = 192
     top = 544
+  end
+  object UpdaterProc: TAsyncProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoShow
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 272
+    top = 504
   end
 end

@@ -1,0 +1,46 @@
+object UpdateForm: TUpdateForm
+  Left = 452
+  Height = 75
+  Top = 352
+  Width = 376
+  Caption = 'Updates available'
+  ClientHeight = 75
+  ClientWidth = 376
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
+  object Label1: TLabel
+    Left = 8
+    Height = 16
+    Top = 8
+    Width = 285
+    Caption = 'New KSP version is available. Do you want to install it?'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Left = 8
+    Height = 25
+    Top = 32
+    Width = 75
+    Caption = 'Yes'
+    ModalResult = 1
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 88
+    Height = 25
+    Top = 32
+    Width = 75
+    Caption = 'No'
+    ModalResult = 2
+    TabOrder = 1
+  end
+  object Button3: TButton
+    Left = 168
+    Height = 25
+    Top = 32
+    Width = 128
+    Caption = 'Turn off updater'
+    ModalResult = 3
+    TabOrder = 2
+  end
+end

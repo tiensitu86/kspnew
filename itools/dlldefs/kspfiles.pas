@@ -100,7 +100,7 @@ function GetOSVersion: string;
 
 implementation
 
-uses SysUtils, main, multilog, KSPConstsVars;
+uses SysUtils, main, multilog, KSPConstsVars, ProfileFunc;
 
 procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
 begin
@@ -339,7 +339,8 @@ function DownloadFile(aFileName, Local: string): boolean;
 var
   fs: TFileStream;
 begin
-  fs:=TFileStream.Create(Local, fmCreate);
+  FixFolderNames(Local);
+  fs:=TFileStream.Create(Local, fmCreate or fmOpenReadWrite);
   Result:=HttpGetBinary(aFileName, fs);
   fs.Free;
 end;

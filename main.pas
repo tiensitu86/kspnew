@@ -40,7 +40,7 @@ uses
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
   FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets, {$ENDIF}
-  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp, {$ENDIF} ksplua, LMessages, presetsu;
+  ActnList, Spin, FileCtrl, suggfind, ksplua, LMessages, AsyncProcess, presetsu, uxmpp;
 
 
   { TWebView }
@@ -76,9 +76,12 @@ type
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    UpdaterProc: TAsyncProcess;
     Button6: TButton;
     ArtistPlsSearch: TCheckBox;
     AlbumPlsSearch: TCheckBox;
+    UpdatesBox: TComboBox;
+    Label24: TLabel;
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
     MenuItem44: TMenuItem;
@@ -602,6 +605,7 @@ type
     CurrentIndex: integer;
     FormatedPlayListInfo: string;
     function GetCurrentFile: string;
+    function GetUpdatesStyle: integer;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
     procedure RemoveFromPlayList(Index: integer);
@@ -622,6 +626,7 @@ type
     procedure LoadWebURL(URL: string; ChangeTab: boolean = true);
 
     procedure KSPShowMessage(Data: PtrInt);
+    procedure KSPUpdate(Data: PtrInt);
     procedure KSPShowStatusBarText(Data: PtrInt);
     procedure MediaLibProgressMax(Data: PtrInt);
     procedure MediaLibProgressInc(Data: PtrInt);
@@ -634,7 +639,7 @@ var
 implementation
 
 uses KSPFiles, KSPConstsVars, FileSupport, ProfileFunc, MediaItems, app_db_utils, IniFiles,
-  KSPCrossList, MultiLog, complib, closefrm
+  KSPCrossList, MultiLog, complib, closefrm, updates, updfrm
   {$IFDEF WINDOWS}, ShellApi, shlobj{$ENDIF};
 
 //QT
@@ -1257,6 +1262,7 @@ end;
 procedure TKSPMainWindow.FormCreate(Sender: TObject);
 var
   PlsName: string;
+  Upd: TCheckUpdates;
 
   procedure SetVars;
   var
@@ -1531,6 +1537,11 @@ begin
 
   SetupLua;
 
+  if (not OfflineMode) and (Self.GetUpdatesStyle>0) then begin
+    Upd:=TCheckUpdates.Create(true);
+    Upd.UpdatesStyle:=Self.GetUpdatesStyle;
+    Upd.Resume;
+  end;
 //  ShowNotification;
 end;
 
@@ -2413,6 +2424,11 @@ end;
 function TKSPMainWindow.GetCurrentFile: string;
 begin
   Result:=CurrentFile;
+end;
+
+function TKSPMainWindow.GetUpdatesStyle: integer;
+begin
+  Result:=UpdatesBox.ItemIndex;
 end;
 
 procedure TKSPMainWindow.SetHeaderControlImage(sIndex: integer);
@@ -3751,6 +3767,8 @@ var
     UseVDJ:=XMLFile.ReadBool('Vars', 'UseVDJ', false);
     EnableVDJ.Checked:=UseVDJ;
 
+    Self.UpdatesBox.ItemIndex:=XMLFile.ReadInteger('Vars', 'Updates', 1);
+
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.OpenDialog1.InitialDir:=LastOpenDir;//SaveDialog.InitialDir;
@@ -3917,6 +3935,8 @@ var
       rtOne:  XMLFile.WriteInteger('Vars', 'Repeat', 1);
       rtAll:  XMLFile.WriteInteger('Vars', 'Repeat', 2);
     end;
+
+    XMLFile.WriteInteger('Vars', 'Updates', UpdatesBox.ItemIndex);
 
     XMLFile.EraseSection('General');
     XMLFile.WriteString('General', 'LastFolder', LastOpenDir);
@@ -4342,6 +4362,47 @@ end;
 procedure TKSPMainWindow.KSPShowMessage(Data: PtrInt);
 begin
   ShowMessage(string(Data));
+end;
+
+procedure TKSPMainWindow.KSPUpdate(Data: PtrInt);
+var
+  Upd: TUpdateForm;
+  style: integer;
+
+  procedure StartInstall;
+  begin
+    MessageDlg(SUpdate, SUpdateMsg, mtInformation, [mbOk], 0);
+    UpdaterProc.CommandLine:=KSPDataFolder+'temp\setup.exe';
+    UpdaterProc.Execute;
+    Application.Terminate;
+  end;
+
+  procedure InstallUpdate;
+  var
+    u: TCheckUpdates;
+  begin
+    if style=2 then
+      StartInstall else
+      begin
+        u:=TCheckUpdates.Create(true);
+        u.UpdatesStyle:=3;
+        u.Resume;
+      end;
+  end;
+
+begin
+  style:=Data;
+  if Style=3 then StartInstall else begin
+    Upd:=TUpdateForm.Create(Self);
+
+    Upd.ShowModal;
+    case Upd.ModalResult of
+      mrOk: InstallUpdate;
+      mrAbort: Self.UpdatesBox.ItemIndex:=0;
+    end;
+
+    Upd.Free;
+  end;
 end;
 
 procedure TKSPMainWindow.KSPShowStatusBarText(Data: PtrInt);

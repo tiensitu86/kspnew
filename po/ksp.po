@@ -159,6 +159,7 @@ msgid "The newest release is:"
 msgstr ""
 
 #: kspstrings.sno
+msgctxt "kspstrings.sno"
 msgid "No"
 msgstr ""
 
@@ -334,6 +335,16 @@ msgstr ""
 msgid "Unknown Year"
 msgstr ""
 
+#: kspstrings.supdate
+msgid "KSP Updater"
+msgstr ""
+
+#: kspstrings.supdatemsg
+msgid ""
+"In order to install an update KSP must close.\n"
+"Press Ok to close KSP and start installation process\n"
+msgstr ""
+
 #: kspstrings.swelcome
 msgctxt "kspstrings.swelcome"
 msgid "Welcome"
@@ -409,6 +420,7 @@ msgid "Year"
 msgstr ""
 
 #: kspstrings.syes
+msgctxt "kspstrings.syes"
 msgid "Yes"
 msgstr ""
 
@@ -722,6 +734,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.LABEL23.CAPTION
 msgid "http://www.freepascal.org/"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL24.CAPTION
+msgid "KSP updates:"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL3.CAPTION
@@ -1120,6 +1136,10 @@ msgctxt "TKSPMAINWINDOW.TRACKBOX.CAPTION"
 msgid "Track"
 msgstr ""
 
+#: TKSPMAINWINDOW.UPDATESBOX.TEXT
+msgid "Do not download updates not notify when updates are available"
+msgstr ""
+
 #: TKSPMAINWINDOW.USEEQ.CAPTION
 msgid "Use Equalizer"
 msgstr ""
@@ -1382,5 +1402,27 @@ msgstr ""
 
 #: TSUPPORTFORM.LABEL1.CAPTION
 msgid "KSP recently crashed. You may not be able to continue work with KSP til restart."
+msgstr ""
+
+#: TUPDATEFORM.BUTTON1.CAPTION
+msgctxt "TUPDATEFORM.BUTTON1.CAPTION"
+msgid "Yes"
+msgstr ""
+
+#: TUPDATEFORM.BUTTON2.CAPTION
+msgctxt "TUPDATEFORM.BUTTON2.CAPTION"
+msgid "No"
+msgstr ""
+
+#: TUPDATEFORM.BUTTON3.CAPTION
+msgid "Turn off updater"
+msgstr ""
+
+#: TUPDATEFORM.CAPTION
+msgid "Updates available"
+msgstr ""
+
+#: TUPDATEFORM.LABEL1.CAPTION
+msgid "New KSP version is available. Do you want to install it?"
 msgstr ""
 

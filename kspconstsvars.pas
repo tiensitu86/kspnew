@@ -40,6 +40,7 @@ const
   KSPHost2   = KSPHost + '/?kmajor=%s&kminor=%s&krelease=%s&kbuild=%s&from_ksp=1';
   KSPHowHelp = KSPHost + '/help-wanted';
   KSPSupportURL = 'http://project.ksplayer.com';
+  KSPUpdates = 'http://ksplayer.com/updates.php?kbuild=';
   KSPTellAFriend =
     'http://www.freetellafriend.com/tell/?u=5653&title=KSPSoundPlayer&url=http://ksplayer.com';
 

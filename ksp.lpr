@@ -76,7 +76,7 @@ uses {$IFDEF UNIX} //{$IFDEF UseCThreads}
   MPEGaudio,
   MPEGInfoBox,
   suggfind,
-  cplayer {$IFDEF KSP_LUA},
+  cplayer, updates, updfrm {$IFDEF KSP_LUA},
   ksplua,
   closefrm {$ENDIF};
 
