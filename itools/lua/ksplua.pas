@@ -47,7 +47,9 @@ type
   TAddonManager = class
   private
     fPascal: TPSScript;
-    function TAddonManager.ceNeedFile(Sender: TObject;
+    function ceNeedFile(Sender: TObject;
+      const OrginFileName: String;
+      var FileName, Output: String): Boolean;
     procedure IFPS3ClassesPlugin1CompImport(Sender: TObject; x: TPSPascalCompiler);
     procedure IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TPSExec;
       x: TPSRuntimeClassImporter);
