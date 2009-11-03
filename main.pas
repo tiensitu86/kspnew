@@ -39,8 +39,8 @@ uses
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
-  FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets,{$ENDIF}
-  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp,{$ENDIF} ksplua, LMessages, presetsu;
+  FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets, {$ENDIF}
+  ActnList, Spin, FileCtrl, suggfind,{$IFDEF KSP_XMPP}uxmpp, {$ENDIF} ksplua, LMessages, presetsu;
 
 
   { TWebView }
@@ -96,6 +96,8 @@ type
     MenuItem56: TMenuItem;
     MenuItem57: TMenuItem;
     MenuItem58: TMenuItem;
+    Page6: TPage;
+    AddonsControl: TPageControl;
     ShuffleItem: TMenuItem;
     RepeatItem: TMenuItem;
     PlsViewItem: TMenuItem;
@@ -1421,7 +1423,8 @@ end;
     HeaderControl1.Sections.Items[1].Text:=SLibrary;
     HeaderControl1.Sections.Items[2].Text:=SCurrentlyPlayed;
     HeaderControl1.Sections.Items[3].Text:=SChat;
-    HeaderControl1.Sections.Items[4].Text:=SSetup;
+    HeaderControl1.Sections.Items[4].Text:=SAddons;
+    HeaderControl1.Sections.Items[5].Text:=SSetup;
 
     MSortType.Items.Item[0].Text:=SSortBy;
   end;
@@ -2419,6 +2422,7 @@ begin
   HeaderControl1.Sections.Items[2].ImageIndex:=-1;
   HeaderControl1.Sections.Items[3].ImageIndex:=-1;
   HeaderControl1.Sections.Items[4].ImageIndex:=-1;
+  HeaderControl1.Sections.Items[5].ImageIndex:=-1;
 
   HeaderControl1.Sections.Items[sIndex].ImageIndex:=6;
 end;
@@ -2789,7 +2793,8 @@ begin
     1: Notebook1.ActivePage:='Page2';
     2: Notebook1.ActivePage:='Page4';
     3: Notebook1.ActivePage:='Page5';
-    4: Notebook1.ActivePage:='Page3';
+    4: Notebook1.ActivePage:='Page6';
+    5: Notebook1.ActivePage:='Page3';
   end;
   SetHeaderControlImage(Section.Index);
 end;

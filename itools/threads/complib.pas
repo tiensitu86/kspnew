@@ -35,7 +35,8 @@ interface
 uses
   Classes, SysUtils;
 
-type  TCompactlibThread = class(TThread)
+type
+  TCompactlibThread = class(TThread)
   public
   protected
     procedure Execute; override;
@@ -47,8 +48,7 @@ uses KSPConstsVars;
 
 procedure TCompactlibThread.Execute;
 begin
-//  AllSongs.CompactLib;
+  //  AllSongs.CompactLib;
 end;
 
 end.
-

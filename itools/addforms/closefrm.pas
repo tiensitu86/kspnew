@@ -33,7 +33,8 @@ unit closefrm;
 interface
 
 uses
-  Classes, DefaultTranslator, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, DefaultTranslator, SysUtils, FileUtil, LResources, Forms,
+  Controls, Graphics, Dialogs,
   StdCtrls, Buttons;
 
 type
@@ -42,15 +43,15 @@ type
 
   TCloseActionForm = class(TForm)
     AsDefault: TCheckBox;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    Label1: TLabel;
-    Label2: TLabel;
+    BitBtn1:   TBitBtn;
+    BitBtn2:   TBitBtn;
+    Label1:    TLabel;
+    Label2:    TLabel;
   private
     { private declarations }
   public
     { public declarations }
-  end; 
+  end;
 
 var
   CloseActionForm: TCloseActionForm;
@@ -61,4 +62,3 @@ initialization
   {$I closefrm.lrs}
 
 end.
-

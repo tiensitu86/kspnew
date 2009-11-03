@@ -43,8 +43,8 @@ type
     procedure SearchForNews;
   public
     Scanning: boolean;
-    STemp: TStringList;
-    Index: Integer;
+    STemp:    TStringList;
+    Index:    integer;
     ForceRescan: boolean;
   protected
     procedure Execute; override;
@@ -57,50 +57,51 @@ uses Main, KSPConstsVars, KSPStrings, MultiLog;
 
 procedure TFoldersScanThread.MInfo(var Entry: TMediaFolder);
 var
-  st: TStringList;
-  i: integer;
+  st:     TStringList;
+  i:      integer;
   ToDate: boolean;
 
-  function isDuplicated(s: string):boolean;
+  function isDuplicated(s: string): boolean;
   var
     i: integer;
   begin
-    Result:=false;
+    Result := False;
     for i := 0 to st.Count - 1 do
-      if UpperCase(s)=UpperCase(st.Strings[i]) then
-        Result:=true;
+      if UpperCase(s) = UpperCase(st.Strings[i]) then
+        Result := True;
   end;
 
 begin
-  STemp:=TStringList.Create;
+  STemp := TStringList.Create;
 
-  Scanning:=true;
+  Scanning := True;
 
   KSPSetStatusText(SScanning);
-//  e.OnStatistics:=KSPMainWIndow.EasyFileSearch1Statistics;
+  //  e.OnStatistics:=KSPMainWIndow.EasyFileSearch1Statistics;
 
-  ToDate:=(Entry.ScannedEver) and (not ForceRescan);
+  ToDate := (Entry.ScannedEver) and (not ForceRescan);
 
-  STEmp:=TStringList.Create;
-  hLog.Send('MEDIA LIBRARY: Scanning folder '+Entry.Folder);
+  STEmp := TStringList.Create;
+  hLog.Send('MEDIA LIBRARY: Scanning folder ' + Entry.Folder);
   if ToDate then
-  SearchForFiles(Entry.Folder, true, STemp, Entry.LastScanned) else
-  SearchForFilesFS(Entry.Folder, true, STemp);
+    SearchForFiles(Entry.Folder, True, STemp, Entry.LastScanned)
+  else
+    SearchForFilesFS(Entry.Folder, True, STemp);
 
-  st:=TStringList.Create;
+  st := TStringList.Create;
   for i := 0 to STemp.Count - 1 do
     if (not IsDuplicated(STemp.Strings[i])) and
-      (FileSupportList.FindExtension(ExtractFileExt(STemp.Strings[i]), false)>-1) then
-        st.Add(STemp.Strings[i]);
+      (FileSupportList.FindExtension(ExtractFileExt(STemp.Strings[i]), False) > -1) then
+      st.Add(STemp.Strings[i]);
 
-  hLog.Send('MEDIA LIBRARY: Scanning folder (part 2) '+Entry.Folder);
+  hLog.Send('MEDIA LIBRARY: Scanning folder (part 2) ' + Entry.Folder);
 
-  ItemsNo:=BuildMediaInfo(st, AllSongs);
+  ItemsNo := BuildMediaInfo(st, AllSongs);
 
   st.Free;
 
-  Entry.ScannedEver:=true;
-  Entry.LastScanned:=Now;
+  Entry.ScannedEver := True;
+  Entry.LastScanned := Now;
 
   KSPSetStatusText('');
 
@@ -110,54 +111,58 @@ end;
 
 procedure TFoldersScanThread.SearchForNews;
 var
-  i: integer;
+  i:     integer;
   Entry: TMediaFolder;
 begin
-  if KSPMainWindow.MediaFoldersList.Count=0 then
+  if KSPMainWindow.MediaFoldersList.Count = 0 then
     Exit;
 
-  for i:=0 to KSPMainWindow.MediaFoldersList.Count-1 do begin
-    Index:=i;
-    Entry:=KSPMainWindow.MediaFoldersList.GetItem(i);
+  for i := 0 to KSPMainWindow.MediaFoldersList.Count - 1 do
+  begin
+    Index := i;
+    Entry := KSPMainWindow.MediaFoldersList.GetItem(i);
     MInfo(Entry);
-//    CreateWatch(Entry.Folder);
+    //    CreateWatch(Entry.Folder);
     KSPMainWindow.MediaFoldersList.ReplaceEntry(i, Entry);
     //KSPMainWindow.Frame11.MediaBuild.Value:=i+1;
-    end;
+  end;
 end;
 
 procedure TFoldersScanThread.Execute;
 begin
-  KSPMainWindow.WaitForB:=1;
+  KSPMainWindow.WaitForB := 1;
   hLog.Send('Scanning folders for media files');
-  ItemsNo:=0;
+  ItemsNo := 0;
 
   AllSongs.CompactLib;//Delete non-existing entries
 
-  GetCountSem2:=0;
-  Self.Priority:=tpHigher;
+  GetCountSem2  := 0;
+  Self.Priority := tpHigher;
 
   SearchForNews;
 
-  KSPMainWindow.WaitForB:=2;
+  KSPMainWindow.WaitForB := 2;
 
   hLog.Send('MEDIA LIBRARY: Scanning done');
 
-  KSPMainWindow.MediaFoldersList.SaveToFile(KSPDataFolder+'data\MediaLib.xml');
+  KSPMainWindow.MediaFoldersList.SaveToFile(KSPDataFolder + 'data\MediaLib.xml');
 
-  KSPMainWindow.SongsInLib:=ItemsNo;
+  KSPMainWindow.SongsInLib := ItemsNo;
 
   //s:=AllSongs.CompactLib;
-  KSPMainWindow.WaitForB:=0;
+  KSPMainWindow.WaitForB := 0;
   AllSongs.CompactLib;//(2, s);
 
-  KSPMainWindow.TabSheet1.Visible:=ItemsNo>0;
+  KSPMainWindow.TabSheet1.Visible := ItemsNo > 0;
 
-  if not ForceRescan then begin
-      
-    end else KSPShowMessage(SScanningDone);
+  if not ForceRescan then
+  begin
 
-//  end;
+  end
+  else
+    KSPShowMessage(SScanningDone);
+
+  //  end;
 
 end;
 

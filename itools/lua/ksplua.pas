@@ -33,18 +33,22 @@ unit ksplua;
 interface
 
 uses
-  Classes, SysUtils, uPSComponent, uPSCompiler, uPSRuntime, StdCtrls, Controls;
+  Classes, SysUtils, uPSComponent, uPSCompiler, uPSRuntime, StdCtrls, Controls,
+  ComCtrls, Dialogs, Forms;
 
 procedure LuaShowMessage(Msg: string);
 procedure LuaLogEntry(Msg: string);
-function CreateButton(Caption: string): TButton;
+function CreateButton(Caption: string; Workspace: TWinControl): TButton;
+function CreateMemo(Caption: string; Workspace: TWinControl): TMemo;
+function CreateWorkspace(name: string): TWinControl;
 //function LuaLoadInterface(L: Plua_State): Integer; cdecl;
 
-type TAddonManager = class
+type
+  TAddonManager = class
   private
     fPascal: TPSScript;
-    procedure IFPS3ClassesPlugin1CompImport(Sender: TObject;
-      x: TPSPascalCompiler);
+    function TAddonManager.ceNeedFile(Sender: TObject;
+    procedure IFPS3ClassesPlugin1CompImport(Sender: TObject; x: TPSPascalCompiler);
     procedure IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TPSExec;
       x: TPSRuntimeClassImporter);
     procedure PSScriptCompile(Sender: TPSScript);
@@ -74,36 +78,59 @@ uses kspfiles, multilog, KSPConstsVars, ProfileFunc, main,
   uPSR_controls,
   uPSR_classes;
 
+function TAddonManager.ceNeedFile(Sender: TObject;
+  const OrginFileName: String;
+  var FileName, Output: String): Boolean;
+var
+  path: string;
+  f: TFileStream;
+begin
+  Path := ExtractFilePath(Application.ExeName+'addons\units\') + FileName;
+  try
+    F := TFileStream.Create(Path, fmOpenRead or fmShareDenyWrite);
+  except
+    Result := false;
+    exit;
+  end;
+  try
+    SetLength(Output, f.Size);
+    f.Read(Output[1], Length(Output));
+  finally
+  f.Free;
+  end;
+  Result := True;
+end;
+
 procedure TAddonManager.IFPS3ClassesPlugin1CompImport(Sender: TObject;
   x: TIFPSPascalcompiler);
 begin
   SIRegister_Std(x);
-  SIRegister_Classes(x, true);
-  SIRegister_Graphics(x, true);
+  SIRegister_Classes(x, True);
+  SIRegister_Graphics(x, True);
   SIRegister_Controls(x);
   SIRegister_stdctrls(x);
   SIRegister_Forms(x);
 end;
 
 procedure TAddonManager.OutputMessages;
-  var
-    l: Longint;
-    b: Boolean;
-  begin
-    b := False;
+var
+  l: longint;
+  b: boolean;
+begin
+  b := False;
 
-    for l := 0 to fPascal.CompilerMessageCount - 1 do
+  for l := 0 to fPascal.CompilerMessageCount - 1 do
+  begin
+    hLog.Send('Compiler: ' + fPascal.CompilerErrorToStr(l));
+    if (not b) and (fPascal.CompilerMessages[l] is TIFPSPascalCompilerError) then
     begin
-      hLog.Send('Compiler: '+ fPascal.CompilerErrorToStr(l));
-      if (not b) and (fPascal.CompilerMessages[l] is TIFPSPascalCompilerError) then
-      begin
-        b := True;
-      end;
+      b := True;
     end;
   end;
+end;
 
-procedure TAddonManager.IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TIFPSExec;
-  x: TIFPSRuntimeClassImporter);
+procedure TAddonManager.IFPS3ClassesPlugin1ExecImport(Sender: TObject;
+  Exec: TIFPSExec; x: TIFPSRuntimeClassImporter);
 begin
   RIRegister_Std(x);
   RIRegister_Classes(x, True);
@@ -116,21 +143,27 @@ end;
 constructor TAddonManager.Create(scr: string);
 begin
   inherited Create;
-  fPascal:=TPSScript.Create(nil);
-  fPascal.OnCompImport:=@IFPS3ClassesPlugin1CompImport;
-  fPascal.OnExecImport:=@IFPS3ClassesPlugin1ExecImport;
-  fPascal.OnCompile:=@PSScriptCompile;
-  fPascal.OnExecute:=@PSScriptExecute;
-  fPascal.Script.Text:=scr;
+  fPascal := TPSScript.Create(nil);
+  fPascal.OnCompImport := @IFPS3ClassesPlugin1CompImport;
+  fPascal.OnExecImport := @IFPS3ClassesPlugin1ExecImport;
+  fPascal.OnCompile := @PSScriptCompile;
+  fPascal.OnExecute := @PSScriptExecute;
+  fPascal.Script.Text := scr;
   hLog.Send('Compiling addons...');
-  if fPascal.Compile then begin
+  if fPascal.Compile then
+  begin
     OutputMessages;
     hLog.Send('Executing code...');
-    if not fPascal.Execute then begin
+    if not fPascal.Execute then
+    begin
       Self.OutputMessages;
       hLog.Send('Execution failed');
-    end else hLog.Send('Addons code executed');
-  end else begin
+    end
+    else
+      hLog.Send('Addons code executed');
+  end
+  else
+  begin
     Self.OutputMessages;
     hLog.Send('Compilation failed');
   end;
@@ -141,7 +174,9 @@ begin
   Sender.AddFunction(@LuaShowMessage, 'procedure ShowMessage(s: string);');
   Sender.AddFunction(@LuaLogEntry, 'procedure AddLog(question: string);');
   Sender.AddFunction(@GetOSVersion, 'function GetOSVersion: string;');
-  Sender.AddFunction(@CreateButton, 'function CreateButton(Caption: string): TButton;');
+  Sender.AddFunction(@CreateButton, 'function CreateButton(Caption: string; Workspace: TWinControl): TButton;');
+  Sender.AddFunction(@CreateMemo, 'function CreateMemo(Caption: string; Workspace: TWinControl): TMemo;');
+  Sender.AddFunction(@CreateWorkspace, 'function CreateWorkspace(name: string): TWinControl;');
   Sender.AddRegisteredVariable('Application', 'TApplication');
   Sender.AddRegisteredVariable('Self', 'TForm');
   Sender.AddRegisteredVariable('Basic', 'TControl');
@@ -168,7 +203,7 @@ end; }
 
 procedure LuaShowMessage(Msg: string);
 begin
-  hLog.Send('MSG FROM LUA: '+Msg);
+  hLog.Send('MSG FROM LUA: ' + Msg);
   KSPShowMessage(Msg);
 end;
 
@@ -177,24 +212,41 @@ begin
   hLog.SendLua(Msg);
 end;
 
-function CreateButton(Caption: string): TButton;
+function CreateButton(Caption: string; Workspace: TWinControl): TButton;
 begin
-  Result:=TButton.Create(nil);
-//  KSPMainWindow.GroupBox2.InsertControl(Result);
-  Result.Caption:=Caption;
+  Result := TButton.Create(Workspace);
+  Workspace.InsertControl(Result);
+  Result.Caption := Caption;
+end;
+
+function CreateMemo(Caption: string; Workspace: TWinControl): TMemo;
+begin
+  Result := TMemo.Create(Workspace);
+  Workspace.InsertControl(Result);
+  Result.Text := Caption;
+end;
+
+function CreateWorkspace(name: string): TWinControl;
+var
+  t: TTabSheet;
+begin
+  t:=TTabSheet.Create(KSPMainWindow.AddonsControl);
+  t.Caption:=name;
+  t.PageControl:=KSPMainWindow.AddonsControl;
+  Result:=t;
 end;
 
 procedure SetupLua;
 var
   s: TStringList;
 begin
-  s:=TStringList.Create;
-  DefaultScript:=KSPDataFolder+'addons/runaddons.pas';
+  s := TStringList.Create;
+  DefaultScript := KSPDataFolder + 'addons/runaddons.pas';
   FixFolderNames(DefaultScript);
   if FileExists(DefaultScript) then
     s.LoadFromFile(DefaultScript);
 
-  ScriptedAddons:=TAddonManager.Create(s.Text);
+  ScriptedAddons := TAddonManager.Create(s.Text);
   s.Free;
 {  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
   ScriptedAddons.LuaPath:=ScriptedAddons.LuaPath+';'+KSPDataFolder+'lua/?.lua';
@@ -216,4 +268,3 @@ begin
 end;
 
 end.
-

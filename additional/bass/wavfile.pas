@@ -1,18 +1,18 @@
 { *************************************************************************** }
-{                                                                             }
-{ Audio Tools Library (Freeware)                                              }
-{ Class TWAVfile - for extracting information from WAV file header            }
-{                                                                             }
-{ Copyright (c) 2001 by Jurgen Faul                                           }
-{ E-mail: jfaul@gmx.de                                                        }
-{ http://jfaul.de/atl                                                         }
-{                                                                             }
-{ Version 1.1 (9 October 2001)                                                }
-{   - Fixed bug with WAV header detection                                     }
-{                                                                             }
-{ Version 1.0 (31 July 2001)                                                  }
-{   - Info: channel mode, sample rate, bits per sample, file size, duration   }
-{                                                                             }
+
+ { Audio Tools Library (Freeware)                                              }
+ { Class TWAVfile - for extracting information from WAV file header            }
+
+ { Copyright (c) 2001 by Jurgen Faul                                           }
+ { E-mail: jfaul@gmx.de                                                        }
+ { http://jfaul.de/atl                                                         }
+
+ { Version 1.1 (9 October 2001)                                                }
+ {   - Fixed bug with WAV header detection                                     }
+
+ { Version 1.0 (31 July 2001)                                                  }
+ {   - Info: channel mode, sample rate, bits per sample, file size, duration   }
+
 { *************************************************************************** }
 
 //  - Modified for Delphi 2009  (08 May 2009)
@@ -26,7 +26,7 @@ uses
 
 const
   { Used with ChannelModeID property }
-  WAV_CM_MONO = 1;                                      { Index for mono mode }
+  WAV_CM_MONO   = 1;                                      { Index for mono mode }
   WAV_CM_STEREO = 2;                                  { Index for stereo mode }
 
   { Channel mode names }
@@ -35,27 +35,27 @@ const
 type
   { Class TWAVfile }
   TWAVfile = class(TObject)
-    private
-      { Private declarations }
-      FValid: Boolean;
-      FChannelModeID: Byte;
-      FSampleRate: Word;
-      FBitsPerSample: Byte;
-      FFileSize: Cardinal;
-      procedure FResetData;
-      function FGetChannelMode: string;
-      function FGetDuration: Double;
-    public
-      { Public declarations }
-      constructor Create;                                     { Create object }
-      function ReadFromFile(const FileName: string): Boolean;   { Load header }
-      property Valid: Boolean read FValid;             { True if header valid }
-      property ChannelModeID: Byte read FChannelModeID;   { Channel mode code }
-      property ChannelMode: string read FGetChannelMode;  { Channel mode name }
-      property SampleRate: Word read FSampleRate;          { Sample rate (hz) }
-      property BitsPerSample: Byte read FBitsPerSample;     { Bits per sample }
-      property FileSize: Cardinal read FFileSize;         { File size (bytes) }
-      property Duration: Double read FGetDuration;       { Duration (seconds) }
+  private
+    { Private declarations }
+    FValid:      boolean;
+    FChannelModeID: byte;
+    FSampleRate: word;
+    FBitsPerSample: byte;
+    FFileSize:   cardinal;
+    procedure FResetData;
+    function FGetChannelMode: string;
+    function FGetDuration: double;
+  public
+    { Public declarations }
+    constructor Create;                                     { Create object }
+    function ReadFromFile(const FileName: string): boolean;   { Load header }
+    property Valid: boolean Read FValid;             { True if header valid }
+    property ChannelModeID: byte Read FChannelModeID;   { Channel mode code }
+    property ChannelMode: string Read FGetChannelMode;  { Channel mode name }
+    property SampleRate: word Read FSampleRate;          { Sample rate (hz) }
+    property BitsPerSample: byte Read FBitsPerSample;     { Bits per sample }
+    property FileSize: cardinal Read FFileSize;         { File size (bytes) }
+    property Duration: double Read FGetDuration;       { Duration (seconds) }
   end;
 
 implementation
@@ -64,32 +64,32 @@ type
   { Real structure of WAV file header }
   WAVRecord = record
     { RIFF file header }
-    RIFFHeader: array [1..4] of AnsiChar;        { Must be "RIFF" }
-    FileSize: Integer;                           { Must be "RealFileSize - 8" }
-    WAVEHeader: array [1..4] of AnsiChar;        { Must be "WAVE" }
+    RIFFHeader:    array [1..4] of AnsiChar;        { Must be "RIFF" }
+    FileSize:      integer;                           { Must be "RealFileSize - 8" }
+    WAVEHeader:    array [1..4] of AnsiChar;        { Must be "WAVE" }
     { Format information }
-    FormatHeader: array [1..4] of AnsiChar;      { Must be "fmt " }
-    FormatSize: Integer;                         { Must be 16 (decimal) }
-    FormatCode: Word;                            { Must be 1 }
-    ChannelNumber: Word;                         { Number of channels }
-    SampleRate: Integer;                         { Sample rate (hz) }
-    BytesPerSecond: Integer;                     { Bytes per second }
-    BytesPerSample: Word;                        { Bytes per sample }
-    BitsPerSample: Word;                         { Bits per sample }
+    FormatHeader:  array [1..4] of AnsiChar;      { Must be "fmt " }
+    FormatSize:    integer;                         { Must be 16 (decimal) }
+    FormatCode:    word;                            { Must be 1 }
+    ChannelNumber: word;                         { Number of channels }
+    SampleRate:    integer;                         { Sample rate (hz) }
+    BytesPerSecond: integer;                     { Bytes per second }
+    BytesPerSample: word;                        { Bytes per sample }
+    BitsPerSample: word;                         { Bits per sample }
     { Data area }
-    DataHeader: array [1..4] of AnsiChar;        { Must be "data" }
-    DataSize: Integer;                           { Data size }
+    DataHeader:    array [1..4] of AnsiChar;        { Must be "data" }
+    DataSize:      integer;                           { Data size }
   end;
 
 { ********************* Auxiliary functions & procedures ******************** }
 
-function ReadWAV(const FileName: string; var WAVData: WAVRecord): Boolean;
+function ReadWAV(const FileName: string; var WAVData: WAVRecord): boolean;
 var
-  SourceFile: file;
-  Transferred: Integer;
+  SourceFile:  file;
+  Transferred: integer;
 begin
   try
-    Result := true;
+    Result := True;
     { Set read-access and open file }
     AssignFile(SourceFile, FileName);
     FileMode := 0;
@@ -98,48 +98,50 @@ begin
     BlockRead(SourceFile, WAVData, 44, Transferred);
     CloseFile(SourceFile);
     { if transfer is not complete }
-    if Transferred < 44 then Result := false;
+    if Transferred < 44 then
+      Result := False;
   except
     { Error }
-    Result := false;
+    Result := False;
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function HeaderIsValid(const WAVData: WAVRecord): Boolean;
+function HeaderIsValid(const WAVData: WAVRecord): boolean;
 begin
-  Result := true;   // Assume
+  Result := True;   // Assume
 
   { Validation }
   if WAVData.RIFFHeader <> 'RIFF' then
   begin
-    Result := false;
+    Result := False;
     exit;
   end;
   if WAVData.WAVEHeader <> 'WAVE' then
   begin
-    Result := false;
+    Result := False;
     exit;
   end;
   if WAVData.FormatHeader <> 'fmt ' then
   begin
-    Result := false;
+    Result := False;
     exit;
   end;
   if (WAVData.ChannelNumber <> WAV_CM_MONO) and
-    (WAVData.ChannelNumber <> WAV_CM_STEREO) then Result := false;
+    (WAVData.ChannelNumber <> WAV_CM_STEREO) then
+    Result := False;
 end;
 
 { ********************** Private functions & procedures ********************* }
 
 procedure TWAVfile.FResetData;
 begin
-  FValid := false;
+  FValid      := False;
   FChannelModeID := 0;
   FSampleRate := 0;
   FBitsPerSample := 0;
-  FFileSize := 0;
+  FFileSize   := 0;
 end;
 
 { --------------------------------------------------------------------------- }
@@ -151,11 +153,10 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TWAVfile.FGetDuration: Double;
+function TWAVfile.FGetDuration: double;
 begin
   if FValid then
-    Result := (FFileSize - 44) * 8 /
-      FSampleRate / FBitsPerSample / FChannelModeID
+    Result := (FFileSize - 44) * 8 / FSampleRate / FBitsPerSample / FChannelModeID
   else
     Result := 0;
 end;
@@ -170,7 +171,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TWAVfile.ReadFromFile(const FileName: string): Boolean;
+function TWAVfile.ReadFromFile(const FileName: string): boolean;
 var
   WAVData: WAVRecord;
 begin
@@ -180,12 +181,12 @@ begin
   { Process data if loaded and header valid }
   if (Result) and (HeaderIsValid(WAVData)) then
   begin
-    FValid := true;
+    FValid      := True;
     { Fill properties with header data }
     FChannelModeID := WAVData.ChannelNumber;
     FSampleRate := WAVData.SampleRate;
     FBitsPerSample := WAVData.BitsPerSample;
-    FFileSize := WAVData.FileSize + 8;
+    FFileSize   := WAVData.FileSize + 8;
   end;
 end;
 

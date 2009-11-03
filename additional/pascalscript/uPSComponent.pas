@@ -1,4 +1,5 @@
 unit uPSComponent;
+
 {$I PascalScript.inc}
 interface
 
@@ -10,7 +11,7 @@ const
   {alias to @link(ifps3.cdRegister)}
   cdRegister = uPSRuntime.cdRegister;
   {alias to @link(ifps3.cdPascal)}
-  cdPascal = uPSRuntime.cdPascal;
+  cdPascal   = uPSRuntime.cdPascal;
 
   CdCdecl = uPSRuntime.CdCdecl;
 
@@ -18,11 +19,11 @@ const
 
 type
   TPSScript = class;
-  
+
   TDelphiCallingConvention = uPSRuntime.TPSCallingConvention;
   {Alias to @link(ifps3.TPSRuntimeClassImporter)}
-  TPSRuntimeClassImporter = uPSRuntime.TPSRuntimeClassImporter;
-  
+  TPSRuntimeClassImporter  = uPSRuntime.TPSRuntimeClassImporter;
+
   TPSPlugin = class(TComponent)
   public
     procedure CompOnUses(CompExec: TPSScript); virtual;
@@ -33,19 +34,21 @@ type
 
     procedure CompileImport2(CompExec: TPSScript); virtual;
 
-    procedure ExecImport1(CompExec: TPSScript; const ri: TPSRuntimeClassImporter); virtual;
+    procedure ExecImport1(CompExec: TPSScript;
+      const ri: TPSRuntimeClassImporter); virtual;
 
-    procedure ExecImport2(CompExec: TPSScript; const ri: TPSRuntimeClassImporter); virtual;
+    procedure ExecImport2(CompExec: TPSScript;
+      const ri: TPSRuntimeClassImporter); virtual;
   end;
-  
+
   TIFPS3Plugin = class(TPSPlugin);
-  
+
   TPSDllPlugin = class(TPSPlugin)
   public
     procedure CompOnUses(CompExec: TPSScript); override;
     procedure ExecOnUses(CompExec: TPSScript); override;
   end;
-  
+
   TIFPS3DllPlugin = class(TPSDllPlugin);
 
 
@@ -58,88 +61,93 @@ type
   public
     procedure Assign(Source: TPersistent); override; //Birb
   published
-    property Plugin: TPSPlugin read FPlugin write SetPlugin;
+    property Plugin: TPSPlugin Read FPlugin Write SetPlugin;
   end;
 
-  
+
   TIFPS3CEPluginItem = class(TPSPluginItem);
 
-  
+
   TPSPlugins = class(TCollection)
   private
     FCompExec: TPSScript;
   protected
-    
+
     function GetOwner: TPersistent; override;
   public
-    
+
     constructor Create(CE: TPSScript);
   end;
- 
- TIFPS3CEPlugins = class(TPSPlugins);
 
-  
-  TPSOnGetNotVariant = function (Sender: TPSScript; const Name: tbtstring): Variant of object;
-  TPSOnSetNotVariant = procedure (Sender: TPSScript; const Name: tbtstring; V: Variant) of object;
-  TPSCompOptions = set of (icAllowNoBegin, icAllowUnit, icAllowNoEnd, icBooleanShortCircuit);
-  
-  TPSVerifyProc = procedure (Sender: TPSScript; Proc: TPSInternalProcedure; const Decl: tbtstring; var Error: Boolean) of object;
-  
-  TPSEvent = procedure (Sender: TPSScript) of object;
-  
-  TPSOnCompImport = procedure (Sender: TObject; x: TPSPascalCompiler) of object;
+  TIFPS3CEPlugins = class(TPSPlugins);
 
-  TPSOnExecImport = procedure (Sender: TObject; se: TPSExec; x: TPSRuntimeClassImporter) of object;
+
+  TPSOnGetNotVariant = function(Sender: TPSScript;
+    const Name: tbtstring): variant of object;
+  TPSOnSetNotVariant = procedure(Sender: TPSScript; const Name: tbtstring;
+    V: variant) of object;
+  TPSCompOptions = set of (icAllowNoBegin, icAllowUnit, icAllowNoEnd,
+    icBooleanShortCircuit);
+
+  TPSVerifyProc = procedure(Sender: TPSScript; Proc: TPSInternalProcedure;
+    const Decl: tbtstring; var Error: boolean) of object;
+
+  TPSEvent = procedure(Sender: TPSScript) of object;
+
+  TPSOnCompImport = procedure(Sender: TObject; x: TPSPascalCompiler) of object;
+
+  TPSOnExecImport = procedure(Sender: TObject; se: TPSExec;
+    x: TPSRuntimeClassImporter) of object;
   {Script engine event function}
-  TPSOnNeedFile = function (Sender: TObject; const OrginFileName: tbtstring; var FileName, Output: tbtstring): Boolean of object;
+  TPSOnNeedFile = function(Sender: TObject; const OrginFileName: tbtstring;
+    var FileName, Output: tbtstring): boolean of object;
 
-  TPSOnProcessDirective = procedure (
-                            Sender: TPSPreProcessor;
-                            Parser: TPSPascalPreProcessorParser;
-                            const Active: Boolean;
-                            const DirectiveName, DirectiveParam: tbtstring;
-                            Var Continue: Boolean) of Object;  // jgv
+  TPSOnProcessDirective = procedure(Sender: TPSPreProcessor;
+    Parser: TPSPascalPreProcessorParser;
+    const Active: boolean;
+    const DirectiveName, DirectiveParam: tbtstring;
+    var Continue: boolean) of object;  // jgv
 
   TPSScript = class(TComponent)
   private
     FOnGetNotificationVariant: TPSOnGetNotVariant;
     FOnSetNotificationVariant: TPSOnSetNotVariant;
-    FCanAdd: Boolean;
-    FComp: TPSPascalCompiler;
+    FCanAdd: boolean;
+    FComp:   TPSPascalCompiler;
     FCompOptions: TPSCompOptions;
-    FExec: TPSDebugExec;
-    FSuppressLoadData: Boolean;
+    FExec:   TPSDebugExec;
+    FSuppressLoadData: boolean;
     FScript: TStrings;
     FOnLine: TNotifyEvent;
-    FUseDebugInfo: Boolean;
+    FUseDebugInfo: boolean;
     FOnAfterExecute, FOnCompile, FOnExecute: TPSEvent;
     FOnCompImport: TPSOnCompImport;
     FOnExecImport: TPSOnExecImport;
-    RI: TPSRuntimeClassImporter;
+    RI:      TPSRuntimeClassImporter;
     FPlugins: TPSPlugins;
-    FPP: TPSPreProcessor;
+    FPP:     TPSPreProcessor;
     FMainFileName: tbtstring;
     FOnNeedFile: TPSOnNeedFile;
-    FUsePreProcessor: Boolean;
+    FUsePreProcessor: boolean;
     FDefines: TStrings;
     FOnVerifyProc: TPSVerifyProc;
     FOnProcessDirective: TPSOnProcessDirective;
     FOnProcessUnknowDirective: TPSOnProcessDirective;
     FOnFindUnknownFile: TPSOnNeedFile;
-    function GetRunning: Boolean;
+    function GetRunning: boolean;
     procedure SetScript(const Value: TStrings);
-    function GetCompMsg(i: Integer): TPSPascalCompilerMessage;
-    function GetCompMsgCount: Longint;
+    function GetCompMsg(i: integer): TPSPascalCompilerMessage;
+    function GetCompMsgCount: longint;
     function GetAbout: tbtstring;
-    function ScriptUses(Sender: TPSPascalCompiler; const Name: tbtstring): Boolean;
-    function GetExecErrorByteCodePosition: Cardinal;
+    function ScriptUses(Sender: TPSPascalCompiler; const Name: tbtstring): boolean;
+    function GetExecErrorByteCodePosition: cardinal;
     function GetExecErrorCode: TIFError;
     function GetExecErrorParam: tbtstring;
-    function GetExecErrorProcNo: Cardinal;
+    function GetExecErrorProcNo: cardinal;
     function GetExecErrorString: tbtstring;
-    function GetExecErrorPosition: Cardinal;
-    function GetExecErrorCol: Cardinal;
-    function GetExecErrorRow: Cardinal;
+    function GetExecErrorPosition: cardinal;
+    function GetExecErrorCol: cardinal;
+    function GetExecErrorRow: cardinal;
     function GetExecErrorFileName: tbtstring;
     procedure SetDefines(const Value: TStrings);
   protected
@@ -151,38 +159,41 @@ type
     procedure SetMainFileName(const Value: tbtstring); virtual;
 
     //--jgv new
-    function  DoOnNeedFile (Sender: TObject; const OrginFileName: tbtstring; var FileName, Output: tbtstring): Boolean; virtual;
-    function  DoOnUnknowUses (Sender: TPSPascalCompiler; const Name: tbtstring): Boolean; virtual; // return true if processed
+    function DoOnNeedFile(Sender: TObject; const OrginFileName: tbtstring;
+      var FileName, Output: tbtstring): boolean; virtual;
+    function DoOnUnknowUses(Sender: TPSPascalCompiler; const Name: tbtstring): boolean;
+      virtual; // return true if processed
     procedure DoOnCompImport; virtual;
     procedure DoOnCompile; virtual;
-    function  DoVerifyProc (Sender: TPSScript; Proc: TPSInternalProcedure; const Decl: tbtstring): Boolean; virtual;
+    function DoVerifyProc(Sender: TPSScript; Proc: TPSInternalProcedure;
+      const Decl: tbtstring): boolean; virtual;
 
-    procedure DoOnExecImport (RunTimeImporter: TPSRuntimeClassImporter); virtual;
-    procedure DoOnExecute (RunTimeImporter: TPSRuntimeClassImporter); virtual;
+    procedure DoOnExecImport(RunTimeImporter: TPSRuntimeClassImporter); virtual;
+    procedure DoOnExecute(RunTimeImporter: TPSRuntimeClassImporter); virtual;
     procedure DoAfterExecute; virtual;
-    function  DoOnGetNotificationVariant (const Name: tbtstring): Variant; virtual;
-    procedure DoOnSetNotificationVariant (const Name: tbtstring; V: Variant); virtual;
+    function DoOnGetNotificationVariant(const Name: tbtstring): variant; virtual;
+    procedure DoOnSetNotificationVariant(const Name: tbtstring; V: variant); virtual;
 
-    procedure DoOnProcessDirective (Sender: TPSPreProcessor;
-                Parser: TPSPascalPreProcessorParser;
-                const Active: Boolean;
-                const DirectiveName, DirectiveParam: tbtstring;
-                Var Continue: Boolean); virtual;
-    procedure DoOnProcessUnknowDirective (Sender: TPSPreProcessor;
-                Parser: TPSPascalPreProcessorParser;
-                const Active: Boolean;
-                const DirectiveName, DirectiveParam: tbtstring;
-                Var Continue: Boolean); virtual;
+    procedure DoOnProcessDirective(Sender: TPSPreProcessor;
+      Parser: TPSPascalPreProcessorParser;
+      const Active: boolean;
+      const DirectiveName, DirectiveParam: tbtstring;
+      var Continue: boolean); virtual;
+    procedure DoOnProcessUnknowDirective(Sender: TPSPreProcessor;
+      Parser: TPSPascalPreProcessorParser;
+      const Active: boolean;
+      const DirectiveName, DirectiveParam: tbtstring;
+      var Continue: boolean); virtual;
   public
-    property RuntimeImporter: TPSRuntimeClassImporter read RI;
+    property RuntimeImporter: TPSRuntimeClassImporter Read RI;
 
     function FindNamedType(const Name: tbtstring): TPSTypeRec;
 
     function FindBaseType(Bt: TPSBaseType): TPSTypeRec;
 
-    property SuppressLoadData: Boolean read FSuppressLoadData write FSuppressLoadData;
+    property SuppressLoadData: boolean Read FSuppressLoadData Write FSuppressLoadData;
 
-    function LoadExec: Boolean;
+    function LoadExec: boolean;
 
     procedure Stop; virtual;
 
@@ -190,214 +201,228 @@ type
 
     destructor Destroy; override;
 
-    function Compile: Boolean; virtual;
+    function Compile: boolean; virtual;
 
-    function Execute: Boolean; virtual;
+    function Execute: boolean; virtual;
 
-    property Running: Boolean read GetRunning;
+    property Running: boolean Read GetRunning;
 
-    procedure GetCompiled(var data: tbtstring);
+    procedure GetCompiled(var Data: tbtstring);
 
     procedure SetCompiled(const Data: tbtstring);
 
-    property Comp: TPSPascalCompiler read FComp;
+    property comp: TPSPascalCompiler Read FComp;
 
-    property Exec: TPSDebugExec read FExec;
+    property Exec: TPSDebugExec Read FExec;
 
-    property CompilerMessageCount: Longint read GetCompMsgCount;
+    property CompilerMessageCount: longint Read GetCompMsgCount;
 
-    property CompilerMessages[i: Longint]: TPSPascalCompilerMessage read GetCompMsg;
+    property CompilerMessages[i: longint]: TPSPascalCompilerMessage Read GetCompMsg;
 
-    function CompilerErrorToStr(I: Longint): tbtstring;
+    function CompilerErrorToStr(I: longint): tbtstring;
 
-    property ExecErrorCode: TIFError read GetExecErrorCode;
+    property ExecErrorCode: TIFError Read GetExecErrorCode;
 
-    property ExecErrorParam: tbtstring read GetExecErrorParam;
+    property ExecErrorParam: tbtstring Read GetExecErrorParam;
 
-    property ExecErrorToString: tbtstring read GetExecErrorString;
+    property ExecErrorToString: tbtstring Read GetExecErrorString;
 
-    property ExecErrorProcNo: Cardinal read GetExecErrorProcNo;
+    property ExecErrorProcNo: cardinal Read GetExecErrorProcNo;
 
-    property ExecErrorByteCodePosition: Cardinal read GetExecErrorByteCodePosition;
+    property ExecErrorByteCodePosition: cardinal Read GetExecErrorByteCodePosition;
 
-    property ExecErrorPosition: Cardinal read GetExecErrorPosition;
+    property ExecErrorPosition: cardinal Read GetExecErrorPosition;
 
-    property ExecErrorRow: Cardinal read GetExecErrorRow;
+    property ExecErrorRow: cardinal Read GetExecErrorRow;
 
-    property ExecErrorCol: Cardinal read GetExecErrorCol;
+    property ExecErrorCol: cardinal Read GetExecErrorCol;
 
-    property ExecErrorFileName: tbtstring read GetExecErrorFileName;
+    property ExecErrorFileName: tbtstring Read GetExecErrorFileName;
 
-    function AddFunctionEx(Ptr: Pointer; const Decl: tbtstring; CallingConv: TDelphiCallingConvention): Boolean;
+    function AddFunctionEx(Ptr: Pointer; const Decl: tbtstring;
+      CallingConv: TDelphiCallingConvention): boolean;
 
-    function AddFunction(Ptr: Pointer; const Decl: tbtstring): Boolean;
+    function AddFunction(Ptr: Pointer; const Decl: tbtstring): boolean;
 
 
-    function AddMethodEx(Slf, Ptr: Pointer; const Decl: tbtstring; CallingConv: TDelphiCallingConvention): Boolean;
+    function AddMethodEx(Slf, Ptr: Pointer; const Decl: tbtstring;
+      CallingConv: TDelphiCallingConvention): boolean;
 
-    function AddMethod(Slf, Ptr: Pointer; const Decl: tbtstring): Boolean;
+    function AddMethod(Slf, Ptr: Pointer; const Decl: tbtstring): boolean;
 
-    function AddRegisteredVariable(const VarName, VarType: tbtstring): Boolean;
-    function AddNotificationVariant(const VarName: tbtstring): Boolean;
+    function AddRegisteredVariable(const VarName, VarType: tbtstring): boolean;
+    function AddNotificationVariant(const VarName: tbtstring): boolean;
 
-    function AddRegisteredPTRVariable(const VarName, VarType: tbtstring): Boolean;
+    function AddRegisteredPTRVariable(const VarName, VarType: tbtstring): boolean;
 
     function GetVariable(const Name: tbtstring): PIFVariant;
 
-    function SetVarToInstance(const VarName: tbtstring; cl: TObject): Boolean;
+    function SetVarToInstance(const VarName: tbtstring; cl: TObject): boolean;
 
-    procedure SetPointerToData(const VarName: tbtstring; Data: Pointer; aType: TIFTypeRec);
+    procedure SetPointerToData(const VarName: tbtstring; Data: Pointer;
+      aType: TIFTypeRec);
 
-    function TranslatePositionPos(Proc, Position: Cardinal; var Pos: Cardinal; var fn: tbtstring): Boolean;
+    function TranslatePositionPos(Proc, Position: cardinal; var Pos: cardinal;
+      var fn: tbtstring): boolean;
 
-    function TranslatePositionRC(Proc, Position: Cardinal; var Row, Col: Cardinal; var fn: tbtstring): Boolean;
+    function TranslatePositionRC(Proc, Position: cardinal; var Row, Col: cardinal;
+      var fn: tbtstring): boolean;
 
     function GetProcMethod(const ProcName: tbtstring): TMethod;
 
-    function ExecuteFunction(const Params: array of Variant; const ProcName: tbtstring): Variant;
+    function ExecuteFunction(const Params: array of variant;
+      const ProcName: tbtstring): variant;
   published
 
-    property About: tbtstring read GetAbout stored false;
+    property About: tbtstring Read GetAbout stored False;
 
-    property Script: TStrings read FScript write SetScript;
+    property Script: TStrings Read FScript Write SetScript;
 
-    property CompilerOptions: TPSCompOptions read FCompOptions write FCompOptions;
+    property CompilerOptions: TPSCompOptions Read FCompOptions Write FCompOptions;
 
-    property OnLine: TNotifyEvent read FOnLine write FOnLine;
+    property OnLine: TNotifyEvent Read FOnLine Write FOnLine;
 
-    property OnCompile: TPSEvent read FOnCompile write FOnCompile;
+    property OnCompile: TPSEvent Read FOnCompile Write FOnCompile;
 
-    property OnExecute: TPSEvent read FOnExecute write FOnExecute;
-    
-    property OnAfterExecute: TPSEvent read FOnAfterExecute write FOnAfterExecute;
-    
-    property OnCompImport: TPSOnCompImport read FOnCompImport write FOnCompImport;
+    property OnExecute: TPSEvent Read FOnExecute Write FOnExecute;
 
-    property OnExecImport: TPSOnExecImport read FOnExecImport write FOnExecImport;
+    property OnAfterExecute: TPSEvent Read FOnAfterExecute Write FOnAfterExecute;
 
-    property UseDebugInfo: Boolean read FUseDebugInfo write FUseDebugInfo default True;
+    property OnCompImport: TPSOnCompImport Read FOnCompImport Write FOnCompImport;
 
-    property Plugins: TPSPlugins read FPlugins write FPlugins;
+    property OnExecImport: TPSOnExecImport Read FOnExecImport Write FOnExecImport;
 
-    property MainFileName: tbtstring read FMainFileName write SetMainFileName;
+    property UseDebugInfo: boolean Read FUseDebugInfo Write FUseDebugInfo default True;
 
-    property UsePreProcessor: Boolean read FUsePreProcessor write FUsePreProcessor;
+    property Plugins: TPSPlugins Read FPlugins Write FPlugins;
 
-    property OnNeedFile: TPSOnNeedFile read FOnNeedFile write FOnNeedFile;
+    property MainFileName: tbtstring Read FMainFileName Write SetMainFileName;
 
-    property Defines: TStrings read FDefines write SetDefines;
+    property UsePreProcessor: boolean Read FUsePreProcessor Write FUsePreProcessor;
 
-    property OnVerifyProc: TPSVerifyProc read FOnVerifyProc write FOnVerifyProc;
-    property OnGetNotificationVariant: TPSOnGetNotVariant read FOnGetNotificationVariant write FOnGetNotificationVariant;
-    property OnSetNotificationVariant: TPSOnSetNotVariant read FOnSetNotificationVariant write FOnSetNotificationVariant;
-    property OnFindUnknownFile: TPSOnNeedFile read FOnFindUnknownFile write FOnFindUnknownFile;
+    property OnNeedFile: TPSOnNeedFile Read FOnNeedFile Write FOnNeedFile;
+
+    property Defines: TStrings Read FDefines Write SetDefines;
+
+    property OnVerifyProc: TPSVerifyProc Read FOnVerifyProc Write FOnVerifyProc;
+    property OnGetNotificationVariant: TPSOnGetNotVariant
+      Read FOnGetNotificationVariant Write FOnGetNotificationVariant;
+    property OnSetNotificationVariant: TPSOnSetNotVariant
+      Read FOnSetNotificationVariant Write FOnSetNotificationVariant;
+    property OnFindUnknownFile: TPSOnNeedFile
+      Read FOnFindUnknownFile Write FOnFindUnknownFile;
 
   published
     //-- jgv
-    property OnProcessDirective: TPSOnProcessDirective read FOnProcessDirective write FOnProcessDirective;
-    property OnProcessUnknowDirective: TPSOnProcessDirective read FOnProcessUnknowDirective write FOnProcessUnknowDirective;
+    property OnProcessDirective: TPSOnProcessDirective
+      Read FOnProcessDirective Write FOnProcessDirective;
+    property OnProcessUnknowDirective: TPSOnProcessDirective
+      Read FOnProcessUnknowDirective Write FOnProcessUnknowDirective;
   end;
 
   TIFPS3CompExec = class(TPSScript);
 
-  
+
   TPSBreakPointInfo = class
   private
-    FLine: Longint;
-    FFileNameHash: Longint;
+    FLine:     longint;
+    FFileNameHash: longint;
     FFileName: tbtstring;
     procedure SetFileName(const Value: tbtstring);
   public
 
-    property FileName: tbtstring read FFileName write SetFileName;
-    
-    property FileNameHash: Longint read FFileNameHash;
-    
-    property Line: Longint read FLine write FLine;
+    property FileName: tbtstring Read FFileName Write SetFileName;
+
+    property FileNameHash: longint Read FFileNameHash;
+
+    property Line: longint Read FLine Write FLine;
   end;
-  
-  TPSOnLineInfo = procedure (Sender: TObject; const FileName: tbtstring; Position, Row, Col: Cardinal) of object;
-  
+
+  TPSOnLineInfo = procedure(Sender: TObject; const FileName: tbtstring;
+    Position, Row, Col: cardinal) of object;
+
   TPSScriptDebugger = class(TPSScript)
   private
-    FOnIdle: TNotifyEvent;
+    FOnIdle:      TNotifyEvent;
     FBreakPoints: TIFList;
-    FOnLineInfo: TPSOnLineInfo;
-    FLastRow: Cardinal;
+    FOnLineInfo:  TPSOnLineInfo;
+    FLastRow:     cardinal;
     FOnBreakpoint: TPSOnLineInfo;
-    function GetBreakPoint(I: Integer): TPSBreakPointInfo;
-    function GetBreakPointCount: Longint;
+    function GetBreakPoint(I: integer): TPSBreakPointInfo;
+    function GetBreakPointCount: longint;
   protected
     procedure SetMainFileName(const Value: tbtstring); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
-    
+
     procedure Pause; virtual;
 
     procedure Resume; virtual;
 
-    
+
     procedure StepInto; virtual;
 
     procedure StepOver; virtual;
-    
-    procedure SetBreakPoint(const Fn: tbtstring; Line: Longint);
 
-    procedure ClearBreakPoint(const Fn: tbtstring; Line: Longint);
+    procedure SetBreakPoint(const Fn: tbtstring; Line: longint);
 
-    property BreakPointCount: Longint read GetBreakPointCount;
+    procedure ClearBreakPoint(const Fn: tbtstring; Line: longint);
 
-    property BreakPoint[I: Longint]: TPSBreakPointInfo read GetBreakPoint;
+    property BreakPointCount: longint Read GetBreakPointCount;
 
-    function HasBreakPoint(const Fn: tbtstring; Line: Longint): Boolean;
+    property BreakPoint[I: longint]: TPSBreakPointInfo Read GetBreakPoint;
+
+    function HasBreakPoint(const Fn: tbtstring; Line: longint): boolean;
 
     procedure ClearBreakPoints;
 
     function GetVarContents(const Name: tbtstring): tbtstring;
   published
 
-    property OnIdle: TNotifyEvent read FOnIdle write FOnIdle;
+    property OnIdle: TNotifyEvent Read FOnIdle Write FOnIdle;
 
-    property OnLineInfo: TPSOnLineInfo read FOnLineInfo write FOnLineInfo;
+    property OnLineInfo: TPSOnLineInfo Read FOnLineInfo Write FOnLineInfo;
 
-    property OnBreakpoint: TPSOnLineInfo read FOnBreakpoint write FOnBreakpoint;
+    property OnBreakpoint: TPSOnLineInfo Read FOnBreakpoint Write FOnBreakpoint;
   end;
-  
+
   TIFPS3DebugCompExec = class(TPSScriptDebugger);
-  
+
   TPSCustumPlugin = class(TPSPlugin)
   private
     FOnCompileImport2: TPSEvent;
-    FOnExecOnUses: TPSEvent;
-    FOnCompOnUses: TPSEvent;
+    FOnExecOnUses:     TPSEvent;
+    FOnCompOnUses:     TPSEvent;
     FOnCompileImport1: TPSEvent;
-    FOnExecImport1: TPSOnExecImport;
-    FOnExecImport2: TPSOnExecImport;
+    FOnExecImport1:    TPSOnExecImport;
+    FOnExecImport2:    TPSOnExecImport;
   public
     procedure CompOnUses(CompExec: TPSScript); override;
     procedure ExecOnUses(CompExec: TPSScript); override;
     procedure CompileImport1(CompExec: TPSScript); override;
     procedure CompileImport2(CompExec: TPSScript); override;
-    procedure ExecImport1(CompExec: TPSScript; const ri: TPSRuntimeClassImporter); override;
+    procedure ExecImport1(CompExec: TPSScript; const ri: TPSRuntimeClassImporter);
+      override;
 
-    procedure ExecImport2(CompExec: TPSScript; const ri: TPSRuntimeClassImporter); override;
+    procedure ExecImport2(CompExec: TPSScript; const ri: TPSRuntimeClassImporter);
+      override;
   public
   published
-    property OnCompOnUses : TPSEvent read FOnCompOnUses write FOnCompOnUses;
-    property OnExecOnUses: TPSEvent read FOnExecOnUses write FOnExecOnUses;
-    property OnCompileImport1: TPSEvent read FOnCompileImport1 write FOnCompileImport1; 
-    property OnCompileImport2: TPSEvent read FOnCompileImport2 write FOnCompileImport2;
-    property OnExecImport1: TPSOnExecImport read FOnExecImport1 write FOnExecImport1;
-    property OnExecImport2: TPSOnExecImport read FOnExecImport2 write FOnExecImport2;
-  end;  
+    property OnCompOnUses: TPSEvent Read FOnCompOnUses Write FOnCompOnUses;
+    property OnExecOnUses: TPSEvent Read FOnExecOnUses Write FOnExecOnUses;
+    property OnCompileImport1: TPSEvent Read FOnCompileImport1 Write FOnCompileImport1;
+    property OnCompileImport2: TPSEvent Read FOnCompileImport2 Write FOnCompileImport2;
+    property OnExecImport1: TPSOnExecImport Read FOnExecImport1 Write FOnExecImport1;
+    property OnExecImport2: TPSOnExecImport Read FOnExecImport2 Write FOnExecImport2;
+  end;
 
 implementation
 
 
 {$IFDEF DELPHI3UP }
-resourceString
+resourcestring
 {$ELSE }
 const
 {$ENDIF }
@@ -409,19 +434,19 @@ const
   RPS_NotRunning = 'Not running';
   RPS_UnableToFindVariable = 'Unable to find variable';
   RPS_UnknownIdentifier = 'Unknown Identifier';
-  RPS_NoScript = 'No script';
+  RPS_NoScript   = 'No script';
 
-function MyGetVariant(Sender: TPSExec; const Name: tbtstring): Variant;
+function MyGetVariant(Sender: TPSExec; const Name: tbtstring): variant;
 begin
-  Result := TPSScript (Sender.Id).DoOnGetNotificationVariant(Name);
+  Result := TPSScript(Sender.Id).DoOnGetNotificationVariant(Name);
 end;
 
-procedure MySetVariant(Sender: TPSExec; const Name: tbtstring; V: Variant);
+procedure MySetVariant(Sender: TPSExec; const Name: tbtstring; V: variant);
 begin
-  TPSScript (Sender.Id).DoOnSetNotificationVariant(Name, V);
+  TPSScript(Sender.Id).DoOnSetNotificationVariant(Name, V);
 end;
 
-function CompScriptUses(Sender: TPSPascalCompiler; const Name: tbtstring): Boolean;
+function CompScriptUses(Sender: TPSPascalCompiler; const Name: tbtstring): boolean;
 begin
   Result := TPSScript(Sender.ID).ScriptUses(Sender, Name);
 end;
@@ -434,30 +459,27 @@ begin
   end;
 end;
 
-function CompExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure; const ProcDecl: tbtstring): Boolean;
+function CompExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure;
+  const ProcDecl: tbtstring): boolean;
 begin
-  Result := TPSScript(Sender.ID).DoVerifyProc (Sender.ID, Proc, ProcDecl);
+  Result := TPSScript(Sender.ID).DoVerifyProc(Sender.ID, Proc, ProcDecl);
 end;
 
 
-procedure callObjectOnProcessDirective (
-  Sender: TPSPreProcessor;
-  Parser: TPSPascalPreProcessorParser;
-  const Active: Boolean;
-  const DirectiveName, DirectiveParam: tbtstring;
-  Var Continue: Boolean);
+procedure callObjectOnProcessDirective(Sender: TPSPreProcessor;
+  Parser: TPSPascalPreProcessorParser; const Active: boolean;
+  const DirectiveName, DirectiveParam: tbtstring; var Continue: boolean);
 begin
-  TPSScript (Sender.ID).DoOnProcessUnknowDirective(Sender, Parser, Active, DirectiveName, DirectiveParam, Continue);
+  TPSScript(Sender.ID).DoOnProcessUnknowDirective(Sender, Parser,
+    Active, DirectiveName, DirectiveParam, Continue);
 end;
 
-procedure callObjectOnProcessUnknowDirective (
-  Sender: TPSPreProcessor;
-  Parser: TPSPascalPreProcessorParser;
-  const Active: Boolean;
-  const DirectiveName, DirectiveParam: tbtstring;
-  Var Continue: Boolean);
+procedure callObjectOnProcessUnknowDirective(Sender: TPSPreProcessor;
+  Parser: TPSPascalPreProcessorParser; const Active: boolean;
+  const DirectiveName, DirectiveParam: tbtstring; var Continue: boolean);
 begin
-  TPSScript (Sender.ID).DoOnProcessDirective(Sender, Parser, Active, DirectiveName, DirectiveParam, Continue);
+  TPSScript(Sender.ID).DoOnProcessDirective(Sender, Parser, Active,
+    DirectiveName, DirectiveParam, Continue);
 end;
 
 
@@ -474,7 +496,7 @@ end;
 
 procedure TPSPlugin.CompOnUses(CompExec: TPSScript);
 begin
- // do nothing
+  // do nothing
 end;
 
 procedure TPSPlugin.ExecImport1(CompExec: TPSScript; const ri: TPSRuntimeClassImporter);
@@ -489,68 +511,80 @@ end;
 
 procedure TPSPlugin.ExecOnUses(CompExec: TPSScript);
 begin
- // do nothing
+  // do nothing
 end;
 
 
 { TPSScript }
 
-function TPSScript.AddFunction(Ptr: Pointer;
-  const Decl: tbtstring): Boolean;
+function TPSScript.AddFunction(Ptr: Pointer; const Decl: tbtstring): boolean;
 begin
   Result := AddFunctionEx(Ptr, Decl, cdRegister);
 end;
 
 function TPSScript.AddFunctionEx(Ptr: Pointer; const Decl: tbtstring;
-  CallingConv: TDelphiCallingConvention): Boolean;
+  CallingConv: TDelphiCallingConvention): boolean;
 var
   P: TPSRegProc;
 begin
-  if not FCanAdd then begin Result := False; exit; end;
-  p := Comp.AddDelphiFunction(Decl);
+  if not FCanAdd then
+  begin
+    Result := False;
+    exit;
+  end;
+  p := comp.AddDelphiFunction(Decl);
   if p <> nil then
   begin
     Exec.RegisterDelphiFunction(Ptr, p.Name, CallingConv);
     Result := True;
-  end else Result := False;
+  end
+  else
+    Result := False;
 end;
 
-function TPSScript.AddRegisteredVariable(const VarName,
-  VarType: tbtstring): Boolean;
+function TPSScript.AddRegisteredVariable(const VarName, VarType: tbtstring): boolean;
 var
   FVar: TPSVar;
 begin
-  if not FCanAdd then begin Result := False; exit; end;
+  if not FCanAdd then
+  begin
+    Result := False;
+    exit;
+  end;
   FVar := FComp.AddUsedVariableN(varname, vartype);
   if fvar = nil then
-    result := False
-  else begin
+    Result := False
+  else
+  begin
     fvar.exportname := fvar.Name;
     Result := True;
   end;
 end;
 
-function CENeedFile(Sender: TPSPreProcessor; const callingfilename: tbtstring; var FileName, Output: tbtstring): Boolean;
+function CENeedFile(Sender: TPSPreProcessor; const callingfilename: tbtstring;
+  var FileName, Output: tbtstring): boolean;
 begin
-  Result := TPSScript (Sender.ID).DoOnNeedFile(Sender.ID, CallingFileName, FileName, Output);
+  Result := TPSScript(Sender.ID).DoOnNeedFile(Sender.ID, CallingFileName,
+    FileName, Output);
 end;
 
-procedure CompTranslateLineInfo(Sender: TPSPascalCompiler; var Pos, Row, Col: Cardinal; var Name: tbtstring);
+procedure CompTranslateLineInfo(Sender: TPSPascalCompiler;
+  var Pos, Row, Col: cardinal; var Name: tbtstring);
 var
   res: TPSLineInfoResults;
 begin
   if TPSScript(Sender.ID).FPP.CurrentLineInfo.GetLineInfo(Name, Pos, Res) then
   begin
-    Pos := Res.Pos;
-    Row := Res.Row;
-    Col := Res.Col;
+    Pos  := Res.Pos;
+    Row  := Res.Row;
+    Col  := Res.Col;
     Name := Res.Name;
   end;
 end;
 
-function TPSScript.Compile: Boolean;
+function TPSScript.Compile: boolean;
 var
-  i: Longint;
+  i:   longint;
   dta: tbtstring;
 begin
   FExec.Clear;
@@ -563,23 +597,26 @@ begin
     RI := nil;
   end;
   RI := TPSRuntimeClassImporter.Create;
-  for i := 0 to FPlugins.Count -1 do
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
       TPSPluginItem(FPlugins.Items[i]).Plugin.ExecImport1(Self, ri);
   end;
 
-  DoOnExecImport (RI);
-  
-  for i := 0 to FPlugins.Count -1 do
+  DoOnExecImport(RI);
+
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
       TPSPluginItem(FPlugins.Items[i]).Plugin.ExecImport2(Self, ri);
   end;
   RegisterClassLibraryRuntime(Exec, RI);
-  for i := 0 to FPlugins.Count -1 do
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
       TPSPluginItem(FPlugins.Items[i]).Plugin.ExecOnUses(Self);
   end;
   FCanAdd := True;
@@ -594,7 +631,7 @@ begin
     FComp.OnTranslateLineInfo := CompTranslateLineInfo;
     Fpp.OnProcessDirective := callObjectOnProcessDirective;
     Fpp.OnProcessUnknowDirective := callObjectOnProcessUnknowDirective;
-    Fpp.MainFile := FScript.Text;
+    Fpp.MainFile     := FScript.Text;
     Fpp.MainFileName := FMainFileName;
     Fpp.PreProcess(FMainFileName, dta);
     if FComp.Compile(dta) then
@@ -603,11 +640,15 @@ begin
       if (not SuppressLoadData) and (not LoadExec) then
       begin
         Result := False;
-      end else
+      end
+      else
         Result := True;
-    end else Result := False;
-    Fpp.AdjustMessages(Comp);
-  end else
+    end
+    else
+      Result := False;
+    Fpp.AdjustMessages(comp);
+  end
+  else
   begin
     FComp.OnTranslateLineInfo := nil;
     if FComp.Compile(FScript.Text) then
@@ -616,13 +657,16 @@ begin
       if not LoadExec then
       begin
         Result := False;
-      end else
+      end
+      else
         Result := True;
-    end else Result := False;
+    end
+    else
+      Result := False;
   end;
 end;
 
-function TPSScript.CompilerErrorToStr(I: Integer): tbtstring;
+function TPSScript.CompilerErrorToStr(I: integer): tbtstring;
 begin
   Result := CompilerMessages[i].MessageToString;
 end;
@@ -630,22 +674,22 @@ end;
 constructor TPSScript.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FComp := TPSPascalCompiler.Create;
-  FExec := TPSDebugExec.Create;
-  FScript := TStringList.Create;
+  FComp    := TPSPascalCompiler.Create;
+  FExec    := TPSDebugExec.Create;
+  FScript  := TStringList.Create;
   FPlugins := TPSPlugins.Create(self);
 
-  FComp.ID := Self;
+  FComp.ID     := Self;
   FComp.OnUses := CompScriptUses;
   FComp.OnExportCheck := CompExportCheck;
-  FExec.Id := Self;
-  FExec.OnRunLine:= ExecOnLine;
+  FExec.Id     := Self;
+  FExec.OnRunLine := ExecOnLine;
   FExec.OnGetNVariant := MyGetVariant;
   FExec.OnSetNVariant := MySetVariant;
 
   FUseDebugInfo := True;
 
-  FPP := TPSPreProcessor.Create;
+  FPP    := TPSPreProcessor.Create;
   FPP.Id := Self;
   FPP.OnNeedFile := CENeedFile;
 
@@ -666,16 +710,17 @@ begin
   inherited Destroy;
 end;
 
-function TPSScript.Execute: Boolean;
+function TPSScript.Execute: boolean;
 begin
-  if Running then raise Exception.Create(RPS_ScripEngineAlreadyRunning);
+  if Running then
+    raise Exception.Create(RPS_ScripEngineAlreadyRunning);
   if SuppressLoadData then
     LoadExec;
 
-  DoOnExecute (RI);
+  DoOnExecute(RI);
 
   FExec.DebugEnabled := FUseDebugInfo;
-  Result := FExec.RunScript and (FExec.ExceptionCode = erNoError) ;
+  Result := FExec.RunScript and (FExec.ExceptionCode = erNoError);
 
   DoAfterExecute;
 end;
@@ -685,23 +730,23 @@ begin
   Result := TPSExec.About;
 end;
 
-procedure TPSScript.GetCompiled(var data: tbtstring);
+procedure TPSScript.GetCompiled(var Data: tbtstring);
 begin
   if not FComp.GetOutput(Data) then
     raise Exception.Create(RPS_ScriptNotCompiled);
 end;
 
-function TPSScript.GetCompMsg(i: Integer): TPSPascalCompilerMessage;
+function TPSScript.GetCompMsg(i: integer): TPSPascalCompilerMessage;
 begin
   Result := FComp.Msg[i];
 end;
 
-function TPSScript.GetCompMsgCount: Longint;
+function TPSScript.GetCompMsgCount: longint;
 begin
   Result := FComp.MsgCount;
 end;
 
-function TPSScript.GetExecErrorByteCodePosition: Cardinal;
+function TPSScript.GetExecErrorByteCodePosition: cardinal;
 begin
   Result := Exec.ExceptionPos;
 end;
@@ -716,12 +761,12 @@ begin
   Result := Exec.ExceptionString;
 end;
 
-function TPSScript.GetExecErrorPosition: Cardinal;
+function TPSScript.GetExecErrorPosition: cardinal;
 begin
   Result := FExec.TranslatePosition(Exec.ExceptionProcNo, Exec.ExceptionPos);
 end;
 
-function TPSScript.GetExecErrorProcNo: Cardinal;
+function TPSScript.GetExecErrorProcNo: cardinal;
 begin
   Result := Exec.ExceptionProcNo;
 end;
@@ -733,10 +778,10 @@ end;
 
 function TPSScript.GetVariable(const Name: tbtstring): PIFVariant;
 begin
-  Result := FExec.GetVar2(name);
+  Result := FExec.GetVar2(Name);
 end;
 
-function TPSScript.LoadExec: Boolean;
+function TPSScript.LoadExec: boolean;
 var
   s: tbtstring;
 begin
@@ -754,40 +799,46 @@ begin
 end;
 
 function TPSScript.ScriptUses(Sender: TPSPascalCompiler;
-  const Name: tbtstring): Boolean;
+  const Name: tbtstring): boolean;
 var
-  i: Longint;
+  i: longint;
 begin
   if Name = 'SYSTEM' then
   begin
-    for i := 0 to FPlugins.Count -1 do
+    for i := 0 to FPlugins.Count - 1 do
     begin
-      if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+      if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+        (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
         TPSPluginItem(FPlugins.Items[i]).Plugin.CompOnUses(Self);
     end;
-    for i := 0 to FPlugins.Count -1 do
+    for i := 0 to FPlugins.Count - 1 do
     begin
-      if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+      if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+        (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
         TPSPluginItem(FPlugins.Items[i]).Plugin.CompileImport1(self);
     end;
 
     DoOnCompImport;
 
-    for i := 0 to FPlugins.Count -1 do
+    for i := 0 to FPlugins.Count - 1 do
     begin
-      if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+      if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+        (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
         TPSPluginItem(FPlugins.Items[i]).Plugin.CompileImport2(Self);
     end;
 
     DoOnCompile;
 
-    Result := true;
-    for i := 0 to Sender.MsgCount -1 do begin
-      if Sender.Msg[i] is TPSPascalCompilerError then Result := false;
+    Result := True;
+    for i := 0 to Sender.MsgCount - 1 do
+    begin
+      if Sender.Msg[i] is TPSPascalCompilerError then
+        Result := False;
     end;
   end
-  else begin
-    Result := DoOnUnknowUses (Sender, Name);
+  else
+  begin
+    Result := DoOnUnknowUses(Sender, Name);
 {    If Not Result then
       Sender.MakeError('', ecUnknownIdentifier, Name);}
   end;
@@ -795,7 +846,7 @@ end;
 
 procedure TPSScript.SetCompiled(const Data: tbtstring);
 var
-  i: Integer;
+  i: integer;
 begin
   FExec.Clear;
   FExec.ClearspecialProcImports;
@@ -806,30 +857,33 @@ begin
     RI := nil;
   end;
   RI := TPSRuntimeClassImporter.Create;
-  for i := 0 to FPlugins.Count -1 do
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
-        TPSPluginItem(FPlugins.Items[i]).Plugin.ExecImport1(Self, ri);
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+      TPSPluginItem(FPlugins.Items[i]).Plugin.ExecImport1(Self, ri);
   end;
 
   DoOnExecImport(RI);
 
-  for i := 0 to FPlugins.Count -1 do
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
       TPSPluginItem(FPlugins.Items[i]).Plugin.ExecImport2(Self, ri);
   end;
   RegisterClassLibraryRuntime(Exec, RI);
-  for i := 0 to FPlugins.Count -1 do
+  for i := 0 to FPlugins.Count - 1 do
   begin
-    if (TPSPluginItem(FPlugins.Items[i]) <> nil)and (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
+    if (TPSPluginItem(FPlugins.Items[i]) <> nil) and
+      (TPSPluginItem(FPlugins.Items[i]).Plugin <> nil) then
       TPSPluginItem(FPlugins.Items[i]).Plugin.ExecOnUses(Self);
   end;
   if not FExec.LoadData(Data) then
     raise Exception.Create(GetExecErrorString);
 end;
 
-function TPSScript.SetVarToInstance(const VarName: tbtstring; cl: TObject): Boolean;
+function TPSScript.SetVarToInstance(const VarName: tbtstring; cl: TObject): boolean;
 var
   p: PIFVariant;
 begin
@@ -837,8 +891,10 @@ begin
   if p <> nil then
   begin
     SetVariantToClass(p, cl);
-    result := true;
-  end else result := false;
+    Result := True;
+  end
+  else
+    Result := False;
 end;
 
 procedure TPSScript.SetScript(const Value: TStrings);
@@ -847,66 +903,73 @@ begin
 end;
 
 
-function TPSScript.AddMethod(Slf, Ptr: Pointer;
-  const Decl: tbtstring): Boolean;
+function TPSScript.AddMethod(Slf, Ptr: Pointer; const Decl: tbtstring): boolean;
 begin
   Result := AddMethodEx(Slf, Ptr, Decl, cdRegister);
 end;
 
 function TPSScript.AddMethodEx(Slf, Ptr: Pointer; const Decl: tbtstring;
-  CallingConv: TDelphiCallingConvention): Boolean;
+  CallingConv: TDelphiCallingConvention): boolean;
 var
   P: TPSRegProc;
 begin
-  if not FCanAdd then begin Result := False; exit; end;
-  p := Comp.AddDelphiFunction(Decl);
+  if not FCanAdd then
+  begin
+    Result := False;
+    exit;
+  end;
+  p := comp.AddDelphiFunction(Decl);
   if p <> nil then
   begin
     Exec.RegisterDelphiMethod(Slf, Ptr, p.Name, CallingConv);
     Result := True;
-  end else Result := False;
+  end
+  else
+    Result := False;
 end;
 
 procedure TPSScript.OnLineEvent;
 begin
-  if @FOnLine <> nil then FOnLine(Self);
+  if @FOnLine <> nil then
+    FOnLine(Self);
 end;
 
-function TPSScript.GetRunning: Boolean;
+function TPSScript.GetRunning: boolean;
 begin
   Result := FExec.Status = isRunning;
 end;
 
-function TPSScript.GetExecErrorCol: Cardinal;
+function TPSScript.GetExecErrorCol: cardinal;
 var
-  s: tbtstring;
-  D1: Cardinal;
+  s:  tbtstring;
+  D1: cardinal;
 begin
   if not TranslatePositionRC(Exec.ExceptionProcNo, Exec.ExceptionPos, D1, Result, s) then
     Result := 0;
 end;
 
-function TPSScript.TranslatePositionPos(Proc, Position: Cardinal;
-  var Pos: Cardinal; var fn: tbtstring): Boolean;
+function TPSScript.TranslatePositionPos(Proc, Position: cardinal;
+  var Pos: cardinal; var fn: tbtstring): boolean;
 var
-  D1, D2: Cardinal;
+  D1, D2: cardinal;
 begin
-  Result := Exec.TranslatePositionEx(Exec.ExceptionProcNo, Exec.ExceptionPos, Pos, D1, D2, fn);
+  Result := Exec.TranslatePositionEx(Exec.ExceptionProcNo, Exec.ExceptionPos,
+    Pos, D1, D2, fn);
 end;
 
-function TPSScript.TranslatePositionRC(Proc, Position: Cardinal;
-  var Row, Col: Cardinal; var fn: tbtstring): Boolean;
+function TPSScript.TranslatePositionRC(Proc, Position: cardinal;
+  var Row, Col: cardinal; var fn: tbtstring): boolean;
 var
-  d1: Cardinal;
+  d1: cardinal;
 begin
   Result := Exec.TranslatePositionEx(Proc, Position, d1, Row, Col, fn);
 end;
 
 
-function TPSScript.GetExecErrorRow: Cardinal;
+function TPSScript.GetExecErrorRow: cardinal;
 var
-  D1: Cardinal;
-  s: tbtstring;
+  D1: cardinal;
+  s:  tbtstring;
 begin
   if not TranslatePositionRC(Exec.ExceptionProcNo, Exec.ExceptionPos, Result, D1, s) then
     Result := 0;
@@ -922,7 +985,7 @@ end;
 
 function TPSScript.GetProcMethod(const ProcName: tbtstring): TMethod;
 begin
-  Result := FExec.GetProcAsMethodN(ProcName)
+  Result := FExec.GetProcAsMethodN(ProcName);
 end;
 
 procedure TPSScript.SetMainFileName(const Value: tbtstring);
@@ -932,9 +995,10 @@ end;
 
 function TPSScript.GetExecErrorFileName: tbtstring;
 var
-  D1, D2: Cardinal;
+  D1, D2: cardinal;
 begin
-  if not TranslatePositionRC(Exec.ExceptionProcNo, Exec.ExceptionPos, D1, D2, Result) then
+  if not TranslatePositionRC(Exec.ExceptionProcNo, Exec.ExceptionPos,
+    D1, D2, Result) then
     Result := '';
 end;
 
@@ -945,25 +1009,30 @@ var
   t: TPSVariantIFC;
 begin
   v := GetVariable(VarName);
-  if (Atype = nil) or (v = nil) then raise Exception.Create(RPS_UnableToFindVariable);
-  t.Dta := @PPSVariantData(v).Data;
-  t.aType := v.FType;
-  t.VarParam := false;
+  if (Atype = nil) or (v = nil) then
+    raise Exception.Create(RPS_UnableToFindVariable);
+  t.Dta      := @PPSVariantData(v).Data;
+  t.aType    := v.FType;
+  t.VarParam := False;
   VNSetPointerTo(t, Data, aType);
 end;
 
-function TPSScript.AddRegisteredPTRVariable(const VarName,
-  VarType: tbtstring): Boolean;
+function TPSScript.AddRegisteredPTRVariable(const VarName, VarType: tbtstring): boolean;
 var
   FVar: TPSVar;
 begin
-  if not FCanAdd then begin Result := False; exit; end;
+  if not FCanAdd then
+  begin
+    Result := False;
+    exit;
+  end;
   FVar := FComp.AddUsedVariableN(varname, vartype);
   if fvar = nil then
-    result := False
-  else begin
+    Result := False
+  else
+  begin
     fvar.exportname := fvar.Name;
-    fvar.SaveAsPointer := true;
+    fvar.SaveAsPointer := True;
     Result := True;
   end;
 end;
@@ -973,13 +1042,13 @@ begin
   FDefines.Assign(Value);
 end;
 
-function TPSScript.ExecuteFunction(const Params: array of Variant;
-  const ProcName: tbtstring): Variant;
+function TPSScript.ExecuteFunction(const Params: array of variant;
+  const ProcName: tbtstring): variant;
 begin
   if SuppressLoadData then
     LoadExec;
 
-  DoOnExecute (RI);
+  DoOnExecute(RI);
 
   FExec.DebugEnabled := FUseDebugInfo;
 
@@ -998,95 +1067,102 @@ begin
   Result := Exec.GetTypeNo(Exec.GetType(Name));
 end;
 
-procedure TPSScript.Notification(AComponent: TComponent;
-  Operation: TOperation);
+procedure TPSScript.Notification(AComponent: TComponent; Operation: TOperation);
 var
-  i: Longint;
+  i: longint;
 begin
   inherited Notification(AComponent, Operation);
   if (Operation = opRemove) and (aComponent is TPSPlugin) then
   begin
-    for i := Plugins.Count -1 downto 0 do
+    for i := Plugins.Count - 1 downto 0 do
     begin
       if (Plugins.Items[i] as TPSPluginItem).Plugin = aComponent then
         {$IFDEF FPC_COL_NODELETE}
         TCollectionItem(Plugins.Items[i]).Free;
         {$ELSE}
-        Plugins.Delete(i);
+      Plugins.Delete(i);
         {$ENDIF}
     end;
   end;
 end;
 
-function TPSScript.AddNotificationVariant(const VarName: tbtstring): Boolean;
+function TPSScript.AddNotificationVariant(const VarName: tbtstring): boolean;
 begin
   Result := AddRegisteredVariable(VarName, '!NOTIFICATIONVARIANT');
 end;
 
 procedure TPSScript.DoOnProcessDirective(Sender: TPSPreProcessor;
-  Parser: TPSPascalPreProcessorParser; const Active: Boolean;
-  const DirectiveName, DirectiveParam: tbtstring; var Continue: Boolean);
+  Parser: TPSPascalPreProcessorParser; const Active: boolean;
+  const DirectiveName, DirectiveParam: tbtstring; var Continue: boolean);
 begin
-  If Assigned (OnProcessDirective) then
-    OnProcessDirective (Sender, Parser, Active, DirectiveName, DirectiveParam, Continue);
+  if Assigned(OnProcessDirective) then
+    OnProcessDirective(Sender, Parser, Active, DirectiveName, DirectiveParam, Continue);
 end;
 
 procedure TPSScript.DoOnProcessUnknowDirective(Sender: TPSPreProcessor;
-  Parser: TPSPascalPreProcessorParser; const Active: Boolean;
-  const DirectiveName, DirectiveParam: tbtstring; var Continue: Boolean);
+  Parser: TPSPascalPreProcessorParser; const Active: boolean;
+  const DirectiveName, DirectiveParam: tbtstring; var Continue: boolean);
 begin
-  If Assigned (OnProcessUnknowDirective) then
-    OnProcessUnknowDirective (Sender, Parser, Active, DirectiveName, DirectiveParam, Continue);
+  if Assigned(OnProcessUnknowDirective) then
+    OnProcessUnknowDirective(Sender, Parser, Active, DirectiveName,
+      DirectiveParam, Continue);
 end;
 
-function TPSScript.DoOnNeedFile(Sender: TObject;
-  const OrginFileName: tbtstring; var FileName, Output: tbtstring): Boolean;
+function TPSScript.DoOnNeedFile(Sender: TObject; const OrginFileName: tbtstring;
+  var FileName, Output: tbtstring): boolean;
 begin
-  If Assigned (OnNeedFile) then
+  if Assigned(OnNeedFile) then
     Result := OnNeedFile(Sender, OrginFileName, FileName, Output)
   else
     Result := False;
 end;
 
 function TPSScript.DoOnUnknowUses(Sender: TPSPascalCompiler;
-  const Name: tbtstring): Boolean;
+  const Name: tbtstring): boolean;
 var
-  lPrevAllowUnit: Boolean;
-  lData, lName: tbtstring;
+  lPrevAllowUnit: boolean;
+  lData, lName:   tbtstring;
 begin
-  if assigned(FOnFindUnknownFile) then begin
+  if assigned(FOnFindUnknownFile) then
+  begin
     lName := Name;
-    if FOnFindUnknownFile(self, '', lName, lData) then begin
-      lPrevAllowUnit := FComp.AllowUnit;
-      FComp.AllowUnit := true;
+    if FOnFindUnknownFile(self, '', lName, lData) then
+    begin
+      lPrevAllowUnit  := FComp.AllowUnit;
+      FComp.AllowUnit := True;
       if FUsePreProcessor then
       begin
         FPP.Defines.Assign(FDefines);
-        Fpp.MainFile := lData;
+        Fpp.MainFile     := lData;
         Fpp.MainFileName := lName;
         Fpp.PreProcess(lName, lData);
         Result := FComp.Compile(lData);
         Fpp.AdjustMessages(FComp);
-      end else
+      end
+      else
       begin
         FComp.OnTranslateLineInfo := nil;
         Result := FComp.Compile(lData);
       end;
       FComp.AllowUnit := lPrevAllowUnit;
-    end else begin
+    end
+    else
+    begin
       FComp.MakeError(FComp.UnitName, ecUnknownIdentifier, lName);
-      Result := false;
+      Result := False;
     end;
-  end else begin
+  end
+  else
+  begin
     FComp.MakeError(FComp.UnitName, ecUnknownIdentifier, lName);
-    result := false;
+    Result := False;
   end;
 end;
 
 procedure TPSScript.DoOnCompImport;
 begin
   if assigned(OnCompImport) then
-    OnCompImport(Self, Comp);
+    OnCompImport(Self, comp);
 end;
 
 procedure TPSScript.DoOnCompile;
@@ -1097,21 +1173,22 @@ end;
 
 procedure TPSScript.DoOnExecute;
 begin
-  If Assigned (OnExecute) then
-    OnExecute (Self);
+  if Assigned(OnExecute) then
+    OnExecute(Self);
 end;
 
 procedure TPSScript.DoAfterExecute;
 begin
-  if Assigned (OnAfterExecute) then
+  if Assigned(OnAfterExecute) then
     OnAfterExecute(Self);
 end;
 
-function TPSScript.DoVerifyProc(Sender: TPSScript;
-  Proc: TPSInternalProcedure; const Decl: tbtstring): Boolean;
+function TPSScript.DoVerifyProc(Sender: TPSScript; Proc: TPSInternalProcedure;
+  const Decl: tbtstring): boolean;
 begin
-  if Assigned(OnVerifyProc) then begin
-    Result := false;
+  if Assigned(OnVerifyProc) then
+  begin
+    Result := False;
     OnVerifyProc(Sender, Proc, Decl, Result);
     Result := not Result;
   end
@@ -1119,24 +1196,22 @@ begin
     Result := True;
 end;
 
-procedure TPSScript.DoOnExecImport(
-  RunTimeImporter: TPSRuntimeClassImporter);
+procedure TPSScript.DoOnExecImport(RunTimeImporter: TPSRuntimeClassImporter);
 begin
   if assigned(OnExecImport) then
     OnExecImport(Self, FExec, RunTimeImporter);
 end;
 
-function TPSScript.DoOnGetNotificationVariant(const Name: tbtstring): Variant;
+function TPSScript.DoOnGetNotificationVariant(const Name: tbtstring): variant;
 begin
-  if Not Assigned (OnGetNotificationVariant) then
+  if not Assigned(OnGetNotificationVariant) then
     raise Exception.Create(RPS_UnableToReadVariant);
   Result := OnGetNotificationVariant(Self, Name);
 end;
 
-procedure TPSScript.DoOnSetNotificationVariant(const Name: tbtstring;
-  V: Variant);
+procedure TPSScript.DoOnSetNotificationVariant(const Name: tbtstring; V: variant);
 begin
-  if Not Assigned (OnSetNotificationVariant) then
+  if not Assigned(OnSetNotificationVariant) then
     raise Exception.Create(RPS_UnableToWriteVariant);
   OnSetNotificationVariant(Self, Name, v);
 end;
@@ -1145,7 +1220,7 @@ end;
 
 procedure TPSDllPlugin.CompOnUses;
 begin
-  CompExec.Comp.OnExternalProc := DllExternalProc;
+  CompExec.comp.OnExternalProc := DllExternalProc;
 end;
 
 procedure TPSDllPlugin.ExecOnUses;
@@ -1157,11 +1232,12 @@ end;
 
 { TPS3DebugCompExec }
 
-procedure LineInfo(Sender: TPSDebugExec; const FileName: tbtstring; Position, Row, Col: Cardinal);
+procedure LineInfo(Sender: TPSDebugExec; const FileName: tbtstring;
+  Position, Row, Col: cardinal);
 var
-  Dc: TPSScriptDebugger;
-  h, i: Longint;
-  bi: TPSBreakPointInfo;
+  Dc:   TPSScriptDebugger;
+  h, i: longint;
+  bi:   TPSBreakPointInfo;
   lFileName: tbtstring;
 begin
   Dc := Sender.Id;
@@ -1170,15 +1246,18 @@ begin
   else
     lFileName := FileName;
 
-  if @dc.FOnLineInfo <> nil then dc.FOnLineInfo(dc, lFileName, Position, Row, Col);
-  if row = dc.FLastRow then exit;
+  if @dc.FOnLineInfo <> nil then
+    dc.FOnLineInfo(dc, lFileName, Position, Row, Col);
+  if row = dc.FLastRow then
+    exit;
   dc.FLastRow := row;
-  h := MakeHash(lFileName);
+  h  := MakeHash(lFileName);
   bi := nil;
-  for i := DC.FBreakPoints.Count -1 downto 0 do
+  for i := DC.FBreakPoints.Count - 1 downto 0 do
   begin
     bi := Dc.FBreakpoints[i];
-    if (h = bi.FileNameHash) and (lFileName = bi.FileName) and (Cardinal(bi.Line) = Row) then
+    if (h = bi.FileNameHash) and (lFileName = bi.FileName) and
+      (cardinal(bi.Line) = Row) then
     begin
       Break;
     end;
@@ -1186,7 +1265,8 @@ begin
   end;
   if bi <> nil then
   begin
-    if @dc.FOnBreakpoint <> nil then dc.FOnBreakpoint(dc, lFileName, Position, Row, Col);
+    if @dc.FOnBreakpoint <> nil then
+      dc.FOnBreakpoint(dc, lFileName, Position, Row, Col);
     dc.Pause;
   end;
 end;
@@ -1202,13 +1282,13 @@ begin
     dc.Exec.Run;
 end;
 
-procedure TPSScriptDebugger.ClearBreakPoint(const Fn: tbtstring; Line: Integer);
+procedure TPSScriptDebugger.ClearBreakPoint(const Fn: tbtstring; Line: integer);
 var
-  h, i: Longint;
-  bi: TPSBreakPointInfo;
+  h, i: longint;
+  bi:   TPSBreakPointInfo;
 begin
   h := MakeHash(Fn);
-  for i := FBreakPoints.Count -1 downto 0 do
+  for i := FBreakPoints.Count - 1 downto 0 do
   begin
     bi := FBreakpoints[i];
     if (h = bi.FileNameHash) and (Fn = bi.FileName) and (bi.Line = Line) then
@@ -1222,26 +1302,27 @@ end;
 
 procedure TPSScriptDebugger.ClearBreakPoints;
 var
-  i: Longint;
+  i: longint;
 begin
-  for i := FBreakPoints.Count -1 downto 0 do
+  for i := FBreakPoints.Count - 1 downto 0 do
     TPSBreakPointInfo(FBreakPoints[i]).Free;
-  FBreakPoints.Clear;;
+  FBreakPoints.Clear;
+  ;
 end;
 
 constructor TPSScriptDebugger.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FBreakPoints := TIFList.Create;
+  FBreakPoints     := TIFList.Create;
   FExec.OnSourceLine := LineInfo;
   FExec.OnIdleCall := IdleCall;
 end;
 
 destructor TPSScriptDebugger.Destroy;
 var
-  i: Longint;
+  i: longint;
 begin
-  for i := FBreakPoints.Count -1 downto 0 do
+  for i := FBreakPoints.Count - 1 downto 0 do
   begin
     TPSBreakPointInfo(FBreakPoints[i]).Free;
   end;
@@ -1249,35 +1330,37 @@ begin
   inherited Destroy;
 end;
 
-function TPSScriptDebugger.GetBreakPoint(I: Integer): TPSBreakPointInfo;
+function TPSScriptDebugger.GetBreakPoint(I: integer): TPSBreakPointInfo;
 begin
   Result := FBreakPoints[i];
 end;
 
-function TPSScriptDebugger.GetBreakPointCount: Longint;
+function TPSScriptDebugger.GetBreakPointCount: longint;
 begin
   Result := FBreakPoints.Count;
 end;
 
 function TPSScriptDebugger.GetVarContents(const Name: tbtstring): tbtstring;
 var
-  i: Longint;
-  pv: PIFVariant;
+  i:     longint;
+  pv:    PIFVariant;
   s1, s: tbtstring;
 begin
   s := Uppercase(Name);
   if pos('.', s) > 0 then
   begin
-    s1 := copy(s,1,pos('.', s) -1);
-    delete(s,1,pos('.', Name));
-  end else begin
+    s1 := copy(s, 1, pos('.', s) - 1);
+    Delete(s, 1, pos('.', Name));
+  end
+  else
+  begin
     s1 := s;
-    s := '';
+    s  := '';
   end;
   pv := nil;
-  for i := 0 to Exec.CurrentProcVars.Count -1 do
+  for i := 0 to Exec.CurrentProcVars.Count - 1 do
   begin
-    if Uppercase(Exec.CurrentProcVars[i]) =  s1 then
+    if Uppercase(Exec.CurrentProcVars[i]) = s1 then
     begin
       pv := Exec.GetProcVar(i);
       break;
@@ -1285,9 +1368,9 @@ begin
   end;
   if pv = nil then
   begin
-    for i := 0 to Exec.CurrentProcParams.Count -1 do
+    for i := 0 to Exec.CurrentProcParams.Count - 1 do
     begin
-      if Uppercase(Exec.CurrentProcParams[i]) =  s1 then
+      if Uppercase(Exec.CurrentProcParams[i]) = s1 then
       begin
         pv := Exec.GetProcParam(i);
         break;
@@ -1296,9 +1379,9 @@ begin
   end;
   if pv = nil then
   begin
-    for i := 0 to Exec.GlobalVarNames.Count -1 do
+    for i := 0 to Exec.GlobalVarNames.Count - 1 do
     begin
-      if Uppercase(Exec.GlobalVarNames[i]) =  s1 then
+      if Uppercase(Exec.GlobalVarNames[i]) = s1 then
       begin
         pv := Exec.GetGlobalVar(i);
         break;
@@ -1311,18 +1394,18 @@ begin
     Result := PSVariantToString(NewTPSVariantIFC(pv, False), s);
 end;
 
-function TPSScriptDebugger.HasBreakPoint(const Fn: tbtstring; Line: Integer): Boolean;
+function TPSScriptDebugger.HasBreakPoint(const Fn: tbtstring; Line: integer): boolean;
 var
-  h, i: Longint;
-  bi: TPSBreakPointInfo;
+  h, i: longint;
+  bi:   TPSBreakPointInfo;
 begin
   h := MakeHash(Fn);
-  for i := FBreakPoints.Count -1 downto 0 do
+  for i := FBreakPoints.Count - 1 downto 0 do
   begin
     bi := FBreakpoints[i];
     if (h = bi.FileNameHash) and (Fn = bi.FileName) and (bi.Line = Line) then
     begin
-      Result := true;
+      Result := True;
       exit;
     end;
   end;
@@ -1345,13 +1428,13 @@ begin
     raise Exception.Create(RPS_NotRunning);
 end;
 
-procedure TPSScriptDebugger.SetBreakPoint(const fn: tbtstring; Line: Integer);
+procedure TPSScriptDebugger.SetBreakPoint(const fn: tbtstring; Line: integer);
 var
-  i, h: Longint;
-  BI: TPSBreakPointInfo;
+  i, h: longint;
+  BI:   TPSBreakPointInfo;
 begin
   h := MakeHash(fn);
-  for i := FBreakPoints.Count -1 downto 0 do
+  for i := FBreakPoints.Count - 1 downto 0 do
   begin
     bi := FBreakpoints[i];
     if (h = bi.FileNameHash) and (fn = bi.FileName) and (bi.Line = Line) then
@@ -1360,13 +1443,13 @@ begin
   bi := TPSBreakPointInfo.Create;
   FBreakPoints.Add(bi);
   bi.FileName := fn;
-  bi.Line := Line;
+  bi.Line     := Line;
 end;
 
 procedure TPSScriptDebugger.SetMainFileName(const Value: tbtstring);
 var
   OldFn: tbtstring;
-  h1, h2,i: Longint;
+  h1, h2, i: longint;
   bi: TPSBreakPointInfo;
 begin
   OldFn := FMainFileName;
@@ -1375,14 +1458,15 @@ begin
   h2 := MakeHash(Value);
   if OldFn <> Value then
   begin
-    for i := FBreakPoints.Count -1 downto 0 do
+    for i := FBreakPoints.Count - 1 downto 0 do
     begin
       bi := FBreakPoints[i];
       if (bi.FileNameHash = h1) and (bi.FileName = OldFn) then
       begin
         bi.FFileNameHash := h2;
-        bi.FFileName := Value;
-      end else if (bi.FileNameHash = h2) and (bi.FileName = Value) then
+        bi.FFileName     := Value;
+      end
+      else if (bi.FileNameHash = h2) and (bi.FileName = Value) then
       begin
         // It's already the new filename, that can't be right, so remove all the breakpoints there
         FBreakPoints.Delete(i);
@@ -1392,7 +1476,7 @@ begin
   end;
 end;
 
-procedure TPSScriptDebugger.StepInto;            
+procedure TPSScriptDebugger.StepInto;
 begin
   if (FExec.Status = isRunning) or (FExec.Status = isLoaded) then
     FExec.StepInto
@@ -1415,9 +1499,9 @@ end;
 procedure TPSPluginItem.Assign(Source: TPersistent); //Birb
 begin
   if Source is TPSPluginItem then
-   plugin:=((source as TPSPluginItem).plugin)
+    plugin := ((Source as TPSPluginItem).plugin)
   else
-   inherited;
+    inherited;
 end;
 
 function TPSPluginItem.GetDisplayName: string;
@@ -1431,7 +1515,7 @@ end;
 procedure TPSPluginItem.SetPlugin(const Value: TPSPlugin);
 begin
   FPlugin := Value;
-  If Value <> nil then
+  if Value <> nil then
     Value.FreeNotification(TPSPlugins(Collection).FCompExec);
   Changed(False);
 end;
@@ -1453,14 +1537,14 @@ end;
 
 procedure TPSBreakPointInfo.SetFileName(const Value: tbtstring);
 begin
-  FFileName := Value;
+  FFileName     := Value;
   FFileNameHash := MakeHash(Value);
 end;
 
 { TPSCustomPlugin }
 procedure TPSCustumPlugin.CompileImport1(CompExec: TPSScript);
 begin
-  IF @FOnCompileImport1 <> nil then
+  if @FOnCompileImport1 <> nil then
     FOnCompileImport1(CompExec)
   else
     inherited;
@@ -1468,7 +1552,7 @@ end;
 
 procedure TPSCustumPlugin.CompileImport2(CompExec: TPSScript);
 begin
-  IF @FOnCompileImport2 <> nil then
+  if @FOnCompileImport2 <> nil then
     FOnCompileImport2(CompExec)
   else
     inherited;
@@ -1476,7 +1560,7 @@ end;
 
 procedure TPSCustumPlugin.CompOnUses(CompExec: TPSScript);
 begin
-  IF @FOnCompOnUses <> nil then
+  if @FOnCompOnUses <> nil then
     FOnCompOnUses(CompExec)
   else
     inherited;
@@ -1485,7 +1569,7 @@ end;
 procedure TPSCustumPlugin.ExecImport1(CompExec: TPSScript;
   const ri: TPSRuntimeClassImporter);
 begin
-  IF @FOnExecImport1 <> nil then
+  if @FOnExecImport1 <> nil then
     FOnExecImport1(CompExec, compExec.Exec, ri)
   else
     inherited;
@@ -1494,7 +1578,7 @@ end;
 procedure TPSCustumPlugin.ExecImport2(CompExec: TPSScript;
   const ri: TPSRuntimeClassImporter);
 begin
-  IF @FOnExecImport2 <> nil then
+  if @FOnExecImport2 <> nil then
     FOnExecImport1(CompExec, compExec.Exec, ri)
   else
     inherited;
@@ -1502,7 +1586,7 @@ end;
 
 procedure TPSCustumPlugin.ExecOnUses(CompExec: TPSScript);
 begin
-  IF @FOnExecOnUses <> nil then
+  if @FOnExecOnUses <> nil then
     FOnExecOnUses(CompExec)
   else
     inherited;

@@ -31,23 +31,54 @@ program ksp;
 
 {$I ksp_version.inc}
 
-uses
-  {$IFDEF UNIX}//{$IFDEF UseCThreads}
-  cthreads,
-  //{$ENDIF}
-  {$ENDIF}
+uses {$IFDEF UNIX} //{$IFDEF UseCThreads}
+  cthreads,  //{$ENDIF}
+ {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms
-  { you can add units after this }, main, LResources, BASSPlayer, Bass,
-  RT_basscd, PlayLists, SpkXMLParser, ID3Mgmnt, FileSupport,
-  KSPMessages, KSPConstsVars, FileSupportLst, kspfiles, LoadPlsThread,
-  FileUtils, MRNG, profilefunc, KSPStrings, SQLDBLaz, MediaItems,
-  MediaItemsInfo, KSPCrossList, KSPStartup, MediaFolders, FoldersScan,
-  BookmarksU, PresetsU, app_db_utils, app_sql, MultiLog, complib, KSPThreadUtils, Support,
-  WAVfile, APETag, OggVorbis
-  {$IFDEF KSP_STATIC}, KSPDLLFileUtils{$ENDIF}
-  , MPEGaudio, MPEGInfoBox, suggfind, cplayer
-  {$IFDEF KSP_LUA}, ksplua, closefrm{$ENDIF};
+  Forms { you can add units after this },
+  main,
+  LResources,
+  BASSPlayer,
+  Bass,
+  RT_basscd,
+  PlayLists,
+  SpkXMLParser,
+  ID3Mgmnt,
+  FileSupport,
+  KSPMessages,
+  KSPConstsVars,
+  FileSupportLst,
+  kspfiles,
+  LoadPlsThread,
+  FileUtils,
+  MRNG,
+  profilefunc,
+  KSPStrings,
+  SQLDBLaz,
+  MediaItems,
+  MediaItemsInfo,
+  KSPCrossList,
+  KSPStartup,
+  MediaFolders,
+  FoldersScan,
+  BookmarksU,
+  PresetsU,
+  app_db_utils,
+  app_sql,
+  MultiLog,
+  complib,
+  KSPThreadUtils,
+  Support,
+  WAVfile,
+  APETag,
+  OggVorbis {$IFDEF KSP_STATIC},
+  KSPDLLFileUtils {$ENDIF}  ,
+  MPEGaudio,
+  MPEGInfoBox,
+  suggfind,
+  cplayer {$IFDEF KSP_LUA},
+  ksplua,
+  closefrm {$ENDIF};
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 
@@ -60,4 +91,3 @@ begin
   Application.CreateForm(TKSPMainWindow, KSPMainWindow);
   Application.Run;
 end.
-

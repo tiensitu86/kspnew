@@ -32,22 +32,24 @@ interface
 
 uses SysUtils, Classes;
 
-type TCrossEntry = class
-      SubList: TStringList;
-      Name: string;
-    public
-      constructor Create;
-      destructor Destroy;
+type
+  TCrossEntry = class
+    SubList: TStringList;
+    Name:    string;
+  public
+    constructor Create;
+    destructor Destroy;
   end;
 
-type TCrossList = class(TList)
-      fEntry: TCrossEntry;
-    public
-      procedure Add(name: string);
-      destructor Destroy;
-      property Entry: TCrossEntry read fEntry write fEntry;
-      procedure Sort;
-    end;
+type
+  TCrossList = class(TList)
+    fEntry: TCrossEntry;
+  public
+    procedure Add(Name: string);
+    destructor Destroy;
+    property Entry: TCrossEntry Read fEntry Write fEntry;
+    procedure Sort;
+  end;
 
 implementation
 
@@ -61,24 +63,24 @@ var
   i: integer;
 begin
   inherited Sort(@CompareName);
-  if Count>0 then
-    for i:=0 to Count-1 do
+  if Count > 0 then
+    for i := 0 to Count - 1 do
       TCrossEntry(Items[i]).SubList.Sort;
 end;
 
-procedure TCrossList.Add(name: string);
+procedure TCrossList.Add(Name: string);
 var
   T: TCrossEntry;
 begin
-  T:=TCrossEntry.Create;
-  T.Name:=name;
+  T      := TCrossEntry.Create;
+  T.Name := Name;
   inherited Add(T);
 end;
 
 constructor TCrossEntry.Create;
 begin
   inherited Create;
-  SubList:=TStringList.Create;
+  SubList := TStringList.Create;
 end;
 
 destructor TCrossEntry.Destroy;
@@ -91,8 +93,8 @@ destructor TCrossList.Destroy;
 var
   i: integer;
 begin
-  if Count>0 then
-    for i:=0 to Count-1 do
+  if Count > 0 then
+    for i := 0 to Count - 1 do
       TCrossEntry(Items[i]).Free;
   inherited Destroy;
 end;

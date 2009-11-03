@@ -7,21 +7,21 @@ interface
 uses SysUtils, Graphics, ID3Mgmnt;
 
 const
-  art='[%artist]';
-  album='[%album]';
-  title = '[%title]';
-  genre = '[%genre]';
-  year = '[%year]';
+  art     = '[%artist]';
+  album   = '[%album]';
+  title   = '[%title]';
+  genre   = '[%genre]';
+  year    = '[%year]';
   comment = '[%comment]';
-  track = '[%track]';
+  track   = '[%track]';
   tracklength = '[%length]';
   plindex = '[%plindex]';
 
 function MinimizeName(const Filename: PChar; Canvas: TCanvas;
-  MaxLen: Integer): TFileName;
-procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
-function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
-  PlsIndex: integer): ShortString;
+  MaxLen: integer): TFileName;
+procedure RemoveForbiddenChars(var Str: string; ReplaceWith: char);
+function ProduceFormatedString(Input: ShortString; Tag: TID3Tag;
+  LengthVal: cardinal; PlsIndex: integer): ShortString;
 function IsCD(str: string): boolean;
 function IsStream(str: string): boolean;
 
@@ -29,8 +29,8 @@ implementation
 
 procedure CutFirstDirectory(var S: TFileName);
 var
-  Root: Boolean;
-  P: Integer;
+  Root: boolean;
+  P:    integer;
 begin
   if S = '\' then
     S := ''
@@ -45,7 +45,7 @@ begin
       Root := False;
     if S[1] = '.' then
       Delete(S, 1, 4);
-    P := AnsiPos('\',S);
+    P := AnsiPos('\', S);
     if P <> 0 then
     begin
       Delete(S, 1, P);
@@ -59,15 +59,15 @@ begin
 end;
 
 function MinimizeName(const Filename: PChar; Canvas: TCanvas;
-  MaxLen: Integer): TFileName;
+  MaxLen: integer): TFileName;
 var
   Drive: TFileName;
-  Dir: TFileName;
-  Name: TFileName;
+  Dir:   TFileName;
+  Name:  TFileName;
 begin
   Result := FileName;
-  Dir := ExtractFilePath(Result);
-  Name := ExtractFileName(Result);
+  Dir    := ExtractFilePath(Result);
+  Name   := ExtractFileName(Result);
 
   if (Length(Dir) >= 2) and (Dir[2] = ':') then
   begin
@@ -81,7 +81,7 @@ begin
     if Dir = '\...\' then
     begin
       Drive := '';
-      Dir := '...\';
+      Dir   := '...\';
     end
     else if Dir = '' then
       Drive := ''
@@ -97,93 +97,103 @@ var
 begin
   NameHeader1 := copy(str, 1, 7);
   NameHeader2 := copy(str, 1, 6);
-  Result:=(NameHeader1 = 'http://') or (NameHeader2 = 'ftp://') or
-      (NameHeader2 = 'mms://');
+  Result      := (NameHeader1 = 'http://') or (NameHeader2 = 'ftp://') or
+    (NameHeader2 = 'mms://');
 end;
 
 function IsCD(str: string): boolean;
 begin
-    Result:=(Pos('CDA://', UpperCase(str))=1);
+  Result := (Pos('CDA://', UpperCase(str)) = 1);
 end;
 
-function ProduceFormatedString(Input: ShortString; Tag: TID3Tag; LengthVal: Cardinal;
-  PlsIndex: integer): ShortString;
+function ProduceFormatedString(Input: ShortString; Tag: TID3Tag;
+  LengthVal: cardinal; PlsIndex: integer): ShortString;
 var
   s: ShortString;
   i: integer;
 begin
-  s:=Input;
+  s := Input;
 
-  i:=pos(art, s);
-  if i>0 then begin
-      Delete(s, i, Length(art));
-      Insert(Tag.Artist, s, i);
-    end;
+  i := pos(art, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(art));
+    Insert(Tag.Artist, s, i);
+  end;
 
-  i:=pos(album, s);
-  if i>0 then begin
-      Delete(s, i, Length(album));
-      Insert(Tag.Album, s, i);
-    end;
+  i := pos(album, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(album));
+    Insert(Tag.Album, s, i);
+  end;
 
-  i:=pos(title, s);
-  if i>0 then begin
-      Delete(s, i, Length(title));
-      Insert(Tag.Title, s, i);
-    end;
+  i := pos(title, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(title));
+    Insert(Tag.Title, s, i);
+  end;
 
-  i:=pos(genre, s);
-  if i>0 then begin
-      Delete(s, i, Length(genre));
-      Insert(Tag.Genre, s, i);
-    end;
+  i := pos(genre, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(genre));
+    Insert(Tag.Genre, s, i);
+  end;
 
-  i:=pos(year, s);
-  if i>0 then begin
-      Delete(s, i, Length(year));
-      Insert(Tag.Year, s, i);
-    end;
+  i := pos(year, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(year));
+    Insert(Tag.Year, s, i);
+  end;
 
-  i:=pos(track, s);
-  if i>0 then begin
-      Delete(s, i, Length(track));
-      Insert(IntToStr(Tag.Track), s, i);
-    end;
+  i := pos(track, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(track));
+    Insert(IntToStr(Tag.Track), s, i);
+  end;
 
-  i:=pos(comment, s);
-  if i>0 then begin
-      Delete(s, i, Length(comment));
-      Insert(Tag.Comment, s, i);
-    end;
+  i := pos(comment, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(comment));
+    Insert(Tag.Comment, s, i);
+  end;
 
-  i:=pos(plindex, s);
-  if i>0 then begin
-      Delete(s, i, Length(plindex));
-      Insert(IntToStr(PlsIndex), s, i);
-    end;
+  i := pos(plindex, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(plindex));
+    Insert(IntToStr(PlsIndex), s, i);
+  end;
 
-  i:=pos(tracklength, s);
-  if i>0 then begin
-      Delete(s, i, Length(tracklength));
-      if LengthVal > (1000 * 60 * 60) then
-        Insert(FormatDateTime ('hh:nn:ss', LengthVal / (1000 * 24 * 60 * 60)), s, i)
-      else
-        Insert(FormatDateTime ('nn:ss', LengthVal / (1000 * 24 * 60 * 60)), s, i);
-    end;
+  i := pos(tracklength, s);
+  if i > 0 then
+  begin
+    Delete(s, i, Length(tracklength));
+    if LengthVal > (1000 * 60 * 60) then
+      Insert(FormatDateTime('hh:nn:ss', LengthVal / (1000 * 24 * 60 * 60)), s, i)
+    else
+      Insert(FormatDateTime('nn:ss', LengthVal / (1000 * 24 * 60 * 60)), s, i);
+  end;
 
-  Result:=s;
+  Result := s;
 end;
 
-procedure RemoveForbiddenChars(var Str: String; ReplaceWith: Char);
+procedure RemoveForbiddenChars(var Str: string; ReplaceWith: char);
 var
   i: integer;
 begin
-  if Str='' then Exit;
+  if Str = '' then
+    Exit;
 
-  for i:=1 to Length(Str) do
+  for i := 1 to Length(Str) do
     case Str[i] of
       '\', '/', ':', '*', '?', '"', '<', '>', '|':
-        str[i]:=ReplaceWith;
+        str[i] := ReplaceWith;
     end;
 end;
 

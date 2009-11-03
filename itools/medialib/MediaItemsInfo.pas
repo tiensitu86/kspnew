@@ -32,7 +32,8 @@ interface
 
 uses Classes, Playlists, SysUtils, ID3Mgmnt;
 
-type TMediaItemInfo = class(TObject)
+type
+  TMediaItemInfo = class(TObject)
     //f: TXMLEntryFile;
   public
     Entry: TPLEntry;
@@ -50,7 +51,7 @@ end;
 
 destructor TMediaItemInfo.Destroy;
 begin
-  inherited Destroy
+  inherited Destroy;
 end;
 
 end.

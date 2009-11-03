@@ -13,13 +13,13 @@ type
   { TKSPOptions }
 
   TKSPOptions = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    CheckBox1: TCheckBox;
-    DBName: TLabeledEdit;
+    Button1:    TButton;
+    Button2:    TButton;
+    CheckBox1:  TCheckBox;
+    DBName:     TLabeledEdit;
     DBPassword: TLabeledEdit;
     DBUsername: TLabeledEdit;
-    Memo1: TMemo;
+    Memo1:      TMemo;
     ServerAddress: TLabeledEdit;
     ServerPort: TLabeledEdit;
     procedure Button2Click(Sender: TObject);
@@ -28,13 +28,14 @@ type
     { private declarations }
   public
     { public declarations }
-  end; 
+  end;
 
 var
   KSPOptions: TKSPOptions;
 
 resourcestring
-  sErrorConnectionToDatabase='An error occured while trying to connect to database server.\nPlease read applications documentation for more details\n\nError code: %d';
+  sErrorConnectionToDatabase =
+    'An error occured while trying to connect to database server.\nPlease read applications documentation for more details\n\nError code: %d';
 
 implementation
 
@@ -44,18 +45,19 @@ uses app_db_utils, IniFiles, KSPConstsVars, KSPStrings;
 
 procedure TKSPOptions.Button2Click(Sender: TObject);
 var
-  i: integer;
+  i:     integer;
   AppDB: TAppDBConnection;
   ConfFileName: string;
-  Ini:TIniFile;
+  Ini:   TIniFile;
 begin
-//  KSPOptions.SQLConnection1.Params.SaveToFile(ExtractFilePath(ParamStr(0))+'db.ini');
-  AppDB:=TAppDBConnection.Create;
+  //  KSPOptions.SQLConnection1.Params.SaveToFile(ExtractFilePath(ParamStr(0))+'db.ini');
+  AppDB := TAppDBConnection.Create;
 
-  if not CheckBox1.Checked then begin
+  if not CheckBox1.Checked then
+  begin
 
-    ConfFileName:=KSPDataFolder+'db\ksp2.kspdb';
-    Ini:=TIniFile.Create(ConfFileName);
+    ConfFileName := KSPDataFolder + 'db\ksp2.kspdb';
+    Ini := TIniFile.Create(ConfFileName);
     Ini.WriteString('MySQLConnection', 'DriverName', 'MySQL');
     Ini.WriteString('MySQLConnection', 'HostName', ServerAddress.Text);
     Ini.WriteString('MySQLConnection', 'Port', ServerPort.Text);
@@ -71,38 +73,44 @@ begin
 
     Ini.Free;
 
-    i:=AppDB.InitDatabase(ConfFileName);
+    i := AppDB.InitDatabase(ConfFileName);
 
-  end else i:=AppDB.InitDatabase;
+  end
+  else
+    i := AppDB.InitDatabase;
 
   AppDB.Free;
-  if i<>0 then
-    MessageDlg(Format(sErrorConnectionToDatabase, [i]), mtError, [mbOk], 0) else
-    begin
-      ModalResult:=mrOk;
-      DeleteFile(KSPDataFolder+'db\ksp.kspdb');
-      if not CheckBox1.Checked then
-        RenameFile(ConfFileName, KSPDataFolder+'db\ksp.kspdb');
-    end;
+  if i <> 0 then
+    MessageDlg(Format(sErrorConnectionToDatabase, [i]), mtError, [mbOK], 0)
+  else
+  begin
+    ModalResult := mrOk;
+    DeleteFile(KSPDataFolder + 'db\ksp.kspdb');
+    if not CheckBox1.Checked then
+      RenameFile(ConfFileName, KSPDataFolder + 'db\ksp.kspdb');
+  end;
 end;
 
 procedure TKSPOptions.FormCreate(Sender: TObject);
 var
-  Ini:TIniFile;
+  Ini: TIniFile;
   ConfFileName: string;
 begin
-  ConfFileName:=KSPDataFolder+'db\ksp.kspdb';
-  Memo1.Lines.Text:=SDBMemo;
+  ConfFileName     := KSPDataFolder + 'db\ksp.kspdb';
+  Memo1.Lines.Text := SDBMemo;
 
-  if not FileExists(ConfFileName) then CheckBox1.Checked:=true else begin
+  if not FileExists(ConfFileName) then
+    CheckBox1.Checked := True
+  else
+  begin
 
-    Ini:=TIniFile.Create(ConfFileName);
+    Ini := TIniFile.Create(ConfFileName);
 
-    ServerAddress.Text:=Ini.ReadString('MySQLConnection', 'HostName', '');
-    ServerPort.Text:=Ini.ReadString('MySQLConnection', 'Port', '');
-    DBName.Text:=Ini.ReadString('MySQLConnection', 'Database', '');
-    DBUserName.Text:=Ini.ReadString('MySQLConnection', 'User_Name', '');
-    DBPassword.Text:=Ini.ReadString('MySQLConnection', 'Password', '');
+    ServerAddress.Text := Ini.ReadString('MySQLConnection', 'HostName', '');
+    ServerPort.Text := Ini.ReadString('MySQLConnection', 'Port', '');
+    DBName.Text     := Ini.ReadString('MySQLConnection', 'Database', '');
+    DBUserName.Text := Ini.ReadString('MySQLConnection', 'User_Name', '');
+    DBPassword.Text := Ini.ReadString('MySQLConnection', 'Password', '');
 
     Ini.Free;
   end;
@@ -112,4 +120,3 @@ initialization
   {$I optionsfrm2.lrs}
 
 end.
-

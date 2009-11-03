@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 383
+  Left = 346
   Height = 707
-  Top = 173
+  Top = 151
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'
@@ -498,6 +498,12 @@ object KSPMainWindow: TKSPMainWindow
         end      
         item
           Alignment = taLeftJustify
+          Text = 'Addons'
+          Width = 100
+          Visible = True
+        end      
+        item
+          Alignment = taLeftJustify
           Text = 'Setup'
           Width = 100
           Visible = True
@@ -511,7 +517,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 967
       Align = alClient
-      PageIndex = 1
+      PageIndex = 5
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -3145,6 +3151,20 @@ object KSPMainWindow: TKSPMainWindow
           Width = 959
           Align = alBottom
           TabOrder = 2
+        end
+      end
+      object Page6: TPage
+        Caption = 'Page6'
+        ClientWidth = 959
+        ClientHeight = 508
+        object AddonsControl: TPageControl
+          Left = 0
+          Height = 508
+          Top = 0
+          Width = 959
+          Align = alClient
+          TabOrder = 0
+          TabPosition = tpBottom
         end
       end
     end

@@ -66,12 +66,12 @@
   License along with this library; if not, write to the Free Software         
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-}   
+}
 
-// -- Modified for TBASSPlayer  by Silhwan Hyun --
-// Replaced the refernced unit TntClasses, TntSysUtils of "Tnt Delphi UNICODE Controls"
-//  package with UniCodeUtils and TntCollection.
-// Added a property OrigArtist for TBASSPlayer.
+ // -- Modified for TBASSPlayer  by Silhwan Hyun --
+ // Replaced the refernced unit TntClasses, TntSysUtils of "Tnt Delphi UNICODE Controls"
+ //  package with UniCodeUtils and TntCollection.
+ // Added a property OrigArtist for TBASSPlayer.
 
 // Modified for Delphi 2009   (21 Apr 2009)
 
@@ -91,74 +91,76 @@ const
 type
   { Class TID3v2 }
   TID3v2 = class(TObject)
-    private
-      { Private declarations }
-      FExists: Boolean;
-      FVersionID: Byte;
-      FSize: Integer;
-      FTitle: WideString;
-      FArtist: WideString;
-      FAlbum: WideString;
-      FTrack: Word;
-      FTrackString: WideString;
-      FYear: WideString;
-      FGenre: WideString;
-      FComment: WideString;
-      FComposer: WideString;
-      FEncoder: WideString;
-      FCopyright: WideString;
-      FLanguage: WideString;
-      FLink: WideString;
-      FOrigArtist: WideString;
-      FLyrics: WideString;
-      FTSIZ: WideString;
-      procedure FSetTitle(const NewTitle: WideString);
-      procedure FSetArtist(const NewArtist: WideString);
-      procedure FSetAlbum(const NewAlbum: WideString);
-      procedure FSetTrack(const NewTrack: Word);
-      procedure FSetYear(const NewYear: WideString);
-      procedure FSetGenre(const NewGenre: WideString);
-      procedure FSetComment(const NewComment: WideString);
-      procedure FSetComposer(const NewComposer: WideString);
-      procedure FSetEncoder(const NewEncoder: WideString);
-      procedure FSetCopyright(const NewCopyright: WideString);
-      procedure FSetLanguage(const NewLanguage: WideString);
-      procedure FSetLink(const NewLink: WideString);
-      procedure FSetTrackString(const NewTrack: WideString);
-      procedure FSetLyrics(const NewLyrics: WideString);
-      procedure FSetOrigArtist(const NewOrigArtist: WideString);
-    public
-      { Public declarations }
-      constructor Create;                                     { Create object }
-      procedure ResetData;                                   { Reset all data }
-      function ReadFromFile(const FileName: WideString): Boolean;  { Load tag }
-      function SaveToFile(const FileName: WideString): Boolean;    { Save tag }
-      function RemoveFromFile(const FileName: WideString): Boolean;{ Delete tag }
-      property Exists: Boolean read FExists;              { True if tag found }
-      property VersionID: Byte read FVersionID;                { Version code }
-      property Size: Integer read FSize;                     { Total tag size }
-      property Title: WideString read FTitle write FSetTitle;        { Song title }
-      property Artist: WideString read FArtist write FSetArtist;    { Artist name }
-      property Album: WideString read FAlbum write FSetAlbum;       { Album title }
-      property Track: Word read FTrack write FSetTrack;             { Track number }
-      property TrackString: WideString read FTrackString write FSetTrackString; { Track number (string) }
-      property Year: WideString read FYear write FSetYear;         { Release year }
-      property Genre: WideString read FGenre write FSetGenre;        { Genre name }
-      property Comment: WideString read FComment write FSetComment;     { Comment }
-      property Composer: WideString read FComposer write FSetComposer; { Composer }
-      property Encoder: WideString read FEncoder write FSetEncoder;     { Encoder }
-      property Copyright: WideString read FCopyright write FSetCopyright;   { (c) }
-      property Language: WideString read FLanguage write FSetLanguage; { Language }
-      property Link: WideString read FLink write FSetLink;             { URL link }
+  private
+    { Private declarations }
+    FExists:    boolean;
+    FVersionID: byte;
+    FSize:      integer;
+    FTitle:     WideString;
+    FArtist:    WideString;
+    FAlbum:     WideString;
+    FTrack:     word;
+    FTrackString: WideString;
+    FYear:      WideString;
+    FGenre:     WideString;
+    FComment:   WideString;
+    FComposer:  WideString;
+    FEncoder:   WideString;
+    FCopyright: WideString;
+    FLanguage:  WideString;
+    FLink:      WideString;
+    FOrigArtist: WideString;
+    FLyrics:    WideString;
+    FTSIZ:      WideString;
+    procedure FSetTitle(const NewTitle: WideString);
+    procedure FSetArtist(const NewArtist: WideString);
+    procedure FSetAlbum(const NewAlbum: WideString);
+    procedure FSetTrack(const NewTrack: word);
+    procedure FSetYear(const NewYear: WideString);
+    procedure FSetGenre(const NewGenre: WideString);
+    procedure FSetComment(const NewComment: WideString);
+    procedure FSetComposer(const NewComposer: WideString);
+    procedure FSetEncoder(const NewEncoder: WideString);
+    procedure FSetCopyright(const NewCopyright: WideString);
+    procedure FSetLanguage(const NewLanguage: WideString);
+    procedure FSetLink(const NewLink: WideString);
+    procedure FSetTrackString(const NewTrack: WideString);
+    procedure FSetLyrics(const NewLyrics: WideString);
+    procedure FSetOrigArtist(const NewOrigArtist: WideString);
+  public
+    { Public declarations }
+    constructor Create;                                     { Create object }
+    procedure ResetData;                                   { Reset all data }
+    function ReadFromFile(const FileName: WideString): boolean;  { Load tag }
+    function SaveToFile(const FileName: WideString): boolean;    { Save tag }
+    function RemoveFromFile(const FileName: WideString): boolean;{ Delete tag }
+    property Exists: boolean Read FExists;              { True if tag found }
+    property VersionID: byte Read FVersionID;                { Version code }
+    property Size: integer Read FSize;                     { Total tag size }
+    property Title: WideString Read FTitle Write FSetTitle;        { Song title }
+    property Artist: WideString Read FArtist Write FSetArtist;    { Artist name }
+    property Album: WideString Read FAlbum Write FSetAlbum;       { Album title }
+    property Track: word Read FTrack Write FSetTrack;             { Track number }
+    property TrackString: WideString Read FTrackString Write FSetTrackString;
+    { Track number (string) }
+    property Year: WideString Read FYear Write FSetYear;         { Release year }
+    property Genre: WideString Read FGenre Write FSetGenre;        { Genre name }
+    property Comment: WideString Read FComment Write FSetComment;     { Comment }
+    property Composer: WideString Read FComposer Write FSetComposer; { Composer }
+    property Encoder: WideString Read FEncoder Write FSetEncoder;     { Encoder }
+    property Copyright: WideString Read FCopyright Write FSetCopyright;   { (c) }
+    property Language: WideString Read FLanguage Write FSetLanguage; { Language }
+    property Link: WideString Read FLink Write FSetLink;             { URL link }
     // property OrigArtist is added for TBASSPlayer, by Silhwan Hyun
-      property OrigArtist: WideString read FOrigArtist write FSetOrigArtist; { Original Artist name }
-      property Lyrics: WideString read FLyrics write FSetLyrics;
-      property TSIZ: WideString read FTSIZ;
+    property OrigArtist: WideString Read FOrigArtist Write FSetOrigArtist;
+    { Original Artist name }
+    property Lyrics: WideString Read FLyrics Write FSetLyrics;
+    property TSIZ: WideString Read FTSIZ;
   end;
 
 // Load ID3v2 tag from stream: added for TBASSPlayer by Silhwan Hyun
-function ReadID3v2TagFromStream(TagStream: PAnsiChar; StreamSize : Longword;
-  var MP3TagInfo: TMP3TagInfo): Boolean;
+function ReadID3v2TagFromStream(TagStream: PAnsiChar; StreamSize: longword;
+  var MP3TagInfo: TMP3TagInfo): boolean;
 
 implementation
 
@@ -172,12 +174,12 @@ const
   { Names of supported tag frames (ID3v2.3.x & ID3v2.4.x) }
   ID3V2_FRAME_NEW: array [1..ID3V2_FRAME_COUNT] of ansistring =
     ('TIT2', 'TPE1', 'TALB', 'TRCK', 'TYER', 'TCON', 'COMM', 'TCOM', 'TENC',
-     'TCOP', 'TLAN', 'WXXX', 'TDRC', 'TOPE', 'TIT1', 'TOAL', 'TSIZ', 'USLT');
+    'TCOP', 'TLAN', 'WXXX', 'TDRC', 'TOPE', 'TIT1', 'TOAL', 'TSIZ', 'USLT');
 
   { Names of supported tag frames (ID3v2.2.x) }
   ID3V2_FRAME_OLD: array [1..ID3V2_FRAME_COUNT] of ansistring =
     ('TT2', 'TP1', 'TAL', 'TRK', 'TYE', 'TCO', 'COM', 'TCM', 'TEN',
-     'TCR', 'TLA', 'WXX', 'TOR', 'TOA', 'TT1', 'TOT', 'TSI', 'ULT');
+    'TCR', 'TLA', 'WXX', 'TOR', 'TOA', 'TT1', 'TOT', 'TSI', 'ULT');
 
   { Max. tag size for saving }
   ID3V2_MAX_SIZE = 4096;
@@ -188,77 +190,78 @@ const
 type
   { Frame header (ID3v2.3.x & ID3v2.4.x) }
   FrameHeaderNew = record
-    ID: array [1..4] of AnsiChar;                     { Frame ID }
-    Size: Integer;                                    { Size excluding header }
-    Flags: Word;                                      { Flags }
+    ID:    array [1..4] of AnsiChar;                     { Frame ID }
+    Size:  integer;                                      { Size excluding header }
+    Flags: word;                                         { Flags }
   end;
 
   { Frame header (ID3v2.2.x) }
   FrameHeaderOld = record
-    ID: array [1..3] of AnsiChar;                     { Frame ID }
-    Size: array [1..3] of Byte;                       { Size excluding header }
+    ID:   array [1..3] of AnsiChar;                     { Frame ID }
+    Size: array [1..3] of byte;                         { Size excluding header }
   end;
 
   { ID3v2 header data - for internal use }
   TagInfo = record
     { Real structure of ID3v2 header }
-    ID: array [1..3] of AnsiChar;                          { Always "ID3" }
-    Version: Byte;                                         { Version number }
-    Revision: Byte;                                        { Revision number }
-    Flags: Byte;                                               { Flags of tag }
-    Size: array [1..4] of Byte;                   { Tag size excluding header }
+    ID:      array [1..3] of AnsiChar;                          { Always "ID3" }
+    Version: byte;                                         { Version number }
+    Revision: byte;                                        { Revision number }
+    Flags:   byte;                                               { Flags of tag }
+    Size:    array [1..4] of byte;                   { Tag size excluding header }
     { Extended data }
-    FileSize: Integer;                                    { File size (bytes) }
-    Frame: array [1..ID3V2_FRAME_COUNT] of ansistring;  { Information from frames }
+    FileSize: integer;                                    { File size (bytes) }
+    Frame:   array [1..ID3V2_FRAME_COUNT] of ansistring;  { Information from frames }
     FrameEncode: array [1..ID3V2_FRAME_COUNT] of byte;  { encode byte }  // ** Added **
-    NeedRewrite: Boolean;                           { Tag should be rewritten }
-    PaddingSize: Integer;                              { Padding size (bytes) }
+    NeedRewrite: boolean;                           { Tag should be rewritten }
+    PaddingSize: integer;                              { Padding size (bytes) }
   end;
 
 { ********************* Auxiliary functions & procedures ******************** }
 
-function ReadHeader(const FileName: WideString; var Tag: TagInfo): Boolean;
+function ReadHeader(const FileName: WideString; var Tag: TagInfo): boolean;
 var
-  SourceFile: TFileStream;
-  Transferred: Integer;
+  SourceFile:  TFileStream;
+  Transferred: integer;
 begin
   try
-    Result := true;
+    Result     := True;
     { Set read-access and open file }
     SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
 
     { Read header and get file size }
-    Transferred := SourceFile.Read(Tag, 10);
+    Transferred  := SourceFile.Read(Tag, 10);
     Tag.FileSize := SourceFile.Size;
     SourceFile.Free;
     { if transfer is not complete }
-    if Transferred < 10 then Result := false;
+    if Transferred < 10 then
+      Result := False;
   except
     { Error }
-    Result := false;
+    Result := False;
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function GetTagSize(const Tag: TagInfo): Integer;
+function GetTagSize(const Tag: TagInfo): integer;
 begin
   { Get total tag size }
   Result :=
-    Tag.Size[1] * $200000 +
-    Tag.Size[2] * $4000 +
-    Tag.Size[3] * $80 +
-    Tag.Size[4] + 10;
-  if Tag.Flags and $10 = $10 then Inc(Result, 10);
-  if Result > Tag.FileSize then Result := 0;
+    Tag.Size[1] * $200000 + Tag.Size[2] * $4000 + Tag.Size[3] *
+    $80 + Tag.Size[4] + 10;
+  if Tag.Flags and $10 = $10 then
+    Inc(Result, 10);
+  if Result > Tag.FileSize then
+    Result := 0;
 end;
 
 { --------------------------------------------------------------------------- }
 
-procedure SetTagItem(const ID, Data: ansistring; var Tag: TagInfo; EncodeByte : Byte);
+procedure SetTagItem(const ID, Data: ansistring; var Tag: TagInfo; EncodeByte: byte);
 var
-  Iterator: Byte;
-  FrameID: ansistring;
+  Iterator: byte;
+  FrameID:  ansistring;
 begin
   { Set tag item if supported frame found }
   for Iterator := 1 to ID3V2_FRAME_COUNT do
@@ -279,16 +282,14 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function Swap32(const Figure: Integer): Integer;
+function Swap32(const Figure: integer): integer;
 var
-  ByteArray: array [1..4] of Byte absolute Figure;
+  ByteArray: array [1..4] of byte absolute Figure;
 begin
   { Swap 4 bytes }
   Result :=
-    ByteArray[1] * $1000000 +
-    ByteArray[2] * $10000 +
-    ByteArray[3] * $100 +
-    ByteArray[4];
+    ByteArray[1] * $1000000 + ByteArray[2] * $10000 + ByteArray[3] *
+    $100 + ByteArray[4];
 end;
 
 { --------------------------------------------------------------------------- }
@@ -297,17 +298,18 @@ procedure ReadFramesNew(const FileName: WideString; var Tag: TagInfo);
 var
   SourceFile: TFileStream;
   Frame: FrameHeaderNew;
-  Data: array [1..5000] of AnsiChar;
-  Data2 : ansistring;
-  i : integer;
-  DataPosition, DataSize: Integer;
+  Data:  array [1..5000] of AnsiChar;
+  Data2: ansistring;
+  i:     integer;
+  DataPosition, DataSize: integer;
 begin
   { Get information from frames (ID3v2.3.x & ID3v2.4.x) }
   try
     { Set read-access, open file }
     SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(10, soFromBeginning);
-    while (SourceFile.Position < GetTagSize(Tag)) and (SourceFile.Position < SourceFile.Size) do
+    while (SourceFile.Position < GetTagSize(Tag)) and
+      (SourceFile.Position < SourceFile.Size) do
     begin
       FillChar(Data, SizeOf(Data), 0);
       { Read frame header and check frame ID }
@@ -326,16 +328,17 @@ begin
       begin
         if Data[1] = #0 then
         begin   // for non-unicode
-           Data2 := '';
-           i := 2;
-           repeat
-              if Data[i] <> #0 then
-                 Data2 := Data2 + ansichar(Data[i]);
-              inc(i);
-           until (Data[i] = #0) or (i = 5000);
-           SetTagItem(Frame.ID, Data2, Tag, ord(Data[1]));
-        end else
-           SetTagItem(Frame.ID, Data, Tag, ord(Data[1]));
+          Data2 := '';
+          i     := 2;
+          repeat
+            if Data[i] <> #0 then
+              Data2 := Data2 + ansichar(Data[i]);
+            Inc(i);
+          until (Data[i] = #0) or (i = 5000);
+          SetTagItem(Frame.ID, Data2, Tag, Ord(Data[1]));
+        end
+        else
+          SetTagItem(Frame.ID, Data, Tag, Ord(Data[1]));
       end;
       SourceFile.Seek(DataPosition + Swap32(Frame.Size), soFromBeginning);
     end;
@@ -351,27 +354,31 @@ var
   SourceFile: TFileStream;
   Frame: FrameHeaderOld;
   Data: array [1..5000] of AnsiChar;
-  DataPosition, FrameSize, DataSize: Integer;
+  DataPosition, FrameSize, DataSize: integer;
 begin
   { Get information from frames (ID3v2.2.x) }
   try
     { Set read-access, open file }
     SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
     SourceFile.Seek(10, soFromBeginning);
-    while (SourceFile.Position < GetTagSize(Tag)) and (SourceFile.Position < SourceFile.Size) do
+    while (SourceFile.Position < GetTagSize(Tag)) and
+      (SourceFile.Position < SourceFile.Size) do
     begin
       FillChar(Data, SizeOf(Data), 0);
       { Read frame header and check frame ID }
       SourceFile.Read(Frame, 6);
-      if not (Frame.ID[1] in ['A'..'Z']) then break;
+      if not (Frame.ID[1] in ['A'..'Z']) then
+        break;
       { Note data position and determine significant data size }
       DataPosition := SourceFile.Position;
-      FrameSize := Frame.Size[1] shl 16 + Frame.Size[2] shl 8 + Frame.Size[3];
-      if FrameSize > SizeOf(Data) then DataSize := SizeOf(Data)
-      else DataSize := FrameSize;
+      FrameSize    := Frame.Size[1] shl 16 + Frame.Size[2] shl 8 + Frame.Size[3];
+      if FrameSize > SizeOf(Data) then
+        DataSize := SizeOf(Data)
+      else
+        DataSize := FrameSize;
       { Read frame data and set tag item if frame supported }
       SourceFile.Read(Data, DataSize);
-      SetTagItem(Frame.ID, Data, Tag, ord(Data[1]));
+      SetTagItem(Frame.ID, Data, Tag, Ord(Data[1]));
       SourceFile.Seek(DataPosition + FrameSize, soFromBeginning);
     end;
     SourceFile.Free;
@@ -383,19 +390,20 @@ end;
 
 function GetUnicode(const Source: ansistring): WideString;
 var
-  Index: Integer;
-  FirstByte, SecondByte: Byte;
-  UnicodeChar: WideChar;
+  Index: integer;
+  FirstByte, SecondByte: byte;
+  UnicodeChar: widechar;
 begin
   if (Length(Source) > 0) and (Source[1] = UNICODE_ID) then
   begin
     Result := '';
     for Index := 2 to ((Length(Source) - 1) div 2) do
     begin
-      FirstByte := Ord(Source[Index * 2]);
-      SecondByte := Ord(Source[Index * 2 + 1]);
-      UnicodeChar := WideChar(FirstByte or (SecondByte shl 8));
-      if UnicodeChar = #0 then break;
+      FirstByte   := Ord(Source[Index * 2]);
+      SecondByte  := Ord(Source[Index * 2 + 1]);
+      UnicodeChar := widechar(FirstByte or (SecondByte shl 8));
+      if UnicodeChar = #0 then
+        break;
       Result := Result + UnicodeChar;
     end;
     Result := Trim(Result);
@@ -404,13 +412,14 @@ begin
     Result := Trim(UTF8Decode(Source));
 end;
 
-function GetUnicode2(const Source: ansistring; EncodeByte : byte): WideString;
+function GetUnicode2(const Source: ansistring; EncodeByte: byte): WideString;
 begin
-   if EncodeByte = 0 then
-   begin
-     Result := Trim(UTF8Decode(Source));
-   end else
-     Result := GetUnicode(Source);
+  if EncodeByte = 0 then
+  begin
+    Result := Trim(UTF8Decode(Source));
+  end
+  else
+    Result := GetUnicode(Source);
 
 end;
 
@@ -418,13 +427,13 @@ end;
 
 function GetANSIUnicode(const WS: WideString): ansistring;
 var
-  i: Integer;
+  i: integer;
 begin
   Result := '';
   for i := 1 to length(WS) do
-    Result := Result + AnsiChar(Lo(Word(WS[i]))) + AnsiChar(Hi(Word(WS[i])));
-  if Length(result) > 0 then
-    Result := #255#254 + result;
+    Result := Result + AnsiChar(Lo(word(WS[i]))) + AnsiChar(Hi(word(WS[i])));
+  if Length(Result) > 0 then
+    Result := #255#254 + Result;
 end;
 
 { --------------------------------------------------------------------------- }
@@ -437,48 +446,53 @@ begin
     Result := GetUnicode(Content2);
 end;
 
-function GetContent2(const Content1, Content2: ansistring; EncodeByte1, EncodeByte2 : byte): WideString;
+function GetContent2(const Content1, Content2: ansistring;
+  EncodeByte1, EncodeByte2: byte): WideString;
 begin
-   if (Content1 = '') and (Content2 = '') then
-      result := ''
-   else if (EncodeByte1 = 0) and (EncodeByte2 = 0) then
-   begin
+  if (Content1 = '') and (Content2 = '') then
+    Result := ''
+  else if (EncodeByte1 = 0) and (EncodeByte2 = 0) then
+  begin
     //  result := Content1;         // Use automatic code conversion
-      result := ToWideString(Content1);
-      if result = '' then
-       //  result := Content2;      // Use automatic code conversion
-         result := ToWideString(Content2);
-   end
-   else if (EncodeByte1 = 0) and (Content2 = '') then
+    Result := ToWideString(Content1);
+    if Result = '' then
+      //  result := Content2;      // Use automatic code conversion
+      Result := ToWideString(Content2);
+  end
+  else if (EncodeByte1 = 0) and (Content2 = '') then
     //  result := Content1          // Use automatic code conversion
-      result := ToWideString(Content1)
-   else if (Content1 = '') and (EncodeByte2 = 0) then
+    Result := ToWideString(Content1)
+  else if (Content1 = '') and (EncodeByte2 = 0) then
     //  result := Content2          // Use automatic code conversion
-      result := ToWideString(Content2)
-   else
-   begin
-      result := GetContent(Content1, Content2);
-   end;
+    Result := ToWideString(Content2)
+  else
+  begin
+    Result := GetContent(Content1, Content2);
+  end;
 
 end;
 
 { --------------------------------------------------------------------------- }
 
-function ExtractTrack(const TrackString: ansistring): Word;
+function ExtractTrack(const TrackString: ansistring): word;
 var
-  Uni_Track : wideString;
-  Index, Value, Code : integer;
+  Uni_Track: WideString;
+  Index, Value, Code: integer;
 begin
   { Extract track from string }
- // Result := ID3v1.ExtractTrack(GetUnicode(TrackString));
+  // Result := ID3v1.ExtractTrack(GetUnicode(TrackString));
 
- // Track := GetANSI(TrackString);
+  // Track := GetANSI(TrackString);
   Uni_Track := GetUnicode(TrackString);
-  Index := Pos('/', Uni_Track);
-  if Index = 0 then Val(Uni_Track, Value, Code)
-  else Val(Copy(Uni_Track, 1, Index - 1), Value, Code);
-  if Code = 0 then Result := Value
-  else Result := 0;
+  Index     := Pos('/', Uni_Track);
+  if Index = 0 then
+    Val(Uni_Track, Value, Code)
+  else
+    Val(Copy(Uni_Track, 1, Index - 1), Value, Code);
+  if Code = 0 then
+    Result := Value
+  else
+    Result := 0;
 end;
 
 { --------------------------------------------------------------------------- }
@@ -503,7 +517,8 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function ExtractText(const SourceString: ansistring; LanguageID: Boolean; EncodeByte : byte): WideString;
+function ExtractText(const SourceString: ansistring; LanguageID: boolean;
+  EncodeByte: byte): WideString;
 var
   Source, Separator: ansistring;
   EncodingID: AnsiChar;
@@ -514,9 +529,9 @@ begin
   if Length(Source) > 0 then
   begin
     if EncodeByte = 0 then
-       EncodingID := #0
+      EncodingID := #0
     else
-       EncodingID := Source[1];
+      EncodingID := Source[1];
 
     if EncodingID = UNICODE_ID then
       Separator := #0#0
@@ -525,18 +540,18 @@ begin
 
     if LanguageID then
       if EncodeByte = 0 then
-         Delete(Source, 1, 3)
+        Delete(Source, 1, 3)
       else
-         Delete(Source, 1, 4)
+        Delete(Source, 1, 4)
     else
       Delete(Source, 1, 1);
-    
+
     Delete(Source, 1, Pos(Separator, Source) + Length(Separator) - 1);
     if EncodeByte = 0 then
-     // Result := Source   // Use automatic code conversion
-       result := ToWideString(Source)
+      // Result := Source   // Use automatic code conversion
+      Result := ToWideString(Source)
     else
-       Result := GetUnicode(EncodingID + Source);
+      Result := GetUnicode(EncodingID + Source);
   end;
 end;
 
@@ -544,7 +559,7 @@ end;
 
 procedure BuildHeader(var Tag: TagInfo);
 var
-  Iterator, TagSize: Integer;
+  Iterator, TagSize: integer;
 begin
   { Calculate new tag size (without padding) }
   TagSize := 10;
@@ -553,8 +568,7 @@ begin
       Inc(TagSize, Length(Tag.Frame[Iterator]) + 11);
   { Check for ability to change existing tag }
   Tag.NeedRewrite :=
-    (Tag.ID <> ID3V2_ID) or
-    (GetTagSize(Tag) < TagSize) or
+    (Tag.ID <> ID3V2_ID) or (GetTagSize(Tag) < TagSize) or
     (GetTagSize(Tag) > ID3V2_MAX_SIZE);
   { Calculate padding size and set padded tag size }
   if Tag.NeedRewrite then
@@ -564,10 +578,10 @@ begin
   if Tag.PaddingSize > 0 then
     Inc(TagSize, Tag.PaddingSize);
   { Build tag header }
-  Tag.ID := ID3V2_ID;
+  Tag.ID      := ID3V2_ID;
   Tag.Version := TAG_VERSION_2_3;
   Tag.Revision := 0;
-  Tag.Flags := 0;
+  Tag.Flags   := 0;
   { Convert tag size }
   for Iterator := 1 to 4 do
     Tag.Size[Iterator] := ((TagSize - 10) shr ((4 - Iterator) * 7)) and $7F;
@@ -575,19 +589,20 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function ReplaceTag(const FileName: WideString; TagData: TStream): Boolean;
+function ReplaceTag(const FileName: WideString; TagData: TStream): boolean;
 var
   Destination: TFileStream;
 begin
   { Replace old tag with new tag data }
-  Result := false;
-  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
+  Result := False;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then
+    exit;
   try
     TagData.Position := 0;
-    Destination := TFileStream.Create(FileName, fmOpenReadWrite);
+    Destination      := TFileStream.Create(FileName, fmOpenReadWrite);
     Destination.CopyFrom(TagData, TagData.Size);
     Destination.Free;
-    Result := true;
+    Result := True;
   except
     { Access error }
   end;
@@ -595,47 +610,53 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function RebuildFile(const FileName: WideString; TagData: TStream): Boolean;
+function RebuildFile(const FileName: WideString; TagData: TStream): boolean;
 var
   Tag: TagInfo;
   Source, Destination: TFileStream;
   BufferName: string;
 begin
   { Rebuild file with old file data and new tag data (optional) }
-  Result := false;
-  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
-  if not ReadHeader(FileName, Tag) then exit;
-  if (TagData = nil) and (Tag.ID <> ID3V2_ID) then exit;
+  Result := False;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then
+    exit;
+  if not ReadHeader(FileName, Tag) then
+    exit;
+  if (TagData = nil) and (Tag.ID <> ID3V2_ID) then
+    exit;
   try
     { Create file streams }
-    BufferName := FileName + '~';
-    Source := TFileStream.Create(FileName, fmOpenRead);
+    BufferName  := FileName + '~';
+    Source      := TFileStream.Create(FileName, fmOpenRead);
     Destination := TFileStream.Create(BufferName, fmCreate);
     { Copy data blocks }
-    if Tag.ID = ID3V2_ID then Source.Seek(GetTagSize(Tag), soFromBeginning);
-    if TagData <> nil then Destination.CopyFrom(TagData, 0);
+    if Tag.ID = ID3V2_ID then
+      Source.Seek(GetTagSize(Tag), soFromBeginning);
+    if TagData <> nil then
+      Destination.CopyFrom(TagData, 0);
     Destination.CopyFrom(Source, Source.Size - Source.Position);
     { Free resources }
     Source.Free;
     Destination.Free;
     { Replace old file and delete temporary file }
     if (DeleteFileUTF8(FileName)) and (RenameFileUTF8(BufferName, FileName)) then
-      Result := true;
+      Result := True;
     //else
-      //raise Exception.Create('');
+    //raise Exception.Create('');
   except
     { Access error }
-    if FileExistsUTF8(BufferName) then DeleteFileUTF8(BufferName);
+    if FileExistsUTF8(BufferName) then
+      DeleteFileUTF8(BufferName);
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function SaveTag(const FileName: WideString; Tag: TagInfo): Boolean;
+function SaveTag(const FileName: WideString; Tag: TagInfo): boolean;
 var
   TagData: TStringStream;
-  Iterator, FrameSize: Integer;
-  Padding: array [1..ID3V2_MAX_SIZE] of Byte;
+  Iterator, FrameSize: integer;
+  Padding: array [1..ID3V2_MAX_SIZE] of byte;
 begin
   { Build and write tag header and frames to stream }
   TagData := TStringStream.Create('');
@@ -691,7 +712,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure TID3v2.FSetTrack(const NewTrack: Word);
+procedure TID3v2.FSetTrack(const NewTrack: word);
 begin
   { Set track number }
   FTrack := NewTrack;
@@ -798,30 +819,30 @@ end;
 procedure TID3v2.ResetData;
 begin
   { Reset all variables }
-  FExists := False;
+  FExists    := False;
   FVersionID := 0;
-  FSize := 0;
-  FTitle := '';
-  FArtist := '';
-  FAlbum := '';
-  FTrack := 0;
+  FSize      := 0;
+  FTitle     := '';
+  FArtist    := '';
+  FAlbum     := '';
+  FTrack     := 0;
   FTrackString := '';
-  FYear := '';
-  FGenre := '';
-  FComment := '';
-  FComposer := '';
-  FEncoder := '';
+  FYear      := '';
+  FGenre     := '';
+  FComment   := '';
+  FComposer  := '';
+  FEncoder   := '';
   FCopyright := '';
-  FLanguage := '';
-  FLink := '';
+  FLanguage  := '';
+  FLink      := '';
   FOrigArtist := '';
-  FLyrics := '';
-  FTSIZ := '';
+  FLyrics    := '';
+  FTSIZ      := '';
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TID3v2.ReadFromFile(const FileName: WideString): Boolean;
+function TID3v2.ReadFromFile(const FileName: WideString): boolean;
 var
   Tag: TagInfo;
 begin
@@ -831,10 +852,10 @@ begin
   { Process data if loaded and header valid }
   if (Result) and (Tag.ID = ID3V2_ID) then
   begin
-    FExists := true;
+    FExists    := True;
     { Fill properties with header data }
     FVersionID := Tag.Version;
-    FSize := GetTagSize(Tag);
+    FSize      := GetTagSize(Tag);
     { Get information from frames if version supported }
     if (FVersionID in [TAG_VERSION_2_2..TAG_VERSION_2_4]) and (FSize > 0) then
     begin
@@ -842,29 +863,32 @@ begin
         ReadFramesNew(FileName, Tag)
       else
         ReadFramesOld(FileName, Tag);
-      FTitle := GetContent2(Tag.Frame[1], Tag.Frame[15], Tag.FrameEncode[1], Tag.FrameEncode[15]);
-      FArtist := GetContent2(Tag.Frame[2], Tag.Frame[14], Tag.FrameEncode[2], Tag.FrameEncode[14]);
-      FAlbum := GetContent2(Tag.Frame[3], Tag.Frame[16], Tag.FrameEncode[3], Tag.FrameEncode[16]);
-      FTrack := ExtractTrack(Tag.Frame[4]);
+      FTitle     := GetContent2(Tag.Frame[1], Tag.Frame[15], Tag.FrameEncode[1],
+        Tag.FrameEncode[15]);
+      FArtist    := GetContent2(Tag.Frame[2], Tag.Frame[14], Tag.FrameEncode[2],
+        Tag.FrameEncode[14]);
+      FAlbum     := GetContent2(Tag.Frame[3], Tag.Frame[16], Tag.FrameEncode[3],
+        Tag.FrameEncode[16]);
+      FTrack     := ExtractTrack(Tag.Frame[4]);
       FTrackString := GetUnicode2(Tag.Frame[4], Tag.FrameEncode[4]);
-      FYear := ExtractYear(Tag.Frame[5], Tag.Frame[13]);
-      FGenre := ExtractGenre(Tag.Frame[6]);
-      FComment := ExtractText(Tag.Frame[7], True, Tag.FrameEncode[7]);
-      FComposer := GetUnicode2(Tag.Frame[8], Tag.FrameEncode[8]);
-      FEncoder := GetUnicode2(Tag.Frame[9], Tag.FrameEncode[9]);
+      FYear      := ExtractYear(Tag.Frame[5], Tag.Frame[13]);
+      FGenre     := ExtractGenre(Tag.Frame[6]);
+      FComment   := ExtractText(Tag.Frame[7], True, Tag.FrameEncode[7]);
+      FComposer  := GetUnicode2(Tag.Frame[8], Tag.FrameEncode[8]);
+      FEncoder   := GetUnicode2(Tag.Frame[9], Tag.FrameEncode[9]);
       FCopyright := GetUnicode2(Tag.Frame[10], Tag.FrameEncode[10]);
-      FLanguage := GetUnicode2(Tag.Frame[11], Tag.FrameEncode[11]);
-      FLink := ExtractText(Tag.Frame[12], False, Tag.FrameEncode[12]);
+      FLanguage  := GetUnicode2(Tag.Frame[11], Tag.FrameEncode[11]);
+      FLink      := ExtractText(Tag.Frame[12], False, Tag.FrameEncode[12]);
       FOrigArtist := GetUnicode2(Tag.Frame[14], Tag.FrameEncode[14]);
-      FLyrics := ExtractText(Tag.Frame[18], True, Tag.FrameEncode[18]);
-      FTSIZ := GetUnicode2(Tag.Frame[17], Tag.FrameEncode[17]);
+      FLyrics    := ExtractText(Tag.Frame[18], True, Tag.FrameEncode[18]);
+      FTSIZ      := GetUnicode2(Tag.Frame[17], Tag.FrameEncode[17]);
     end;
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TID3v2.SaveToFile(const FileName: WideString): Boolean;
+function TID3v2.SaveToFile(const FileName: WideString): boolean;
 var
   Tag: TagInfo;
 begin
@@ -880,20 +904,21 @@ begin
   Tag.Frame[6] := GetANSIUnicode(FGenre);
   if FComment <> '' then
     Tag.Frame[7] := 'eng' + #0#0 + GetANSIUnicode(FComment);
-  Tag.Frame[8] := GetANSIUnicode(FComposer);
-  Tag.Frame[9] := GetANSIUnicode(FEncoder);
-  Tag.Frame[10] := GetANSIUnicode(FCopyright);
-  Tag.Frame[11] := GetANSIUnicode(FLanguage);
+  Tag.Frame[8]   := GetANSIUnicode(FComposer);
+  Tag.Frame[9]   := GetANSIUnicode(FEncoder);
+  Tag.Frame[10]  := GetANSIUnicode(FCopyright);
+  Tag.Frame[11]  := GetANSIUnicode(FLanguage);
   if FLyrics <> '' then
     Tag.Frame[18] := 'eng' + #0#0 + GetANSIUnicode(FLyrics);
-  if FLink <> '' then Tag.Frame[12] := #0 + FLink;
+  if FLink <> '' then
+    Tag.Frame[12] := #0 + FLink;
   Tag.Frame[14] := GetANSIUnicode(FOrigArtist);
   Result := SaveTag(FileName, Tag);
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TID3v2.RemoveFromFile(const FileName: WideString): Boolean;
+function TID3v2.RemoveFromFile(const FileName: WideString): boolean;
 begin
   { Remove tag from file }
   Result := RebuildFile(FileName, nil);
@@ -905,36 +930,36 @@ end;
 procedure ReadFramesNew2(TagStream: PAnsiChar; var Tag: TagInfo);
 var
   Frame: FrameHeaderNew;
-  Data: array [1..500] of AnsiChar;
-  DataOffset, DataSize: Integer;
-  p : ^byte;
+  Data:  array [1..500] of AnsiChar;
+  DataOffset, DataSize: integer;
+  p:     ^byte;
 begin
   { Get information from frames (ID3v2.3.x & ID3v2.4.x) }
   try
     p := pointer(TagStream);
-    inc(p, 10);
+    Inc(p, 10);
     DataOffset := 10;
 
     while ((DataOffset < GetTagSize(Tag)) and (DataOffset < Tag.FileSize)) do
     begin
       FillChar(Data, SizeOf(Data), 0);
       Move(pointer(p)^, Frame, 10);
-      inc(p, 10);
+      Inc(p, 10);
 
       if not (Frame.ID[1] in ['A'..'Z']) then
-         break;
+        break;
 
       if Swap32(Frame.Size) > SizeOf(Data) then
-         DataSize := SizeOf(Data)
+        DataSize := SizeOf(Data)
       else
-         DataSize := Swap32(Frame.Size);
+        DataSize := Swap32(Frame.Size);
 
       Move(pointer(p)^, Data, DataSize);
       if Frame.Flags and $8000 <> $8000 then
-         SetTagItem(Frame.ID, Data, Tag, ord(Data[1]));
+        SetTagItem(Frame.ID, Data, Tag, Ord(Data[1]));
 
-      inc(p, Swap32(Frame.Size));
-      DataOffset := Longword(TagStream) - Longword(p);
+      Inc(p, Swap32(Frame.Size));
+      DataOffset := longword(TagStream) - longword(p);
     end;
   except
 
@@ -947,36 +972,36 @@ end;
 procedure ReadFramesOld2(TagStream: PAnsiChar; var Tag: TagInfo);
 var
   Frame: FrameHeaderOld;
-  Data: array [1..500] of AnsiChar;
-  DataOffset, FrameSize, DataSize: Integer;
-  p : ^byte;
+  Data:  array [1..500] of AnsiChar;
+  DataOffset, FrameSize, DataSize: integer;
+  p:     ^byte;
 begin
   { Get information from frames (ID3v2.2.x }
   try
     p := pointer(TagStream);
-    inc(p, 10);
+    Inc(p, 10);
     DataOffset := 10;
 
     while ((DataOffset < GetTagSize(Tag)) and (DataOffset < Tag.FileSize)) do
     begin
       FillChar(Data, SizeOf(Data), 0);
       Move(pointer(p)^, Frame, 6);
-      inc(p, 6);
+      Inc(p, 6);
 
       if not (Frame.ID[1] in ['A'..'Z']) then
-         break;
+        break;
 
       FrameSize := Frame.Size[1] shl 16 + Frame.Size[2] shl 8 + Frame.Size[3];
       if FrameSize > SizeOf(Data) then
-         DataSize := SizeOf(Data)
+        DataSize := SizeOf(Data)
       else
-         DataSize := FrameSize;
+        DataSize := FrameSize;
 
       Move(pointer(p)^, Data, DataSize);
-      SetTagItem(Frame.ID, Data, Tag, ord(Data[1]));
+      SetTagItem(Frame.ID, Data, Tag, Ord(Data[1]));
 
-      inc(p, FrameSize);
-      DataOffset := Longword(TagStream) - Longword(p);
+      Inc(p, FrameSize);
+      DataOffset := longword(TagStream) - longword(p);
     end;
   except
 
@@ -985,34 +1010,36 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function ReadID3v2TagFromStream(TagStream: PAnsiChar; StreamSize : Longword;
-  var MP3TagInfo: TMP3TagInfo): Boolean;
+function ReadID3v2TagFromStream(TagStream: PAnsiChar; StreamSize: longword;
+  var MP3TagInfo: TMP3TagInfo): boolean;
 var
   Tag: TagInfo;
 begin
-   Result := false;
-   
-   Move(Pointer(TagStream)^, Tag, 10);
-   if Tag.ID = ID3V2_ID then
-   begin
-      Result := true;
-      Tag.FileSize := StreamSize;
+  Result := False;
 
-      if (Tag.Version in [TAG_VERSION_2_2..TAG_VERSION_2_4]) and (GetTagSize(Tag) > 0) then
-      begin
-         if Tag.Version > TAG_VERSION_2_2
-         then ReadFramesNew2(TagStream, Tag)
-         else ReadFramesOld2(TagStream, Tag);
+  Move(Pointer(TagStream)^, Tag, 10);
+  if Tag.ID = ID3V2_ID then
+  begin
+    Result := True;
+    Tag.FileSize := StreamSize;
 
-         MP3TagInfo.Title := GetContent(Tag.Frame[1], Tag.Frame[15]);
-         MP3TagInfo.Artist := GetContent(Tag.Frame[2], Tag.Frame[14]);
-         MP3TagInfo.Album := GetContent(Tag.Frame[3], Tag.Frame[16]);
-         MP3TagInfo.Track := ExtractTrack(Tag.Frame[4]);
-         MP3TagInfo.Year := ExtractYear(Tag.Frame[5], Tag.Frame[13]);
-         MP3TagInfo.Genre := ExtractGenre(Tag.Frame[6]);
-         MP3TagInfo.Comment := ExtractText(Tag.Frame[7], true, Tag.FrameEncode[7]);
-      end;
-   end;
+    if (Tag.Version in [TAG_VERSION_2_2..TAG_VERSION_2_4]) and
+      (GetTagSize(Tag) > 0) then
+    begin
+      if Tag.Version > TAG_VERSION_2_2 then
+        ReadFramesNew2(TagStream, Tag)
+      else
+        ReadFramesOld2(TagStream, Tag);
+
+      MP3TagInfo.Title   := GetContent(Tag.Frame[1], Tag.Frame[15]);
+      MP3TagInfo.Artist  := GetContent(Tag.Frame[2], Tag.Frame[14]);
+      MP3TagInfo.Album   := GetContent(Tag.Frame[3], Tag.Frame[16]);
+      MP3TagInfo.Track   := ExtractTrack(Tag.Frame[4]);
+      MP3TagInfo.Year    := ExtractYear(Tag.Frame[5], Tag.Frame[13]);
+      MP3TagInfo.Genre   := ExtractGenre(Tag.Frame[6]);
+      MP3TagInfo.Comment := ExtractText(Tag.Frame[7], True, Tag.FrameEncode[7]);
+    end;
+  end;
 end;
 
 end.

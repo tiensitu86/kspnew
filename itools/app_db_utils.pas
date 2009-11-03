@@ -30,25 +30,28 @@ unit app_db_utils;
 
 interface
 
-uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb, ProfileFunc, app_sql, DB, ID3Mgmnt,
+uses Classes, SysUtils, Forms, mysql50conn, sqlite3conn, sqldb,
+  ProfileFunc, app_sql, DB, ID3Mgmnt,
   Playlists, Math, DOM, XMLRead, LCLIntf;
 
-type TFDatabase = record
+type
+  TFDatabase = record
     MySQLConnection: TMySQL50Connection;
     SQLiteConnection: TSQLite3Connection;
     SQLQuery: TSQLQuery;
-    Trans: TSQLTransaction;
-end;
+    Trans:    TSQLTransaction;
+  end;
 
 //type TKSPDatabaseType = (kdtMeta, kdtAS);
 
 type
   TAppDBConnection = class;
+
   TPlayNextSong = record
-      FileName: string;
-      PlayCount: Cardinal;
-      Favourite: Double;
-      end;
+    FileName:  string;
+    PlayCount: cardinal;
+    Favourite: double;
+  end;
 
   TFavInfo = class(TObject)
   public
@@ -58,14 +61,14 @@ type
   TFavouriteList = class(TList)
     fIM: integer;
   public
-    property InternalName: integer read fIM write fIM;
+    property InternalName: integer Read fIM Write fIM;
     constructor Create; overload;
     procedure Clear; override;
-    constructor Create(IM: Integer); overload;
+    constructor Create(IM: integer); overload;
     destructor Destroy; override;
     function Add(Entry: TPlayNextSong): boolean;
-    procedure Remove(Index: Integer);
-    function GetItem(Index: Integer): TPlayNextSong;
+    procedure Remove(Index: integer);
+    function GetItem(Index: integer): TPlayNextSong;
     procedure ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
     function FindItem(FileName: string): integer;
     procedure Sort;
@@ -76,32 +79,32 @@ type
     constructor Create;
     destructor Destroy; override;
   private
-    Database:app_db_utils.TFDatabase;
+    Database: app_db_utils.TFDatabase;
   public
-    function InitDatabase: Integer;
-    function CheckDatabase: Integer;
+    function InitDatabase: integer;
+    function CheckDatabase: integer;
   private
-    function CloseDatabase: Integer;
+    function CloseDatabase: integer;
     function CreateMissingTables(Tables: TStringList): integer;
     procedure AddToDataBase(p: TPLEntry); overload;
     procedure AddToDataBase(p: TPlaylist); overload;
   public
-    procedure FindAproxMaxPlayCountValues(var PlayCount: integer; var Approx: Extended);
+    procedure FindAproxMaxPlayCountValues(var PlayCount: integer; var Approx: extended);
     procedure Add(Entry: TPLEntry; OnLoad: boolean);
-    function SetupDatabase: Integer;
-    function ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
+    function SetupDatabase: integer;
+    function ExecuteSQL(Sql: string; NoFixName: boolean = False): integer;
     function OpenQuery(Sql: string): integer;
     function CloseQuery: integer;
     procedure GoToFirst;
     procedure GoToLast;
     procedure GoToNext;
     function EndOfDB: boolean;
-    property Query: TSQLQuery read Database.SQLQuery;
-    function ReturnFieldStr(Name: string; GoToNext: boolean = true): string;
+    property Query: TSQLQuery Read Database.SQLQuery;
+    function ReturnFieldStr(Name: string; GoToNext: boolean = True): string;
     function ReturnRecordsCount: integer;
     function ReturnFields: TFields;
     procedure StartTransaction(var Res: integer);
-    function TransactionSupported: LongBool;
+    function TransactionSupported: longbool;
     procedure TransactionCommit;
     procedure TransactionRollback;
     function InTransaction: boolean;
@@ -129,15 +132,14 @@ implementation
 
 uses Main, Dialogs, KSPConstsVars, KSPMessages, KSPFiles, MultiLog;
 
-
 function FindNoCase(Text: string; List: TStringList): integer;
 var
   i: integer;
 begin
-  Result:=-1;
+  Result := -1;
   for i := 0 to List.Count - 1 do
     if UpperCase(Text) = UpperCase(List.Strings[i]) then
-      Result:=i;
+      Result := i;
 end;
 
 {DIAGNOSTICS}
@@ -149,28 +151,30 @@ function TAppDBConnection.CreateMissingTables(Tables: TStringList): integer;
 var
   Res: integer;
 
-  function CreateTableIfMissing(name, sql: string): boolean;
+  function CreateTableIfMissing(Name, sql: string): boolean;
   var
     i: integer;
   begin
-    hLog.Send('Creating table: '+name);
-    Result:=false;
-    if Tables<>nil then
-      i:=FindNoCase(name, Tables) else i:=-1;
-    if i=-1 then
-      begin
-        ExecuteSQL(sql);
-        Result:=true;
-      end;
+    hLog.Send('Creating table: ' + Name);
+    Result := False;
+    if Tables <> nil then
+      i := FindNoCase(Name, Tables)
+    else
+      i := -1;
+    if i = -1 then
+    begin
+      ExecuteSQL(sql);
+      Result := True;
+    end;
   end;
 
 begin
-  Res:=0;
+  Res := 0;
 
   CreateTableIfMissing('artists', TB_ARTISTS);
   CreateTableIfMissing('meta', TB_META);
   CreateTableIfMissing('lyrics', TB_LYRICS);
-  Result:=Res;
+  Result := Res;
 end;
 
 {Checks structure of each present table and updates it if needed. Also checks if
@@ -178,30 +182,30 @@ newer version was installed before so we cannot go backwards with it}
 
 constructor TAppDBConnection.Create;
 begin
-	inherited Create;
-  InitializeCriticalSection(DBCritSection)
+  inherited Create;
+  InitializeCriticalSection(DBCritSection);
 end;
 
 destructor TAppDBConnection.Destroy;
 begin
   CloseDatabase;
   DeleteCriticalSection(DBCritSection);
-	inherited Destroy;
+  inherited Destroy;
 end;
 
-function TAppDBConnection.InitDatabase: Integer;
+function TAppDBConnection.InitDatabase: integer;
 begin
-  Result:=SetupDatabase;
+  Result := SetupDatabase;
 end;
 
-function TAppDBConnection.CheckDatabase: Integer;
+function TAppDBConnection.CheckDatabase: integer;
 begin
-  Result:=InitDatabase;
+  Result := InitDatabase;
 end;
 
-function TAppDBConnection.CloseDatabase: Integer;
+function TAppDBConnection.CloseDatabase: integer;
 begin
-  Result:=0;
+  Result := 0;
   hLog.Send('Closing database');
   try
     Database.SQLiteConnection.CloseDataSets;
@@ -213,14 +217,15 @@ begin
     Database.SQLiteConnection.Free;
 
   except
-    on Ex: Exception do begin
-      Result:=-1;
-      hLog.Send('ERROR: '+Ex.Message);
+    on Ex: Exception do
+    begin
+      Result := -1;
+      hLog.Send('ERROR: ' + Ex.Message);
     end;
   end;
 end;
 
-function TAppDBConnection.SetupDatabase: Integer;
+function TAppDBConnection.SetupDatabase: integer;
 var
   Tables: TStringList;
 
@@ -228,49 +233,50 @@ var
   var
     FileName: string;
   begin
-    Result:=0;
-    Database.SQLiteConnection:=TSQLite3Connection.Create(nil);
-    Database.SQLQuery:=TSQLQuery.Create(nil);
-    Database.Trans:=TSQLTransaction.Create(nil);
-//  Database.SQLMonitor:=TSQLmonitor.Create(nil);
-    Database.SQLQuery.Database:=Database.SQLiteConnection;
+    Result := 0;
+    Database.SQLiteConnection := TSQLite3Connection.Create(nil);
+    Database.SQLQuery := TSQLQuery.Create(nil);
+    Database.Trans := TSQLTransaction.Create(nil);
+    //  Database.SQLMonitor:=TSQLmonitor.Create(nil);
+    Database.SQLQuery.Database := Database.SQLiteConnection;
 
-    FileName:=KSPDataFolder+'db\db.sqlite';
+    FileName := KSPDataFolder + 'db\db.sqlite';
     FixFolderNames(FileName);
-    Database.SQLiteConnection.DatabaseName:=FileName;
+    Database.SQLiteConnection.DatabaseName := FileName;
     try
       Database.SQLiteConnection.Open;
     except
-      Result:=3;
+      Result := 3;
     end;
 
-    if Result=0 then begin
-        Database.Trans.DataBase:=Database.SQLiteConnection;
-        Database.SQLiteConnection.Transaction:=Database.Trans;
-        Database.SQLQuery.Transaction:=Database.Trans;
+    if Result = 0 then
+    begin
+      Database.Trans.DataBase := Database.SQLiteConnection;
+      Database.SQLiteConnection.Transaction := Database.Trans;
+      Database.SQLQuery.Transaction := Database.Trans;
 
-        Tables:=TStringList.Create;
+      Tables := TStringList.Create;
 
-        Database.Trans.StartTransaction;
+      Database.Trans.StartTransaction;
 
-        Database.SQLiteConnection.GetTableNames(Tables);
+      Database.SQLiteConnection.GetTableNames(Tables);
 
-        Database.Trans.Commit;
+      Database.Trans.Commit;
 
-        CreateMissingTables(Tables);
+      CreateMissingTables(Tables);
 
-        Tables.Free;
-      end;
+      Tables.Free;
+    end;
   end;
 
 begin
   SetupSqlite;
 
   hLog.Send('Database set');
-//  end;
+  //  end;
 end;
 
-function TAppDBConnection.ExecuteSQL( Sql : String; NoFixName: boolean = false): Integer;
+function TAppDBConnection.ExecuteSQL(Sql: string; NoFixName: boolean = False): integer;
 var
   s: string;
 begin
@@ -278,22 +284,25 @@ begin
 
   LCLIntf.EnterCriticalSection(DBCritSection);
   try
-  if Database.SQLQuery.Active then Result:=-1 else begin//Database.SQLQuery.Active:=false;
-    if not NoFixName then
-      FixFileNameDB(sql);
-    Log.Add('Executing SQL: '+sql);
-    s:=KSPDataFolder+'\sql.log';
-    FixFolderNames(s);
-    Log.SaveToFile(s);
-    Database.SQLQuery.SQL.Text:=Sql;
-//    Database.SQLQuery.Open;
-//    Database.SQLQuery.Close;
-    Database.SQLQuery.ExecSQL;
-    Database.Trans.Commit;
-    Result:=0;//Database.SQLQuery.Result;
-    if Result=Database.SQLQuery.RowsAffected then
-      Result:=0;
-  end;
+    if Database.SQLQuery.Active then
+      Result := -1
+    else
+    begin//Database.SQLQuery.Active:=false;
+      if not NoFixName then
+        FixFileNameDB(sql);
+      Log.Add('Executing SQL: ' + sql);
+      s := KSPDataFolder + '\sql.log';
+      FixFolderNames(s);
+      Log.SaveToFile(s);
+      Database.SQLQuery.SQL.Text := Sql;
+      //    Database.SQLQuery.Open;
+      //    Database.SQLQuery.Close;
+      Database.SQLQuery.ExecSQL;
+      Database.Trans.Commit;
+      Result := 0;//Database.SQLQuery.Result;
+      if Result = Database.SQLQuery.RowsAffected then
+        Result := 0;
+    end;
   finally
     LCLIntf.LeaveCriticalSection(DBCritSection);
   end;
@@ -305,16 +314,19 @@ var
 begin
   LCLIntf.EnterCriticalSection(DBCritSection);
   try
-  if Database.SQLQuery.Active then Result:=-1 else begin
-    FixFileNameDB(sql);
-    Database.SQLQuery.SQL.Text:=Sql;
-    Log.Add('Opening query for: '+sql);
-    s:=KSPDataFolder+'\sql.log';
-    FixFolderNames(s);
-    Log.SaveToFile(s);
-    Database.SQLQuery.Open;
-    Result:=0;
-  end;
+    if Database.SQLQuery.Active then
+      Result := -1
+    else
+    begin
+      FixFileNameDB(sql);
+      Database.SQLQuery.SQL.Text := Sql;
+      Log.Add('Opening query for: ' + sql);
+      s := KSPDataFolder + '\sql.log';
+      FixFolderNames(s);
+      Log.SaveToFile(s);
+      Database.SQLQuery.Open;
+      Result := 0;
+    end;
   finally
 
   end;
@@ -322,18 +334,24 @@ end;
 
 function TAppDBConnection.CloseQuery: integer;
 begin
-  if not Database.SQLQuery.Active then Result:=-1 else begin
+  if not Database.SQLQuery.Active then
+    Result := -1
+  else
+  begin
     Database.SQLQuery.Close;
-    Result:=0;
+    Result := 0;
     LCLIntf.LeaveCriticalSection(DBCritSection);
   end;
 end;
 
-function TAppDBConnection.ReturnFieldStr(Name: string; GoToNext: boolean = true): string;
+function TAppDBConnection.ReturnFieldStr(Name: string; GoToNext: boolean = True): string;
 begin
-  if not Database.SQLQuery.Active then Result:='' else begin
-//    Database.SQLQuery.FieldList.SaveToFile(ExtractFilePath(Application.ExeName)+'temp.txt');
-    Result:=Database.SQLQuery.FieldByName(Name).AsString;
+  if not Database.SQLQuery.Active then
+    Result := ''
+  else
+  begin
+    //    Database.SQLQuery.FieldList.SaveToFile(ExtractFilePath(Application.ExeName)+'temp.txt');
+    Result := Database.SQLQuery.FieldByName(Name).AsString;
 
     if GoToNext then
       Database.SQLQuery.Next;
@@ -344,53 +362,58 @@ function TAppDBConnection.ReturnRecordsCount: integer;
 var
   cnt: integer;
 begin
-  cnt:=0;
-  if Database.SQLQuery.Active then begin
-    while not EndOfDB do begin
+  cnt := 0;
+  if Database.SQLQuery.Active then
+  begin
+    while not EndOfDB do
+    begin
       GoToNext;
       Inc(cnt);
     end;
     GoToFirst;
   end;
-  Result:=cnt;
+  Result := cnt;
 end;
 
 procedure TAppDBConnection.GoToFirst;
 begin
-  if not Database.SQLQuery.Active then Exit;
+  if not Database.SQLQuery.Active then
+    Exit;
   Database.SQLQuery.First;
 end;
 
 procedure TAppDBConnection.GoToLast;
 begin
-  if not Database.SQLQuery.Active then Exit;
+  if not Database.SQLQuery.Active then
+    Exit;
   Database.SQLQuery.Last;
 end;
 
 procedure TAppDBConnection.GoToNext;
 begin
-  if not Database.SQLQuery.Active then Exit;
+  if not Database.SQLQuery.Active then
+    Exit;
   Database.SQLQuery.Next;
 end;
 
 function TAppDBConnection.EndOfDB: boolean;
 begin
-  Result:=Database.SQLQuery.EOF;
+  Result := Database.SQLQuery.EOF;
 end;
 
 procedure TAppDBConnection.StartTransaction(var Res: integer);
 begin
-  Res:=0;
+  Res := 0;
   if Database.Trans.Active then
-    Res:=1;
+    Res := 1;
 
-  if Res=0 then
+  if Res = 0 then
     Database.Trans.StartTransaction;
 end;
 
-function TAppDBConnection.TransactionSupported: LongBool;
+function TAppDBConnection.TransactionSupported: longbool;
 begin
-  Result:=true;//Database.SQLConnection.TransactionsSupported;
+  Result := True;//Database.SQLConnection.TransactionsSupported;
 end;
 
 procedure TAppDBConnection.TransactionCommit;
@@ -405,17 +428,17 @@ end;
 
 function TAppDBConnection.InTransaction: boolean;
 begin
-  Result:=Database.Trans.Active;
+  Result := Database.Trans.Active;
 end;
 
 function TAppDBConnection.ReturnFields: TFields;
 begin
-  Result:=Self.Database.SQLQuery.Fields;
+  Result := Self.Database.SQLQuery.Fields;
 end;
 
 function TAppDBConnection.MultipleTransactionsSupported: boolean;
 begin
-  Result:=false;//Database.SQLConnection.MultipleTransactionsSupported;
+  Result := False;//Database.SQLConnection.MultipleTransactionsSupported;
 end;
 
 function TAppDBConnection.ReadEntry: TPLEntry;
@@ -423,100 +446,106 @@ var
   s: TStringList;
   p: TPLEntry;
 
-    function FieldExists(fname: string): boolean;
-    var
-      i: integer;
-    begin
-      Result:=false;
-      if s.Count>0 then for i:=0 to s.Count-1 do
-        if UpperCase(s.Strings[i])=UpperCase(fname) then Result:=true;
-    end;
+  function FieldExists(fname: string): boolean;
+  var
+    i: integer;
+  begin
+    Result := False;
+    if s.Count > 0 then
+      for i := 0 to s.Count - 1 do
+        if UpperCase(s.Strings[i]) = UpperCase(fname) then
+          Result := True;
+  end;
 
 begin
-      s:=TStringList.Create;
-      Self.Database.SQLQuery.GetFieldNames(s);
-      p.FirstPlay:=StrToDate(Self.Database.SQLQuery.FieldByName('FirstPlay').AsString);
-      p.LastPlay:=StrToDate(Self.Database.SQLQuery.FieldByName('LastPlay').AsString);
-      p.Fav:=StrToFloat(Self.Database.SQLQuery.FieldByName('Fav').AsString);
+  s := TStringList.Create;
+  Self.Database.SQLQuery.GetFieldNames(s);
+  p.FirstPlay := StrToDate(Self.Database.SQLQuery.FieldByName('FirstPlay').AsString);
+  p.LastPlay := StrToDate(Self.Database.SQLQuery.FieldByName('LastPlay').AsString);
+  p.Fav := StrToFloat(Self.Database.SQLQuery.FieldByName('Fav').AsString);
 
-      p.PlayCount:=Self.Database.SQLQuery.FieldByName('PlayCount').AsInteger;
-//      p.PlayedEver:=f.FieldByName('PlayedEver').AsBoolean;
+  p.PlayCount := Self.Database.SQLQuery.FieldByName('PlayCount').AsInteger;
+  //      p.PlayedEver:=f.FieldByName('PlayedEver').AsBoolean;
 
-      p.FileName:=Self.Database.SQLQuery.FieldByName('FileName').AsString;
+  p.FileName := Self.Database.SQLQuery.FieldByName('FileName').AsString;
 
-      //p.Tag:=ReadID3(p.FileName);
-      p.MetaTag:=Self.Database.SQLQuery.FieldByName('Meta').AsInteger;
+  //p.Tag:=ReadID3(p.FileName);
+  p.MetaTag := Self.Database.SQLQuery.FieldByName('Meta').AsInteger;
 
-      p.Tag.Title:=Self.Database.SQLQuery.FieldByName('Title').AsString;
-      p.Tag.Artist:=Self.Database.SQLQuery.FieldByName('Artist').AsString;
+  p.Tag.Title  := Self.Database.SQLQuery.FieldByName('Title').AsString;
+  p.Tag.Artist := Self.Database.SQLQuery.FieldByName('Artist').AsString;
 
-      p.Tag.Album:=Self.Database.SQLQuery.FieldByName('Album').AsString;
-      p.Tag.Year:=Self.Database.SQLQuery.FieldByName('metaYear').AsString;
-      p.Tag.Comment:=Self.Database.SQLQuery.FieldByName('Comment').AsString;
-      p.Tag.Genre:=Self.Database.SQLQuery.FieldByName('Genre').AsString;
+  p.Tag.Album   := Self.Database.SQLQuery.FieldByName('Album').AsString;
+  p.Tag.Year    := Self.Database.SQLQuery.FieldByName('metaYear').AsString;
+  p.Tag.Comment := Self.Database.SQLQuery.FieldByName('Comment').AsString;
+  p.Tag.Genre   := Self.Database.SQLQuery.FieldByName('Genre').AsString;
 
-      p.Tag.Track:=Self.Database.SQLQuery.FieldByName('Track').AsInteger;
+  p.Tag.Track := Self.Database.SQLQuery.FieldByName('Track').AsInteger;
 
-      if FieldExists('I_Name') then
-        p.IM:=Self.Database.SQLQuery.FieldByName('I_Name').AsInteger;
-      p.Tag.GID:=Self.Database.SQLQuery.FieldByName('GID').AsInteger;
+  if FieldExists('I_Name') then
+    p.IM    := Self.Database.SQLQuery.FieldByName('I_Name').AsInteger;
+  p.Tag.GID := Self.Database.SQLQuery.FieldByName('GID').AsInteger;
 
-      s.Free;
+  s.Free;
 
-      Result:=p;
+  Result := p;
 
 
-//      ShowMessage(IntToStr(f.Count));
-//      ShowMessage(IntToStr(f.FieldByName('I_Name').AsInteger));
+  //      ShowMessage(IntToStr(f.Count));
+  //      ShowMessage(IntToStr(f.FieldByName('I_Name').AsInteger));
 
-//      p.InternalNumberName:=f.FieldByName('IM').AsInteger;
+  //      p.InternalNumberName:=f.FieldByName('IM').AsInteger;
 end;
 
 procedure TAppDBConnection.CompactLib;
 var
   Pc: TPathChar;
-  s: TStringList;
+  s:  TStringList;
 
   procedure Step1;
   var
     x: integer;
   begin
     OpenQuery('SELECT * FROM meta');
-    if ReturnRecordsCount>0 then for x:=0 to ReturnRecordsCount-1 do begin
-      s.Add(ReadEntry.FileName);
-      GoToNext;
-    end;
-    hLog.Send('MEDIA LIBRARY: '+IntToStr(s.Count)+' items returned');
+    if ReturnRecordsCount > 0 then
+      for x := 0 to ReturnRecordsCount - 1 do
+      begin
+        s.Add(ReadEntry.FileName);
+        GoToNext;
+      end;
+    hLog.Send('MEDIA LIBRARY: ' + IntToStr(s.Count) + ' items returned');
     CloseQuery;
   end;
 
 
   procedure Step2;
   var
-    i: integer;
+    i:   integer;
     str: string;
   begin
-    hLog.Send('MEDIA LIBRARY: '+IntToStr(s.Count)+' items to process');
-    if s.Count>0 then begin
-    for i:=0 to s.Count-1 do
-      if (not FileExists(s.Strings[i])) or
-      (not (KSPMainWindow.MediaFoldersList.FileInFolders(s.Strings[i])))
-      or (s.Strings[i]='')
-      or (FileSupportList.FindExtension(ExtractFileExt(s.Strings[i]), false)=-1) then
-      begin
-        if not FileExists(s.Strings[i]) then hLog.Send('MEDIA LIBRARY: File doesn''t exist: '+s.Strings[i]);
-        str:=s.Strings[i];
-        FixFileNameDB2(str);
-        hLog.Send('MEDIA LIBRARY: Removing item from library: '+str);
-        StrPCopy(Pc, str);
-        ExecuteSQL(Format(RemoveItem, [PrepareString(Pc)]));
-      end;
+    hLog.Send('MEDIA LIBRARY: ' + IntToStr(s.Count) + ' items to process');
+    if s.Count > 0 then
+    begin
+      for i := 0 to s.Count - 1 do
+        if (not FileExists(s.Strings[i])) or
+          (not (KSPMainWindow.MediaFoldersList.FileInFolders(s.Strings[i]))) or
+          (s.Strings[i] = '') or (FileSupportList.FindExtension(ExtractFileExt(s.Strings[i]),
+          False) = -1) then
+        begin
+          if not FileExists(s.Strings[i]) then
+            hLog.Send('MEDIA LIBRARY: File doesn''t exist: ' + s.Strings[i]);
+          str := s.Strings[i];
+          FixFileNameDB2(str);
+          hLog.Send('MEDIA LIBRARY: Removing item from library: ' + str);
+          StrPCopy(Pc, str);
+          ExecuteSQL(Format(RemoveItem, [PrepareString(Pc)]));
+        end;
     end;
     hLog.Send('MEDIA LIBRARY: Compact done');
   end;
 
 begin
-  s:=TStringList.Create;
+  s := TStringList.Create;
 
   Step1;
   Step2;
@@ -524,37 +553,42 @@ begin
   s.Free;
 end;
 
-procedure TAppDBConnection.FindAproxMaxPlayCountValues(var PlayCount: integer; var Approx: Extended);
+procedure TAppDBConnection.FindAproxMaxPlayCountValues(var PlayCount: integer;
+  var Approx: extended);
 var
-  i: integer;
-  All: Int64;
+  i:   integer;
+  All: int64;
 begin
   FindApproxVals.Clear;
   OpenQuery('SELECT * FROM meta WHERE PlayCount>0 ORDER BY PlayCount DESC');
-  All:=0;
-  if Self.ReturnRecordsCount>0 then begin
-    PlayCount:=Self.ReadEntry.PlayCount;
-    for i:=0 to ReturnRecordsCount-1 do
-      begin
-        FindApproxVals.Add(Self.ReadEntry);
-        GoToNext;
-        All:=All+FindApproxVals.GetItem(i).PlayCount;
-      end;
+  All := 0;
+  if Self.ReturnRecordsCount > 0 then
+  begin
+    PlayCount := Self.ReadEntry.PlayCount;
+    for i := 0 to ReturnRecordsCount - 1 do
+    begin
+      FindApproxVals.Add(Self.ReadEntry);
+      GoToNext;
+      All := All + FindApproxVals.GetItem(i).PlayCount;
+    end;
   end;
   CloseQuery;
 
   //ShowMessage(IntToStr(All));
-  if FindApproxVals.Count>0 then begin
-    Approx:=All / (FindApproxVals.Count);
-  end else PlayCount:=0;
-//  p.Clear;
+  if FindApproxVals.Count > 0 then
+  begin
+    Approx := All / (FindApproxVals.Count);
+  end
+  else
+    PlayCount := 0;
+  //  p.Clear;
 end;
 
 procedure TAppDBConnection.AddToDataBase(p: TPlaylist);
 var
-  fm: TFormatSettings;
-  i: integer;
-  s: TStringList;
+  fm:  TFormatSettings;
+  i:   integer;
+  s:   TStringList;
   str: string;
   Pc1, Pc2, Pc3, Pc4, Pc5, Pc6, Pc7: TPathChar;
 
@@ -571,50 +605,52 @@ var
     StrPCopy(Pc7, p.GetItem(Index).Tag.Title);
 
     OpenQuery(Format(SelectGetItem, [PrepareString(Pc4)]));
-    i:=ReturnRecordsCount;
+    i := ReturnRecordsCount;
     CloseQuery;
 
-    if i>0 then
-      str:=Format(UpdateStat, [IntToStr(p.GetItem(Index).Tag.GID),
-                                                IntToStr(p.GetItem(Index).Tag.Track),
-                                                PrepareString(Pc1),
-                                                PrepareString(Pc2),
-                                                PrepareString(Pc3),
-                                                PrepareString(Pc6),
-                                                PrepareString(Pc7),
-                                                BoolToStr(p.GetItem(Index).PlayedEver, false),
-                                                IntToStr(p.GetItem(Index).MetaTag),
-                                                IntToStr(p.GetItem(Index).PlayCount),
-                                                FloatToStr(p.GetItem(Index).Fav, fm),
-                                                DateToStr(p.GetItem(Index).LastPlay),
-                                                DateToStr(p.GetItem(Index).FirstPlay),
-                                                PrepareString(Pc4),
-                                                PrepareString(Pc5),
-                                                PrepareString(Pc4)])
-  else
-      str:=Format(InsStat, [IntToStr(p.GetItem(Index).Tag.GID),
-                                                IntToStr(p.GetItem(Index).Tag.Track),
-                                                PrepareString(Pc1),
-                                                PrepareString(Pc2),
-                                                PrepareString(Pc3),
-                                                PrepareString(Pc6),
-                                                PrepareString(Pc7),
-                                                BoolToStr(p.GetItem(Index).PlayedEver, false),
-                                                IntToStr(p.GetItem(Index).MetaTag),
-                                                IntToStr(p.GetItem(Index).PlayCount),
-                                                FloatToStr(p.GetItem(Index).Fav, fm),
-                                                DateToStr(p.GetItem(Index).LastPlay),
-                                                DateToStr(p.GetItem(Index).FirstPlay),
-                                                PrepareString(Pc4),
-                                                PrepareString(Pc5)]);
+    if i > 0 then
+      str := Format(UpdateStat, [IntToStr(p.GetItem(Index).Tag.GID),
+        IntToStr(p.GetItem(Index).Tag.Track),
+        PrepareString(Pc1),
+        PrepareString(Pc2),
+        PrepareString(Pc3),
+        PrepareString(Pc6),
+        PrepareString(Pc7),
+        BoolToStr(p.GetItem(Index).PlayedEver,
+        False), IntToStr(
+        p.GetItem(Index).MetaTag), IntToStr(
+        p.GetItem(Index).PlayCount), FloatToStr(
+        p.GetItem(Index).Fav, fm), DateToStr(
+        p.GetItem(Index).LastPlay), DateToStr(
+        p.GetItem(Index).FirstPlay),
+        PrepareString(
+        Pc4), PrepareString(Pc5),
+        PrepareString(Pc4)])
+    else
+      str := Format(InsStat, [IntToStr(p.GetItem(Index).Tag.GID),
+        IntToStr(p.GetItem(Index).Tag.Track),
+        PrepareString(Pc1),
+        PrepareString(Pc2),
+        PrepareString(Pc3),
+        PrepareString(Pc6),
+        PrepareString(Pc7),
+        BoolToStr(p.GetItem(Index).PlayedEver,
+        False), IntToStr(
+        p.GetItem(Index).MetaTag), IntToStr(
+        p.GetItem(Index).PlayCount), FloatToStr(
+        p.GetItem(Index).Fav, fm), DateToStr(
+        p.GetItem(Index).LastPlay), DateToStr(
+        p.GetItem(Index).FirstPlay),
+        PrepareString(
+        Pc4), PrepareString(Pc5)]);
 
-      s.Add(str+';');
+    s.Add(str + ';');
   end;
 
 begin
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
-  s:=TStringList.Create;
+  //  GetLocaleFormatSettings(KSPLangID, fm);
+  fm.DecimalSeparator := '.';
+  s := TStringList.Create;
   for i := 0 to p.Count - 1 do
     AddToScript(i);
 
@@ -625,76 +661,80 @@ end;
 procedure TAppDBConnection.AddToDataBase(p: TPLEntry);
 var
   fm: TFormatSettings;
-  i: integer;
-  s: TStringList;
+  i:  integer;
+  s:  TStringList;
   Pc1, Pc2, Pc3, Pc4, Pc5, Pc6, Pc7: TPathChar;
 begin
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
+  //  GetLocaleFormatSettings(KSPLangID, fm);
+  fm.DecimalSeparator := '.';
 
-    StrPCopy(Pc1, p.Tag.Comment);
-    StrPCopy(Pc2, p.Tag.Year);
-    StrPCopy(Pc3, p.Tag.Album);
-    StrPCopy(Pc4, p.FileName);
-    StrPCopy(Pc5, p.Tag.Genre);
-    StrPCopy(Pc6, p.Tag.Artist);
-    StrPCopy(Pc7, p.Tag.Title);
+  StrPCopy(Pc1, p.Tag.Comment);
+  StrPCopy(Pc2, p.Tag.Year);
+  StrPCopy(Pc3, p.Tag.Album);
+  StrPCopy(Pc4, p.FileName);
+  StrPCopy(Pc5, p.Tag.Genre);
+  StrPCopy(Pc6, p.Tag.Artist);
+  StrPCopy(Pc7, p.Tag.Title);
 
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc4)]));
-  i:=ReturnRecordsCount;
+  i := ReturnRecordsCount;
   CloseQuery;
-  s:=TStringList.Create;
+  s := TStringList.Create;
 
-  if i>0 then
-      s.Text:=Format(UpdateStat, [IntToStr(p.Tag.GID),
-                                                IntToStr(p.Tag.Track),
-                                                PrepareString(Pc1),
-                                                PrepareString(Pc2),
-                                                PrepareString(Pc3),
-                                                PrepareString(Pc6),
-                                                PrepareString(Pc7),
-                                                BoolToStr(p.PlayedEver, false),
-                                                IntToStr(p.MetaTag),
-                                                IntToStr(p.PlayCount),
-                                                FloatToStr(p.Fav, fm),
-                                                DateToStr(p.LastPlay),
-                                                DateToStr(p.FirstPlay),
-                                                PrepareString(Pc4),
-                                                PrepareString(Pc5),
-                                                PrepareString(Pc4)])
+  if i > 0 then
+    s.Text := Format(UpdateStat, [IntToStr(p.Tag.GID),
+      IntToStr(p.Tag.Track),
+      PrepareString(Pc1),
+      PrepareString(Pc2),
+      PrepareString(Pc3),
+      PrepareString(Pc6),
+      PrepareString(Pc7),
+      BoolToStr(p.PlayedEver, False),
+      IntToStr(p.MetaTag),
+      IntToStr(p.PlayCount),
+      FloatToStr(p.Fav, fm),
+      DateToStr(p.LastPlay),
+      DateToStr(p.FirstPlay),
+      PrepareString(Pc4),
+      PrepareString(Pc5),
+      PrepareString(Pc4)])
   else
-      s.Text:=Format(InsStat, [IntToStr(p.Tag.GID),
-                                                IntToStr(p.Tag.Track),
-                                                PrepareString(Pc1),
-                                                PrepareString(Pc2),
-                                                PrepareString(Pc3),
-                                                PrepareString(Pc6),
-                                                PrepareString(Pc7),
-                                                BoolToStr(p.PlayedEver, false),
-                                                IntToStr(p.MetaTag),
-                                                IntToStr(p.PlayCount),
-                                                FloatToStr(p.Fav, fm),
-                                                DateToStr(p.LastPlay),
-                                                DateToStr(p.FirstPlay),
-                                                PrepareString(Pc4),
-                                                PrepareString(Pc5)]);
+    s.Text := Format(InsStat, [IntToStr(p.Tag.GID),
+      IntToStr(p.Tag.Track),
+      PrepareString(Pc1),
+      PrepareString(Pc2),
+      PrepareString(Pc3),
+      PrepareString(Pc6),
+      PrepareString(Pc7),
+      BoolToStr(p.PlayedEver, False),
+      IntToStr(p.MetaTag),
+      IntToStr(p.PlayCount),
+      FloatToStr(p.Fav, fm),
+      DateToStr(p.LastPlay),
+      DateToStr(p.FirstPlay),
+      PrepareString(Pc4),
+      PrepareString(Pc5)]);
 
-//      s.SaveToFile('sql.txt');
-//      fDataBase.Query.ExecSQL;
-      //Application.ProcessMessages;
-      try
-        ExecuteSQL(s.Text);
-      finally
+  //      s.SaveToFile('sql.txt');
+  //      fDataBase.Query.ExecSQL;
+  //Application.ProcessMessages;
+  try
+    ExecuteSQL(s.Text);
+  finally
 
-      end;
+  end;
   s.Free;
 end;
 
 procedure TAppDBConnection.Add(Entry: TPLEntry; OnLoad: boolean);
 begin
-  if ExtractFileExt(Entry.FileName)='' then Exit;
-  if FileSupportList.FindExtension(UpperCase(ExtractFileExt(Entry.FileName)), false)=-1 then Exit;
-  if not OnLoad then AddToDataBase(Entry);
+  if ExtractFileExt(Entry.FileName) = '' then
+    Exit;
+  if FileSupportList.FindExtension(UpperCase(ExtractFileExt(Entry.FileName)),
+    False) = -1 then
+    Exit;
+  if not OnLoad then
+    AddToDataBase(Entry);
 end;
 
 procedure TAppDBConnection.Remove(FileName: string);
@@ -707,8 +747,8 @@ end;
 
 function TAppDBConnection.IsPlaylist(FileName: string): boolean;
 begin
-  FileName:=ExtractFileExt(UpperCase(FileName));
-  Result:=(FileName='.M3U')or(FileName='.PLS')or(FileName='.KPL');
+  FileName := ExtractFileExt(UpperCase(FileName));
+  Result   := (FileName = '.M3U') or (FileName = '.PLS') or (FileName = '.KPL');
 end;
 
 function TAppDBConnection.ReturnFromGID(FileName: string; GID: integer): TPlayList;
@@ -716,20 +756,22 @@ var
   i: integer;
   p: TPLEntry;
 begin
-  Result:=TPlayList.Create;
+  Result := TPlayList.Create;
   try
-  OpenQuery('SELECT * FROM meta where GID='+IntToStr(GID));
+    OpenQuery('SELECT * FROM meta where GID=' + IntToStr(GID));
 
-  if ReturnRecordsCount>0 then
-  for i:=0 to ReturnRecordsCount-1 do begin
-      p:=ReadEntry;
-      GoToNext;
-          if p.MetaTag=0 then p.Tag:=ReadID3(p.FileName);
+    if ReturnRecordsCount > 0 then
+      for i := 0 to ReturnRecordsCount - 1 do
+      begin
+        p := ReadEntry;
+        GoToNext;
+        if p.MetaTag = 0 then
+          p.Tag := ReadID3(p.FileName);
 
-          if (UpperCase(FileName)<>UpperCase(p.FileName)) then
-            Result.Add(p);
-    end;
-  CloseQuery;
+        if (UpperCase(FileName) <> UpperCase(p.FileName)) then
+          Result.Add(p);
+      end;
+    CloseQuery;
   except
     //CloseQuery;
   end;
@@ -737,25 +779,27 @@ end;
 
 function TAppDBConnection.ReturnFromArtist(FileName: string; Artist: string): TPlayList;
 var
-  i: integer;
-  p: TPLEntry;
+  i:  integer;
+  p:  TPLEntry;
   Pc: TPathChar;
 begin
-  Result:=TPlayList.Create;
+  Result := TPlayList.Create;
   StrPCopy(Pc, Artist);
   try
-  OpenQuery('SELECT * FROM meta where Artist='''+PrepareString(Pc)+'''');
+    OpenQuery('SELECT * FROM meta where Artist=''' + PrepareString(Pc) + '''');
 
-  if ReturnRecordsCount>0 then
-  for i:=0 to ReturnRecordsCount-1 do begin
-      p:=ReadEntry;
-      GoToNext;
-          if p.MetaTag=0 then p.Tag:=ReadID3(p.FileName);
+    if ReturnRecordsCount > 0 then
+      for i := 0 to ReturnRecordsCount - 1 do
+      begin
+        p := ReadEntry;
+        GoToNext;
+        if p.MetaTag = 0 then
+          p.Tag := ReadID3(p.FileName);
 
-          if (UpperCase(FileName)<>UpperCase(p.FileName)) then
-            Result.Add(p);
-    end;
-  CloseQuery;
+        if (UpperCase(FileName) <> UpperCase(p.FileName)) then
+          Result.Add(p);
+      end;
+    CloseQuery;
   except
     //CloseQuery;
   end;
@@ -773,21 +817,24 @@ begin
   StrPCopy(al, Album);
   StrPCopy(ar, Artist);
 
-  if Artist = ('SUnknownArtist') then Artist:='';
-  if Album = ('SUnknownAlbum') then Album:='';
+  if Artist = ('SUnknownArtist') then
+    Artist := '';
+  if Album = ('SUnknownAlbum') then
+    Album := '';
 
   OpenQuery(Format('SELECT * FROM meta WHERE Artist=''%s'' AND Album=''%s''',
     [PrepareString(ar), PrepareString(al)]));
 
-  if ReturnRecordsCount>0 then
-  for i:=0 to ReturnRecordsCount-1 do begin
-      T:=ReadEntry;
+  if ReturnRecordsCount > 0 then
+    for i := 0 to ReturnRecordsCount - 1 do
+    begin
+      T := ReadEntry;
       GoToNext;
-//      if (UpperCase(T.Tag.Album)=UpperCase(Album)) and
-//        (UpperCase(T.Tag.Artist)=UpperCase(Artist)) then begin
+      //      if (UpperCase(T.Tag.Album)=UpperCase(Album)) and
+      //        (UpperCase(T.Tag.Artist)=UpperCase(Artist)) then begin
       if not Self.IsPlaylist(T.FileName) then
         Songs.Add(T);
-//          end;
+      //          end;
     end;
 
   CloseQuery;
@@ -799,13 +846,13 @@ function TAppDBConnection.FileInLib(FileName: string): boolean;
 var
   Pc: TPathChar;
 begin
-  Result:=false;
+  Result := False;
   //FixFileNameDB(FileName);
   StrPCopy(Pc, FileName);
 
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
-  if Self.ReturnRecordsCount>0 then
-    Result:=true;//RetFields.InternalNumberName;
+  if Self.ReturnRecordsCount > 0 then
+    Result := True;//RetFields.InternalNumberName;
   CloseQuery;
 
 end;
@@ -814,46 +861,47 @@ function TAppDBConnection.GetItemIndex(FileName: string): integer;
 var
   Pc: TPathChar;
 begin
-  Result:=-1;
+  Result := -1;
   //FixFileNameDB(FileName);
   StrPCopy(Pc, FileName);
 
   OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
-  if Self.ReturnRecordsCount>0 then
-    Result:=ReadEntry.IM;//RetFields.InternalNumberName;
+  if Self.ReturnRecordsCount > 0 then
+    Result := ReadEntry.IM;//RetFields.InternalNumberName;
   CloseQuery;
 
-  hLog.Send('IM of '+FileName+' is '+IntToStr(Result));
+  hLog.Send('IM of ' + FileName + ' is ' + IntToStr(Result));
 end;
 
 procedure TAppDBConnection.SaveLyrics(Lyrics: WideString; IM: integer);
 var
   sql: string;
 begin
-  sql:=Format(InsLyrics, [PrepareString(Lyrics), IntToStr(IM)]);
+  sql := Format(InsLyrics, [PrepareString(Lyrics), IntToStr(IM)]);
   //ShowMessage(IntToStr(Pos(#13, sql)));
   //ReplaceStr(sql, #13, '\new');
-  Self.ExecuteSQL(sql, true);
+  Self.ExecuteSQL(sql, True);
 end;
 
 function TAppDBConnection.ReadLyrics(IM: integer): WideString;
 var
   sql: string;
 begin
-  Result:='';
+  Result := '';
   //FixFileNameDB(FileName);
- // try
-  sql:=Format(SelectLyrics, [IntToStr(IM)]);
+  // try
+  sql    := Format(SelectLyrics, [IntToStr(IM)]);
   //ReplaceStr(sql, '\n', #13);
   Self.OpenQuery(sql);
   //Self.Database.SQLQuery.SQL.Text:='SELECT * FROM lyrics WHERE item_id=234';
   //Self.Database.SQLQuery.Open;
-  if Self.ReturnRecordsCount>0 then begin
-    Result:=Self.Database.SQLQuery.FieldByName('lyric').AsString;
-    end;
+  if Self.ReturnRecordsCount > 0 then
+  begin
+    Result := Self.Database.SQLQuery.FieldByName('lyric').AsString;
+  end;
   CloseQuery;
   //except
-    //CloseQuery;
+  //CloseQuery;
   //end;
 end;
 
@@ -864,8 +912,8 @@ end;
 
 function TAppDBConnection.GetFavList(FileName: string): TFavouriteList;
 var
-  f: TFavouriteList;
-  P: TPLEntry;
+  f:  TFavouriteList;
+  P:  TPLEntry;
   PC: TPathChar;
   tmp_xml: string;
 
@@ -873,44 +921,51 @@ var
   var
     i: integer;
   begin
-    Result:=nil;
+    Result := nil;
     //if x=nil then Exit;
-    for i:=0 to x.ChildNodes.Count-1 do begin
-      if UpperCase(x.ChildNodes.Item[i].NodeName)=UpperCase(Name) then begin
-          Result:=x.ChildNodes.Item[i]
-        end;
+    for i := 0 to x.ChildNodes.Count - 1 do
+    begin
+      if UpperCase(x.ChildNodes.Item[i].NodeName) = UpperCase(Name) then
+      begin
+        Result := x.ChildNodes.Item[i];
       end;
-    if Result=nil then hLog.Send('Node not found: '+Name);
+    end;
+    if Result = nil then
+      hLog.Send('Node not found: ' + Name);
   end;
 
   procedure ProcessFeed;
   var
     XMLPls: TXMLDocument;
     Main, Node: TDOMNode;
-    i: integer;
-    pls: TPlayList;
+    i:    integer;
+    pls:  TPlayList;
     item: TPlayNextSong;
   begin
     hLog.Send('Processing Feed...');
     ReadXMLFile(XMLPls, tmp_xml);
-    Main:=FindNode(XMLPls.DocumentElement, 'similartracks');
-    if Main=nil then begin
+    Main := FindNode(XMLPls.DocumentElement, 'similartracks');
+    if Main = nil then
+    begin
       hLog.Send('No similar tracks found...');
       Exit;
     end;
-    hLog.Send('Found '+IntToStr(Main.ChildNodes.Count)+' similar tracks');
+    hLog.Send('Found ' + IntToStr(Main.ChildNodes.Count) + ' similar tracks');
 
-    for i:=0 to Main.ChildNodes.Count-1 do begin
-      Node:=Main.ChildNodes.Item[i]; //<track>
-      p.Tag.Title:=FindNode(Node, 'name').FirstChild.NodeValue;
-      p.Tag.Artist:=FindNode(FindNode(Node, 'artist'), 'name').FirstChild.NodeValue;
+    for i := 0 to Main.ChildNodes.Count - 1 do
+    begin
+      Node := Main.ChildNodes.Item[i]; //<track>
+      p.Tag.Title := FindNode(Node, 'name').FirstChild.NodeValue;
+      p.Tag.Artist := FindNode(FindNode(Node, 'artist'), 'name').FirstChild.NodeValue;
 
-      pls:=Self.ReturnFromArtist(FileName, p.Tag.Artist);
+      pls := Self.ReturnFromArtist(FileName, p.Tag.Artist);
 
-      if Pls.FindTrack(p.Tag.Artist, '', p.Tag.Title) then begin
-        p:=Pls.GetTrack(p.Tag.Artist, '', p.Tag.Title, KSPMainWindow.Forbidden);
-        if p.FileName<>'' then begin
-          item.FileName:=p.FileName;
+      if Pls.FindTrack(p.Tag.Artist, '', p.Tag.Title) then
+      begin
+        p := Pls.GetTrack(p.Tag.Artist, '', p.Tag.Title, KSPMainWindow.Forbidden);
+        if p.FileName <> '' then
+        begin
+          item.FileName := p.FileName;
           FixFileNameDB2(item.FileName);
           f.Add(item);
         end;
@@ -918,7 +973,7 @@ var
       pls.Free;
     end;
 
-    hLog.Send('Similar items in library: '+IntToStr(f.Count));
+    hLog.Send('Similar items in library: ' + IntToStr(f.Count));
   end;
 
 
@@ -926,19 +981,21 @@ var
   var
     s: TStringList;
   begin
-    s:=TStringList.Create;
-    tmp_xml:='http://'+Url_encode(Format(ASTrackFeed, [p.Tag.Artist, p.Tag.Title]));
-    hLog.Send('AS feed: '+tmp_xml);
-    Result:=DownloadURLi(tmp_xml, s);
-    tmp_xml:=KSPDataFolder+'astrack.xml';
+    s := TStringList.Create;
+    tmp_xml := 'http://' + Url_encode(Format(ASTrackFeed, [p.Tag.Artist, p.Tag.Title]));
+    hLog.Send('AS feed: ' + tmp_xml);
+    Result  := DownloadURLi(tmp_xml, s);
+    tmp_xml := KSPDataFolder + 'astrack.xml';
     FixFolderNames(tmp_xml);
-    if Result then s.SaveToFile(tmp_xml);
+    if Result then
+      s.SaveToFile(tmp_xml);
     s.Free;
   end;
 
   procedure FillFavList;
   begin
-    if KSPMainWindow.OfflineMode then Exit;
+    if KSPMainWindow.OfflineMode then
+      Exit;
     DownloadFeed;
     ProcessFeed;
   end;
@@ -946,22 +1003,26 @@ var
 begin
   StrPCopy(PC, FileName);
   try
-  OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
-  if ReturnRecordsCount>0 then begin
-      p:=ReadEntry;
+    OpenQuery(Format(SelectGetItem, [PrepareString(Pc)]));
+    if ReturnRecordsCount > 0 then
+    begin
+      p := ReadEntry;
       hLog.Send(Format('Title: %s, Artist: %s', [p.Tag.Title, p.Tag.Artist]));
       CloseQuery;
-      f:=TFavouriteList.Create(p.IM);
+      f := TFavouriteList.Create(p.IM);
       FillFavList;
-      if f.Count>0 then f.Sort;
-    end else begin
+      if f.Count > 0 then
+        f.Sort;
+    end
+    else
+    begin
       CloseQuery;
-      f:=TFavouriteList.Create;
-      f.InternalName:=p.IM;
+      f := TFavouriteList.Create;
+      f.InternalName := p.IM;
     end;
-  Result:=f;
+    Result := f;
   except
-    Result:=nil;
+    Result := nil;
   end;
 end;
 
@@ -970,10 +1031,10 @@ begin
   inherited Create;
 end;
 
-constructor TFavouriteList.Create(IM: Integer);
+constructor TFavouriteList.Create(IM: integer);
 begin
   inherited Create;
-  fIM:=IM;
+  fIM := IM;
 end;
 
 destructor TFavouriteList.Destroy;
@@ -986,18 +1047,19 @@ procedure TFavouriteList.Clear;
 var
   i: integer;
 begin
-  if Count>0 then
-  for I := Count-1 downto 0 do begin
-    TFavInfo(Items[I]).Free;
-    Delete(i);
-  end;
+  if Count > 0 then
+    for I := Count - 1 downto 0 do
+    begin
+      TFavInfo(Items[I]).Free;
+      Delete(i);
+    end;
 
   inherited;
 end;
 
 function TFavouriteList.Add(Entry: TPlayNextSong): boolean;
 var
-  T: TFavInfo;
+  T:  TFavInfo;
   Pc: TPathChar;
 
   function CheckIfExists: boolean;
@@ -1007,36 +1069,38 @@ var
     //Result:=Songs.OpenQuery('SELECT * FROM vdjentries WHERE I_NAME='+IntToStr(fIM)+
     //  ' AND FileName='''+PrepareString(Pc)+'''')>0;
     //Songs.CloseQuery;
-    Result:=false;
-    if Self.Count>0 then
-      for i:=0 to Self.Count-1 do
-        if TFavInfo(Items[i]).Entry.FileName=Entry.FileName then Result:=true;
+    Result := False;
+    if Self.Count > 0 then
+      for i := 0 to Self.Count - 1 do
+        if TFavInfo(Items[i]).Entry.FileName = Entry.FileName then
+          Result := True;
   end;
 
 begin
   StrPCopy(Pc, Entry.FileName);
-  Result:=not CheckIfExists;
+  Result := not CheckIfExists;
 
-  if Result then begin
-      T:=TFavInfo.Create;
-      T.Entry:=Entry;
-      inherited Add(T);
-    end;
+  if Result then
+  begin
+    T := TFavInfo.Create;
+    T.Entry := Entry;
+    inherited Add(T);
+  end;
 end;
 
 procedure TFavouriteList.ReplaceEntry(new: TPlayNextSong; Songs: TAppDBConnection);
 var
   sql: string;
-  Pc: TPathChar;
-  fm: TFormatSettings;
+  Pc:  TPathChar;
+  fm:  TFormatSettings;
 begin
   StrPCopy(Pc, new.FileName);
-//  GetLocaleFormatSettings(KSPLangID, fm);
-  fm.DecimalSeparator:='.';
-  sql:=Format('UPDATE vdjentries SET FileName=''%s'', I_NAME=%s, Fav=%s, PlayCount=%s WHERE I_NAME=%s AND FileName=''%s''',
-        [PrepareString(Pc), IntToStr(fIM),
-        FloatToStr(new.Favourite, fm), IntToStr(new.PlayCount),
-        IntToStr(fIM), PrepareString(Pc)]);
+  //  GetLocaleFormatSettings(KSPLangID, fm);
+  fm.DecimalSeparator := '.';
+  sql := Format(
+    'UPDATE vdjentries SET FileName=''%s'', I_NAME=%s, Fav=%s, PlayCount=%s WHERE I_NAME=%s AND FileName=''%s''',
+    [PrepareString(Pc), IntToStr(fIM), FloatToStr(new.Favourite, fm),
+    IntToStr(new.PlayCount), IntToStr(fIM), PrepareString(Pc)]);
   try
     Songs.ExecuteSQL(sql);
   except
@@ -1045,31 +1109,32 @@ begin
   //TFavInfo(Items[Index]).Entry:=new;
 end;
 
-procedure TFavouriteList.Remove(Index: Integer);
+procedure TFavouriteList.Remove(Index: integer);
 begin
   TFavInfo(Items[Index]).Free;
-//  FreeAndNil(TFavInfo(Items[Index]));
+  //  FreeAndNil(TFavInfo(Items[Index]));
   Delete(Index);
 end;
 
-function TFavouriteList.GetItem(Index: Integer): TPlayNextSong;
+function TFavouriteList.GetItem(Index: integer): TPlayNextSong;
 begin
-  Result:=TFavInfo(Items[Index]).Entry;
+  Result := TFavInfo(Items[Index]).Entry;
 end;
 
-function TFavouriteList.FindItem(FileName: String): Integer;
+function TFavouriteList.FindItem(FileName: string): integer;
 var
   i: integer;
 begin
-  Result:=-1;
-  for i:=0 to Count-1 do
-    if UpperCase(TFavInfo(Items[i]).Entry.FileName)=UpperCase(FileName) then
-      Result:=i;
+  Result := -1;
+  for i := 0 to Count - 1 do
+    if UpperCase(TFavInfo(Items[i]).Entry.FileName) = UpperCase(FileName) then
+      Result := i;
 end;
 
-function CompareFav(Item1, Item2: Pointer): Integer;
+function CompareFav(Item1, Item2: Pointer): integer;
 begin
-  Result := -CompareValue(TFavInfo(Item1).Entry.Favourite, TFavInfo(Item2).Entry.Favourite);
+  Result := -CompareValue(TFavInfo(Item1).Entry.Favourite,
+    TFavInfo(Item2).Entry.Favourite);
 end;
 
 procedure TFavouriteList.Sort;
@@ -1078,7 +1143,7 @@ begin
 end;
 
 initialization
-  Log:=TStringList.Create;
+  Log := TStringList.Create;
 
 finalization
   Log.Free;

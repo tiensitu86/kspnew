@@ -39,29 +39,30 @@ const
 
   MaxChannels = 10;
 
-  EQFreq : array[0..NumEQBands] of Word = (
+  EQFreq: array[0..NumEQBands] of word = (
     0, 3, 9, 16, 29, 48, 100, 141, 280, 559, 1024
-  );
+    );
 
-type TPreset = record
-        vals: array[0..NumEQBands -1] of Single;
-        name: string;
-        FromDefault: boolean;
-      end;
+type
+  TPreset = record
+    vals: array[0..NumEQBands - 1] of single;
+    Name: string;
+    FromDefault: boolean;
+  end;
 
-    TPresetInfo = class(TObject)
+  TPresetInfo = class(TObject)
   public
     Entry: TPreset;
   end;
 
-TEqList = class(TList)
+  TEqList = class(TList)
   public
     constructor Create;
     destructor Destroy; override;
     procedure Add(Entry: TPreset);
-    procedure Remove(Index: Integer);
-    function GetItem(Index: Integer): TPreset;
-    procedure LoadFromFile(FileName: string; SetAsFromDef: boolean = false);
+    procedure Remove(Index: integer);
+    function GetItem(Index: integer): TPreset;
+    procedure LoadFromFile(FileName: string; SetAsFromDef: boolean = False);
     procedure SaveToFile(FileName: string);
     procedure ChangeVals(Index: integer; Vals: TPreset);
   end;
@@ -83,7 +84,7 @@ destructor TEqList.Destroy;
 var
   i: integer;
 begin
-  for I := 0 to Count-1 do
+  for I := 0 to Count - 1 do
     TPresetInfo(Items[I]).Free;
   inherited Destroy;
 end;
@@ -92,103 +93,111 @@ procedure TEqList.Add(Entry: TPreset);
 var
   T: TPresetInfo;
 begin
-  T:=TPresetInfo.Create;
-  T.Entry:=Entry;
+  T := TPresetInfo.Create;
+  T.Entry := Entry;
   inherited Add(T);
 end;
 
-procedure TEqList.Remove(Index: Integer);
+procedure TEqList.Remove(Index: integer);
 begin
   TPresetInfo(Items[Index]).Free;
   Delete(Index);
 end;
 
-function TEqList.GetItem(Index: Integer): TPreset;
+function TEqList.GetItem(Index: integer): TPreset;
 begin
-  Result:=TPresetInfo(Items[Index]).Entry;
+  Result := TPresetInfo(Items[Index]).Entry;
 end;
 
-procedure TEqList.LoadFromFile(FileName: string; SetAsFromDef: boolean = false);
+procedure TEqList.LoadFromFile(FileName: string; SetAsFromDef: boolean = False);
 var
-  f: textfile;
+  f:    textfile;
   s, sname, sval: string;
   Vals: TPreset;
   aposition: integer;
-  i: Integer;
+  i:    integer;
 begin
-    hLog.Send('Loading presets');
-    AssignFile(f, FileName);
-    if FileExists(FileName) then begin
-        Reset(f);
-        while not Eof(f) do begin
-            Readln(f, s);
-            sname:=Copy(s, 0, Pos('=', s)-1);
-            hLog.Send(sname);
-            sval:=Copy(s, Pos('=', s)+1, Length(s));
-            //ShowMessage(sval);
+  hLog.Send('Loading presets');
+  AssignFile(f, FileName);
+  if FileExists(FileName) then
+  begin
+    Reset(f);
+    while not EOF(f) do
+    begin
+      Readln(f, s);
+      sname := Copy(s, 0, Pos('=', s) - 1);
+      hLog.Send(sname);
+      sval := Copy(s, Pos('=', s) + 1, Length(s));
+      //ShowMessage(sval);
 
-            vals.name:=sname;
-           //i:=0;
-           //aposition:=0;
-           for aposition:=0 to NumEQBands-2 do begin
-                //pi:=i;
-                i:=Pos(',', sval);
-                if i=0 then Break;
-                s:=Copy(sval, 0, i-1);
-                Vals.vals[aposition]:=StrToFloat(s);
-                //ShowMessage(IntToStr(vals[aposition]));
-                System.Delete(sval,1, Pos(',', sval));
-              end;
+      vals.Name := sname;
+      //i:=0;
+      //aposition:=0;
+      for aposition := 0 to NumEQBands - 2 do
+      begin
+        //pi:=i;
+        i := Pos(',', sval);
+        if i = 0 then
+          Break;
+        s := Copy(sval, 0, i - 1);
+        Vals.vals[aposition] := StrToFloat(s);
+        //ShowMessage(IntToStr(vals[aposition]));
+        System.Delete(sval, 1, Pos(',', sval));
+      end;
 
-              Vals.vals[NumEQBands-1]:=StrToFloat(sval);
-           Vals.FromDefault:=SetAsFromDef;
+      Vals.vals[NumEQBands - 1] := StrToFloat(sval);
+      Vals.FromDefault := SetAsFromDef;
 
-            Add(Vals);
-            //EqPresets.Items.Add(vals.name);
-            //T:=TMenuItem.Create(Self);
-            //T.Caption:=Vals.name;
-            //T.Tag:=EqPresets.Items.Count-1;
-            //T.RadioItem:=true;
-            //T.OnClick:=EqClick;
-            //EqualizerMenu.Add(T);
+      Add(Vals);
+      //EqPresets.Items.Add(vals.name);
+      //T:=TMenuItem.Create(Self);
+      //T.Caption:=Vals.name;
+      //T.Tag:=EqPresets.Items.Count-1;
+      //T.RadioItem:=true;
+      //T.OnClick:=EqClick;
+      //EqualizerMenu.Add(T);
 
-          end;
-      CloseFile(f);
     end;
-    hLog.Send('Loading presets finished');
+    CloseFile(f);
+  end;
+  hLog.Send('Loading presets finished');
 end;
 
 procedure TEqList.SaveToFile(FileName: string);
 var
-  s: TStringList;
-  i: integer;
+  s:   TStringList;
+  i:   integer;
   str: string;
 begin
   if FileExists(FileName) then
     DeleteFile(FileName);
-  if Count=0 then Exit;
-  s:=TStringList.Create;
+  if Count = 0 then
+    Exit;
+  s := TStringList.Create;
 
   for i := 0 to Count - 1 do
-    begin
-      if GetItem(i).FromDefault then Continue;      
-      str:=GetItem(i).name+'=';
-      //for x := 0 to NumEQBands - 1 do
-      //  str:=str+IntToStr(GetItem(i).vals[x])+',';
+  begin
+    if GetItem(i).FromDefault then
+      Continue;
+    str := GetItem(i).Name + '=';
+    //for x := 0 to NumEQBands - 1 do
+    //  str:=str+IntToStr(GetItem(i).vals[x])+',';
 
-      System.Delete(str, Length(str), 1);
-      s.Add(str);
-    end;
-  if s.Count>0 then
+    System.Delete(str, Length(str), 1);
+    s.Add(str);
+  end;
+  if s.Count > 0 then
     s.SaveToFile(FileName);
   s.Free;
 end;
 
 procedure TEqList.ChangeVals(Index: integer; Vals: TPreset);
 begin
-  if Index<0 then Exit;
-  if Index>=Count then Exit;
-  TPresetInfo(Items[Index]).Entry:=Vals;
+  if Index < 0 then
+    Exit;
+  if Index >= Count then
+    Exit;
+  TPresetInfo(Items[Index]).Entry := Vals;
 end;
 
 end.

@@ -1,7 +1,9 @@
 { Compiletime Controls support }
 unit uPSC_controls;
+
 {$I PascalScript.inc}
 interface
+
 uses
   uPSCompiler, uPSUtils;
 
@@ -16,9 +18,9 @@ uses
 procedure SIRegister_Controls_TypesAndConsts(Cl: TPSPascalCompiler);
 
 procedure SIRegisterTControl(Cl: TPSPascalCompiler);
-procedure SIRegisterTWinControl(Cl: TPSPascalCompiler); 
-procedure SIRegisterTGraphicControl(cl: TPSPascalCompiler); 
-procedure SIRegisterTCustomControl(cl: TPSPascalCompiler); 
+procedure SIRegisterTWinControl(Cl: TPSPascalCompiler);
+procedure SIRegisterTGraphicControl(cl: TPSPascalCompiler);
+procedure SIRegisterTCustomControl(cl: TPSPascalCompiler);
 procedure SIRegisterTDragObject(cl: TPSPascalCompiler);
 
 procedure SIRegister_Controls(Cl: TPSPascalCompiler);
@@ -114,6 +116,7 @@ begin
     {$ENDIF}
   end;
 end;
+
 procedure SIRegisterTGraphicControl(cl: TPSPascalCompiler); // requires TControl
 begin
   Cl.AddClassN(cl.FindClass('TControl'), 'TGRAPHICCONTROL');
@@ -127,21 +130,27 @@ end;
 procedure SIRegister_Controls_TypesAndConsts(Cl: TPSPascalCompiler);
 begin
 {$IFNDEF FPC}
-  Cl.addTypeS('TEShiftState','(ssShift, ssAlt, ssCtrl, ssLeft, ssRight, ssMiddle, ssDouble)');
+  Cl.addTypeS('TEShiftState',
+    '(ssShift, ssAlt, ssCtrl, ssLeft, ssRight, ssMiddle, ssDouble)');
   {$ELSE}
-  Cl.addTypeS('TEShiftState','(ssShift, ssAlt, ssCtrl, ssLeft, ssRight, ssMiddle, ssDouble,' +
-  'ssMeta, ssSuper, ssHyper, ssAltGr, ssCaps, ssNum,ssScroll,ssTriple,ssQuad)');
+  Cl.addTypeS('TEShiftState',
+    '(ssShift, ssAlt, ssCtrl, ssLeft, ssRight, ssMiddle, ssDouble,' +
+    'ssMeta, ssSuper, ssHyper, ssAltGr, ssCaps, ssNum,ssScroll,ssTriple,ssQuad)');
   {$ENDIF}
-  Cl.addTypeS('TShiftState','set of TEShiftState');
+  Cl.addTypeS('TShiftState', 'set of TEShiftState');
   cl.AddTypeS('TMouseButton', '(mbLeft, mbRight, mbMiddle)');
   cl.AddTypeS('TDragMode', '(dmManual, dmAutomatic)');
   cl.AddTypeS('TDragState', '(dsDragEnter, dsDragLeave, dsDragMove)');
   cl.AddTypeS('TDragKind', '(dkDrag, dkDock)');
-  cl.AddTypeS('TMouseEvent', 'procedure (Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);');
-  cl.AddTypeS('TMouseMoveEvent', 'procedure(Sender: TObject; Shift: TShiftState; X, Y: Integer);');
-  cl.AddTypeS('TKeyEvent', 'procedure (Sender: TObject; var Key: Word; Shift: TShiftState);');
+  cl.AddTypeS('TMouseEvent',
+    'procedure (Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);');
+  cl.AddTypeS('TMouseMoveEvent',
+    'procedure(Sender: TObject; Shift: TShiftState; X, Y: Integer);');
+  cl.AddTypeS('TKeyEvent',
+    'procedure (Sender: TObject; var Key: Word; Shift: TShiftState);');
   cl.AddTypeS('TKeyPressEvent', 'procedure(Sender: TObject; var Key: Char);');
-  cl.AddTypeS('TDragOverEvent', 'procedure(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean)');
+  cl.AddTypeS('TDragOverEvent',
+    'procedure(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean)');
   cl.AddTypeS('TDragDropEvent', 'procedure(Sender, Source: TObject;X, Y: Integer)');
   cl.AddTypeS('HWND', 'Longint');
 
@@ -150,42 +159,42 @@ begin
   cl.addTypeS('TAlign', '(alNone, alTop, alBottom, alLeft, alRight, alClient)');
 
   cl.addTypeS('TAnchorKind', '(akTop, akLeft, akRight, akBottom)');
-  cl.addTypeS('TAnchors','set of TAnchorKind');
+  cl.addTypeS('TAnchors', 'set of TAnchorKind');
   cl.AddTypeS('TModalResult', 'Integer');
   cl.AddTypeS('TCursor', 'Integer');
   cl.AddTypeS('TPoint', 'record x,y: Longint; end;');
 
-  cl.AddConstantN('mrNone', 'Integer').Value.ts32 := 0;
-  cl.AddConstantN('mrOk', 'Integer').Value.ts32 := 1;
-  cl.AddConstantN('mrCancel', 'Integer').Value.ts32 := 2;
-  cl.AddConstantN('mrAbort', 'Integer').Value.ts32 := 3;
-  cl.AddConstantN('mrRetry', 'Integer').Value.ts32 := 4;
-  cl.AddConstantN('mrIgnore', 'Integer').Value.ts32 := 5;
-  cl.AddConstantN('mrYes', 'Integer').Value.ts32 := 6;
-  cl.AddConstantN('mrNo', 'Integer').Value.ts32 := 7;
-  cl.AddConstantN('mrAll', 'Integer').Value.ts32 := 8;
+  cl.AddConstantN('mrNone', 'Integer').Value.ts32    := 0;
+  cl.AddConstantN('mrOk', 'Integer').Value.ts32      := 1;
+  cl.AddConstantN('mrCancel', 'Integer').Value.ts32  := 2;
+  cl.AddConstantN('mrAbort', 'Integer').Value.ts32   := 3;
+  cl.AddConstantN('mrRetry', 'Integer').Value.ts32   := 4;
+  cl.AddConstantN('mrIgnore', 'Integer').Value.ts32  := 5;
+  cl.AddConstantN('mrYes', 'Integer').Value.ts32     := 6;
+  cl.AddConstantN('mrNo', 'Integer').Value.ts32      := 7;
+  cl.AddConstantN('mrAll', 'Integer').Value.ts32     := 8;
   cl.AddConstantN('mrNoToAll', 'Integer').Value.ts32 := 9;
   cl.AddConstantN('mrYesToAll', 'Integer').Value.ts32 := 10;
   cl.AddConstantN('crDefault', 'Integer').Value.ts32 := 0;
-  cl.AddConstantN('crNone', 'Integer').Value.ts32 := -1;
-  cl.AddConstantN('crArrow', 'Integer').Value.ts32 := -2;
-  cl.AddConstantN('crCross', 'Integer').Value.ts32 := -3;
-  cl.AddConstantN('crIBeam', 'Integer').Value.ts32 := -4;
+  cl.AddConstantN('crNone', 'Integer').Value.ts32    := -1;
+  cl.AddConstantN('crArrow', 'Integer').Value.ts32   := -2;
+  cl.AddConstantN('crCross', 'Integer').Value.ts32   := -3;
+  cl.AddConstantN('crIBeam', 'Integer').Value.ts32   := -4;
   cl.AddConstantN('crSizeNESW', 'Integer').Value.ts32 := -6;
-  cl.AddConstantN('crSizeNS', 'Integer').Value.ts32 := -7;
+  cl.AddConstantN('crSizeNS', 'Integer').Value.ts32  := -7;
   cl.AddConstantN('crSizeNWSE', 'Integer').Value.ts32 := -8;
-  cl.AddConstantN('crSizeWE', 'Integer').Value.ts32 := -9;
+  cl.AddConstantN('crSizeWE', 'Integer').Value.ts32  := -9;
   cl.AddConstantN('crUpArrow', 'Integer').Value.ts32 := -10;
   cl.AddConstantN('crHourGlass', 'Integer').Value.ts32 := -11;
-  cl.AddConstantN('crDrag', 'Integer').Value.ts32 := -12;
-  cl.AddConstantN('crNoDrop', 'Integer').Value.ts32 := -13;
-  cl.AddConstantN('crHSplit', 'Integer').Value.ts32 := -14;
-  cl.AddConstantN('crVSplit', 'Integer').Value.ts32 := -15;
+  cl.AddConstantN('crDrag', 'Integer').Value.ts32    := -12;
+  cl.AddConstantN('crNoDrop', 'Integer').Value.ts32  := -13;
+  cl.AddConstantN('crHSplit', 'Integer').Value.ts32  := -14;
+  cl.AddConstantN('crVSplit', 'Integer').Value.ts32  := -15;
   cl.AddConstantN('crMultiDrag', 'Integer').Value.ts32 := -16;
   cl.AddConstantN('crSQLWait', 'Integer').Value.ts32 := -17;
-  cl.AddConstantN('crNo', 'Integer').Value.ts32 := -18;
+  cl.AddConstantN('crNo', 'Integer').Value.ts32      := -18;
   cl.AddConstantN('crAppStart', 'Integer').Value.ts32 := -19;
-  cl.AddConstantN('crHelp', 'Integer').Value.ts32 := -20;
+  cl.AddConstantN('crHelp', 'Integer').Value.ts32    := -20;
 {$IFDEF DELPHI3UP}
   cl.AddConstantN('crHandPoint', 'Integer').Value.ts32 := -21;
 {$ENDIF}
@@ -196,7 +205,7 @@ end;
 
 procedure SIRegisterTDragObject(cl: TPSPascalCompiler);
 begin
-  with CL.AddClassN(CL.FindClass('TObject'),'TDragObject') do
+  with CL.AddClassN(CL.FindClass('TObject'), 'TDragObject') do
   begin
 {$IFNDEF PS_MINIVCL}
 {$IFDEF DELPHI4UP}
@@ -218,7 +227,8 @@ begin
 {$ENDIF}
 {$ENDIF}
   end;
-  Cl.AddTypeS('TStartDragEvent', 'procedure (Sender: TObject; var DragObject: TDragObject)');
+  Cl.AddTypeS('TStartDragEvent',
+    'procedure (Sender: TObject; var DragObject: TDragObject)');
 end;
 
 procedure SIRegister_Controls(Cl: TPSPascalCompiler);

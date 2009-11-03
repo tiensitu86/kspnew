@@ -42,16 +42,16 @@ const
   faSymLink   = $00000040;
   faAnyFile   = $0000003F;
 
-//function MinimizeName(const Filename: PChar; Canvas: TCanvas;
-//  MaxLen: Integer): TFileName; external 'kspfiles.dll';
+ //function MinimizeName(const Filename: PChar; Canvas: TCanvas;
+ //  MaxLen: Integer): TFileName; external 'kspfiles.dll';
 
 function MinimizeName(const Filename: TFileName; Canvas: TCanvas;
-  MaxLen: Integer): TFileName; overload;
-function MinimizeName(const Filename: TFileName; TextWidth: Integer;
-  MaxLen: Integer): TFileName; overload;
+  MaxLen: integer): TFileName; overload;
+function MinimizeName(const Filename: TFileName; TextWidth: integer;
+  MaxLen: integer): TFileName; overload;
 //function FileSetAttr(const FileName: string; Attr: Integer): Integer; external 'kspfiles.dll';
-//function TrimRight(const S: string): string; external 'kspfiles.dll';
-//function TrimRightA(const S: WideString): WideString; external 'kspfiles.dll';
+ //function TrimRight(const S: string): string; external 'kspfiles.dll';
+ //function TrimRightA(const S: WideString): WideString; external 'kspfiles.dll';
 
 implementation
 
@@ -59,8 +59,8 @@ uses KSPConstsVars;
 
 procedure CutFirstDirectory(var S: TFileName);
 var
-  Root: Boolean;
-  P: Integer;
+  Root: boolean;
+  P:    integer;
 begin
   if S = '\' then
     S := ''
@@ -75,7 +75,7 @@ begin
       Root := False;
     if S[1] = '.' then
       Delete(S, 1, 4);
-    P := AnsiPos('\',S);
+    P := AnsiPos('\', S);
     if P <> 0 then
     begin
       Delete(S, 1, P);
@@ -88,16 +88,16 @@ begin
   end;
 end;
 
-function MinimizeName(const Filename: TFileName; TextWidth: Integer;
-  MaxLen: Integer): TFileName;
+function MinimizeName(const Filename: TFileName; TextWidth: integer;
+  MaxLen: integer): TFileName;
 var
   Drive: TFileName;
-  Dir: TFileName;
-  Name: TFileName;
+  Dir:   TFileName;
+  Name:  TFileName;
 begin
   Result := FileName;
-  Dir := ExtractFilePath(Result);
-  Name := ExtractFileName(Result);
+  Dir    := ExtractFilePath(Result);
+  Name   := ExtractFileName(Result);
 
   if (Length(Dir) >= 2) and (Dir[2] = ':') then
   begin
@@ -111,7 +111,7 @@ begin
     if Dir = '\...\' then
     begin
       Drive := '';
-      Dir := '...\';
+      Dir   := '...\';
     end
     else if Dir = '' then
       Drive := ''
@@ -123,15 +123,15 @@ end;
 
 
 function MinimizeName(const Filename: TFileName; Canvas: TCanvas;
-  MaxLen: Integer): TFileName;
+  MaxLen: integer): TFileName;
 var
   Drive: TFileName;
-  Dir: TFileName;
-  Name: TFileName;
+  Dir:   TFileName;
+  Name:  TFileName;
 begin
   Result := FileName;
-  Dir := ExtractFilePath(Result);
-  Name := ExtractFileName(Result);
+  Dir    := ExtractFilePath(Result);
+  Name   := ExtractFileName(Result);
 
   if (Length(Dir) >= 2) and (Dir[2] = ':') then
   begin
@@ -145,7 +145,7 @@ begin
     if Dir = '\...\' then
     begin
       Drive := '';
-      Dir := '...\';
+      Dir   := '...\';
     end
     else if Dir = '' then
       Drive := ''

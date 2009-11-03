@@ -32,16 +32,19 @@ interface
 
 uses Classes, SysUtils, SpkXMLParser, profilefunc;
 
-type TBookmarkItem = record
-    URL: string;
+type
+  TBookmarkItem = record
+    URL:  string;
     Name: string;
   end;
 
-type TBookmarkItemObject = class
+type
+  TBookmarkItemObject = class
     Entry: TBookmarkItem;
   end;
 
-type TBookmarksList = class(TList)
+type
+  TBookmarksList = class(TList)
   public
     procedure Clear;
     constructor Create;
@@ -82,17 +85,17 @@ procedure TBookmarksList.Add(Item: TBookmarkItem);
 var
   t: TBookmarkItemObject;
 begin
-  t:=TBookmarkItemObject.Create;
-  t.Entry:=Item;
+  t := TBookmarkItemObject.Create;
+  t.Entry := Item;
   inherited Add(T);
 end;
 
-function TBookmarksList.GetItem(Index: Integer): TBookmarkItem;
+function TBookmarksList.GetItem(Index: integer): TBookmarkItem;
 begin
-  Result.URL:='';
-  Result.Name:='';
-  if (Index>=0)and(Index<Count) then
-    Result:=TBookmarkItemObject(Items[Index]).Entry;
+  Result.URL  := '';
+  Result.Name := '';
+  if (Index >= 0) and (Index < Count) then
+    Result := TBookmarkItemObject(Items[Index]).Entry;
 end;
 
 procedure TBookmarksList.LoadFromFile(FileName: string);
@@ -100,51 +103,55 @@ var
   XML: TSpkXMLParser;
   Main, Sub: TSpkXMLNode;
   Par: TSpkXMLParameter;
-  p: TBookmarkItem;
-  i: integer;
-  s: string;
-  s2: TStringList;
+  p:   TBookmarkItem;
+  i:   integer;
+  s:   string;
+  s2:  TStringList;
 
   function ItemExists(item: string): boolean;
   var
     i: integer;
   begin
-    Result:=false;
-    for i:=0 to Self.Count-1 do
-      if Self.GetItem(i).URL=item then Result:=true;
+    Result := False;
+    for i := 0 to Self.Count - 1 do
+      if Self.GetItem(i).URL = item then
+        Result := True;
   end;
 
 begin
   FixFolderNames(FileName);
-  if not FileExists(FileName) then Exit;
-  XML:=TSpkXMLParser.create;
+  if not FileExists(FileName) then
+    Exit;
+  XML := TSpkXMLParser.Create;
   XML.LoadFromFile(FileName);
-  Main:=XML.NodeByName['bookmarks', false];
-  if Main<>nil then
+  Main := XML.NodeByName['bookmarks', False];
+  if Main <> nil then
     for i := 0 to Main.Count - 1 do
-      begin
-        Sub:=Main.SubNodeByIndex[i];
-        Par:=Sub.Parameters.ParamByName['name', false];
-        if Par=nil then
-          Continue;
-        p.Name:=Par.Value;
-        Par:=Sub.Parameters.ParamByName['url', false];
-        if Par=nil then
-          Continue;
-        p.URL:=Par.Value;
-        Add(p);
-      end;
+    begin
+      Sub := Main.SubNodeByIndex[i];
+      Par := Sub.Parameters.ParamByName['name', False];
+      if Par = nil then
+        Continue;
+      p.Name := Par.Value;
+      Par    := Sub.Parameters.ParamByName['url', False];
+      if Par = nil then
+        Continue;
+      p.URL := Par.Value;
+      Add(p);
+    end;
   XML.Free;
 
-  s:=KSPDataFolder+'bookmarks';
+  s := KSPDataFolder + 'bookmarks';
   FixFolderNames(s);
 
-  s2:= TStringList.Create;
+  s2 := TStringList.Create;
 
-  SearchForFilesFS(s, true, s2);
-  for i:=0 to s2.Count-1 do begin
-    if not ItemExists(s2.Strings[i]) then begin
-      hLog.Send('Deleting old bookmark: '+s2.Strings[i]);
+  SearchForFilesFS(s, True, s2);
+  for i := 0 to s2.Count - 1 do
+  begin
+    if not ItemExists(s2.Strings[i]) then
+    begin
+      hLog.Send('Deleting old bookmark: ' + s2.Strings[i]);
       DeleteFile(s2.Strings[i]);
     end;
   end;
@@ -156,34 +163,35 @@ procedure TBookmarksList.SaveToFile(FileName: string);
 var
   XML: TSpkXMLParser;
   Main, Sub: TSpkXMLNode;
-  p: TBookmarkItem;
-  i: integer;
+  p:   TBookmarkItem;
+  i:   integer;
 begin
   FixFolderNames(FileName);
-  XML:=TSpkXMLParser.create;
-  Main:=TSpkXMLNode.create('bookmarks');
+  XML  := TSpkXMLParser.Create;
+  Main := TSpkXMLNode.Create('bookmarks');
   for i := 0 to Count - 1 do
-    begin
-      p:=GetItem(i);
-      Sub:=TSpkXMLNode.create('Item'+IntToStr(i));
-      Sub.Parameters.Add(p.URL, 'url');
-      Sub.Parameters.Add(p.Name, 'name');
-      Main.Add(Sub);
-    end;
+  begin
+    p   := GetItem(i);
+    Sub := TSpkXMLNode.Create('Item' + IntToStr(i));
+    Sub.Parameters.Add(p.URL, 'url');
+    Sub.Parameters.Add(p.Name, 'name');
+    Main.Add(Sub);
+  end;
   XML.Add(Main);
-  XML.SaveToFile(FileName);;
+  XML.SaveToFile(FileName);
+  ;
   XML.Free;
 end;
 
 procedure TBookmarksList.ReplaceEntry(NewEntry: TBookmarkItem; Index: integer);
 begin
-  if (Index>=0)and(Index<Count) then
-    TBookmarkItemObject(Items[Index]).Entry:=NewEntry;
+  if (Index >= 0) and (Index < Count) then
+    TBookmarkItemObject(Items[Index]).Entry := NewEntry;
 end;
 
 procedure TBookmarksList.RemoveEntry(Index: integer);
 begin
-  if (Index>=0)and(Index<Count) then
+  if (Index >= 0) and (Index < Count) then
     Delete(Index);
 end;
 

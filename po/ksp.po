@@ -1,7 +1,8 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "powered by:"
+#: kspstrings.saddons
+msgid "Addons"
 msgstr ""
 
 #: kspstrings.salbum
@@ -992,6 +993,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.PAGE5.CAPTION
 msgid "Page5"
+msgstr ""
+
+#: TKSPMAINWINDOW.PAGE6.CAPTION
+msgid "Page6"
 msgstr ""
 
 #: TKSPMAINWINDOW.PANEL10.CAPTION

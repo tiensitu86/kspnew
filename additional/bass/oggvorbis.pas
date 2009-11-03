@@ -1,76 +1,76 @@
 { *************************************************************************** }
-{                                                                             }
-{ Audio Tools Library                                                         }
-{ Class TOggVorbis - for manipulating with Ogg Vorbis file information        }
-{                                                                             }
-{ http://mac.sourceforge.net/atl/                                             }
-{ e-mail: macteam@users.sourceforge.net                                       }
-{                                                                             }
-{ Copyright (c) 2000-2002 by Jurgen Faul                                      }
-{ Copyright (c) 2003-2005 by The MAC Team                                     }
-{                                                                             }
-{ Version 2.1 (11 May 2008) by Vitaly Kravchenko                              }
-{   - added Composer, Lyrics, URL, Copyright fields support                   }
-{                                                                             }
-{ Version 2.0 (8 October 2005) by Vitaly Kravchenko                           }
-{   - added unicode tags support                                              }
-{                                                                             }
-{ Version 1.9 (April 2005) by Gambit                                          }
-{   - updated to unicode file access                                          }
-{                                                                             }
-{ Version 1.83 (26 march 2005) by Kurtnoise                                   }
-{   - Added multichannel support                                              }
-{                                                                             }
-{ Version 1.82 (23 March 2005) by Gambit                                      }
-{   - fixed nominal bitrate info (eg 192 was 193 sometimes)                   }
-{                                                                             }
-{ Version 1.81 (21 June 2004) by Gambit                                       }
-{   - Added Encoder property                                                  }
-{                                                                             }
-{ Version 1.8 (13 April 2004) by Gambit                                       }
-{   - Added Ratio property                                                    }
-{                                                                             }
-{ Version 1.7 (20 August 2003) by Madah                                       }
-{   - Minor fix: changed FSampleRate into Integer                             }
-{     ... so that samplerates>65535 works.                                    }
-{                                                                             }
-{ Version 1.6 (2 October 2002)                                                }
-{   - Writing support for Vorbis tag                                          }
-{   - Changed several properties                                              }
-{   - Fixed bug with long Vorbis tag fields                                   }
-{                                                                             }
-{ Version 1.2 (18 February 2002)                                              }
-{   - Added property BitRateNominal                                           }
-{   - Fixed bug with Vorbis tag fields                                        }
-{                                                                             }
-{ Version 1.1 (21 October 2001)                                               }
-{   - Support for UTF-8                                                       }
-{   - Fixed bug with vendor info detection                                    }
-{                                                                             }
-{ Version 1.0 (15 August 2001)                                                }
-{   - File info: file size, channel mode, sample rate, duration, bit rate     }
-{   - Vorbis tag: title, artist, album, track, date, genre, comment, vendor   }
-{                                                                             }
-{ This library is free software; you can redistribute it and/or               }
-{ modify it under the terms of the GNU Lesser General Public                  }
-{ License as published by the Free Software Foundation; either                }
-{ version 2.1 of the License, or (at your option) any later version.          }
-{                                                                             }
-{ This library is distributed in the hope that it will be useful,             }
-{ but WITHOUT ANY WARRANTY; without even the implied warranty of              }
-{ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU           }
-{ Lesser General Public License for more details.                             }
-{                                                                             }
-{ You should have received a copy of the GNU Lesser General Public            }
-{ License along with this library; if not, write to the Free Software         }
-{ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   }
-{                                                                             }
+
+ { Audio Tools Library                                                         }
+ { Class TOggVorbis - for manipulating with Ogg Vorbis file information        }
+
+ { http://mac.sourceforge.net/atl/                                             }
+ { e-mail: macteam@users.sourceforge.net                                       }
+
+ { Copyright (c) 2000-2002 by Jurgen Faul                                      }
+ { Copyright (c) 2003-2005 by The MAC Team                                     }
+
+ { Version 2.1 (11 May 2008) by Vitaly Kravchenko                              }
+ {   - added Composer, Lyrics, URL, Copyright fields support                   }
+
+ { Version 2.0 (8 October 2005) by Vitaly Kravchenko                           }
+ {   - added unicode tags support                                              }
+
+ { Version 1.9 (April 2005) by Gambit                                          }
+ {   - updated to unicode file access                                          }
+
+ { Version 1.83 (26 march 2005) by Kurtnoise                                   }
+ {   - Added multichannel support                                              }
+
+ { Version 1.82 (23 March 2005) by Gambit                                      }
+ {   - fixed nominal bitrate info (eg 192 was 193 sometimes)                   }
+
+ { Version 1.81 (21 June 2004) by Gambit                                       }
+ {   - Added Encoder property                                                  }
+
+ { Version 1.8 (13 April 2004) by Gambit                                       }
+ {   - Added Ratio property                                                    }
+
+ { Version 1.7 (20 August 2003) by Madah                                       }
+ {   - Minor fix: changed FSampleRate into Integer                             }
+ {     ... so that samplerates>65535 works.                                    }
+
+ { Version 1.6 (2 October 2002)                                                }
+ {   - Writing support for Vorbis tag                                          }
+ {   - Changed several properties                                              }
+ {   - Fixed bug with long Vorbis tag fields                                   }
+
+ { Version 1.2 (18 February 2002)                                              }
+ {   - Added property BitRateNominal                                           }
+ {   - Fixed bug with Vorbis tag fields                                        }
+
+ { Version 1.1 (21 October 2001)                                               }
+ {   - Support for UTF-8                                                       }
+ {   - Fixed bug with vendor info detection                                    }
+
+ { Version 1.0 (15 August 2001)                                                }
+ {   - File info: file size, channel mode, sample rate, duration, bit rate     }
+ {   - Vorbis tag: title, artist, album, track, date, genre, comment, vendor   }
+
+ { This library is free software; you can redistribute it and/or               }
+ { modify it under the terms of the GNU Lesser General Public                  }
+ { License as published by the Free Software Foundation; either                }
+ { version 2.1 of the License, or (at your option) any later version.          }
+
+ { This library is distributed in the hope that it will be useful,             }
+ { but WITHOUT ANY WARRANTY; without even the implied warranty of              }
+ { MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU           }
+ { Lesser General Public License for more details.                             }
+
+ { You should have received a copy of the GNU Lesser General Public            }
+ { License along with this library; if not, write to the Free Software         }
+ { Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   }
+
 { *************************************************************************** }
 
-// -- Modified for TBASSPlayer  by Silhwan Hyun --
-// Replaced the refernced unit TntClasses, TntSysUtils of "Tnt Delphi UNICODE Controls"
-//  package with UniCodeUtils and TntCollection.
-// Added 3 properties for TBASSPlayer.
+ // -- Modified for TBASSPlayer  by Silhwan Hyun --
+ // Replaced the refernced unit TntClasses, TntSysUtils of "Tnt Delphi UNICODE Controls"
+ //  package with UniCodeUtils and TntCollection.
+ // Added 3 properties for TBASSPlayer.
 
 //  - Modified for Delphi 2009  (30 Apr 2009)
 
@@ -83,88 +83,89 @@ uses
 
 const
   { Used with ChannelModeID property }
-  VORBIS_CM_MONO = 1;                                    { Code for mono mode }
+  VORBIS_CM_MONO   = 1;                                    { Code for mono mode }
   VORBIS_CM_STEREO = 2;                                { Code for stereo mode }
   VORBIS_CM_MULTICHANNEL = 6;                    { Code for Multichannel Mode }
 
   { Channel mode names }
-  VORBIS_MODE: array [0..3] of AnsiString = ('Unknown', 'Mono', 'Stereo', 'Multichannel');
+  VORBIS_MODE: array [0..3] of ansistring =
+    ('Unknown', 'Mono', 'Stereo', 'Multichannel');
 
 type
   { Class TOggVorbis }
   TOggVorbis = class(TObject)
-    private
-      { Private declarations }
-      FFileSize: Integer;
-      FChannelModeID: Byte;
-      FSampleRate: integer;
-      FBitRateNominal: Word;
-      FSamples: Integer;
-      FID3v2Size: Integer;
-      FTitle: WideString;
-      FArtist: WideString;
-      FAlbum: WideString;
-      FTrack: Word;
-      FDate: WideString;
-      FGenre: WideString;
-      FComment: WideString;
-      FComposer: WideString;
-      FLyrics: WideString;
-      FURL: WideString;
-      FCopyright: WideString;
-      FVendor: WideString;
+  private
+    { Private declarations }
+    FFileSize: integer;
+    FChannelModeID: byte;
+    FSampleRate: integer;
+    FBitRateNominal: word;
+    FSamples: integer;
+    FID3v2Size: integer;
+    FTitle:  WideString;
+    FArtist: WideString;
+    FAlbum:  WideString;
+    FTrack:  word;
+    FDate:   WideString;
+    FGenre:  WideString;
+    FComment: WideString;
+    FComposer: WideString;
+    FLyrics: WideString;
+    FURL:    WideString;
+    FCopyright: WideString;
+    FVendor: WideString;
 
-      FStreamVersion : Byte;
-      FSerialNo : integer;
-      FExtraTag: WideString;
+    FStreamVersion: byte;
+    FSerialNo:      integer;
+    FExtraTag:      WideString;
 
-      procedure FResetData;
-      function FGetChannelMode: string;
-      function FGetDuration: Double;
-      function FGetBitRate: Word;
-      function FHasID3v2: Boolean;
-      function FIsValid: Boolean;
-      function FGetRatio: Double;
-      function FGetEncoder: String;
+    procedure FResetData;
+    function FGetChannelMode: string;
+    function FGetDuration: double;
+    function FGetBitRate: word;
+    function FHasID3v2: boolean;
+    function FIsValid: boolean;
+    function FGetRatio: double;
+    function FGetEncoder: string;
 
-      function FGetTrackString: string;
-      procedure FSetTrackString(const NewTrack: string);
-    public
-      { Public declarations }
-      constructor Create;                                     { Create object }
-      destructor Destroy; override;                          { Destroy object }
-      function ReadFromFile(const FileName: WideString): Boolean;     { Load data }
-      function SaveTag(const FileName: WideString): Boolean;      { Save tag data }
-      function ClearTag(const FileName: WideString): Boolean;    { Clear tag data }
-      property FileSize: Integer read FFileSize;          { File size (bytes) }
-      property ChannelModeID: Byte read FChannelModeID;   { Channel mode code }
-      property ChannelMode: string read FGetChannelMode;  { Channel mode name }
-      property SampleRate: integer read FSampleRate;       { Sample rate (hz) }
-      property BitRateNominal: Word read FBitRateNominal;  { Nominal bit rate }
-      property Title: WideString read FTitle write FTitle;           { Song title }
-      property Artist: WideString read FArtist write FArtist;       { Artist name }
-      property Album: WideString read FAlbum write FAlbum;           { Album name }
-      property Track: Word read FTrack write FTrack;           { Track number }
-      property TrackString: string read FGetTrackString write FSetTrackString;
-      property Date: WideString read FDate write FDate;                    { Year }
-      property Genre: WideString read FGenre write FGenre;           { Genre name }
-      property Comment: WideString read FComment write FComment;        { Comment }
-      property Vendor: WideString read FVendor;                   { Vendor string }
-      property Duration: Double read FGetDuration;       { Duration (seconds) }
-      property BitRate: Word read FGetBitRate;             { Average bit rate }
-      property ID3v2: Boolean read FHasID3v2;      { True if ID3v2 tag exists }
-      property Valid: Boolean read FIsValid;             { True if file valid }
-      property Ratio: Double read FGetRatio;          { Compression ratio (%) }
-      property Encoder: string read FGetEncoder;             { Encoder string }
-      property Composer: WideString read FComposer write FComposer;
-      property Copyright: WideString read FCopyright write FCopyright;
-      property URL: WideString read FURL write FURL;
-      property Lyrics: WideString read FLyrics write FLyrics;
+    function FGetTrackString: string;
+    procedure FSetTrackString(const NewTrack: string);
+  public
+    { Public declarations }
+    constructor Create;                                     { Create object }
+    destructor Destroy; override;                          { Destroy object }
+    function ReadFromFile(const FileName: WideString): boolean;     { Load data }
+    function SaveTag(const FileName: WideString): boolean;      { Save tag data }
+    function ClearTag(const FileName: WideString): boolean;    { Clear tag data }
+    property FileSize: integer Read FFileSize;          { File size (bytes) }
+    property ChannelModeID: byte Read FChannelModeID;   { Channel mode code }
+    property ChannelMode: string Read FGetChannelMode;  { Channel mode name }
+    property SampleRate: integer Read FSampleRate;       { Sample rate (hz) }
+    property BitRateNominal: word Read FBitRateNominal;  { Nominal bit rate }
+    property Title: WideString Read FTitle Write FTitle;           { Song title }
+    property Artist: WideString Read FArtist Write FArtist;       { Artist name }
+    property Album: WideString Read FAlbum Write FAlbum;           { Album name }
+    property Track: word Read FTrack Write FTrack;           { Track number }
+    property TrackString: string Read FGetTrackString Write FSetTrackString;
+    property Date: WideString Read FDate Write FDate;                    { Year }
+    property Genre: WideString Read FGenre Write FGenre;           { Genre name }
+    property Comment: WideString Read FComment Write FComment;        { Comment }
+    property Vendor: WideString Read FVendor;                   { Vendor string }
+    property Duration: double Read FGetDuration;       { Duration (seconds) }
+    property BitRate: word Read FGetBitRate;             { Average bit rate }
+    property ID3v2: boolean Read FHasID3v2;         { True if ID3v2 tag exists }
+    property Valid: boolean Read FIsValid;             { True if file valid }
+    property Ratio: double Read FGetRatio;          { Compression ratio (%) }
+    property Encoder: string Read FGetEncoder;             { Encoder string }
+    property Composer: WideString Read FComposer Write FComposer;
+    property Copyright: WideString Read FCopyright Write FCopyright;
+    property URL: WideString Read FURL Write FURL;
+    property Lyrics: WideString Read FLyrics Write FLyrics;
 
     // * Added properties for TBASSPlayer  by Silhwan Hyun
-      property StreamVersion: Byte read FStreamVersion;
-      property SerialNumber: integer read FSerialNo;
-      property ExtraTag: WideString read FExtraTag write FExtraTag;
+    property StreamVersion: byte Read FStreamVersion;
+    property SerialNumber: integer Read FSerialNo;
+    property ExtraTag: WideString Read FExtraTag Write FExtraTag;
   end;
 
 implementation
@@ -183,12 +184,12 @@ const
   VORBIS_FIELD_COUNT = 13;
 
   { Names of supported comment fields }
-  VORBIS_FIELD: array [1..VORBIS_FIELD_COUNT] of AnsiString =
+  VORBIS_FIELD: array [1..VORBIS_FIELD_COUNT] of ansistring =
     ('TITLE', 'ARTIST', 'ALBUM', 'TRACKNUMBER', 'DATE', 'GENRE', 'COMMENT',
     'PERFORMER', 'DESCRIPTION', 'COMPOSER', 'LYRICS', 'URL', 'COPYRIGHT');
 
   { CRC table for checksum calculating }
-  CRC_TABLE: array [0..$FF] of Cardinal = (
+  CRC_TABLE: array [0..$FF] of cardinal = (
     $00000000, $04C11DB7, $09823B6E, $0D4326D9, $130476DC, $17C56B6B,
     $1A864DB2, $1E475005, $2608EDB8, $22C9F00F, $2F8AD6D6, $2B4BCB61,
     $350C9B64, $31CD86D3, $3C8EA00A, $384FBDBD, $4C11DB70, $48D0C6C7,
@@ -236,61 +237,61 @@ const
 type
   { Ogg page header }
   OggHeader = packed record
-    ID: array [1..4] of AnsiChar;                                 { Always "OggS" }
-    StreamVersion: Byte;                           { Stream structure version }
-    TypeFlag: Byte;                                        { Header type flag }
-    AbsolutePosition: Int64;                      { Absolute granule position }
-    Serial: Integer;                                   { Stream serial number }
-    PageNumber: Integer;                               { Page sequence number }
-    Checksum: Integer;                                        { Page checksum }
-    Segments: Byte;                                 { Number of page segments }
-    LacingValues: array [1..$FF] of Byte;     { Lacing values - segment sizes }
+    ID:     array [1..4] of AnsiChar;                                 { Always "OggS" }
+    StreamVersion: byte;                           { Stream structure version }
+    TypeFlag: byte;                                        { Header type flag }
+    AbsolutePosition: int64;                      { Absolute granule position }
+    Serial: integer;                                   { Stream serial number }
+    PageNumber: integer;                               { Page sequence number }
+    Checksum: integer;                                        { Page checksum }
+    Segments: byte;                                 { Number of page segments }
+    LacingValues: array [1..$FF] of byte;     { Lacing values - segment sizes }
   end;
 
   { Vorbis parameter header }
   VorbisHeader = packed record
     ID: array [1..7] of AnsiChar;                          { Always #1 + "vorbis" }
-    BitstreamVersion: array [1..4] of Byte;        { Bitstream version number }
-    ChannelMode: Byte;                                   { Number of channels }
-    SampleRate: Integer;                                   { Sample rate (hz) }
-    BitRateMaximal: Integer;                           { Bit rate upper limit }
-    BitRateNominal: Integer;                               { Nominal bit rate }
-    BitRateMinimal: Integer;                           { Bit rate lower limit }
-    BlockSize: Byte;                   { Coded size for small and long blocks }
-    StopFlag: Byte;                                                { Always 1 }
+    BitstreamVersion: array [1..4] of byte;        { Bitstream version number }
+    ChannelMode: byte;                                   { Number of channels }
+    SampleRate: integer;                                   { Sample rate (hz) }
+    BitRateMaximal: integer;                           { Bit rate upper limit }
+    BitRateNominal: integer;                               { Nominal bit rate }
+    BitRateMinimal: integer;                           { Bit rate lower limit }
+    BlockSize: byte;                   { Coded size for small and long blocks }
+    StopFlag: byte;                                                { Always 1 }
   end;
 
   { Vorbis tag data }
   VorbisTag = record
-    ID: array [1..7] of AnsiChar;                          { Always #3 + "vorbis" }
-    Fields: Integer;                                   { Number of tag fields }
+    ID:     array [1..7] of AnsiChar;                          { Always #3 + "vorbis" }
+    Fields: integer;                                   { Number of tag fields }
     FieldData: array [0..VORBIS_FIELD_COUNT] of WideString;      { Tag field data }
   end;
 
   { File data }
   FileInfo = record
-    FPage, SPage, LPage: OggHeader;             { First, second and last page }
-    Parameters: VorbisHeader;                       { Vorbis parameter header }
-    Tag: VorbisTag;                                         { Vorbis tag data }
-    FileSize: Integer;                                    { File size (bytes) }
-    Samples: Integer;                               { Total number of samples }
-    ID3v2Size: Integer;                              { ID3v2 tag size (bytes) }
-    SPagePos: Integer;                          { Position of second Ogg page }
-    TagEndPos: Integer;                                    { Tag end position }
-    LPagePos: Integer;    { Position of 3rd Ogg page } // * Added by Silhwan Hyun
+    FPage, SPage, LPage: OggHeader;                  { First, second and last page }
+    Parameters: VorbisHeader;                        { Vorbis parameter header }
+    Tag:      VorbisTag;                                         { Vorbis tag data }
+    FileSize: integer;                                    { File size (bytes) }
+    Samples:  integer;                               { Total number of samples }
+    ID3v2Size: integer;                              { ID3v2 tag size (bytes) }
+    SPagePos: integer;                               { Position of second Ogg page }
+    TagEndPos: integer;                                    { Tag end position }
+    LPagePos: integer;    { Position of 3rd Ogg page } // * Added by Silhwan Hyun
     ExtraTag: string;     { user defined tag }         // * Added by Silhwan Hyun
   end;
 
 { ********************* Auxiliary functions & procedures ******************** }
 
-function GetID3v2Size(const Source: TFileStream): Integer;
+function GetID3v2Size(const Source: TFileStream): integer;
 type
   ID3v2Header = record
-    ID: array [1..3] of AnsiChar;
-    Version: Byte;
-    Revision: Byte;
-    Flags: Byte;
-    Size: array [1..4] of Byte;
+    ID:      array [1..3] of AnsiChar;
+    Version: byte;
+    Revision: byte;
+    Flags:   byte;
+    Size:    array [1..4] of byte;
   end;
 var
   Header: ID3v2Header;
@@ -302,52 +303,54 @@ begin
   if Header.ID = 'ID3' then
   begin
     Result :=
-      Header.Size[1] * $200000 +
-      Header.Size[2] * $4000 +
-      Header.Size[3] * $80 +
-      Header.Size[4] + 10;
-    if Header.Flags and $10 = $10 then Inc(Result, 10);
-    if Result > Source.Size then Result := 0;
+      Header.Size[1] * $200000 + Header.Size[2] * $4000 +
+      Header.Size[3] * $80 + Header.Size[4] + 10;
+    if Header.Flags and $10 = $10 then
+      Inc(Result, 10);
+    if Result > Source.Size then
+      Result := 0;
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-procedure SetTagItem(const Data: AnsiString; var Info: FileInfo);
+procedure SetTagItem(const Data: ansistring; var Info: FileInfo);
 var
-  Separator, Index: Integer;
-  FieldID, FieldData: AnsiString;
+  Separator, Index: integer;
+  FieldID, FieldData: ansistring;
   IsExtraTag: boolean;
 begin
   { Set Vorbis tag item if supported comment field found }
   Separator := Pos('=', Data);
   if Separator > 0 then
   begin
-    FieldID := UpperCase(Copy(Data, 1, Separator - 1));
-    FieldData := Copy(Data, Separator + 1, Length(Data) - Length(FieldID));
-    IsExtraTag := true;
+    FieldID    := UpperCase(Copy(Data, 1, Separator - 1));
+    FieldData  := Copy(Data, Separator + 1, Length(Data) - Length(FieldID));
+    IsExtraTag := True;
     for Index := 1 to VORBIS_FIELD_COUNT do
       if VORBIS_FIELD[Index] = FieldID then
       begin
         Info.Tag.FieldData[Index] := UTF8Decode(Trim(FieldData));
-        IsExtraTag := false;
+        IsExtraTag := False;
         break;
       end;
     if IsExtraTag then
-       if Info.ExtraTag = '' then
-          Info.ExtraTag := FieldId + '=' + UTF8Decode(Trim(FieldData))
-       else  // use chr(0) as seperator between tags
-          Info.ExtraTag := Info.ExtraTag + AnsiChar(0) + FieldId + '=' + UTF8Decode(Trim(FieldData));
+      if Info.ExtraTag = '' then
+        Info.ExtraTag := FieldId + '=' + UTF8Decode(Trim(FieldData))
+      else  // use chr(0) as seperator between tags
+        Info.ExtraTag := Info.ExtraTag + AnsiChar(0) + FieldId +
+          '=' + UTF8Decode(Trim(FieldData));
   end
   else
-    if Info.Tag.FieldData[0] = '' then Info.Tag.FieldData[0] := Data;
+  if Info.Tag.FieldData[0] = '' then
+    Info.Tag.FieldData[0] := Data;
 end;
 
 { --------------------------------------------------------------------------- }
 
 procedure ReadTag(const Source: TFileStream; var Info: FileInfo);
 var
-  Index, Size, Position: Integer;
+  Index, Size, Position: integer;
   Data: array [1..5000] of AnsiChar;
 begin
   { Read Vorbis tag }
@@ -373,10 +376,10 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function GetSamples(const Source: TFileStream): Integer;
+function GetSamples(const Source: TFileStream): integer;
 var
-  Index, DataIndex, Iterator: Integer;
-  Data: array [0..5000] of AnsiChar;
+  Index, DataIndex, Iterator: integer;
+  Data:   array [0..5000] of AnsiChar;
   Header: OggHeader;
 begin
   { Get total number of samples }
@@ -388,10 +391,8 @@ begin
     Source.Read(Data, SizeOf(Data));
     { Get number of PCM samples from last Ogg packet header }
     for Iterator := SizeOf(Data) - 10 downto 0 do
-      if Data[Iterator] +
-        Data[Iterator + 1] +
-        Data[Iterator + 2] +
-        Data[Iterator + 3] = OGG_PAGE_ID then
+      if Data[Iterator] + Data[Iterator + 1] + Data[Iterator + 2] +
+      Data[Iterator + 3] = OGG_PAGE_ID then
       begin
         Source.Seek(DataIndex + Iterator, soFromBeginning);
         Source.Read(Header, SizeOf(Header));
@@ -403,33 +404,36 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function GetInfo(const FileName: WideString; var Info: FileInfo): Boolean;
+function GetInfo(const FileName: WideString; var Info: FileInfo): boolean;
 var
   SourceFile: TFileStream;
 begin
   { Get info from file }
-  Result := false;
+  Result     := False;
   SourceFile := nil;
   try
-    SourceFile := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
-    Info.FileSize := SourceFile.Size;
+    SourceFile     := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    Info.FileSize  := SourceFile.Size;
     Info.ID3v2Size := GetID3v2Size(SourceFile);
     SourceFile.Seek(Info.ID3v2Size, soFromBeginning);
     SourceFile.Read(Info.FPage, SizeOf(Info.FPage));
-    if Info.FPage.ID <> OGG_PAGE_ID then exit;
+    if Info.FPage.ID <> OGG_PAGE_ID then
+      exit;
     SourceFile.Seek(Info.ID3v2Size + Info.FPage.Segments + 27, soFromBeginning);
     { Read Vorbis parameter header }
     SourceFile.Read(Info.Parameters, SizeOf(Info.Parameters));
-    if Info.Parameters.ID <> VORBIS_PARAMETERS_ID then exit;
+    if Info.Parameters.ID <> VORBIS_PARAMETERS_ID then
+      exit;
     Info.SPagePos := SourceFile.Position;
     SourceFile.Read(Info.SPage, SizeOf(Info.SPage));
     SourceFile.Seek(Info.SPagePos + Info.SPage.Segments + 27, soFromBeginning);
     SourceFile.Read(Info.Tag.ID, SizeOf(Info.Tag.ID));
     { Read Vorbis tag }
-    if Info.Tag.ID = VORBIS_TAG_ID then ReadTag(SourceFile, Info);
+    if Info.Tag.ID = VORBIS_TAG_ID then
+      ReadTag(SourceFile, Info);
     { Get total number of samples }
     Info.Samples := GetSamples(SourceFile);
-    Result := true;
+    Result := True;
   finally
     SourceFile.Free;
   end;
@@ -437,9 +441,9 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function GetTrack(const TrackString: string): Byte;
+function GetTrack(const TrackString: string): byte;
 var
-  Index, Value, Code: Integer;
+  Index, Value, Code: integer;
 begin
   { Extract track from string }
   Index := Pos('/', TrackString);
@@ -447,7 +451,7 @@ begin
     Val(TrackString, Value, Code)
   else
     Val(Copy(TrackString, 1, Index), Value, Code);
-    
+
   if Code = 0 then
     Result := Value
   else
@@ -458,10 +462,10 @@ end;
 
 function BuildTag(const Info: FileInfo): TStringStream;
 var
-  Index, Fields, Size: Integer;
-  tmpStr, TAGStr : string;
-  FieldData: AnsiString;
-  SeperatorPos, EqualPos : integer;
+  Index, Fields, Size: integer;
+  tmpStr, TAGStr: string;
+  FieldData: ansistring;
+  SeperatorPos, EqualPos: integer;
 begin
   { Build Vorbis tag }
 
@@ -469,25 +473,27 @@ begin
 
   Fields := 0;
   for Index := 1 to VORBIS_FIELD_COUNT do
-    if Info.Tag.FieldData[Index] <> '' then Inc(Fields);
+    if Info.Tag.FieldData[Index] <> '' then
+      Inc(Fields);
 
   if Info.ExtraTag <> '' then
   begin
-     tmpStr := Info.ExtraTag;
+    tmpStr := Info.ExtraTag;
 
-     repeat
-        SeperatorPos := pos(AnsiChar(0), tmpStr);
-        if SeperatorPos > 0 then
-        begin
-           TAGStr := copy(tmpStr, 1, SeperatorPos - 1);
-           tmpStr := copy(tmpStr, SeperatorPos + 1, length(tmpStr) - SeperatorPos);
-        end else
-           TAGStr := tmpStr;
+    repeat
+      SeperatorPos := pos(AnsiChar(0), tmpStr);
+      if SeperatorPos > 0 then
+      begin
+        TAGStr := copy(tmpStr, 1, SeperatorPos - 1);
+        tmpStr := copy(tmpStr, SeperatorPos + 1, length(tmpStr) - SeperatorPos);
+      end
+      else
+        TAGStr := tmpStr;
 
-        EqualPos := pos('=', TAGStr);
-        if EqualPos > 0 then
-           Inc(Fields);
-     until (SeperatorPos = 0);
+      EqualPos := pos('=', TAGStr);
+      if EqualPos > 0 then
+        Inc(Fields);
+    until (SeperatorPos = 0);
   end;
 
   { Write frame ID, vendor info and number of fields }
@@ -496,67 +502,69 @@ begin
   Result.Write(Size, SizeOf(Size));
   Result.WriteString(Info.Tag.FieldData[0]);
   Result.Write(Fields, SizeOf(Fields));
-  
+
   { Write tag fields }
   for Index := 1 to VORBIS_FIELD_COUNT do
     if Info.Tag.FieldData[Index] <> '' then
     begin
-      FieldData := VORBIS_FIELD[Index] +
-                   '=' + UTF8Encode(Info.Tag.FieldData[Index]);
-      Size := Length(FieldData);
+      FieldData := VORBIS_FIELD[Index] + '=' +
+        UTF8Encode(Info.Tag.FieldData[Index]);
+      Size      := Length(FieldData);
       Result.Write(Size, SizeOf(Size));
       Result.WriteString(FieldData);
     end;
 
   if Info.ExtraTag <> '' then
   begin
-     tmpStr := Info.ExtraTag;
-     repeat
-        SeperatorPos := pos(AnsiChar(0), tmpStr);
-        if SeperatorPos > 0 then
-        begin
-           TAGStr := copy(tmpStr, 1, SeperatorPos - 1);
-           tmpStr := copy(tmpStr, SeperatorPos + 1, length(tmpStr) - SeperatorPos);
-        end else
-           TAGStr := tmpStr;
+    tmpStr := Info.ExtraTag;
+    repeat
+      SeperatorPos := pos(AnsiChar(0), tmpStr);
+      if SeperatorPos > 0 then
+      begin
+        TAGStr := copy(tmpStr, 1, SeperatorPos - 1);
+        tmpStr := copy(tmpStr, SeperatorPos + 1, length(tmpStr) - SeperatorPos);
+      end
+      else
+        TAGStr := tmpStr;
 
-        EqualPos := pos('=', TAGStr);
-        if EqualPos > 0 then
-        begin
-           FieldData := copy(TAGStr, 1, EqualPos)
-                      + UTF8Encode(copy(TAGStr, EqualPos + 1, length(TAGStr) - EqualPos));
-           Size := Length(FieldData);
-           Result.Write(Size, SizeOf(Size));
-           Result.WriteString(FieldData);
-        end;
+      EqualPos := pos('=', TAGStr);
+      if EqualPos > 0 then
+      begin
+        FieldData := copy(TAGStr, 1, EqualPos) +
+          UTF8Encode(copy(TAGStr, EqualPos + 1, length(TAGStr) - EqualPos));
+        Size      := Length(FieldData);
+        Result.Write(Size, SizeOf(Size));
+        Result.WriteString(FieldData);
+      end;
 
-     until (SeperatorPos = 0);
+    until (SeperatorPos = 0);
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-procedure SetLacingValues(var Info: FileInfo; const NewTagSize: Integer);
+procedure SetLacingValues(var Info: FileInfo; const NewTagSize: integer);
 var
-  Index, Position, Value: Integer;
-  Buffer: array [1..$FF] of Byte;
+  Index, Position, Value: integer;
+  Buffer: array [1..$FF] of byte;
 begin
   { Set new lacing values for the second Ogg page }
   Position := 1;
-  Value := 0;
+  Value    := 0;
   for Index := Info.SPage.Segments downto 1 do
   begin
     if Info.SPage.LacingValues[Index] < $FF then
     begin
       Position := Index;
-      Value := 0;
+      Value    := 0;
     end;
     Inc(Value, Info.SPage.LacingValues[Index]);
   end;
-  Value := Value + NewTagSize -
-    (Info.TagEndPos - Info.SPagePos - Info.SPage.Segments - 27);
+  Value := Value + NewTagSize - (Info.TagEndPos - Info.SPagePos -
+    Info.SPage.Segments - 27);
   { Change lacing values at the beginning }
-  for Index := 1 to Value div $FF do Buffer[Index] := $FF;
+  for Index := 1 to Value div $FF do
+    Buffer[Index] := $FF;
   Buffer[(Value div $FF) + 1] := Value mod $FF;
   if Position < Info.SPage.Segments then
     for Index := Position + 1 to Info.SPage.Segments do
@@ -569,10 +577,10 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-procedure CalculateCRC(var CRC: Cardinal; const Data; Size: Cardinal);
+procedure CalculateCRC(var CRC: cardinal; const Data; Size: cardinal);
 var
-  Buffer: ^Byte;
-  Index: Cardinal;
+  Buffer: ^byte;
+  Index:  cardinal;
 begin
   { Calculate CRC through data }
   Buffer := Addr(Data);
@@ -587,9 +595,9 @@ end;
 
 procedure SetCRC(const Destination: TFileStream; Info: FileInfo);
 var
-  Index: Integer;
-  Value: Cardinal;
-  Data: array [1..$FF] of Byte;
+  Index: integer;
+  Value: cardinal;
+  Data:  array [1..$FF] of byte;
 begin
   { Calculate and set checksum for Vorbis tag }
   Value := 0;
@@ -607,18 +615,19 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function RebuildFile(FileName: WideString; Tag: TStream; Info: FileInfo): Boolean;
+function RebuildFile(FileName: WideString; Tag: TStream; Info: FileInfo): boolean;
 var
   Source, Destination: TFileStream;
   BufferName: WideString;
 begin
   { Rebuild the file with the new Vorbis tag }
-  Result := false;
-  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then exit;
+  Result := False;
+  if (not FileExistsUTF8(FileName)) or (FileSetAttrUTF8(FileName, 0) <> 0) then
+    exit;
   try
     { Create file streams }
-    BufferName := FileName + '~';
-    Source := TFileStream.Create(FileName, fmOpenRead);
+    BufferName  := FileName + '~';
+    Source      := TFileStream.Create(FileName, fmOpenRead);
     Destination := TFileStream.Create(BufferName, fmCreate);
     { Copy data blocks }
     Destination.CopyFrom(Source, Info.SPagePos);
@@ -631,12 +640,13 @@ begin
     Destination.Free;
     { Replace old file and delete temporary file }
     if (DeleteFileUTF8(FileName)) and (RenameFileUTF8(BufferName, FileName)) then
-      Result := true;
+      Result := True;
     //else
     //  raise Exception.Create('');
   except
     { Access error }
-    if FileExistsUTF8(BufferName) then DeleteFileUTF8(BufferName);
+    if FileExistsUTF8(BufferName) then
+      DeleteFileUTF8(BufferName);
   end;
 end;
 
@@ -665,21 +675,23 @@ begin
   FCopyright := '';
 
   FStreamVersion := 0;
-  FSerialNo := 0;
-  FExtraTag := '';
+  FSerialNo      := 0;
+  FExtraTag      := '';
 end;
 
 { --------------------------------------------------------------------------- }
 
 function TOggVorbis.FGetChannelMode: string;
 begin
-  if FChannelModeID > 2 then Result := VORBIS_MODE[3] else
-     Result := VORBIS_MODE[FChannelModeID];
+  if FChannelModeID > 2 then
+    Result := VORBIS_MODE[3]
+  else
+    Result := VORBIS_MODE[FChannelModeID];
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FGetDuration: Double;
+function TOggVorbis.FGetDuration: double;
 begin
   { Calculate duration time }
   if FSamples > 0 then
@@ -688,16 +700,16 @@ begin
     else
       Result := 0
   else
-    if (FBitRateNominal > 0) and (FChannelModeID > 0) then
-      Result := (FFileSize - FID3v2Size) /
-        FBitRateNominal / FChannelModeID / 125 * 2
-    else
-      Result := 0;
+  if (FBitRateNominal > 0) and (FChannelModeID > 0) then
+    Result := (FFileSize - FID3v2Size) / FBitRateNominal /
+      FChannelModeID / 125 * 2
+  else
+    Result := 0;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FGetBitRate: Word;
+function TOggVorbis.FGetBitRate: word;
 begin
   { Calculate average bit rate }
   Result := 0;
@@ -707,7 +719,7 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FHasID3v2: Boolean;
+function TOggVorbis.FHasID3v2: boolean;
 begin
   { Check for ID3v2 tag }
   Result := FID3v2Size > 0;
@@ -715,11 +727,12 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FIsValid: Boolean;
+function TOggVorbis.FIsValid: boolean;
 begin
   { Check for file correctness }
-  Result := (FChannelModeID in [VORBIS_CM_MONO, VORBIS_CM_STEREO, VORBIS_CM_MULTICHANNEL]) and
-    (FSampleRate > 0) and (FGetDuration > 0.1) and (FGetBitRate > 0);
+  Result := (FChannelModeID in [VORBIS_CM_MONO, VORBIS_CM_STEREO,
+    VORBIS_CM_MULTICHANNEL]) and (FSampleRate > 0) and (FGetDuration > 0.1) and
+    (FGetBitRate > 0);
 end;
 
 { ********************** Public functions & procedures ********************** }
@@ -741,29 +754,31 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.ReadFromFile(const FileName: WideString): Boolean;
+function TOggVorbis.ReadFromFile(const FileName: WideString): boolean;
 var
   Info: FileInfo;
 begin
   { Read data from file }
-  Result := false;
+  Result := False;
   FResetData;
   FillChar(Info, SizeOf(Info), 0);
   if GetInfo(FileName, Info) then
   begin
     { Fill variables }
-    FFileSize := Info.FileSize;
+    FFileSize  := Info.FileSize;
     FChannelModeID := Info.Parameters.ChannelMode;
     FSampleRate := Info.Parameters.SampleRate;
     FBitRateNominal := Info.Parameters.BitRateNominal div 1000;
-    FSamples := Info.Samples;
+    FSamples   := Info.Samples;
     FID3v2Size := Info.ID3v2Size;
-    FTitle := Info.Tag.FieldData[1];
-    if Info.Tag.FieldData[2] <> '' then FArtist := Info.Tag.FieldData[2]
-    else FArtist := Info.Tag.FieldData[8];
+    FTitle     := Info.Tag.FieldData[1];
+    if Info.Tag.FieldData[2] <> '' then
+      FArtist := Info.Tag.FieldData[2]
+    else
+      FArtist := Info.Tag.FieldData[8];
     FAlbum := Info.Tag.FieldData[3];
     FTrack := GetTrack(Info.Tag.FieldData[4]);
-    FDate := Info.Tag.FieldData[5];
+    FDate  := Info.Tag.FieldData[5];
     FGenre := Info.Tag.FieldData[6];
     if Info.Tag.FieldData[7] <> '' then
       FComment := Info.Tag.FieldData[7]
@@ -771,27 +786,27 @@ begin
       FComment := Info.Tag.FieldData[9];
     FComposer := Info.Tag.FieldData[10];
     FLyrics := Info.Tag.FieldData[11];
-    FURL := Info.Tag.FieldData[12];
+    FURL    := Info.Tag.FieldData[12];
     FCopyright := Info.Tag.FieldData[13];
     FVendor := Info.Tag.FieldData[0];
 
     FStreamVersion := Info.FPage.StreamVersion;
-    FSerialNo := Info.FPage.Serial;
-    FExtraTag := Info.ExtraTag;
+    FSerialNo      := Info.FPage.Serial;
+    FExtraTag      := Info.ExtraTag;
 
-    Result := true;
+    Result := True;
   end;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.SaveTag(const FileName: WideString): Boolean;
+function TOggVorbis.SaveTag(const FileName: WideString): boolean;
 var
   Info: FileInfo;
-  Tag: TStringStream;
+  Tag:  TStringStream;
 begin
   { Save Vorbis tag }
-  Result := false;
+  Result := False;
   FillChar(Info, SizeOf(Info), 0);
   if GetInfo(FileName, Info) then
   begin
@@ -799,8 +814,10 @@ begin
     Info.Tag.FieldData[1] := Trim(FTitle);
     Info.Tag.FieldData[2] := Trim(FArtist);
     Info.Tag.FieldData[3] := Trim(FAlbum);
-    if FTrack > 0 then Info.Tag.FieldData[4] := IntToStr(FTrack)
-    else Info.Tag.FieldData[4] := '';
+    if FTrack > 0 then
+      Info.Tag.FieldData[4] := IntToStr(FTrack)
+    else
+      Info.Tag.FieldData[4] := '';
     Info.Tag.FieldData[5] := Trim(FDate);
     Info.Tag.FieldData[6] := Trim(FGenre);
     Info.Tag.FieldData[7] := Trim(FComment);
@@ -821,27 +838,27 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.ClearTag(const FileName: WideString): Boolean;
+function TOggVorbis.ClearTag(const FileName: WideString): boolean;
 begin
   { Clear Vorbis tag }
-  FTitle := '';
-  FArtist := '';
-  FAlbum := '';
-  FTrack := 0;
-  FDate := '';
-  FGenre := '';
-  FComment := '';
+  FTitle    := '';
+  FArtist   := '';
+  FAlbum    := '';
+  FTrack    := 0;
+  FDate     := '';
+  FGenre    := '';
+  FComment  := '';
   FComposer := '';
-  FLyrics := '';
-  FURL := '';
+  FLyrics   := '';
+  FURL      := '';
   FCopyright := '';
   FExtraTag := '';
-  Result := SaveTag(FileName);
+  Result    := SaveTag(FileName);
 end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FGetRatio: Double;
+function TOggVorbis.FGetRatio: double;
 begin
   { Get compression ratio }
   if FIsValid then
@@ -853,42 +870,65 @@ end;
 
 { --------------------------------------------------------------------------- }
 
-function TOggVorbis.FGetEncoder: String;
+function TOggVorbis.FGetEncoder: string;
 begin
-       if FVendor = 'Xiphophorus libVorbis I 20000508' then Result := '1.0 beta 1 or beta 2'
-  else if FVendor = 'Xiphophorus libVorbis I 20001031' then Result := '1.0 beta 3'
-  else if FVendor = 'Xiphophorus libVorbis I 20010225' then Result := '1.0 beta 4'
-  else if FVendor = 'Xiphophorus libVorbis I 20010615' then Result := '1.0 rc1'
-  else if FVendor = 'Xiphophorus libVorbis I 20010813' then Result := '1.0 rc2'
-  else if FVendor = 'Xiphophorus libVorbis I 20010816 (gtune 1)' then Result := '1.0 RC2 GT1'
-  else if FVendor = 'Xiphophorus libVorbis I 20011014 (GTune 2)' then Result := '1.0 RC2 GT2'
-  else if FVendor = 'Xiphophorus libVorbis I 20011217' then Result := '1.0 rc3'
-  else if FVendor = 'Xiphophorus libVorbis I 20011231' then Result := '1.0 rc3'
-//else if FVendor = 'Xiph.Org libVorbis I 20020711' then Result := '1.0'
-  else if FVendor = 'Xiph.Org libVorbis I 20020717' then Result := '1.0'
-  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20020717 (GTune 3, beta 1)' then Result := '1.0 GT3b1'
-  else if FVendor = 'Xiph.Org libVorbis I 20030308' then Result := 'Post 1.0 CVS'
-  else if FVendor = 'Xiph.Org libVorbis I 20030909 (1.0.1)' then Result := '1.0.1'
-  else if FVendor = 'Xiph.Org libVorbis I 20030909' then Result := '1.0.1'
-  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20030909 (GTune 3, beta 2) EXPERIMENTAL' then Result := 'Experimental GT3b2'
-  else if FVendor = 'Xiph.Org libVorbis I 20031230 (1.0.1)' then Result := 'Post 1.0.1 CVS'
-  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20031230 (GTune 3, beta 2)' then Result := 'GT3b2'
-  else if FVendor = 'AO; aoTuV b2 [20040420]  (based on Xiph.Org''s 1.0.1)' then Result := '1.0.1 aoTuV beta 2'
-  else if FVendor = 'Xiph.Org libVorbis I 20040629' then Result := '1.1'
-  else if FVendor = 'Xiph.Org libVorbis I 20040920' then Result := '1.1 with impulse_trigger_profile'
-  else if FVendor = 'AO; aoTuV b3 [20041120] (based on Xiph.Org''s libVorbis)' then Result := '1.1 aoTuV beta 3'
-  else Result := FVendor;
+  if FVendor = 'Xiphophorus libVorbis I 20000508' then
+    Result := '1.0 beta 1 or beta 2'
+  else if FVendor = 'Xiphophorus libVorbis I 20001031' then
+    Result := '1.0 beta 3'
+  else if FVendor = 'Xiphophorus libVorbis I 20010225' then
+    Result := '1.0 beta 4'
+  else if FVendor = 'Xiphophorus libVorbis I 20010615' then
+    Result := '1.0 rc1'
+  else if FVendor = 'Xiphophorus libVorbis I 20010813' then
+    Result := '1.0 rc2'
+  else if FVendor = 'Xiphophorus libVorbis I 20010816 (gtune 1)' then
+    Result := '1.0 RC2 GT1'
+  else if FVendor = 'Xiphophorus libVorbis I 20011014 (GTune 2)' then
+    Result := '1.0 RC2 GT2'
+  else if FVendor = 'Xiphophorus libVorbis I 20011217' then
+    Result := '1.0 rc3'
+  else if FVendor = 'Xiphophorus libVorbis I 20011231' then
+    Result := '1.0 rc3'
+  //else if FVendor = 'Xiph.Org libVorbis I 20020711' then Result := '1.0'
+  else if FVendor = 'Xiph.Org libVorbis I 20020717' then
+    Result := '1.0'
+  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20020717 (GTune 3, beta 1)' then
+    Result := '1.0 GT3b1'
+  else if FVendor = 'Xiph.Org libVorbis I 20030308' then
+    Result := 'Post 1.0 CVS'
+  else if FVendor = 'Xiph.Org libVorbis I 20030909 (1.0.1)' then
+    Result := '1.0.1'
+  else if FVendor = 'Xiph.Org libVorbis I 20030909' then
+    Result := '1.0.1'
+  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20030909 (GTune 3, beta 2) EXPERIMENTAL'
+  then
+    Result := 'Experimental GT3b2'
+  else if FVendor = 'Xiph.Org libVorbis I 20031230 (1.0.1)' then
+    Result := 'Post 1.0.1 CVS'
+  else if FVendor = 'Xiph.Org/Sjeng.Org libVorbis I 20031230 (GTune 3, beta 2)' then
+    Result := 'GT3b2'
+  else if FVendor = 'AO; aoTuV b2 [20040420]  (based on Xiph.Org''s 1.0.1)' then
+    Result := '1.0.1 aoTuV beta 2'
+  else if FVendor = 'Xiph.Org libVorbis I 20040629' then
+    Result := '1.1'
+  else if FVendor = 'Xiph.Org libVorbis I 20040920' then
+    Result := '1.1 with impulse_trigger_profile'
+  else if FVendor = 'AO; aoTuV b3 [20041120] (based on Xiph.Org''s libVorbis)' then
+    Result := '1.1 aoTuV beta 3'
+  else
+    Result := FVendor;
 end;
 
 { --------------------------------------------------------------------------- }
 
-function ExtractTrack(const TrackString: string): Word;
+function ExtractTrack(const TrackString: string): word;
 var
-  Index, Value, Code: Integer;
+  Index, Value, Code: integer;
 begin
   { Extract track from string }
   Index := Pos('/', TrackString);
-  
+
   if Index = 0 then
     Val(TrackString, Value, Code)
   else

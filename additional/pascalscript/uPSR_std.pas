@@ -1,10 +1,11 @@
 
 unit uPSR_std;
+
 {$I PascalScript.inc}
 interface
+
 uses
   uPSRuntime, uPSUtils;
-
 
 procedure RIRegisterTObject(CL: TPSRuntimeClassImporter);
 procedure RIRegisterTPersistent(Cl: TPSRuntimeClassImporter);
@@ -12,12 +13,11 @@ procedure RIRegisterTComponent(Cl: TPSRuntimeClassImporter);
 procedure RIRegister_Std(Cl: TPSRuntimeClassImporter);
 
 implementation
+
 uses
   Classes;
 
-
-
-procedure RIRegisterTObject(CL: TPSRuntimeClassImporter); 
+procedure RIRegisterTObject(CL: TPSRuntimeClassImporter);
 begin
   with cl.Add(TObject) do
   begin
@@ -34,16 +34,46 @@ begin
   end;
 end;
 
-procedure TComponentOwnerR(Self: TComponent; var T: TComponent); begin T := Self.Owner; end;
+procedure TComponentOwnerR(Self: TComponent; var T: TComponent);
+begin
+  T := Self.Owner;
+end;
 
 
-procedure TCOMPONENTCOMPONENTS_R(Self: TCOMPONENT; var T: TCOMPONENT; t1: INTEGER); begin T := Self.COMPONENTS[t1]; end;
-procedure TCOMPONENTCOMPONENTCOUNT_R(Self: TCOMPONENT; var T: INTEGER); begin t := Self.COMPONENTCOUNT; end;
-procedure TCOMPONENTCOMPONENTINDEX_R(Self: TCOMPONENT; var T: INTEGER); begin t := Self.COMPONENTINDEX; end;
-procedure TCOMPONENTCOMPONENTINDEX_W(Self: TCOMPONENT; T: INTEGER); begin Self.COMPONENTINDEX := t; end;
-procedure TCOMPONENTCOMPONENTSTATE_R(Self: TCOMPONENT; var T: TCOMPONENTSTATE); begin t := Self.COMPONENTSTATE; end;
-procedure TCOMPONENTDESIGNINFO_R(Self: TCOMPONENT; var T: LONGINT); begin t := Self.DESIGNINFO; end;
-procedure TCOMPONENTDESIGNINFO_W(Self: TCOMPONENT; T: LONGINT); begin Self.DESIGNINFO := t; end;
+procedure TCOMPONENTCOMPONENTS_R(Self: TComponent; var T: TComponent; t1: integer);
+begin
+  T := Self.Components[t1];
+end;
+
+procedure TCOMPONENTCOMPONENTCOUNT_R(Self: TComponent; var T: integer);
+begin
+  t := Self.COMPONENTCOUNT;
+end;
+
+procedure TCOMPONENTCOMPONENTINDEX_R(Self: TComponent; var T: integer);
+begin
+  t := Self.COMPONENTINDEX;
+end;
+
+procedure TCOMPONENTCOMPONENTINDEX_W(Self: TComponent; T: integer);
+begin
+  Self.COMPONENTINDEX := t;
+end;
+
+procedure TCOMPONENTCOMPONENTSTATE_R(Self: TComponent; var T: TCOMPONENTSTATE);
+begin
+  t := Self.COMPONENTSTATE;
+end;
+
+procedure TCOMPONENTDESIGNINFO_R(Self: TComponent; var T: longint);
+begin
+  t := Self.DESIGNINFO;
+end;
+
+procedure TCOMPONENTDESIGNINFO_W(Self: TComponent; T: longint);
+begin
+  Self.DESIGNINFO := t;
+end;
 
 
 procedure RIRegisterTComponent(Cl: TPSRuntimeClassImporter);
@@ -54,17 +84,16 @@ begin
     RegisterVirtualConstructor(@TComponent.Create, 'CREATE');
     RegisterPropertyHelper(@TComponentOwnerR, nil, 'OWNER');
 
-    RegisterMethod(@TCOMPONENT.DESTROYCOMPONENTS, 'DESTROYCOMPONENTS');
+    RegisterMethod(@TComponent.DESTROYCOMPONENTS, 'DESTROYCOMPONENTS');
     RegisterPropertyHelper(@TCOMPONENTCOMPONENTS_R, nil, 'COMPONENTS');
     RegisterPropertyHelper(@TCOMPONENTCOMPONENTCOUNT_R, nil, 'COMPONENTCOUNT');
-    RegisterPropertyHelper(@TCOMPONENTCOMPONENTINDEX_R, @TCOMPONENTCOMPONENTINDEX_W, 'COMPONENTINDEX');
+    RegisterPropertyHelper(@TCOMPONENTCOMPONENTINDEX_R, @TCOMPONENTCOMPONENTINDEX_W,
+      'COMPONENTINDEX');
     RegisterPropertyHelper(@TCOMPONENTCOMPONENTSTATE_R, nil, 'COMPONENTSTATE');
-    RegisterPropertyHelper(@TCOMPONENTDESIGNINFO_R, @TCOMPONENTDESIGNINFO_W, 'DESIGNINFO');
+    RegisterPropertyHelper(@TCOMPONENTDESIGNINFO_R, @TCOMPONENTDESIGNINFO_W,
+      'DESIGNINFO');
   end;
 end;
-
-
-
 
 
 
@@ -78,8 +107,3 @@ end;
 // PS_MINIVCL changes by Martijn Laan (mlaan at wintax _dot_ nl)
 
 end.
-
-
-
-
-
