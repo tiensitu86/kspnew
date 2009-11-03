@@ -2326,6 +2326,7 @@ object KSPMainWindow: TKSPMainWindow
                 'Check for updates but don''t automatically download them'
                 'Automatically download new updates for KSP'
               )
+              OnChange = UpdatesBoxChange
               Style = csDropDownList
               TabOrder = 3
               Text = 'Do not download updates not notify when updates are available'

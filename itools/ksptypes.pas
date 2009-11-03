@@ -79,6 +79,7 @@ type
 
   KSPStates = packed record
     PlaylistWidth: integer;
+    UpdatesStyle: integer;
   end;
 
   TKSPSetup = packed record

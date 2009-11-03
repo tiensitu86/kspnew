@@ -509,6 +509,7 @@ type
     procedure BookmarkClick(Sender: TObject);
     procedure SetupTreeViewClick(Sender: TObject);
     procedure eq0Change(Sender: TObject);
+    procedure UpdatesBoxChange(Sender: TObject);
     procedure UseORClick(Sender: TObject);
   private
     { private declarations }
@@ -1252,6 +1253,11 @@ begin
 
  //  BassPlayer1.EQGains := EQGains;
    Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
+end;
+
+procedure TKSPMainWindow.UpdatesBoxChange(Sender: TObject);
+begin
+  Self.KSPSetupStates.KSPState.UpdatesStyle:=UpdatesBox.ItemIndex;
 end;
 
 procedure TKSPMainWindow.UseORClick(Sender: TObject);
@@ -2428,7 +2434,7 @@ end;
 
 function TKSPMainWindow.GetUpdatesStyle: integer;
 begin
-  Result:=UpdatesBox.ItemIndex;
+  Result:=Self.KSPSetupStates.KSPState.UpdatesStyle;
 end;
 
 procedure TKSPMainWindow.SetHeaderControlImage(sIndex: integer);
@@ -3767,7 +3773,8 @@ var
     UseVDJ:=XMLFile.ReadBool('Vars', 'UseVDJ', false);
     EnableVDJ.Checked:=UseVDJ;
 
-    Self.UpdatesBox.ItemIndex:=XMLFile.ReadInteger('Vars', 'Updates', 1);
+    UpdatesBox.ItemIndex:=XMLFile.ReadInteger('Vars', 'Updates', 1);
+    UpdatesBoxChange(Self);
 
     LastOpenDir:=XMLFile.ReadString('General', 'LastFolder', ExtractFilePath(Application.ExeName));
     KSPMainWindow.SDD.InitialDir:=LastOpenDir;//XMLFile.ReadString('Vars', 'CurrentFolder', ExtractFilePath(Application.ExeName));
@@ -3814,6 +3821,10 @@ var
 
     //TePageControl1.ActivePageIndex:=XMLFile.ReadInteger('Main window', 'Main page control', TePageControl1.ActivePageIndex);
     KSPMainWindow.TB.Position:=XMLFile.ReadInteger('Main window', 'Volume', Player.Volume);
+
+    ArtistPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'ArtistPls', true);
+    AlbumPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'AlbumPls', true);
+    TitlePlsSearch.Checked:=XMLFile.ReadBool('Main window', 'TitlePls', true);
 
     KSPMainWindow.TBChange(Self);
   end;
@@ -3936,7 +3947,9 @@ var
       rtAll:  XMLFile.WriteInteger('Vars', 'Repeat', 2);
     end;
 
-    XMLFile.WriteInteger('Vars', 'Updates', UpdatesBox.ItemIndex);
+    hLog.Send(IntToStr(GetUpdatesStyle));
+
+    XMLFile.WriteInteger('Vars', 'Updates', GetUpdatesStyle);
 
     XMLFile.EraseSection('General');
     XMLFile.WriteString('General', 'LastFolder', LastOpenDir);
@@ -3981,6 +3994,10 @@ var
     XMLFile.WriteInteger('Main Window', 'MediaLibPanelSize', MSortType.Width);
 
     XMLFile.WriteInteger('Main Window', 'MediaLibLibHeaderPanelHeight', Self.MIView.Height);
+
+    XMLFile.WriteBool('Main window', 'ArtistPls', ArtistPlsSearch.Checked);
+    XMLFile.WriteBool('Main window', 'AlbumPls', AlbumPlsSearch.Checked);
+    XMLFile.WriteBool('Main window', 'TitlePls', TitlePlsSearch.Checked);
 
   end;
 
