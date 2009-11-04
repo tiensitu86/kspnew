@@ -4451,7 +4451,7 @@ var
 
 begin
   style:=Data;
-  if Style=3 then StartInstall else if (Style<>4) and (Style<>5) begin
+  if Style=3 then StartInstall else if (Style<>4) and (Style<>5) then begin
     Upd:=TUpdateForm.Create(Self);
 
     Upd.ShowModal;

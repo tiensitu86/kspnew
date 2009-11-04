@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="148">
+    <Units Count="154">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,13 +64,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="49" Y="4451"/>
-        <TopLine Value="4423"/>
+        <CursorPos X="63" Y="4452"/>
+        <TopLine Value="4434"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
-        <Bookmarks Count="2">
-          <Item0 X="8" Y="4243" ID="0"/>
-          <Item1 X="3" Y="3397" ID="1"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="3397" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -79,9 +78,14 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="9" Y="3510"/>
-        <TopLine Value="3474"/>
+        <CursorPos X="33" Y="3630"/>
+        <TopLine Value="3612"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
+        <Bookmarks Count="1">
+          <Item0 X="22" Y="3606" ID="0"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -254,7 +258,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="1" Y="132"/>
         <TopLine Value="122"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="13"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -310,7 +314,7 @@
         <UnitName Value="KSPStrings"/>
         <CursorPos X="76" Y="172"/>
         <TopLine Value="141"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -346,9 +350,9 @@
         <Filename Value="itools/KSPStartup.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPStartup"/>
-        <CursorPos X="39" Y="51"/>
-        <TopLine Value="31"/>
-        <EditorIndex Value="1"/>
+        <CursorPos X="44" Y="134"/>
+        <TopLine Value="112"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -545,7 +549,7 @@
         <UnitName Value="KSPDLLFileUtils"/>
         <CursorPos X="1" Y="95"/>
         <TopLine Value="94"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="14"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -696,7 +700,7 @@
         <UnitName Value="ksplua"/>
         <CursorPos X="38" Y="241"/>
         <TopLine Value="229"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="16"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -875,7 +879,7 @@
         <UnitName Value="cplayer"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="148"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit99>
       <Unit100>
@@ -1071,8 +1075,8 @@
         <UnitName Value="KSPTypes"/>
         <CursorPos X="27" Y="82"/>
         <TopLine Value="65"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="29"/>
+        <EditorIndex Value="10"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit125>
@@ -1108,8 +1112,8 @@
         <UnitName Value="ID3v2"/>
         <CursorPos X="69" Y="602"/>
         <TopLine Value="582"/>
-        <EditorIndex Value="8"/>
-        <UsageCount Value="17"/>
+        <EditorIndex Value="15"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit130>
@@ -1209,10 +1213,10 @@
         <Filename Value="itools/threads/updates.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="updates"/>
-        <CursorPos X="25" Y="56"/>
-        <TopLine Value="36"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="38"/>
+        <CursorPos X="17" Y="43"/>
+        <TopLine Value="11"/>
+        <EditorIndex Value="12"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit143>
@@ -1230,8 +1234,8 @@
         <UnitName Value="updfrm"/>
         <CursorPos X="14" Y="15"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="34"/>
+        <EditorIndex Value="9"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit145>
@@ -1240,8 +1244,8 @@
         <UnitName Value="uPSC_stdctrls"/>
         <CursorPos X="25" Y="38"/>
         <TopLine Value="38"/>
-        <EditorIndex Value="10"/>
-        <UsageCount Value="14"/>
+        <EditorIndex Value="17"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit146>
@@ -1251,127 +1255,180 @@
         <TopLine Value="573"/>
         <UsageCount Value="10"/>
       </Unit147>
+      <Unit148>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <UnitName Value="wincd"/>
+        <CursorPos X="39" Y="380"/>
+        <TopLine Value="362"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit148>
+      <Unit149>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/win/wininc/ascdef.inc"/>
+        <CursorPos X="10" Y="103"/>
+        <TopLine Value="83"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit149>
+      <Unit150>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/win/wininc/defines.inc"/>
+        <CursorPos X="17" Y="1549"/>
+        <TopLine Value="1529"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit150>
+      <Unit151>
+        <Filename Value="../../../KSP2006_old/src/itools/SysInfo.pas"/>
+        <UnitName Value="SysInfo"/>
+        <CursorPos X="14" Y="339"/>
+        <TopLine Value="319"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit151>
+      <Unit152>
+        <Filename Value="../../../KSP2006_old/src/itools/plugins/interface/usb_old/frmDrives.pas"/>
+        <UnitName Value="frmDrives"/>
+        <CursorPos X="66" Y="122"/>
+        <TopLine Value="104"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit152>
+      <Unit153>
+        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
+        <HasResources Value="True"/>
+        <UnitName Value="uMain"/>
+        <CursorPos X="1" Y="3791"/>
+        <TopLine Value="3779"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit153>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="itools/threads/updates.pas"/>
-        <Caret Line="47" Column="32" TopLine="31"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="43" Column="70" TopLine="23"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="11" Column="52" TopLine="1"/>
+        <Caret Line="4440" Column="22" TopLine="4420"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="10" Column="24" TopLine="1"/>
+        <Filename Value="itools/KSPStartup.pas"/>
+        <Caret Line="46" Column="22" TopLine="22"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="3816" Column="44" TopLine="3789"/>
+        <Filename Value="itools/KSPStartup.pas"/>
+        <Caret Line="51" Column="7" TopLine="31"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="3956" Column="30" TopLine="3931"/>
+        <Caret Line="4431" Column="20" TopLine="4414"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="1260" Column="1" TopLine="1258"/>
+        <Caret Line="4454" Column="16" TopLine="4429"/>
       </Position6>
       <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="1487" Column="12" TopLine="1468"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position7>
       <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="15" Column="32" TopLine="8"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="690" Column="20" TopLine="671"/>
       </Position8>
       <Position9>
-        <Filename Value="main.pas"/>
-        <Caret Line="534" Column="24" TopLine="515"/>
+        <Filename Value="itools/threads/updates.pas"/>
+        <Caret Line="56" Column="25" TopLine="36"/>
       </Position9>
       <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="1263" Column="12" TopLine="1258"/>
+        <Filename Value="itools/threads/updates.pas"/>
+        <Caret Line="13" Column="70" TopLine="28"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="1641" Column="14" TopLine="1634"/>
+        <Caret Line="4454" Column="1" TopLine="4434"/>
       </Position11>
       <Position12>
-        <Filename Value="main.pas"/>
-        <Caret Line="2752" Column="28" TopLine="2733"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3593" Column="30" TopLine="3586"/>
       </Position12>
       <Position13>
-        <Filename Value="main.pas"/>
-        <Caret Line="3950" Column="29" TopLine="3931"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3610" Column="10" TopLine="3592"/>
       </Position13>
       <Position14>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="112" Column="15" TopLine="94"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="503" Column="30" TopLine="472"/>
       </Position14>
       <Position15>
-        <Filename Value="itools/lua/ksplua.pas"/>
-        <Caret Line="113" Column="17" TopLine="94"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="506" Column="16" TopLine="472"/>
       </Position15>
       <Position16>
-        <Filename Value="main.pas"/>
-        <Caret Line="2441" Column="30" TopLine="2435"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="404" Column="17" TopLine="381"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="4187" Column="37" TopLine="4168"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="504" Column="20" TopLine="472"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="4205" Column="54" TopLine="4184"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="381" Column="22" TopLine="364"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="4242" Column="12" TopLine="4219"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="378" Column="16" TopLine="362"/>
       </Position19>
       <Position20>
-        <Filename Value="itools/dlldefs/kspfiles.pas"/>
-        <Caret Line="124" Column="30" TopLine="122"/>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/packages/cdrom/src/wincd.pp"/>
+        <Caret Line="383" Column="29" TopLine="362"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="4231" Column="8" TopLine="4219"/>
+        <Filename Value="../../../KSP2006_old/src/itools/SysInfo.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="4236" Column="31" TopLine="4219"/>
+        <Filename Value="../../../KSP2006_old/src/itools/plugins/interface/usb_old/frmDrives.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="4241" Column="65" TopLine="4211"/>
+        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="4243" Column="16" TopLine="4214"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3608" Column="10" TopLine="3592"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="10" Column="3" TopLine="1"/>
+        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
+        <Caret Line="3800" Column="6" TopLine="3779"/>
       </Position25>
       <Position26>
-        <Filename Value="main.pas"/>
-        <Caret Line="43" Column="70" TopLine="23"/>
+        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
+        <Caret Line="3791" Column="16" TopLine="3780"/>
       </Position26>
       <Position27>
-        <Filename Value="main.pas"/>
-        <Caret Line="4440" Column="22" TopLine="4420"/>
+        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
+        <Caret Line="7650" Column="12" TopLine="7678"/>
       </Position27>
       <Position28>
-        <Filename Value="itools/KSPStartup.pas"/>
-        <Caret Line="46" Column="22" TopLine="22"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3605" Column="28" TopLine="3603"/>
       </Position28>
       <Position29>
-        <Filename Value="itools/KSPStartup.pas"/>
-        <Caret Line="51" Column="7" TopLine="31"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3610" Column="14" TopLine="3606"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="4431" Column="20" TopLine="4414"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="3634" Column="32" TopLine="3609"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

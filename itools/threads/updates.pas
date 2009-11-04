@@ -17,7 +17,7 @@ type
 
 implementation
 
-uses KSPConstsVars, kspfiles, IniFiles, multilog, main, IniFiles;
+uses KSPConstsVars, kspfiles, IniFiles, multilog, main;
 
 procedure TCheckUpdates.Execute;
 var
@@ -28,7 +28,6 @@ var
   s: TStringList;
   CanUpdate: boolean;
   URL: string;
-  Ini: TIniFile;
 begin
   hLog.Send('Checking for updates');
   tmpFolder:=KSPDataFolder+'temp\';

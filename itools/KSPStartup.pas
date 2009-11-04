@@ -138,6 +138,7 @@ begin
 
   Application.ShowMainForm := True;
   Player := TBassPlayer.Create(nil);
+  Player.GetCDDrives;
 end;
 
 procedure SetupKSP;

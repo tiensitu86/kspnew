@@ -36,7 +36,7 @@ uses
   BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs,
-  FileSupportLst, LMessages,
+  FileSupportLst, LMessages, wincd,
   FileSupport, cplayer;
 
 const
@@ -688,6 +688,8 @@ type
     procedure DownloadedA(Data: PtrInt);
     procedure DownProcA(Data: PtrInt);
     procedure GetMetaA(Data: PtrInt);
+    function GetCDDrives: string;
+    function IsCDDrive(Drive: char; var VolumeName: string): bool;
 
     property MixerReady: boolean Read FMixerReady;        // * New at Ver 2.00
     //  Indicates whether BASSmix is ready to operation.
@@ -3599,6 +3601,42 @@ begin
   FStreamInfo.Title := ansistring(PTitle);
   if Assigned(FOnGetMeta) then
     FOnGetMeta(Self, ansistring(PTitle));
+end;
+
+function TBASSPlayer.GetCDDrives: string;
+var
+  str: string;
+  i: integer;
+  c: char;
+begin
+  Result:='';
+  hLog.Send('Found drives:');
+  for c:='A' to 'Z' do
+    if IsCDDrive(c, str) then begin
+      hLog.Send('Drive '+c+': '+str);
+      Result:=Result+c;
+    end;
+end;
+
+function TBASSPlayer.IsCDDrive(Drive: char; var VolumeName: string): bool;
+var
+  DrivePath:  string;
+  MaximumComponentLength: DWORD;
+  FileSystemFlags: DWORD;
+  vname: pchar;
+begin
+  Result    := False;
+  DrivePath := Drive + ':\';
+  if GetDriveType(PChar(DrivePath)) = DRIVE_CDROM then
+    begin;
+      //SetLength(vname, 64);
+      GetVolumeInformation(PChar(DrivePath),
+        vname, 64, nil,
+        MaximumComponentLength,
+        FileSystemFlags, nil, 0);
+      VolumeName:=vname;
+      Result:=true;
+    end;
 end;
 
 {$HINTS OFF}
