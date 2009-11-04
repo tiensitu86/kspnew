@@ -76,12 +76,14 @@ type
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    Label25: TLabel;
+    UpdateButton: TButton;
+    GroupBox2: TGroupBox;
+    Label24: TLabel;
     UpdaterProc: TAsyncProcess;
     Button6: TButton;
     ArtistPlsSearch: TCheckBox;
     AlbumPlsSearch: TCheckBox;
-    UpdatesBox: TComboBox;
-    Label24: TLabel;
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
     MenuItem44: TMenuItem;
@@ -137,6 +139,7 @@ type
     Panel17: TPanel;
     SD: TSaveDialog;
     ShuffleButton: TSpeedButton;
+    UpdatesBox: TComboBox;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
     YearBox: TCheckBox;
@@ -509,6 +512,7 @@ type
     procedure BookmarkClick(Sender: TObject);
     procedure SetupTreeViewClick(Sender: TObject);
     procedure eq0Change(Sender: TObject);
+    procedure UpdateButtonClick(Sender: TObject);
     procedure UpdatesBoxChange(Sender: TObject);
     procedure UseORClick(Sender: TObject);
   private
@@ -1255,6 +1259,18 @@ begin
    Player.SetAEQGain(BandNum, KSPMainWindow.EQGains[BandNum]);  // * Changed at Ver 1.6
 end;
 
+procedure TKSPMainWindow.UpdateButtonClick(Sender: TObject);
+var
+  Upd: TCheckUpdates;
+begin
+  if (not OfflineMode) and (Self.GetUpdatesStyle>0) then begin
+    Upd:=TCheckUpdates.Create(true);
+    Upd.UpdatesStyle:=Self.GetUpdatesStyle;
+    Upd.ManualCheck:=true;
+    Upd.Resume;
+  end;
+end;
+
 procedure TKSPMainWindow.UpdatesBoxChange(Sender: TObject);
 begin
   Self.KSPSetupStates.KSPState.UpdatesStyle:=UpdatesBox.ItemIndex;
@@ -1546,6 +1562,7 @@ begin
   if (not OfflineMode) and (Self.GetUpdatesStyle>0) then begin
     Upd:=TCheckUpdates.Create(true);
     Upd.UpdatesStyle:=Self.GetUpdatesStyle;
+    Upd.ManualCheck:=false;
     Upd.Resume;
   end;
 //  ShowNotification;

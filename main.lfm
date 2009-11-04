@@ -517,7 +517,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 967
       Align = alClient
-      PageIndex = 2
+      PageIndex = 0
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -1053,7 +1053,7 @@ object KSPMainWindow: TKSPMainWindow
               object Button4: TButton
                 Left = 11
                 Height = 25
-                Top = 65
+                Top = 97
                 Width = 210
                 Caption = 'HOW CAN I HELP?'
                 OnClick = Button4Click
@@ -1062,7 +1062,7 @@ object KSPMainWindow: TKSPMainWindow
               object Button15: TButton
                 Left = 11
                 Height = 27
-                Top = 90
+                Top = 122
                 Width = 210
                 Caption = 'About Qt'
                 OnClick = Button15Click
@@ -1071,7 +1071,7 @@ object KSPMainWindow: TKSPMainWindow
               object Image5: TImage
                 Left = 11
                 Height = 128
-                Top = 133
+                Top = 165
                 Width = 210
                 OnClick = Image5Click
                 Proportional = True
@@ -1079,7 +1079,7 @@ object KSPMainWindow: TKSPMainWindow
               object Label21: TLabel
                 Left = 11
                 Height = 16
-                Top = 269
+                Top = 301
                 Width = 191
                 Caption = 'Created with Lazarus and FreePascal'
                 ParentColor = False
@@ -1088,7 +1088,7 @@ object KSPMainWindow: TKSPMainWindow
                 Cursor = crHandPoint
                 Left = 11
                 Height = 16
-                Top = 297
+                Top = 329
                 Width = 184
                 Caption = 'http://www.lazarus.freepascal.org/'
                 Font.Color = clBlue
@@ -1101,7 +1101,7 @@ object KSPMainWindow: TKSPMainWindow
                 Cursor = crHandPoint
                 Left = 11
                 Height = 16
-                Top = 317
+                Top = 349
                 Width = 145
                 Caption = 'http://www.freepascal.org/'
                 Font.Color = clBlue
@@ -1109,6 +1109,14 @@ object KSPMainWindow: TKSPMainWindow
                 ParentColor = False
                 ParentFont = False
                 OnClick = Label22Click
+              end
+              object Label25: TLabel
+                Left = 12
+                Height = 16
+                Top = 65
+                Width = 207
+                Caption = 'Copyright ® 2009 KSP Developer Team'
+                ParentColor = False
               end
             end
             object History: TPanel
@@ -1843,7 +1851,7 @@ object KSPMainWindow: TKSPMainWindow
             6DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0100000000000000010D0000004D65
             646961204C696272617279FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000
             000000000D0000004D6564696120466F6C64657273FFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFF0000000000000000000E000000496E7465726E6574204D65646961
+            FFFFFFFFFF000000000000000000070000004E6574776F726B
           }
         end
         object Splitter4: TSplitter
@@ -2306,30 +2314,50 @@ object KSPMainWindow: TKSPMainWindow
               OnChange = EProxyEnabledChange
               TabOrder = 2
             end
-            object Label24: TLabel
-              Left = 20
-              Height = 16
-              Top = 305
-              Width = 69
-              Caption = 'KSP updates:'
-              ParentColor = False
-            end
-            object UpdatesBox: TComboBox
-              Left = 17
-              Height = 23
-              Top = 329
-              Width = 316
-              ItemHeight = 15
-              ItemIndex = 0
-              Items.Strings = (
-                'Do not download updates not notify when updates are available'
-                'Check for updates but don''t automatically download them'
-                'Automatically download new updates for KSP'
-              )
-              OnChange = UpdatesBoxChange
-              Style = csDropDownList
+            object GroupBox2: TGroupBox
+              Left = 16
+              Height = 129
+              Top = 297
+              Width = 424
+              Caption = 'KSP updates'
+              ClientHeight = 111
+              ClientWidth = 420
               TabOrder = 3
-              Text = 'Do not download updates not notify when updates are available'
+              object UpdatesBox: TComboBox
+                Left = 14
+                Height = 23
+                Top = 32
+                Width = 388
+                ItemHeight = 15
+                ItemIndex = 0
+                Items.Strings = (
+                  'Do not download updates not notify when updates are available'
+                  'Check for updates but don''t automatically download them'
+                  'Automatically download new updates for KSP'
+                )
+                OnChange = UpdatesBoxChange
+                Style = csDropDownList
+                TabOrder = 0
+                Text = 'Do not download updates not notify when updates are available'
+              end
+              object Label24: TLabel
+                Left = 14
+                Height = 16
+                Top = 8
+                Width = 175
+                Caption = 'How KSP should handle updates:'
+                ParentColor = False
+              end
+              object UpdateButton: TButton
+                Left = 14
+                Height = 25
+                Top = 64
+                Width = 148
+                AutoSize = True
+                Caption = 'Check for updates now'
+                OnClick = UpdateButtonClick
+                TabOrder = 1
+              end
             end
           end
         end

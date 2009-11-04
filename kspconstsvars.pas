@@ -48,9 +48,8 @@ const
   KSPMDirAdd = KSPMDir + '/add';
   KSPForum   = KSPHost + '/support/forum';
 
-  NetworkStreams   = 'http://dir.xiph.org/yp.xml';
   DefSetupFileName = 'data\setup.opt';
-  //  KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
+  //KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
   //  KSPMsgDefaultServerPort = 12007;
   //  KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
   //  KSPSupportAutomatedSubject = 'KSP automated bug report';

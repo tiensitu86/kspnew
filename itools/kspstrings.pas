@@ -170,6 +170,7 @@ resourcestring
   SUpdate = 'KSP Updater';
   SUpdateMsg = 'In order to install an update KSP must close.'+#13'Press Ok to close KSP and start installation process';
   SUpdateStartup = 'Don you want to run patching process on next startup?';
+  SNoUpdate = 'Your KSP is up to date';
   SNetMsg  =
     'KSP requires network access in order to enable some functions like dynamic playlists or suggestions fetching.'
     +

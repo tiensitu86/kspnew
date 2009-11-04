@@ -13,11 +13,12 @@ type
     procedure Execute; override;
   public
     UpdatesStyle: integer;
+    ManualCheck: boolean;
   end;
 
 implementation
 
-uses KSPConstsVars, kspfiles, IniFiles, multilog, main;
+uses KSPConstsVars, kspfiles, IniFiles, multilog, main, kspstrings;
 
 procedure TCheckUpdates.Execute;
 var
@@ -67,7 +68,8 @@ begin
   end;
 
   if CanUpdate then
-    Application.QueueAsyncCall(KSPMainWindow.KSPUpdate, Self.UpdatesStyle);
+    Application.QueueAsyncCall(KSPMainWindow.KSPUpdate, Self.UpdatesStyle) else
+  if Self.ManualCheck then KSPShowMessage(SNoUpdate)
 end;
 
 end.

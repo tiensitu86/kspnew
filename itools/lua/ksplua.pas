@@ -87,7 +87,10 @@ var
   path: string;
   f: TFileStream;
 begin
-  Path := ExtractFilePath(Application.ExeName+'addons\units\') + FileName;
+  if FileExists(ExtractFilePath(Application.ExeName)+'addons\units\'+FileName) then
+    Path := ExtractFilePath(Application.ExeName)+'addons\units\' + FileName else
+    Path := ExtractFilePath(OrginFileName) + FileName;
+  hLog.Send(Format('Unit %s tries to open %s', [OrginFileName, Path]));
   try
     F := TFileStream.Create(Path, fmOpenRead or fmShareDenyWrite);
   except
@@ -150,7 +153,10 @@ begin
   fPascal.OnExecImport := @IFPS3ClassesPlugin1ExecImport;
   fPascal.OnCompile := @PSScriptCompile;
   fPascal.OnExecute := @PSScriptExecute;
-  fPascal.Script.Text := scr;
+  fPascal.OnNeedFile:= @ceNeedFile;
+  fPascal.UsePreProcessor:=true;
+  fPascal.MainFileName:=scr;
+  fPascal.Script.LoadFromFile(scr);
   hLog.Send('Compiling addons...');
   if fPascal.Compile then
   begin
@@ -239,29 +245,11 @@ begin
 end;
 
 procedure SetupLua;
-var
-  s: TStringList;
 begin
-  s := TStringList.Create;
   DefaultScript := KSPDataFolder + 'addons/runaddons.pas';
   FixFolderNames(DefaultScript);
   if FileExists(DefaultScript) then
-    s.LoadFromFile(DefaultScript);
-
-  ScriptedAddons := TAddonManager.Create(s.Text);
-  s.Free;
-{  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
-  ScriptedAddons.LuaPath:=ScriptedAddons.LuaPath+';'+KSPDataFolder+'lua/?.lua';
-  hLog.Send('LUA DEF PATH: '+ScriptedAddons.LuaPath);
-  ScriptedAddons.RegisterLUAMethod('ShowMessage', @LuaShowMessage);
-  ScriptedAddons.RegisterLUAMethod('AddLog', @LuaLogEntry);
-  ScriptedAddons.RegisterLUAMethod('LoadUI', @LuaLoadInterface);
-  DefaultScript:=KSPDataFolder+'lua/runaddons.lua';
-  FixFolderNames(DefaultScript);
-  if FileExists(DefaultScript) then begin
-    ScriptedAddons.LoadFile(DefaultScript);
-    ScriptedAddons.Execute;
-  end;}
+    ScriptedAddons := TAddonManager.Create(DefaultScript);
 end;
 
 procedure FreeLua;

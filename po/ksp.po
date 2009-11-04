@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.saddons
 msgid "Addons"
 msgstr ""
@@ -169,6 +172,10 @@ msgstr ""
 
 #: kspstrings.snotifications
 msgid "Notifications"
+msgstr ""
+
+#: kspstrings.snoupdate
+msgid "Your KSP is up to date"
 msgstr ""
 
 #: kspstrings.sonminimizetotrayalert
@@ -669,6 +676,10 @@ msgstr ""
 msgid "Search Playlist (click for more options)"
 msgstr ""
 
+#: TKSPMAINWINDOW.GROUPBOX2.CAPTION
+msgid "KSP updates"
+msgstr ""
+
 #: TKSPMAINWINDOW.GROUPBOXPROXY.CAPTION
 msgid "Proxy Settings"
 msgstr ""
@@ -741,7 +752,11 @@ msgid "http://www.freepascal.org/"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL24.CAPTION
-msgid "KSP updates:"
+msgid "How KSP should handle updates:"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL25.CAPTION
+msgid "Copyright ® 2009 KSP Developer Team"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL3.CAPTION
@@ -1138,6 +1153,10 @@ msgstr ""
 #: TKSPMAINWINDOW.TRACKBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.TRACKBOX.CAPTION"
 msgid "Track"
+msgstr ""
+
+#: TKSPMAINWINDOW.UPDATEBUTTON.CAPTION
+msgid "Check for updates now"
 msgstr ""
 
 #: TKSPMAINWINDOW.UPDATESBOX.TEXT
