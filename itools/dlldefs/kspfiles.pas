@@ -87,6 +87,7 @@ procedure KSPDeleteFolder(Path: string);
 procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 
 function IsPlaylist(FileName: string): boolean;
+function IsCommand(Cmd: string): boolean;
 function KSPGetFileSize(const FileName: WideString): Int64;
 
 procedure KSPShowMessage(msg: string);
@@ -121,6 +122,14 @@ end;
 function IsStream(str: string): boolean;
 begin
  Result:=KSPDLLFileUtils.IsStream(str);
+end;
+
+function IsCommand(Cmd: string): boolean;
+var
+  NameHeader1: string;
+begin
+  NameHeader1 := LowerCase(copy(Cmd, 1, 6));
+  Result      := (NameHeader1 = 'ksp://');
 end;
 
 procedure KSPDeleteFolder(Path: string);

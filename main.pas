@@ -4222,6 +4222,28 @@ var
   URL,URL2: widestring;
   sl: TStringList;
   s, s2: string;
+
+  procedure ProcessCommand;
+  var
+    s: string;
+  begin
+    s:=URL;
+    Delete(s, 1, 6);
+    s:=Lowercase(s);
+
+    if (s='playfile') or (s='play')
+      then Self.PlayFile;
+    if s='pause' then Self.btPlayClick(nil);
+    if s='stop' then Self.btStopClick(nil);
+    if s='setup' then begin end;
+    if s='medialib' then begin end;
+    if s='addons' then begin end;
+    if (s='open') or (s='openfile') then Self.MenuItem1Click(nil);
+    if s='playlist_clear' then Self.ClearPlayList;
+    if s='delete' then Self.MenuItem7Click(nil);
+    if s='export' then Self.ExportPlaylistExecute(nil);
+  end;
+
 begin
   if Self.OfflineMode then Exit;
 
@@ -4229,6 +4251,10 @@ begin
   hLog.Send('Clicked URL: '+URL2);
 
   URL:=URl2;
+
+  if IsCommand(URL) then
+    ProcessCommand;
+
   if IsPlaylist(URL) then begin
     s:=ExtractFileName(URL);
     hLog.Send('Downloading playlist: '+s);
