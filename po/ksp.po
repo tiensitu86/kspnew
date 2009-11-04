@@ -348,6 +348,10 @@ msgid ""
 "Press Ok to close KSP and start installation process\n"
 msgstr ""
 
+#: kspstrings.supdatestartup
+msgid "Don you want to run patching process on next startup?"
+msgstr ""
+
 #: kspstrings.swelcome
 msgctxt "kspstrings.swelcome"
 msgid "Welcome"

@@ -17,7 +17,7 @@ type
 
 implementation
 
-uses KSPConstsVars, kspfiles, IniFiles, multilog, main;
+uses KSPConstsVars, kspfiles, IniFiles, multilog, main, IniFiles;
 
 procedure TCheckUpdates.Execute;
 var
@@ -28,6 +28,7 @@ var
   s: TStringList;
   CanUpdate: boolean;
   URL: string;
+  Ini: TIniFile;
 begin
   hLog.Send('Checking for updates');
   tmpFolder:=KSPDataFolder+'temp\';
@@ -45,19 +46,26 @@ begin
   hLog.Send('Updates list downloaded');
 
   CanUpdate:=s.Count>1;
-  if FileExists(tmpFolder+'setup.exe') then DeleteFile(tmpFolder+'setup.exe');
+  if (Self.UpdatesStyle<5) and FileExists(tmpFolder+'setup.exe') then DeleteFile(tmpFolder+'setup.exe');
 
   if CanUpdate then begin
     URL:=Ini.ReadString(s.Strings[0], 'Path', '');
     CanUpdate:=URL<>'';
     if CanUpdate then begin
       hLog.Send('Downloading file: '+URL);
-      if Self.UpdatesStyle>1 then
+      if (Self.UpdatesStyle>1) and (Self.UpdatesStyle<5) then
         CanUpdate:=DownloadFile(URL, tmpFolder+'setup.exe');
     end else hLog.Send('URL is empty');
   end;
   s.Free;
   Ini.Free;
+
+  if (Self.UpdatesStyle=4) or (Self.UpdatesStyle=5) then begin
+    Ini:=TIniFile.Create(KSPDataFolder+'updater.ini');
+    Ini.EraseSection('updater');
+    Ini.WriteBool('updater', 'run_update', true);
+    Ini.Free;
+  end;
 
   if CanUpdate then
     Application.QueueAsyncCall(KSPMainWindow.KSPUpdate, Self.UpdatesStyle);

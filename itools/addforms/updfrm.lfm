@@ -1,11 +1,11 @@
 object UpdateForm: TUpdateForm
   Left = 452
-  Height = 75
+  Height = 69
   Top = 352
-  Width = 376
+  Width = 352
   Caption = 'Updates available'
-  ClientHeight = 75
-  ClientWidth = 376
+  ClientHeight = 69
+  ClientWidth = 352
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   object Label1: TLabel

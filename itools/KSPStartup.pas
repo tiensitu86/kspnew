@@ -31,14 +31,32 @@ unit KSPStartup;
 interface
 
 uses Forms, SysUtils, Classes, Dialogs, FileSupportLst,
-  {$IFDEF KSP_USE_QT}Qt4, {$ENDIF}BassPlayer;
+  {$IFDEF KSP_USE_QT}Qt4, {$ENDIF}BassPlayer, AsyncProcess;
 
 procedure SetupKSP;
 
 implementation
 
-uses KSPConstsVars, ProfileFunc, MultiLog, kspfiles{$IFDEF KSP_USE_QT},
+uses KSPConstsVars, ProfileFunc, IniFiles, MultiLog, kspfiles{$IFDEF KSP_USE_QT},
   qtproc{$ENDIF};
+
+procedure CheckUpdater;
+var
+  Ini: TIniFile;
+  RunUpdate: boolean;
+  p: TAsyncProcess;
+begin
+  Ini:=TIniFile.Create(KSPDataFolder+'updater.ini');
+  RunUpdate:=Ini.ReadBool('updater', 'run_update', false);
+  Ini.WriteBool('updater', 'run_update', false);
+  Ini.Free;
+  if RunUpdate and FileExists(KSPDataFolder+'temp\setup.exe') then begin
+    p:=TAsyncProcess.Create(nil);
+    p.CommandLine:=KSPDataFolder+'temp\setup.exe';
+    p.Execute;
+    Application.Terminate;
+  end;
+end;
 
 //Clear old logs
 procedure ClearLogs;
@@ -75,6 +93,8 @@ begin
   KSPDataFolder := GetUserDataFolder + '.KSP/';
 
   FixFolderNames(KSPDataFolder);
+
+  CheckUpdater;
 
   for i := 0 to MaxInt do
   begin

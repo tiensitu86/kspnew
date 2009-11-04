@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 301
+  Left = 361
   Height = 707
-  Top = 154
+  Top = 79
   Width = 1244
   ActiveControl = Panel1
   Caption = 'KSP'

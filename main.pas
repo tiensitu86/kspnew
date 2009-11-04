@@ -4433,14 +4433,31 @@ var
       end;
   end;
 
+  procedure PrepareOnStartup;
+  var
+    u: TCheckUpdates;
+  begin
+    if MessageDlg(SUpdate, SUpdateStartup, mtConfirmation, [mbYes, mbNo], 0)=mrNo then
+    begin
+      DeleteFile(KSPDataFolder+'temp\setup.exe');
+    end else
+    begin
+      u:=TCheckUpdates.Create(true);
+      if Style=1 then
+        u.UpdatesStyle:=4 else u.UpdatesStyle:=5;
+      u.Resume;
+    end;
+  end;
+
 begin
   style:=Data;
-  if Style=3 then StartInstall else begin
+  if Style=3 then StartInstall else if (Style<>4) and (Style<>5) begin
     Upd:=TUpdateForm.Create(Self);
 
     Upd.ShowModal;
     case Upd.ModalResult of
       mrOk: InstallUpdate;
+      mrCancel: PrepareOnStartup;
       mrAbort: Self.UpdatesBox.ItemIndex:=0;
     end;
 
