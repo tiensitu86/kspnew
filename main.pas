@@ -1558,13 +1558,16 @@ begin
   TCompactlibThread.Create(false);
 
   SetupLua;
-
+{$IFDEF WINDOWS}
   if (not OfflineMode) and (Self.GetUpdatesStyle>0) then begin
     Upd:=TCheckUpdates.Create(true);
     Upd.UpdatesStyle:=Self.GetUpdatesStyle;
     Upd.ManualCheck:=false;
     Upd.Resume;
   end;
+{$ELSE}
+  Self.GroupBox2.Enabled:=false;
+{$ENDIF}
 //  ShowNotification;
 end;
 

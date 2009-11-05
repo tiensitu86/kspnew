@@ -36,7 +36,7 @@ uses
   BASS, RT_BASSWMA, RT_basscd, RT_bassmidi, bass_aac, RT_bassmix,
   MPEGAudio, OggVorbis, AACfile, {$IFDEF WINDOWS}WMAFile, {$ENDIF}WAVFile,
   MPEGInfoBox, OGGInfoBox, {$IFDEF WINDOWS}WMAInfoBox, {$ENDIF}Dialogs,
-  FileSupportLst, LMessages, wincd,
+  FileSupportLst, LMessages, {$IFDEF WINDOWS}wincd,{$ENDIF}
   FileSupport, cplayer;
 
 const
@@ -3619,6 +3619,7 @@ begin
 end;
 
 function TBASSPlayer.IsCDDrive(Drive: char; var VolumeName: string): bool;
+{$IFDEF WINDOWS}
 var
   DrivePath:  string;
   MaximumComponentLength: DWORD;
@@ -3638,6 +3639,11 @@ begin
       Result:=true;
     end;
 end;
+{$ELSE}
+begin
+
+end;
+{$ENDIF}
 
 {$HINTS OFF}
 procedure TBASSPlayer.DownProcA(Data: PtrInt);
