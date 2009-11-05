@@ -1,0 +1,9 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TGeckoChromeForm','FORMDATA',[
+  'TPF0'#16'TGeckoChromeForm'#15'GeckoChromeForm'#4'Left'#3#194#1#6'Height'#3
+  +#163#0#3'Top'#3#248#0#5'Width'#3#9#1#12'Font.CharSet'#7#16'SHIFTJIS_CHARSET'
+  +#11'Font.Height'#2#244#9'Font.Name'#6#8'?? ?????'#7'OnClose'#7#9'FormClose'#8
+  +'OnCreate'#7#10'FormCreate'#8'OnResize'#7#10'FormResize'#10'LCLVersion'#6#6
+  +'0.9.29'#0#0
+]);

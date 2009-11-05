@@ -39,7 +39,7 @@ uses
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
-  FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets, {$ENDIF}
+  FoldersScan, process, Buttons, {$IFDEF KSP_USE_QT}Qt4, qtwidgets, {$ELSE} GeckoBrowser,{$ENDIF}
   ActnList, Spin, FileCtrl, suggfind, ksplua, LMessages, AsyncProcess, presetsu, uxmpp;
 
 
@@ -407,7 +407,9 @@ type
     procedure ExitKSPActionExecute(Sender: TObject);
     procedure ExportPlaylistExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure FormShortCut(var Msg: TLMKey; var Handled: Boolean);
+    procedure FormShow(Sender: TObject);
     procedure GroupBox1Click(Sender: TObject);
     procedure HistoryResize(Sender: TObject);
     procedure IMAddressKeyPress(Sender: TObject; var Key: char);
@@ -515,6 +517,13 @@ type
     procedure UpdateButtonClick(Sender: TObject);
     procedure UpdatesBoxChange(Sender: TObject);
     procedure UseORClick(Sender: TObject);
+{$IFNDEF KSP_USE_QT}
+    procedure GeckoBrowser1LocationChange(Sender: TObject; const uri: string);
+    procedure GeckoBrowser1ProgressChange(Sender: TObject; Progress,
+      ProgressMax: Integer);
+    procedure GeckoBrowser1StatusChange(Sender: TObject;
+      aMessage: WideString);
+{$ENDIF}
   private
     { private declarations }
     DisableNetworkMsg: boolean;
@@ -555,6 +564,7 @@ type
 {$IFDEF KSP_XMPP}
     Jabber: TXmpp;
 {$ENDIF}
+    KSPStartingUp: boolean;
     procedure SetHeaderControlImage(sIndex: integer);
     procedure PlayFile;
     procedure ResetDisplay;
@@ -601,6 +611,10 @@ type
     MainWebView: TWebView;
     HistoryWebView: TWebView;
     Lyrics: TWebView;
+{$ELSE}
+    WebView: TGeckoBrowser;
+    MainWebView: TGeckoBrowser;
+    HistoryWebView: TGeckoBrowser;
 {$ENDIF}
     ShowOSD: boolean;
     OSDPosition: integer;
@@ -1320,6 +1334,7 @@ var
     //KSPMainWindow.GetNewestInfo;
 
     LoadingPlaylist:=false;
+    KSPStartingUp:=true;
     ToolButton1.ImageIndex:=0;
     FPaused:=false;
     Shuffled:=false;
@@ -1504,6 +1519,7 @@ begin
 
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
+  Application.OnShortcut:=@FormShortcut;
   ClosingKSP:=false;
 
   CreateObjectsAndVars;
@@ -1810,10 +1826,37 @@ begin
   end;
 end;
 
+procedure TKSPMainWindow.FormKeyPress(Sender: TObject; var Key: char);
+var
+  InEdit: boolean;
+begin
+{$IFNDEF KSP_USE_QT}
+  InEdit:=(Self.ActiveControl.ClassType=TEdit) or
+    (Self.ActiveControl.ClassType=TLabeledEdit);
+  if InEdit then
+    TEdit(Self.ActiveControl).Text:=TEdit(Self.ActiveControl).Text+Key;
+{$ENDIF}
+end;
+
 procedure TKSPMainWindow.FormShortCut(var Msg: TLMKey; var Handled: Boolean);
 begin
   Handled:=(Self.ActiveControl.ClassType=TEdit) or
     (Self.ActiveControl.ClassType=TLabeledEdit);
+end;
+
+procedure TKSPMainWindow.FormShow(Sender: TObject);
+var
+  s1, s2, s3, s4: string;
+begin
+  if KSPStartingUp then begin
+    KSPStartingUp:=false;
+{$IFNDEF KSP_USE_QT}
+    GetKSPVersion3(s1, s2, s3, s4);
+    //WebView.LoadURI('http://dir.xiph.org/index.php');
+    MainWebView.LoadURI(Format(KSPHost2, [s1, s2, s3, s4]));
+    //HistoryWebView.LoadURI(ExtractFilePath(Application.ExeName)+'history.html');
+{$ENDIF}
+  end;
 end;
 
 procedure TKSPMainWindow.GroupBox1Click(Sender: TObject);
@@ -4232,7 +4275,33 @@ begin
 end;
 {$ELSE}
 begin
+  //WebView:=TGeckoBrowser.Create(Self);
+  MainWebView:=TGeckoBrowser.Create(Self);
+  //HistoryWebView:=TGeckoBrowser.Create(Self);
 
+  //KSPMainWindow.Panel7.InsertControl(WebView);
+  //WebView.Align:=alClient;
+  //WebView.Show;
+
+  KSPMainWindow.MainWeb.InsertControl(MainWebView);
+  MainWebView.Align:=alClient;
+  MainWebView.Show;
+
+  {KSPMainWindow.History.InsertControl(HistoryWebView);
+  HistoryWebView.Align:=alClient;
+  HistoryWebView.Show;
+
+  WebView.OnLocationChange:=@GeckoBrowser1LocationChange;
+  WebView.OnProgressChange:=@GeckoBrowser1ProgressChange;
+  WebView.OnStatusChange:=@GeckoBrowser1StatusChange;
+
+  MainWebView.OnLocationChange:=@GeckoBrowser1LocationChange;
+  MainWebView.OnProgressChange:=@GeckoBrowser1ProgressChange;
+  MainWebView.OnStatusChange:=@GeckoBrowser1StatusChange;
+
+  HistoryWebView.OnLocationChange:=@GeckoBrowser1LocationChange;
+  HistoryWebView.OnProgressChange:=@GeckoBrowser1ProgressChange;
+  HistoryWebView.OnStatusChange:=@GeckoBrowser1StatusChange;  }
 end;
 {$ENDIF}
 
@@ -4292,6 +4361,30 @@ begin
 //  ShowMessage(URL);
 //  Self.PerformFileOpen();
 
+end;
+{$ELSE}
+procedure TKSPMainWindow.GeckoBrowser1StatusChange(Sender: TObject;
+  aMessage: WideString);
+begin
+  //if aMessage<>'' then
+  //  ListBox1.Items.Add(aMessage);
+  Application.ProcessMessages;
+end;
+
+procedure TKSPMainWindow.GeckoBrowser1ProgressChange(Sender: TObject; Progress,
+  ProgressMax: Integer);
+begin
+  //lblProg.Caption := IntToStr(Progress);
+  //lblProgMax.Caption := IntToStr(ProgressMax);
+  Application.ProcessMessages;
+end;
+
+
+procedure TKSPMainWindow.GeckoBrowser1LocationChange(Sender: TObject;
+  const uri: string);
+begin
+// showmessage(uri);
+ //if uri<>'http://www.di.fm/mp3/discohouse.pls' then GeckoBrowser1.Stop;
 end;
 {$ENDIF}
 

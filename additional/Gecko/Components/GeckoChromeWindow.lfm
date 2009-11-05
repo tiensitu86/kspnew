@@ -1,0 +1,13 @@
+object GeckoChromeForm: TGeckoChromeForm
+  Left = 450
+  Height = 163
+  Top = 248
+  Width = 265
+  Font.CharSet = SHIFTJIS_CHARSET
+  Font.Height = -12
+  Font.Name = '?? ?????'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnResize = FormResize
+  LCLVersion = '0.9.29'
+end
