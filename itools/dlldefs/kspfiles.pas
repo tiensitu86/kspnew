@@ -87,7 +87,9 @@ procedure KSPDeleteFolder(Path: string);
 procedure ListFolders(Path: string; s: TStringList; OlderThan: integer);
 
 function IsPlaylist(FileName: string): boolean;
+function IsFromDrop(var fname: string): boolean;
 function IsCommand(Cmd: string): boolean;
+procedure RestoreFileName(var fname: string);
 function KSPGetFileSize(const FileName: WideString): Int64;
 
 procedure KSPShowMessage(msg: string);
@@ -211,6 +213,33 @@ begin
     (UpperCase(ExtractFileExt(FileName))='.M3U') or
     (UpperCase(ExtractFileExt(FileName))='.XSPF') or
     (UpperCase(ExtractFileExt(FileName))='.PLS');
+end;
+
+function IsFromDrop(var fname: string): boolean;
+var
+  i: integer;
+begin
+{$IFDEF WINDOWS}
+  i:=Pos('file:///', fname);
+  Result:=i>0;
+  if Result then begin
+    Delete(fname, 1, 8);
+  end;
+{$ELSE}
+{$ENDIF}
+end;
+
+procedure RestoreFileName(var fname: string);
+var
+  i:integer;
+begin
+  repeat
+    i:=Pos('%20', fname);
+    if i>0 then begin
+      Delete(fname, i, 3);
+      Insert(' ', fname, i);
+    end;
+  until i=0;
 end;
 
 procedure SearchForFiles(Path: string; Rec: boolean; var s: TStringList; DateM: TDateTime); overload;

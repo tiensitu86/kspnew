@@ -407,6 +407,7 @@ type
     procedure ExitKSPActionExecute(Sender: TObject);
     procedure ExportPlaylistExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure FormShortCut(var Msg: TLMKey; var Handled: Boolean);
     procedure FormShow(Sender: TObject);
@@ -1066,7 +1067,11 @@ var
   s, s2: string;
 begin
   s2:=AFileName;
+
+  if IsFromDrop(AFileName) then
+    RestoreFileName(AFileName);
   FixFolderNames(AFileName);
+
   s:=UpperCase(ExtractFileExt(AFileName));
 
   if (s='.KPL') or (s='.M3U') or (s='.PLS') or (s='.XSPF') then
@@ -1824,6 +1829,15 @@ begin
     claBox.ItemIndex:=Self.CloseAction;
     ApplicationVisible:=false;
   end;
+end;
+
+procedure TKSPMainWindow.FormDropFiles(Sender: TObject;
+  const FileNames: array of String);
+var
+  i: integer;
+begin
+  for i:=0 to Length(FileNames)-1 do
+    Self.PerformFileOpen(FileNames[i]);
 end;
 
 procedure TKSPMainWindow.FormKeyPress(Sender: TObject; var Key: char);

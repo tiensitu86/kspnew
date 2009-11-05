@@ -76,9 +76,9 @@ uses {$IFDEF UNIX} //{$IFDEF UseCThreads}
   MPEGaudio,
   MPEGInfoBox,
   suggfind,
-  cplayer, updates, updfrm {$IFDEF KSP_LUA},
+  cplayer, updates, updfrm,
   ksplua,
-  closefrm {$ENDIF};
+  closefrm ;
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 

@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="150">
+    <Units Count="151">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,13 +64,13 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="1" Y="2315"/>
-        <TopLine Value="2313"/>
+        <CursorPos X="1" Y="1075"/>
+        <TopLine Value="1065"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
-          <Item0 X="5" Y="4279" ID="0"/>
-          <Item1 X="9" Y="1860" ID="1"/>
+          <Item0 X="5" Y="4293" ID="0"/>
+          <Item1 X="9" Y="1874" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -79,9 +79,11 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="17" Y="30"/>
-        <TopLine Value="30"/>
+        <CursorPos X="13" Y="922"/>
+        <TopLine Value="897"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -205,9 +207,11 @@
         <Filename Value="itools/id3mgmnt.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ID3Mgmnt"/>
-        <CursorPos X="25" Y="232"/>
-        <TopLine Value="223"/>
+        <CursorPos X="3" Y="252"/>
+        <TopLine Value="247"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
@@ -250,9 +254,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="17" Y="68"/>
-        <TopLine Value="47"/>
+        <CursorPos X="26" Y="240"/>
+        <TopLine Value="221"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
@@ -295,9 +301,11 @@
         <Filename Value="itools/platformdep/profilefunc.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="profilefunc"/>
-        <CursorPos X="25" Y="45"/>
-        <TopLine Value="45"/>
+        <CursorPos X="1" Y="40"/>
+        <TopLine Value="20"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
@@ -535,9 +543,11 @@
         <Filename Value="dlls/files/kspdllfileutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPDLLFileUtils"/>
-        <CursorPos X="1" Y="95"/>
-        <TopLine Value="94"/>
+        <CursorPos X="27" Y="37"/>
+        <TopLine Value="27"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
@@ -854,7 +864,7 @@
         <UnitName Value="cplayer"/>
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
-        <UsageCount Value="167"/>
+        <UsageCount Value="169"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -1092,7 +1102,7 @@
         <UnitName Value="updates"/>
         <CursorPos X="31" Y="28"/>
         <TopLine Value="11"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="61"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit130>
       <Unit131>
@@ -1109,7 +1119,7 @@
         <UnitName Value="updfrm"/>
         <CursorPos X="3" Y="15"/>
         <TopLine Value="1"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="57"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit132>
       <Unit133>
@@ -1165,9 +1175,7 @@
         <UnitName Value="uMain"/>
         <CursorPos X="53" Y="6002"/>
         <TopLine Value="5994"/>
-        <EditorIndex Value="1"/>
         <UsageCount Value="15"/>
-        <Loaded Value="True"/>
       </Unit140>
       <Unit141>
         <Filename Value="additional/pascalscript/uPSPreProcessor.pas"/>
@@ -1214,146 +1222,166 @@
         <UsageCount Value="10"/>
       </Unit145>
       <Unit146>
-        <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/inc/systemh.inc"/>
-        <CursorPos X="10" Y="577"/>
-        <TopLine Value="557"/>
-        <UsageCount Value="10"/>
-      </Unit146>
-      <Unit147>
         <Filename Value="C:/lazarus/lcl/forms.pp"/>
         <UnitName Value="Forms"/>
         <CursorPos X="21" Y="615"/>
         <TopLine Value="595"/>
         <UsageCount Value="10"/>
-      </Unit147>
-      <Unit148>
-        <Filename Value="C:/lazarus/lcl/lmessages.pp"/>
-        <UnitName Value="LMessages"/>
-        <CursorPos X="16" Y="424"/>
-        <TopLine Value="404"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit148>
-      <Unit149>
+      </Unit146>
+      <Unit147>
         <Filename Value="C:/lazarus/lcl/lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <CursorPos X="28" Y="140"/>
         <TopLine Value="120"/>
-        <EditorIndex Value="3"/>
+        <UsageCount Value="11"/>
+      </Unit147>
+      <Unit148>
+        <Filename Value="etools/agent/kspa.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="kspa"/>
+        <CursorPos X="16" Y="6"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="20"/>
+      </Unit148>
+      <Unit149>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/inc/varianth.inc"/>
+        <CursorPos X="10" Y="457"/>
+        <TopLine Value="438"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit149>
+      <Unit150>
+        <Filename Value="C:/lazarus/fpc/2.2.4/source/rtl/inc/wstringh.inc"/>
+        <CursorPos X="11" Y="29"/>
+        <TopLine Value="10"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit150>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="565" Column="5" TopLine="537"/>
+        <Caret Line="1860" Column="18" TopLine="1828"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="1514" Column="7" TopLine="1495"/>
+        <Caret Line="1843" Column="12" TopLine="1829"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="1336" Column="18" TopLine="1307"/>
+        <Caret Line="1843" Column="26" TopLine="1824"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="2126" Column="46" TopLine="2113"/>
+        <Caret Line="2315" Column="3" TopLine="2313"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="4290" Column="64" TopLine="4258"/>
+        <Caret Line="2050" Column="3" TopLine="2048"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="1855" Column="18" TopLine="1833"/>
+        <Caret Line="2316" Column="9" TopLine="2313"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="1831" Column="67" TopLine="1827"/>
+        <Caret Line="1832" Column="19" TopLine="1829"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="1829" Column="12" TopLine="1827"/>
+        <Caret Line="2317" Column="18" TopLine="2313"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="1827" Column="31" TopLine="1809"/>
+        <Caret Line="1517" Column="3" TopLine="1505"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="78" Column="28" TopLine="54"/>
+        <Caret Line="1860" Column="64" TopLine="1841"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="188" Column="6" TopLine="188"/>
+        <Caret Line="3435" Column="3" TopLine="3426"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="1829" Column="3" TopLine="1827"/>
+        <Caret Line="1834" Column="24" TopLine="1830"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="28" Column="44" TopLine="19"/>
+        <Caret Line="1836" Column="22" TopLine="1817"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="1521" Column="30" TopLine="1496"/>
+        <Caret Line="1071" Column="13" TopLine="1065"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="1832" Column="10" TopLine="1828"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="89" Column="15" TopLine="71"/>
       </Position15>
       <Position16>
-        <Filename Value="C:/lazarus/lcl/lmessages.pp"/>
-        <Caret Line="424" Column="16" TopLine="404"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="217" Column="14" TopLine="209"/>
       </Position16>
       <Position17>
-        <Filename Value="C:/lazarus/lcl/lcltype.pp"/>
-        <Caret Line="140" Column="24" TopLine="120"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="222" Column="8" TopLine="217"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="1860" Column="18" TopLine="1828"/>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="225" Column="9" TopLine="217"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="1843" Column="12" TopLine="1829"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="41" Column="17" TopLine="30"/>
       </Position19>
       <Position20>
-        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
-        <Caret Line="12" Column="33" TopLine="1"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="837" Column="29" TopLine="818"/>
       </Position20>
       <Position21>
-        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
-        <Caret Line="486" Column="41" TopLine="466"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="839" Column="29" TopLine="818"/>
       </Position21>
       <Position22>
-        <Filename Value="../../../KSP2006_old/src/umain.pas"/>
-        <Caret Line="553" Column="27" TopLine="533"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="844" Column="27" TopLine="818"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="1843" Column="26" TopLine="1824"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="846" Column="27" TopLine="818"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="2315" Column="3" TopLine="2313"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="866" Column="13" TopLine="847"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="2050" Column="3" TopLine="2048"/>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="916" Column="13" TopLine="897"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="2316" Column="9" TopLine="2313"/>
+        <Caret Line="1079" Column="15" TopLine="1065"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="1832" Column="19" TopLine="1829"/>
+        <Caret Line="1081" Column="11" TopLine="1065"/>
       </Position27>
+      <Position28>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="125" Column="30" TopLine="123"/>
+      </Position28>
+      <Position29>
+        <Filename Value="dlls/files/kspdllfileutils.pas"/>
+        <Caret Line="98" Column="3" TopLine="94"/>
+      </Position29>
+      <Position30>
+        <Filename Value="itools/dlldefs/kspfiles.pas"/>
+        <Caret Line="240" Column="29" TopLine="221"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -1365,7 +1393,7 @@
       <IncludeFiles Value="$(ProjOutDir)/"/>
       <OtherUnitFiles Value="additional/bass/;additional/pascalscript/;additional/Gecko/Components/;additional/Gecko/each-version/;additional/Gecko/;arch/windows/;itools/;additional/;itools/dlldefs/;itools/threads/;itools/platformdep/;itools/medialib/;additional/multilog/;itools/addforms/;dlls/files/;additional/xmpp/;additional/synapse/;additional/lua/;itools/lua/;itools/player/"/>
       <UnitOutputDirectory Value="../dcu"/>
-      <LCLWidgetType Value="win32"/>
+      <LCLWidgetType Value="qt"/>
     </SearchPaths>
     <Parsing>
       <Style Value="1"/>
@@ -1404,7 +1432,8 @@
       </Verbosity>
       <CustomOptions Value="-uDEBUG -dRELEASE
 -dLOAD_DYNAMICALLY
--dKSP_SPECIAL_BUILD"/>
+-dKSP_SPECIAL_BUILD
+-dKSP_USE_QT"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteAfter>
         <Command Value="upx -9 ../bin/ksp.exe"/>

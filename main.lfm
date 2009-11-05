@@ -1,9 +1,10 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 385
+  Left = 150
   Height = 707
-  Top = 214
+  Top = 150
   Width = 1244
   ActiveControl = Panel1
+  AllowDropFiles = True
   Caption = 'KSP'
   ClientHeight = 687
   ClientWidth = 1244
@@ -13,6 +14,7 @@ object KSPMainWindow: TKSPMainWindow
   OnDestroy = FormDestroy
   OnDragDrop = lbPlaylistDragDrop
   OnDragOver = lbPlaylistDragOver
+  OnDropFiles = FormDropFiles
   OnKeyPress = FormKeyPress
   OnShortCut = FormShortCut
   OnShow = FormShow
