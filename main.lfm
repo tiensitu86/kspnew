@@ -375,7 +375,7 @@ object KSPMainWindow: TKSPMainWindow
       end
       object TB: TTrackBar
         Left = 232
-        Height = 55
+        Height = 79
         Top = 2
         Width = 30
         Max = 255
@@ -389,10 +389,12 @@ object KSPMainWindow: TKSPMainWindow
       end
       object ToolBar1: TToolBar
         Left = 8
-        Height = 24
+        Height = 45
         Top = 2
         Width = 216
         Align = alNone
+        ButtonHeight = 40
+        ButtonWidth = 40
         DisabledImages = ImageList2
         HotImages = ImageList2
         Images = ImageList2
@@ -401,35 +403,32 @@ object KSPMainWindow: TKSPMainWindow
         object ToolButton1: TToolButton
           Left = 1
           Top = 2
-          AutoSize = True
           ImageIndex = 0
           OnClick = ToolButton1Click
         end
         object btStop: TToolButton
-          Left = 24
+          Left = 41
           Top = 2
-          AutoSize = True
           ImageIndex = 1
           OnClick = btStopClick
         end
         object btPlay: TToolButton
-          Left = 47
+          Left = 81
           Top = 2
-          AutoSize = True
           ImageIndex = 3
           OnClick = btPlayClick
         end
         object ToolButton4: TToolButton
-          Left = 70
+          Left = 121
           Top = 2
           ImageIndex = 5
           OnClick = ToolButton4Click
         end
       end
       object RepeatButton: TButton
-        Left = 8
+        Left = 7
         Height = 25
-        Top = 32
+        Top = 55
         Width = 104
         Caption = 'Repeat'
         OnClick = RepeatButtonClick
@@ -438,7 +437,7 @@ object KSPMainWindow: TKSPMainWindow
       object ShuffleButton: TSpeedButton
         Left = 120
         Height = 25
-        Top = 32
+        Top = 55
         Width = 104
         Caption = 'Shuffle'
         Color = clBtnFace
@@ -3916,8 +3915,8 @@ object KSPMainWindow: TKSPMainWindow
     end
   end
   object ImageList2: TImageList
-    left = 159
-    top = 250
+    left = 168
+    top = 304
     Bitmap = {
       4C69060000001000000010000000904B8EFFFFEAFFFFFFF4FFFFFDFFFEFFFFFB
       FCFFF4EDEAFFEBE6DDFFE9DDD1FFEDD1C6FFEDC6BEFFEBBBB7FFE3ACA9FFD696

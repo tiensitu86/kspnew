@@ -88,22 +88,22 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +'Click'#7#13'Button18Click'#0#0#12'TSpeedButton'#8'Button18'#3'Tag'#2#1#4'Le'
   +'ft'#3#15#1#6'Height'#2#25#3'Top'#2'#'#5'Width'#3#150#0#7'Caption'#6#9'Equal'
   +'izer'#5'Color'#7#9'clBtnFace'#9'NumGlyphs'#2#0#7'OnClick'#7#13'Button18Clic'
-  +'k'#0#0#9'TTrackBar'#2'TB'#4'Left'#3#232#0#6'Height'#2'7'#3'Top'#2#2#5'Width'
+  +'k'#0#0#9'TTrackBar'#2'TB'#4'Left'#3#232#0#6'Height'#2'O'#3'Top'#2#2#5'Width'
   +#2#30#3'Max'#3#255#0#8'OnChange'#7#8'TBChange'#11'Orientation'#7#10'trVertic'
   +'al'#8'Position'#2#0#9'TickMarks'#7#6'tmBoth'#9'TickStyle'#7#6'tsNone'#9'OnM'
   +'ouseUp'#7#14'BalanceMouseUp'#8'TabOrder'#2#0#0#0#8'TToolBar'#8'ToolBar1'#4
-  +'Left'#2#8#6'Height'#2#24#3'Top'#2#2#5'Width'#3#216#0#5'Align'#7#6'alNone'#14
-  +'DisabledImages'#7#10'ImageList2'#9'HotImages'#7#10'ImageList2'#6'Images'#7
-  +#10'ImageList2'#12'ShowCaptions'#9#8'TabOrder'#2#1#0#11'TToolButton'#11'Tool'
-  +'Button1'#4'Left'#2#1#3'Top'#2#2#8'AutoSize'#9#10'ImageIndex'#2#0#7'OnClick'
-  +#7#16'ToolButton1Click'#0#0#11'TToolButton'#6'btStop'#4'Left'#2#24#3'Top'#2#2
-  +#8'AutoSize'#9#10'ImageIndex'#2#1#7'OnClick'#7#11'btStopClick'#0#0#11'TToolB'
-  +'utton'#6'btPlay'#4'Left'#2'/'#3'Top'#2#2#8'AutoSize'#9#10'ImageIndex'#2#3#7
-  +'OnClick'#7#11'btPlayClick'#0#0#11'TToolButton'#11'ToolButton4'#4'Left'#2'F'
+  +'Left'#2#8#6'Height'#2'-'#3'Top'#2#2#5'Width'#3#216#0#5'Align'#7#6'alNone'#12
+  +'ButtonHeight'#2'('#11'ButtonWidth'#2'('#14'DisabledImages'#7#10'ImageList2'
+  +#9'HotImages'#7#10'ImageList2'#6'Images'#7#10'ImageList2'#12'ShowCaptions'#9
+  +#8'TabOrder'#2#1#0#11'TToolButton'#11'ToolButton1'#4'Left'#2#1#3'Top'#2#2#10
+  +'ImageIndex'#2#0#7'OnClick'#7#16'ToolButton1Click'#0#0#11'TToolButton'#6'btS'
+  +'top'#4'Left'#2')'#3'Top'#2#2#10'ImageIndex'#2#1#7'OnClick'#7#11'btStopClick'
+  +#0#0#11'TToolButton'#6'btPlay'#4'Left'#2'Q'#3'Top'#2#2#10'ImageIndex'#2#3#7
+  +'OnClick'#7#11'btPlayClick'#0#0#11'TToolButton'#11'ToolButton4'#4'Left'#2'y'
   +#3'Top'#2#2#10'ImageIndex'#2#5#7'OnClick'#7#16'ToolButton4Click'#0#0#0#7'TBu'
-  +'tton'#12'RepeatButton'#4'Left'#2#8#6'Height'#2#25#3'Top'#2' '#5'Width'#2'h'
+  +'tton'#12'RepeatButton'#4'Left'#2#7#6'Height'#2#25#3'Top'#2'7'#5'Width'#2'h'
   +#7'Caption'#6#6'Repeat'#7'OnClick'#7#17'RepeatButtonClick'#8'TabOrder'#2#2#0
-  +#0#12'TSpeedButton'#13'ShuffleButton'#4'Left'#2'x'#6'Height'#2#25#3'Top'#2' '
+  +#0#12'TSpeedButton'#13'ShuffleButton'#4'Left'#2'x'#6'Height'#2#25#3'Top'#2'7'
   +#5'Width'#2'h'#7'Caption'#6#7'Shuffle'#5'Color'#7#9'clBtnFace'#9'NumGlyphs'#2
   +#0#7'OnClick'#7#19'ShuffleButtonChange'#0#0#0#0#12'TProgressBar'#16'MediaLib'
   +'Progress'#4'Left'#2#0#6'Height'#2#20#3'Top'#3#132#2#5'Width'#3#220#4#5'Alig'
@@ -2844,8 +2844,8 @@ LazarusResources.Add('TKSPMainWindow','FORMDATA',[
   +#255#148#183#194#255#155#187#198#255#163#191#203#255#163#191#204#255#162#191
   +#203#127#255#255#255#0#255#255#255#0#7'OnClick'#7#14'MenuItem1Click'#0#0#9'T'
   +'MenuItem'#10'MenuItem32'#6'Action'#7#13'ExitKSPAction'#7'OnClick'#7#20'Exit'
-  +'KSPActionExecute'#0#0#0#10'TImageList'#10'ImageList2'#4'left'#3#159#0#3'top'
-  +#3#250#0#6'Bitmap'#10#14#24#0#0'Li'#6#0#0#0#16#0#0#0#16#0#0#0#144'K'#142#255
+  +'KSPActionExecute'#0#0#0#10'TImageList'#10'ImageList2'#4'left'#3#168#0#3'top'
+  +#3'0'#1#6'Bitmap'#10#14#24#0#0'Li'#6#0#0#0#16#0#0#0#16#0#0#0#144'K'#142#255
   +#255#234#255#255#255#244#255#255#253#255#254#255#255#251#252#255#244#237#234
   +#255#235#230#221#255#233#221#209#255#237#209#198#255#237#198#190#255#235#187
   +#183#255#227#172#169#255#214#150#145#255#200'w'#128#255#193'S}'#255#194'G'

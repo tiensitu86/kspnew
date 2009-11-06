@@ -4276,7 +4276,7 @@ begin
   s:=TStringList.Create;
   s.LoadFromFile(fname);
   w:='plastique';//s.Text;
-  QApplication_setStyle(@w);
+//  QApplication_setStyleSheet(L2Qt(Application), @w);
   s.Free;
 end;
 
