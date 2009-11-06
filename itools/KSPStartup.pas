@@ -30,7 +30,9 @@ unit KSPStartup;
 
 interface
 
-uses Forms, SysUtils, Classes, Dialogs, FileSupportLst,
+{$I ksp_version.inc}
+
+uses Forms, SysUtils, Classes, Dialogs, FileSupportLst, mplayer,
   {$IFDEF KSP_USE_QT}Qt4, {$ENDIF}BassPlayer, AsyncProcess;
 
 procedure SetupKSP;
@@ -137,7 +139,11 @@ begin
 {$ENDIF}
 
   Application.ShowMainForm := True;
-  Player := TBassPlayer.Create(nil);
+{$IFDEF MULTI_PLAYER}
+  Player: TMainPlayer.Create;
+{$ELSE}
+  Player:=TBassPlayer.Create(nil);
+{$ENDIF}
   Player.GetCDDrives;
 end;
 

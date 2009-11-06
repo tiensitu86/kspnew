@@ -78,7 +78,7 @@ uses {$IFDEF UNIX} //{$IFDEF UseCThreads}
   suggfind,
   cplayer, updates, updfrm,
   ksplua,
-  closefrm ;
+  closefrm, mplayer;
 
 {$IFDEF WINDOWS}{$R ksp.rc}{$ENDIF}
 

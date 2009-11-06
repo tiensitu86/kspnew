@@ -33,7 +33,7 @@ unit KSPConstsVars;
 interface
 
 uses FileSupportLst, SysUtils, BASSPlayer, Graphics, Classes, PresetsU,
-  Playlists, app_db_utils, LCLType, ksplua;
+  Playlists, app_db_utils, LCLType, ksplua, mplayer;
 
 const
   KSPHost    = 'http://ksplayer.com';
@@ -150,7 +150,11 @@ const
     'ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=%s&track=%s&api_key=' + ASKey;
 
 var
+{$IFDEF MULTI_PLAYER}
+  Player: TMainPlayer;
+{$ELSE}
   Player: TBassPlayer;
+{$ENDIF}
   OSName: string;
  //  KSPUserEmail: string;
  //  KSPUserName: string;

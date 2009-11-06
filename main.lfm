@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 150
+  Left = 350
   Height = 707
-  Top = 150
+  Top = 197
   Width = 1244
   ActiveControl = Panel1
   AllowDropFiles = True
