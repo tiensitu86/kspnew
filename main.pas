@@ -76,7 +76,11 @@ type
   { TKSPMainWindow }
 
   TKSPMainWindow = class(TForm)
+    Button16: TButton;
+    StylesBox: TComboBox;
     Label25: TLabel;
+    AppearSetupPage: TPage;
+    Label26: TLabel;
     UpdateButton: TButton;
     GroupBox2: TGroupBox;
     Label24: TLabel;
@@ -188,7 +192,7 @@ type
     MenuItem30: TMenuItem;
     MenuItem31: TMenuItem;
     MenuItem32: TMenuItem;
-    ToolButton2: TSpeedButton;
+    MLibSearchLikeButton: TSpeedButton;
     Panel16: TPanel;
     Splitter9: TSplitter;
     Star1: TImage;
@@ -388,6 +392,7 @@ type
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure MLibSearchLikeButtonClick(Sender: TObject);
     procedure Button18Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -566,6 +571,7 @@ type
     Jabber: TXmpp;
 {$ENDIF}
     KSPStartingUp: boolean;
+    CurrentStyle: integer;
     procedure SetHeaderControlImage(sIndex: integer);
     procedure PlayFile;
     procedure ResetDisplay;
@@ -594,6 +600,8 @@ type
     procedure LoadEqSetting(SettingNo: integer = -1);
     procedure LoadCookies;
     procedure SaveCookies;
+    procedure ApplyQtStyle(style: string = '');
+    procedure ApplyQtStyleSheet(style: string = '');
   public
     { public declarations }
     LoadingPlaylist: boolean;
@@ -2464,6 +2472,11 @@ begin
 end;
 
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
+begin
+  Self.ApplyQtStyleSheet(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
+end;
+
+procedure TKSPMainWindow.MLibSearchLikeButtonClick(Sender: TObject);
 var
   slike: string;
 
@@ -3754,6 +3767,7 @@ procedure TKSPMainWindow.DoSetupThing(Par: integer; Sel: integer = -1);
       1: LoadPluginSetup;
       2: SetupBook.ActivePage:='NotSetupPage';
       3: LoadSystemSetup;
+      4: SetupBook.ActivePage:='AppearSetupPage';
     end;
   end;
 
@@ -3902,6 +3916,8 @@ var
     ArtistPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'ArtistPls', true);
     AlbumPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'AlbumPls', true);
     TitlePlsSearch.Checked:=XMLFile.ReadBool('Main window', 'TitlePls', true);
+    StylesBox.ItemIndex:=XMLFile.ReadInteger('Main window', 'Style', 0);
+    Button16Click(nil);
 
     KSPMainWindow.TBChange(Self);
   end;
@@ -4071,6 +4087,7 @@ var
     XMLFile.WriteInteger('Main Window', 'MediaLibPanelSize', MSortType.Width);
 
     XMLFile.WriteInteger('Main Window', 'MediaLibLibHeaderPanelHeight', Self.MIView.Height);
+    XMLFile.WriteInteger('Main window', 'Style', StylesBox.ItemIndex);
 
     XMLFile.WriteBool('Main window', 'ArtistPls', ArtistPlsSearch.Checked);
     XMLFile.WriteBool('Main window', 'AlbumPls', AlbumPlsSearch.Checked);
@@ -4227,6 +4244,41 @@ begin
 
 end;
 {$ENDIF}
+
+procedure TKSPMainWindow.ApplyQtStyleSheet(style: string = '');
+var
+  w: widestring;
+begin
+  if style='' then w:='windows' else
+    w:=style;
+  QApplication_setStyle(@w);
+  CurrentStyle:=StylesBox.ItemIndex;
+end;
+
+procedure TKSPMainWindow.ApplyQtStyle(style: string = '');
+var
+  s: TStringList;
+  fname: string;
+  w: widestring;
+begin
+  if (style<>'') then
+    fname:=style else
+{$IFDEF WINDOWS}
+    fname:=ExtractFilePath(Application.ExeName)+'data\default.skin';
+{$ELSE}
+    fname:=KSP_APP_FOLDER+'data/default.skin';
+{$ENDIF}
+  FixFolderNames(fname);
+  if not FileExists(fname) then begin
+    hLog.Send('Style does not exist: '+fname);
+    Exit;
+  end;
+  s:=TStringList.Create;
+  s.LoadFromFile(fname);
+  w:='plastique';//s.Text;
+  QApplication_setStyle(@w);
+  s.Free;
+end;
 
 procedure TKSPMainWindow.SetupWebBrowserIC;
 {$IFDEF KSP_USE_QT}

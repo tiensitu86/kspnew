@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.saddons
 msgid "Addons"
 msgstr ""
@@ -482,6 +485,10 @@ msgctxt "TKSPMAINWINDOW.ALBUMPLSSEARCH.CAPTION"
 msgid "Album"
 msgstr ""
 
+#: TKSPMAINWINDOW.APPEARSETUPPAGE.CAPTION
+msgid "AppearSetupPage"
+msgstr ""
+
 #: TKSPMAINWINDOW.ARTISTBOX.CAPTION
 msgctxt "TKSPMAINWINDOW.ARTISTBOX.CAPTION"
 msgid "Artist"
@@ -537,6 +544,11 @@ msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON15.CAPTION
 msgid "About Qt"
+msgstr ""
+
+#: TKSPMAINWINDOW.BUTTON16.CAPTION
+msgctxt "TKSPMAINWINDOW.BUTTON16.CAPTION"
+msgid "Apply"
 msgstr ""
 
 #: TKSPMAINWINDOW.BUTTON17.CAPTION
@@ -754,6 +766,10 @@ msgstr ""
 
 #: TKSPMAINWINDOW.LABEL25.CAPTION
 msgid "Copyright ® 2009 KSP Developer Team"
+msgstr ""
+
+#: TKSPMAINWINDOW.LABEL26.CAPTION
+msgid "Select Qt style for KSP:"
 msgstr ""
 
 #: TKSPMAINWINDOW.LABEL3.CAPTION
@@ -978,6 +994,11 @@ msgstr ""
 msgid "By Artist"
 msgstr ""
 
+#: TKSPMAINWINDOW.MLIBSEARCHLIKEBUTTON.CAPTION
+msgctxt "TKSPMAINWINDOW.MLIBSEARCHLIKEBUTTON.CAPTION"
+msgid "Perform Like Search"
+msgstr ""
+
 #: TKSPMAINWINDOW.N2.CAPTION
 msgctxt "TKSPMAINWINDOW.N2.CAPTION"
 msgid "-"
@@ -1140,11 +1161,6 @@ msgstr ""
 #: TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION
 msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
-msgstr ""
-
-#: TKSPMAINWINDOW.TOOLBUTTON2.CAPTION
-msgctxt "TKSPMAINWINDOW.TOOLBUTTON2.CAPTION"
-msgid "Perform Like Search"
 msgstr ""
 
 #: TKSPMAINWINDOW.TRACKBOX.CAPTION
