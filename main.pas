@@ -1713,7 +1713,7 @@ begin
 {$ELSE}
   ShowMessage(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]);
   if FileExistsUTF8(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0 else
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0 else
     ShowMessage('Ok');
 {$ENDIF}
 

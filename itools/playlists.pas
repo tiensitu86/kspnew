@@ -836,8 +836,10 @@ var
 
 begin
   if not FileExists(FileName) then
-    Exit;
-
+    begin
+      hLog.Send('File does not exist');
+      Exit;
+    end;
   Dir := GetCurrentDir;
   SetCurrentDir(ExtractFilePath(FileName));
 
@@ -951,8 +953,10 @@ begin
   //ShowMessage(ExtractFileExt(FileName));
   FixFolderNames(FileName);
   hLog.Send('Loading playlist from file: ' + FileName);
-  if UpperCase(ExtractFileExt(FileName)) = '.KPL' then
-    LoadKPLPls(FileName, Pls)
+  if UpperCase(ExtractFileExt(FileName)) = '.KPL' then begin
+    hLog.Send('KPL Playlist');
+    LoadKPLPls(FileName, Pls);
+  end
   else if UpperCase(ExtractFileExt(FileName)) = '.M3U' then
     LoadM3UPls(FileName, Pls)
   else if UpperCase(ExtractFileExt(FileName)) = '.XSPF' then
