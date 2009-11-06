@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -187,7 +187,7 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="1" Y="843"/>
+        <CursorPos X="49" Y="846"/>
         <TopLine Value="830"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="210"/>
@@ -254,9 +254,11 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="26" Y="240"/>
-        <TopLine Value="221"/>
+        <CursorPos X="26" Y="228"/>
+        <TopLine Value="210"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
@@ -858,7 +860,7 @@
         <UnitName Value="cplayer"/>
         <CursorPos X="56" Y="40"/>
         <TopLine Value="17"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit98>
       <Unit99>
@@ -1096,7 +1098,7 @@
         <UnitName Value="updates"/>
         <CursorPos X="31" Y="28"/>
         <TopLine Value="11"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit130>
       <Unit131>
@@ -1113,7 +1115,7 @@
         <UnitName Value="updfrm"/>
         <CursorPos X="3" Y="15"/>
         <TopLine Value="1"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="66"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit132>
       <Unit133>
@@ -1271,14 +1273,14 @@
         <UnitName Value="mplayer"/>
         <CursorPos X="3" Y="41"/>
         <TopLine Value="6"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit153>
       <Unit154>
         <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
         <CursorPos X="16" Y="69"/>
         <TopLine Value="51"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit154>
@@ -1286,7 +1288,7 @@
         <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysstr.inc"/>
         <CursorPos X="3" Y="74"/>
         <TopLine Value="67"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit155>

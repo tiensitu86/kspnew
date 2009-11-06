@@ -221,12 +221,17 @@ var
 begin
 {$IFDEF WINDOWS}
   i:=Pos('file:///', fname);
+{$ELSE}
+  i:=Pos('file://', fname);
+{$ENDIF}
   Result:=i>0;
   if Result then begin
+{$IFDEF WINDOWS}
     Delete(fname, 1, 8);
-  end;
 {$ELSE}
+    Delete(fname, 1, 7);
 {$ENDIF}
+  end;
 end;
 
 procedure RestoreFileName(var fname: string);
