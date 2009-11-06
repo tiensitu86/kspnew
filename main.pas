@@ -77,10 +77,14 @@ type
 
   TKSPMainWindow = class(TForm)
     Button16: TButton;
+    LyricsControl: TPageControl;
+    Panel18: TPanel;
     StylesBox: TComboBox;
     Label25: TLabel;
     AppearSetupPage: TPage;
     Label26: TLabel;
+    lwikiaPanel: TTabSheet;
+    TabSheet6: TTabSheet;
     UpdateButton: TButton;
     GroupBox2: TGroupBox;
     Label24: TLabel;
@@ -194,7 +198,6 @@ type
     MenuItem32: TMenuItem;
     MLibSearchLikeButton: TSpeedButton;
     Panel16: TPanel;
-    Splitter9: TSplitter;
     Star1: TImage;
     Star2: TImage;
     Star3: TImage;
@@ -217,11 +220,9 @@ type
     Panel15: TPanel;
     Panel2: TPanel;
     PlsFormat: TLabeledEdit;
-    Panel12: TPanel;
     Splitter7: TSplitter;
     Splitter8: TSplitter;
     UseEq: TCheckBox;
-    Splitter5: TSplitter;
     Splitter6: TSplitter;
     VDJMenu: TMenuItem;
     SuggList: TListBox;
@@ -392,6 +393,7 @@ type
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure lwikiaPanelResize(Sender: TObject);
     procedure MLibSearchLikeButtonClick(Sender: TObject);
     procedure Button18Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -501,8 +503,6 @@ type
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure Splitter7CanResize(Sender: TObject; var NewSize: Integer;
-      var Accept: Boolean);
-    procedure Splitter9CanResize(Sender: TObject; var NewSize: Integer;
       var Accept: Boolean);
     procedure SuggListDblClick(Sender: TObject);
     procedure TabSheet3Resize(Sender: TObject);
@@ -620,6 +620,7 @@ type
     MainWebView: TWebView;
     HistoryWebView: TWebView;
     Lyrics: TWebView;
+    LWikiaView: TWebView;
 {$ELSE}
     WebView: TGeckoBrowser;
     MainWebView: TGeckoBrowser;
@@ -2476,6 +2477,11 @@ begin
   Self.ApplyQtStyleSheet(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
 end;
 
+procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
+begin
+  LWikiaView.SetDimensions(Self.lwikiaPanel.Width, Self.lwikiaPanel.Height);
+end;
+
 procedure TKSPMainWindow.MLibSearchLikeButtonClick(Sender: TObject);
 var
   slike: string;
@@ -2630,6 +2636,10 @@ begin
         hLog.Send('Loading lyrics...');
         Lyrics.SetContent(AllSongs.ReadLyrics(findex));
         hLog.Send('Lyrics loaded...');
+      end;
+
+      if not Self.OfflineMode then begin
+        LWikiaView.LoadURL(LWIKIA_MAIN+ReplaceStr(p^.Tag.Artist, ' ', '_')+':'+ReplaceStr(p^.Tag.Title, ' ', '_'));
       end;
 {$ENDIF}
 
@@ -3308,16 +3318,6 @@ procedure TKSPMainWindow.Splitter7CanResize(Sender: TObject;
   var NewSize: Integer; var Accept: Boolean);
 begin
   Accept:=NewSize<=89;
-end;
-
-procedure TKSPMainWindow.Splitter9CanResize(Sender: TObject;
-  var NewSize: Integer; var Accept: Boolean);
-var
-  pSize: integer;
-begin
-  Accept:=true;//NewSize>=80;
-  pSize:=Panel12.ClientHeight-NewSize;
-  if pSize<80 then NewSize:=Panel12.ClientHeight-80;
 end;
 
 procedure TKSPMainWindow.SuggListDblClick(Sender: TObject);
@@ -4325,6 +4325,9 @@ begin
 
   Lyrics:=TWebView.Create(Self.LyricsPanel, KSPDataFolder, QNetworkAccessManager, true);
   Lyrics.SetDimensions(Self.LyricsPanel.Width, Self.LyricsPanel.Height);
+
+  LWikiaView:=TWebView.Create(Self.lwikiaPanel, KSPDataFolder, QNetworkAccessManager);
+  LWikiaView.SetDimensions(Self.lwikiaPanel.Width, Self.lwikiaPanel.Height);
 
   //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
   WebViewHook:=QWebView_hook_create(Webview.Handle);

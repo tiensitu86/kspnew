@@ -47,6 +47,7 @@ const
   KSPMDir    = KSPHost + '/music-links';
   KSPMDirAdd = KSPMDir + '/add';
   KSPForum   = KSPHost + '/support/forum';
+  LWIKIA_MAIN = 'http://lyrics.wikia.com/';
 
   DefSetupFileName = 'data\setup.opt';
   //KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';

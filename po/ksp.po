@@ -809,6 +809,10 @@ msgstr ""
 msgid "10k"
 msgstr ""
 
+#: TKSPMAINWINDOW.LWIKIAPANEL.CAPTION
+msgid "Lyrics WIki"
+msgstr ""
+
 #: TKSPMAINWINDOW.MEDIALIBSETUPPAGE.CAPTION
 msgid "MediaLibSetupPage"
 msgstr ""
@@ -1161,6 +1165,10 @@ msgstr ""
 #: TKSPMAINWINDOW.TABSHEET5.CAPTION
 msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
 msgid "Internet Media"
+msgstr ""
+
+#: TKSPMAINWINDOW.TABSHEET6.CAPTION
+msgid "Local"
 msgstr ""
 
 #: TKSPMAINWINDOW.TITLEBOX.CAPTION
