@@ -401,30 +401,42 @@ object KSPMainWindow: TKSPMainWindow
         TabOrder = 1
         object ToolButton1: TToolButton
           Left = 1
+          Hint = 'Previous track'
           Top = 2
           AutoSize = True
           ImageIndex = 0
+          ParentShowHint = False
+          ShowHint = True
           OnClick = ToolButton1Click
         end
         object btStop: TToolButton
           Left = 42
+          Hint = 'Stop'
           Top = 2
           AutoSize = True
           ImageIndex = 1
+          ParentShowHint = False
+          ShowHint = True
           OnClick = btStopClick
         end
         object btPlay: TToolButton
           Left = 83
+          Hint = 'Play/Pause'
           Top = 2
           AutoSize = True
           ImageIndex = 3
+          ParentShowHint = False
+          ShowHint = True
           OnClick = btPlayClick
         end
         object ToolButton4: TToolButton
           Left = 124
+          Hint = 'Next track'
           Top = 2
           AutoSize = True
           ImageIndex = 5
+          ParentShowHint = False
+          ShowHint = True
           OnClick = ToolButton4Click
         end
       end

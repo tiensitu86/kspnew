@@ -517,6 +517,15 @@ msgstr ""
 msgid "BookmarksSetupPage"
 msgstr ""
 
+#: TKSPMAINWINDOW.BTPLAY.HINT
+msgid "Play/Pause"
+msgstr ""
+
+#: TKSPMAINWINDOW.BTSTOP.HINT
+msgctxt "TKSPMAINWINDOW.BTSTOP.HINT"
+msgid "Stop"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON1.CAPTION
 msgctxt "TKSPMAINWINDOW.BUTTON1.CAPTION"
 msgid "Delete"
@@ -919,6 +928,7 @@ msgid "Pause"
 msgstr ""
 
 #: TKSPMAINWINDOW.MENUITEM45.CAPTION
+msgctxt "TKSPMAINWINDOW.MENUITEM45.CAPTION"
 msgid "Stop"
 msgstr ""
 
@@ -1161,6 +1171,14 @@ msgstr ""
 #: TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION
 msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOOLBUTTON1.HINT
+msgid "Previous track"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOOLBUTTON4.HINT
+msgid "Next track"
 msgstr ""
 
 #: TKSPMAINWINDOW.TRACKBOX.CAPTION
