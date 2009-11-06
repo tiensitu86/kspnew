@@ -342,7 +342,7 @@ type
     function CurrentPosition: DWORD;
     procedure SetPosition(Value: DWORD);
     procedure Error(msg: string);
-    function GetBASSAddonExts: string; overload;
+    function GetAddonExts: string; overload;
     function GetDecoderName(ExtCode: string): string;
     function OpenURL(URL: string;
       var StreamInfo: TStreamInfo;
@@ -370,7 +370,7 @@ type
     // Do not call Destroy directly. Call Free instead.  Free verifies that the component is not already
     // freed, and only then calls Destroy.
 
-    function GetBASSAddonExts(i: integer): string; overload;
+    function GetAddonExts(i: integer): string; overload;
     function PlayerEnabled: boolean; override;
 
     function GetStreamInfo(StreamName: string; var StreamInfo: TStreamInfo;
@@ -469,7 +469,7 @@ type
 
     procedure SetPan(Pan: float);
 
-    function BASSAddonLoad(FilePath: string; ForceLoad: boolean = False): TFileDesc;
+    function AddonLoad(FilePath: string; ForceLoad: boolean = False): TFileDesc;
     //  Plugs a BASS add-on into the standard stream and sample creation functions.
     //  Support for additional file formats are available via BASS add-ons, which can be downloaded
     //  from the BASS website: http://www.un4seen.com/
@@ -478,8 +478,8 @@ type
     //  Return value : The elements of TBASSAddOnInfo is filled with the information on the BASS add-on
     //                 loaded on success, the Handle element of TBASSAddOnInfo is 0 on failure.
 
-    function BASSAddonFree(AddonHandle: HPLUGIN): integer; overload;
-    function BASSAddonFree(Addon: string): integer; overload;
+    function AddonFree(AddonHandle: HPLUGIN): integer; overload;
+    function AddonFree(Addon: string): integer; overload;
     //  Unplugs a BASS add-on or all BASS add-ons.
     //  Parameters :
     //   - AddonHandle : The handle to the BASS add-on to be unloaded or 0 for all BASS add-ons.
@@ -642,7 +642,7 @@ type
     //  This property reflects the currently loaded BASS extension moules such as basscd.dll,
     //  basswma.dll, bassmidi.dll.
 
-    property BASSAddonExts: string Read GetBASSAddonExts;
+    property BASSAddonExts: string Read GetAddonExts;
     //  Reports the file types which can be decoded by BASS add-on plugins.
     //  This BASSAddonExts changes according to the currently loaded BASS add-on plug-ins.
 
@@ -2251,7 +2251,7 @@ begin
     finally
     end;
 
-    S := UpperCase('.AIFF;' + GetBASSAddonExts);
+    S := UpperCase('.AIFF;' + GetAddonExts);
     if FBASSAACReady then
       S := S + '.M4A;.MP4;';
     // acceptable by bass_aac.dll (*.AAC files are checked independently)
@@ -2451,7 +2451,7 @@ begin
     exit;
 
   if (pos(LoExtCode, GetNativeFileExts) > 0) or
-    (pos(LoExtCode, GetBASSAddOnExts) > 0) then
+    (pos(LoExtCode, GetAddOnExts) > 0) then
   begin
     NetStream := True;
 
@@ -3230,7 +3230,7 @@ begin
 end;
 
 
-function TBASSPlayer.BASSAddonLoad(FilePath: string;
+function TBASSPlayer.AddonLoad(FilePath: string;
   ForceLoad: boolean = False): TFileDesc;
 var
   //   FoundPreloaded : boolean;
@@ -3300,7 +3300,7 @@ begin
 
 end;
 
-function TBASSPlayer.BASSAddonFree(AddonHandle: HPLUGIN): integer;
+function TBASSPlayer.AddonFree(AddonHandle: HPLUGIN): integer;
 var
   i:      integer;
   Loaded: boolean;
@@ -3331,7 +3331,7 @@ begin
   end;
 end;
 
-function TBASSPlayer.BASSAddonFree(Addon: string): integer;
+function TBASSPlayer.AddonFree(Addon: string): integer;
 var
   i: integer;
   f: TFileDesc;
@@ -3342,10 +3342,10 @@ begin
 
   f := FileSupportList.GetItem(i);
   hLog.Send('Unloading plugin:' + f.Name);
-  Result := Self.BASSAddonFree(f.Handle);
+  Result := Self.AddonFree(f.Handle);
 end;
 
-function TBASSPlayer.GetBASSAddonExts: string;
+function TBASSPlayer.GetAddonExts: string;
 var
   i: integer;
 begin
@@ -3353,12 +3353,12 @@ begin
 
   for i := 0 to FileSupportList.Count - 1 do
   begin
-    Result := Result + GetBASSAddonExts(i);
+    Result := Result + GetAddonExts(i);
   end;
 
 end;
 
-function TBASSPlayer.GetBASSAddonExts(i: integer): string; overload;
+function TBASSPlayer.GetAddonExts(i: integer): string; overload;
 var
   j:  integer;
   fd: TFileDesc;

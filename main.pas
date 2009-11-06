@@ -1212,7 +1212,7 @@ begin
 {$ENDIF}
 
   for i:=0 to s.Count-1 do
-    Player.BASSAddonLoad(s.Strings[i]);
+    Player.AddonLoad(s.Strings[i]);
 
   s.Free;
 end;
@@ -1222,7 +1222,7 @@ var
   i: integer;
 begin
   for i:=FileSupportList.Count-1 downto 0 do begin
-    Player.BASSAddonFree(FileSupportList.GetItem(i).Handle);
+    Player.AddonFree(FileSupportList.GetItem(i).Handle);
   end;
 end;
 
@@ -1235,7 +1235,7 @@ begin
 
   for i:=0 to FileSupportList.Count-1 do begin
         OpenDialog1.Filter:=OpenDialog1.Filter+'|'+FileSupportList.GetItem(i).Name+' ('+
-          Player.GetBASSAddonExts(i)+')|'+Player.GetBASSAddonExts(i);
+          Player.GetAddonExts(i)+')|'+Player.GetAddonExts(i);
     end;
   OpenDialog1.Filter:=OpenDialog1.Filter+'|All Files (*.*)|*.*';
 end;
@@ -1709,7 +1709,7 @@ begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
 {$IFDEF WINDOWS}
   if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
 {$ELSE}
   ShowMessage(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]);
   if FileExistsUTF8(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
@@ -2247,13 +2247,13 @@ begin
   FileSupportList.SetEnableStatus(PluginsList.Items.Strings[PluginsList.ItemIndex], PlgOnStartup.Checked);
   i:=FileSupportList.FindName(PluginsList.Items.Strings[PluginsList.ItemIndex]);
   if i>-1 then begin
-    PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1; end else
+    PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1; end else
 {$IFDEF WINDOWS}
     if FileExists(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-      PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+      PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonLoad(ExtractFilePath(Application.ExeName)+'plugins\'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
 {$ELSE}
     if FileExists(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]) then
-      PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
+      PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonLoad(KSP_APP_FOLDER+'plugins/'+PluginsList.Items.Strings[PluginsList.ItemIndex]).Handle<>0;
 {$ENDIF}
 
   Self.SetupOpenDialog;
@@ -2405,7 +2405,7 @@ end;
 procedure TKSPMainWindow.Button10Click(Sender: TObject);
 begin
   if (PluginsList.ItemIndex<0) or (PluginsList.ItemIndex>=PluginsList.Count) then Exit;
-  PluginsList.Checked[PluginsList.ItemIndex]:=Player.BASSAddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1;
+  PluginsList.Checked[PluginsList.ItemIndex]:=Player.AddonFree(PluginsList.Items.Strings[PluginsList.ItemIndex])<1;
 
   Self.SetupOpenDialog;
 end;

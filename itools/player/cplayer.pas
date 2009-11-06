@@ -33,12 +33,16 @@ unit cplayer;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, FileSupportLst;
 
 type
   TCorePlayer = class(TComponent)
   public
+    property NativeFileExts: string;
     function PlayerEnabled: boolean; virtual;
+    function AddonLoad(FilePath: string; ForceLoad: boolean = False): TFileDesc; virtual; abstract;
+    function AddonFree(AddonHandle: DWORD): integer; virtual; overload; abstract;
+    function AddonFree(Addon: string): integer; virtual; overload; abstract;
   end;
 
 
