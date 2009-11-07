@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="5"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="162">
+    <Units Count="161">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,7 +64,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="1" Y="507"/>
+        <CursorPos X="34" Y="502"/>
         <TopLine Value="491"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
@@ -255,8 +255,8 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="54" Y="41"/>
-        <TopLine Value="34"/>
+        <CursorPos X="17" Y="60"/>
+        <TopLine Value="37"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -1280,26 +1280,20 @@
         <SyntaxHighlighter Value="Delphi"/>
       </Unit153>
       <Unit154>
-        <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
+        <Filename Value="../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
         <CursorPos X="16" Y="69"/>
         <TopLine Value="51"/>
         <UsageCount Value="10"/>
       </Unit154>
       <Unit155>
-        <Filename Value="../../../../../usr/share/fpcsrc/rtl/objpas/sysutils/sysstr.inc"/>
-        <CursorPos X="3" Y="74"/>
-        <TopLine Value="67"/>
-        <UsageCount Value="10"/>
-      </Unit155>
-      <Unit156>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qt4.pas"/>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qt4.pas"/>
         <UnitName Value="qt4"/>
         <CursorPos X="7" Y="2"/>
         <TopLine Value="1"/>
         <UsageCount Value="10"/>
-      </Unit156>
-      <Unit157>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qt45.pas"/>
+      </Unit155>
+      <Unit156>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qt45.pas"/>
         <UnitName Value="qt45"/>
         <CursorPos X="37" Y="4028"/>
         <TopLine Value="4010"/>
@@ -1307,34 +1301,34 @@
         <Bookmarks Count="1">
           <Item0 X="28" Y="4028" ID="1"/>
         </Bookmarks>
-      </Unit157>
-      <Unit158>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtwidgets.pas"/>
+      </Unit156>
+      <Unit157>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtwidgets.pas"/>
         <UnitName Value="qtwidgets"/>
         <CursorPos X="25" Y="76"/>
         <TopLine Value="1180"/>
         <UsageCount Value="9"/>
-      </Unit158>
-      <Unit159>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtwsforms.pp"/>
+      </Unit157>
+      <Unit158>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtwsforms.pp"/>
         <UnitName Value="QtWSForms"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="45"/>
         <UsageCount Value="9"/>
-      </Unit159>
-      <Unit160>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtint.pp"/>
+      </Unit158>
+      <Unit159>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtint.pp"/>
         <UnitName Value="qtint"/>
         <CursorPos X="3" Y="57"/>
         <TopLine Value="72"/>
         <UsageCount Value="9"/>
-      </Unit160>
-      <Unit161>
-        <Filename Value="../../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtobject.inc"/>
+      </Unit159>
+      <Unit160>
+        <Filename Value="../../../../usr/lib64/lazarus/lcl/interfaces/qt/qtobject.inc"/>
         <CursorPos X="33" Y="20"/>
         <TopLine Value="11"/>
         <UsageCount Value="9"/>
-      </Unit161>
+      </Unit160>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
