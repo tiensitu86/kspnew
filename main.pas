@@ -35,7 +35,7 @@ unit main;
 interface
 
 uses
-  LResources, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls,
+  LResources, InterfaceBase, Qtint, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls,
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
@@ -77,14 +77,24 @@ type
 
   TKSPMainWindow = class(TForm)
     Button16: TButton;
+    Button17: TButton;
+    Button18: TButton;
+    IMAddress1: TEdit;
+    SpeedButton5: TButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton5: TToolButton;
+    WWWImages: TImageList;
     LyricsControl: TPageControl;
     Panel18: TPanel;
+    ShuffleButton: TButton;
     StylesBox: TComboBox;
     Label25: TLabel;
     AppearSetupPage: TPage;
     Label26: TLabel;
     lwikiaPanel: TTabSheet;
     TabSheet6: TTabSheet;
+    ToolBar2: TToolBar;
     UpdateButton: TButton;
     GroupBox2: TGroupBox;
     Label24: TLabel;
@@ -146,7 +156,6 @@ type
     NetworkSetupPage: TPage;
     Panel17: TPanel;
     SD: TSaveDialog;
-    ShuffleButton: TSpeedButton;
     UpdatesBox: TComboBox;
     UseOR: TCheckBox;
     TrackBox: TCheckBox;
@@ -167,8 +176,6 @@ type
     Button13: TButton;
     Button14: TButton;
     Button15: TButton;
-    Button17: TSpeedButton;
-    Button18: TSpeedButton;
     ComboBox1: TComboBox;
     Eq1: TTrackBar;
     Eq2: TTrackBar;
@@ -267,7 +274,6 @@ type
     ExportPlaylist: TAction;
     OpenNetworkStream: TAction;
     Action5: TAction;
-    IMAddress1: TEdit;
     Image3: TImage;
     MediaLibSetupPage: TPage;
     MenuItem19: TMenuItem;
@@ -312,10 +318,6 @@ type
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
-    SpeedButton7: TSpeedButton;
-    SpeedButton8: TSpeedButton;
     Splitter4: TSplitter;
     TabSheet2: TTabSheet;
     DownloadTimer: TTimer;
@@ -1531,6 +1533,8 @@ begin
   SetVars;
   LoadOptions;
 
+  ApplyQtStyleSheet;
+
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
   Application.OnShortcut:=@FormShortcut;
@@ -2474,7 +2478,7 @@ end;
 
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
-  Self.ApplyQtStyleSheet(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
+  Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
 end;
 
 procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
@@ -2960,7 +2964,8 @@ try
   with lbPlaylist.Canvas do  { draw on control canvas, not on the form }
   begin
 //  FillRect(TxtRect);       { clear the rectangle }
-  Offset := 2;          { provide default offset }
+  Offset := 2;
+  lbPlaylist.Canvas.AutoRedraw:=true;        { provide default offset }
   Bitmap := TBitmap(lbPlaylist.Items.Objects[Index]); { get the bitmap }
   if Bitmap <> nil then
 
@@ -4245,7 +4250,7 @@ begin
 end;
 {$ENDIF}
 
-procedure TKSPMainWindow.ApplyQtStyleSheet(style: string = '');
+procedure TKSPMainWindow.ApplyQtStyle(style: string = '');
 var
   w: widestring;
 begin
@@ -4255,7 +4260,7 @@ begin
   CurrentStyle:=StylesBox.ItemIndex;
 end;
 
-procedure TKSPMainWindow.ApplyQtStyle(style: string = '');
+procedure TKSPMainWindow.ApplyQtStyleSheet(style: string = '');
 var
   s: TStringList;
   fname: string;
@@ -4273,10 +4278,11 @@ begin
     hLog.Send('Style does not exist: '+fname);
     Exit;
   end;
+  hLog.Send('Loading skin: '+fname);
   s:=TStringList.Create;
   s.LoadFromFile(fname);
-  w:='plastique';//s.Text;
-//  QApplication_setStyleSheet(L2Qt(Application), @w);
+  w:=s.Text;
+  QApplication_setStyleSheet(TQtWidgetSet(WidgetSet).GetQtApplicationHandle, @w);
   s.Free;
 end;
 

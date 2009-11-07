@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.saddons
 msgid "Addons"
 msgstr ""
@@ -1178,12 +1181,28 @@ msgctxt "TKSPMAINWINDOW.TITLEPLSSEARCH.CAPTION"
 msgid "Title"
 msgstr ""
 
+#: TKSPMAINWINDOW.TOOLBAR2.CAPTION
+msgid "ToolBar2"
+msgstr ""
+
 #: TKSPMAINWINDOW.TOOLBUTTON1.HINT
 msgid "Previous track"
 msgstr ""
 
+#: TKSPMAINWINDOW.TOOLBUTTON2.CAPTION
+msgid "ToolButton2"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOOLBUTTON3.CAPTION
+msgid "ToolButton3"
+msgstr ""
+
 #: TKSPMAINWINDOW.TOOLBUTTON4.HINT
 msgid "Next track"
+msgstr ""
+
+#: TKSPMAINWINDOW.TOOLBUTTON5.CAPTION
+msgid "ToolButton5"
 msgstr ""
 
 #: TKSPMAINWINDOW.TRACKBOX.CAPTION
