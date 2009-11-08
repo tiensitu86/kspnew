@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="4"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,7 +48,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="147">
+    <Units Count="144">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -188,7 +188,7 @@
         <UnitName Value="PlayLists"/>
         <CursorPos X="23" Y="26"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -235,9 +235,9 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="19" Y="48"/>
-        <TopLine Value="35"/>
-        <EditorIndex Value="6"/>
+        <CursorPos X="26" Y="39"/>
+        <TopLine Value="32"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -257,7 +257,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="36" Y="80"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -304,7 +304,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="20" Y="43"/>
         <TopLine Value="25"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -412,7 +412,7 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="1" Y="213"/>
+        <CursorPos X="115" Y="210"/>
         <TopLine Value="203"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="200"/>
@@ -1203,46 +1203,19 @@
         <UsageCount Value="11"/>
       </Unit141>
       <Unit142>
-        <Filename Value="C:/lazarus/lcl/forms.pp"/>
-        <UnitName Value="Forms"/>
-        <CursorPos X="14" Y="287"/>
-        <TopLine Value="267"/>
-        <EditorIndex Value="8"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit142>
-      <Unit143>
         <Filename Value="C:/lazarus/lcl/lresources.pp"/>
         <UnitName Value="LResources"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <UsageCount Value="10"/>
-      </Unit143>
-      <Unit144>
+      </Unit142>
+      <Unit143>
         <Filename Value="C:/lazarus/lcl/controls.pp"/>
         <UnitName Value="Controls"/>
         <CursorPos X="55" Y="107"/>
         <TopLine Value="87"/>
-        <EditorIndex Value="4"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit144>
-      <Unit145>
-        <Filename Value="C:/lazarus/lcl/interfaces/qt/qt45.pas"/>
-        <UnitName Value="qt45"/>
-        <CursorPos X="30" Y="1807"/>
-        <TopLine Value="1787"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit145>
-      <Unit146>
-        <Filename Value="C:/lazarus/lcl/interfacebase.pp"/>
-        <UnitName Value="InterfaceBase"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="76"/>
-        <UsageCount Value="10"/>
-      </Unit146>
+      </Unit143>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
