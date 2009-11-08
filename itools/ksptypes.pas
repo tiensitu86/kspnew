@@ -80,6 +80,8 @@ type
   KSPStates = packed record
     PlaylistWidth: integer;
     UpdatesStyle: integer;
+    UseSkins: boolean;
+    SkinName: string;
   end;
 
   TKSPSetup = packed record

@@ -1227,6 +1227,10 @@ msgstr ""
 msgid "Use OR in query instead of AND"
 msgstr ""
 
+#: TKSPMAINWINDOW.USESKINS.CAPTION
+msgid "Use skins"
+msgstr ""
+
 #: TKSPMAINWINDOW.VDJMENU.CAPTION
 msgid "VDJ"
 msgstr ""

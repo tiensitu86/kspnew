@@ -80,6 +80,8 @@ type
     Button17: TButton;
     Button18: TButton;
     IMAddress1: TEdit;
+    UseSkins: TCheckBox;
+    SkinSelector: TListBox;
     SpeedButton5: TButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -1533,8 +1535,6 @@ begin
   SetVars;
   LoadOptions;
 
-  ApplyQtStyleSheet;
-
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
   Application.OnShortcut:=@FormShortcut;
@@ -2479,6 +2479,12 @@ end;
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
   Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
+
+  if (not SkinSelector.ItemIndex<0) and UseSkins.Checked then
+    Self.KSPSetupStates.KSPState.SkinName:=SkinSelector.Items.Strings[SkinSelector.ItemIndex-1];
+
+  if UseSkins.Checked then
+    Self.ApplyQtStyleSheet(Self.KSPSetupStates.KSPState.SkinName);
 end;
 
 procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
@@ -3921,6 +3927,11 @@ var
     ArtistPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'ArtistPls', true);
     AlbumPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'AlbumPls', true);
     TitlePlsSearch.Checked:=XMLFile.ReadBool('Main window', 'TitlePls', true);
+
+    Self.KSPSetupStates.KSPState.UseSkins:=XMLFile.ReadBool('Main windows', 'SkinEnabled', false);
+    Self.KSPSetupStates.KSPState.SkinName:=XMLFile.ReadString('Main windows', 'SkinName', '');
+    UseSkins.Checked:=Self.KSPSetupStates.KSPState.UseSkins and (Self.KSPSetupStates.KSPState.SkinName<>'');
+
     StylesBox.ItemIndex:=XMLFile.ReadInteger('Main window', 'Style', 0);
     Button16Click(nil);
 
@@ -4267,7 +4278,12 @@ var
   w: widestring;
 begin
   if (style<>'') then
-    fname:=style else
+{$IFDEF WINDOWS}
+    fname:=ExtractFilePath(Application.ExeName)+'data\themes\'+style+'.skin'
+{$ELSE}
+    fname:=KSP_APP_FOLDER+'data/themes/'+style+'.skin';
+{$ENDIF}
+  else
 {$IFDEF WINDOWS}
     fname:=ExtractFilePath(Application.ExeName)+'data\default.skin';
 {$ELSE}

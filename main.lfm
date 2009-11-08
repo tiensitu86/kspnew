@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 372
+  Left = 302
   Height = 707
-  Top = 180
+  Top = 158
   Width = 1244
   AllowDropFiles = True
   Caption = 'KSP'
@@ -531,7 +531,7 @@ object KSPMainWindow: TKSPMainWindow
       Top = 31
       Width = 967
       Align = alClient
-      PageIndex = 0
+      PageIndex = 2
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
@@ -1991,7 +1991,7 @@ object KSPMainWindow: TKSPMainWindow
               Left = 8
               Height = 16
               Top = 13
-              Width = 125
+              Width = 119
               Caption = 'Select Qt style for KSP:'
               ParentColor = False
             end
@@ -2016,13 +2016,31 @@ object KSPMainWindow: TKSPMainWindow
               TabOrder = 0
             end
             object Button16: TButton
-              Left = 264
+              Left = 260
               Height = 25
-              Top = 29
+              Top = 344
               Width = 96
               Caption = 'Apply'
               OnClick = Button16Click
               TabOrder = 1
+            end
+            object SkinSelector: TListBox
+              Left = 16
+              Height = 272
+              Top = 97
+              Width = 232
+              ItemHeight = 0
+              TabOrder = 2
+            end
+            object UseSkins: TCheckBox
+              Left = 8
+              Height = 19
+              Top = 73
+              Width = 68
+              Caption = 'Use skins'
+              Color = clWindow
+              ParentColor = False
+              TabOrder = 3
             end
           end
         end
@@ -2909,7 +2927,7 @@ object KSPMainWindow: TKSPMainWindow
     OnCanResize = Splitter7CanResize
     ResizeAnchor = akTop
   end
-  object PlsPanel: TPanel
+  object Panel17: TPanel
     Left = 974
     Height = 548
     Top = 96
