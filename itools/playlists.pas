@@ -57,6 +57,7 @@ type
   private
     fMainPls: boolean;
   public
+    procedure SetCPlayed(Played: boolean; Index: integer);
     constructor Create(isMainPlaylist: boolean = false);
     destructor Destroy; override;
     procedure Add(Entry: TPLEntry);
@@ -206,7 +207,7 @@ end;
 constructor TPLEntryInfo.Create;
 begin
   inherited Create;
-  Self.Frame:=TPlayListFrame.Create(KSPMainWindow.PlsPanel);
+  Self.Frame:=TPlayListFrame.Create(nil);
 //  Frame.Align:=alTop;
 end;
 
@@ -227,6 +228,20 @@ begin
     pstPlayCount: Sort(@ComparePlayCount);
     pstFileName: Sort(@CompareFileName);
   end;
+end;
+
+procedure TPlayList.SetCPlayed(Played: boolean; Index: integer);
+var
+  T: TPLEntryInfo;
+begin
+  if Index >= Count then
+    T := TPLEntryInfo(Items[Count - 1])
+  else
+  if Index < 0 then
+    T := TPLEntryInfo(Items[0])
+  else
+    T := TPLEntryInfo(Items[Index]);
+  T.Frame.SetCurrentlyPlayed(Played);
 end;
 
 constructor TPlayList.Create(isMainPlaylist: boolean = false);
@@ -296,10 +311,15 @@ begin
   T.Entry := Entry;
   T.Entry.Played := False;
 
-  if Self.fMainPls then
-    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
-
   inherited Add(T);
+
+  if Self.fMainPls then begin
+    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
+    T.Frame.SetTrackInfo(Entry, Count-1);
+    T.Frame.Align:=alTop;
+  end;
+
+
 end;
 
 procedure TPlayList.Insert(Index: integer; Entry: TPLEntry);
@@ -309,10 +329,15 @@ begin
   T := TPLEntryInfo.Create;
   T.Entry := Entry;
   T.Entry.Played := False;
-  if Self.fMainPls then
-    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
 
   inherited Insert(Index, T);
+
+  if Self.fMainPls then begin
+    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
+    T.Frame.SetTrackInfo(Entry, Index);
+    T.Frame.Align:=alTop;
+  end;
+
 end;
 
 procedure TPlayList.Remove(Index: integer);

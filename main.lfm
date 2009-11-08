@@ -1,12 +1,12 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 302
-  Height = 707
-  Top = 158
-  Width = 1244
+  Left = 314
+  Height = 745
+  Top = 140
+  Width = 1260
   AllowDropFiles = True
   Caption = 'KSP'
-  ClientHeight = 687
-  ClientWidth = 1244
+  ClientHeight = 745
+  ClientWidth = 1260
   Menu = MainMenu1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -23,8 +23,8 @@ object KSPMainWindow: TKSPMainWindow
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 664
-    Width = 1244
+    Top = 722
+    Width = 1260
     Panels = <    
       item
         Width = 400
@@ -35,16 +35,16 @@ object KSPMainWindow: TKSPMainWindow
     Left = 0
     Height = 91
     Top = 0
-    Width = 1244
+    Width = 1260
     Align = alTop
     ClientHeight = 91
-    ClientWidth = 1244
+    ClientWidth = 1260
     TabOrder = 1
     object AudioControls: TPageControl
       Left = 448
       Height = 89
       Top = 1
-      Width = 795
+      Width = 811
       TabStop = False
       ActivePage = Basic
       Align = alClient
@@ -57,7 +57,7 @@ object KSPMainWindow: TKSPMainWindow
       object Basic: TTabSheet
         Caption = 'Basic'
         ClientHeight = 81
-        ClientWidth = 787
+        ClientWidth = 803
         object TotalTimeLabel: TLabel
           Left = 200
           Height = 16
@@ -460,8 +460,8 @@ object KSPMainWindow: TKSPMainWindow
   object MediaLibProgress: TProgressBar
     Left = 0
     Height = 20
-    Top = 644
-    Width = 1244
+    Top = 702
+    Width = 1260
     Align = alBottom
     Position = 15
     Smooth = True
@@ -471,18 +471,18 @@ object KSPMainWindow: TKSPMainWindow
   end
   object Panel3: TPanel
     Left = 0
-    Height = 548
+    Height = 606
     Top = 96
-    Width = 969
+    Width = 985
     Align = alClient
-    ClientHeight = 548
-    ClientWidth = 969
+    ClientHeight = 606
+    ClientWidth = 985
     TabOrder = 3
     object HeaderControl1: THeaderControl
       Left = 1
       Height = 30
       Top = 1
-      Width = 967
+      Width = 983
       DragReorder = False
       Images = MenuImages
       Sections = <      
@@ -527,15 +527,15 @@ object KSPMainWindow: TKSPMainWindow
     end
     object Notebook1: TNotebook
       Left = 1
-      Height = 516
+      Height = 574
       Top = 31
-      Width = 967
+      Width = 983
       Align = alClient
-      PageIndex = 2
+      PageIndex = 3
       ShowTabs = False
       TabOrder = 1
       object Page1: TPage
-        Caption = 'Page1'
+        Caption = 'Welcome'
         ClientWidth = 959
         ClientHeight = 508
         object PagesWelcome: TPageControl
@@ -754,7 +754,7 @@ object KSPMainWindow: TKSPMainWindow
         end
       end
       object Page2: TPage
-        Caption = 'Page2'
+        Caption = 'Media Library && Icecast Browser'
         ClientWidth = 959
         ClientHeight = 508
         object LibPages: TPageControl
@@ -1450,603 +1450,8 @@ object KSPMainWindow: TKSPMainWindow
           end
         end
       end
-      object Page3: TPage
-        Caption = 'Page3'
-        ClientWidth = 959
-        ClientHeight = 508
-        object SetupTreeView: TTreeView
-          Left = 0
-          Height = 508
-          Top = 0
-          Width = 238
-          Align = alLeft
-          DefaultItemHeight = 17
-          TabOrder = 0
-          OnClick = SetupTreeViewClick
-          Items.Data = {
-            F9FFFFFF020003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF050000000000
-            000001030000004B5350FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
-            00000009000000426F6F6B6D61726B73FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            00000000000000000007000000506C7567696E73FFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFF0000000000000000000D0000004E6F74696669636174696F6E73FFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000060000005379737465
-            6DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000A0000004170
-            70656172616E6365FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0100000000000000
-            010D0000004D65646961204C696272617279FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFF0000000000000000000D0000004D6564696120466F6C64657273FFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFF000000000000000000070000004E6574776F726B
-          }
-        end
-        object Splitter4: TSplitter
-          Left = 238
-          Height = 508
-          Top = 0
-          Width = 5
-        end
-        object SetupBook: TNotebook
-          Left = 243
-          Height = 508
-          Top = 0
-          Width = 716
-          Align = alClient
-          PageIndex = 7
-          ShowTabs = False
-          TabOrder = 2
-          object MediaLibSetupPage: TPage
-            Caption = 'MediaLibSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object MFolders: TListBox
-              Left = 0
-              Height = 500
-              Top = 0
-              Width = 208
-              Align = alLeft
-              ItemHeight = 0
-              TabOrder = 0
-            end
-            object Button5: TButton
-              Left = 220
-              Height = 25
-              Top = 1
-              Width = 120
-              Caption = 'Force Rescan'
-              OnClick = Button5Click
-              TabOrder = 1
-            end
-            object Button1: TButton
-              Left = 220
-              Height = 25
-              Top = 113
-              Width = 120
-              Caption = 'Delete'
-              OnClick = Button1Click
-              TabOrder = 2
-            end
-            object Button2: TButton
-              Left = 220
-              Height = 25
-              Top = 145
-              Width = 120
-              Caption = 'Save'
-              OnClick = Button2Click
-              TabOrder = 3
-            end
-            object Button3: TButton
-              Left = 220
-              Height = 25
-              Top = 84
-              Width = 120
-              Caption = 'Add'
-              OnClick = Button3Click
-              TabOrder = 4
-            end
-          end
-          object BookmarksSetupPage: TPage
-            Caption = 'BookmarksSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object BListBox: TListBox
-              Left = 11
-              Height = 368
-              Top = 1
-              Width = 220
-              ItemHeight = 0
-              TabOrder = 0
-            end
-            object RenameBookmark: TButton
-              Left = 251
-              Height = 25
-              Top = 19
-              Width = 139
-              Caption = 'Rename'
-              OnClick = RenameBookmarkClick
-              TabOrder = 1
-            end
-            object DeleteBookmark: TButton
-              Left = 251
-              Height = 25
-              Top = 51
-              Width = 139
-              Caption = 'Delete'
-              OnClick = DeleteBookmarkClick
-              TabOrder = 2
-            end
-          end
-          object DefaultSetupPage: TPage
-            Caption = 'DefaultSetupPage'
-          end
-          object NotSetupPage: TPage
-            Caption = 'NotSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object NotChecked: TCheckBox
-              Left = 14
-              Height = 21
-              Top = 12
-              Width = 91
-              Caption = 'Enable OSD'
-              OnChange = NotCheckedChange
-              TabOrder = 0
-            end
-            object OSDPosBox: TComboBox
-              Left = 14
-              Height = 23
-              Top = 52
-              Width = 100
-              ItemHeight = 15
-              ItemIndex = 0
-              Items.Strings = (
-                'Left Top Corner'
-                'Right Top Corner'
-                'Left Bottom Corner'
-                'Right Bottom Corner'
-              )
-              OnChange = OSDPosBoxChange
-              Style = csDropDownList
-              TabOrder = 1
-              Text = 'Left Top Corner'
-            end
-            object Button7: TButton
-              Left = 14
-              Height = 25
-              Top = 129
-              Width = 75
-              Caption = 'Preview'
-              OnClick = Button7Click
-              TabOrder = 2
-            end
-          end
-          object PluginsSetupPage: TPage
-            Caption = 'PluginsSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object PageControl1: TPageControl
-              Left = 0
-              Height = 500
-              Top = 0
-              Width = 708
-              ActivePage = TabSheet2
-              Align = alClient
-              TabIndex = 0
-              TabOrder = 0
-              object TabSheet2: TTabSheet
-                Caption = 'Global Plugins'
-                ClientHeight = 472
-                ClientWidth = 700
-                object PluginsList: TCheckListBox
-                  Left = 0
-                  Height = 472
-                  Top = 0
-                  Width = 232
-                  Align = alLeft
-                  ItemHeight = 0
-                  OnClick = PluginsListClick
-                  OnClickCheck = PluginsListClickCheck
-                  TabOrder = 0
-                end
-                object PlgOnStartup: TCheckBox
-                  Left = 238
-                  Height = 21
-                  Top = 12
-                  Width = 112
-                  Caption = 'Load On Startup'
-                  OnClick = PlgOnStartupClick
-                  TabOrder = 1
-                end
-                object Button9: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 44
-                  Width = 179
-                  Caption = 'Load'
-                  OnClick = Button9Click
-                  TabOrder = 2
-                end
-                object Button10: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 72
-                  Width = 179
-                  Caption = 'Unload'
-                  OnClick = Button10Click
-                  TabOrder = 3
-                end
-                object Button11: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 108
-                  Width = 179
-                  Caption = 'Load ALL'
-                  OnClick = Button11Click
-                  TabOrder = 4
-                end
-                object Button12: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 140
-                  Width = 179
-                  Caption = 'Unload ALL'
-                  OnClick = Button12Click
-                  TabOrder = 5
-                end
-                object Button13: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 356
-                  Width = 179
-                  Caption = 'Disable ALL Plugins'
-                  OnClick = Button13Click
-                  TabOrder = 6
-                end
-                object Button14: TButton
-                  Left = 238
-                  Height = 25
-                  Top = 324
-                  Width = 179
-                  Caption = 'Enable ALL Plugins'
-                  OnClick = Button14Click
-                  TabOrder = 7
-                end
-              end
-            end
-          end
-          object SystemSetupPage: TPage
-            Caption = 'SystemSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object Label1: TLabel
-              Left = 8
-              Height = 16
-              Top = 157
-              Width = 117
-              Caption = 'Device buffer (in ms):'
-              ParentColor = False
-            end
-            object Button8: TButton
-              Left = 344
-              Height = 25
-              Top = 11
-              Width = 75
-              Caption = 'Apply'
-              OnClick = Button8Click
-              TabOrder = 0
-            end
-            object BufferEdit: TSpinEdit
-              Left = 8
-              Height = 21
-              Top = 181
-              Width = 114
-              MaxValue = 100000
-              TabOrder = 1
-              Value = 1
-            end
-            object RelativePaths: TCheckBox
-              Left = 8
-              Height = 21
-              Top = 3
-              Width = 219
-              Caption = 'Use relative paths for playlist saving'
-              TabOrder = 2
-            end
-            object PlsFormat: TLabeledEdit
-              Left = 16
-              Height = 21
-              Top = 117
-              Width = 408
-              EditLabel.AnchorSideLeft.Control = PlsFormat
-              EditLabel.AnchorSideBottom.Control = PlsFormat
-              EditLabel.Left = 16
-              EditLabel.Height = 16
-              EditLabel.Top = 98
-              EditLabel.Width = 105
-              EditLabel.Caption = 'Playlist Formatting:'
-              EditLabel.ParentColor = False
-              TabOrder = 3
-            end
-            object UseEq: TCheckBox
-              Left = 8
-              Height = 21
-              Top = 31
-              Width = 100
-              Caption = 'Use Equalizer'
-              TabOrder = 4
-            end
-            object Memo1: TMemo
-              Cursor = crArrow
-              Left = 149
-              Height = 280
-              Top = 164
-              Width = 270
-              BorderStyle = bsNone
-              Lines.Strings = (
-                'Each playlist entry can be formated. This '
-                'formating will apply to list of suggestions and '
-                'playlist editor'
-                'Use following defines in order to put special '
-                'strings:'
-                ''
-                '[%artist] - artist name'
-                '[%album] - album name'
-                '[%title] - track title'
-                '[%genre] - track genre'
-                '[%year] - track year'
-                '[%comment] - track comment (can be long!!!)'
-                '[%track] - track number (from tag)'
-                '[%length] - track length'
-                '[%plindex] - track number in playlist'
-              )
-              ReadOnly = True
-              TabOrder = 5
-            end
-            object claBox: TComboBox
-              Left = 8
-              Height = 23
-              Top = 63
-              Width = 411
-              ItemHeight = 15
-              ItemIndex = 0
-              Items.Strings = (
-                'Always ask what to do when Close button is pressed'
-                'Always Exit KSP when Close button is pressed'
-                'Always minimise to tray when Close button is pressed (Exit only via menu)'
-              )
-              OnChange = claBoxChange
-              Style = csDropDownList
-              TabOrder = 6
-              Text = 'Always ask what to do when Close button is pressed'
-            end
-          end
-          object NetworkSetupPage: TPage
-            Caption = 'NetworkSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object GroupBoxProxy: TGroupBox
-              Left = 16
-              Height = 256
-              Top = 37
-              Width = 320
-              Caption = 'Proxy Settings'
-              ClientHeight = 238
-              ClientWidth = 316
-              TabOrder = 0
-              object Label16: TLabel
-                Left = 78
-                Height = 16
-                Top = 48
-                Width = 27
-                Caption = 'Type'
-                ParentColor = False
-              end
-              object Label17: TLabel
-                Left = 77
-                Height = 16
-                Top = 84
-                Width = 27
-                Caption = 'Host'
-                ParentColor = False
-              end
-              object Label18: TLabel
-                Left = 38
-                Height = 16
-                Top = 156
-                Width = 65
-                Caption = 'User Name'
-                ParentColor = False
-              end
-              object Label19: TLabel
-                Left = 38
-                Height = 16
-                Top = 192
-                Width = 57
-                Caption = 'Password'
-                ParentColor = False
-              end
-              object Label20: TLabel
-                Left = 82
-                Height = 16
-                Top = 120
-                Width = 23
-                Caption = 'Port'
-                ParentColor = False
-              end
-              object EProxyType: TComboBox
-                Left = 134
-                Height = 23
-                Top = 44
-                Width = 152
-                ItemHeight = 15
-                ItemIndex = 0
-                Items.Strings = (
-                  'Http'
-                  'Socks'
-                )
-                Style = csDropDownList
-                TabOrder = 0
-                Text = 'Http'
-              end
-              object EProxyHost: TEdit
-                Left = 134
-                Height = 21
-                Top = 80
-                Width = 152
-                TabOrder = 1
-                Text = 'EProxyHost'
-              end
-              object EProxyUserName: TEdit
-                Left = 134
-                Height = 21
-                Top = 152
-                Width = 152
-                TabOrder = 3
-                Text = 'EProxyUserName'
-              end
-              object EProxyPassword: TEdit
-                Left = 134
-                Height = 21
-                Top = 188
-                Width = 152
-                TabOrder = 4
-                Text = 'EProxyPassword'
-              end
-              object EProxyPort: TSpinEdit
-                Left = 134
-                Height = 21
-                Top = 116
-                Width = 154
-                MaxValue = 100000
-                TabOrder = 2
-                Value = 1
-              end
-            end
-            object Button6: TButton
-              Left = 336
-              Height = 25
-              Top = 5
-              Width = 104
-              Caption = 'Apply'
-              OnClick = Button6Click
-              TabOrder = 1
-            end
-            object EProxyEnabled: TCheckBox
-              Left = 16
-              Height = 21
-              Top = 9
-              Width = 94
-              Caption = 'Enable Proxy'
-              OnChange = EProxyEnabledChange
-              TabOrder = 2
-            end
-            object GroupBox2: TGroupBox
-              Left = 16
-              Height = 129
-              Top = 297
-              Width = 424
-              Caption = 'KSP updates'
-              ClientHeight = 111
-              ClientWidth = 420
-              TabOrder = 3
-              object UpdatesBox: TComboBox
-                Left = 14
-                Height = 23
-                Top = 32
-                Width = 388
-                ItemHeight = 15
-                ItemIndex = 0
-                Items.Strings = (
-                  'Do not download updates not notify when updates are available'
-                  'Check for updates but don''t automatically download them'
-                  'Automatically download new updates for KSP'
-                )
-                OnChange = UpdatesBoxChange
-                Style = csDropDownList
-                TabOrder = 0
-                Text = 'Do not download updates not notify when updates are available'
-              end
-              object Label24: TLabel
-                Left = 14
-                Height = 16
-                Top = 8
-                Width = 186
-                Caption = 'How KSP should handle updates:'
-                ParentColor = False
-              end
-              object UpdateButton: TButton
-                Left = 14
-                Height = 25
-                Top = 64
-                Width = 140
-                AutoSize = True
-                Caption = 'Check for updates now'
-                OnClick = UpdateButtonClick
-                TabOrder = 1
-              end
-            end
-          end
-          object AppearSetupPage: TPage
-            Caption = 'AppearSetupPage'
-            ClientWidth = 708
-            ClientHeight = 500
-            object Label26: TLabel
-              Left = 8
-              Height = 16
-              Top = 13
-              Width = 119
-              Caption = 'Select Qt style for KSP:'
-              ParentColor = False
-            end
-            object StylesBox: TComboBox
-              Left = 16
-              Height = 23
-              Top = 37
-              Width = 232
-              ItemHeight = 15
-              Items.Strings = (
-                'WindowsVista'
-                'WindowsXP'
-                'Windows'
-                'Motif'
-                'CDE'
-                'Plastique'
-                'Macintosh'
-                'CleanLooks'
-                'Oxygen'
-              )
-              Style = csDropDownList
-              TabOrder = 0
-            end
-            object Button16: TButton
-              Left = 260
-              Height = 25
-              Top = 344
-              Width = 96
-              Caption = 'Apply'
-              OnClick = Button16Click
-              TabOrder = 1
-            end
-            object SkinSelector: TListBox
-              Left = 16
-              Height = 272
-              Top = 97
-              Width = 232
-              ItemHeight = 0
-              TabOrder = 2
-            end
-            object UseSkins: TCheckBox
-              Left = 8
-              Height = 19
-              Top = 73
-              Width = 68
-              Caption = 'Use skins'
-              Color = clWindow
-              ParentColor = False
-              TabOrder = 3
-            end
-          end
-        end
-      end
       object Page4: TPage
-        Caption = 'Page4'
+        Caption = 'Currently Played'
         ClientWidth = 959
         ClientHeight = 508
         object Splitter6: TSplitter
@@ -2844,6 +2249,597 @@ object KSPMainWindow: TKSPMainWindow
           end
         end
       end
+      object Page6: TPage
+        Caption = 'Addons'
+        ClientWidth = 975
+        ClientHeight = 566
+        object AddonsControl: TPageControl
+          Left = 0
+          Height = 566
+          Top = 0
+          Width = 975
+          Align = alClient
+          TabOrder = 0
+          TabPosition = tpBottom
+        end
+      end
+      object Page3: TPage
+        Caption = 'Setup'
+        ClientWidth = 959
+        ClientHeight = 508
+        object SetupTreeView: TTreeView
+          Left = 0
+          Height = 508
+          Top = 0
+          Width = 238
+          Align = alLeft
+          DefaultItemHeight = 17
+          TabOrder = 0
+          OnClick = SetupTreeViewClick
+          Items.Data = {
+            F9FFFFFF020003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF050000000000
+            000001030000004B5350FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+            00000009000000426F6F6B6D61726B73FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            00000000000000000007000000506C7567696E73FFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFF0000000000000000000D0000004E6F74696669636174696F6E73FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000060000005379737465
+            6DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000A0000004170
+            70656172616E6365FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0100000000000000
+            010D0000004D65646961204C696272617279FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFF0000000000000000000D0000004D6564696120466F6C64657273FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF000000000000000000070000004E6574776F726B
+          }
+        end
+        object Splitter4: TSplitter
+          Left = 238
+          Height = 508
+          Top = 0
+          Width = 5
+        end
+        object SetupBook: TNotebook
+          Left = 243
+          Height = 508
+          Top = 0
+          Width = 716
+          Align = alClient
+          PageIndex = 7
+          ShowTabs = False
+          TabOrder = 2
+          object MediaLibSetupPage: TPage
+            Caption = 'MediaLibSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object MFolders: TListBox
+              Left = 0
+              Height = 500
+              Top = 0
+              Width = 208
+              Align = alLeft
+              ItemHeight = 0
+              TabOrder = 0
+            end
+            object Button5: TButton
+              Left = 220
+              Height = 25
+              Top = 1
+              Width = 120
+              Caption = 'Force Rescan'
+              OnClick = Button5Click
+              TabOrder = 1
+            end
+            object Button1: TButton
+              Left = 220
+              Height = 25
+              Top = 113
+              Width = 120
+              Caption = 'Delete'
+              OnClick = Button1Click
+              TabOrder = 2
+            end
+            object Button2: TButton
+              Left = 220
+              Height = 25
+              Top = 145
+              Width = 120
+              Caption = 'Save'
+              OnClick = Button2Click
+              TabOrder = 3
+            end
+            object Button3: TButton
+              Left = 220
+              Height = 25
+              Top = 84
+              Width = 120
+              Caption = 'Add'
+              OnClick = Button3Click
+              TabOrder = 4
+            end
+          end
+          object BookmarksSetupPage: TPage
+            Caption = 'BookmarksSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object BListBox: TListBox
+              Left = 11
+              Height = 368
+              Top = 1
+              Width = 220
+              ItemHeight = 0
+              TabOrder = 0
+            end
+            object RenameBookmark: TButton
+              Left = 251
+              Height = 25
+              Top = 19
+              Width = 139
+              Caption = 'Rename'
+              OnClick = RenameBookmarkClick
+              TabOrder = 1
+            end
+            object DeleteBookmark: TButton
+              Left = 251
+              Height = 25
+              Top = 51
+              Width = 139
+              Caption = 'Delete'
+              OnClick = DeleteBookmarkClick
+              TabOrder = 2
+            end
+          end
+          object DefaultSetupPage: TPage
+            Caption = 'DefaultSetupPage'
+          end
+          object NotSetupPage: TPage
+            Caption = 'NotSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object NotChecked: TCheckBox
+              Left = 14
+              Height = 21
+              Top = 12
+              Width = 91
+              Caption = 'Enable OSD'
+              OnChange = NotCheckedChange
+              TabOrder = 0
+            end
+            object OSDPosBox: TComboBox
+              Left = 14
+              Height = 23
+              Top = 52
+              Width = 100
+              ItemHeight = 15
+              ItemIndex = 0
+              Items.Strings = (
+                'Left Top Corner'
+                'Right Top Corner'
+                'Left Bottom Corner'
+                'Right Bottom Corner'
+              )
+              OnChange = OSDPosBoxChange
+              Style = csDropDownList
+              TabOrder = 1
+              Text = 'Left Top Corner'
+            end
+            object Button7: TButton
+              Left = 14
+              Height = 25
+              Top = 129
+              Width = 75
+              Caption = 'Preview'
+              OnClick = Button7Click
+              TabOrder = 2
+            end
+          end
+          object PluginsSetupPage: TPage
+            Caption = 'PluginsSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object PageControl1: TPageControl
+              Left = 0
+              Height = 500
+              Top = 0
+              Width = 708
+              ActivePage = TabSheet2
+              Align = alClient
+              TabIndex = 0
+              TabOrder = 0
+              object TabSheet2: TTabSheet
+                Caption = 'Global Plugins'
+                ClientHeight = 472
+                ClientWidth = 700
+                object PluginsList: TCheckListBox
+                  Left = 0
+                  Height = 472
+                  Top = 0
+                  Width = 232
+                  Align = alLeft
+                  ItemHeight = 0
+                  OnClick = PluginsListClick
+                  OnClickCheck = PluginsListClickCheck
+                  TabOrder = 0
+                end
+                object PlgOnStartup: TCheckBox
+                  Left = 238
+                  Height = 21
+                  Top = 12
+                  Width = 112
+                  Caption = 'Load On Startup'
+                  OnClick = PlgOnStartupClick
+                  TabOrder = 1
+                end
+                object Button9: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 44
+                  Width = 179
+                  Caption = 'Load'
+                  OnClick = Button9Click
+                  TabOrder = 2
+                end
+                object Button10: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 72
+                  Width = 179
+                  Caption = 'Unload'
+                  OnClick = Button10Click
+                  TabOrder = 3
+                end
+                object Button11: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 108
+                  Width = 179
+                  Caption = 'Load ALL'
+                  OnClick = Button11Click
+                  TabOrder = 4
+                end
+                object Button12: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 140
+                  Width = 179
+                  Caption = 'Unload ALL'
+                  OnClick = Button12Click
+                  TabOrder = 5
+                end
+                object Button13: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 356
+                  Width = 179
+                  Caption = 'Disable ALL Plugins'
+                  OnClick = Button13Click
+                  TabOrder = 6
+                end
+                object Button14: TButton
+                  Left = 238
+                  Height = 25
+                  Top = 324
+                  Width = 179
+                  Caption = 'Enable ALL Plugins'
+                  OnClick = Button14Click
+                  TabOrder = 7
+                end
+              end
+            end
+          end
+          object SystemSetupPage: TPage
+            Caption = 'SystemSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object Label1: TLabel
+              Left = 8
+              Height = 16
+              Top = 157
+              Width = 117
+              Caption = 'Device buffer (in ms):'
+              ParentColor = False
+            end
+            object Button8: TButton
+              Left = 344
+              Height = 25
+              Top = 11
+              Width = 75
+              Caption = 'Apply'
+              OnClick = Button8Click
+              TabOrder = 0
+            end
+            object BufferEdit: TSpinEdit
+              Left = 8
+              Height = 21
+              Top = 181
+              Width = 114
+              MaxValue = 100000
+              TabOrder = 1
+              Value = 1
+            end
+            object RelativePaths: TCheckBox
+              Left = 8
+              Height = 21
+              Top = 3
+              Width = 219
+              Caption = 'Use relative paths for playlist saving'
+              TabOrder = 2
+            end
+            object PlsFormat: TLabeledEdit
+              Left = 16
+              Height = 21
+              Top = 117
+              Width = 408
+              EditLabel.AnchorSideLeft.Control = PlsFormat
+              EditLabel.AnchorSideBottom.Control = PlsFormat
+              EditLabel.Left = 16
+              EditLabel.Height = 16
+              EditLabel.Top = 98
+              EditLabel.Width = 105
+              EditLabel.Caption = 'Playlist Formatting:'
+              EditLabel.ParentColor = False
+              TabOrder = 3
+            end
+            object UseEq: TCheckBox
+              Left = 8
+              Height = 21
+              Top = 31
+              Width = 100
+              Caption = 'Use Equalizer'
+              TabOrder = 4
+            end
+            object Memo1: TMemo
+              Cursor = crArrow
+              Left = 149
+              Height = 280
+              Top = 164
+              Width = 270
+              BorderStyle = bsNone
+              Lines.Strings = (
+                'Each playlist entry can be formated. This '
+                'formating will apply to list of suggestions and '
+                'playlist editor'
+                'Use following defines in order to put special '
+                'strings:'
+                ''
+                '[%artist] - artist name'
+                '[%album] - album name'
+                '[%title] - track title'
+                '[%genre] - track genre'
+                '[%year] - track year'
+                '[%comment] - track comment (can be long!!!)'
+                '[%track] - track number (from tag)'
+                '[%length] - track length'
+                '[%plindex] - track number in playlist'
+              )
+              ReadOnly = True
+              TabOrder = 5
+            end
+            object claBox: TComboBox
+              Left = 8
+              Height = 23
+              Top = 63
+              Width = 411
+              ItemHeight = 15
+              ItemIndex = 0
+              Items.Strings = (
+                'Always ask what to do when Close button is pressed'
+                'Always Exit KSP when Close button is pressed'
+                'Always minimise to tray when Close button is pressed (Exit only via menu)'
+              )
+              OnChange = claBoxChange
+              Style = csDropDownList
+              TabOrder = 6
+              Text = 'Always ask what to do when Close button is pressed'
+            end
+          end
+          object NetworkSetupPage: TPage
+            Caption = 'NetworkSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object GroupBoxProxy: TGroupBox
+              Left = 16
+              Height = 256
+              Top = 37
+              Width = 320
+              Caption = 'Proxy Settings'
+              ClientHeight = 238
+              ClientWidth = 316
+              TabOrder = 0
+              object Label16: TLabel
+                Left = 78
+                Height = 16
+                Top = 48
+                Width = 27
+                Caption = 'Type'
+                ParentColor = False
+              end
+              object Label17: TLabel
+                Left = 77
+                Height = 16
+                Top = 84
+                Width = 27
+                Caption = 'Host'
+                ParentColor = False
+              end
+              object Label18: TLabel
+                Left = 38
+                Height = 16
+                Top = 156
+                Width = 65
+                Caption = 'User Name'
+                ParentColor = False
+              end
+              object Label19: TLabel
+                Left = 38
+                Height = 16
+                Top = 192
+                Width = 57
+                Caption = 'Password'
+                ParentColor = False
+              end
+              object Label20: TLabel
+                Left = 82
+                Height = 16
+                Top = 120
+                Width = 23
+                Caption = 'Port'
+                ParentColor = False
+              end
+              object EProxyType: TComboBox
+                Left = 134
+                Height = 23
+                Top = 44
+                Width = 152
+                ItemHeight = 15
+                ItemIndex = 0
+                Items.Strings = (
+                  'Http'
+                  'Socks'
+                )
+                Style = csDropDownList
+                TabOrder = 0
+                Text = 'Http'
+              end
+              object EProxyHost: TEdit
+                Left = 134
+                Height = 21
+                Top = 80
+                Width = 152
+                TabOrder = 1
+                Text = 'EProxyHost'
+              end
+              object EProxyUserName: TEdit
+                Left = 134
+                Height = 21
+                Top = 152
+                Width = 152
+                TabOrder = 3
+                Text = 'EProxyUserName'
+              end
+              object EProxyPassword: TEdit
+                Left = 134
+                Height = 21
+                Top = 188
+                Width = 152
+                TabOrder = 4
+                Text = 'EProxyPassword'
+              end
+              object EProxyPort: TSpinEdit
+                Left = 134
+                Height = 21
+                Top = 116
+                Width = 154
+                MaxValue = 100000
+                TabOrder = 2
+                Value = 1
+              end
+            end
+            object Button6: TButton
+              Left = 336
+              Height = 25
+              Top = 5
+              Width = 104
+              Caption = 'Apply'
+              OnClick = Button6Click
+              TabOrder = 1
+            end
+            object EProxyEnabled: TCheckBox
+              Left = 16
+              Height = 21
+              Top = 9
+              Width = 94
+              Caption = 'Enable Proxy'
+              OnChange = EProxyEnabledChange
+              TabOrder = 2
+            end
+            object GroupBox2: TGroupBox
+              Left = 16
+              Height = 129
+              Top = 297
+              Width = 424
+              Caption = 'KSP updates'
+              ClientHeight = 111
+              ClientWidth = 420
+              TabOrder = 3
+              object UpdatesBox: TComboBox
+                Left = 14
+                Height = 23
+                Top = 32
+                Width = 388
+                ItemHeight = 15
+                ItemIndex = 0
+                Items.Strings = (
+                  'Do not download updates not notify when updates are available'
+                  'Check for updates but don''t automatically download them'
+                  'Automatically download new updates for KSP'
+                )
+                OnChange = UpdatesBoxChange
+                Style = csDropDownList
+                TabOrder = 0
+                Text = 'Do not download updates not notify when updates are available'
+              end
+              object Label24: TLabel
+                Left = 14
+                Height = 16
+                Top = 8
+                Width = 186
+                Caption = 'How KSP should handle updates:'
+                ParentColor = False
+              end
+              object UpdateButton: TButton
+                Left = 14
+                Height = 25
+                Top = 64
+                Width = 140
+                AutoSize = True
+                Caption = 'Check for updates now'
+                OnClick = UpdateButtonClick
+                TabOrder = 1
+              end
+            end
+          end
+          object AppearSetupPage: TPage
+            Caption = 'AppearSetupPage'
+            ClientWidth = 708
+            ClientHeight = 500
+            object Label26: TLabel
+              Left = 8
+              Height = 16
+              Top = 13
+              Width = 119
+              Caption = 'Select Qt style for KSP:'
+              ParentColor = False
+            end
+            object StylesBox: TComboBox
+              Left = 16
+              Height = 23
+              Top = 37
+              Width = 232
+              ItemHeight = 15
+              Items.Strings = (
+                'WindowsVista'
+                'WindowsXP'
+                'Windows'
+                'Motif'
+                'CDE'
+                'Plastique'
+                'Macintosh'
+                'CleanLooks'
+                'Oxygen'
+              )
+              Style = csDropDownList
+              TabOrder = 0
+            end
+            object Button16: TButton
+              Left = 264
+              Height = 25
+              Top = 29
+              Width = 96
+              Caption = 'Apply'
+              OnClick = Button16Click
+              TabOrder = 1
+            end
+          end
+        end
+      end
       object Page5: TPage
         Caption = 'Page5'
         ClientWidth = 959
@@ -2893,25 +2889,11 @@ object KSPMainWindow: TKSPMainWindow
           TabOrder = 2
         end
       end
-      object Page6: TPage
-        Caption = 'Page6'
-        ClientWidth = 959
-        ClientHeight = 508
-        object AddonsControl: TPageControl
-          Left = 0
-          Height = 508
-          Top = 0
-          Width = 959
-          Align = alClient
-          TabOrder = 0
-          TabPosition = tpBottom
-        end
-      end
     end
   end
   object Splitter3: TSplitter
-    Left = 969
-    Height = 548
+    Left = 985
+    Height = 606
     Top = 96
     Width = 5
     Align = alRight
@@ -2922,23 +2904,23 @@ object KSPMainWindow: TKSPMainWindow
     Left = 0
     Height = 5
     Top = 91
-    Width = 1244
+    Width = 1260
     Align = alTop
     OnCanResize = Splitter7CanResize
     ResizeAnchor = akTop
   end
-  object Panel17: TPanel
-    Left = 974
-    Height = 548
+  object PlsPanel: TPanel
+    Left = 990
+    Height = 606
     Top = 96
     Width = 270
     Align = alRight
-    ClientHeight = 548
+    ClientHeight = 606
     ClientWidth = 270
     TabOrder = 6
     object lbPlaylist: TCheckListBox
       Left = 1
-      Height = 496
+      Height = 554
       Top = 1
       Width = 268
       Align = alClient
@@ -2957,11 +2939,12 @@ object KSPMainWindow: TKSPMainWindow
       PopupMenu = PopupMenu1
       Style = lbOwnerDrawFixed
       TabOrder = 0
+      Visible = False
     end
     object GroupBox1: TGroupBox
       Left = 1
       Height = 50
-      Top = 497
+      Top = 555
       Width = 268
       Align = alBottom
       Caption = 'Search Playlist (click for more options)'

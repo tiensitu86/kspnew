@@ -1,0 +1,25 @@
+object PlaylistFrame: TPlaylistFrame
+  Left = 0
+  Height = 18
+  Top = 0
+  Width = 304
+  ClientHeight = 18
+  ClientWidth = 304
+  Color = clLime
+  OnDblClick = FrameDblClick
+  ParentColor = False
+  TabOrder = 0
+  DesignLeft = 392
+  DesignTop = 316
+  object ItemName: TLabel
+    Left = 0
+    Height = 16
+    Top = 0
+    Width = 304
+    Align = alTop
+    Caption = 'ItemName'
+    ParentColor = False
+    OnClick = ItemNameClick
+    OnDblClick = FrameDblClick
+  end
+end

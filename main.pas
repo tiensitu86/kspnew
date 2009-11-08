@@ -80,8 +80,6 @@ type
     Button17: TButton;
     Button18: TButton;
     IMAddress1: TEdit;
-    UseSkins: TCheckBox;
-    SkinSelector: TListBox;
     SpeedButton5: TButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -577,7 +575,6 @@ type
     KSPStartingUp: boolean;
     CurrentStyle: integer;
     procedure SetHeaderControlImage(sIndex: integer);
-    procedure PlayFile;
     procedure ResetDisplay;
     procedure LoadPls(FileName: string);
     procedure LoadPlsDrag;
@@ -638,6 +635,7 @@ type
     CurrentIndex: integer;
     FormatedPlayListInfo: string;
     function GetCurrentFile: string;
+    procedure PlayFile;
     function GetUpdatesStyle: integer;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
@@ -1066,7 +1064,7 @@ end;
 procedure TKSPMainWindow.LoadWebURL(URL: string; ChangeTab: boolean = true);
 begin
   if ChangeTab then begin
-    Self.Notebook1.ActivePage:='Page1';
+    Self.Notebook1.ActivePage:='Welcome';
     SetHeaderControlImage(0);
     PagesWelcome.ActivePage:=TabSheet3;
   end;
@@ -1359,7 +1357,7 @@ var
     RepeatType:=rtNone;
     LastMediaLibTag:=-1;
     ApplicationVisible:=true;
-    Notebook1.ActivePage:='Page1';
+    Notebook1.ActivePage:='Welcome';
     SetHeaderControlImage(0);
     LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
@@ -1527,6 +1525,7 @@ end;
   begin
   {$IFNDEF KSP_XMPP}
     HeaderControl1.Sections.Items[3].Visible:=false;
+    Page5.Visible:=false;
   {$ENDIF}
   end;
 {$ENDIF}
@@ -1534,6 +1533,8 @@ end;
 begin
   SetVars;
   LoadOptions;
+
+  ApplyQtStyleSheet;
 
   Player.OnPlayEnd:=@AudioOut1Done;
   Player.OnGetMeta:=@NewMetaIcecast;
@@ -2400,6 +2401,7 @@ begin
   btStop.ImageIndex:=1;
   Player.Stop;
   Player.Close;
+  Playlist.SetCPlayed(false, CurrentIndex);
 
   for i:=0 to PlayList.Count-1 do PlayList.UnSetPlayed(i);
   btPlay.ImageIndex:=3;
@@ -2479,12 +2481,6 @@ end;
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
   Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
-
-  if (not SkinSelector.ItemIndex<0) and UseSkins.Checked then
-    Self.KSPSetupStates.KSPState.SkinName:=SkinSelector.Items.Strings[SkinSelector.ItemIndex-1];
-
-  if UseSkins.Checked then
-    Self.ApplyQtStyleSheet(Self.KSPSetupStates.KSPState.SkinName);
 end;
 
 procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
@@ -2576,6 +2572,7 @@ var
     Player.Open(CurrentFile);
     PosBar.Position:=0;
     Player.Play;
+    Playlist.SetCPlayed(true, CurrentIndex);
 {$IFDEF WINDOWS}
     SHAddToRecentDocs(SHARD_PATH, pchar(CurrentFile));
 {$ENDIF}
@@ -2594,6 +2591,7 @@ begin
         end;
 
       PreviousIndex:=CurrentIndex;
+      Playlist.SetCPlayed(false, PreviousIndex);
       CurrentFile := (PlayList.GetItem(CurrentIndex))^.FileName;
 
       //if not PlayerBase.Active then PlayerBase.Active := true;
@@ -2724,6 +2722,7 @@ begin  //btPlay.Enabled := True;
 
   Player.Stop;
   Player.Close;
+  Playlist.SetCPlayed(false, CurrentIndex);
 
 
   hLog.Send('Reset display');
@@ -2921,12 +2920,12 @@ procedure TKSPMainWindow.HeaderControl1SectionClick(
   HeaderControl: TCustomHeaderControl; Section: THeaderSection);
 begin
   case Section.Index of
-    0: Notebook1.ActivePage:='Page1';
-    1: Notebook1.ActivePage:='Page2';
-    2: Notebook1.ActivePage:='Page4';
+    0: Notebook1.ActivePage:='Welcome';
+    1: Notebook1.ActivePage:='Media Library && Icecast Browser';
+    2: Notebook1.ActivePage:='Currently Played';
     3: Notebook1.ActivePage:='Page5';
-    4: Notebook1.ActivePage:='Page6';
-    5: Notebook1.ActivePage:='Page3';
+    4: Notebook1.ActivePage:='Addons';
+    5: Notebook1.ActivePage:='Setup';
   end;
   SetHeaderControlImage(Section.Index);
 end;
@@ -3438,7 +3437,7 @@ begin
   s:=lbPlaylist.Items.Strings[CurrentIndex];
 //  DeleteBookmark(s, 1, Length(SPlaying)+1);
   lbPlaylist.Items.Strings[CurrentIndex]:=s;
-
+  Playlist.SetCPlayed(false, CurrentIndex);
   if CurrentIndex >= 1 then
     CurrentIndex := CurrentIndex-1;
   CurrentFile := lbPlaylist.Items.Strings[CurrentIndex];
@@ -3453,7 +3452,7 @@ begin
   s:=lbPlaylist.Items.Strings[CurrentIndex];
 //  DeleteBookmark(s, 1, Length(SPlaying)+1);
   lbPlaylist.Items.Strings[CurrentIndex]:=s;
-
+  Playlist.SetCPlayed(false, CurrentIndex);
   if lbPlaylist.Items.Count-1 > CurrentIndex then
     CurrentIndex := CurrentIndex+1;
   CurrentFile := lbPlaylist.Items.Strings[CurrentIndex];
@@ -3927,11 +3926,6 @@ var
     ArtistPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'ArtistPls', true);
     AlbumPlsSearch.Checked:=XMLFile.ReadBool('Main window', 'AlbumPls', true);
     TitlePlsSearch.Checked:=XMLFile.ReadBool('Main window', 'TitlePls', true);
-
-    Self.KSPSetupStates.KSPState.UseSkins:=XMLFile.ReadBool('Main windows', 'SkinEnabled', false);
-    Self.KSPSetupStates.KSPState.SkinName:=XMLFile.ReadString('Main windows', 'SkinName', '');
-    UseSkins.Checked:=Self.KSPSetupStates.KSPState.UseSkins and (Self.KSPSetupStates.KSPState.SkinName<>'');
-
     StylesBox.ItemIndex:=XMLFile.ReadInteger('Main window', 'Style', 0);
     Button16Click(nil);
 
@@ -4278,12 +4272,7 @@ var
   w: widestring;
 begin
   if (style<>'') then
-{$IFDEF WINDOWS}
-    fname:=ExtractFilePath(Application.ExeName)+'data\themes\'+style+'.skin'
-{$ELSE}
-    fname:=KSP_APP_FOLDER+'data/themes/'+style+'.skin';
-{$ENDIF}
-  else
+    fname:=style else
 {$IFDEF WINDOWS}
     fname:=ExtractFilePath(Application.ExeName)+'data\default.skin';
 {$ELSE}

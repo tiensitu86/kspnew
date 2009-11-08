@@ -1,7 +1,11 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "powered by:"
+msgstr ""
+
 #: kspstrings.saddons
+msgctxt "kspstrings.saddons"
 msgid "Addons"
 msgstr ""
 
@@ -42,6 +46,7 @@ msgid "Close"
 msgstr ""
 
 #: kspstrings.scurrentlyplayed
+msgctxt "kspstrings.scurrentlyplayed"
 msgid "Currently Played"
 msgstr ""
 
@@ -249,6 +254,7 @@ msgid "Media library has been rescaned sucessfully. Now you can continue your wo
 msgstr ""
 
 #: kspstrings.ssetup
+msgctxt "kspstrings.ssetup"
 msgid "Setup"
 msgstr ""
 
@@ -1040,19 +1046,22 @@ msgid "Left Top Corner"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE1.CAPTION
-msgid "Page1"
+msgctxt "TKSPMAINWINDOW.PAGE1.CAPTION"
+msgid "Welcome"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE2.CAPTION
-msgid "Page2"
+msgid "Media Library && Icecast Browser"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE3.CAPTION
-msgid "Page3"
+msgctxt "TKSPMAINWINDOW.PAGE3.CAPTION"
+msgid "Setup"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE4.CAPTION
-msgid "Page4"
+msgctxt "TKSPMAINWINDOW.PAGE4.CAPTION"
+msgid "Currently Played"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE5.CAPTION
@@ -1060,7 +1069,8 @@ msgid "Page5"
 msgstr ""
 
 #: TKSPMAINWINDOW.PAGE6.CAPTION
-msgid "Page6"
+msgctxt "TKSPMAINWINDOW.PAGE6.CAPTION"
+msgid "Addons"
 msgstr ""
 
 #: TKSPMAINWINDOW.PANEL10.CAPTION
@@ -1225,10 +1235,6 @@ msgstr ""
 
 #: TKSPMAINWINDOW.USEOR.HINT
 msgid "Use OR in query instead of AND"
-msgstr ""
-
-#: TKSPMAINWINDOW.USESKINS.CAPTION
-msgid "Use skins"
 msgstr ""
 
 #: TKSPMAINWINDOW.VDJMENU.CAPTION
