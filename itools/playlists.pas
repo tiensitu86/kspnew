@@ -32,7 +32,7 @@ interface
 
 uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
   DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles, DOM,
-  XMLRead, FileUtil;
+  XMLRead, FileUtil, plsFrame, Controls;
 
 {This unit includes all playlist management clases and structures}
 
@@ -42,6 +42,9 @@ type
   TPLEntryInfo = class(TObject)
   public
     Entry: TPLEntry;
+    Frame: TPlaylistFrame;
+    constructor Create;
+    destructor Destroy;
   end;
 
   TPlayListSortType = (pstTrack, pstArtist, pstAlbum, pstYear, pstGenre, pstPlayCount,
@@ -51,8 +54,10 @@ type
   PPLEntry = ^TPLEntry;
 
   TPlayList = class(TList)
+  private
+    fMainPls: boolean;
   public
-    constructor Create;
+    constructor Create(isMainPlaylist: boolean = false);
     destructor Destroy; override;
     procedure Add(Entry: TPLEntry);
     procedure Insert(Index: integer; Entry: TPLEntry);
@@ -198,6 +203,19 @@ begin
 
 end;
 
+constructor TPLEntryInfo.Create;
+begin
+  inherited Create;
+  Self.Frame:=TPlayListFrame.Create(KSPMainWindow.PlsPanel);
+//  Frame.Align:=alTop;
+end;
+
+destructor TPLENtryInfo.Destroy;
+begin
+  Frame.Free;
+  inherited Destroy;
+end;
+
 procedure TPlayList.SortPlaylist(SortType: TPlayListSortType);
 begin
   case SortType of
@@ -211,9 +229,10 @@ begin
   end;
 end;
 
-constructor TPlayList.Create;
+constructor TPlayList.Create(isMainPlaylist: boolean = false);
 begin
   inherited Create;
+  fMainPls:=isMainPlaylist;
 end;
 
 {The Items should be freed here but it isn't. Doesn't matter.
@@ -277,6 +296,9 @@ begin
   T.Entry := Entry;
   T.Entry.Played := False;
 
+  if Self.fMainPls then
+    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
+
   inherited Add(T);
 end;
 
@@ -287,6 +309,8 @@ begin
   T := TPLEntryInfo.Create;
   T.Entry := Entry;
   T.Entry.Played := False;
+  if Self.fMainPls then
+    KSPMainWindow.PlsPanel.InsertControl(T.Frame);
 
   inherited Insert(Index, T);
 end;
@@ -320,7 +344,7 @@ var
   i: integer;
   p: TPLEntry;
 begin
-  Result := TPlaylist.Create;
+  Result := TPlaylist.Create(false);
   for i := 0 to Count - 1 do
   begin
     p := GetItem(i)^;
@@ -372,7 +396,7 @@ var
   i: integer;
   p: TPLEntry;
 begin
-  Result := TPlaylist.Create;
+  Result := TPlaylist.Create(false);
   for i := 0 to Count - 1 do
   begin
     p := GetItem(i)^;
@@ -387,7 +411,7 @@ var
   i, x: integer;
   p:    TPLEntry;
 begin
-  Result := TPlaylist.Create;
+  Result := TPlaylist.Create(false);
   for i := 0 to Count - 1 do
   begin
     p := GetItem(i)^;

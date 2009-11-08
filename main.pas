@@ -35,7 +35,7 @@ unit main;
 interface
 
 uses
-  LResources, InterfaceBase, Qtint, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls,
+  LResources, DefaultTranslator, Classes, SysUtils, FileUtil, Forms, Controls,
   Graphics, Dialogs, BASSPlayer, StdCtrls, ComCtrls, Playlists, KSPMessages,
   ExtCtrls, LoadPlsThread, StrUtils, CheckLst, MRNG, KSPTypes,
   ID3Mgmnt, KSPStrings, Menus, MediaFolders, BookmarksU,
@@ -154,7 +154,7 @@ type
     MenuItem40: TMenuItem;
     MenuItem41: TMenuItem;
     NetworkSetupPage: TPage;
-    Panel17: TPanel;
+    PlsPanel: TPanel;
     SD: TSaveDialog;
     UpdatesBox: TComboBox;
     UseOR: TCheckBox;
@@ -1389,7 +1389,7 @@ begin
     //SysIconDefault:=TIcon.Create;
     //SysIconDefault:=spTrayIcon1.Icon;
     //CDDatabaseForm:=TCDDatabaseForm.Create(nil);
-    KSPMainWindow.PlayList:=TPlayList.Create;
+    KSPMainWindow.PlayList:=TPlayList.Create(true);
     SuggestionList:=TPlayList.Create;
     SuggFindHelpPlaylist:=TPlaylist.Create;
     FindApproxVals:=TPlayList.Create;
@@ -2121,9 +2121,9 @@ procedure TKSPMainWindow.PlsViewItemClick(Sender: TObject);
 begin
   PlsViewItem.Checked:=not PlsViewItem.Checked;
   if PlsViewItem.Checked then
-    Panel17.Width:=Self.KSPSetupStates.KSPState.PlaylistWidth  else begin
-    Self.KSPSetupStates.KSPState.PlaylistWidth:=Panel17.Width;
-    Panel17.Width:=0;
+    PlsPanel.Width:=Self.KSPSetupStates.KSPState.PlaylistWidth  else begin
+    Self.KSPSetupStates.KSPState.PlaylistWidth:=PlsPanel.Width;
+    PlsPanel.Width:=0;
   end;
 end;
 
@@ -3911,7 +3911,7 @@ var
     claBox.ItemIndex:=Self.CloseAction;
     Self.DisableNetworkMsg:=XMLFile.ReadBool('Main window', 'DisableNetworkMsg', false);
 
-    Panel17.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
+    PlsPanel.Width:=XMLFile.ReadInteger('Main Window', 'PlsInfoBox', 300);
     KSPMainWindow.MSortType.Width:=XMLFile.ReadInteger('Main Window', 'MediaLibPanelSize', KSPMainWindow.MSortType.Width);
     KSPMainWindow.MIView.Height:=XMLFile.ReadInteger('Main Window', 'MediaLibLibHeaderPanelHeight', KSPMainWindow.MIView.Height);
 
@@ -4086,8 +4086,8 @@ var
     XMLFile.WriteBool('Main window', 'DisableNetworkMsg', Self.DisableNetworkMsg);
 
     XMLFile.WriteInteger('Main window', 'Volume', TB.Position);
-    if Panel17.Width>0 then
-      XMLFile.WriteInteger('Main Window', 'PlsInfoBox', Panel17.Width) else
+    if PlsPanel.Width>0 then
+      XMLFile.WriteInteger('Main Window', 'PlsInfoBox', PlsPanel.Width) else
       XMLFile.WriteInteger('Main Window', 'PlsInfoBox', KSPSetupStates.KSPState.PlaylistWidth);
     XMLFile.WriteInteger('Main Window', 'MediaLibPanelSize', MSortType.Width);
 
@@ -4282,7 +4282,7 @@ begin
   s:=TStringList.Create;
   s.LoadFromFile(fname);
   w:=s.Text;
-  QApplication_setStyleSheet(TQtWidgetSet(WidgetSet).GetQtApplicationHandle, @w);
+  QApplication_setStyleSheet(QApplicationH(QCoreApplication_instance), @w);
   s.Free;
 end;
 

@@ -207,7 +207,7 @@ function TAppDBConnection.CloseDatabase: integer;
 begin
   Result := 0;
   hLog.Send('Closing database');
-  try
+//  try
     Database.SQLiteConnection.CloseDataSets;
 
     Database.SQLQuery.Close;
@@ -216,13 +216,13 @@ begin
     Database.SQLiteConnection.Close;
     Database.SQLiteConnection.Free;
 
-  except
+{  except
     on Ex: Exception do
     begin
       Result := -1;
       hLog.Send('ERROR: ' + Ex.Message);
     end;
-  end;
+  end;}
 end;
 
 function TAppDBConnection.SetupDatabase: integer;
