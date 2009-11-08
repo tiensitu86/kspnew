@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="7"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -55,7 +55,7 @@
         <UnitName Value="ksp"/>
         <CursorPos X="17" Y="87"/>
         <TopLine Value="57"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -66,13 +66,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <ComponentState Value="1"/>
-        <CursorPos X="26" Y="2583"/>
-        <TopLine Value="2568"/>
+        <CursorPos X="3" Y="1530"/>
+        <TopLine Value="1516"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
-          <Item0 X="1" Y="3931" ID="0"/>
+          <Item0 X="1" Y="3934" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -189,9 +188,9 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="43" Y="333"/>
-        <TopLine Value="314"/>
-        <EditorIndex Value="6"/>
+        <CursorPos X="32" Y="316"/>
+        <TopLine Value="308"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -240,7 +239,7 @@
         <UnitName Value="KSPConstsVars"/>
         <CursorPos X="41" Y="49"/>
         <TopLine Value="32"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -260,7 +259,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="36" Y="80"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -307,7 +306,7 @@
         <UnitName Value="profilefunc"/>
         <CursorPos X="20" Y="43"/>
         <TopLine Value="25"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -417,7 +416,7 @@
         <UnitName Value="app_db_utils"/>
         <CursorPos X="115" Y="210"/>
         <TopLine Value="203"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -514,9 +513,11 @@
       </Unit50>
       <Unit51>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="12" Y="4"/>
+        <CursorPos X="3" Y="5"/>
         <TopLine Value="1"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="25"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
@@ -1234,9 +1235,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="plsFrame"/>
-        <CursorPos X="13" Y="44"/>
-        <TopLine Value="32"/>
-        <EditorIndex Value="8"/>
+        <CursorPos X="24" Y="44"/>
+        <TopLine Value="35"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1246,7 +1247,7 @@
         <UnitName Value="Graphics"/>
         <CursorPos X="28" Y="59"/>
         <TopLine Value="42"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit146>
@@ -1254,123 +1255,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="4285" Column="35" TopLine="4265"/>
+        <Caret Line="1528" Column="26" TopLine="1504"/>
       </Position1>
       <Position2>
-        <Filename Value="itools/app_db_utils.pas"/>
-        <Caret Line="223" Column="22" TopLine="206"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2920" Column="19" TopLine="2915"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="841" Column="35" TopLine="819"/>
+        <Caret Line="1067" Column="40" TopLine="1052"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="839" Column="35" TopLine="819"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="45" Column="17" TopLine="37"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="1589" Column="8" TopLine="1558"/>
+        <Caret Line="1398" Column="24" TopLine="1389"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="1528" Column="26" TopLine="1504"/>
+        <Caret Line="3513" Column="21" TopLine="3495"/>
       </Position6>
       <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="2920" Column="19" TopLine="2915"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="289" Column="13" TopLine="287"/>
       </Position7>
       <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="1067" Column="40" TopLine="1052"/>
+        <Filename Value="ksp.lpr"/>
+        <Caret Line="44" Column="24" TopLine="24"/>
       </Position8>
       <Position9>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="45" Column="17" TopLine="37"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="22" Column="61" TopLine="1"/>
       </Position9>
       <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="1398" Column="24" TopLine="1389"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="31" Column="19" TopLine="10"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="3513" Column="21" TopLine="3495"/>
+        <Caret Line="3504" Column="15" TopLine="3495"/>
       </Position11>
       <Position12>
         <Filename Value="itools/playlists.pas"/>
-        <Caret Line="289" Column="13" TopLine="287"/>
+        <Caret Line="233" Column="29" TopLine="205"/>
       </Position12>
       <Position13>
-        <Filename Value="ksp.lpr"/>
-        <Caret Line="44" Column="24" TopLine="24"/>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="60" Column="22" TopLine="43"/>
       </Position13>
       <Position14>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="22" Column="61" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2578" Column="24" TopLine="2561"/>
       </Position14>
       <Position15>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="31" Column="19" TopLine="10"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2724" Column="3" TopLine="2700"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="3504" Column="15" TopLine="3495"/>
+        <Caret Line="2404" Column="44" TopLine="2391"/>
       </Position16>
       <Position17>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="233" Column="29" TopLine="205"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="3452" Column="3" TopLine="3448"/>
       </Position17>
       <Position18>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="60" Column="22" TopLine="43"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2396" Column="3" TopLine="2391"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="2578" Column="24" TopLine="2561"/>
+        <Caret Line="3455" Column="44" TopLine="3448"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="2724" Column="3" TopLine="2700"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="45" Column="26" TopLine="11"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="2404" Column="44" TopLine="2391"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="34" Column="44" TopLine="17"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="3452" Column="3" TopLine="3448"/>
+        <Filename Value="C:/lazarus/lcl/graphics.pp"/>
+        <Caret Line="555" Column="28" TopLine="538"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="2396" Column="3" TopLine="2391"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="5" Column="72" TopLine="1"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="3455" Column="44" TopLine="3448"/>
+        <Caret Line="3440" Column="12" TopLine="3433"/>
       </Position24>
       <Position25>
         <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="45" Column="26" TopLine="11"/>
+        <Caret Line="35" Column="22" TopLine="17"/>
       </Position25>
       <Position26>
         <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="34" Column="44" TopLine="17"/>
+        <Caret Line="44" Column="13" TopLine="32"/>
       </Position26>
       <Position27>
-        <Filename Value="C:/lazarus/lcl/graphics.pp"/>
-        <Caret Line="555" Column="28" TopLine="538"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="45" Column="13" TopLine="32"/>
       </Position27>
       <Position28>
         <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="5" Column="72" TopLine="1"/>
+        <Caret Line="46" Column="13" TopLine="32"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="3440" Column="12" TopLine="3433"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="47" Column="13" TopLine="32"/>
       </Position29>
       <Position30>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="35" Column="22" TopLine="17"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="33" Column="13" TopLine="13"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

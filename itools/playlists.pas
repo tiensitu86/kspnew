@@ -314,9 +314,11 @@ begin
   inherited Add(T);
 
   if Self.fMainPls then begin
+{$IFDEF KSP_PLAYLIST}
     KSPMainWindow.PlsPanel.InsertControl(T.Frame);
     T.Frame.SetTrackInfo(Entry, Count-1);
     T.Frame.Align:=alTop;
+{$ENDIF}
   end;
 
 
@@ -333,9 +335,11 @@ begin
   inherited Insert(Index, T);
 
   if Self.fMainPls then begin
+{$IFDEF KSP_PLAYLIST}
     KSPMainWindow.PlsPanel.InsertControl(T.Frame);
     T.Frame.SetTrackInfo(Entry, Index);
     T.Frame.Align:=alTop;
+{$ENDIF}
   end;
 
 end;

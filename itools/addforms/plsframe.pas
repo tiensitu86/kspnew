@@ -13,6 +13,9 @@ type
 
   TPlaylistFrame = class(TFrame)
     ItemName: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     procedure FrameDblClick(Sender: TObject);
     procedure ItemNameClick(Sender: TObject);
   private
@@ -37,7 +40,7 @@ end;
 
 procedure TPlaylistFrame.ItemNameClick(Sender: TObject);
 begin
-  if Height=18 then Height:=60 else Height:=18;
+  if Height=18 then Height:=95 else Height:=18;
 end;
 
 procedure TPlaylistFrame.FrameDblClick(Sender: TObject);

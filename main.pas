@@ -1527,6 +1527,9 @@ end;
     HeaderControl1.Sections.Items[3].Visible:=false;
     Page5.Visible:=false;
   {$ENDIF}
+  {$IFNDEF KSP_PLAYLIST}
+    lbPlaylist.Visible:=true;
+  {$ENDIF}
   end;
 {$ENDIF}
 
