@@ -153,7 +153,7 @@ begin
   KSPMainWindow.WaitForB := 0;
   AllSongs.CompactLib;//(2, s);
 
-  KSPMainWindow.TabSheet1.Visible := ItemsNo > 0;
+  KSPMainWindow.HeaderControl1.Sections.Items[1].Visible:=AllSongs.ItemsCount > 0;
 
   if not ForceRescan then
   begin

@@ -81,6 +81,7 @@ type
     Button16: TButton;
     Button17: TButton;
     Button18: TButton;
+    MenuItem67: TMenuItem;
     OnlineLyricButton: TButton;
     IMAddress1: TEdit;
     MenuItem59: TMenuItem;
@@ -300,10 +301,8 @@ type
     OpenFileAction: TAction;
     ActionList1: TActionList;
     Button4: TButton;
-    IMAddress: TEdit;
     History: TPanel;
     Image1: TImage;
-    Image2: TImage;
     MenuImages: TImageList;
     ImageList2: TImageList;
     MainMenu1: TMainMenu;
@@ -317,19 +316,12 @@ type
     MenuItem18: TMenuItem;
     PluginsList: TCheckListBox;
     PluginsSetupPage: TPage;
-    Panel6: TPanel;
-    IMProgress: TProgressBar;
     Panel8: TPanel;
     RenameBookmark: TButton;
     Savewholeplaylistasbookmark1: TMenuItem;
     N2: TMenuItem;
-    Panel7: TPanel;
     SetupBook: TNotebook;
     SetupTreeView: TTreeView;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
     Splitter4: TSplitter;
     TabSheet2: TTabSheet;
     DownloadTimer: TTimer;
@@ -340,7 +332,6 @@ type
     RepeatButton: TButton;
     HeaderControl1: THeaderControl;
     AppVersion: TLabel;
-    LibPages: TPageControl;
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
@@ -375,10 +366,8 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
-    TabSheet1: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
     TB: TTrackBar;
     NotificationTimer: TTimer;
     TotalTimeLabel: TLabel;
@@ -407,6 +396,7 @@ type
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure MenuItem67Click(Sender: TObject);
     procedure OnlineLyricButtonClick(Sender: TObject);
     procedure lwikiaPanelResize(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
@@ -632,13 +622,13 @@ type
     Seeking: boolean;
     MediaSongs: TPlayList;
 {$IFDEF KSP_USE_QT}
-    WebView: TWebView;
+//    WebView: TWebView;
     MainWebView: TWebView;
     HistoryWebView: TWebView;
     Lyrics: TWebView;
     LWikiaView: TWebView;
 {$ELSE}
-    WebView: TGeckoBrowser;
+//    WebView: TGeckoBrowser;
     MainWebView: TGeckoBrowser;
     HistoryWebView: TGeckoBrowser;
 {$ENDIF}
@@ -664,7 +654,6 @@ type
 {$IFDEF KSP_USE_QT}
     procedure ICLinkClicked(Value: QUrlH); cdecl;
 {$ENDIF}
-    procedure IMProgressChange(progress: Integer); cdecl;
     procedure MWProgressChange(progress: Integer); cdecl;
     procedure btnCloseNotification; cdecl;
     procedure ShowAlert(NotTitle, NotText: UTF8String; Preview: boolean = false);
@@ -1364,7 +1353,6 @@ var
     if FileExists(Pic) then begin
       Image1.Picture.LoadFromFile(Pic);
       Image3.Picture.LoadFromFile(Pic);
-      Image2.Picture.LoadFromFile(Pic);
     end;
 
 {$IFDEF WINDOWS}
@@ -1394,13 +1382,14 @@ var
     ApplicationVisible:=true;
     Notebook1.ActivePage:='Welcome';
     SetHeaderControlImage(0);
-    LibPages.ActivePage:=TabSheet1;
     PagesWelcome.ActivePage:=TabSheet3;
     SetupBook.ActivePage:='DefaultSetupPage';
     OSName:=GetOSVersion;
     hLog.Send('Operating system: '+OSName);
     AudioControls.ActivePage:=Basic;
     WaitForB:=0;
+
+    Application.ShowHint:=true;
 
     lwikiaPanel.Visible:=false;
     lwikiaPanel.TabVisible:=false;
@@ -1976,7 +1965,7 @@ procedure TKSPMainWindow.IMAddressKeyPress(Sender: TObject; var Key: char);
 begin
 {$IFDEF KSP_USE_QT}
   if Key=#13 then begin
-    if (Sender=IMAddress) then WebView.LoadURL(IMAddress.Text) else
+    //if (Sender=IMAddress) then WebView.LoadURL(IMAddress.Text) else
     MainWebView.LoadURL(IMAddress1.Text);
   end;
 {$ENDIF}
@@ -2311,7 +2300,7 @@ end;
 procedure TKSPMainWindow.Panel7Resize(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  WebView.SetDimensions(Panel7.Width, Panel7.Height);
+  //WebView.SetDimensions(Panel7.Width, Panel7.Height);
 {$ENDIF}
 end;
 
@@ -2477,11 +2466,6 @@ begin
     lbPlaylist.Items.Strings[CurrentIndex]:=s;
   end;
 
-  lwikiaPanel.Visible:=false;
-  lwikiaPanel.TabVisible:=false;
-  LyricsControl.ActivePage:=TabSheet6;
-  OnlineLyricButton.Enabled:=false;
-
   lbPlayList.Refresh;
 end;
 
@@ -2549,6 +2533,11 @@ end;
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
   Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
+end;
+
+procedure TKSPMainWindow.MenuItem67Click(Sender: TObject);
+begin
+  Self.LoadWebURL('http://dir.xiph.org/index.php');
 end;
 
 procedure TKSPMainWindow.OnlineLyricButtonClick(Sender: TObject);
@@ -3391,29 +3380,33 @@ end;
 procedure TKSPMainWindow.SpeedButton1Click(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  if (Notebook1.ActivePage='Page2') then WebView.LoadURL(IMAddress.Text)
-    else MainWebView.LoadURL(IMAddress1.Text);
+  //if (Notebook1.ActivePage='Page2') then WebView.LoadURL(IMAddress.Text)
+    //else
+    MainWebView.LoadURL(IMAddress1.Text);
 {$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton2Click(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  if (Sender=SpeedButton2) then WebView.GoBack else MainWebView.GoBack;
+  //if (Sender=SpeedButton2) then WebView.GoBack else
+  MainWebView.GoBack;
 {$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton3Click(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  if (Sender=SpeedButton3) then WebView.GoForward else MainWebView.GoForward;
+  //if (Sender=SpeedButton3) then WebView.GoForward else
+  MainWebView.GoForward;
 {$ENDIF}
 end;
 
 procedure TKSPMainWindow.SpeedButton4Click(Sender: TObject);
 begin
 {$IFDEF KSP_USE_QT}
-  if (Sender=SpeedButton4) then webView.Reload else MainWebView.Reload;
+  //if (Sender=SpeedButton4) then webView.Reload else
+  MainWebView.Reload;
 {$ENDIF}
 end;
 
@@ -3571,6 +3564,10 @@ procedure TKSPMainWindow.ResetDisplay;
 begin
   lFilename.Caption := '';//MinimizeName(Format(SFile+'%s',[ExtractFileName(CurrentTitle)]), lFilename.Canvas, lFilename.Width);
   lLeft.Caption:='';
+  lwikiaPanel.Visible:=false;
+  lwikiaPanel.TabVisible:=false;
+  LyricsControl.ActivePage:=TabSheet6;
+  OnlineLyricButton.Enabled:=false;
 
   {if (CurrentIndex<PlayItems.Count)
   and (CurrentIndex>=0) then}
@@ -4411,8 +4408,8 @@ begin
   LoadCookies;
   QNetworkAccessManager_setCookieJar(QNetworkAccessManager,QCookieJar);
 
-  WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', QNetworkAccessManager);
-  WebView.SetDimensions(Panel7.Width, Panel7.Height);
+  //WebView:=TWebView.Create(KSPMainWindow.Panel7, 'http://dir.xiph.org/index.php', QNetworkAccessManager);
+  //WebView.SetDimensions(Panel7.Width, Panel7.Height);
   GetKSPVersion3(s1, s2, s3, s4);
   MainWebView:=TWebView.Create(Self.MainWeb, Format(KSPHost2, [s1, s2, s3, s4]), QNetworkAccessManager);
   MainWebView.SetDimensions(MainWeb.Width, MainWeb.Height);
@@ -4436,17 +4433,11 @@ begin
   LWikiaView.SetDimensions(Self.lwikiaPanel.Width, Self.lwikiaPanel.Height);
 
   //QWebView_linkClicked_Event(Method):=@ICLinkClicked;
-  WebViewHook:=QWebView_hook_create(Webview.Handle);
-  QWebView_hook_hook_linkClicked(WebViewHook,@ICLinkClicked);
+  //WebViewHook:=QWebView_hook_create(Webview.Handle);
+  //QWebView_hook_hook_linkClicked(WebViewHook,@ICLinkClicked);
 
   WebViewHook:=QWebView_hook_create(MainWebView.Handle);
   QWebView_hook_hook_linkClicked(WebViewHook,@ICLinkClicked);
-
-  //QWebView_loadProgress_Event(Method):=@IMProgressChange;
-  WebViewHook:=QWebView_hook_create(Webview.Handle);
-  QWebView_hook_hook_loadProgress(WebViewHook,@IMProgressChange);
-
-  QWebPage_setLinkDelegationPolicy(QWebView_Page(WebView.Handle),QWebPageDelegateExternalLinks);
 end;
 {$ELSE}
 begin
@@ -4531,7 +4522,7 @@ begin
     Self.ClearPlayList;
     LoadPls(s2);
     sl.Free;
-  end else WebView.LoadURL(URL);
+  end else MainWebView.LoadURL(URL);
 
 //  ShowMessage(URL);
 //  Self.PerformFileOpen();
@@ -4562,12 +4553,6 @@ begin
  //if uri<>'http://www.di.fm/mp3/discohouse.pls' then GeckoBrowser1.Stop;
 end;
 {$ENDIF}
-
-procedure TKSPMainWindow.IMProgressChange(progress: Integer); cdecl;
-begin
-  IMProgress.Position:=Progress;
-  IMprogress.Visible:=Progress<>100;
-end;
 
 procedure TKSPMainWindow.MWProgressChange(progress: Integer); cdecl;
 begin

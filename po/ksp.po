@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "powered by:"
-msgstr ""
-
 #: kspstrings.saddons
 msgctxt "kspstrings.saddons"
 msgid "Addons"
@@ -1045,6 +1042,10 @@ msgctxt "TKSPMAINWINDOW.MENUITEM66.CAPTION"
 msgid "Title"
 msgstr ""
 
+#: TKSPMAINWINDOW.MENUITEM67.CAPTION
+msgid "Show Icecast Directory"
+msgstr ""
+
 #: TKSPMAINWINDOW.MENUITEM8.CAPTION
 msgid "Sort Playlist"
 msgstr ""
@@ -1185,11 +1186,6 @@ msgctxt "TKSPMAINWINDOW.SHUFFLEITEM.CAPTION"
 msgid "Shuffle"
 msgstr ""
 
-#: TKSPMAINWINDOW.SPEEDBUTTON1.CAPTION
-msgctxt "TKSPMAINWINDOW.SPEEDBUTTON1.CAPTION"
-msgid "GO"
-msgstr ""
-
 #: TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION
 msgctxt "TKSPMAINWINDOW.SPEEDBUTTON5.CAPTION"
 msgid "GO"
@@ -1197,10 +1193,6 @@ msgstr ""
 
 #: TKSPMAINWINDOW.SYSTEMSETUPPAGE.CAPTION
 msgid "SystemSetupPage"
-msgstr ""
-
-#: TKSPMAINWINDOW.TABSHEET1.CAPTION
-msgid "Media"
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET2.CAPTION
@@ -1214,11 +1206,6 @@ msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET4.CAPTION
 msgid "About..."
-msgstr ""
-
-#: TKSPMAINWINDOW.TABSHEET5.CAPTION
-msgctxt "TKSPMAINWINDOW.TABSHEET5.CAPTION"
-msgid "Internet Media"
 msgstr ""
 
 #: TKSPMAINWINDOW.TABSHEET6.CAPTION

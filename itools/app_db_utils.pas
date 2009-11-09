@@ -123,6 +123,7 @@ type
     function ReadLyrics(IM: integer): WideString;
     procedure DeleteLyrics(IM: integer);
     function GetFavList(FileName: string): TFavouriteList;
+    function ItemsCount: integer;
   end;
 
 var
@@ -1024,6 +1025,13 @@ begin
   except
     Result := nil;
   end;
+end;
+
+function TAppDBConnection.ItemsCount: integer;
+begin
+  Self.OpenQuery('SELECT * FROM meta');
+  Result:=Self.ReturnRecordsCount;
+  Self.CloseQuery;
 end;
 
 constructor TFavouriteList.Create;
