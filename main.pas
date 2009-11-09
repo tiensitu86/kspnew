@@ -81,6 +81,7 @@ type
     Button16: TButton;
     Button17: TButton;
     Button18: TButton;
+    Button19: TButton;
     IMAddress1: TEdit;
     MenuItem59: TMenuItem;
     MenuItem60: TMenuItem;
@@ -405,6 +406,7 @@ type
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure Button19Click(Sender: TObject);
     procedure lwikiaPanelResize(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
     procedure MLibSearchLikeButtonClick(Sender: TObject);
@@ -1396,6 +1398,10 @@ var
     hLog.Send('Operating system: '+OSName);
     AudioControls.ActivePage:=Basic;
     WaitForB:=0;
+
+    lwikiaPanel.Visible:=false;
+    lwikiaPanel.TabVisible:=false;
+    LyricsControl.ActivePage:=TabSheet6;
 
 {$IFDEF KSP_XMPP}
     Jabber:=TXmpp.Create;
@@ -2447,6 +2453,10 @@ begin
     lbPlaylist.Items.Strings[CurrentIndex]:=s;
   end;
 
+  lwikiaPanel.Visible:=false;
+  lwikiaPanel.TabVisible:=false;
+  LyricsControl.ActivePage:=TabSheet6;
+
   lbPlayList.Refresh;
 end;
 
@@ -2514,6 +2524,16 @@ end;
 procedure TKSPMainWindow.Button16Click(Sender: TObject);
 begin
   Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
+end;
+
+procedure TKSPMainWindow.Button19Click(Sender: TObject);
+begin
+  lwikiaPanel.Visible:=true;
+  lwikiaPanel.TabVisible:=true;
+  LyricsControl.ActivePage:=lwikiaPanel;
+  if not Self.OfflineMode then begin
+    LWikiaView.LoadURL(LWIKIA_MAIN+ReplaceStr(Playlist.GetItem(CurrentIndex)^.Tag.Artist, ' ', '_')+':'+ReplaceStr(Playlist.GetItem(CurrentIndex)^.Tag.Title, ' ', '_'));
+  end;
 end;
 
 procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
@@ -2694,9 +2714,8 @@ begin
         hLog.Send('Lyrics loaded...');
       end;
 
-      if not Self.OfflineMode then begin
-        LWikiaView.LoadURL(LWIKIA_MAIN+ReplaceStr(p^.Tag.Artist, ' ', '_')+':'+ReplaceStr(p^.Tag.Title, ' ', '_'));
-      end;
+      lwikiaPanel.Visible:=false;
+      LyricsControl.ActivePage:=TabSheet6;
 {$ENDIF}
 
       Self.TotalPlayCount:=Self.TotalPlayCount+1;

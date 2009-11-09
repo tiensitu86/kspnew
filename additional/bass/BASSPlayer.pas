@@ -688,8 +688,7 @@ type
     procedure DownloadedA(Data: PtrInt);
     procedure DownProcA(Data: PtrInt);
     procedure GetMetaA(Data: PtrInt);
-    function GetCDDrives: string;
-    function IsCDDrive(Drive: char; var VolumeName: string): bool;
+    function GetCDDrives: TStringList;
 
     property MixerReady: boolean Read FMixerReady;        // * New at Ver 2.00
     //  Indicates whether BASSmix is ready to operation.
@@ -3603,47 +3602,20 @@ begin
     FOnGetMeta(Self, ansistring(PTitle));
 end;
 
-function TBASSPlayer.GetCDDrives: string;
+function TBASSPlayer.GetCDDrives: TStringList;
 var
   str: string;
   i: integer;
   c: char;
 begin
-  Result:='';
+  Result:=TStringList.Create;
   hLog.Send('Found drives:');
-  for c:='A' to 'Z' do
-    if IsCDDrive(c, str) then begin
-      hLog.Send('Drive '+c+': '+str);
-      Result:=Result+c;
+  for i:=0 to MAXCDDRIVES-1 do
+    if CDDriveList[i]<>'' then begin
+      hLog.Send(CDDriveList[i]);
+      Result.Add(CDDriveList[i]);
     end;
 end;
-
-function TBASSPlayer.IsCDDrive(Drive: char; var VolumeName: string): bool;
-{$IFDEF WINDOWS}
-var
-  DrivePath:  string;
-  MaximumComponentLength: DWORD;
-  FileSystemFlags: DWORD;
-  vname: pchar;
-begin
-  Result    := False;
-  DrivePath := Drive + ':\';
-  if GetDriveType(PChar(DrivePath)) = DRIVE_CDROM then
-    begin;
-      //SetLength(vname, 64);
-      GetVolumeInformation(PChar(DrivePath),
-        vname, 64, nil,
-        MaximumComponentLength,
-        FileSystemFlags, nil, 0);
-      VolumeName:=vname;
-      Result:=true;
-    end;
-end;
-{$ELSE}
-begin
-
-end;
-{$ENDIF}
 
 {$HINTS OFF}
 procedure TBASSPlayer.DownProcA(Data: PtrInt);

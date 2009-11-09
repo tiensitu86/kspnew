@@ -572,6 +572,10 @@ msgctxt "TKSPMAINWINDOW.BUTTON18.CAPTION"
 msgid "Equalizer"
 msgstr ""
 
+#: TKSPMAINWINDOW.BUTTON19.CAPTION
+msgid "Get Lyrics Online"
+msgstr ""
+
 #: TKSPMAINWINDOW.BUTTON2.CAPTION
 msgid "Save"
 msgstr ""
