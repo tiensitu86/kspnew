@@ -50,13 +50,15 @@ type
   TWebView = class(TObject)
   private
     QWebPage             : QLCLWebPageH;
+    fUrl : QUrlH;
+    fEditable: boolean;
+    fParent: TWinControl;
     NetworkAccessManager : QNetworkAccessManagerH;
     procedure UserAgentForUrl(aUrl:QUrlH;Agent:PWideString); cdecl;
   public
 
-    Handle : QWebViewH;
+    Handle : QLCLWebViewH;
     Settings : QWebSettingsH;
-    fUrl : QUrlH;
     pURL: string;
     procedure SetDimensions(x, y: integer);
     procedure SetPosition(x, y: integer);
@@ -803,8 +805,10 @@ constructor TWebView.Create(Parent : TWinControl; URL: string;
 var
   W : WideString;
 begin
-  Handle := QWebView_create(L2Qt(Parent));
+  Handle := QLCLWebView_create(L2Qt(Parent));
   QWebPage:=QLCLWebPage_create(TQtWidget(Parent).Widget);
+  fEditable:=SetEditable;
+  fParent:=Parent;
 
   QWebView_setPage(Handle,QWebPage);
   QWebPage_setContentEditable(QWebPage, SetEditable);
@@ -816,14 +820,15 @@ begin
   Settings:=QWebPage_settings(QWebPage);
 
   QWebSettings_setAttribute(Settings,QWebSettingsJavascriptEnabled,true);
-  QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,true);
+  QWebSettings_setAttribute(Settings,QWebSettingsPluginsEnabled,false);
   QWebSettings_setAttribute(Settings,QWebSettingsPrivateBrowsingEnabled,false);
+  QWebSettings_setAttribute(Settings,QWebSettingsDeveloperExtrasEnabled,false);
   QWebSettings_setAttribute(Settings,QWebSettingsJavascriptCanOpenWindows,true);
 
   w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
   //QWebView_load(Handle,fUrl);
-  QWebView_load(Handle,fUrl);
+  QWebView_setUrl(Handle,fUrl);
   QWidget_resize(Handle, 500, 500);
   QUrl_Destroy(fUrl);
 
@@ -834,13 +839,24 @@ end;
 procedure TWebView.LoadURL(URL: string);
 var
   W : WideString;
+  Page: QLCLWebPageH;
 begin
   if (Pos('://', URL)=0) and (not FileExists(URL)) then
     w:='http://'+URL else
     w:=URL;
+  Page:=QLCLWebPageH(QWebView_page(Handle));
+
+  QWebPage:=QLCLWebPage_create(TQtWidget(fParent).Widget);
+
+  QWebView_setPage(Handle,QWebPage);
+  QLCLWebPage_destroy(Page);
+  QWebPage_setContentEditable(QWebPage, fEditable);
+  QWebPage_setNetworkAccessManager(QWebPage,NetworkAccessManager);
+
+  QLCLWebPage_override_userAgentForUrl(QWebPage, @UserAgentForUrl);
 
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
-  QWebView_load(Handle,fUrl);//QWebView_load(Handle,fUrl);
+  QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
   QUrl_Destroy(fUrl);
 end;
 
