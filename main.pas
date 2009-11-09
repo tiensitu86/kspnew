@@ -823,7 +823,7 @@ begin
   w:=URL;
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
   //QWebView_load(Handle,fUrl);
-  QWebView_setUrl(Handle,fUrl);
+  QWebView_load(Handle,fUrl);
   QWidget_resize(Handle, 500, 500);
   QUrl_Destroy(fUrl);
 
@@ -838,8 +838,10 @@ begin
   if (Pos('://', URL)=0) and (not FileExists(URL)) then
     w:='http://'+URL else
     w:=URL;
+
   fUrl:=QUrl_create(@w, QUrlTolerantMode);
-  QWebView_setUrl(Handle,fUrl);//QWebView_load(Handle,fUrl);
+  QWebView_load(Handle,fUrl);//QWebView_load(Handle,fUrl);
+  QUrl_Destroy(fUrl);
 end;
 
 procedure TWebView.Clear;
@@ -4306,6 +4308,8 @@ begin
     Self.DisableNetworkMsg:=MessageDlg(SNetMsgCaption, SNetMsg, mtInformation, [mbYes, mbNo], 0)=mrYes;
 
   // Web Settings
+  QWebSettings_setMaximumPagesInCache(4);
+  QWebSettings_setObjectCacheCapacities(0, 0, 0);
   QWebSettings:=QWebSettings_globalSettings;
   QWebSettings_setAttribute(QWebSettings,QWebSettingsJavascriptEnabled,true);
   QWebSettings_setAttribute(QWebSettings,QWebSettingsPluginsEnabled,true);

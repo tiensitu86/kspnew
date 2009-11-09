@@ -1,8 +1,8 @@
 LazarusResources.Add('TKSPMainWindow','FORMDATA',[
-  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3':'#1#6'Height'#3#195#2#3
-  +'Top'#3#140#0#5'Width'#3#220#4#14'AllowDropFiles'#9#7'Caption'#6#3'KSP'#12'C'
-  +'lientHeight'#3#175#2#11'ClientWidth'#3#220#4#4'Menu'#7#9'MainMenu1'#12'OnCl'
-  +'oseQuery'#7#14'FormCloseQuery'#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'#7
+  'TPF0'#14'TKSPMainWindow'#13'KSPMainWindow'#4'Left'#3#175#0#6'Height'#3#195#2
+  +#3'Top'#3#175#0#5'Width'#3#220#4#14'AllowDropFiles'#9#7'Caption'#6#3'KSP'#12
+  +'ClientHeight'#3#175#2#11'ClientWidth'#3#220#4#4'Menu'#7#9'MainMenu1'#12'OnC'
+  +'loseQuery'#7#14'FormCloseQuery'#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'#7
   +#11'FormDestroy'#10'OnDragDrop'#7#18'lbPlaylistDragDrop'#10'OnDragOver'#7#18
   +'lbPlaylistDragOver'#11'OnDropFiles'#7#13'FormDropFiles'#10'OnKeyPress'#7#12
   +'FormKeyPress'#10'OnShortCut'#7#12'FormShortCut'#6'OnShow'#7#8'FormShow'#19

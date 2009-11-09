@@ -8,7 +8,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="7"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -48,13 +48,13 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="147">
+    <Units Count="146">
       <Unit0>
         <Filename Value="ksp.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ksp"/>
         <CursorPos X="17" Y="87"/>
-        <TopLine Value="57"/>
+        <TopLine Value="54"/>
         <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -66,12 +66,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="3" Y="1530"/>
-        <TopLine Value="1516"/>
-        <EditorIndex Value="2"/>
+        <CursorPos X="41" Y="4307"/>
+        <TopLine Value="4283"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
-          <Item0 X="1" Y="3934" ID="0"/>
+          <Item0 X="1" Y="3936" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -188,8 +188,8 @@
         <Filename Value="itools/playlists.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PlayLists"/>
-        <CursorPos X="32" Y="316"/>
-        <TopLine Value="308"/>
+        <CursorPos X="31" Y="321"/>
+        <TopLine Value="313"/>
         <EditorIndex Value="7"/>
         <UsageCount Value="210"/>
         <Loaded Value="True"/>
@@ -259,7 +259,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="36" Y="80"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -513,7 +513,7 @@
       </Unit50>
       <Unit51>
         <Filename Value="ksp_version.inc"/>
-        <CursorPos X="3" Y="5"/>
+        <CursorPos X="19" Y="8"/>
         <TopLine Value="1"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="25"/>
@@ -937,7 +937,7 @@
         <UnitName Value="updates"/>
         <CursorPos X="31" Y="28"/>
         <TopLine Value="11"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="105"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit105>
       <Unit106>
@@ -954,7 +954,7 @@
         <UnitName Value="updfrm"/>
         <CursorPos X="3" Y="15"/>
         <TopLine Value="1"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="101"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit107>
       <Unit108>
@@ -1112,7 +1112,7 @@
         <UnitName Value="mplayer"/>
         <CursorPos X="3" Y="41"/>
         <TopLine Value="6"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="60"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit128>
       <Unit129>
@@ -1221,157 +1221,148 @@
         <UsageCount Value="10"/>
       </Unit143>
       <Unit144>
-        <Filename Value="C:/lazarus/lcl/interfaces/qt/qt45.pas"/>
-        <UnitName Value="qt45"/>
-        <CursorPos X="21" Y="3814"/>
-        <TopLine Value="3794"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
-      </Unit144>
-      <Unit145>
         <Filename Value="itools/addforms/plsframe.pas"/>
         <ComponentName Value="PlaylistFrame"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="plsFrame"/>
         <CursorPos X="24" Y="44"/>
-        <TopLine Value="35"/>
+        <TopLine Value="32"/>
         <EditorIndex Value="9"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
-      </Unit145>
-      <Unit146>
-        <Filename Value="C:/lazarus/lcl/graphics.pp"/>
-        <UnitName Value="Graphics"/>
-        <CursorPos X="28" Y="59"/>
-        <TopLine Value="42"/>
-        <EditorIndex Value="10"/>
+      </Unit144>
+      <Unit145>
+        <Filename Value="C:/lazarus/lcl/interfaces/qt/qt45.pas"/>
+        <UnitName Value="qt45"/>
+        <CursorPos X="48" Y="12856"/>
+        <TopLine Value="12825"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
-      </Unit146>
+      </Unit145>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="1528" Column="26" TopLine="1504"/>
-      </Position1>
-      <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="2920" Column="19" TopLine="2915"/>
-      </Position2>
-      <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="1067" Column="40" TopLine="1052"/>
-      </Position3>
-      <Position4>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="45" Column="17" TopLine="37"/>
-      </Position4>
-      <Position5>
-        <Filename Value="main.pas"/>
-        <Caret Line="1398" Column="24" TopLine="1389"/>
-      </Position5>
-      <Position6>
-        <Filename Value="main.pas"/>
-        <Caret Line="3513" Column="21" TopLine="3495"/>
-      </Position6>
-      <Position7>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="289" Column="13" TopLine="287"/>
-      </Position7>
-      <Position8>
         <Filename Value="ksp.lpr"/>
         <Caret Line="44" Column="24" TopLine="24"/>
-      </Position8>
-      <Position9>
+      </Position1>
+      <Position2>
         <Filename Value="itools/addforms/plsframe.pas"/>
         <Caret Line="22" Column="61" TopLine="1"/>
-      </Position9>
-      <Position10>
+      </Position2>
+      <Position3>
         <Filename Value="itools/addforms/plsframe.pas"/>
         <Caret Line="31" Column="19" TopLine="10"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="3504" Column="15" TopLine="3495"/>
+      </Position4>
+      <Position5>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="233" Column="29" TopLine="205"/>
+      </Position5>
+      <Position6>
+        <Filename Value="itools/playlists.pas"/>
+        <Caret Line="60" Column="22" TopLine="43"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="2578" Column="24" TopLine="2561"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="2724" Column="3" TopLine="2700"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pas"/>
+        <Caret Line="2404" Column="44" TopLine="2391"/>
+      </Position9>
+      <Position10>
+        <Filename Value="main.pas"/>
+        <Caret Line="3452" Column="3" TopLine="3448"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="3504" Column="15" TopLine="3495"/>
+        <Caret Line="2396" Column="3" TopLine="2391"/>
       </Position11>
       <Position12>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="233" Column="29" TopLine="205"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="3455" Column="44" TopLine="3448"/>
       </Position12>
       <Position13>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="60" Column="22" TopLine="43"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="45" Column="26" TopLine="11"/>
       </Position13>
       <Position14>
-        <Filename Value="main.pas"/>
-        <Caret Line="2578" Column="24" TopLine="2561"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="34" Column="44" TopLine="17"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="2724" Column="3" TopLine="2700"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="5" Column="72" TopLine="1"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="2404" Column="44" TopLine="2391"/>
+        <Caret Line="3440" Column="12" TopLine="3433"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="3452" Column="3" TopLine="3448"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="35" Column="22" TopLine="17"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="2396" Column="3" TopLine="2391"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="44" Column="13" TopLine="32"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="3455" Column="44" TopLine="3448"/>
+        <Filename Value="itools/addforms/plsframe.pas"/>
+        <Caret Line="45" Column="13" TopLine="32"/>
       </Position19>
       <Position20>
         <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="45" Column="26" TopLine="11"/>
+        <Caret Line="46" Column="13" TopLine="32"/>
       </Position20>
       <Position21>
         <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="34" Column="44" TopLine="17"/>
+        <Caret Line="47" Column="13" TopLine="32"/>
       </Position21>
       <Position22>
-        <Filename Value="C:/lazarus/lcl/graphics.pp"/>
-        <Caret Line="555" Column="28" TopLine="538"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="33" Column="13" TopLine="13"/>
       </Position22>
       <Position23>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="5" Column="72" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="801" Column="13" TopLine="798"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="3440" Column="12" TopLine="3433"/>
+        <Caret Line="4337" Column="89" TopLine="4317"/>
       </Position24>
       <Position25>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="35" Column="22" TopLine="17"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="4321" Column="32" TopLine="4301"/>
       </Position25>
       <Position26>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="44" Column="13" TopLine="32"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="822" Column="24" TopLine="806"/>
       </Position26>
       <Position27>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="45" Column="13" TopLine="32"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="826" Column="11" TopLine="803"/>
       </Position27>
       <Position28>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="46" Column="13" TopLine="32"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="807" Column="27" TopLine="800"/>
       </Position28>
       <Position29>
-        <Filename Value="itools/addforms/plsframe.pas"/>
-        <Caret Line="47" Column="13" TopLine="32"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="814" Column="18" TopLine="800"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="33" Column="13" TopLine="13"/>
+        <Caret Line="4304" Column="3" TopLine="4284"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

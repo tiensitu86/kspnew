@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 314
+  Left = 175
   Height = 707
-  Top = 140
+  Top = 175
   Width = 1244
   AllowDropFiles = True
   Caption = 'KSP'

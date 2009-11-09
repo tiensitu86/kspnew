@@ -26,6 +26,8 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
+{$I ksp_version.inc}
+
 unit PlayLists;
 
 interface
@@ -316,6 +318,7 @@ begin
   if Self.fMainPls then begin
 {$IFDEF KSP_PLAYLIST}
     KSPMainWindow.PlsPanel.InsertControl(T.Frame);
+    T.Frame.TabOrder:=Count-1;
     T.Frame.SetTrackInfo(Entry, Count-1);
     T.Frame.Align:=alTop;
 {$ENDIF}
@@ -336,6 +339,7 @@ begin
 
   if Self.fMainPls then begin
 {$IFDEF KSP_PLAYLIST}
+    T.Frame.TabOrder:=Index;
     KSPMainWindow.PlsPanel.InsertControl(T.Frame);
     T.Frame.SetTrackInfo(Entry, Index);
     T.Frame.Align:=alTop;
