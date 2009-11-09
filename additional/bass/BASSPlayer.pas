@@ -650,6 +650,7 @@ type
     // Checks if the URL is a playable stream source.
     // Return value : True on success, False on failure.
     function GetTrackList(Drive: Cardinal): TStringList;
+    function GetTrackCount(Drive: Cardinal): integer;
 
     property IsNetStream: boolean Read NetStream;
     //  Indicates whether the opened stream is a stream file from internet.
@@ -2703,6 +2704,12 @@ begin
   Result := OpenURL(URL, StreamInfo, SupportedBy, False, True);
 end;
 
+function TBASSPlayer.GetTrackCount(Drive: Cardinal): integer;
+begin
+  Result := BASS_CD_GetTracks(Drive);
+  BASS_CD_Release(Drive);
+end;
+
 function TBASSPlayer.GetTrackList(Drive: Cardinal): TStringList;
 var
 //  vol, spd: DWORD;
@@ -2764,6 +2771,8 @@ var
   ExtCode:     string;
   tmpPaused:   boolean;
   Using_BASS_AAC: boolean;
+  StreamName2, dnums, tnums: string;
+  dnum, tnum: integer;
 
   // get the file name from the name of an URL stream
   // (ex: http://.../.../file_name.mp3 -> file_name)
@@ -2871,7 +2880,20 @@ begin
         tmpChannel := 0;
       if (tmpChannel <> 0) then
         tmpChannelType := Channel_CD;
-    end
+    end else
+         if (UpperCase(copy(StreamName, 1, 6))='CDA://') then
+         begin
+            if FBASSCDReady then begin
+            StreamName2:=StreamName;
+            Delete(StreamName2, 1, 6);
+            dnums:=Copy(StreamName2, 1, Pos(',', StreamName2)-1);
+            tnums:=Copy(StreamName2, Pos(',', StreamName2)+1, Length(StreamName2));
+            dnum:=StrToInt(dnums);  tnum:=StrToInt(tnums);
+            tmpChannel := BASS_CD_StreamCreate(dnum, tnum, 0)
+          end;
+          if (tmpChannel <> 0) then
+            tmpChannelType := Channel_CD;
+         end
     else
     begin
       if IsMusicFile then

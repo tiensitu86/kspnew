@@ -1,7 +1,7 @@
 object KSPMainWindow: TKSPMainWindow
-  Left = 324
+  Left = 295
   Height = 707
-  Top = 159
+  Top = 169
   Width = 1244
   AllowDropFiles = True
   Caption = 'KSP'
@@ -2232,10 +2232,10 @@ object KSPMainWindow: TKSPMainWindow
                   TabOrder = 1
                 end
                 object OnlineLyricButton: TButton
-                  Left = 13
+                  Left = 10
                   Height = 25
                   Top = 71
-                  Width = 125
+                  Width = 128
                   Caption = 'Get Lyrics Online'
                   OnClick = OnlineLyricButtonClick
                   TabOrder = 2

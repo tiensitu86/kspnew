@@ -3,7 +3,7 @@ unit nsXRE;
 interface
 
 uses
-  nsTypes, nsXPCOM, nsInit, Forms;
+  nsTypes, nsXPCOM, nsInit;
 
 type
   PXREAppData = ^nsXREAppData;
@@ -165,7 +165,6 @@ var
   vers: TGREVersionRange;
   xpcomPath: array[0..MAX_PATH] of AnsiChar;
   lastSlash: PAnsiChar;
-  p: WideString;
 begin
 {$IFDEF MSWINDOWS}
   vers.lower := lowerVer;
@@ -177,8 +176,8 @@ begin
 //FPC port: previous call doesn't find Firefox's GRE, so just force it.
   if NS_FAILED(result) then
     begin
-    xpcomPath:=ExtractFilePath(Application.ExeName)+'xulrunner\xpcom.dll';
-    //NS_StrLCopy(xpcomPath, PWideChar(p), MAX_PATH);
+//    NS_StrLCopy(xpcomPath, 'C:\Program Files\Mozilla Firefox\xpcom.dll', MAX_PATH);
+    NS_StrLCopy(xpcomPath, PChar(ExtractFilePath(ParamStr(0)) + 'xulrunner\xpcom.dll'), MAX_PATH);
     if FileExists(xpcomPath) then
       Result := NS_OK;
     end;

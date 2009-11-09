@@ -4663,8 +4663,7 @@ procedure TKSPMainWindow.CDMenuClick(Sender: TObject);
 var
   i: integer;
 begin
-  ShowMessage(Player.GetTrackList(TMenuItem(Sender).Tag).Text);
-  for i := 0 to Player.GetTrackList(TMenuItem(Sender).Tag).Count - 1 do
+  for i := 0 to Player.GetTrackCount(TMenuItem(Sender).Tag) - 1 do
   begin
     AddCDToPlayList('cda://' + IntToStr(TMenuItem(Sender).Tag) + ',' + IntToStr(i));
   end;

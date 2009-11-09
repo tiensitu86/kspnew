@@ -37,7 +37,7 @@ unit nsInit;
 interface
 
 uses
-  nsXPCOM, nsConsts, nsTypes, nsGeckoStrings, Forms;
+  nsXPCOM, nsConsts, nsTypes, nsGeckoStrings;
 
 // XPCOM Functions
 function NS_InitXPCOM2(out servMgr: nsIServiceManager; binDir: nsIFile; appFileLocationProvider: nsIDirectoryServiceProvider): nsresult; cdecl;
@@ -1496,7 +1496,7 @@ begin
 end;
 
 {$IFDEF MSWINDOWS}
-// あるt@C汲ｪGREの必要o[W∮に達しているかを調べるB
+// あるファイルがGREの必要バージョンに達しているかを調べる。
 function CheckGeckoVersion(path: PAnsiChar; const reqVer: TGREVersion): Boolean;
 const
   BUFSIZE = 4096;
@@ -1515,7 +1515,7 @@ begin
   Result := GetFileVersionInfoA(path, 0, dwSize, @buf);
   if not Result then Exit;
 
-  // o[W∮情報の言語IDは撃ﾟ打ち
+  // バージョン情報の言語IDは決め打ち
   Result := VerQueryValueA(@buf, '\StringFileInfo\000004b0\FileVersion', Pointer(fileVer), dw);
   if not Result then Exit;
 
@@ -1701,7 +1701,7 @@ begin
     end;
   end;}
 
-  // 係Xg鰍ｩら探す
+  // レジストリから探す
   if GetLatestGreLocation(buf) then
   begin
     Result := True;
@@ -1799,8 +1799,8 @@ begin
     if GetEnvironmentVariableA('MOZILLA_FIVE_HOME', greEnv, MAX_PATH)=0 then
 //FPC port: previous calls don't find Firefox's GRE, so just force it.
       begin
-      StrPCopy(buf, ExtractFilePath(Application.ExeName)+'xulrunner\xpcom.dll');
 //      NS_StrLCopy(buf, 'C:\Program Files\Mozilla Firefox\xpcom.dll', MAX_PATH);
+      NS_StrLCopy(buf, PChar(ExtractFilePath(ParamStr(0)) + 'xulrunner\xpcom.dll'), MAX_PATH);
       if not FileExists(buf) then
         Exit;
       end

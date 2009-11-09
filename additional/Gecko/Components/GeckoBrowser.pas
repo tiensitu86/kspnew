@@ -41,7 +41,8 @@ uses
   SysUtils, Classes, Controls, nsConsts, nsXPCOM,
   nsGeckoStrings, CallbackInterfaces, nsTypes, nsXPCOMGlue, BrowserSupports,
   nsXPCOM_std19
-  {$IFDEF LCLCarbon}, CarbonPrivate {$ENDIF};
+  {$IFDEF LCLCarbon}, CarbonPrivate {$ENDIF}
+  {$IFDEF LCLCocoa}, CocoaPrivate {$ENDIF};
 
 resourcestring
   SGeckoBrowserInitError = 'Failed to initialize TGeckoBrowser.';
@@ -129,7 +130,7 @@ type
   end;
 
 
-    //TODO 2 -cTCustomGeckoBrowser: DocShell v膏eBを追加
+    //TODO 2 -cTCustomGeckoBrowser: DocShell プロパティを追加
   TCustomGeckoBrowser = class(TCustomControl,
                               IGeckoCreateWindowTarget)
   private
@@ -137,7 +138,7 @@ type
     FListeners: TCustomGeckoBrowserListener;
     FChrome: TCustomGeckoBrowserChrome;
 
-    // Cx堵
+    // イベント
     // nsIWebProgressListener
     FOnStatusChange: TGeckoBrowserStatusChange;
     FOnProgressChange: TGeckoBrowserProgressChange;
@@ -183,7 +184,6 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure LoadURI(const uri: WideString); overload;
-    procedure Stop;
     procedure LoadURI(const uri: WideString; const referer: UTF8String);
       overload;
     procedure LoadURI(const uri: WideString; const referer: WideString);
@@ -218,7 +218,7 @@ type
         read FListeners write SetListener;
 
     property WebBrowser: nsIWebBrowser //begin plus7
-        read FWebBrowser write FWebBrowser;
+        read FWebBrowser;
     property WebBrowserFind: nsIWebBrowserFind
         read GetWebBrowserFind;
     property WebBrowserPrint: nsIWebBrowserPrint
@@ -240,7 +240,7 @@ type
         read GetCanGoBack;
     property CanGoForward: Boolean
         read GetCanGoForward;
-    // Cx堵
+    // イベント
     // nsIWebBrowserChrome
     property OnStatusChange: TGeckoBrowserStatusChange
         read FOnStatusChange write FOnStatusChange;
@@ -453,12 +453,12 @@ type
     procedure SetStatus(statusType: PRUint32; const status: PWideChar); override;
     function GetWebBrowser(): nsIWebBrowser; override;
     procedure SetWebBrowser(aWebBrowser: nsIWebBrowser); override;
-    function GetChromeFlags(): PRUint32; override; safecall;
+    function GetChromeFlags(): PRUint32; override; {$IFDEF FPC} safecall; {$ENDIF}
     procedure SetChromeFlags(aChromeFlags: PRUint32); override;
     procedure DestroyBrowserWindow(); override;
     procedure SizeBrowserTo(aCX: PRInt32; aCY: PRInt32); override;
     procedure ShowAsModal(); override;
-    function IsWindowModal(): PRBool; override; safecall;
+    function IsWindowModal(): PRBool; override; {$IFDEF FPC} safecall; {$ENDIF}
     procedure ExitModalEventLoop(aStatus: nsresult); override;
     // nsIWebBrowserChromeFocus
     procedure FocusNextElement(); override;
@@ -467,11 +467,11 @@ type
     procedure SetDimensions(flags: PRUint32; x: PRInt32; y: PRInt32; cx: PRInt32; cy: PRInt32); override;
     procedure GetDimensions(flags: PRUint32; out x: PRInt32; out y: PRInt32; out cx: PRInt32; out cy: PRInt32); override;
     procedure SetFocus(); override;
-    function GetVisibility(): PRBool; override; safecall;
+    function GetVisibility(): PRBool; override; {$IFDEF FPC} safecall; {$ENDIF}
     procedure SetVisibility(aVisibility: PRBool); override;
-    function GetTitle(): PWideChar; override; safecall;
+    function GetTitle(): PWideChar; override; {$IFDEF FPC} safecall; {$ENDIF}
     procedure SetTitle(const aTitle: PWideChar); override;
-    function GetSiteWindow(): Pointer; override; safecall;
+    function GetSiteWindow(): Pointer; override; {$IFDEF FPC} safecall; {$ENDIF}
     // nsIInterfaceRequestor
     function NS_GetInterface(const uuid: TGUID; out _result): nsresult; stdcall;
     function nsIInterfaceRequestor_std19.GetInterface = NS_GetInterface;
@@ -512,11 +512,11 @@ type
   (*TGeckoBrowser = class(TCustomControl,
                         nsISHistoryListener)
   private
-    { Private 骭ｾ }
+    { Private 宣言 }
     FWebBrowser: nsIWebBrowser;
     FDocTitle: WideString;
 
-    // Cx堵
+    // イベント
     FOnNewWindow: TGeckoBrowserNewWindow;
 
     // nsISHistoryListener
@@ -531,13 +531,13 @@ type
     function GetHistoryPosition: Integer;
     function GetHistoryCount: Integer;
   protected
-    { Protected 骭ｾ }
+    { Protected 宣言 }
     // TControl
     procedure Resize; override;
 
   public
-    { Public 骭ｾ }
-    // irQ[V∮
+    { Public 宣言 }
+    // ナビゲーション
     // nsIWebNavigation
     procedure GotoIndex(aIndex: Integer);
 
@@ -545,7 +545,7 @@ type
     property HistoryPosition: Integer read GetHistoryPosition;
     property HistoryCount: Integer read GetHistoryCount;
   published
-    { Published 骭ｾ }
+    { Published 宣言 }
     // TWinControl
     property Align;
     property TabOrder;
@@ -879,9 +879,9 @@ begin
 {$IFNDEF FPC}
       browser.AddWebBrowserListener(weak, table.Entries[i].IID);
 {$ELSE}
-{$R-}
-      browser.AddWebBrowserListener(weak, table.Entries[i].IID^);
-{$R+}
+ {$IFOPT R+}{$DEFINE TURNED_RANGE_CHECK_OFF}{$R-}{$ENDIF}
+      browser.AddWebBrowserListener(weak, table.Entries[i].IID^);  //FPC Entries is only array[0..0]!
+ {$IFDEF TURNED_RANGE_CHECK_OFF}{$UNDEFINE TURNED_RANGE_CHECK_OFF}{$R+}{$ENDIF}
 {$ENDIF}
 end;
 
@@ -898,9 +898,9 @@ begin
 {$IFNDEF FPC}
       browser.RemoveWebBrowserListener(weak, table.Entries[i].IID);
 {$ELSE}
-{$R-}
+ {$IFOPT R+}{$DEFINE TURNED_RANGE_CHECK_OFF}{$R-}{$ENDIF}
       browser.RemoveWebBrowserListener(weak, table.Entries[i].IID^);
-{$R+}
+ {$IFDEF TURNED_RANGE_CHECK_OFF}{$UNDEFINE TURNED_RANGE_CHECK_OFF}{$R+}{$ENDIF}
 {$ENDIF}
 end;
 
@@ -1052,15 +1052,11 @@ begin
     baseWin := FWebBrowser as nsIBaseWindow;
 
     rc := ClientRect;
-{$IFDEF MSWINDOWS}
-    baseWin.InitWindow(Pointer(Handle),
-{$ELSE}
- {$IFDEF LCLCarbon}
-    baseWin.InitWindow(Pointer(TCarbonWindow(Handle).Window),
- {$ELSE}  //GTK1/2
-    baseWin.InitWindow(Pointer(Handle),  //Is Handle same as GTK Window?
- {$ENDIF} 
-{$ENDIF}
+    baseWin.InitWindow({$IFDEF MSWINDOWS}Pointer(Handle),{$ENDIF}
+                       {$IFDEF LCLCarbon}Pointer(TCarbonWindow(Handle).Window),{$ENDIF}
+                       {$IFDEF LCLCocoa}Pointer(TCocoaForm(Handle).MainWindowView.superview),{$ENDIF}
+                       {$IFDEF LCLGtk}Pointer(Handle),{$ENDIF}  //Is Handle same as GTK Window?
+                       {$IFDEF LCLGtk2}Pointer(Handle),{$ENDIF}  //Is Handle same as GTK Window?
                        nil,
                        rc.Left,
                        rc.Top,
@@ -1069,7 +1065,7 @@ begin
     baseWin.Create();
 
     // Register Listeners
-    //FListeners.InitListener(Self);
+    FListeners.InitListener(Self);
 
     // Show Browser
     baseWin.SetVisibility(True);
@@ -1094,23 +1090,12 @@ begin
       post := NS_NewInputStreamFromTStream(postData, True);
     if Assigned(headers) then
       head := NS_NewInputStreamFromTStream(headers, True);
-{$R-}
     nav.LoadURI(PWideChar(uri), Flags, referer, post, head);
-    //nav.LoadURI(PWideChar(uri), 0, referer, post, head);
-{$R+}
   except
     raise EGeckoBrowserNavigationError.CreateResFmt(
       PResStringRec(@SGeckoBrowserLoadURIError),
       [String(uri)]);
   end;
-end;
-
-procedure TCustomGeckoBrowser.Stop;
-var
-  nav: nsIWebNavigation;
-begin
-  nav := FWebBrowser as nsIWebNavigation;
-  nav.Stop(0);
 end;
 
 procedure TCustomGeckoBrowser.LoadURI(const uri: WideString);
@@ -1272,7 +1257,7 @@ end;
 function TGeckoBrowserChrome.GetChromeFlags
                 : PRUint32;
 begin
-  //TODO 2 -cTGeckoBrowserChrome: Chrome t碓のｵいをどうしようか
+  //TODO 2 -cTGeckoBrowserChrome: Chrome フラグの扱いをどうしようか
   Result := NS_IWEBBROWSERCHROME_CHROME_DEFAULT;
 end;
 
@@ -1283,7 +1268,7 @@ end;
 
 procedure TGeckoBrowserChrome.DestroyBrowserWindow;
 begin
-  //TODO 2 -cTGeckoBrowserChrome: TGeckoBrowserChrome.OnDestroyBrowser Cx堵の追加
+  //TODO 2 -cTGeckoBrowserChrome: TGeckoBrowserChrome.OnDestroyBrowser イベントの追加
 end;
 
 procedure TGeckoBrowserChrome.SizeBrowserTo(
@@ -1472,10 +1457,10 @@ const
 begin
   if (aStateFlags and STATE_IS_DOCUMENT)<>0 then
   begin
-    // 状態の変化はhL�堵に対してである
+    // 状態の変化はドキュメントに対してである
     if (aStateFlags and STATE_START)<>0 then
     begin
-      // hL�堵の読み込みが開始された
+      // ドキュメントの読み込みが開始された
       {$IFDEF DEBUG}
       {
       OutputDebugString('GeckoBrowser.OnDocumentBegin');
@@ -1484,7 +1469,7 @@ begin
     end else
     if (aStateFlags and STATE_STOP)<>0 then
     begin
-      // hL�堵の読み込みが完了した
+      // ドキュメントの読み込みが完了した
       {$IFDEF DEBUG}
       {
       OutputDebugString('GeckoBrowser.OnDocumentComplete');
@@ -1494,10 +1479,10 @@ begin
   end;
   if (aStateFlags and STATE_IS_NETWORK)<>0 then
   begin
-    // 状態の変化はlbg充Nに対してである
+    // 状態の変化はネットワークに対してである
     if (aStateFlags and STATE_START)<>0 then
     begin
-      // lbg充Nの転送が開始された場合
+      // ネットワークの転送が開始された場合
       {$IFDEF DEBUG}
       {
       str := NewCString;
@@ -1511,7 +1496,7 @@ begin
     end else
     if (aStateFlags and STATE_STOP)<>0 then
     begin
-      // lbg充Nの転送が終了した場合
+      // ネットワークの転送が終了した場合
       {$IFDEF DEBUG}
       {
       str := NewCString;
@@ -1605,13 +1590,14 @@ function TGeckoBrowserChrome.NS_GetInterface(const uuid: TGUID; out _result): ns
 begin
   if IsEqualGUID(uuid, nsIDOMWindow) then
   begin
-    // nsIDOMWindow を女揩ｵないと nsIWindowCreator.CreateChromeWindow でG閏になる
+    // nsIDOMWindow を処理しないと nsIWindowCreator.CreateChromeWindow でエラーになる
     Result := FBrowser.FBrowser.ContainerWindow.QueryInterface(uuid, _result);
   end else
   begin
-{$R-}
-    Result := QueryInterface(uuid, _result);
-{$R+}
+// FPC port: Result is PRUInt32, but QueryInterface returns Longint,
+//  so cast to nsresult to prevent range check error.
+//    Result := QueryInterface(uuid, _result);
+    Result := nsresult(QueryInterface(uuid, _result));
   end;
 end;
 

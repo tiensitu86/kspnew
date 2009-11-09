@@ -54,7 +54,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
   private
-    { Private 錾 }
+    { Private �錾 }
     FWebBrowser: nsIWebBrowser;
     FChromeFlags: Longword;
 
@@ -96,7 +96,7 @@ type
     procedure UpdateChrome;
     procedure ContentFinishedLoading;
   public
-    { Public 錾 }
+    { Public �錾 }
     function SafeCallException(Obj: TObject; Addr: Pointer): HResult; override;
 
     constructor CreateWithChromeFlags(AOwner: TComponent; aChromeFlags: Longword);
@@ -373,9 +373,7 @@ begin
       Result := NS_ERROR_NOT_INITIALIZED;
   end else
   begin
-{$R-}
     Result := QueryInterface(uuid, Intf);
-{$R+}
   end;
 end;
 
