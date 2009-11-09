@@ -12,7 +12,7 @@
       <TargetFileExt Value=".exe"/>
       <Icon Value="0"/>
       <UseXPManifest Value="True"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -70,6 +70,7 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
+        <ComponentState Value="1"/>
         <CursorPos X="15" Y="1062"/>
         <TopLine Value="1042"/>
         <EditorIndex Value="1"/>
@@ -85,8 +86,8 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="68" Y="2886"/>
-        <TopLine Value="2863"/>
+        <CursorPos X="28" Y="3635"/>
+        <TopLine Value="3616"/>
         <EditorIndex Value="6"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="2">
@@ -170,8 +171,8 @@
         <Filename Value="kspconstsvars.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPConstsVars"/>
-        <CursorPos X="41" Y="49"/>
-        <TopLine Value="53"/>
+        <CursorPos X="1" Y="53"/>
+        <TopLine Value="14"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -190,8 +191,8 @@
         <Filename Value="itools/dlldefs/kspfiles.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kspfiles"/>
-        <CursorPos X="36" Y="80"/>
-        <TopLine Value="64"/>
+        <CursorPos X="34" Y="45"/>
+        <TopLine Value="24"/>
         <EditorIndex Value="10"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -311,8 +312,8 @@
         <Filename Value="itools/threads/FoldersScan.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FoldersScan"/>
-        <CursorPos X="67" Y="154"/>
-        <TopLine Value="130"/>
+        <CursorPos X="23" Y="150"/>
+        <TopLine Value="121"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
@@ -349,8 +350,8 @@
         <Filename Value="itools/app_db_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="app_db_utils"/>
-        <CursorPos X="37" Y="1030"/>
-        <TopLine Value="1015"/>
+        <CursorPos X="3" Y="211"/>
+        <TopLine Value="190"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>

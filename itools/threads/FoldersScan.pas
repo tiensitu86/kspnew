@@ -77,7 +77,6 @@ begin
   Scanning := True;
 
   KSPSetStatusText(SScanning);
-  //  e.OnStatistics:=KSPMainWIndow.EasyFileSearch1Statistics;
 
   ToDate := (Entry.ScannedEver) and (not ForceRescan);
 
@@ -122,9 +121,7 @@ begin
     Index := i;
     Entry := KSPMainWindow.MediaFoldersList.GetItem(i);
     MInfo(Entry);
-    //    CreateWatch(Entry.Folder);
     KSPMainWindow.MediaFoldersList.ReplaceEntry(i, Entry);
-    //KSPMainWindow.Frame11.MediaBuild.Value:=i+1;
   end;
 end;
 
@@ -149,9 +146,8 @@ begin
 
   KSPMainWindow.SongsInLib := ItemsNo;
 
-  //s:=AllSongs.CompactLib;
   KSPMainWindow.WaitForB := 0;
-  AllSongs.CompactLib;//(2, s);
+  AllSongs.CompactLib;
 
   KSPMainWindow.HeaderControl1.Sections.Items[1].Visible:=AllSongs.ItemsCount > 0;
 
@@ -161,9 +157,6 @@ begin
   end
   else
     KSPShowMessage(SScanningDone);
-
-  //  end;
-
 end;
 
 end.

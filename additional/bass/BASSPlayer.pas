@@ -3634,7 +3634,6 @@ procedure TBASSPlayer.SetPlayEnd;
 var
   pStat: integer;
 begin
-  //  WaitCycle := 0;
   pStat := BASS_ChannelIsActive(PlayChannel);
   while pStat = BASS_ACTIVE_PLAYING do
   begin
@@ -3688,7 +3687,6 @@ end;
 {$HINTS OFF}
 procedure TBASSPlayer.DownProcA(Data: PtrInt);
 begin
-  //  tmpHTTPTag := pAnsiChar(PtrInt);
   FGetHTTPHeader := True;
 end;
 
@@ -3720,14 +3718,7 @@ begin
       TagVer := 1;
   end
   else
-                          {  if (ExtCode = '.WMA') then  // ** Tag info is obtained at opening
-                            begin
-                               TagP := BASS_ChannelGetTags(DecodeChannel, BASS_TAG_WMA);
-                               if TagP = nil then
-                                  TagVer := 0
-                                else
-                                   TagVer := 3;
-                            end else }
+
   begin
     TagP   := nil;
     TagVer := 0;
@@ -3757,7 +3748,6 @@ begin
     DecodeChannel, BASS_POS_BYTE));
   FStreamInfo.Duration := round(1000 * PlaybackSec);
   // in mili seconds
-  // end;
 
   if Assigned(FOnDownloaded) then
     FOnDownloaded(Self, FStreamInfo.Duration);

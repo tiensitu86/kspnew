@@ -50,12 +50,7 @@ const
   LWIKIA_MAIN = 'http://lyrics.wikia.com/';
 
   DefSetupFileName = 'data\setup.opt';
-  //KSPCopyrightNote = 'Copyright ® 2009 KSP Developer Team';
-  //  KSPMsgDefaultServerPort = 12007;
-  //  KSPSupportAutomatedMessage = 'This is an automated message sent from KSP';
-  //  KSPSupportAutomatedSubject = 'KSP automated bug report';
 
-  //  BackColor = clBlack;
   BlockWidth = 6;
   VLimit     = 59;
 
@@ -124,7 +119,7 @@ const
 
 var
   SaveRemFolder: string;
-  SetupFileName: string;// = 'data\setup.opt';
+  SetupFileName: string;
   HotKeyList:    TList;
   KSPDataFolder: string;
   KSPVersion2:   string;
@@ -157,8 +152,6 @@ var
   Player: TBassPlayer;
 {$ENDIF}
   OSName: string;
- //  KSPUserEmail: string;
- //  KSPUserName: string;
 
 var
   FileSupportList: TFileSupportList;

@@ -75,7 +75,7 @@ procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
 
 //FileUtils
 
-function PrepareString(str: string): string;// external 'kspfiles.dll';
+function PrepareString(str: string): string;
 
 function ConnectionEstablished: boolean;
 function DownloadURLi(const aUrl: string; var Output: TStringList): Boolean;
@@ -267,11 +267,8 @@ begin
 
     begin
       repeat
-        //if (sr.Attr and FileAttrs) = sr.Attr then
         begin
         if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
-            //ShowMessage(ExtractFileExt(sr.Name));
-
 {$IFDEF WINDOWS}
             if ((sr.Attr and faDirectory) <> sr.Attr)and
               (FileDateToDateTime(sr.Time)>DateM) then
@@ -323,11 +320,8 @@ begin
 
     begin
       repeat
-        //if (sr.Attr and FileAttrs) = sr.Attr then
         begin
          if (sr.Name<>'') and (sr.Name<>'.') and (sr.Name<>'..') then begin
-            //ShowMessage(ExtractFileExt(sr.Name));
-
 {$IFDEF WINDOWS}
             if ((sr.Attr and faDirectory) <> sr.Attr) then
                 s.Add(Path+'\'+sr.Name);
@@ -424,7 +418,7 @@ begin
   Result:=IntToStr(Version)+'.'+
     IntToStr(Major)+'.'+
     IntToStr(Minor)+'.'+
-    IntToStr(Build);//GetKSPVersion(AppPath);
+    IntToStr(Build);
 end;
 
 procedure GetKSPVersion3(var kversion, kmajor, kminor, kbuild: string);
@@ -485,14 +479,6 @@ var
    BytesRead: LongInt;
 
 begin
-   // We cannot use poWaitOnExit here since we don't
-   // know the size of the output. On Linux the size of the
-   // output pipe is 2 kB. If the output data is more, we
-   // need to read the data. This isn't possible since we are
-   // waiting. So we get a deadlock here.
-   //
-   // A temp Memorystream is used to buffer the output
-
    M := TMemoryStream.Create;
    BytesRead := 0;
 
