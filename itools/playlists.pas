@@ -34,7 +34,7 @@ interface
 
 uses Forms, SysUtils, Classes, ID3Mgmnt, Dialogs, FileSupport,
   DateUtils, kspfiles, KSPMessages, SpkXMLParser, IniFiles, DOM,
-  XMLRead, FileUtil, plsFrame, Controls;
+  XMLRead, FileUtil, {$IFDEF KSP_PLAYLIST} plsFrame,{$ENDIF} Controls;
 
 {This unit includes all playlist management clases and structures}
 
@@ -44,7 +44,9 @@ type
   TPLEntryInfo = class(TObject)
   public
     Entry: TPLEntry;
+{$IFDEF KSP_PLAYLIST}
     Frame: TPlaylistFrame;
+{$ENDIF}
     constructor Create;
     destructor Destroy;
   end;
@@ -215,13 +217,17 @@ end;
 constructor TPLEntryInfo.Create;
 begin
   inherited Create;
+{$IFDEF KSP_PLAYLIST}
   Self.Frame:=TPlayListFrame.Create(nil);
+{$ENDIF}
 //  Frame.Align:=alTop;
 end;
 
 destructor TPLENtryInfo.Destroy;
 begin
+{$IFDEF KSP_PLAYLIST}
   Frame.Free;
+{$ENDIF}
   inherited Destroy;
 end;
 
@@ -243,6 +249,7 @@ procedure TPlayList.SetCPlayed(Played: boolean; Index: integer);
 var
   T: TPLEntryInfo;
 begin
+{$IFDEF KSP_PLAYLIST}
   if Index >= Count then
     T := TPLEntryInfo(Items[Count - 1])
   else
@@ -251,6 +258,7 @@ begin
   else
     T := TPLEntryInfo(Items[Index]);
   T.Frame.SetCurrentlyPlayed(Played);
+{$ENDIF}
 end;
 
 constructor TPlayList.Create(isMainPlaylist: boolean = false);

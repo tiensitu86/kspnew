@@ -649,6 +649,7 @@ type
     function IsValidURL(URL: string): boolean;   // * New at Ver 2.01
     // Checks if the URL is a playable stream source.
     // Return value : True on success, False on failure.
+    function GetTrackList(Drive: Cardinal): TStringList;
 
     property IsNetStream: boolean Read NetStream;
     //  Indicates whether the opened stream is a stream file from internet.
@@ -2700,6 +2701,51 @@ var
   SupportedBy: TSupportedBy;
 begin
   Result := OpenURL(URL, StreamInfo, SupportedBy, False, True);
+end;
+
+function TBASSPlayer.GetTrackList(Drive: Cardinal): TStringList;
+var
+//  vol, spd: DWORD;
+  cdtext, t: PChar;
+  a, tc, l: Integer;
+  text, tag: String;
+begin
+  Result:=TStringList.Create;
+
+  tc := BASS_CD_GetTracks(Drive);
+
+  if (tc = -1) then // no CD
+    Exit;
+
+  cdtext := BASS_CD_GetID(Drive, BASS_CDID_TEXT); // get CD-TEXT
+  for a := 0 to tc - 1 do
+  begin
+    l := BASS_CD_GetTrackLength(Drive, a);
+    text := Format('Track %.2d', [a + 1]);
+    if (cdtext <> nil) then
+    begin
+      t := cdtext;
+      tag := Format('TITLE%d=', [a + 1]); // the CD-TEXT tag to look for
+      while (t <> nil) do
+      begin
+         if (Copy(t, 1, Length(tag)) = tag) then // found the track title...
+         begin
+           text := Copy(t, Length(tag)+1, Length(t) - Length(tag)); // replace "track x" with title
+           Break;
+         end;        t := t + Length(t) + 1;
+      end;
+    end;
+    if (l = -1) then
+      text := text + ' (data)'
+    else
+    begin
+      l := l div 176400;
+      text := text + Format(' (%d:%.2d)', [l div 60, l mod 60]);
+    end;
+    Result.Add(text)
+  end;
+
+  BASS_CD_Release(Drive);
 end;
 
 function TBASSPlayer.Open(StreamName: string): boolean;

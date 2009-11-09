@@ -81,7 +81,7 @@ type
     Button16: TButton;
     Button17: TButton;
     Button18: TButton;
-    Button19: TButton;
+    OnlineLyricButton: TButton;
     IMAddress1: TEdit;
     MenuItem59: TMenuItem;
     MenuItem60: TMenuItem;
@@ -407,7 +407,7 @@ type
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
-    procedure Button19Click(Sender: TObject);
+    procedure OnlineLyricButtonClick(Sender: TObject);
     procedure lwikiaPanelResize(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
     procedure MLibSearchLikeButtonClick(Sender: TObject);
@@ -534,6 +534,7 @@ type
     procedure ToolButton4Click(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
     procedure BookmarkClick(Sender: TObject);
+    procedure CDMenuClick(Sender: TObject);
     procedure SetupTreeViewClick(Sender: TObject);
     procedure eq0Change(Sender: TObject);
     procedure UpdateButtonClick(Sender: TObject);
@@ -653,6 +654,7 @@ type
     function GetUpdatesStyle: integer;
     procedure ScanFolders(Force: boolean);
     procedure AddToPlayList(fname: string; IgnoreLoadPls: boolean = false);
+    procedure AddCDToPlayList(fname: string);
     procedure RemoveFromPlayList(Index: integer);
     procedure ClearPlayList;
     procedure PlayListTotalTime;
@@ -1402,6 +1404,7 @@ var
 
     lwikiaPanel.Visible:=false;
     lwikiaPanel.TabVisible:=false;
+    OnlineLyricButton.Enabled:=false;
     LyricsControl.ActivePage:=TabSheet6;
 
 {$IFDEF KSP_XMPP}
@@ -1582,6 +1585,7 @@ end;
       m:=TMenuItem.Create(Self);
       m.Tag:=i;
       m.Caption:=s.Strings[i];
+      m.OnClick:=@CDMenuClick;
       CDAudioMenu.Add(m);
     end;
     s.Free;
@@ -2476,6 +2480,7 @@ begin
   lwikiaPanel.Visible:=false;
   lwikiaPanel.TabVisible:=false;
   LyricsControl.ActivePage:=TabSheet6;
+  OnlineLyricButton.Enabled:=false;
 
   lbPlayList.Refresh;
 end;
@@ -2546,7 +2551,7 @@ begin
   Self.ApplyQtStyle(LowerCase(StylesBox.Items.Strings[StylesBox.ItemIndex]));
 end;
 
-procedure TKSPMainWindow.Button19Click(Sender: TObject);
+procedure TKSPMainWindow.OnlineLyricButtonClick(Sender: TObject);
 begin
   lwikiaPanel.Visible:=true;
   lwikiaPanel.TabVisible:=true;
@@ -2736,6 +2741,7 @@ begin
 
       lwikiaPanel.Visible:=false;
       LyricsControl.ActivePage:=TabSheet6;
+      OnlineLyricButton.Enabled:=true;
 {$ENDIF}
 
       Self.TotalPlayCount:=Self.TotalPlayCount+1;
@@ -4651,6 +4657,34 @@ procedure TKSPMainWindow.CopyMenu(Src: TMenuItem; var Dest: TMenuItem);
 procedure TKSPMainWindow.BookmarkClick(Sender: TObject);
 begin
   Self.PerformFileOpen(BookmarksList.GetItem(TMenuItem(Sender).Tag).URL);
+end;
+
+procedure TKSPMainWindow.CDMenuClick(Sender: TObject);
+var
+  i: integer;
+begin
+  ShowMessage(Player.GetTrackList(TMenuItem(Sender).Tag).Text);
+  for i := 0 to Player.GetTrackList(TMenuItem(Sender).Tag).Count - 1 do
+  begin
+    AddCDToPlayList('cda://' + IntToStr(TMenuItem(Sender).Tag) + ',' + IntToStr(i));
+  end;
+end;
+
+procedure TKSPMainWindow.AddCDToPlayList(fname: string);
+var
+  p:     TPLEntry;
+begin
+  //p.Tag:=ReadID3(fname, t, lack);
+  p.FileName := fname;
+
+  lbPlayList.Items.Add(fname);
+
+  lbPlayList.State[lbPlayList.Items.Count - 1] := cbUnchecked;
+
+  PlayList.Add(p);
+
+  PlayListTotalTime;
+
 end;
 
 procedure TKSPMainWindow.SetupTreeViewClick(Sender: TObject);
