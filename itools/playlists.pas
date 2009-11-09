@@ -50,7 +50,7 @@ type
   end;
 
   TPlayListSortType = (pstTrack, pstArtist, pstAlbum, pstYear, pstGenre, pstPlayCount,
-    pstFileName);
+    pstFileName, pstTitle);
 
   //type TPlayList = array of TPLEntry;
   PPLEntry = ^TPLEntry;
@@ -125,6 +125,12 @@ function CompareTracks(Item1, Item2: Pointer): integer;
 begin
   Result := CompareValue(TPLEntryInfo(Item1).Entry.Tag.Track,
     TPLEntryInfo(Item2).Entry.Tag.Track);
+end;
+
+function CompareTitle(Item1, Item2: Pointer): integer;
+begin
+  Result := CompareText(TPLEntryInfo(Item1).Entry.Tag.Title,
+    TPLEntryInfo(Item2).Entry.Tag.Title);
 end;
 
 function ComparePlayCount(Item1, Item2: Pointer): integer;
@@ -229,6 +235,7 @@ begin
     pstGenre: Sort(@CompareGenre);
     pstPlayCount: Sort(@ComparePlayCount);
     pstFileName: Sort(@CompareFileName);
+    pstTitle: Sort(@CompareTitle);
   end;
 end;
 

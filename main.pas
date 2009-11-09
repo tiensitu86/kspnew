@@ -82,6 +82,14 @@ type
     Button17: TButton;
     Button18: TButton;
     IMAddress1: TEdit;
+    MenuItem59: TMenuItem;
+    MenuItem60: TMenuItem;
+    MenuItem61: TMenuItem;
+    MenuItem62: TMenuItem;
+    MenuItem63: TMenuItem;
+    MenuItem64: TMenuItem;
+    MenuItem65: TMenuItem;
+    MenuItem66: TMenuItem;
     SpeedButton5: TButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -398,6 +406,7 @@ type
     procedure Button15Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
     procedure lwikiaPanelResize(Sender: TObject);
+    procedure MenuItem60Click(Sender: TObject);
     procedure MLibSearchLikeButtonClick(Sender: TObject);
     procedure Button18Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -844,6 +853,9 @@ begin
   if (Pos('://', URL)=0) and (not FileExists(URL)) then
     w:='http://'+URL else
     w:=URL;
+
+  QWebView_stop(Handle);
+
   Page:=QLCLWebPageH(QWebView_page(Handle));
 
   QWebPage:=QLCLWebPage_create(TQtWidget(fParent).Widget);
@@ -2507,6 +2519,21 @@ end;
 procedure TKSPMainWindow.lwikiaPanelResize(Sender: TObject);
 begin
   LWikiaView.SetDimensions(Self.lwikiaPanel.Width, Self.lwikiaPanel.Height);
+end;
+
+procedure TKSPMainWindow.MenuItem60Click(Sender: TObject);
+begin
+  case TMenuItem(Sender).Tag of
+    0: MediaSongs.SortPlaylist(pstArtist);
+    1: MediaSongs.SortPlaylist(pstTrack);
+    2: MediaSongs.SortPlaylist(pstAlbum);
+    3: MediaSongs.SortPlaylist(pstYear);
+    4: MediaSongs.SortPlaylist(pstGenre);
+    5: MediaSongs.SortPlaylist(pstTitle);
+    6: MediaSongs.SortPlaylist(pstFileName);
+  end;
+
+  AssignMedia;
 end;
 
 procedure TKSPMainWindow.MLibSearchLikeButtonClick(Sender: TObject);
