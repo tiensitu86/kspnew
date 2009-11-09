@@ -91,6 +91,7 @@ type
     MenuItem64: TMenuItem;
     MenuItem65: TMenuItem;
     MenuItem66: TMenuItem;
+    CDAudioMenu: TMenuItem;
     SpeedButton5: TButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -1569,9 +1570,28 @@ end;
   end;
 {$ENDIF}
 
+  procedure FillCDMenu;
+  var
+    s: TStringList;
+    i: integer;
+    m: TMenuItem;
+  begin
+    s:=Player.GetCDDrives;
+    CDAudioMenu.Clear;
+    for i:=0 to s.Count-1 do begin
+      m:=TMenuItem.Create(Self);
+      m.Tag:=i;
+      m.Caption:=s.Strings[i];
+      CDAudioMenu.Add(m);
+    end;
+    s.Free;
+  end;
+
 begin
   SetVars;
   LoadOptions;
+
+  FillCDMenu;
 
   ApplyQtStyleSheet;
 

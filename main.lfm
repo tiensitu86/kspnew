@@ -4701,6 +4701,9 @@ object KSPMainWindow: TKSPMainWindow
         Action = OpenNetworkStream
         OnClick = OpenNetworkStreamExecute
       end
+      object CDAudioMenu: TMenuItem
+        Caption = 'CD Audio'
+      end
       object MenuItem20: TMenuItem
         Action = ClearPlaylistAction
         Bitmap.Data = {

@@ -55,7 +55,7 @@
         <UnitName Value="ksp"/>
         <CursorPos X="17" Y="87"/>
         <TopLine Value="54"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -66,12 +66,12 @@
         <ComponentName Value="KSPMainWindow"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <CursorPos X="34" Y="2457"/>
-        <TopLine Value="2430"/>
+        <CursorPos X="15" Y="1577"/>
+        <TopLine Value="1554"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="201"/>
         <Bookmarks Count="1">
-          <Item0 X="31" Y="2715" ID="0"/>
+          <Item0 X="31" Y="2735" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -80,7 +80,7 @@
         <Filename Value="additional/bass/BASSPlayer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASSPlayer"/>
-        <CursorPos X="16" Y="3615"/>
+        <CursorPos X="27" Y="3605"/>
         <TopLine Value="3594"/>
         <EditorIndex Value="8"/>
         <UsageCount Value="201"/>
@@ -261,7 +261,7 @@
         <UnitName Value="kspfiles"/>
         <CursorPos X="36" Y="80"/>
         <TopLine Value="64"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -353,9 +353,11 @@
         <Filename Value="itools/KSPStartup.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KSPStartup"/>
-        <CursorPos X="29" Y="143"/>
-        <TopLine Value="122"/>
+        <CursorPos X="9" Y="146"/>
+        <TopLine Value="121"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
@@ -1232,7 +1234,7 @@
         <UnitName Value="plsFrame"/>
         <CursorPos X="24" Y="44"/>
         <TopLine Value="32"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <SyntaxHighlighter Value="Delphi"/>
@@ -1242,7 +1244,7 @@
         <UnitName Value="FileUtil"/>
         <CursorPos X="10" Y="45"/>
         <TopLine Value="61"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit145>
@@ -1251,131 +1253,131 @@
         <UnitName Value="math"/>
         <CursorPos X="10" Y="528"/>
         <TopLine Value="499"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit146>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="2532" Column="14" TopLine="2524"/>
-      </Position1>
-      <Position2>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="237" Column="26" TopLine="228"/>
-      </Position2>
-      <Position3>
-        <Filename Value="itools/playlists.pas"/>
-        <Caret Line="144" Column="18" TopLine="113"/>
-      </Position3>
-      <Position4>
         <Filename Value="itools/playlists.pas"/>
         <Caret Line="132" Column="20" TopLine="113"/>
+      </Position1>
+      <Position2>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="75" Column="41" TopLine="65"/>
+      </Position2>
+      <Position3>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="112" Column="64" TopLine="92"/>
+      </Position3>
+      <Position4>
+        <Filename Value="additional/bass/BASSPlayer.pas"/>
+        <Caret Line="128" Column="9" TopLine="104"/>
       </Position4>
       <Position5>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="75" Column="41" TopLine="65"/>
+        <Caret Line="18" Column="27" TopLine="1"/>
       </Position5>
       <Position6>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="112" Column="64" TopLine="92"/>
+        <Caret Line="3606" Column="26" TopLine="3606"/>
       </Position6>
       <Position7>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="128" Column="9" TopLine="104"/>
+        <Caret Line="691" Column="22" TopLine="671"/>
       </Position7>
       <Position8>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="18" Column="27" TopLine="1"/>
+        <Caret Line="3616" Column="20" TopLine="3608"/>
       </Position8>
       <Position9>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="3606" Column="26" TopLine="3606"/>
+        <Caret Line="1653" Column="13" TopLine="1631"/>
       </Position9>
       <Position10>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="691" Column="22" TopLine="671"/>
+        <Caret Line="3611" Column="29" TopLine="3588"/>
       </Position10>
       <Position11>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="3616" Column="20" TopLine="3608"/>
+        <Caret Line="1657" Column="21" TopLine="1631"/>
       </Position11>
       <Position12>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="1653" Column="13" TopLine="1631"/>
+        <Caret Line="286" Column="16" TopLine="266"/>
       </Position12>
       <Position13>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="3611" Column="29" TopLine="3588"/>
+        <Caret Line="3613" Column="28" TopLine="3585"/>
       </Position13>
       <Position14>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="1657" Column="21" TopLine="1631"/>
+        <Caret Line="1652" Column="20" TopLine="1631"/>
       </Position14>
       <Position15>
         <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="286" Column="16" TopLine="266"/>
+        <Caret Line="3614" Column="32" TopLine="3585"/>
       </Position15>
       <Position16>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="3613" Column="28" TopLine="3585"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2526" Column="42" TopLine="2512"/>
       </Position16>
       <Position17>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="1652" Column="20" TopLine="1631"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="9" Column="21" TopLine="1"/>
       </Position17>
       <Position18>
-        <Filename Value="additional/bass/BASSPlayer.pas"/>
-        <Caret Line="3614" Column="32" TopLine="3585"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2678" Column="144" TopLine="2668"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="2526" Column="42" TopLine="2512"/>
+        <Caret Line="2708" Column="7" TopLine="2687"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="9" Column="21" TopLine="1"/>
+        <Caret Line="483" Column="15" TopLine="463"/>
       </Position20>
       <Position21>
         <Filename Value="main.pas"/>
-        <Caret Line="2678" Column="144" TopLine="2668"/>
+        <Caret Line="1569" Column="5" TopLine="1549"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="2708" Column="7" TopLine="2687"/>
+        <Caret Line="1391" Column="44" TopLine="1370"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="483" Column="15" TopLine="463"/>
+        <Caret Line="2443" Column="77" TopLine="2429"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="1569" Column="5" TopLine="1549"/>
+        <Caret Line="2531" Column="20" TopLine="2512"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="1391" Column="44" TopLine="1370"/>
+        <Caret Line="1572" Column="5" TopLine="1551"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="2443" Column="77" TopLine="2429"/>
+        <Caret Line="1403" Column="5" TopLine="1376"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="2531" Column="20" TopLine="2512"/>
+        <Caret Line="2531" Column="31" TopLine="2528"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="1572" Column="5" TopLine="1551"/>
+        <Caret Line="2452" Column="41" TopLine="2430"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="1403" Column="5" TopLine="1376"/>
+        <Filename Value="itools/KSPStartup.pas"/>
+        <Caret Line="143" Column="29" TopLine="122"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="2531" Column="31" TopLine="2528"/>
+        <Caret Line="2432" Column="29" TopLine="2430"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

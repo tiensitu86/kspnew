@@ -144,7 +144,6 @@ begin
 {$ELSE}
   Player:=TBassPlayer.Create(nil);
 {$ENDIF}
-  Player.GetCDDrives;
 end;
 
 procedure SetupKSP;
